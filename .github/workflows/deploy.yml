@@ -26,4 +26,3 @@ jobs:
       - run: echo ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.ref }}
       
-      continue-on-error
