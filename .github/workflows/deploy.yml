@@ -18,7 +18,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: ${{ matrix.repos }}
       - run: git checkout ${{ github.event.client_payload.branch }}
-        working-directory: ${{ matrix.repos }}
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}
         continue-on-error: true
         
       - run: echo ${{ github.event.client_payload.sha }}
