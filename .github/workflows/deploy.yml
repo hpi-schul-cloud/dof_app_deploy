@@ -13,7 +13,6 @@ jobs:
         repos: [ hpi-schul-cloud/dof_test_app_1, hpi-schul-cloud/dof_test_app_2 ]
     steps:
       - uses: actions/checkout@v2
-        continue-on-error: true
         with:
           repository: ${{ matrix.repos }}
           ref: ${{ github.event.client_payload.ref }}
