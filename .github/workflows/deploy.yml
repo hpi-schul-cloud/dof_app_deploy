@@ -15,15 +15,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
-          ref: ${{ github.event.client_payload.ref }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: ${{ matrix.repos }}
-      - uses: actions/checkout@v2
-        if: ${{ failure() }}
-        with:
-          repository: hpi-schul-cloud/${{ matrix.repos }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: ${{ matrix.repos }}
+      - run: git checkout ${{ github.event.client_payload.ref }
+        working-directory: ${{ matrix.repos }}
+        continue-on-error: true
         
       - run: echo ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.ref }}
