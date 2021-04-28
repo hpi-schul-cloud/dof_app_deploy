@@ -10,18 +10,20 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        repos: [ hpi-schul-cloud/dof_test_app_1, hpi-schul-cloud/dof_test_app_2 ]
+        repos: [ dof_test_app_1, dof_test_app_2 ]
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: ${{ matrix.repos }}
+          repository: hpi-schul-cloud/${{ matrix.repos }}
           ref: ${{ github.event.client_payload.ref }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          path: ${{ matrix.repos }}
       - uses: actions/checkout@v2
         if: ${{ failure() }}
         with:
-          repository: ${{ matrix.repos }}
+          repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          path: ${{ matrix.repos }}
         
       - run: echo ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.ref }}
