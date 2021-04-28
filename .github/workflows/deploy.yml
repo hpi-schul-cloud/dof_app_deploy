@@ -8,8 +8,22 @@ on:
 jobs:
   deploy_to_dev:
     runs-on: ubuntu-18.04
+    matrix:
+      repos: [ hpi-schul-cloud/dof_test_app_1, hpi-schul-cloud/dof_test_app_2 ]
     steps:
       - uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          repository: ${{ matrix.repos }}
+          ref: ${{ github.event.client_payload.ref }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - uses: actions/checkout@v2
+        if: ${{ failure() }}
+        with:
+          repository: ${{ matrix.repos }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
         
       - run: echo ${{ github.event.client_payload.sha }}
       - run: echo ${{ github.event.client_payload.ref }}
+      
+      continue-on-error
