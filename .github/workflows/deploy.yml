@@ -24,6 +24,7 @@ jobs:
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
         shell: bash
         run: |
+          pwd
           echo "APP_1_IMAGE_NAME: ${{ github.event.client_payload.image }}" > all/${{ matrix.repos }}.yml
         
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
