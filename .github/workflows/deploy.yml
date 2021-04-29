@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "APP_1_IMAGE_TAG: ${{ github.event.client_payload.sha }}" >> all/${{ matrix.repos }}.yml
         
-      - run: tar -cf ${{ matrix.repos }}.tar ansible/**/*.yml 
+      - run: tar -cf ${{ matrix.repos }}.tar ansible 
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.repos }}
