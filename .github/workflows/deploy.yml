@@ -6,7 +6,7 @@ on:
     types: [dev-deploy]
 
 jobs:
-  deploy_to_dev:
+  create_artifacts:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -18,16 +18,24 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: pwd
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
-      - run: ls -la
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
       - run: git checkout ${{ github.event.client_payload.branch }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         continue-on-error: true
-        
-      - run: echo ${{ github.event.client_payload.sha }}
-      - run: echo ${{ github.event.client_payload.ref }}
-      
+      - run: echo "APP_1_IMAGE_NAME: ${{ github.event.client_payload.image }}" > all/${{ matrix.repos }}.yml
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
+      - run: echo "APP_1_IMAGE_TAG: ${{ github.event.client_payload.sha }}" >> all/${{ matrix.repos }}.yml
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
+      - run: tar -cf ${{ matrix.repos }}.tar ansible/**/*.yml 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.repos }}
+          path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
+          
+  deploy:
+    needs: create_artifacts
+    if: always()
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/download-artifact@v2
+      - name: Display structure of downloaded files
+        run: ls -R
