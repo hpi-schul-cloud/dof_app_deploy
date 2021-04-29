@@ -21,18 +21,18 @@ jobs:
       - run: git checkout ${{ github.event.client_payload.branch }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         continue-on-error: true
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
+      - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
-        run: mkdir all
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
+        run: mkdir -p ansible/group_vars/all
+      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
         shell: bash
         run: |
-          echo "APP_1_IMAGE_NAME: ${{ github.event.client_payload.image }}" > all/${{ matrix.repos }}.yml
+          echo "APP_1_IMAGE_NAME: ${{ github.event.client_payload.image }}" > ${{ matrix.repos }}.yml
         
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars
+      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
         shell: bash
         run: |
-          echo "APP_1_IMAGE_TAG: ${{ github.event.client_payload.sha }}" >> all/${{ matrix.repos }}.yml
+          echo "APP_1_IMAGE_TAG: ${{ github.event.client_payload.sha }}" >> ${{ matrix.repos }}.yml
         
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
