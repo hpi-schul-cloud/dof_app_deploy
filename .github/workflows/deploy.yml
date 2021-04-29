@@ -46,5 +46,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/download-artifact@v2
-      - name: Display structure of downloaded files
+      - run: mv */*.tar ./
+      - run: tar -xf *.tar
+      - name: Display structure of the folder files
         run: ls -R
