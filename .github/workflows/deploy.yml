@@ -42,7 +42,6 @@ jobs:
           
   deploy:
     needs: create_artifacts
-    if: always()
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/download-artifact@v2
