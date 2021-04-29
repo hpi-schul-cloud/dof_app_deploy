@@ -47,6 +47,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
-      - run: tar -xf *.tar
+      - run: find -name "*.tar" -exec tar -xf {} \;
       - name: Display structure of the folder files
         run: ls -R
