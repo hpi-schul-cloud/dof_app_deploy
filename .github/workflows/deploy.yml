@@ -5,6 +5,9 @@ on:
   repository_dispatch:
     types: [dev-deploy]
 
+env:
+  
+
 jobs:
   create_artifacts:
     runs-on: ubuntu-18.04
@@ -21,18 +24,23 @@ jobs:
       - run: git checkout ${{ github.event.client_payload.branch }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         continue-on-error: true
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}
+      - name: 
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
-        run: mkdir -p ansible/group_vars/all
+        run: |
+          mkdir -p ansible/group_vars/all
+          mkdir -p ansible/roles/${{ matrix.repos }}
+      - name: get sha from branch
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
+        shell: bash
+        run: |
+          echo "##[set-output name=sha;]$(git rev-parse HEAD)"
+        id: sha_head
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
         shell: bash
         run: |
-          echo "APP_1_IMAGE_NAME: ${{ github.event.client_payload.image }}" > ${{ matrix.repos }}.yml
+          echo "APP_1_IMAGE_TAG: ${{ steps.sha_head.outputs.sha }}" >> ${{ matrix.repos }}.yml
         
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
-        shell: bash
-        run: |
-          echo "APP_1_IMAGE_TAG: ${{ github.event.client_payload.sha }}" >> ${{ matrix.repos }}.yml
         
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
@@ -45,8 +53,15 @@ jobs:
     needs: create_artifacts
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
+      - run: git checkout ${{ github.event.client_payload.branch }}
+        continue-on-error: true
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
+      - run: python3 -m pip install ansible-base==2.10.7
+      - run: ansible-galaxy install community.kubernetes
+      - run: ansible --list-task
+        working-directory: ${{github.workspace }}/ansible
       - name: Display structure of the folder files
         run: ls -R
