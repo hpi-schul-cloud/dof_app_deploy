@@ -56,6 +56,10 @@ jobs:
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
       - shell: bash
         run: |
           pip3 install setuptools 
