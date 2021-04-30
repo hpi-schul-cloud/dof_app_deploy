@@ -65,7 +65,7 @@ jobs:
           pip3 install setuptools 
           pip3 install ansible
         
-      - run: ansible-galaxy install community.kubernetes
+      - run: ansible-galaxy collection install community.kubernetes
       - run: ansible --list-task
         working-directory: ${{github.workspace }}/ansible
       - name: Display structure of the folder files
