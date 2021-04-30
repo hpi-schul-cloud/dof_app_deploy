@@ -1,6 +1,8 @@
 ---
 - name: App Deploy
-  hosts: all
+  hosts: 
+    - all
+    - localhost
   connection: local
   roles:
     - dof_test_app_1
