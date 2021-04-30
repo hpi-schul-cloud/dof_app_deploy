@@ -56,7 +56,7 @@ jobs:
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - run: python3 -m pip install ansible-base==2.10.7
+      - run: pip3 install ansible
       - run: ansible-galaxy install community.kubernetes
       - run: ansible --list-task
         working-directory: ${{github.workspace }}/ansible
