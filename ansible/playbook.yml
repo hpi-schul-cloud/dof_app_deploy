@@ -1,8 +1,6 @@
 ---
 - name: App Deploy
   hosts: 
-    - all
-    - localhost
     - brb
     - nbc
   connection: local
