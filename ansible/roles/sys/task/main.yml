@@ -1,3 +1,9 @@
+  - name: bash 1
+    shell: pwd
+  - name: bash 2
+    shell: ls -la
+  - name: bash 3
+    shell: ls -la ~/
   - name: Namespace
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config 
