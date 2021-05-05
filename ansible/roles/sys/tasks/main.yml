@@ -11,7 +11,7 @@
       state: directory
       mode: 0700
   - name: push kube config
-    template:
+    copy:
       src: config
       dest: "{{ ansible_env.HOME }}/.kube/config"
       mode: 0600
