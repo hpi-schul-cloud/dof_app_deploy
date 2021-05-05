@@ -85,10 +85,6 @@ jobs:
         with:
           name: ansible
           path: ${{github.workspace }}/ansible.tar
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
       - shell: bash
         run: |
           python3 -m pip install --upgrade pip
@@ -98,7 +94,6 @@ jobs:
           ansible --version | grep "python version"
           ls -la /usr/bin/python3
           ls -la /usr/bin/python
-          ls -la /opt/hostedtoolcache/Python/3.9.4/x64
         
       - run: ansible-galaxy collection install community.kubernetes
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
@@ -106,7 +101,7 @@ jobs:
       - run: |
           mkdir .kube
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > .kube/config
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/opt/hostedtoolcache/Python/3.9.4/x64' -vvv
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3' -vvv
         working-directory: ${{github.workspace }}/ansible
       - run: |
           rm -rf .kube/config
