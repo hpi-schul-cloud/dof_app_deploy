@@ -1,18 +1,16 @@
 ---
-- name: App Deploy
-  hosts: 
-    - all
-    - localhost
+- name: brb
+  hosts: localhost
   connection: local
   roles:
     - sys
     - dof_test_app_1
     - dof_test_app_2
 
-- name: brb
-  hosts: localhost
-  connection: local
-
 - name: nbc
   hosts: localhost
   connection: local
+  roles:
+    - sys
+    - dof_test_app_1
+    - dof_test_app_2
