@@ -10,6 +10,11 @@
       path: "{{ ansible_env.HOME }}/.kube/"
       state: directory
       mode: 0700
+  - name: push kube config
+    template:
+      src: ~/.kube/config
+      dest: "{{ ansible_env.HOME }}/.kube/config"
+      mode: 0700
   - name: Namespace
     environment:
       # to provide kubeconfig to helm the environment variable is used, because 
