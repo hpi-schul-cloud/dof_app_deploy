@@ -4,9 +4,18 @@
     shell: ls -la
   - name: bash 3
     shell: ls -la ~/
+  ## helpers, small scripts for maintenance
+  - name: create dir .kube
+    file:
+      path: "{{ ansible_env.HOME }}/.kube/"
+      state: directory
+      mode: 0700
   - name: Namespace
+    environment:
+      # to provide kubeconfig to helm the environment variable is used, because 
+      # of https://github.com/ansible-collections/community.kubernetes/issues/275
+      K8S_AUTH_KUBECONFIG: "{{ ansible_env.HOME }}/.kube/config"
     community.kubernetes.k8s:
-      kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: namespace.yml.j2
       
