@@ -94,7 +94,7 @@ jobs:
         working-directory: ${{github.workspace }}/ansible
       - run: |
           mkdir .kube
-          echo ${{ secrets.DEV_KUBE_CONFIG }} > .kube/config
+          echo "${{ secrets.DEV_KUBE_CONFIG }}" > .kube/config
       - run: ansible-playbook ./playbook.yml
         working-directory: ${{github.workspace }}/ansible
       - run: |
