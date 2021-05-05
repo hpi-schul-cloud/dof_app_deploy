@@ -59,7 +59,7 @@ jobs:
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
-          declare test=${{ steps.sha_head.outputs.sha }}
+          declare test='${{ steps.sha_head.outputs.sha }}'
           echo "NAMESPACE=${{ matrix.tennens }}-${ test::8}" > cfg.yml
           echo "DOMAIN=${{ matrix.tennens }}-${ test::8}.dof.dev.hpi-schul-cloud.org" >> cfg.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
