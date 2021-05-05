@@ -102,7 +102,7 @@ jobs:
       - run: |
           mkdir .kube
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > .kube/config
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3' -vvv
         working-directory: ${{github.workspace }}/ansible
       - run: |
           rm -rf .kube/config
