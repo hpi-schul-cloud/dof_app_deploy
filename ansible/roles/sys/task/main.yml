@@ -1,0 +1,5 @@
+  - name: Namespace
+    community.kubernetes.k8s:
+      namespace: "{{ NAMESPACE }}"
+      template: namespace.yml.j2
+      
