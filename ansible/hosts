@@ -1,7 +1,12 @@
 [brb]
-ansible_host=localhost
 brb_host
 
 [nbc]
-ansible_host=localhost
 nbc_host
+
+[sc:children]
+brb
+nbc
+
+[sc:vars]
+ansible_host=localhost

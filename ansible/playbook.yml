@@ -1,8 +1,7 @@
 ---
 - name: App Deploy
   hosts: 
-    - brb
-    - nbc
+    - sc
   connection: local
   roles:
     - sys
