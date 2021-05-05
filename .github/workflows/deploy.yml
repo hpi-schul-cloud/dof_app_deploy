@@ -80,6 +80,11 @@ jobs:
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
+      - run: tar -cf ansible.tar ansible
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ansible
+          path: ${{github.workspace }}/ansible.tar
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
