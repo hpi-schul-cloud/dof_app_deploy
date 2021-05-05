@@ -36,8 +36,7 @@ jobs:
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
         shell: bash
         run: |
-          echo "${{ steps.sha_head.outputs.sha }}" >> ${{ matrix.repos }}.yml
-          echo "TEMP_VAR: tmp" >> ${{ matrix.repos }}.yml 
+          echo "APP_1_IMAGE_TAG: ${{ steps.sha_head.outputs.sha }}" >> ${{ matrix.repos }}.yml
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
