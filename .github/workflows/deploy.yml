@@ -7,7 +7,7 @@ on:
 
 jobs:
   create_artifacts_repos:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         repos: [ dof_test_app_1, dof_test_app_2 ]
@@ -45,7 +45,7 @@ jobs:
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
           
   create_artifacts_workspaces:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         tennens: [ brb, nbc ]
@@ -72,7 +72,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: git checkout ${{ github.event.client_payload.branch }}
@@ -96,6 +96,7 @@ jobs:
           pip3 install ansible
           pip3 install openshift
           ansible --version | grep "python version"
+          ls -la /usr/bin/python3
         
       - run: ansible-galaxy collection install community.kubernetes
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
