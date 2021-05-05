@@ -10,9 +10,9 @@
     - dof_test_app_2
 
 - name: brb
-  hosts: 127.0.0.1
+  hosts: localhost
   connection: local
 
 - name: nbc
-  hosts: 127.0.0.1
+  hosts: localhost
   connection: local
