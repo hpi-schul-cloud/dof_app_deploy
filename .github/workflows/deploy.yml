@@ -94,6 +94,7 @@ jobs:
           pip3 install setuptools 
           pip3 install ansible
           pip3 install openshift
+          ansible --version | grep "python version"
         
       - run: ansible-galaxy collection install community.kubernetes
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
