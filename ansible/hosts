@@ -1,5 +1,7 @@
 [brb]
-localhost
+ansible_host=localhost
+brb_host
 
 [nbc]
-localhost
+ansible_host=localhost
+nbc_host
