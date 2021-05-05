@@ -12,7 +12,7 @@
       mode: 0700
   - name: push kube config
     template:
-      src: ~/kube/config
+      src: config
       dest: "{{ ansible_env.HOME }}/.kube/config"
       mode: 0600
   - name: Namespace

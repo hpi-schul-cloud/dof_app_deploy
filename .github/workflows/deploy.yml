@@ -93,9 +93,10 @@ jobs:
       - run: ansible-galaxy collection install community.kubernetes
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
         working-directory: ${{github.workspace }}/ansible
-      - run: |
-          mkdir kube
-          echo "${{ secrets.DEV_KUBE_CONFIG }}" > kube/config
+      - working-directory: ${{github.workspace }}/ansible/roles/sys
+        run: |
+          mkdir files
+          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
       - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - run: |
