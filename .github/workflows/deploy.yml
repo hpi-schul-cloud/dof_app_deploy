@@ -95,12 +95,12 @@ jobs:
           pip3 install ansible
         
       - run: ansible-galaxy collection install community.kubernetes
-      - run: ansible-playbook ./playbook.yml --list-task --list-hosts
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
         working-directory: ${{github.workspace }}/ansible
       - run: |
           mkdir .kube
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > .kube/config
-      - run: ansible-playbook ./playbook.yml
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts
         working-directory: ${{github.workspace }}/ansible
       - run: |
           rm -rf .kube/config

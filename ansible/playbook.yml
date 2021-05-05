@@ -1,14 +1,10 @@
 ---
-- name: brb
-  hosts: localhost
-  connection: local
-  roles:
-    - sys
-    - dof_test_app_1
-    - dof_test_app_2
-
-- name: nbc
-  hosts: localhost
+- name: App Deploy
+  hosts: 
+    - all
+    - localhost
+    - brb
+    - nbc
   connection: local
   roles:
     - sys
