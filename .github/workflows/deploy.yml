@@ -94,8 +94,8 @@ jobs:
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
         working-directory: ${{github.workspace }}/ansible
       - run: |
-          mkdir .kube
-          echo "${{ secrets.DEV_KUBE_CONFIG }}" > .kube/config
+          mkdir kube
+          echo "${{ secrets.DEV_KUBE_CONFIG }}" > kube/config
       - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - run: |
