@@ -92,5 +92,13 @@ jobs:
       - run: ansible-galaxy collection install community.kubernetes
       - run: ansible-playbook ./playbook.yml --list-task --list-hosts
         working-directory: ${{github.workspace }}/ansible
+      - run: |
+          mkdir .kube
+          echo ${{ secrets.DEV_KUBE_CONFIG }} > .kube/config
+      - run: ansible-playbook ./playbook.yml
+        working-directory: ${{github.workspace }}/ansible
+      - run: |
+          rm -rf .kube/config
+        
       - name: Display structure of the folder files
         run: ls -R
