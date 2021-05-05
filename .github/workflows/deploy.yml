@@ -37,6 +37,7 @@ jobs:
         shell: bash
         run: |
           echo "${{ steps.sha_head.outputs.sha }}" >> ${{ matrix.repos }}.yml
+          echo "TEMP_VAR: tmp" >> ${{ matrix.repos }}.yml 
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
