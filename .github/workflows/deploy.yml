@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tennens: [ brb, nbc ]
+        tennens: [ brb, nbc, bay ]
     steps:
       - name: SHA Stuf
         shell: bash
