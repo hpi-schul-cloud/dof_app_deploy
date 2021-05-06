@@ -27,7 +27,8 @@ jobs:
         run: |
           mkdir -p ansible/group_vars/all
           mkdir -p ansible/roles/${{ matrix.repos }}/vars
-      - name: get sha from branch
+      - working-directory: ${{github.workspace }}/${{ matrix.repos }}
+        name: get sha from branch
         shell: bash
         run: |
           echo "##[set-output name=sha;]$(git rev-parse HEAD)"
