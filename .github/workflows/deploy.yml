@@ -75,6 +75,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - run: git checkout ${{ github.event.client_payload.branch }}
         continue-on-error: true
       - uses: actions/download-artifact@v2
