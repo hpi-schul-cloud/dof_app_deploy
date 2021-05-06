@@ -55,7 +55,7 @@ jobs:
         id: sha_head
         run: |
           mkdir -p ansible/group_vars/${{ matrix.tennens }}
-          echo "##[set-output name=sha;]$(${{ github.event.client_payload.branch }} | sha1sum)"
+          echo "##[set-output name=sha;]$(echo ${{ github.event.client_payload.branch }} | sha1sum)"
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
@@ -99,8 +99,6 @@ jobs:
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
       - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
-      - run: |
-          rm -rf .kube/config
-        
-      - name: Display structure of the folder files
-        run: ls -R
+      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
+        run: |
+          rm -rf  /config
