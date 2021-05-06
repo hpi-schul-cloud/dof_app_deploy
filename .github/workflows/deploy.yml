@@ -26,17 +26,16 @@ jobs:
         shell: bash
         run: |
           mkdir -p ansible/group_vars/all
-          mkdir -p ansible/roles/${{ matrix.repos }}
+          mkdir -p ansible/roles/${{ matrix.repos }}/vars
       - name: get sha from branch
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
         shell: bash
         run: |
           echo "##[set-output name=sha;]$(git rev-parse HEAD)"
         id: sha_head
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/group_vars/all
+      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/roles/${{ matrix.repos }}/vars
         shell: bash
         run: |
-          echo "APP_1_IMAGE_TAG: ${{ steps.sha_head.outputs.sha }}" >> ${{ matrix.repos }}.yml
+          echo "APP_IMAGE_TAG: ${{ steps.sha_head.outputs.sha }}" >> main.yml
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
