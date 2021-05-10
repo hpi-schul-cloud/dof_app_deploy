@@ -5,6 +5,5 @@
   connection: local
   roles:
     - sys
-    - ingress
     - dof_test_app_1
     - dof_test_app_2
