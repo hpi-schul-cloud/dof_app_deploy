@@ -1,14 +1,10 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: app-1-ingress
+  name: app-ingress
   namespace: {{ NAMESPACE }}
   annotations:
 {% if RUN_ENV_NGINX is defined and RUN_ENV_NGINX %}
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 {% endif %}
-spec:
-  rules:
-{% include 'dof_test_app_1.yml.j2' %}
-{% include 'dof_test_app_2.yml.j2' %}
