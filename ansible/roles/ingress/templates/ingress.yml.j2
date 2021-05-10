@@ -15,3 +15,6 @@ spec:
     http:
       paths:
       - path: /none-use
+        backend:
+          serviceName: default-backend-404-svc
+          servicePort: 8080
