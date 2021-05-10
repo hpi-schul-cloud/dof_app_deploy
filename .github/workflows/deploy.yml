@@ -18,10 +18,13 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ github.event.client_payload.branch }}
+      - name: checkout branch
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
-      - name: 
+        run: |
+          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]: then
+            git checkout ${{ github.event.client_payload.branch }}
+          fi
+      - name:  Generate folders
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
@@ -77,8 +80,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: git checkout ${{ github.event.client_payload.branch }}
-        continue-on-error: true
+      - name: checkout branch
+        run: |
+          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]: then
+            git checkout ${{ github.event.client_payload.branch }}
+          fi
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
