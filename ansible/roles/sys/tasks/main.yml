@@ -17,8 +17,6 @@
       mode: 0600
   - name: Namespace
     environment:
-      # to provide kubeconfig to helm the environment variable is used, because 
-      # of https://github.com/ansible-collections/community.kubernetes/issues/275
       K8S_AUTH_KUBECONFIG: "{{ ansible_env.HOME }}/.kube/config"
     community.kubernetes.k8s:
       namespace: "{{ NAMESPACE }}"
