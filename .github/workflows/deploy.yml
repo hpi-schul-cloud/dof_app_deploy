@@ -21,7 +21,7 @@ jobs:
       - name: checkout branch
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         run: |
-          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]: then
+          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]; then
             git checkout ${{ github.event.client_payload.branch }}
           fi
       - name:  Generate folders
@@ -82,7 +82,7 @@ jobs:
           fetch-depth: 0
       - name: checkout branch
         run: |
-          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]: then
+          if [[ -z $(git ls-remote --heads origin ${{ github.event.client_payload.branch }}) ]]; then
             git checkout ${{ github.event.client_payload.branch }}
           fi
       - uses: actions/download-artifact@v2
