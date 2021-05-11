@@ -5,3 +5,4 @@
     community.kubernetes.k8s:
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
+      merge_type: merge
