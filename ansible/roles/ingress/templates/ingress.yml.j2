@@ -14,7 +14,11 @@ spec:
   - host: {{ DOMAIN }}
     http:
       paths:
-      - path: /none-use
+      - path: /
         backend:
-          serviceName: default-backend-404-svc
-          servicePort: 8080
+          serviceName: ingress-client-svc
+          servicePort: 443
+      - path: /api
+        backend:
+          serviceName: ingress-api-svc
+          servicePort: 443
