@@ -6,5 +6,9 @@
   roles:
     - sys
     - ingress
+    - dof_mongo
+    - dof_postgresql
+    - dof_rabbitmq
+    - dof_reddis
     - dof_test_app_1
     - dof_test_app_2
