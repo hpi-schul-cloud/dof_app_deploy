@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: [ dof_test_app_1, dof_test_app_2 ]
+        repos: [ dof_test_app_1, dof_test_app_2, dof_mongo, dof_postgresql, dof_rabbitmq, dof_reddis ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -91,10 +91,14 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install setuptools ansible openshift
-        
+          
+      - working-directory: ${{github.workspace }}/ansible/group_vars
+        shell: |
+          mkdir all
+          echo "RABBITMQ_USER: ${{ secrets.DEV_RABBITMQ_USER }}" > all/rabbitmq.yml
+          echo "RABBITMQ_PW_HASH: ${{ secrets.DEV_RABBITMQ_PASSWORD_HASH }}" >> all/rabbitmq.yml
+          echo "RABBITMQ_PW: ${{ secrets.DEV_RABBITMQ_PASSWORD }}" >> all/rabbitmq.yml
       - run: ansible-galaxy collection install community.kubernetes
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts --list-task --list-hosts
-        working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
