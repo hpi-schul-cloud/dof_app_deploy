@@ -93,7 +93,7 @@ jobs:
           python3 -m pip install setuptools ansible openshift
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
-        shell: |
+        run: |
           mkdir all
           echo "RABBITMQ_USER: ${{ secrets.DEV_RABBITMQ_USER }}" > all/rabbitmq.yml
           echo "RABBITMQ_PW_HASH: ${{ secrets.DEV_RABBITMQ_PASSWORD_HASH }}" >> all/rabbitmq.yml
