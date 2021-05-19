@@ -97,6 +97,10 @@ jobs:
           echo "RABBITMQ_USER: ${{ secrets.DEV_RABBITMQ_USER }}" > all/rabbitmq.yml
           echo "RABBITMQ_PW_HASH: ${{ secrets.DEV_RABBITMQ_PASSWORD_HASH }}" >> all/rabbitmq.yml
           echo "RABBITMQ_PW: ${{ secrets.DEV_RABBITMQ_PASSWORD }}" >> all/rabbitmq.yml
+      - working-directory: ${{github.workspace }}/ansible/group_vars
+        run: |
+          echo "POSTGRES_USER: ${{ secrets.DEV_POSTGRES_USER }}" > all/postgres.yml
+          echo "POSTGRES_PASSWORD: ${{ secrets.DEV_POSTGRES_PASSWORD }}" >> all/postgres.yml
       - run: ansible-galaxy collection install community.kubernetes
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
