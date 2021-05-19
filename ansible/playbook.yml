@@ -10,5 +10,6 @@
     - dof_postgresql
     - dof_rabbitmq
     - dof_redis
+    - dof_mailcatcher
     - dof_test_app_1
     - dof_test_app_2
