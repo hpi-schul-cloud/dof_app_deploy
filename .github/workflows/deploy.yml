@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: [ dof_test_app_1, dof_test_app_2, dof_mongo, dof_postgresql, dof_rabbitmq, dof_redis, dof_mailcatcher ]
+        repos: [ dof_test_app_1, dof_test_app_2, dof_mongo, dof_postgresql, dof_rabbitmq, dof_redis, dof_mailcatcher, node-notification-service ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -101,6 +101,11 @@ jobs:
         run: |
           echo "POSTGRES_USER: ${{ secrets.DEV_POSTGRES_USER }}" > all/postgres.yml
           echo "POSTGRES_PASSWORD: ${{ secrets.DEV_POSTGRES_PASSWORD }}" >> all/postgres.yml
+      - name: Node-Notification-Config
+        working-directory: ${{github.workspace }}/ansible/group_vars
+        run: |
+          echo "NOTIFICATION_REDIS_HOST: ${{ secrets.DEV_NOTIFICATION_REDIS_HOST }}" > all/node-notification-service.yml
+          echo "NOTIFICATION_MONGO_HOST: ${{ secrets.DEV_NOTIFICATION_MONGO_HOST }}" >> all/node-notification-service.yml
       - run: ansible-galaxy collection install community.kubernetes
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
