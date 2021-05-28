@@ -5,7 +5,7 @@
   connection: local
   roles:
     - sys
-    - dof_onepassword-connect-operato
+    - dof_onepassword-connect-operator
     - ingress
     - dof_mongo
     - dof_postgresql
