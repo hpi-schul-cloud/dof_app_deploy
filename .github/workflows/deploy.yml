@@ -106,6 +106,10 @@ jobs:
         run: |
           echo "NOTIFICATION_REDIS_HOST: ${{ secrets.DEV_NOTIFICATION_REDIS_HOST }}" >> all/node-notification-service.yml
           echo "NOTIFICATION_MONGO_HOST: ${{ secrets.DEV_NOTIFICATION_MONGO_HOST }}" >> all/node-notification-service.yml
+      - name: 1Password
+        working-directory: ${{github.workspace }}/ansible/group_vars
+        run: |
+          echo "VAULT: ${{ secrets.DEV_VAULTE }}" >> all/dof_deploy.yml
       - run: ansible-galaxy collection install community.kubernetes
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
