@@ -5,7 +5,6 @@
   connection: local
   roles:
     - sys
-    - dof_onepassword-connect-operator
     - ingress
     - dof_mongo
     - dof_postgresql
@@ -13,5 +12,7 @@
     - dof_redis
     - dof_mailcatcher
     - node-notification-service
+    - dof_etherpad_nginx
+    - dof_etherpad
     - dof_test_app_1
     - dof_test_app_2

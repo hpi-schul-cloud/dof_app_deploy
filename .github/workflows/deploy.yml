@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: [ dof_test_app_1, dof_test_app_2, dof_mongo, dof_postgresql, dof_rabbitmq, dof_redis, dof_mailcatcher, node-notification-service, dof_onepassword-connect-operator ]
+        repos: [ dof_test_app_1, dof_test_app_2, dof_mongo, dof_postgresql, dof_rabbitmq, dof_redis, dof_mailcatcher, node-notification-service, dof_etherpad ]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -99,13 +99,7 @@ jobs:
           echo "RABBITMQ_PW: ${{ secrets.DEV_RABBITMQ_PASSWORD }}" >> all/rabbitmq.yml
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
-          echo "POSTGRES_USER: ${{ secrets.DEV_POSTGRES_USER }}" > all/postgres.yml
-          echo "POSTGRES_PASSWORD: ${{ secrets.DEV_POSTGRES_PASSWORD }}" >> all/postgres.yml
-      - name: Node-Notification-Config
-        working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "NOTIFICATION_REDIS_HOST: ${{ secrets.DEV_NOTIFICATION_REDIS_HOST }}" >> all/node-notification-service.yml
-          echo "NOTIFICATION_MONGO_HOST: ${{ secrets.DEV_NOTIFICATION_MONGO_HOST }}" >> all/node-notification-service.yml
+          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> all/dof_etherpad.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
