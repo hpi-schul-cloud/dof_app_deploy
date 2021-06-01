@@ -14,5 +14,4 @@
     - node-notification-service
     - dof_etherpad_nginx
     - dof_etherpad
-    - dof_test_app_1
-    - dof_test_app_2
+    - schulcloud-server
