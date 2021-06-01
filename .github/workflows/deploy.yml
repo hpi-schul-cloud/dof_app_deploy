@@ -90,7 +90,9 @@ jobs:
       - shell: bash
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install setuptools ansible openshift
+      - shell: bash
+        run: |
+          python3 -m pip install ansible
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

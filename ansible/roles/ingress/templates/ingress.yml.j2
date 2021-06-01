@@ -1,20 +1,289 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: app-ingress
+  name: {{ NAMESPACE }}-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-{% if RUN_ENV_NGINX is defined and RUN_ENV_NGINX %}
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-{% endif %}
+
 spec:
   rules:
-  ### Server
+  ### Client / Nuxtclient
   - host: {{ DOMAIN }}
     http:
       paths:
-      - path: /none-use
+      - path: /
+        backend:
+          serviceName: client-svc
+          servicePort: {{ PORT_CLIENT }}
+      - path: /account
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /activation
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /administration/ldap
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /metrics
         backend:
           serviceName: default-backend-404-svc
           servicePort: 8080
+      - path: /login-instances
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /login
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: client-ldap-svc
+      {% else %}
+          serviceName: client-svc
+      {% endif %}
+          servicePort: {{ PORT_CLIENT }}
+      - path: /login/success
+        backend:
+          serviceName: client-svc
+          servicePort: {{ PORT_CLIENT }}
+      - path: /error
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /imprint
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /termsofuse
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /mint-ec
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /insights
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /news
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /nuxtversion
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /content
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /_nuxt
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /systems/ldap
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: nuxtclient-ldap-svc
+      {% else %}
+          serviceName: nuxtclient-svc
+      {% endif %}
+          servicePort: {{ PORT_NUXTCLIENT }}
+      - path: /administration/systems/ldap
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: nuxtclient-ldap-svc
+      {% else %}
+          serviceName: nuxtclient-svc
+      {% endif %}
+          servicePort: {{ PORT_NUXTCLIENT }}
+          
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
+      - path: /administration/datasources
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      {% endif %}
+      
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS %}
+      - path: /administration/students/
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      {% endif %}
+      
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS %}
+      - path: /administration/teachers/
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ PORT_NUXTCLIENT }}
+      {% endif %}
+      
+      - path: /etherpad
+        backend:
+          serviceName: etherpad-nginx-svc
+          servicePort: 80
+      - path: /etherpad/socket.io
+        backend:
+          serviceName: etherpad-nginx-svc
+          servicePort: 80
+      - path: /api/
+        backend:
+          #serviceName: api-svc
+          #servicePort: {{ PORT_SERVER }}
+          serviceName: default-backend-404-svc
+          servicePort: 8080
+      - path: /api/metrics
+        backend:
+          serviceName: default-backend-404-svc
+          servicePort: 8080
+        pathType: Prefix
+      {% if ROUTE_ACCOUNTS is defined and ROUTE_ACCOUNTS %}
+      - path: /api/accounts
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% endif %}
+      - path: /api/accounts/jwtTimer
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/edu-sharing
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/fileStorage/securityCheck
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/me
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/news
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% if ROUTE_ROSTER is defined and ROUTE_ROSTER %}
+      # Route /roster is used by bettermarks
+      - path: /api/roster
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% endif %}
+      - path: /api/schools/
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/version
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/wopi
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/courses
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/lessons
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/authentication
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: api-ldap-svc
+      {% else %}
+          serviceName: api-svc
+      {% endif %}
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/sync
+        backend:
+          serviceName: api-ldapsync-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/ldap
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: api-ldap-svc
+      {% else %}
+          serviceName: api-svc
+      {% endif %}
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/registration
+        pathType: Prefix
+        backend:
+      {% if NAMESPACE == 'niedersachsen' and RUN_ENV_IONOS == "false" %}
+          serviceName: error-404-svc
+          servicePort: 8080
+      {% elif  NAMESPACE == 'niedersachsen' and RUN_ENV_IONOS == "true" %}
+          serviceName: default-backend-404-svc
+          servicePort: 8080
+      {% elif WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: api-ldap-svc
+          servicePort: {{ PORT_SERVER }}
+      {% else %}
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% endif %}
+      {% if ROUTE_USERS is defined and ROUTE_USERS %}
+      - path: /api/users
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% endif %}
+      {% if ROUTE_CLASSES is defined and ROUTE_CLASSES %}
+      - path: /api/classes
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% endif %}
+      - path: /api/roles/user
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      {% if ROUTE_CONFIG_APP_PUBLIC is defined and ROUTE_CONFIG_APP_PUBLIC %}
+      - path: /api/config/app/public
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}		  
+      {% endif %}
+  {% endif %}
+  ### hydra / Oauth
+  - host: oauth.{{ DOMAIN }}
+    http:
+      paths:
+      - path: /oauth/
+        backend:
+          serviceName: hydra-svc
+          servicePort: 4444
+  ### Libreoffice
+  - host: libreoffice.{{ DOMAIN }}
+    http:
+      paths:
+      - path: /libreoffice/loleaflet
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: {{ PORT_LIBREOFFICE }}
+      - path: /libreoffice/hosting/discovery
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: {{ PORT_LIBREOFFICE }}
+      - path: /libreoffice/lool/(.*)/ws
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: {{ PORT_LIBREOFFICE }}
+      - path: /libreoffice/lool
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: {{ PORT_LIBREOFFICE }}
+      - path: /libreoffice/lool/adminws
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: {{ PORT_LIBREOFFICE }}
