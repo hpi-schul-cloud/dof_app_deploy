@@ -92,7 +92,7 @@ jobs:
           python3 -m pip install --upgrade pip
       - shell: bash
         run: |
-          python3 -m pip install ansible
+          python3 -m pip install ansible openshift
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
