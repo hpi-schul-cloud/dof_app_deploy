@@ -34,27 +34,7 @@ spec:
         backend:
           serviceName: client-svc
           servicePort: {{ CLIENT_PORT }}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
-      - path: /administration/datasources
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ PORT_NUXTCLIENT }}
-      {% endif %}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS %}
-      - path: /administration/students/
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ PORT_NUXTCLIENT }}
-      {% endif %}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS %}
-      - path: /administration/teachers/
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ PORT_NUXTCLIENT }}
-      {% endif %}
+          
       - path: /etherpad
         backend:
           serviceName: etherpad-nginx-svc
