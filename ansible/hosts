@@ -10,3 +10,4 @@ nbc
 
 [sc:vars]
 ansible_host=localhost
+connection=local
