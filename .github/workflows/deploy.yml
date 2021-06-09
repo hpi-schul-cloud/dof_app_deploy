@@ -20,6 +20,7 @@ jobs:
          - dof_etherpad
          - schulcloud-server
          - schulcloud-client
+         - nuxt-client
     steps:
       - uses: actions/checkout@v2
         with:

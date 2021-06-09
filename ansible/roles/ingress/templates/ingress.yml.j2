@@ -18,10 +18,26 @@ spec:
         backend:
           serviceName: client-svc
           servicePort: {{ CLIENT_PORT }}
+      - path: /account
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /activation
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /administration/ldap
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /metrics
         backend:
           serviceName: default-backend-404-svc
           servicePort: 8080
+      - path: /login-instances
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /login
         backend:
       {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
@@ -34,7 +50,79 @@ spec:
         backend:
           serviceName: client-svc
           servicePort: {{ CLIENT_PORT }}
+      - path: /error
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /imprint
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /termsofuse
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /mint-ec
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /insights
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /news
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /nuxtversion
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /content
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /_nuxt
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /systems/ldap
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: nuxtclient-ldap-svc
+      {% else %}
+          serviceName: nuxtclient-svc
+      {% endif %}
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /administration/systems/ldap
+        backend:
+      {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
+          serviceName: nuxtclient-ldap-svc
+      {% else %}
+          serviceName: nuxtclient-svc
+      {% endif %}
+          servicePort: {{ NUXTCLIENT_PORT }}
           
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
+      - path: /administration/datasources
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      {% endif %}
+      
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS %}
+      - path: /administration/students/
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      {% endif %}
+      
+      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS %}
+      - path: /administration/teachers/
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort:
+
       - path: /etherpad
         backend:
           serviceName: etherpad-nginx-svc
