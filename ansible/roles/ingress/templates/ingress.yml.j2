@@ -121,7 +121,7 @@ spec:
       - path: /administration/teachers/
         backend:
           serviceName: nuxtclient-svc
-          servicePort:
+          servicePort: {{ NUXTCLIENT_PORT }}
       {% endif %}
 
       - path: /etherpad
