@@ -253,10 +253,4 @@ spec:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
-      
-      ### SHD
-      - path: /shd/
-        backend:
-          serviceName: shd-svc
-          servicePort: {{ SHD_PORT }}
 
