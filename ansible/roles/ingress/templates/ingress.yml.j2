@@ -10,10 +10,10 @@ metadata:
 
 spec:
   rules:
-  ### Client / Nuxtclient
   - host: {{ DOMAIN }}
     http:
       paths:
+      ### Client / Nuxtclient
       - path: /
         backend:
           serviceName: client-svc
@@ -123,7 +123,7 @@ spec:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
       {% endif %}
-
+      ### Etherpad
       - path: /etherpad
         backend:
           serviceName: etherpad-nginx-svc
@@ -132,6 +132,7 @@ spec:
         backend:
           serviceName: etherpad-nginx-svc
           servicePort: 80
+      ### Server
       - path: /api/
         backend:
           serviceName: default-backend-404-svc
@@ -252,3 +253,10 @@ spec:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
+      
+      ### SHD
+      - path: /shd/
+        backend:
+          serviceName: shd-svc
+          servicePort: {{ SHD_PORT }}
+
