@@ -23,6 +23,7 @@ jobs:
          - nuxt-client
          - superhero-dashboard
          - schulcloud-calendar
+         - edtrio
     steps:
       - uses: actions/checkout@v2
         with:
