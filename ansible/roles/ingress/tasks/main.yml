@@ -1,7 +1,6 @@
 
   - name: Ingress
-    environment:
-      K8S_AUTH_KUBECONFIG: "{{ ansible_env.HOME }}/.kube/config"
-    community.kubernetes.k8s:
+    kubernetes.core:
+      kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
