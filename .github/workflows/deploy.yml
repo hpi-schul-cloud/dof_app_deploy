@@ -123,7 +123,8 @@ jobs:
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
           echo "VAULT: ${{ secrets.DEV_VAULTE }}" >> all/dof_deploy.yml
-      - run: ansible-galaxy collection install community.kubernetes kubernetes.core
+      - run: ansible-galaxy collection install community.kubernetes
+      - run: ansible-galaxy collection install kubernetes.core
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
