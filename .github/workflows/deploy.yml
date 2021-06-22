@@ -24,6 +24,7 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - edtrio
+         - schulcloud-editor 
     steps:
       - uses: actions/checkout@v2
         with:
