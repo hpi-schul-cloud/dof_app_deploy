@@ -32,9 +32,8 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ github.event.client_payload.branch }}
+      - run: git checkout -b ${{ github.event.client_payload.branch }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
       - name: 
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
