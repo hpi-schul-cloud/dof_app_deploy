@@ -38,7 +38,7 @@ ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
 
 # ADMIN TABLES
-ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: false
+ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 # Zusätzlich freigegebene routen
 ROUTE_ACCOUNTS: true
 ROUTE_CLASSES: true
