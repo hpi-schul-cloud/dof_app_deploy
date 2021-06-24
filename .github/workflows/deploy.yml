@@ -11,7 +11,6 @@ jobs:
     strategy:
       matrix:
         repos: 
-         - dof_mongo
          - dof_postgresql
          - dof_rabbitmq
          - dof_redis

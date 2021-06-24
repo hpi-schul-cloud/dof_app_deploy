@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: mongo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      #maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+      annotations:
+        configmapHash: ""
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+      containers:
+      - name: mongo
+        image: {{ MONGO_IMAGE_NAME }}:{{ MONGO_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 27017
+          name: mongo
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: mongo-configmap
+        volumeMounts:
+        - name: notification-mongodb-data-pv
+          mountPath: /data/db
+          readOnly: false
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "4Gi"
+          requests:
+            cpu: "100m"
+            memory: "4Gi"
+      volumes:
+      - name: notification-mongodb-data-pv
+        emptyDir: {}

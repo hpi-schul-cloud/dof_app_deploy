@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: mongo
+data:
+  # general
+  NODE_ENV: "production"
+
