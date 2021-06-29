@@ -41,15 +41,15 @@ jobs:
           mkdir -p ansible/group_vars/all
           mkdir -p ansible/roles/${{ matrix.repos }}/vars
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        name: get sha from branch
+        name: get commit id from HEAD of branch
         shell: bash
         run: |
-          echo "##[set-output name=sha;]$(git rev-parse HEAD)"
-        id: sha_head
+          echo "##[set-output name=commitid;]$(git rev-parse HEAD)"
+        id: commitid_of_head
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/roles/${{ matrix.repos }}/vars
         shell: bash
         run: |
-          echo "APP_IMAGE_TAG: ${{ steps.sha_head.outputs.sha }}" >> main.yml
+          echo "APP_IMAGE_TAG: ${{ steps.commitid_of_head.outputs.commitid }}" >> main.yml
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
@@ -65,16 +65,16 @@ jobs:
     steps:
       - name: SHA Stuf
         shell: bash
-        id: sha_head
+        id: make_identifier
         run: |
           mkdir -p ansible/group_vars/${{ matrix.tennens }}
-          echo "##[set-output name=sha;]$(echo ${{ github.event.client_payload.branch }} | sha1sum)"
+          echo "##[set-output name=id;]$(echo ${{ github.event.client_payload.branch }} | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)"
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
-          declare test='${{ steps.sha_head.outputs.sha }}'
-          echo "NAMESPACE: ${{ matrix.tennens }}-${test::8}" > cfg.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${test::8}.dof.dev.hpi-schul-cloud.org" >> cfg.yml
+          #declare test='${{ steps.make_identifier.outputs.id }}'
+          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
+          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.dof.dev.hpi-schul-cloud.org" >> cfg.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
       - uses: actions/upload-artifact@v2
         with:
