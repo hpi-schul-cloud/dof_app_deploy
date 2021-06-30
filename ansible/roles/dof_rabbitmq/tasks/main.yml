@@ -1,0 +1,25 @@
+  - name: Service
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: svc.yml.j2
+      
+  - name: Service Portmonitor
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: svc_prot.yml.j2
+    when: WITH_MONITORING is defined and WITH_MONITORING|bool
+      
+  - name: Configmap
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: configmap.yml.j2
+      
+  - name: Deployment
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: deployment.yml.j2
+      

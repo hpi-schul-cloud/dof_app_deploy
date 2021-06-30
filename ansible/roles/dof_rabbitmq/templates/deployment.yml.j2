@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      #maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+      annotations:
+        configmapHash: ""
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+      containers:
+      - name: rabbitmq
+        image: {{ RABBITMQ_IMAGE_NAME }}:{{ RABBITMQ_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: rabbitmq
+          containerPort: 5672
+          protocol: TCP
+        - name: rabbitmq-metric
+          containerPort: 15692
+          protocol: TCP
+        volumeMounts:
+        - name: rabbitmqconfig
+          mountPath: /etc/rabbitmq/rabbitmq.config
+          subPath: rabbitmq.config
+          readOnly: true
+        - name: rabbitmq-definitionsjson
+          mountPath: /run/secrets/rabbitmq-definitions.json
+          subPath: rabbitmq-definitions.json
+          readOnly: true
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "1Gi"
+      volumes:
+      - name: rabbitmqconfig
+        configMap:
+          name: rabbitmq-configmap
+          items:
+          - key: rabbitmq.config
+            path: rabbitmq.config
+      - name: rabbitmq-definitionsjson
+        configMap:
+          name: rabbitmq-configmap
+          items:
+          - key: rabbitmq-definitions.json
+            path: rabbitmq-definitions.json
