@@ -11,8 +11,6 @@ jobs:
     strategy:
       matrix:
         repos: 
-         - dof_postgresql
-         - dof_mailcatcher
          - node-notification-service
          - dof_etherpad
          - schulcloud-server

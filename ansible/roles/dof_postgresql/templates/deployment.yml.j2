@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: {{ POSTGRES_IMAGE_NAME }}:{{ POSTGRES_IMAGE_TAG }}
+        ports:
+        - containerPort: 5432
+        envFrom:
+{% if ONEPASSWORD is undefined or ONEPASSWORD is defined and not ONEPASSWORD %}
+        - configMapRef:
+            name: postgres-configmap
+{% endif %}
+        - secretRef:
+            name: postgres-secret
+        volumeMounts:
+        - name: postgres-data-pv
+          mountPath: /var/lib/postgresql/data
+          readOnly: false
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "1Gi"
+      volumes:
+      - name: postgres-data-pv 
+        emptyDir: {}
