@@ -1,0 +1,18 @@
+.idea/
+target/
+*.iml
+*.iws
+*.ipr
+pom.xml.versionsBackup
+.sass-cache/
+.DS_Store
+hs_err_pid*
+configuration/
+.DS_Store
+.directory
+*.swp
+# LibreOffice locks
+.~lock.*#
+.repository/
+.attach_pid*
+sessions
