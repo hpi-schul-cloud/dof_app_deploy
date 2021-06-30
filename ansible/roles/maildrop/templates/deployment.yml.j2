@@ -1,0 +1,37 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maildrop-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: maildrop
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: maildrop
+  template:
+    metadata:
+      labels:
+        app: maildrop
+    spec:
+      securityContext:  
+        #readOnlyRootFilesystem: true
+        #runAsNonRoot: true
+      containers:
+      - name: maildrop
+        image: {{ MAILDROP_IMAGE_NAME }}:{{ MAILDROP_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: maildrop-secret
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
