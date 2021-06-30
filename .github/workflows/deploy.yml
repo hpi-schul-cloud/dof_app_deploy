@@ -12,7 +12,6 @@ jobs:
       matrix:
         repos: 
          - dof_postgresql
-         - dof_redis
          - dof_mailcatcher
          - node-notification-service
          - dof_etherpad

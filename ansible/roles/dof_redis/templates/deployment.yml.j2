@@ -1,0 +1,38 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      securityContext:  
+        #readOnlyRootFilesystem: true
+        #runAsNonRoot: true
+      containers:
+      - name: redis
+        image: {{ REDIS_IMAGE_NAME }}:{{ REDIS_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: redis
+          containerPort: 6379
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2000m"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "1Gi"
