@@ -176,10 +176,10 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/news
+      - path: /api/v3/news
         backend:
           serviceName: api-svc
-          servicePort: {{ PORT_SERVER }}
+          servicePort: {{ PORT_SERVER }} 
       {% if ROUTE_ROSTER is defined and ROUTE_ROSTER %}
       # Route /roster is used by bettermarks
       - path: /api/roster
