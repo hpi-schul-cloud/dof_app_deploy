@@ -34,8 +34,8 @@ jobs:
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
-          mkdir -p ansible/group_vars/all
-          mkdir -p ansible/roles/${{ matrix.repos }}/vars
+          mkdir -pv ansible/group_vars/all
+          mkdir -pv ansible/roles/${{ matrix.repos }}/vars
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         name: get commit id from HEAD of branch
         shell: bash
