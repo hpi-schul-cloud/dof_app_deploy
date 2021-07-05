@@ -28,8 +28,9 @@ jobs:
     steps:
       - run: |
           temp=${{ github.event.client_payload.branch }}
-          echo "target ref" ${temp:-'${{ github.event.inputs.sc-branch }}'}
-          echo "git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}" >> $GITHUB_ENV
+          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
+          echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
+          echo git_ref_name $git_ref_name
           echo "fancyfancy" ${{ env.git_ref_name }}
       - uses: actions/checkout@v2
         with:
