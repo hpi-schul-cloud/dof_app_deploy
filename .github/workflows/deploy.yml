@@ -79,8 +79,8 @@ jobs:
           git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
           echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
           
-          temp=$(echo '${{ env.git_ref_name }}' | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)
-          echo "before" '${{ env.git_ref_name }}' "after" $temp
+          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)
+          echo "before" $git_ref_name "after" $temp
           echo "##[set-output name=id;]$(echo $temp)"
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
@@ -106,7 +106,7 @@ jobs:
       - run: |
           temp=${{ github.event.client_payload.branch }}
           git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
-          git checkout ${{ env.git_ref_name }}
+          git checkout $git_ref_name
         continue-on-error: true
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
