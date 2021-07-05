@@ -26,7 +26,9 @@ jobs:
          - edtrio
          - schulcloud-editor 
     steps:
-      - run: echo "target ref " ${${{ github.event.client_payload.branch }}:-'${{ github.event.inputs.sc-branch }}'}
+      - run: |
+          temp=${{ github.event.client_payload.branch }}
+          echo "target ref " ${temp:-'${{ github.event.inputs.sc-branch }}'}
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
