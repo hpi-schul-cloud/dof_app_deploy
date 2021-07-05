@@ -73,8 +73,10 @@ jobs:
         shell: bash
         id: make_identifier
         run: |
-          mkdir -p ansible/group_vars/${{ matrix.tennens }}
-          echo "##[set-output name=id;]$(echo ${{ env.git_ref_name }} | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)"
+          mkdir -pv ansible/group_vars/${{ matrix.tennens }}
+          temp=echo '${{ env.git_ref_name }}' | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)
+          echo $temp
+          echo "##[set-output name=id;]$(echo $temp)"
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
