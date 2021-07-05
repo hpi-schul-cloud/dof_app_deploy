@@ -4,6 +4,11 @@ name: Build and push Docker Image
 on:
   repository_dispatch:
     types: [dev-deploy]
+  workflow_dispatch:
+    inputs:
+      sc-branch:
+        description: 'SC Branch or tag'     
+        required: true
 
 jobs:
   create_artifacts_repos:
@@ -21,6 +26,7 @@ jobs:
          - edtrio
          - schulcloud-editor 
     steps:
+      - run: echo "target ref " ${${{ github.event.client_payload.branch }}:-'${{ github.event.inputs.sc-branch }}'}
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
