@@ -74,7 +74,7 @@ jobs:
         id: make_identifier
         run: |
           mkdir -pv ansible/group_vars/${{ matrix.tennens }}
-          temp=echo '${{ env.git_ref_name }}' | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -
+          temp=$(echo '${{ env.git_ref_name }}' | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)
           echo $temp
           echo "##[set-output name=id;]$(echo $temp)"
       - shell: bash
