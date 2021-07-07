@@ -16,7 +16,6 @@ jobs:
     strategy:
       matrix:
         repos: 
-         - node-notification-service
          - dof_etherpad
          - schulcloud-server
          - schulcloud-client

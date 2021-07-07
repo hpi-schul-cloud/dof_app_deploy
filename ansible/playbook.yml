@@ -12,7 +12,6 @@
     - dof_redis
     - dof_mailcatcher
     - maildrop
-    - node-notification-service
     - dof_etherpad_nginx
     - dof_etherpad
     - schulcloud-server
