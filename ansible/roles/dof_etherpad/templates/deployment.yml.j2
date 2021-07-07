@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etherpad-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: etherpad
+spec:
+  replicas: {{ etherpad_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: etherpad
+  template:
+    metadata:
+      labels:
+        app: etherpad
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '8080'
+    spec:
+      securityContext:  
+        #readOnlyRootFilesystem: true
+        # run as user etherpad (uid 5001)
+        runAsUser: 5001
+        runAsGroup: 5001
+        fsGroup: 5001
+        runAsNonRoot: true
+      containers:
+      - name: etherpad
+        image: {{ ETHERPAD_IMAGE_NAME }}:{{ ETHERPAD_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9001
+        env:
+        envFrom:
+        - configMapRef:
+            name: etherpad-configmap
+        - secretRef:
+            name: etherpad-secret
+        volumeMounts:
+        - mountPath: /opt/etherpad-lite/APIKEY.txt
+          subPath: APIKEY.txt
+          name: apikey
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "1Gi"
+      volumes:
+      - name: apikey
+        configMap:
+          name: etherpad-configmap-files
+          items:
+          - key: APIKEY.txt
+            path: APIKEY.txt
+        
+              

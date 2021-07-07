@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: etherpad-configmap-files
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: etherpad
+data:
+  APIKEY.txt: |
+    {{ ETHERPAD_API_KEY }}
