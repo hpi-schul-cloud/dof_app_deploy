@@ -38,7 +38,7 @@ jobs:
           fetch-depth: 0
       - run: git checkout ${{ env.git_ref_name }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - name: 
+      - name: Add Flag for existing branch
         if: ${{ success() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
@@ -46,6 +46,7 @@ jobs:
           mkdir -pv ansible/group_vars/all
           echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
       - run: tar -cf ${{ matrix.repos }}.tar ansible
+        if: ${{ always() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
