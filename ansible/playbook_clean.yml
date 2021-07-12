@@ -1,0 +1,7 @@
+---
+- name: App Clean
+  hosts: 
+    - sc
+  connection: local
+  roles:
+    - clean

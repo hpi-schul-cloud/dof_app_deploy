@@ -1,0 +1,19 @@
+  ## helpers, small scripts for maintenance
+  - name: create dir .kube
+    file:
+      path: "{{ ansible_env.HOME }}/.kube/"
+      state: directory
+      mode: 0700
+  - name: push kube config
+    copy:
+      src: config
+      dest: "{{ ansible_env.HOME }}/.kube/config"
+      mode: 0600
+  - name: Namespace
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: namespace.yml.j2
+      state: absent
+    when: BRANCH_EXIST is undefined
+    
