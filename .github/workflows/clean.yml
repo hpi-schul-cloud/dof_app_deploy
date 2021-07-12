@@ -37,7 +37,6 @@ jobs:
           fetch-depth: 0
       - run: git checkout ${{ env.git_ref_name }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
       - name: 
         if: ${{ success() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
@@ -48,11 +47,13 @@ jobs:
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
           
   create_artifacts_workspaces:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
