@@ -34,6 +34,7 @@ spec:
       - name: storage
         image: {{ STORAGE_IMAGE_NAME }}
         imagePullPolicy: Always
+        args: ["server", "/data"]
         ports:
         - containerPort: {{ STORAGE_PORT }}
           name: storage
