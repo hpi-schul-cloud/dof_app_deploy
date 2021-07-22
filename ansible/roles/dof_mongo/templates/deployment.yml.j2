@@ -9,10 +9,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+    type: Recreate
   revisionHistoryLimit: 4
   paused: false
   selector:
@@ -42,7 +39,7 @@ spec:
         - configMapRef:
             name: mongo-configmap
         volumeMounts:
-        - name: notification-mongodb-data-pv
+        - name: mongodb-data-pv
           mountPath: /data/db
           readOnly: false
         resources:
@@ -53,6 +50,6 @@ spec:
             cpu: "100m"
             memory: "512Mi"
       volumes:
-      - name: notification-mongodb-data-pv
+      - name: mongodb-data-pv
         persistentVolumeClaim:
           claimName: mongo-pvc
