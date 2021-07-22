@@ -9,9 +9,10 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    $retainKeys:
-    - type
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   revisionHistoryLimit: 4
   paused: false
   selector:
