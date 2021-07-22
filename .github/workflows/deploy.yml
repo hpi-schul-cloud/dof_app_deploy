@@ -128,6 +128,10 @@ jobs:
           echo "RABBITMQ_PW: ${{ secrets.DEV_RABBITMQ_PASSWORD }}" >> all/rabbitmq.yml
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
+          echo "NOTIFICATION_PLATFORM: testplatform" >> all/node-notification-service.yml
+          echo "NOTIFICATION_URI: http://notification-svc:3031" >> all/node-notification-service.yml
+      - working-directory: ${{github.workspace }}/ansible/group_vars
+        run: |
           echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> all/dof_etherpad.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
