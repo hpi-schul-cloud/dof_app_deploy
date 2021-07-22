@@ -21,4 +21,5 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+      merge_type: merge 
 
