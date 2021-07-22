@@ -54,4 +54,5 @@ spec:
             memory: "512Mi"
       volumes:
       - name: notification-mongodb-data-pv
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: mongo-pvc
