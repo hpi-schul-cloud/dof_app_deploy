@@ -33,6 +33,9 @@ spec:
       - name: rabbitmq
         image: {{ RABBITMQ_IMAGE_NAME }}:{{ RABBITMQ_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: rabbitmq-configmap
         ports:
         - name: rabbitmq
           containerPort: 5672
@@ -49,6 +52,9 @@ spec:
           mountPath: /run/secrets/rabbitmq-definitions.json
           subPath: rabbitmq-definitions.json
           readOnly: true
+        - name: rabbitmq-data-pv
+          mountPath: /var/lib/rabbitmq
+          readOnly: false
         resources:
           limits:
             cpu: "500m"
@@ -59,13 +65,16 @@ spec:
       volumes:
       - name: rabbitmqconfig
         configMap:
-          name: rabbitmq-configmap
+          name: rabbitmq-configmap-files
           items:
           - key: rabbitmq.config
             path: rabbitmq.config
       - name: rabbitmq-definitionsjson
         configMap:
-          name: rabbitmq-configmap
+          name: rabbitmq-configmap-files
           items:
           - key: rabbitmq-definitions.json
             path: rabbitmq-definitions.json
+      - name: rabbitmq-data-pv
+        persistentVolumeClaim:
+          claimName: rabbitmq-pvc
