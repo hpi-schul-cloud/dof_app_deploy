@@ -53,7 +53,7 @@ spec:
           subPath: rabbitmq-definitions.json
           readOnly: true
         - name: rabbitmq-data-pv
-          mountPath: /var/lib/rabbitmq
+          mountPath: /var/lib/rabbitmq/mnesia
           readOnly: false
         resources:
           limits:
