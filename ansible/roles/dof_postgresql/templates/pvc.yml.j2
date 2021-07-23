@@ -11,4 +11,4 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      postgres: {{ POSTGRES_CAPACITY|default("5Gi", true) }}
+      storage: {{ POSTGRES_CAPACITY|default("5Gi", true) }}
