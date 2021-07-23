@@ -42,4 +42,5 @@ spec:
             memory: "256Mi"
       volumes:
       - name: postgres-data-pv 
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: postgres-pvc
