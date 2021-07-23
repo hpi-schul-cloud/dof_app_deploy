@@ -11,4 +11,4 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      redis: {{ REDIS_CAPACITY|default("5Gi", true) }}
+      storage: {{ REDIS_CAPACITY|default("5Gi", true) }}
