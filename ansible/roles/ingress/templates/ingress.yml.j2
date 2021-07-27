@@ -141,34 +141,34 @@ spec:
           serviceName: etherpad-nginx-svc
           servicePort: 80
       ### Server
-      - path: /api/
+      - path: /api/v1/
         backend:
           serviceName: default-backend-404-svc
           servicePort: 8080
-      - path: /api/metrics
+      - path: /api/v1/metrics
         backend:
           serviceName: default-backend-404-svc
           servicePort: 8080
         pathType: Prefix
       {% if ROUTE_ACCOUNTS is defined and ROUTE_ACCOUNTS %}
-      - path: /api/accounts
+      - path: /api/v1/accounts
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
-      - path: /api/accounts/jwtTimer
+      - path: /api/v1/accounts/jwtTimer
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/edu-sharing
+      - path: /api/v1/edu-sharing
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/fileStorage/securityCheck
+      - path: /api/v1/fileStorage/securityCheck
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/me
+      - path: /api/v1/me
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
@@ -186,32 +186,36 @@ spec:
           servicePort: {{ PORT_SERVER }}
       {% if ROUTE_ROSTER is defined and ROUTE_ROSTER %}
       # Route /roster is used by bettermarks
-      - path: /api/roster
+      - path: /api/v1/roster
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+       - path: /api/roster
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
-      - path: /api/schools/
+      - path: /api/v1/schools/
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/version
+      - path: /api/v1/version
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/wopi
+      - path: /api/v1/wopi
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/courses
+      - path: /api/v1/courses
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/lessons
+      - path: /api/v1/lessons
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/authentication
+      - path: /api/v1/authentication
         backend:
       {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
           serviceName: api-ldap-svc
@@ -219,11 +223,11 @@ spec:
           serviceName: api-svc
       {% endif %}
           servicePort: {{ PORT_SERVER }}
-      - path: /api/sync
+      - path: /api/v1/sync
         backend:
           serviceName: api-ldapsync-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/ldap
+      - path: /api/v1/ldap
         backend:
       {% if WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
           serviceName: api-ldap-svc
@@ -231,7 +235,7 @@ spec:
           serviceName: api-svc
       {% endif %}
           servicePort: {{ PORT_SERVER }}
-      - path: /api/registration
+      - path: /api/v1/registration
         pathType: Prefix
         backend:
       {% if NAMESPACE == 'niedersachsen' and RUN_ENV_IONOS == "false" %}
@@ -248,23 +252,22 @@ spec:
           servicePort: {{ PORT_SERVER }}
       {% endif %}
       {% if ROUTE_USERS is defined and ROUTE_USERS %}
-      - path: /api/users
+      - path: /api/v1/users
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
       {% if ROUTE_CLASSES is defined and ROUTE_CLASSES %}
-      - path: /api/classes
+      - path: /api/v1/classes
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
-      - path: /api/roles/user
+      - path: /api/v1/roles/user
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/config/app/public
+      - path: /api/v1/config/app/public
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-
