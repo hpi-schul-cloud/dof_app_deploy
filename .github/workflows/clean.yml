@@ -23,7 +23,8 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - edtrio
-         - schulcloud-editor 
+         - schulcloud-editor
+         - antivirus_check_service
     steps:
       - run: |
           temp=${{ github.event.client_payload.branch }}
