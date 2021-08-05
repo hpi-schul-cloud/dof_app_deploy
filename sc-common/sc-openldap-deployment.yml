@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sc-openldap-deployment
+  namespace: sc-common
+  labels:
+    app: sc-openldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sc-openldap
+  template:
+    metadata:
+      labels:
+        app: sc-openldap
+    spec:
+      containers:
+      - name: sc-openldap
+        image: ghcr.io/hpi-schul-cloud/sc-openldap:main
+        ports:
+        - containerPort: 389
