@@ -13,6 +13,7 @@
     - dof_mailcatcher
     - maildrop
     - storage
+    - hydra
     - dof_etherpad_nginx
     - dof_etherpad
     - schulcloud-server
