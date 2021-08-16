@@ -141,7 +141,7 @@ spec:
           serviceName: etherpad-nginx-svc
           servicePort: 80
       ### Server
-      - path: /api/v1/
+      - path: /api
         backend:
           serviceName: default-backend-404-svc
           servicePort: 8080
@@ -196,6 +196,11 @@ spec:
           servicePort: {{ PORT_SERVER }}
       {% endif %}
       - path: /api/v1/schools/
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      # todo remove when updated to be used with version:
+      - path: /api/version
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
