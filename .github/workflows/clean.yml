@@ -72,7 +72,7 @@ jobs:
           git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
           echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
           
-          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ -)
+          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
           echo "##[set-output name=id;]$(echo $temp)"
       - shell: bash
