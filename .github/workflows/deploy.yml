@@ -124,11 +124,6 @@ jobs:
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
-          echo "RABBITMQ_USER: ${{ secrets.DEV_RABBITMQ_USER }}" > all/rabbitmq.yml
-          echo "RABBITMQ_PW_HASH: ${{ secrets.DEV_RABBITMQ_PASSWORD_HASH }}" >> all/rabbitmq.yml
-          echo "RABBITMQ_PW: ${{ secrets.DEV_RABBITMQ_PASSWORD }}" >> all/rabbitmq.yml
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
           echo "NOTIFICATION_PLATFORM: testplatform" >> all/node-notification-service.yml
           echo "NOTIFICATION_URI: http://notification-svc:3031" >> all/node-notification-service.yml
       - working-directory: ${{github.workspace }}/ansible/group_vars
