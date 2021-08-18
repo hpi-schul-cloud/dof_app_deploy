@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hydra-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+spec:
+  type: ClusterIP
+  ports:
+    - name: hydra4444
+      port: 4444
+      targetPort: 4444
+      protocol: TCP
+    - name: hydra4445
+      port: 4445
+      targetPort: 4445
+      protocol: TCP
+  selector:
+    app: hydra

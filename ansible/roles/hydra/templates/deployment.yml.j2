@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hydra-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+spec:
+  replicas: 1
+  replicas: {{ HYDRA_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: hydra
+  template:
+    metadata:
+      labels:
+        app: hydra
+    spec:
+      containers:
+      - name: hydra
+        image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}
+        imagePullPolicy: Always
+        args: ["serve", "all"]
+        ports:
+        - containerPort: 4444
+        - containerPort: 4445
+        livenessProbe:
+          httpGet:
+            path: /health/alive
+            port: 4445
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 4445
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 5
+        envFrom:
+        - configMapRef:
+            name: hydra-configmap
+        - secretRef:
+            name: hydra-secret
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "{{ HYDRA_MEM_MAX|default("1Gi", true) }}"
+          requests:
+            cpu: "100m"
+            memory: "{{ HYDRA_MEM_MIN|default("128Mi", true) }}"

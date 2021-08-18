@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hydra-migrate-db-job
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+spec:
+  template:
+    metadata:
+      labels:
+        app: hydra
+    spec:
+      containers:
+      - name: hydra-migrate
+        image: {{ HYDRA_IMAGE|default("oryd/hydra:v1.2.1-alpine", true) }}
+        imagePullPolicy: Always
+        args: ["migrate", "sql", "--yes", "$(DATABASE_URL)"]
+        envFrom:
+        - configMapRef:
+            name: hydra-configmap
+        - secretRef:
+            name: hydra-secret
+      restartPolicy: Never
+  backoffLimit: 3
+
