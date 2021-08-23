@@ -7,7 +7,7 @@ metadata:
   labels:
     app: storage
 spec:
-  replicas: 1
+  replicas: {{ STORAGE_REPLICAS|default(1, true) }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -48,11 +48,11 @@ spec:
           readOnly: false
         resources:
           limits:
-            cpu: "1000m"
-            memory: "512Mi"
+            cpu: {{ STORAGE_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ STORAGE_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: "100m"
-            memory: "512Mi"
+            cpu: {{ STORAGE_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ STORAGE_MEMORY_REQUESTS|default("128Mi", true) }}
       volumes:
       - name: storage-pv
         persistentVolumeClaim:
