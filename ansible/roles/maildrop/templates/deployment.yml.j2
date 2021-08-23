@@ -7,7 +7,7 @@ metadata:
   labels:
     app: maildrop
 spec:
-  replicas: 1
+  replicas: {{ MAILDROP_REPLICAS|default(1, true) }}
   strategy:
     type: Recreate
   selector:
@@ -30,8 +30,8 @@ spec:
             name: maildrop-secret
         resources:
           limits:
-            cpu: "1000m"
-            memory: "256Mi"
+            cpu: {{ MAILDROP_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ MAILDROP_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: "100m"
-            memory: "256Mi"
+            cpu: {{ MAILDROP_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ MAILDROP_MEMORY_REQUESTS|default("128Mi", true) }}
