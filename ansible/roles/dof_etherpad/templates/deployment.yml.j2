@@ -48,11 +48,11 @@ spec:
           name: apikey
         resources:
           limits:
-            cpu: "1000m"
-            memory: "1Gi"
+            cpu: {{ ETHERPA_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ ETHERPA_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: "100m"
-            memory: "1Gi"
+            cpu: {{ ETHERPA_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ ETHERPA_MEMORY_REQUESTS|default("128Mi", true) }}
       volumes:
       - name: apikey
         configMap:
