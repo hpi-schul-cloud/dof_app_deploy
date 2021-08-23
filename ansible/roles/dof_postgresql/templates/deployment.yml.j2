@@ -6,7 +6,7 @@ metadata:
   labels:
     app: postgres
 spec:
-  replicas: 1
+  replicas: {{ POSTGRES_REPLICAS|default(1, true) }}
   selector:
     matchLabels:
       app: postgres
@@ -35,11 +35,11 @@ spec:
           readOnly: false
         resources:
           limits:
-            cpu: "1000m"
-            memory: "256Mi"
+            cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}
+            memory: {{ POSTGRES_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: "100m"
-            memory: "256Mi"
+            cpu: {{ POSTGRES_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
       volumes:
       - name: postgres-data-pv 
         persistentVolumeClaim:
