@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default-backend-404-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: default-backend-404
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: default-backend-404
+  template:
+    metadata:
+      labels:
+        app: default-backend-404
+    spec:
+      containers:
+      - name: default-backend-404
+        image: nginx:1.21.1-alpine
+        ports:
+        - containerPort: 8080

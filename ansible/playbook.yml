@@ -5,7 +5,6 @@
   connection: local
   roles:
     - sys
-    - ingress
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
@@ -24,3 +23,4 @@
     - edtrio
     - schulcloud-editor
     - antivirus_check_service
+    - ingress
