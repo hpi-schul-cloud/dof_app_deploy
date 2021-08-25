@@ -230,7 +230,7 @@ spec:
           servicePort: {{ PORT_SERVER }}
       - path: /api/v1/sync
         backend:
-          serviceName: api-ldapsync-svc
+          serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       - path: /api/v1/ldap
         backend:
