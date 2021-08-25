@@ -3,7 +3,7 @@
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      template: default-backend-404-deployment.ymlj2
+      template: default-backend-404-deployment.yml.j2
 
   - name: Default Backend 404 Service
     community.kubernetes.k8s:
