@@ -61,7 +61,7 @@ ES_DOMAIN: https://mv-repo.schul-cloud.org
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 GLOBAL_ANNOUNCEMENT: ""
-GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER: "Für Administrator:innen – alle Infos <a href=\\\"https://docs.hpi-schul-cloud.org/x/6QtbBw\\\">rund um den Schuljahreswechsel gibt es hier</a>"
+GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER: ""
 # produktive Instanz
 PROD_INSTANCE: true
 # Matrix
