@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: default-backend-404-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: default-backend-404
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: default-backend-404
+  template:
+    metadata:
+      labels:
+        app: default-backend-404
+    spec:
+      containers:
+      - name: default-backend-404
+        image: nginx:1.21.1-alpine
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+          name: defaultconf
+      volumes:
+      - name: defaultconf
+        configMap:
+          name: default-backend-404-configmap-files
+          items:
+          - key: default.conf
+            path: default.conf
