@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-backend-404-configmap-files
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: default-backend-404
+data:
+  default.conf: |
+    server {
+        listen       80;
+        listen       8080;
+        listen  [::]:80;
+        listen  [::]:8080;
+        server_name  localhost;
+        location ~ /healthz {
+            access_log off;
+            return 200 "healthy\n";
+        }
+        location ~ /(.*) {
+            access_log off;
+            return 404;
+        }
+    }

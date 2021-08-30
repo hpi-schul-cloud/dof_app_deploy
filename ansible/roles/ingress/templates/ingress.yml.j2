@@ -110,6 +110,10 @@ spec:
           serviceName: nuxtclient-svc
       {% endif %}
           servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /administration/school-settings
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
 
       {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
       - path: /administration/datasources
@@ -172,7 +176,11 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/v3/task/dashboard/
+      - path: /api/v3/tasks/open/
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/v3/tasks/completed/
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
@@ -230,7 +238,7 @@ spec:
           servicePort: {{ PORT_SERVER }}
       - path: /api/v1/sync
         backend:
-          serviceName: api-ldapsync-svc
+          serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       - path: /api/v1/ldap
         backend:
@@ -243,10 +251,7 @@ spec:
       - path: /api/v1/registration
         pathType: Prefix
         backend:
-      {% if NAMESPACE == 'niedersachsen' and RUN_ENV_IONOS == "false" %}
-          serviceName: error-404-svc
-          servicePort: 8080
-      {% elif  NAMESPACE == 'niedersachsen' and RUN_ENV_IONOS == "true" %}
+      {% if NAMESPACE == 'niedersachsen' %}
           serviceName: default-backend-404-svc
           servicePort: 8080
       {% elif WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION %}
