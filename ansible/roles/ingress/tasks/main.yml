@@ -1,3 +1,8 @@
+  - name: Default Backend 404 Configmap files
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: default-backend-404-configmapfile.yml.j2
 
   - name: Default Backend 404 Ddeployment
     community.kubernetes.k8s:
