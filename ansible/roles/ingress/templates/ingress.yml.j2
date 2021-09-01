@@ -168,10 +168,6 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/v1/fileStorage/securityCheck
-        backend:
-          serviceName: api-svc
-          servicePort: {{ PORT_SERVER }}
       - path: /api/v1/me
         backend:
           serviceName: api-svc
