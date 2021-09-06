@@ -13,9 +13,9 @@ spec:
     spec:
       containers:
       - name: hydra-migrate
-        image: {{ HYDRA_IMAGE|default("oryd/hydra:v1.2.1-alpine", true) }}
+        image: {{ HYDRA_IMAGE|default("oryd/hydra:v1.3.2-alpine", true) }}
         imagePullPolicy: Always
-        args: ["migrate", "sql", "--yes", "$(DATABASE_URL)"]
+        args: ["migrate", "sql", "--yes", "$(DSN)"]
         envFrom:
         - configMapRef:
             name: hydra-configmap
