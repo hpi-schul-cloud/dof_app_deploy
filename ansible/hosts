@@ -1,11 +1,16 @@
 [brb]
 brb_host
 
+[default]
+default_host
+
 [nbc]
 nbc_host
 
+
 [sc:children]
 brb
+default
 nbc
 
 [sc:vars]
