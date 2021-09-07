@@ -203,6 +203,22 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
+      - path: /api/v1/years/
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/v1/federalStates
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/v1/systems
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
+      - path: /api/v1/ldap-config
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
       # todo remove when updated to be used with version:
       - path: /api/version
         backend:
