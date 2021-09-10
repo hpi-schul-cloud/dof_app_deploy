@@ -38,7 +38,7 @@ spec:
             cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}
             memory: {{ POSTGRES_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: {{ POSTGRES_CPU_REQUESTS|default("100m", true) }}
+            cpu: {{ POSTGRES_CPU_REQUESTS|default("500m", true) }}
             memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
       volumes:
       - name: postgres-data-pv 
