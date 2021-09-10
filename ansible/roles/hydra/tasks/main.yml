@@ -29,7 +29,14 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD is defined and ONEPASSWORD|bool
-      
+ 
+  - name:  remove old Job
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: job.yml.j2
+      state: absent
+ 
   - name: Job
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config 
