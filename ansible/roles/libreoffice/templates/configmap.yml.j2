@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hydra-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+data:
+  
+  SERVE_PUBLIC_CORS_ENABLED: "true"
+  SERVE_PUBLIC_CORS_ALLOWED_METHODS: "POST,GET,PUT,DELETE"
+  URLS_SELF_ISSUER: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
+  URLS_CONSENT: "https://{{ DOMAIN }}/oauth2/consent"
+  URLS_LOGIN: https://{{ DOMAIN }}/oauth2/login
+  SERVE_TLS_ALLOW_TERMINATION_FROM: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+  OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: "public,pairwise"
+  SC_FRONTEND: "https://{{ DOMAIN }}"
+  SQA_OPT_OUT: "true"
+  level: error
