@@ -119,6 +119,10 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /administration/rooms-overview
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
 
       {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
       - path: /administration/datasources
