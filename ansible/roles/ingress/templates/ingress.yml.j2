@@ -18,8 +18,11 @@ spec:
         backend:
           serviceName: client-svc
           servicePort: {{ CLIENT_PORT }}
-
       - path: /themes/{{ SC_THEME }}/favicon.png
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /runtime.config.json
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
