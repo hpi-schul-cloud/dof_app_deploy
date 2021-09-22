@@ -231,11 +231,6 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      # todo remove when updated to be used with version:
-      - path: /api/version
-        backend:
-          serviceName: api-svc
-          servicePort: {{ PORT_SERVER }}
       - path: /api/v1/version
         backend:
           serviceName: api-svc
