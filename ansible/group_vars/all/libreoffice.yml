@@ -1,5 +1,5 @@
 
-LIBREOFFICE_PREFIX: lo_
+LIBREOFFICE_PREFIX: lo-
 LIBREOFFICE_PREFIX_REGEX: .*\.
 DOMAIN_REGEX: dof\.dev\.hpi-schul-cloud\.org
 LIBREOFFICE_IMAGE_NAME: schulcloud/libreoffice
