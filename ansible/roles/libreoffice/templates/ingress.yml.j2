@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ NAMESPACE }}-hydra-ingress
+  name: {{ NAMESPACE }}-libreoffice-ingress
   namespace: {{ NAMESPACE }}
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -10,11 +10,27 @@ metadata:
 
 spec:
   rules:
-  - host: {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}
+  - host: {{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}
     http:
       paths:
-      - path: /
+      - path: /loleaflet
         backend:
-          serviceName: hydra-svc
-          servicePort: 4444
+          serviceName: libreoffice-svc
+          servicePort: 9980
+      - path: /hosting/discovery
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: 9980
+      - path: /lool/(.*)/ws
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: 9980
+      - path: /lool
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: 9980
+      - path: /lool/adminws
+        backend:
+          serviceName: libreoffice-svc
+          servicePort: 9980
 
