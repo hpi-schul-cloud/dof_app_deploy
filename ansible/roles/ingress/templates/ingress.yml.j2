@@ -18,6 +18,14 @@ spec:
         backend:
           serviceName: client-svc
           servicePort: {{ CLIENT_PORT }}
+      - path: /themes/{{ SC_THEME }}/favicon.png
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /runtime.config.json
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /account
         backend:
           serviceName: nuxtclient-svc
@@ -114,6 +122,10 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /rooms-overview
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
 
       {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
       - path: /administration/datasources
@@ -184,6 +196,10 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
+      - path: /api/v3/dashboard
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
       {% if ROUTE_ROSTER is defined and ROUTE_ROSTER %}
       # Route /roster is used by bettermarks
       - path: /api/v1/roster
@@ -212,11 +228,6 @@ spec:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       - path: /api/v1/ldap-config
-        backend:
-          serviceName: api-svc
-          servicePort: {{ PORT_SERVER }}
-      # todo remove when updated to be used with version:
-      - path: /api/version
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
