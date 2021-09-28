@@ -133,6 +133,7 @@ jobs:
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
           echo "VAULT: ${{ secrets.DEV_VAULTE }}" >> all/dof_deploy.yml
+          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULTE }}" >> all/dof_deploy.yml
       - run: ansible-galaxy collection install community.kubernetes:1.2.1
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
