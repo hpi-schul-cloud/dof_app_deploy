@@ -235,10 +235,6 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      - path: /api/wopi
-        backend:
-          serviceName: api-svc
-          servicePort: {{ PORT_SERVER }}
       - path: /api/v1/wopi
         backend:
           serviceName: api-svc
