@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: libreoffice-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: libreoffice
+spec:
+  type: ClusterIP
+  ports:
+    - port: 9980
+      targetPort: 9980
+      protocol: TCP
+      name: libreoffice
+  selector:
+    app: libreoffice

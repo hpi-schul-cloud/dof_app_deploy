@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: libreoffice-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: libreoffice
+spec:
+  replicas: {{ LIBREOFFICE_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 3
+  paused: false
+  selector:
+    matchLabels:
+      app: libreoffice
+  template:
+    metadata:
+      labels:
+        app: libreoffice
+    spec:
+      containers:
+      - name: libreoffice
+        image: {{ LIBREOFFICE_IMAGE_NAME }}:{{ LIBREOFFICE_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: libreoffice
+          containerPort: 9980
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: libreoffice-configmap
+        volumeMounts:
+        - name: loolwsdxml
+          mountPath: /etc/loolwsd/loolwsd.xml
+          subPath: loolwsd.xml
+          readOnly: true
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "{{ LIBREOFFICE_MEM_MAX|default("1Gi", true) }}"
+          requests:
+            cpu: "100m"
+            memory: "{{ LIBREOFFICE_MEM_MIN|default("128Mi", true) }}"
+      volumes:
+      - name: loolwsdxml
+        configMap:
+          name: libreoffice-configmap-files
+          items:
+          - key: loolwsd.xml
+            path: loolwsd.xml
+{% if LIBREOFFICE_NODEBIND is defined and LIBREOFFICE_NODEBIND %}
+      tolerations:
+      - key: librehost
+        operator: Equal
+        value: "yes"
+        effect: NoSchedule
+      - key: librehost
+        operator: Equal
+        value: "yes"
+        effect: NoExecute
+      nodeSelector:
+        librehost: "yes"
+{% endif %}

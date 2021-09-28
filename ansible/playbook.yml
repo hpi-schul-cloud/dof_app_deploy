@@ -10,6 +10,7 @@
     - dof_rabbitmq
     - dof_redis
     - dof_mailcatcher
+    - libreoffice
     - maildrop
     - storage
     - hydra
