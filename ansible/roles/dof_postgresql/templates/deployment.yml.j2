@@ -23,7 +23,7 @@ spec:
         ports:
         - containerPort: 5432
         envFrom:
-{% if ONEPASSWORD is undefined or ONEPASSWORD is defined and not ONEPASSWORD %}
+{% if ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR %}
         - configMapRef:
             name: postgres-configmap
 {% endif %}

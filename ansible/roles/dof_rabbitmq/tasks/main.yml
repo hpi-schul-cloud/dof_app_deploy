@@ -3,14 +3,14 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yaml.j2
-    when: ONEPASSWORD is defined and ONEPASSWORD|bool
+    when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
 
   - name: RabbitMQ secret
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: secret.yaml.j2
-    when: ONEPASSWORD is undefined or ONEPASSWORD is defined and not ONEPASSWORD
+    when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
 
 
   - name: RabbitMQ Cluster
