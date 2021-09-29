@@ -1,9 +1,9 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: default
-SC_TITLE: HPI Schul-Cloud
-SC_SHORT_TITLE: HPI Schul-Cloud
-SC_PRODUCTNAME: HPI Schul-Cloud
-SC_NAV_TITLE: HPI Schul-Cloud
+SC_TITLE: dBildungscloud
+SC_SHORT_TITLE: dBildungscloud
+SC_PRODUCTNAME: dBildungscloud
+SC_NAV_TITLE: dBildungscloud
 
 #DOCUMENT_BASE_DIR:
 SMTP: ""
