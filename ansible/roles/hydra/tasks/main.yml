@@ -23,7 +23,7 @@
       template: secret.yml.j2
     when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
       
-  - name: Secred by 1Password
+  - name: Secret by 1Password
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
@@ -36,7 +36,13 @@
       namespace: "{{ NAMESPACE }}"
       template: job.yml.j2
       state: absent
- 
+
+  - name: hyrdra db init job config map
+    community.kubernetes.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: configmap_file_init_db.yml.j2
+
   - name: Job
     community.kubernetes.k8s:
       kubeconfig: ~/.kube/config 

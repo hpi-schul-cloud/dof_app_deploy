@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hydra-db-init-file
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+data:
+  update.sh: |
+    #!/bin/bash
+    until nc -z $POSTGRES_HOST $POSTGRES_PORT > /dev/null 2>&1; do
+      echo "Waiting for postgres server..."
+      sleep 1
+    done
+    hydra migrate sql --yes $DSN
