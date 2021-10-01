@@ -15,12 +15,24 @@ spec:
       - name: hydra-migrate
         image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}
         imagePullPolicy: Always
-        args: ["migrate", "sql", "--yes", "$(DSN)"]
         envFrom:
         - configMapRef:
             name: hydra-configmap
         - secretRef:
             name: hydra-secret
+        volumeMounts:
+        - name: script
+          mountPath: /update.sh
+          subPath: update.sh
+        command: ['/bin/sh','-c']
+        args: ['cp /update.sh /tmp/update.run.sh && chmod +x /tmp/update.run.sh && sh /tmp/update.run.sh']
+      volumes:
+      - name: script
+        configMap:
+          name: hydra-db-init-file
+          items:
+          - key: update.sh
+            path: update.sh
       restartPolicy: Never
   backoffLimit: 3
 
