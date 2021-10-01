@@ -1,0 +1,4 @@
+ROCKETCHAT_DNS_PREFIX: chat-
+ROCKETCHAT_IMAGE_NAME: docker.io/rocketchat/rocket.chat
+ROCKETCHAT_IMAGE_TAG: 3.16.3
+ROCKET_CHAT_MONGO_URL: mongodb://mongo-svc:27017/rocketchat
