@@ -31,6 +31,7 @@ spec:
       - name: mongo
         image: {{ MONGO_IMAGE_NAME }}:{{ MONGO_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
+        args: ["--replSet", "rs0", "--oplogSize", "10"]
         ports:
         - containerPort: 27017
           name: mongo
