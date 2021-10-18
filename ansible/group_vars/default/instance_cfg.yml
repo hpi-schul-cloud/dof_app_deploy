@@ -78,4 +78,4 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 SMTP_SENDER: dont-talk-with-me@dof.dev.hpi-schul-cloud.org
-SUPPORT_WISH_EMAIL_ADDRESS: ["ticketsystem@schul-cloud.org"]
+SUPPORT_WISH_EMAIL_ADDRESS: ticketsystem@schul-cloud.org
