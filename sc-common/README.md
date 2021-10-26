@@ -17,3 +17,9 @@ kubectl apply -f sc-common.yml
 kubectl apply -f sc-openldap-deployment.yml
 kubectl apply -f sc-openldap-svc.yml
 ```
+an additionally ldap server for testing of the singel school ldap implementaiton
+```
+kubectl apply -f sc-common.yml
+kubectl apply -f sc-openldap-single-deployment.yml
+kubectl apply -f sc-openldap-single-svc.yml
+```
