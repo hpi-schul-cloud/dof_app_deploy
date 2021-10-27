@@ -17,6 +17,10 @@ spec:
         backend:
           serviceName: rocketchat-svc
           servicePort: 5000
+      - path: /api/v1
+        backend:
+          serviceName: default-backend-404-svc
+          servicePort: 8080
       - path: /api/v1/method.call/rooms
         backend:
           serviceName: rocketchat-svc
@@ -133,10 +137,6 @@ spec:
         backend:
           serviceName: rocketchat-svc
           servicePort: 5000
-      - path: /api/v1
-        backend:
-          serviceName: default-backend-404-svc
-          servicePort: 8080
       - path: /api/v1/method.callAnon/license:isEnterprise
         backend:
           serviceName: rocketchat-svc
