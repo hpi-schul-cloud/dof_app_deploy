@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cachet-postgres-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: cachet-postgres
+spec:
+  replicas: {{ POSTGRES_REPLICAS|default(1, true) }}
+  selector:
+    matchLabels:
+      app: cachet-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cachet-postgres
+    spec:
+      containers:
+      - name: cachet-postgres
+        image: {{ POSTGRES_IMAGE_NAME }}:{{ POSTGRES_IMAGE_TAG }}
+        ports:
+        - containerPort: 5432
+        envFrom:
+{% if ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR %}
+        - configMapRef:
+            name: cachet-postgres-configmap
+{% endif %}
+        - secretRef:
+            name: cachet-postgres-secret
+        volumeMounts:
+        - name: cachet-postgres-data-pv
+          mountPath: /var/lib/postgresql/data
+          readOnly: false
+        resources:
+          limits:
+            cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}
+            memory: {{ POSTGRES_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ POSTGRES_CPU_REQUESTS|default("500m", true) }}
+            memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
+      volumes:
+      - name: cachet-postgres-data-pv 
+        persistentVolumeClaim:
+          claimName: cachet-postgres-pvc

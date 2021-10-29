@@ -16,6 +16,8 @@
     - hydra
     - dof_etherpad_nginx
     - dof_etherpad
+    - cachet_postgresql
+    - cachet
     - schulcloud-server
     - schulcloud-client
     - nuxt-client

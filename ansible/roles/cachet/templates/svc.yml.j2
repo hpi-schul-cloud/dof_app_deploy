@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cachet-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: cachet
+spec:
+  type: ClusterIP
+  ports:
+    - name: cachet8000
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
+    - name: cachet80
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: cachet
