@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: etherpad-configmap
+  name: cachet-configmap
   namespace: {{ NAMESPACE }}
   labels:
-    app: etherpad
+    app: cachet
 data:
   # general
   DB_DRIVER: "pgsql"
