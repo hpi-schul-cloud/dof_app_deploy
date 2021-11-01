@@ -1,0 +1,36 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: rocketchat
+  name: fixup-rocketchat-job
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      template:
+        spec:
+          containers:
+          - name: fixup-rocketchat-job
+            image: schulcloud/infra-tools:latest
+            envFrom:
+            - secretRef:
+                name: rocketchat-secret
+            - configMapRef:
+                name: rocketchat-configmap
+            volumeMounts:
+            - name: script
+              mountPath: /update.sh
+              subPath: update.sh
+            command: ['/bin/sh','-c']
+            args: ['cp /update.sh /update.run.sh && chmod +x /update.run.sh &&./update.run.sh']
+          volumes:
+          - name: script
+            configMap:
+              name: fixup-rocketchat-configmap
+              items:
+              - key: update.sh
+                path: update.sh
+          restartPolicy: Never

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rocketchat-deployment
+  #namespace: {{ NAMESPACE }}
+  labels:
+    app: rocketchat
+spec:
+  replicas: {{ ROCKET_CHAT_REPLICAS|default(1, true) }}
+  selector:
+    matchLabels:
+      app: rocketchat
+  template:
+    metadata:
+      labels:
+        app: rocketchat
+    spec:
+      securityContext:  
+        runAsUser: 99999
+        runAsGroup: 99999
+        fsGroup: 99999
+        runAsNonRoot: true
+      containers:
+      - name: rocketchat
+        image: {{ ROCKETCHAT_IMAGE_NAME }}:{{ ROCKETCHAT_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: rocketchat
+          containerPort: 5000
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: rocketchat-configmap
+        - secretRef:
+            name: rocketchat-secret
+        volumeMounts:
+        - name: rocketchat-uploads-data
+          mountPath: /app/uploads
+          readOnly: false
+        resources:
+          limits:
+            cpu: {{ ROCKETCHAT_CPU_LIMITS|default("4000m", true) }}
+            memory: {{ ROCKETCHAT_MEMORY_LIMITS|default("4Gi", true) }}
+          requests:
+            cpu: {{ ROCKETCHAT_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ ROCKETCHAT_MEMORY_REQUESTS|default("256Mi", true) }}
+      volumes:
+      - name: rocketchat-uploads-data
+        emptyDir: {}

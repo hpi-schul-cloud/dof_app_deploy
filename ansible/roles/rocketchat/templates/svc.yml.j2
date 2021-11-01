@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketchat-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: rocketchat
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: rocketchat
+  selector:
+    app: rocketchat

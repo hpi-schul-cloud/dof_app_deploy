@@ -1,0 +1,31 @@
+kind: ConfigMap
+metadata:
+  name: rocketchat-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: rocketchat
+data:
+  PORT: "5000"
+  ROOT_URL: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
+  CREATE_TOKENS_FOR_USERS: "true"
+  EXIT_UNHANDLEDPROMISEREJECTION: "true"
+  API_Enable_Rate_Limiter_Limit_Calls_Default: '255'
+  Site_Url: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
+  Accounts_iframe_enabled: 'true'
+  Accounts_iframe_url: 'https://{{ DOMAIN }}/rocketChat/Iframe'
+  Accounts_Iframe_api_url: 'https://{{ DOMAIN }}/rocketChat/authGet'
+  Accounts_AllowRealNameChange: 'false'
+  Accounts_AllowUsernameChange: 'false'
+  Accounts_AllowEmailChange: 'false'
+  Accounts_AllowPasswordChange: 'false'
+  Accounts_Send_Email_When_Activating: 'false'
+  Accounts_Send_Email_When_Deactivating: 'false'
+  Accounts_UseDefaultBlockedDomainsList: 'false'
+  Discussion_enabled: 'false'
+  FileUpload_Enabled: 'false'
+  UI_Use_Real_Name: 'true'
+  Threads_enabled: 'false'
+  Accounts_SetDefaultAvatar: 'false'
+  Iframe_Restrict_Access: 'false'
+  Accounts_Iframe_api_method: 'GET'
+  OVERWRITE_SETTING_Show_Setup_Wizard: 'completed'

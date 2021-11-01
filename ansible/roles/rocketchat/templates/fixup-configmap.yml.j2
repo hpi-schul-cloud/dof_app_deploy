@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fixup-rocketchat-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: rocketchat
+data:
+  update.sh: |
+    #! /bin/bash
+    set -euxo pipefail
+    until mongo $MONGO_URL --eval "print(\"waited for connection\")"
+      do
+        sleep 1
+      done
+    mongo $MONGO_URL --eval '
+      db.rocketchat_permissions.update({ _id: "create-team"}, { $set: { roles: ["admin"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "delete-team"}, { $set: { roles: ["admin"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "edit-team"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "add-team-member"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "edit-team-member"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "add-team-channel"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "edit-team-channel"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "remove-team-channel"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "view-all-team-channels"}, { $set: { roles: ["admin" ] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "create-c"}, { $set: { roles: ["admin", "bot"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "create-p"}, { $set: { roles: ["admin", "bot"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "leave-p"}, { $set: { roles: ["admin", "bot"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "view-outside-room"}, { $set: { roles: ["admin", "moderator", "owner"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "add-user-to-any-p-room"}, { $set: { roles: ["admin"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "ban-user"}, { $set: { roles: ["admin", "owner"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "edit-room"}, { $set: { roles: ["admin", "owner"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "remove-user"}, { $set: { roles: ["admin", "owner"] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "start-discussion-other-user"}, { $set: { roles: [] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "start-discussion"}, { $set: { roles: [] }},{ upsert: true });
+      db.rocketchat_permissions.update({ _id: "view-outside-room"}, { $set: { roles: [] }},{ upsert: true });
+      // previously in rcroomcleaner
+      db.rocketchat_subscription.remove({"rid" : "GENERAL", "name" : "general"})
+      db.rocketchat_room.find({name: "general"})
+      db.rocketchat_message.remove({"rid" : "GENERAL"})
+      db.rocketchat_room.remove({name: "general"})
+      '

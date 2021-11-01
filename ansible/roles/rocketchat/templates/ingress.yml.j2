@@ -1,0 +1,188 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: rocketchat-ingress
+  namespace: {{ NAMESPACE }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  ### RocketChat
+  - host: {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1
+        backend:
+          serviceName: default-backend-404-svc
+          servicePort: 8080
+      - path: /api/v1/method.call/rooms
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/subscriptions
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/permissions
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/public-settings
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/commands.list
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/emoji-custom.list
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/me
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/roles.list
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/listCustomSounds
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/getUserRoles
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/apps
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/loadHistory
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/listCustomUserStatus
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/licenseModules
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/license
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/banners.getNew
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/loadMissedMessages
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/readMessages
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/sendMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/setReaction
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/users.info
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/users.presence
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/deleteMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/getRoomByTypeAndName
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/createDirectMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/getRoomRoles
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/starMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/updateMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/reportMessage
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/license:isEnterprise
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/license:isEnterprise
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/license:getModules
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/license:getModules
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/public-settings:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/public-settings:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/apps:is-enabled
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/rooms:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/subscriptions:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/permissions:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/getRoomByTypeAndName
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/loadLocale
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+
