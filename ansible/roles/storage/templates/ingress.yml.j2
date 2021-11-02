@@ -14,10 +14,10 @@ spec:
 {% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
   tls:
   - hosts:
-      - storage-{{ DOMAIN }}
+      - {{ STORAGE_PREFIX }}{{ DOMAIN }}
 {% endif %}
   rules:
-  - host: storage-{{ DOMAIN }}
+  - host: {{ STORAGE_PREFIX }}{{ DOMAIN }}
     http:
       paths:
       ### SHD
