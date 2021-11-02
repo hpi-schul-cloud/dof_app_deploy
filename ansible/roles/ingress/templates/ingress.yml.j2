@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
 
 spec:
-{% if TLS_ENABELD is define and TLS_ENABELD|bool %}
+{% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
   tls:
   - hosts:
       - {{ DOMAIN }}
