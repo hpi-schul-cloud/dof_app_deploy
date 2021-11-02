@@ -126,27 +126,19 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_DATASOURCES %}
       - path: /administration/datasources
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
-      {% endif %}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_STUDENTS %}
       - path: /administration/students/
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
-      {% endif %}
-
-      {% if ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS is defined and ROUTE_NUXTCLIENT_ADMINISTRATION_TEACHERS %}
       - path: /administration/teachers/
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
-      {% endif %}
+
       ### Etherpad
       - path: /etherpad
         backend:
@@ -166,12 +158,10 @@ spec:
           serviceName: default-backend-404-svc
           servicePort: 8080
         pathType: Prefix
-      {% if ROUTE_ACCOUNTS is defined and ROUTE_ACCOUNTS %}
       - path: /api/v1/accounts
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      {% endif %}
       - path: /api/v1/accounts/jwtTimer
         backend:
           serviceName: api-svc
@@ -284,18 +274,14 @@ spec:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
       {% endif %}
-      {% if ROUTE_USERS is defined and ROUTE_USERS %}
       - path: /api/v1/users
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      {% endif %}
-      {% if ROUTE_CLASSES is defined and ROUTE_CLASSES %}
       - path: /api/v1/classes
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
-      {% endif %}
       - path: /api/v1/roles/user
         backend:
           serviceName: api-svc
