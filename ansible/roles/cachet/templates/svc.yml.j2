@@ -8,13 +8,9 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - name: cachet8000
-      port: 8000
+    - name: cachet
+      port: {{ CACHET_PORT }}
       targetPort: 8000
-      protocol: TCP
-    - name: cachet80
-      port: 80
-      targetPort: 80
       protocol: TCP
   selector:
     app: cachet
