@@ -1,0 +1,127 @@
+---
+name: Clean Out Branches
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+      DEV_KUBE_CONFIG:
+        required: true
+
+jobs:
+  create_artifacts_repos:
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repos: 
+         - schulcloud-server
+         - schulcloud-client
+         - nuxt-client
+         - superhero-dashboard
+         - schulcloud-calendar
+         - edtrio
+         - schulcloud-editor 
+         - antivirus_check_service
+         - dof_app_deploy
+    steps:
+      - run: |
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/${{ matrix.repos }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          path: ${{ matrix.repos }}
+          fetch-depth: 0
+      - run: git checkout ${{ env.git_ref_name }}
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+      - name: Add Flag for existing branch
+        if: ${{ success() }}
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+        shell: bash
+        run: |
+          mkdir -pv ansible/group_vars/all
+          echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
+      - run: tar -cf ${{ matrix.repos }}.tar ansible
+        if: ${{ always() }}
+        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: ${{ matrix.repos }}
+          path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
+          
+  create_artifacts_workspaces:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tennens: [ brb, default, nbc ]
+    steps:
+      - run: |
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
+      - name: SHA Stuf
+        shell: bash
+        id: make_identifier
+        run: |
+          mkdir -pv ansible/group_vars/${{ matrix.tennens }}
+          
+          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
+          echo "before" $git_ref_name "after" $temp
+          echo "##[set-output name=id;]$(echo $temp)"
+      - shell: bash
+        working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
+        run: |
+          #declare test='${{ steps.make_identifier.outputs.id }}'
+          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
+          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.dof.dev.hpi-schul-cloud.org" >> cfg.yml
+      - run: tar -cf ${{ matrix.tennens }}.tar ansible
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.tennens }}
+          path: ${{github.workspace }}/${{ matrix.tennens }}.tar
+  
+  deploy:
+    needs: 
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: |
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
+      - uses: actions/download-artifact@v2
+      - run: mv */*.tar ./
+      - run: find -name "*.tar" -exec tar -xf {} \;
+      - run: tar -cf ansible.tar ansible
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ansible
+          path: ${{github.workspace }}/ansible.tar
+      - shell: bash
+        run: |
+          python3 -m pip install --upgrade pip
+      - shell: bash
+        run: |
+          python3 -m pip install ansible openshift
+          
+      - run: ansible-galaxy collection install community.kubernetes:1.2.1
+      - working-directory: ${{github.workspace }}/ansible/roles/clean
+        run: |
+          mkdir files
+          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
+      - run: ansible-playbook ./playbook_clean.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
+        working-directory: ${{github.workspace }}/ansible
+      - working-directory: ${{github.workspace }}/ansible/roles/clean/files
+        run: |
+          rm -rf  /config
