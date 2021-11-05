@@ -1,0 +1,38 @@
+name: Deploy on Events
+
+on:
+  repository_dispatch:
+    types: [dev-deploy]
+  workflow_dispatch:
+    inputs:
+      sc-branch:
+        description: 'SC Branch or tag'     
+        required: true
+
+  branch_name:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+    steps:
+      - run: |
+          temp=${{ github.event.client_payload.branch }}
+          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
+          echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
+          echo git_ref_name $git_ref_name
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${git_ref_name})"
+        id: extract_branch
+
+  deploy:
+    needs:
+      - branch_name
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy.yml@BC-589
+    with:
+      branch: ${{ needs.branch_name.outputs.branch }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      DEV_VAULT: ${{ secrets.DEV_VAULT }}
+      DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      
