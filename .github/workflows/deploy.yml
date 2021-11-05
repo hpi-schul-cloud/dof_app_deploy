@@ -101,7 +101,6 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-        continue-on-error: true
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
@@ -112,10 +111,7 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install --upgrade pip
-      - shell: bash
-        run: |
-          python3 -m pip install ansible openshift
+          python3 -m pip install openshift
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
