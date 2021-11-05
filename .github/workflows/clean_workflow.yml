@@ -110,10 +110,7 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install --upgrade pip
-      - shell: bash
-        run: |
-          python3 -m pip install ansible openshift
+          python3 -m pip install openshift
           
       - run: ansible-galaxy collection install community.kubernetes:1.2.1
       - working-directory: ${{github.workspace }}/ansible/roles/clean
