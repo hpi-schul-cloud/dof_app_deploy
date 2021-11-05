@@ -8,7 +8,7 @@ on:
       sc-branch:
         description: 'SC Branch or tag'     
         required: true
-
+jobs:
   branch_name:
     runs-on: ubuntu-latest
     outputs:
