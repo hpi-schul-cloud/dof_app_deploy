@@ -10,6 +10,12 @@ on:
     secrets:
       token:
         required: true
+      DEV_VAULT:
+        required: true
+      DEV_KUBE_CONFIG:
+        required: true
+      ETHERPAD_API_KEY:
+        required: true
 
 jobs:
   create_artifacts_repos:
