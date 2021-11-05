@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
       - run: git checkout ${{ env.git_ref_name }}
