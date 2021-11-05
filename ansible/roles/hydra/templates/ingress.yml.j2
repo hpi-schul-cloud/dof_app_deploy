@@ -6,9 +6,14 @@ metadata:
   namespace: {{ NAMESPACE }}
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
 
 spec:
+{% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
+  tls:
+  - hosts:
+      - {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}
+{% endif %}
   rules:
   - host: {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}
     http:
