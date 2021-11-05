@@ -2,13 +2,11 @@
 name: Build and push Docker Image
 
 on:
-  repository_dispatch:
-    types: [dev-deploy]
-  workflow_dispatch:
+  workflow_call:
     inputs:
-      sc-branch:
-        description: 'SC Branch or tag'     
+      branch:
         required: true
+        type: string
 
 jobs:
   create_artifacts_repos:
@@ -24,12 +22,11 @@ jobs:
          - edtrio
          - schulcloud-editor 
          - antivirus_check_service
+         - dof_app_deploy
     steps:
       - run: |
-          temp=${{ github.event.client_payload.branch }}
-          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
-          echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
-          echo git_ref_name $git_ref_name
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
@@ -74,9 +71,8 @@ jobs:
         run: |
           mkdir -pv ansible/group_vars/${{ matrix.tennens }}
           
-          temp=${{ github.event.client_payload.branch }}
-          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
-          echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
+          git_ref_name=${{ inputs.branch }}
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
@@ -103,9 +99,8 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          temp=${{ github.event.client_payload.branch }}
-          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
-          git checkout $git_ref_name
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
         continue-on-error: true
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
