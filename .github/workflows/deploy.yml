@@ -104,9 +104,6 @@ jobs:
       - create_artifacts_workspaces
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-          echo git_ref_name ${{ inputs.branch }}
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
