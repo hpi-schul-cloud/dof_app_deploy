@@ -6,8 +6,8 @@ on:
     types: [dev-clean]
   workflow_dispatch:
     inputs:
-      sc-branch:
-        description: 'SC Branch or tag'     
+      branch_name:
+        description: 'Branch or tag'     
         required: true
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - run: |
           temp=${{ github.event.client_payload.branch }}
-          git_ref_name=${temp:-'${{ github.event.inputs.sc-branch }}'}
+          git_ref_name=${temp:-'${{ github.event.inputs.branch_name }}'}
           echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
           echo git_ref_name $git_ref_name
       - name: Extract branch name
