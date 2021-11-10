@@ -1,15 +1,13 @@
----
-name: Clean Out Branches
+name: Deploy on Events
 
 on:
   repository_dispatch:
-    types: [dev-clean]
+    types: [dev-deploy]
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Branch or tag'     
+        description: 'SC Branch or tag'     
         required: true
-
 jobs:
   branch_name:
     runs-on: ubuntu-latest
@@ -29,9 +27,12 @@ jobs:
   deploy:
     needs:
       - branch_name
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/clean_workflow.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy.yml@main
     with:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      DEV_VAULT: ${{ secrets.DEV_VAULT }}
       DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      

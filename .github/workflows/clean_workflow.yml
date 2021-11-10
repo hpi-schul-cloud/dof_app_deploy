@@ -1,5 +1,5 @@
 ---
-name: Deoply Action
+name: Clean Out Branches
 
 on:
   workflow_call:
@@ -10,15 +10,12 @@ on:
     secrets:
       token:
         required: true
-      DEV_VAULT:
-        required: true
       DEV_KUBE_CONFIG:
-        required: true
-      ETHERPAD_API_KEY:
         required: true
 
 jobs:
   create_artifacts_repos:
+    continue-on-error: true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -44,43 +41,36 @@ jobs:
           fetch-depth: 0
       - run: git checkout ${{ env.git_ref_name }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true
-      - name: 
+      - name: Add Flag for existing branch
+        if: ${{ success() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
           mkdir -pv ansible/group_vars/all
-          mkdir -pv ansible/roles/${{ matrix.repos }}/vars
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        name: get commit id from HEAD of branch
-        shell: bash
-        run: |
-          echo "##[set-output name=commitid;]$(git rev-parse HEAD)"
-        id: commitid_of_head
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/roles/${{ matrix.repos }}/vars
-        shell: bash
-        run: |
-          echo "APP_IMAGE_TAG: ${{ steps.commitid_of_head.outputs.commitid }}" >> main.yml
+          echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
       - run: tar -cf ${{ matrix.repos }}.tar ansible
+        if: ${{ always() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
           
   create_artifacts_workspaces:
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         tennens: [ brb, default, nbc ]
     steps:
+      - run: |
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
       - shell: bash
         id: make_identifier
         run: |
           mkdir -pv ansible/group_vars/${{ matrix.tennens }}
-          
-          git_ref_name=${{ inputs.branch }}
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
@@ -115,26 +105,13 @@ jobs:
         run: |
           python3 -m pip install openshift
           
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "NOTIFICATION_PLATFORM: testplatform" >> all/node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> all/node-notification-service.yml
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> all/dof_etherpad.yml
-      - name: 1Password
-        working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> all/dof_deploy.yml
-          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> all/dof_deploy.yml
-          echo "TLS_ENABELD: \"true\"" >> all/dof_deploy.yml
       - run: ansible-galaxy collection install community.kubernetes:1.2.1
-      - working-directory: ${{github.workspace }}/ansible/roles/sys
+      - working-directory: ${{github.workspace }}/ansible/roles/clean
         run: |
           mkdir files
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
+      - run: ansible-playbook ./playbook_clean.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
-      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
+      - working-directory: ${{github.workspace }}/ansible/roles/clean/files
         run: |
           rm -rf  /config
