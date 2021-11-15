@@ -1,0 +1,37 @@
+---
+name: Autodeploymend for Branches
+
+on:
+  push:
+    branches-ignore:
+      - dependabot/**
+
+jobs:
+  branch_name:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+  deploy:
+    needs:
+      - branch_name
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy.yml@main
+    with:
+      branch: ${{ needs.branch_name.outputs.branch }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      DEV_VAULT: ${{ secrets.DEV_VAULT }}
+      DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+
+  deploy-successful:
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy was successful"
