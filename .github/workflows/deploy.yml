@@ -49,18 +49,10 @@ jobs:
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
+          commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
-          mkdir -pv ansible/roles/${{ matrix.repos }}/vars
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        name: get commit id from HEAD of branch
-        shell: bash
-        run: |
-          echo "##[set-output name=commitid;]$(git rev-parse HEAD)"
-        id: commitid_of_head
-      - working-directory: ${{github.workspace }}/${{ matrix.repos }}/ansible/roles/${{ matrix.repos }}/vars
-        shell: bash
-        run: |
-          echo "APP_IMAGE_TAG: ${{ steps.commitid_of_head.outputs.commitid }}" >> main.yml
+          for i in ./ansible/roles/*; do echo mkdir -pv $i/vars; done
+          for i in ./ansible/roles/*; do echo "APP_IMAGE_TAG: $commit_id" >> $i/main.yml; done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
