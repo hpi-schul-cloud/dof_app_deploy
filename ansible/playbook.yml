@@ -17,6 +17,7 @@
     - dof_etherpad_nginx
     - dof_etherpad
     - schulcloud-server
+    - schulcloud-management
     - schulcloud-client
     - nuxt-client
     - superhero-dashboard
