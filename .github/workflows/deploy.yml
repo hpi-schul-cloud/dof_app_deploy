@@ -51,7 +51,7 @@ jobs:
         run: |
           commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
-          for i in ./ansible/roles/*; do echo mkdir -pv $i/vars; done
+          for i in ./ansible/roles/*; do mkdir -pv $i/vars; done
           for i in ./ansible/roles/*; do echo "APP_IMAGE_TAG: $commit_id" >> $i/vars/main.yml; done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
