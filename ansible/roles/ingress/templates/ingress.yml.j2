@@ -131,6 +131,10 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /rooms-list
+      backend:
+        serviceName: nuxtclient-svc
+        servicePort: {{ NUXTCLIENT_PORT }}
       - path: /administration/datasources
         backend:
           serviceName: nuxtclient-svc
