@@ -135,3 +135,4 @@ jobs:
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
+
