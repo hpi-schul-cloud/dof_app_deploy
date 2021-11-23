@@ -55,7 +55,7 @@ jobs:
           mkdir -pv ansible/host_vars/brb_host
           mkdir -pv ansible/host_vars/default_host
           mkdir -pv ansible/host_vars/nbc_host
-          ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:space:] _ )
+          ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
           for i in ./ansible/host_vars/*; do echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> $i/$filename.yml; done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
