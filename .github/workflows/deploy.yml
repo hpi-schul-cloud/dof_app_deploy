@@ -48,15 +48,12 @@ jobs:
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
-          commit_id=$(git rev-parse HEAD)
-          mkdir -pv ansible/group_vars/all
-          for i in ./ansible/roles/*; do mkdir -pv $i/vars; done
-          for i in ./ansible/roles/*; do echo "APP_IMAGE_TAG: $commit_id" >> $i/vars/main.yml; done
           mkdir -pv ansible/host_vars/brb_host
           mkdir -pv ansible/host_vars/default_host
           mkdir -pv ansible/host_vars/nbc_host
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
+          commit_id=$(git rev-parse HEAD)
           for i in ./ansible/host_vars/*; do echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> $i/$filename.yml; done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
