@@ -16,8 +16,12 @@
     - hydra
     - dof_etherpad_nginx
     - dof_etherpad
-    - schulcloud-server
-    - schulcloud-management
+    - schulcloud-server-base
+    - schulcloud-server-management
+    - schulcloud-server-init
+    - schulcloud-server-core
+    - schulcloud-server-ldapsync
+    #- schulcloud-server-tspsync
     - schulcloud-client
     - nuxt-client
     - superhero-dashboard
