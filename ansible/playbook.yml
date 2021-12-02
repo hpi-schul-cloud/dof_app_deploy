@@ -22,7 +22,8 @@
     - schulcloud-server-core
     - schulcloud-server-ldapsync
     #- schulcloud-server-tspsync
-    - schulcloud-client
+    - schulcloud-client-base
+    - schulcloud-client-core
     - nuxt-client
     - superhero-dashboard
     - schulcloud-calendar
