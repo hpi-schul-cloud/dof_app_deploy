@@ -24,7 +24,8 @@
     #- schulcloud-server-tspsync
     - schulcloud-client-base
     - schulcloud-client-core
-    - nuxt-client
+    - nuxt-client-base
+    - nuxt-client-core
     - superhero-dashboard
     - schulcloud-calendar
     - edtrio
