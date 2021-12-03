@@ -27,7 +27,9 @@
     - nuxt-client-base
     - nuxt-client-core
     - superhero-dashboard
-    - schulcloud-calendar
+    - schulcloud-calendar-base
+    - schulcloud-calendar-init
+    - schulcloud-calendar-core
     - edtrio
     - schulcloud-editor
     - antivirus_check_service
