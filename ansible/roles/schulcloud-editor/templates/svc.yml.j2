@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: editor-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: editor
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ EDITOR_PORT }}
+      targetPort: {{ EDITOR_PORT }}
+      protocol: TCP
+      name: editor
+  selector:
+    app: editor
