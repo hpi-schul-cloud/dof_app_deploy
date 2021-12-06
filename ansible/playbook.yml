@@ -16,20 +16,15 @@
     - hydra
     - dof_etherpad_nginx
     - dof_etherpad
-    - schulcloud-server-base
-    - schulcloud-server-management
-    - schulcloud-server-init
     - schulcloud-server-core
+    - schulcloud-server-init
     - schulcloud-server-ldapsync
     #- schulcloud-server-tspsync
-    - schulcloud-client-base
     - schulcloud-client-core
-    - nuxt-client-base
     - nuxt-client-core
     - superhero-dashboard
-    - schulcloud-calendar-base
-    - schulcloud-calendar-init
     - schulcloud-calendar-core
+    - schulcloud-calendar-init
     - edtrio
     - schulcloud-editor
     - antivirus_check_service
