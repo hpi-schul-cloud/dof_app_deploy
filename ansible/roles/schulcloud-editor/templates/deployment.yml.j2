@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: editor-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: editor
+spec:
+  replicas: {{ EDITOR_REPLICAS|default("1", true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      #maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  selector:
+    matchLabels:
+      app: editor
+  template:
+    metadata:
+      labels:
+        app: editor
+      annotations:
+    spec:
+      containers:
+      - name: editor
+        image: {{ EDITOR_IMAGE_NAME }}:{{ EDITOR_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: editor
+          containerPort: {{ EDITOR_PORT }}
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: editor-configmap
+        - secretRef:
+            name: editor-secret
+        resources:
+          limits:
+            cpu: {{ EDITOR_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ EDITOR_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ EDITOR_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ EDITOR_MEMORY_REQUESTS|default("128Mi", true) }}

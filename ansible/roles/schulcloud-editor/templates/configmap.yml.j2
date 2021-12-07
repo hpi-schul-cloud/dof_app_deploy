@@ -1,0 +1,16 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: editor-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: editor
+data:  
+  # general
+  NODE_ENV: "production"
+  TZ: "Europe/Berlin"
+  PORT: "{{ EDITOR_PORT }}"
+  SERVER_API_URL: "http://api-svc:3030"
+  TIMEOUT: "30000"
+
