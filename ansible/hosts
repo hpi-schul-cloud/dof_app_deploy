@@ -3,15 +3,31 @@ brb_host
 
 [default]
 default_host
+ref-boss
 
 [nbc]
 nbc_host
 
+[international]
+ref-int
+
+[thr]
+
+[develop:children]
+brb_host
+default_host
+nbc_host
+
+[referenc:children]
+ref-int
+ref-boss
 
 [sc:children]
 brb
 default
 nbc
+international
+thr
 
 [sc:vars]
 ansible_host=localhost
