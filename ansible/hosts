@@ -13,12 +13,12 @@ ref-int
 
 [thr]
 
-[develop:children]
+[develop]
 brb_host
 default_host
 nbc_host
 
-[referenc:children]
+[referenc]
 ref-int
 ref-boss
 
