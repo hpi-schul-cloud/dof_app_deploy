@@ -1,0 +1,4 @@
+FEATURE_MATRIX_MESSENGER_ENABLED: "false"
+FEATURE_NEXBOARD_ENABLED: "false"
+ES_DOMAIN: https://mv-repo.schul-cloud.org
+

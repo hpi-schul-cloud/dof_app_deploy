@@ -3,10 +3,11 @@ brb_host
 
 [default]
 default_host
-ref-boss
+ref-dbildungscloud
 
 [nbc]
 nbc_host
+ref-nbc
 
 [international]
 ref-int
@@ -20,7 +21,8 @@ nbc_host
 
 [referenc]
 ref-int
-ref-boss
+ref-dbildungscloud
+ref-nbc
 
 [sc:children]
 brb
