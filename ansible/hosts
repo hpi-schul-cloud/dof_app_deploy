@@ -19,7 +19,7 @@ brb_host
 default_host
 nbc_host
 
-[referenc]
+[reference]
 ref-int
 ref-dbildungscloud
 ref-nbc
