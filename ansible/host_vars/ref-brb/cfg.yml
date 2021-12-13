@@ -1,0 +1,9 @@
+NAMESPACE: brandenburg
+DOMAIN: staging.brandenburg.dbildungscloud.org
+
+FEATURE_MATRIX_MESSENGER_ENABLED: "false"
+FEATURE_NEXBOARD_ENABLED: "true"
+ES_DOMAIN: https://mv-repo.schul-cloud.org
+DISPLAY_REQUEST_LEVEL: -1
+
+

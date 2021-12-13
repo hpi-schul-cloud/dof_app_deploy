@@ -1,0 +1,4 @@
+---
+EDITOR_IMAGE_NAME: schulcloud/schulcloud-editor
+EDITOR_PORT: 4101
+EDITOR_IMAGE_TAG: develop_v0.1.0_b38e9251380fe8c71dd222d066832b57046289da
