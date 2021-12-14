@@ -168,9 +168,6 @@ jobs:
               git push -u origin $git_ref_name
               cd ..
           fi
-          cd cloud_ansible
-          git checkout $git_ref_name
-          cd ..
           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
@@ -202,9 +199,6 @@ jobs:
               git push -u origin $git_ref_name
               cd ..
           fi
-          cd autodeployment_inventory
-          git checkout $git_ref_name
-          cd ..
           cd ansible
           find group_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
           find group_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
