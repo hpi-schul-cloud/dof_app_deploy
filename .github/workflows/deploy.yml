@@ -146,7 +146,7 @@ jobs:
       - run: find -name "*.tar" -exec tar -xf {} \;
       - uses: actions/checkout@v2
         with:
-          repository: hpi-schul-cloud/cloud_ansible.git
+          repository: hpi-schul-cloud/cloud_ansible
           token: ${{ secrets.token }}
           path: cloud_ansible
           fetch-depth: 0
@@ -162,7 +162,6 @@ jobs:
               cd ..
           else
               echo not found
-              git clone --depth 1 https://github.com/hpi-schul-cloud/cloud_ansible.git
               cd cloud_ansible
               git checkout -b $git_ref_name
               git push -u origin $git_ref_name
@@ -180,7 +179,7 @@ jobs:
           git push
       - uses: actions/checkout@v2
         with:
-          repository: hpi-schul-cloud/autodeployment_inventory.git
+          repository: hpi-schul-cloud/autodeployment_inventory
           token: ${{ secrets.TOKEN_INVENTORY }}
           path: autodeployment_inventory
           fetch-depth: 0
@@ -193,7 +192,6 @@ jobs:
               cd ..
           else
               echo not found
-              git clone --depth 1 https://github.com/hpi-schul-cloud/autodeployment_inventory.git
               cd autodeployment_inventory
               git checkout -b $git_ref_name
               git push -u origin $git_ref_name
