@@ -143,7 +143,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
       - run: mv */*.tar ./
-      - run: find -name "*.tar" -exec tar -xf {} \
+      - run: find -name "*.tar" -exec tar -xf {} \;
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/cloud_ansible.git
