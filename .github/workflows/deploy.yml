@@ -147,24 +147,30 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/cloud_ansible.git
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.token }}
           path: cloud_ansible
           fetch-depth: 0
+      - run: |
+          git_ref_name=${{ inputs.branch }}
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
       - name: script to publish roles
-        run: 
-          if grep -q $branch <<<$(git ls-remote https://github.com/hpi-schul-cloud/cloud_ansible.git); then
+        run: |
+          if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/cloud_ansible.git); then
               echo found
               cd cloud_ansible
-              git checkout $branch
+              git checkout $git_ref_name
               cd ..
           else
               echo not found
               git clone --depth 1 https://github.com/hpi-schul-cloud/cloud_ansible.git
               cd cloud_ansible
-              git checkout -b $branch
-              git push -u origin $branch
+              git checkout -b $git_ref_name
+              git push -u origin $git_ref_name
               cd ..
           fi
+          cd cloud_ansible
+          git checkout $git_ref_name
+          cd ..
           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
@@ -172,9 +178,8 @@ jobs:
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
           cd cloud_ansible
-          git checkout $branch
           git add **
-          git commit -m"Update Ansible roles for $branch"
+          git commit -m"Update Ansible roles for $git_ref_name"
           git push
       - uses: actions/checkout@v2
         with:
@@ -184,19 +189,22 @@ jobs:
           fetch-depth: 0
       - name: script for the config
         run: 
-          if grep -q $branch <<<$(git ls-remote https://github.com/hpi-schul-cloud/autodeployment_inventory.git); then
+          if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/autodeployment_inventory.git); then
               echo found
               cd cloud_ansible
-              git autodeployment_inventory $branch
+              git autodeployment_inventory $git_ref_name
               cd ..
           else
               echo not found
               git clone --depth 1 https://github.com/hpi-schul-cloud/autodeployment_inventory.git
               cd autodeployment_inventory
-              git checkout -b $branch
-              git push -u origin $branch
+              git checkout -b $git_ref_name
+              git push -u origin $git_ref_name
               cd ..
           fi
+          cd autodeployment_inventory
+          git checkout $git_ref_name
+          cd ..
           cd ansible
           find group_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
           find group_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
@@ -207,7 +215,6 @@ jobs:
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
           cd autodeployment_inventory
-          git checkout $branch
           git add **
           git commit -m"Update Ansible inventory for $branch"
           git push
