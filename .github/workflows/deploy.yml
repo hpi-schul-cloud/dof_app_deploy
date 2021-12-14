@@ -148,7 +148,7 @@ jobs:
         with:
           repository: hpi-schul-cloud/cloud_ansible.git
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: cloud_ansible.git
+          path: cloud_ansible
           fetch-depth: 0
       - name: script to publish roles
         run: 
@@ -180,7 +180,7 @@ jobs:
         with:
           repository: hpi-schul-cloud/autodeployment_inventory.git
           token: ${{ secrets.TOKEN_INVENTORY }}
-          path: autodeployment_inventory.git
+          path: autodeployment_inventory
           fetch-depth: 0
       - name: script for the config
         run: 
