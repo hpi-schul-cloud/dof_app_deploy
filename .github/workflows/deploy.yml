@@ -165,14 +165,14 @@ jobs:
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
       - run: |
          echo "
-          cd $1 
-          if grep -q $2 <<<$(git ls-remote ); then
+          cd \$1 
+          if grep -q \$2 <<<\$(git ls-remote ); then
               echo found
-              git checkout $2
+              git checkout \$2
           else
               echo not found
-              git checkout -b $2
-              git push -u origin $2
+              git checkout -b \$2
+              git push -u origin \$2
           fi
           cd .." > checkout.sh
           chmod +x checkout.sh
