@@ -166,7 +166,7 @@ jobs:
       - name: script to publish roles
         run: |
           cd cloud_ansible
-          if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/cloud_ansible.git); then
+          if grep -q $git_ref_name <<<$(git ls-remote ); then
               echo found
               git checkout $git_ref_name
           else
@@ -196,7 +196,7 @@ jobs:
       - name: script for the config
         run: |
           cd autodeployment_inventory
-          if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/autodeployment_inventory.git); then
+          if grep -q $git_ref_name <<<$(git ls-remote ); then
               echo found
               git autodeployment_inventory $git_ref_name
           else
