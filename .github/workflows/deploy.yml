@@ -219,5 +219,10 @@ jobs:
           git config user.email ${{ inputs.user_email }}
           git add **
           git commit -m"Update Ansible inventory for $branch" --quiet --null
-          git push --quiet --force
+          if [ $? -eq 0 ]; 
+          then 
+              git push --quiet
+          else 
+              exit 0 
+          fi
     
