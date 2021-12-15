@@ -157,7 +157,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/cloud_ansible
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN_INVENTORY }}
           path: cloud_ansible
           fetch-depth: 0
       - run: |
