@@ -1,5 +1,5 @@
-NAMESPACE: hpibosscloud
-DOMAIN: dbildungscloud.de
+NAMESPACE: dbildungscloud
+DOMAIN: staging.dbildungscloud.org
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "true"
