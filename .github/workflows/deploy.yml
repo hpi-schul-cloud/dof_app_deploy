@@ -176,6 +176,18 @@ jobs:
           fi
           cd .." > checkout.sh
           chmod +x checkout.sh
+      - run: |
+         echo "
+          cd \$1
+          git config user.name ${{ inputs.user_name }}
+          git config user.email ${{ inputs.user_email }}
+          if ! grep -q "nothing to commit, working tree clean" <<<\$(git status ); then
+              git add **
+              git commit -m"Update Ansible roles for \$2" 
+              git push --quiet
+          fi
+          cd .." > push.sh
+          chmod +x push.sh
       - name: script to publish roles
         run: |
           ./checkout.sh cloud_ansible $git_ref_name
@@ -185,14 +197,7 @@ jobs:
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
-          cd cloud_ansible
-          git config user.name ${{ inputs.user_name }}
-          git config user.email ${{ inputs.user_email }}
-          if ! grep -q "nothing to commit, working tree clean" <<<$(git status ); then
-              git add **
-              git commit -m"Update Ansible roles for $git_ref_name" 
-              git push --quiet
-          fi
+          ./push.sh cloud_ansible $git_ref_name
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/autodeployment_inventory
@@ -201,28 +206,12 @@ jobs:
           fetch-depth: 0
       - name: script for the config
         run: |
-          cd autodeployment_inventory
-          if grep -q $git_ref_name <<<$(git ls-remote ); then
-              echo found
-              git checkout $git_ref_name
-          else
-              echo not found
-              git checkout -b $git_ref_name
-              git push -u origin $git_ref_name
-          fi
-          cd ..
+          ./checkout.sh autodeployment_inventory $git_ref_name
           cd ansible
           find group_vars/ host_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
           find group_vars/ host_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
           find group_vars/ host_vars/ -mindepth 1 -type f -exec cp {} ../autodeployment_inventory/{} \;
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
-          cd autodeployment_inventory
-          git config user.name ${{ inputs.user_name }}
-          git config user.email ${{ inputs.user_email }}
-          if ! grep -q "nothing to commit, working tree clean" <<<$(git status ); then
-              git add **
-              git commit -m"Update Ansible inventory for $branch" 
-              git push --quiet
-          fi
+          ./push.sh autodeployment_inventory $git_ref_name
     
