@@ -16,6 +16,8 @@ on:
         required: true
       ETHERPAD_API_KEY:
         required: true
+      TOKEN_INVENTORY:
+        required: true
 
 jobs:
   create_artifacts_repos:
