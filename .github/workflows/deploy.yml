@@ -188,7 +188,7 @@ jobs:
           git config user.email ${{ inputs.user_email }}
           git add **
           git commit -m"Update Ansible roles for $git_ref_name"
-          git push
+          git push --quiet
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/autodeployment_inventory
@@ -223,5 +223,5 @@ jobs:
           git config user.email ${{ inputs.user_email }}
           git add **
           git commit -m"Update Ansible inventory for $branch"
-          git push
+          git push --quiet
     
