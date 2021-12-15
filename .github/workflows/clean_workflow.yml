@@ -7,10 +7,20 @@ on:
       branch:
         required: true
         type: string
+      user_name:
+         required: false
+         default: hpi-schul-clud-bot
+         type: string
+      user_email:
+         required: false
+         default: bot@hpi-schul-cloud.de
+         type: string
     secrets:
       token:
         required: true
       DEV_KUBE_CONFIG:
+        required: true
+      TOKEN_INVENTORY:
         required: true
 
 jobs:
@@ -85,7 +95,7 @@ jobs:
           name: ${{ matrix.tennens }}
           path: ${{github.workspace }}/${{ matrix.tennens }}.tar
   
-  deploy:
+  clean_cluster:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
@@ -113,3 +123,48 @@ jobs:
       - working-directory: ${{github.workspace }}/ansible/roles/clean/files
         run: |
           rm -rf  /config
+          
+  clean_repo:
+    needs: 
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+      - run: mv */*.tar ./
+      - run: find -name "*.tar" -exec tar -xf {} \;
+      - run: tar -cf ansible.tar ansible
+      - run: |
+          git_ref_name=${{ inputs.branch }}
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+      - name: delete.sh
+        run: |
+         echo "
+          cd \$1 
+          git config user.name ${{ inputs.user_name }}
+          git config user.email ${{ inputs.user_email }}
+          if grep -q \$2 <<<\$(git ls-remote ); then
+              echo "found"
+              git push origin --delete \$2
+          fi
+          cd .." > delete.sh
+          chmod +x delete.sh
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/cloud_ansible
+          token: ${{ secrets.TOKEN_INVENTORY }}
+          path: cloud_ansible
+          fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/autodeployment_inventory
+          token: ${{ secrets.TOKEN_INVENTORY }}
+          path: autodeployment_inventory
+          fetch-depth: 0
+      - name: delete branches
+        run: |
+          if [ $(find group_vars/all -name "*.yml" -type f -exec grep "BRANCH_EXHIST: true" {} -l \; | grep "all" -wc) -eq "0" ]; then
+            ./delete.sh cloud_ansible $git_ref_name
+            ./delete.sh autodeployment_inventory $git_ref_name
+          fi
+
