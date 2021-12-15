@@ -184,7 +184,7 @@ jobs:
           cd cloud_ansible
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
-          if grep -q "nothing to commit, working tree clean" <<<$(git status ); then
+          if ! grep -q "nothing to commit, working tree clean" <<<$(git status ); then
               git add **
               git commit -m"Update Ansible roles for $git_ref_name" 
               git push --quiet
@@ -216,7 +216,7 @@ jobs:
           cd autodeployment_inventory
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
-          if grep -q "nothing to commit, working tree clean" <<<$(git status ); then
+          if ! grep -q "nothing to commit, working tree clean" <<<$(git status ); then
               git add **
               git commit -m"Update Ansible inventory for $branch" 
               git push --quiet
