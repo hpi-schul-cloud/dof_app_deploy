@@ -163,19 +163,23 @@ jobs:
       - run: |
           git_ref_name=${{ inputs.branch }}
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-      - name: script to publish roles
-        run: |
-          cd cloud_ansible
-          if grep -q $git_ref_name <<<$(git ls-remote ); then
+      - run: |
+         echo "
+          cd $1 
+          if grep -q $2 <<<$(git ls-remote ); then
               echo found
-              git checkout $git_ref_name
+              git checkout $2
           else
               echo not found
-              git checkout -b $git_ref_name
-              git push -u origin $git_ref_name
+              git checkout -b $2
+              git push -u origin $2
           fi
-          cd ..
-          cd ansible
+          cd .." > checkout.sh
+          chmode +x checkout.sh
+      - name: script to publish roles
+        run: |
+          ./checkout.sh cloud_ansible $git_ref_name
+           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
