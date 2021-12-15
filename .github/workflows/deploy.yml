@@ -183,7 +183,7 @@ jobs:
           git config user.email ${{ inputs.user_email }}
           if ! grep -q \"nothing to commit, working tree clean\" <<<\$(git status ); then
               git add **
-              git commit -m\"\$2" 
+              git commit -m\"\$2\" 
               git push --quiet
           fi
           cd .." > push.sh
