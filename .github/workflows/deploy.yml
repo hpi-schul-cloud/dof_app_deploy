@@ -15,10 +15,6 @@ on:
          required: false
          default: bot@hpi-schul-cloud.de
          type: string
-      tennens:
-         required: false
-         default: [ brb, default, nbc ]
-         type: string
     secrets:
       token:
         required: true
@@ -30,6 +26,9 @@ on:
         required: true
       TOKEN_INVENTORY:
         required: true
+
+env:
+  tennens: [ brb, default, nbc ]
 
 jobs:
   create_artifacts_repos:
@@ -64,7 +63,7 @@ jobs:
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
-          for i in ${{ inputs.tennens }}; do
+          for i in ${{ env.tennens }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml 
           done
@@ -79,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tennens: ${{ inputs.tennens }}
+        tennens: [ brb, default, nbc ]
     steps:
       - shell: bash
         id: make_identifier
