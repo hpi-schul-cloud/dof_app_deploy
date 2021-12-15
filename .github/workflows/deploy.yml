@@ -185,7 +185,7 @@ jobs:
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
           git add **
-          git commit -m"Update Ansible roles for $git_ref_name" --quiet
+          git commit -m"Update Ansible roles for $git_ref_name" --quiet --null
           git push --quiet --force
       - uses: actions/checkout@v2
         with:
@@ -218,6 +218,6 @@ jobs:
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
           git add **
-          git commit -m"Update Ansible inventory for $branch" --quiet
+          git commit -m"Update Ansible inventory for $branch" --quiet --null
           git push --quiet --force
     
