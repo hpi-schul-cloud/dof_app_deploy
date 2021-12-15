@@ -163,7 +163,8 @@ jobs:
       - run: |
           git_ref_name=${{ inputs.branch }}
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-      - run: |
+      - name: checkout.sh
+        run: |
          echo "
           cd \$1 
           if grep -q \$2 <<<\$(git ls-remote ); then
@@ -176,7 +177,8 @@ jobs:
           fi
           cd .." > checkout.sh
           chmod +x checkout.sh
-      - run: |
+      - name: push.sh
+        run: |
          echo "
           cd \$1
           git config user.name ${{ inputs.user_name }}
