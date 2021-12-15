@@ -198,7 +198,7 @@ jobs:
           cd autodeployment_inventory
           if grep -q $git_ref_name <<<$(git ls-remote ); then
               echo found
-              git autodeployment_inventory $git_ref_name
+              git checkout $git_ref_name
           else
               echo not found
               git checkout -b $git_ref_name
