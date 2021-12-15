@@ -28,7 +28,7 @@ on:
         required: true
 
 env:
-  tennens: [ brb, default, nbc ]
+  tennens: "brb, default, nbc"
 
 jobs:
   create_artifacts_repos:
