@@ -175,7 +175,7 @@ jobs:
               git push -u origin $2
           fi
           cd .." > checkout.sh
-          chmode +x checkout.sh
+          chmod +x checkout.sh
       - name: script to publish roles
         run: |
           ./checkout.sh cloud_ansible $git_ref_name
