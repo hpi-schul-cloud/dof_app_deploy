@@ -7,6 +7,14 @@ on:
       branch:
         required: true
         type: string
+      user_name:
+         required: false
+         default: hpi-schul-clud-bot
+         type: string
+      user_email:
+         required: false
+         default: bot@hpi-schul-cloud.de
+         type: string
     secrets:
       token:
         required: true
@@ -176,6 +184,8 @@ jobs:
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
           cd cloud_ansible
+          git config user.name ${{ inputs.user_name }}
+          git config user.email ${{ inputs.user_email }}
           git add **
           git commit -m"Update Ansible roles for $git_ref_name"
           git push
@@ -186,10 +196,10 @@ jobs:
           path: autodeployment_inventory
           fetch-depth: 0
       - name: script for the config
-        run: 
+        run: |
           if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/autodeployment_inventory.git); then
               echo found
-              cd cloud_ansible
+              cd autodeployment_inventory
               git autodeployment_inventory $git_ref_name
               cd ..
           else
@@ -209,6 +219,8 @@ jobs:
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
           cd autodeployment_inventory
+          git config user.name ${{ inputs.user_name }}
+          git config user.email ${{ inputs.user_email }}
           git add **
           git commit -m"Update Ansible inventory for $branch"
           git push
