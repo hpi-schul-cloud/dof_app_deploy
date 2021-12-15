@@ -165,18 +165,16 @@ jobs:
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
       - name: script to publish roles
         run: |
+          cd cloud_ansible
           if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/cloud_ansible.git); then
               echo found
-              cd cloud_ansible
               git checkout $git_ref_name
-              cd ..
           else
               echo not found
-              cd cloud_ansible
               git checkout -b $git_ref_name
               git push -u origin $git_ref_name
-              cd ..
           fi
+          cd ..
           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
@@ -197,18 +195,16 @@ jobs:
           fetch-depth: 0
       - name: script for the config
         run: |
+          cd autodeployment_inventory
           if grep -q $git_ref_name <<<$(git ls-remote https://github.com/hpi-schul-cloud/autodeployment_inventory.git); then
               echo found
-              cd autodeployment_inventory
               git autodeployment_inventory $git_ref_name
-              cd ..
           else
               echo not found
-              cd autodeployment_inventory
               git checkout -b $git_ref_name
               git push -u origin $git_ref_name
-              cd ..
           fi
+          cd ..
           cd ansible
           find group_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
           find group_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
