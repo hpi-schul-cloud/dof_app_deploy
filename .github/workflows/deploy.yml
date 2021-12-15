@@ -181,9 +181,9 @@ jobs:
           cd \$1
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
-          if ! grep -q "nothing to commit, working tree clean" <<<\$(git status ); then
+          if ! grep -q \"nothing to commit, working tree clean\" <<<\$(git status ); then
               git add **
-              git commit -m"Update Ansible roles for \$2" 
+              git commit -m\"\$2" 
               git push --quiet
           fi
           cd .." > push.sh
@@ -197,7 +197,7 @@ jobs:
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
-          ./push.sh cloud_ansible $git_ref_name
+          ./push.sh cloud_ansible "Update Ansible roles for $git_ref_name"
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/autodeployment_inventory
@@ -213,5 +213,5 @@ jobs:
           find group_vars/ host_vars/ -mindepth 1 -type f -exec cp {} ../autodeployment_inventory/{} \;
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
-          ./push.sh autodeployment_inventory $git_ref_name
+          ./push.sh autodeployment_inventory "Update Ansible inventory for $branch"
     
