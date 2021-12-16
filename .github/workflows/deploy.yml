@@ -212,5 +212,5 @@ jobs:
           find group_vars/ host_vars/ -mindepth 1 -type f -exec cp {} ../autodeployment_inventory/{} \;
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
-          push autodeployment_inventory "Update Ansible inventory for $branch"
+          push autodeployment_inventory "Update Ansible inventory for $git_ref_name"
     
