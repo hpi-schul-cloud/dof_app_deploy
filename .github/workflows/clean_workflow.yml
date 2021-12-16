@@ -134,20 +134,6 @@ jobs:
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ansible.tar ansible
-      - run: |
-          git_ref_name=${{ inputs.branch }}
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-      - name: delete
-        run: |
-         delete() {
-          cd $1 
-          git config user.name ${{ inputs.user_name }}
-          git config user.email ${{ inputs.user_email }}
-          if grep -q $2 <<<$(git ls-remote ); then
-              echo "found"
-              git push origin --delete $2
-          fi
-         }
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/cloud_ansible
@@ -160,8 +146,20 @@ jobs:
           token: ${{ secrets.TOKEN_INVENTORY }}
           path: autodeployment_inventory
           fetch-depth: 0
-      - name: delete branches
-        run: |
+      - run: |
+          git_ref_name=${{ inputs.branch }}
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          
+          delete() {
+           cd $1 
+           git config user.name ${{ inputs.user_name }}
+           git config user.email ${{ inputs.user_email }}
+           if grep -q $2 <<<$(git ls-remote ); then
+               echo "found"
+               git push origin --delete $2
+           fi
+          }
+          
           if [ $(find group_vars/all -name "*.yml" -type f -exec grep "BRANCH_EXIST: true" {} -l \; | grep "all" -wc) -eq "0" ]; then
             delete cloud_ansible $git_ref_name
             delete autodeployment_inventory $git_ref_name
