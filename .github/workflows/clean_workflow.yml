@@ -137,7 +137,7 @@ jobs:
       - run: |
           git_ref_name=${{ inputs.branch }}
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-      - name: delete.sh
+      - name: delete
         run: |
          delete() {
           cd $1 
