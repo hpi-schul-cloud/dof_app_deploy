@@ -139,16 +139,15 @@ jobs:
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
       - name: delete.sh
         run: |
-         echo "
-          cd \$1 
+         delete() {
+          cd $1 
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
-          if grep -q \$2 <<<\$(git ls-remote ); then
+          if grep -q $2 <<<$(git ls-remote ); then
               echo "found"
-              git push origin --delete \$2
+              git push origin --delete $2
           fi
-          cd .." > delete.sh
-          chmod +x delete.sh
+         }
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/cloud_ansible
@@ -163,8 +162,8 @@ jobs:
           fetch-depth: 0
       - name: delete branches
         run: |
-          if [ $(find group_vars/all -name "*.yml" -type f -exec grep "BRANCH_EXHIST: true" {} -l \; | grep "all" -wc) -eq "0" ]; then
-            ./delete.sh cloud_ansible $git_ref_name
-            ./delete.sh autodeployment_inventory $git_ref_name
+          if [ $(find group_vars/all -name "*.yml" -type f -exec grep "BRANCH_EXIST: true" {} -l \; | grep "all" -wc) -eq "0" ]; then
+            delete cloud_ansible $git_ref_name
+            delete autodeployment_inventory $git_ref_name
           fi
 
