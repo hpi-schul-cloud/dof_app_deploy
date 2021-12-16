@@ -161,36 +161,39 @@ jobs:
           token: ${{ secrets.TOKEN_INVENTORY }}
           path: cloud_ansible
           fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/autodeployment_inventory
+          token: ${{ secrets.TOKEN_INVENTORY }}
+          path: autodeployment_inventory
+          fetch-depth: 0
       - run: |
           git_ref_name=${{ inputs.branch }}
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-      - name: checkout.sh
-        run: |
-         checkout() {
-          cd $1 
-          if grep -q $2 <<<$(git ls-remote ); then
-              echo found
-              git checkout $2
-          else
-              echo not found
-              git checkout -b $2
-              git push -u origin $2
-          fi
-         }
-      - name: push.sh
-        run: |
-         push() {
-          cd $1
-          git config user.name ${{ inputs.user_name }}
-          git config user.email ${{ inputs.user_email }}
-          git add **
-          if [ 0 -eq $(git status --porcelain | wc -l) ]; then
-              git commit -m "$2" 
-              git push --quiet origin 
-          fi
-         }
-      - name: script to publish roles
-        run: |
+          
+          checkout() {
+           cd $1 
+           if grep -q $2 <<<$(git ls-remote ); then
+               echo found
+               git checkout $2
+           else
+               echo not found
+               git checkout -b $2
+               git push -u origin $2
+           fi
+          }
+          
+          push() {
+           cd $1
+           git config user.name ${{ inputs.user_name }}
+           git config user.email ${{ inputs.user_email }}
+           git add **
+           if [ 0 -eq $(git status --porcelain | wc -l) ]; then
+               git commit -m "$2" 
+               git push --quiet origin 
+           fi
+          }
+
           checkout cloud_ansible $git_ref_name
           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
@@ -199,14 +202,7 @@ jobs:
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
           push cloud_ansible "Update Ansible roles for $git_ref_name"
-      - uses: actions/checkout@v2
-        with:
-          repository: hpi-schul-cloud/autodeployment_inventory
-          token: ${{ secrets.TOKEN_INVENTORY }}
-          path: autodeployment_inventory
-          fetch-depth: 0
-      - name: script for the config
-        run: |
+
           checkout autodeployment_inventory $git_ref_name
           cd ansible
           find group_vars/ host_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
