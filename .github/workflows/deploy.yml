@@ -181,6 +181,7 @@ jobs:
                git checkout -b $2
                git push -u origin $2
            fi
+           cd ..
           }
           
           push() {
@@ -192,6 +193,7 @@ jobs:
                git commit -m "$2" 
                git push --quiet origin 
            fi
+           cd ..
           }
 
           checkout cloud_ansible $git_ref_name
