@@ -168,7 +168,7 @@ jobs:
         run: |
          checkout() {
           cd $1 
-          if grep -q $2 <<<\$(git ls-remote ); then
+          if grep -q $2 <<<$(git ls-remote ); then
               echo found
               git checkout $2
           else
