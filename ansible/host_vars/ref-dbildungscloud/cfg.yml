@@ -1,4 +1,4 @@
-NAMESPACE: dbildungscloud
+NAMESPACE: hpibosscloud
 DOMAIN: staging.dbildungscloud.org
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
