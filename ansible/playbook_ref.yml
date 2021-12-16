@@ -4,6 +4,7 @@
     - referenc
   connection: local
   roles:
+    - role: dof_rabbitmq
     - role: dof_redis
     - role: libreoffice
     - role: maildrop
@@ -28,7 +29,6 @@
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
     - role: edtrio
-    - role: schulcloud-editor
     - role: antivirus_check_service
     - role: rocketchat
     - role: ingress
