@@ -166,41 +166,39 @@ jobs:
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
       - name: checkout.sh
         run: |
-         echo "
-          cd \$1 
-          if grep -q \$2 <<<\$(git ls-remote ); then
+         checkout() {
+          cd $1 
+          if grep -q $2 <<<\$(git ls-remote ); then
               echo found
-              git checkout \$2
+              git checkout $2
           else
               echo not found
-              git checkout -b \$2
-              git push -u origin \$2
+              git checkout -b $2
+              git push -u origin $2
           fi
-          cd .." > checkout.sh
-          chmod +x checkout.sh
+         }
       - name: push.sh
         run: |
-         echo "
-          cd \$1
+         push() {
+          cd $1
           git config user.name ${{ inputs.user_name }}
           git config user.email ${{ inputs.user_email }}
-          if ! grep -q \"nothing to commit, working tree clean\" <<<\$(git status ); then
-              git add **
-              git commit -m\"\$2\" 
-              git push --quiet
+          git add **
+          if [ 0 -eq $(git status --porcelain | wc -l) ]; then
+              git commit -m "$2" 
+              git push --quiet origin 
           fi
-          cd .." > push.sh
-          chmod +x push.sh
+         }
       - name: script to publish roles
         run: |
-          ./checkout.sh cloud_ansible $git_ref_name
-           cd ansible
+          checkout cloud_ansible $git_ref_name
+          cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
-          ./push.sh cloud_ansible "Update Ansible roles for $git_ref_name"
+          push cloud_ansible "Update Ansible roles for $git_ref_name"
       - uses: actions/checkout@v2
         with:
           repository: hpi-schul-cloud/autodeployment_inventory
@@ -209,12 +207,12 @@ jobs:
           fetch-depth: 0
       - name: script for the config
         run: |
-          ./checkout.sh autodeployment_inventory $git_ref_name
+          checkout autodeployment_inventory $git_ref_name
           cd ansible
           find group_vars/ host_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
           find group_vars/ host_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
           find group_vars/ host_vars/ -mindepth 1 -type f -exec cp {} ../autodeployment_inventory/{} \;
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
-          ./push.sh autodeployment_inventory "Update Ansible inventory for $branch"
+          push autodeployment_inventory "Update Ansible inventory for $branch"
     
