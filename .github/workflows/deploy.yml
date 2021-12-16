@@ -7,6 +7,14 @@ on:
       branch:
         required: true
         type: string
+      user_name:
+         required: false
+         default: hpi-schul-clud-bot
+         type: string
+      user_email:
+         required: false
+         default: bot@hpi-schul-cloud.de
+         type: string
     secrets:
       token:
         required: true
@@ -16,6 +24,11 @@ on:
         required: true
       ETHERPAD_API_KEY:
         required: true
+      TOKEN_INVENTORY:
+        required: true
+
+env:
+  tennens: "brb default nbc"
 
 jobs:
   create_artifacts_repos:
@@ -48,14 +61,12 @@ jobs:
         run: |
           commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
-          for i in ./ansible/roles/*; do mkdir -pv $i/vars; done
-          for i in ./ansible/roles/*; do echo "APP_IMAGE_TAG: $commit_id" >> $i/vars/main.yml; done
-          mkdir -pv ansible/host_vars/brb_host
-          mkdir -pv ansible/host_vars/default_host
-          mkdir -pv ansible/host_vars/nbc_host
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
-          for i in ./ansible/host_vars/*; do echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> $i/$filename.yml; done
+          for i in ${{ env.tennens }}; do
+            mkdir -pv ansible/host_vars/${i}_host
+            echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml 
+          done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - uses: actions/upload-artifact@v2
@@ -134,3 +145,72 @@ jobs:
         run: |
           rm -rf  /config
 
+
+  inventory:
+    needs: 
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+      - run: mv */*.tar ./
+      - run: find -name "*.tar" -exec tar -xf {} \;
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/cloud_ansible
+          token: ${{ secrets.TOKEN_INVENTORY }}
+          path: cloud_ansible
+          fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/autodeployment_inventory
+          token: ${{ secrets.TOKEN_INVENTORY }}
+          path: autodeployment_inventory
+          fetch-depth: 0
+      - run: |
+          git_ref_name=${{ inputs.branch }}
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          
+          checkout() {
+           cd $1 
+           if grep -q $2 <<<$(git ls-remote ); then
+               echo found
+               git checkout $2
+           else
+               echo not found
+               git checkout -b $2
+               git push -u origin $2
+           fi
+           cd ..
+          }
+          
+          push() {
+           cd $1
+           git config user.name ${{ inputs.user_name }}
+           git config user.email ${{ inputs.user_email }}
+           git add **
+           if [ $(git status --porcelain | wc -l) -gt "0" ]; then
+               git commit -m "$2" 
+               git push --quiet origin 
+           fi
+           cd ..
+          }
+
+          checkout cloud_ansible $git_ref_name
+          cd ansible
+          find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
+          find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
+          find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
+          find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
+          cd ..
+          push cloud_ansible "Update Ansible roles for $git_ref_name"
+
+          checkout autodeployment_inventory $git_ref_name
+          cd ansible
+          find group_vars/ host_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
+          find group_vars/ host_vars/ -mindepth 1 -type d -exec mkdir -p ../autodeployment_inventory/{} \;
+          find group_vars/ host_vars/ -mindepth 1 -type f -exec cp {} ../autodeployment_inventory/{} \;
+          find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
+          cd ..
+          push autodeployment_inventory "Update Ansible inventory for $git_ref_name"
+    
