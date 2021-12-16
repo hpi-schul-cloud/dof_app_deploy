@@ -158,6 +158,7 @@ jobs:
                echo "found"
                git push origin --delete $2
            fi
+           cd ..
           }
           
           if [ $(find group_vars/all -name "*.yml" -type f -exec grep "BRANCH_EXIST: true" {} -l \; | grep "all" -wc) -eq "0" ]; then
