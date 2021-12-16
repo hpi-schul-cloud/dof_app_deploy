@@ -189,7 +189,7 @@ jobs:
            git config user.name ${{ inputs.user_name }}
            git config user.email ${{ inputs.user_email }}
            git add **
-           if [ 0 -eq $(git status --porcelain | wc -l) ]; then
+           if [ $(git status --porcelain | wc -l) -gt "0" ]; then
                git commit -m "$2" 
                git push --quiet origin 
            fi
