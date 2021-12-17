@@ -30,3 +30,4 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: namespace.yml.j2
+
