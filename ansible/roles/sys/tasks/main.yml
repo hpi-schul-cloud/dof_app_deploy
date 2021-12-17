@@ -26,7 +26,7 @@
     when: kubeconfig_yml is undefined
     
   - name: Namespace
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: namespace.yml.j2
