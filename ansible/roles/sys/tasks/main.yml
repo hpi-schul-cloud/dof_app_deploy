@@ -10,19 +10,12 @@
       path: "{{ ansible_env.HOME }}/.kube/"
       state: directory
       mode: 0700
+      
   - name: push kubeconfig
     copy:
-      src: {{ kubeconfig_yml }}
+      src: "{{ kubeconfig_yml|default("config",true) }}"
       dest: "{{ ansible_env.HOME }}/.kube/config"
       mode: 0600
-    when: kubeconfig_yml is defined
-    
-  - name: push kubeconfig
-    copy:
-      src: config
-      dest: "{{ ansible_env.HOME }}/.kube/config"
-      mode: 0600
-    when: kubeconfig_yml is undefined
     
   - name: Namespace
     community.kubernetes.k8s:
