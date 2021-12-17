@@ -195,7 +195,7 @@ jobs:
            fi
            cd ..
           }
-          
+
           checkout cloud_ansible $git_ref_name
           cd ansible
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
@@ -205,9 +205,9 @@ jobs:
           cd ..
           echo "roles:" > cloud_ansible/roles/requirements.yml
           echo "  - src: https://github.com/hpi-schul-cloud/cloud_ansible" >> cloud_ansible/roles/requirements.yml
-          echo "    version: $git_ref_name" > cloud_ansible/roles/requirements.yml" >> cloud_ansible/roles/requirements.yml
+          echo "    version: $git_ref_name" >> cloud_ansible/roles/requirements.yml
           push cloud_ansible "Update Ansible roles for $git_ref_name"
-          
+
           checkout autodeployment_inventory $git_ref_name
           cd ansible
           find group_vars/ host_vars/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../autodeployment_inventory/{} \;
@@ -216,4 +216,4 @@ jobs:
           find ./ -mindepth 1 -maxdepth 1 -name "host*" -type f -exec cp -f {} ../autodeployment_inventory/ \;
           cd ..
           push autodeployment_inventory "Update Ansible inventory for $git_ref_name"
-
+    
