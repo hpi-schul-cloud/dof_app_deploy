@@ -202,6 +202,7 @@ jobs:
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
+          cp -f requirements.yml ../cloud_ansible/
           cd ..
           echo "roles:" > cloud_ansible/roles/requirements.yml
           echo "  - src: https://github.com/hpi-schul-cloud/cloud_ansible" >> cloud_ansible/roles/requirements.yml

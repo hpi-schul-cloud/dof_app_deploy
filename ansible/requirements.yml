@@ -1,0 +1,18 @@
+---
+collections:
+  - name: community.kubernetes
+    version: 1.2.0
+  - name: community.general
+    version: 2.5.1
+  - name: hetzner.hcloud
+    version: 1.2.1
+  - name: ansible.posix
+    version: 1.2.0
+  - name: community.postgresql
+    version: 1.1.1
+  - name: git+https://github.com/hpi-schul-cloud/infra-tools.git
+    type: git
+  - name: community.docker
+    version: ">=1.2.0,<2"
+  - name: kubernetes.core
+    version: 2.2.2
