@@ -12,11 +12,11 @@
       mode: 0700
   - name: push kube config
     copy:
-      src: config
+      src: {{ kubeconfig_yml|default(config, true) }}
       dest: "{{ ansible_env.HOME }}/.kube/config"
       mode: 0600
   - name: Namespace
     community.kubernetes.k8s:
-      kubeconfig: {{ kubeconfig_yml|default("~/.kube/config", true) }}
+      kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: namespace.yml.j2
