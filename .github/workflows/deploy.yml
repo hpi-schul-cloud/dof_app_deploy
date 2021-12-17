@@ -203,7 +203,7 @@ jobs:
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
           mkdir -pv ../cloud_ansible/collections
           find collections/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
-          find collections/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
+          find collections/ -type f -exec cp {} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cp -f requirements.yml ../cloud_ansible/
           cd ..
