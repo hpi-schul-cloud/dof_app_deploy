@@ -26,7 +26,6 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - edtrio
-    - schulcloud-editor
     - antivirus_check_service
     - rocketchat
     - ingress
