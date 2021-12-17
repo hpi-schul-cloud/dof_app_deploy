@@ -1,0 +1,6 @@
+NAMESPACE: international
+DOMAIN: staging.international.hpi-schul-cloud.de
+
+FEATURE_MATRIX_MESSENGER_ENABLED: "false"
+FEATURE_NEXBOARD_ENABLED: "true"
+DISPLAY_REQUEST_LEVEL: -1
