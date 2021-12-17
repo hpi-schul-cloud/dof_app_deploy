@@ -205,7 +205,7 @@ jobs:
           cd ..
           echo "roles:" > cloud_ansible/roles/requirements.yml
           echo "  - src: https://github.com/hpi-schul-cloud/cloud_ansible" >> cloud_ansible/roles/requirements.yml
-          echo "    version: ${git_ref_name}" > cloud_ansible/roles/requirements.yml" >> cloud_ansible/roles/requirements.yml
+          echo "    version: $git_ref_name" > cloud_ansible/roles/requirements.yml" >> cloud_ansible/roles/requirements.yml
           push cloud_ansible "Update Ansible roles for $git_ref_name"
 
           checkout autodeployment_inventory $git_ref_name
