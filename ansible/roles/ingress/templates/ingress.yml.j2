@@ -87,11 +87,27 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /tasks
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /tasks/open
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
       - path: /tasks/assigned
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /homework
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /homework/asked
+        backend:
+          serviceName: nuxtclient-svc
+          servicePort: {{ NUXTCLIENT_PORT }}
+      - path: /homework/private
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
