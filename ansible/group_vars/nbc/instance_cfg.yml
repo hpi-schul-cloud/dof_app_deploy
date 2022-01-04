@@ -81,3 +81,5 @@ GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER: ""
 PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
+# Status
+ALERT_STATUS_URL: https://status.niedersachsen.cloud
