@@ -195,6 +195,10 @@ spec:
         backend:
           serviceName: api-svc
           servicePort: {{ PORT_SERVER }}
+      - path: /api/v3/user/import
+        backend:
+          serviceName: api-svc
+          servicePort: {{ PORT_SERVER }}
       - path: /api/v3/news
         backend:
           serviceName: api-svc
