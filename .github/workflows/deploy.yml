@@ -83,7 +83,7 @@ jobs:
       - shell: bash
         id: make_identifier
         run: |
-          mkdir -pv ansible/group_vars/${{ matrix.tennens }}
+          mkdir -pv ansible/host_vars/${{ matrix.tennens }}_host
           
           git_ref_name=${{ inputs.branch }}
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
@@ -92,11 +92,11 @@ jobs:
           echo "before" $git_ref_name "after" $temp
           echo "##[set-output name=id;]$(echo $temp)"
       - shell: bash
-        working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
         run: |
           #declare test='${{ steps.make_identifier.outputs.id }}'
-          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg.yml
+          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg_host.yml
+          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
       - uses: actions/upload-artifact@v2
         with:
@@ -123,17 +123,17 @@ jobs:
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
-          echo "NOTIFICATION_PLATFORM: testplatform" >> all/node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> all/node-notification-service.yml
+          echo "NOTIFICATION_PLATFORM: testplatform" >> develop/node-notification-service.yml
+          echo "NOTIFICATION_URI: http://notification-svc:3031" >> develop/node-notification-service.yml
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
-          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> all/dof_etherpad.yml
+          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> develop/dof_etherpad.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
-          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> all/dof_deploy.yml
-          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> all/dof_deploy.yml
-          echo "TLS_ENABELD: \"true\"" >> all/dof_deploy.yml
+          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
+          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
+          echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
       - run: ansible-galaxy collection install community.kubernetes:1.2.1
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
