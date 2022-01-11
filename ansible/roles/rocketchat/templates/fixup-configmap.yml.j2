@@ -39,4 +39,6 @@ data:
       db.rocketchat_room.find({name: "general"})
       db.rocketchat_message.remove({"rid" : "GENERAL"})
       db.rocketchat_room.remove({name: "general"})
+      // https://github.com/RocketChat/Rocket.Chat/issues/23937 unfortunetly there is a caching bug on the client side for newly created rooms, but this triggers a refresh, instantly, on the client side 
+      db.rocketchat_subscription.update({"ls" : { "$exists" : false}}, {"$set" : {"ls" :  new ISODate("1970-01-01T00:00:00Z")}}, {"multi" : true})
       '
