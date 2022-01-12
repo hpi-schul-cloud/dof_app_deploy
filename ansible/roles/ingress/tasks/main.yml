@@ -1,23 +1,23 @@
   - name: Default Backend 404 Configmap files
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-configmapfile.yml.j2
 
   - name: Default Backend 404 Ddeployment
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-deployment.yml.j2
 
   - name: Default Backend 404 Service
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-svc.yml.j2
 
   - name: Ingress
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2

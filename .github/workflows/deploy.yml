@@ -119,7 +119,7 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install openshift
+          python3 -m pip install kubernetes
           
       - working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
@@ -134,7 +134,7 @@ jobs:
           echo "VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
           echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
-      - run: ansible-galaxy collection install community.kubernetes:1.2.1
+      - run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
@@ -201,8 +201,14 @@ jobs:
           find roles/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
           find roles/ -mindepth 1 -type f -exec cp {} ../cloud_ansible/{} \;
+          mkdir -pv ../cloud_ansible/collections
+          find collections/ -mindepth 1 -type d -exec mkdir -p ../cloud_ansible/{} \;
+          find collections/ -type f -exec cp -f ./{} ../cloud_ansible/{} \;
           find ./ -maxdepth 1 -name "play*.yml" -type f -exec cp -f {} ../cloud_ansible/ \;
           cd ..
+          echo "roles:" > cloud_ansible/roles/requirements.yml
+          echo "  - src: https://github.com/hpi-schul-cloud/cloud_ansible" >> cloud_ansible/roles/requirements.yml
+          echo "    version: $git_ref_name" >> cloud_ansible/roles/requirements.yml
           push cloud_ansible "Update Ansible roles for $git_ref_name"
 
           checkout autodeployment_inventory $git_ref_name
