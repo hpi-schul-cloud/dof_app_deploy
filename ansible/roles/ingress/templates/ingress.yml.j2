@@ -40,12 +40,3 @@ spec:
 {% endif %}
 {% endif %}
 {% endfor %}
-      ### Etherpad
-      - path: /etherpad
-        backend:
-          serviceName: etherpad-nginx-svc
-          servicePort: 80
-      - path: /etherpad/socket.io
-        backend:
-          serviceName: etherpad-nginx-svc
-          servicePort: 80

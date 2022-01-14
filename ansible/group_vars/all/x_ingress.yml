@@ -227,3 +227,11 @@ default_ingress:
     path: /api/v1/config/app/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  etherpad:
+    path: /etherpad
+    serviceName: etherpad-nginx-svc
+    servicePort: 80
+  etherpad_socket.io:
+    path: /etherpad/socket.io
+    serviceName: etherpad-nginx-svc
+    servicePort: 80
