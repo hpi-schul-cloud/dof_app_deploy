@@ -72,4 +72,4 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Ingress
 group_ingress:
   themes:
-    path: /themes/{{ SC_THEME }}/favicon.png
+    path: "/themes/{{ SC_THEME }}/favicon.png"
