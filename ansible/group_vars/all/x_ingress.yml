@@ -2,7 +2,7 @@ default_ingress:
   default:
     path: /
     serviceName: client-svc
-    servicePort: {{ CLIENT_PORT }}
+    servicePort: "{{ CLIENT_PORT }}"
   themes:
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
