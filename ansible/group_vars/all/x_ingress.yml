@@ -157,12 +157,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
-    serviceName: default-backend-404-svc
-    servicePort: 8080
   api_roster:
     path: /api/roster
-    serviceName: default-backend-404-svc
-    servicePort: 8080
   api_v1_schools:
     path: /api/v1/schools/
     serviceName: api-svc
