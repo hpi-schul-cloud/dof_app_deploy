@@ -1,31 +1,31 @@
   - name: Service
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
       
   - name: Persistent Volumes Claim  
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
       
   - name: Secret
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: secret.yml.j2
     when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
       
   - name: Secred by 1Password
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
       
   - name: Deployment
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
@@ -33,7 +33,7 @@
   - name: Ingress
     environment:
       K8S_AUTH_KUBECONFIG: "{{ ansible_env.HOME }}/.kube/config"
-    community.kubernetes.k8s:
+    kubernetes.core.k8s:
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
       
