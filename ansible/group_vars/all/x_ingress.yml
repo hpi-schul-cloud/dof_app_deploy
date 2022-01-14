@@ -10,15 +10,15 @@ default_ingress:
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   account:
     path: /account
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   activation:
     path: /activation
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   metrics:
     path: /metrics
     serviceName: default-backend-404-svc
@@ -26,93 +26,93 @@ default_ingress:
   login-instances:
     path: /login-instances
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   login:
     path: /login
     serviceName: client-svc
-    servicePort: {{ CLIENT_PORT }}
+    servicePort: "{{ CLIENT_PORT }}"
   login_success:
     path: /login/success
     serviceName: client-svc
-    servicePort: {{ CLIENT_PORT }}
+    servicePort: "{{ CLIENT_PORT }}"
   error:
     path: /error
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   imprint:
     path: /imprint
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   termsofuse:
     path: /termsofuse
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   mint-ec:
     path: /mint-ec
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   insights:
     path: /insights
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   tasks:
     path: /tasks
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   homework:
     path: /homework
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
     path: /nuxtversion
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   content:
     path: /content
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   _nuxt:
     path: /_nuxt
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   systems_ldap:
     path: /systems/ldap
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_ldap:
     path: /administration/ldap
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_systems_ldap:
     path: /administration/systems/ldap
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_school-settings:
     path: /administration/school-settings
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration/datasources:
     path: /administration/datasources
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_students:
     path: /administration/students/
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_teachers:
     path: /administration/teachers/
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-overview:
     path: /rooms-overview
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-list:
     path: /rooms-list
     serviceName: nuxtclient-svc
-    servicePort: {{ NUXTCLIENT_PORT }}
+    servicePort: "{{ NUXTCLIENT_PORT }}"
     
