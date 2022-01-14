@@ -70,6 +70,6 @@ PROD_INSTANCE: true
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Ingress
-group_ingress:
-  themes:
-    path: "/themes/{{ SC_THEME }}/favicon.png"
+#group_ingress:
+#  themes:
+#    path: "/themes/{{ SC_THEME }}/favicon.png"

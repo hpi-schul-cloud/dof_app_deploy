@@ -1,0 +1,7 @@
+host_ingress:
+  login:
+    serviceName: client-ldap-svc
+  systems_ldap:
+    serviceName: nuxtclient-ldap-svc
+  administration_systems_ldap:
+    serviceName: nuxtclient-ldap-svc
