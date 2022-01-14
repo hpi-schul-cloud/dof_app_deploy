@@ -1,4 +1,10 @@
 #jinja2: trim_blocks: "True", lstrip_blocks: "True"
+{% if group_ingress is defined %}
+{% set ingress_cfg = default_ingress| combine(group_ingress, recursive=True, list_merge='append_rp') %}
+{% else %}
+{% set ingress_cfg = default_ingress %}
+{% endif %}
+
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -10,7 +16,6 @@ metadata:
 
 spec:
 {% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
-{% set ingress_cfg = default_ingress| combine(group_ingress, recursive=True, list_merge='append_rp') %}
   tls:
   - hosts:
       - {{ DOMAIN }}
@@ -19,11 +24,13 @@ spec:
   - host: {{ DOMAIN }}
     http:
       paths:
-{% for iname, idata in ingress_cfg.items() -%}
+{% for iname, idata in ingress_cfg.items() %}
+{% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
       - path: {{ idata.path }}
         backend:
           serviceName: {{ idata.serviceName }}
           servicePort: {{ idata.servicePort }}
+{% endif %}
 {% endfor %}
       ### Client / Nuxtclient
       - path: /runtime.config.json
