@@ -10,6 +10,7 @@ metadata:
 
 spec:
 {% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
+{% set ingress_cfg = default_ingress| combine(group_ingress, recursive=True, list_merge='append_rp') %}
   tls:
   - hosts:
       - {{ DOMAIN }}
@@ -18,15 +19,13 @@ spec:
   - host: {{ DOMAIN }}
     http:
       paths:
+{% for iname, idata in ingress_cfg.items() -%}
+      - path: {{ idata.path }}
+        backend:
+          serviceName: {{ idata.serviceName }}
+          servicePort: {{ idata.servicePort }}
+{% endfor %}
       ### Client / Nuxtclient
-      - path: /
-        backend:
-          serviceName: client-svc
-          servicePort: {{ CLIENT_PORT }}
-      - path: /themes/{{ SC_THEME }}/favicon.png
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /runtime.config.json
         backend:
           serviceName: nuxtclient-svc
@@ -91,23 +90,7 @@ spec:
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
-      - path: /tasks/open
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ NUXTCLIENT_PORT }}
-      - path: /tasks/assigned
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ NUXTCLIENT_PORT }}
       - path: /homework
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ NUXTCLIENT_PORT }}
-      - path: /homework/asked
-        backend:
-          serviceName: nuxtclient-svc
-          servicePort: {{ NUXTCLIENT_PORT }}
-      - path: /homework/private
         backend:
           serviceName: nuxtclient-svc
           servicePort: {{ NUXTCLIENT_PORT }}
