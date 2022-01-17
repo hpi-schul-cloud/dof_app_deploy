@@ -1,0 +1,418 @@
+configuration_all:
+  SUPPORT_PROBLEM_EMAIL_ADDRESS:
+    var_name: SUPPORT_PROBLEM_EMAIL_ADDRESS
+    server: true
+    client: false
+    nuxtcleint: false
+  SUPPORT_WISH_EMAIL_ADDRESS:
+    var_name: SUPPORT_PROBLEM_EMAIL_ADDRESS
+    server: true
+    client: false
+    nuxtcleint: false
+  DOCUMENT_BASE_DIR:
+    var_name: DOCUMENT_BASE_DIR
+    value: "https://s3.hidrive.strato.com/cloud-instances/"
+    server: true
+    client: false
+    nuxtcleint: false
+    # STAIC Infos
+  MEMORY_INTERVAL_TIME:
+    var_name: MEMORY_INTERVAL_TIME
+    value: "0"
+    server: true
+    client: false
+    nuxtcleint: false
+  REQUEST_LOGGING_ENABLED:
+    var_name: REQUEST_LOGGING_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  # LDAP SYNC
+  LDAP_SCHOOL_SYNCER_POOL_SIZE:
+    var_name: LDAP_SCHOOL_SYNCER_POOL_SIZE
+    value: "1"
+    server: true
+    client: false
+    nuxtcleint: false
+  LDAP_SYSTEM_SYNCER_POOL_SIZE:
+    var_name: LDAP_SYSTEM_SYNCER_POOL_SIZE
+    value: "2"
+    server: true
+    client: false
+    nuxtcleint: false
+  # SMTP
+  SMTP:
+    var_name: SMTP
+    server: true
+    client: false
+    nuxtcleint: false
+  SMTP_SENDER:
+    var_name: SMTP_SENDER
+    value: "noreply@DOMAIN"
+    server: true
+    client: false
+    nuxtcleint: false
+  SHOW_VERSION:
+    var_name: SHOW_VERSION
+    value: "0"
+    server: true
+    client: false
+    nuxtcleint: false
+  SILENT_ERROR_ENABLED:
+    var_name: SILENT_ERROR_ENABLED
+    value: "true"
+    server: true
+    client: false
+    nuxtcleint: false
+  TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
+    var_name: TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION
+    server: true
+    client: false
+    nuxtcleint: false
+  STUDENT_TEAM_CREATION:
+    var_name: STUDENT_TEAM_CREATION
+    server: true
+    client: false
+    nuxtcleint: false
+  IGNORE_DISCOVERABILITY:
+    var_name: IGNORE_DISCOVERABILITY
+    value: "true"
+    server: true
+    client: false
+    nuxtcleint: false
+  HYDRA_URI:
+    var_name: HYDRA_URI
+    value: "https://hydra-svc:4445"
+    server: true
+    client: false
+    nuxtcleint: false
+  DISPLAY_REQUEST_LEVEL:
+    var_name: DISPLAY_REQUEST_LEVEL
+    value: "-1"
+    server: true
+    client: false
+    nuxtcleint: false
+  # Consent Mindestalter
+  CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS:
+    var_name: CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS
+    value: "16"
+    server: true
+    client: false
+    nuxtcleint: false
+  CONSENT_AGE_FIRST:
+    var_name: CONSENT_AGE_FIRST
+    server: true
+    client: false
+    nuxtcleint: false
+  CONSENT_AGE_SECOND:
+    var_name: CONSENT_AGE_SECOND
+    value: "true"
+    server: true
+    client: false
+    nuxtcleint: false
+  SENTRY_DSN:
+    var_name: SENTRY_DSN_SERVER
+    server: true
+    client: false
+    nuxtcleint: false
+  SENTRY_SAMPLE_RATE:
+    var_name: SENTRY_SAMPLE_RATE
+    server: true
+    client: false
+    nuxtcleint: false
+  DATABASE_AUDIT:
+    var_name: DATABASE_AUDIT
+    server: true
+    client: false
+    nuxtcleint: false
+  DATABASE__AUDIT:
+    var_name: DATABASE__AUDIT
+    server: true
+    client: false
+    nuxtcleint: false
+  LOGIN_BLOCK_TIME:
+    var_name: LOGIN_BLOCK_TIME
+    value: "15"
+    server: true
+    client: false
+    nuxtcleint: false
+  DISABLED_BRUTE_FORCE_CHECK:
+    var_name: DISABLED_BRUTE_FORCE_CHECK
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  # Antivirus
+  ENABLE_FILE_SECURITY_CHECK:
+    var_name: ENABLE_FILE_SECURITY_CHECK
+    server: true
+    client: false
+    nuxtcleint: false
+  FILE_SECURITY_CHECK_SERVICE_URI:
+    var_name: FILE_SECURITY_CHECK_SERVICE_URI
+    server: true
+    client: false
+    nuxtcleint: false
+  # Etherpad
+  ETHERPAD_URI:
+    var_name: ETHERPAD_URI
+    value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
+    server: true
+    client: false
+    nuxtcleint: false
+  ETHERPAD_API_PATH:
+    var_name: ETHERPAD_API_PATH
+    value: "/api/1.2.14"
+    server: true
+    client: false
+    nuxtcleint: false
+  ETHERPAD_COOKIE__EXPIRES_SECONDS:
+    var_name: ETHERPAD_COOKIE__EXPIRES_SECONDS
+    value: "7200"
+    server: true
+    client: false
+    nuxtcleint: false
+  ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
+    var_name: "7200"
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  # notification
+  NOTIFICATION_PLATFORM:
+    var_name: NOTIFICATION_PLATFORM
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  NOTIFICATION_URI:
+    var_name: NOTIFICATION_URI
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  JWT_TIMEOUT_SECONDS:
+    var_name: JWT_TIMEOUT_SECONDS
+    value: "7200"
+    server: true
+    client: false
+    nuxtcleint: false
+  SKIP_CONDITIONS_CONSENT:
+    var_name: SKIP_CONDITIONS_CONSENT
+    value: ""
+    server: true
+    client: false
+    nuxtcleint: false
+  # TSP
+  FEATURE_TSP_ENABLED:
+    var_name: FEATURE_TSP_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  TSP_API_ENCRYPTION_KEY:
+    var_name: TSP_API_ENCRYPTION_KEY
+    server: true
+    client: false
+    nuxtcleint: false
+  TSP_API_SIGNATURE_KEY:
+    var_name: TSP_API_SIGNATURE_KEY
+    server: true
+    client: false
+    nuxtcleint: false
+  TSP_API_CLIENT_ID:
+    var_name: TSP_API_CLIENT_ID
+    server: true
+    client: false
+    nuxtcleint: false
+  TSP_API_CLIENT_SECRET:
+    var_name: TSP_API_CLIENT_SECRET
+    server: true
+    client: false
+    nuxtcleint: false
+  TSP_API_BASE_URL:
+    var_name: TSP_API_BASE_URL
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
+    var_name: FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY
+    value: "enabled"
+    server: true
+    client: false
+    nuxtcleint: false
+  ADMIN_TOGGLE_STUDENT_VISIBILITY:
+    var_name: ADMIN_TOGGLE_STUDENT_VISIBILITY
+    value: "enabled"
+    server: true
+    client: false
+    nuxtcleint: false
+  ALERT_STATUS_URL:
+    var_name: ALERT_STATUS_URL
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_MORGAN_LOG_ENABLED:
+    var_name: FEATURE_MORGAN_LOG_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED:
+    var_name: FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_S3_BUCKET_CORS:
+    var_name: FEATURE_S3_BUCKET_CORS
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_TSP_AUTO_CONSENT_ENABLED:
+    var_name: FEATURE_TSP_AUTO_CONSENT_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_API_VALIDATION_ENABLED:
+    var_name: FEATURE_API_VALIDATION_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_API_RESPONSE_VALIDATION_ENABLED:
+    var_name: FEATURE_API_RESPONSE_VALIDATION_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  MONGOOSE_CONNECTION_POOL_SIZE: "50"
+    var_name: MONGOOSE_CONNECTION_POOL_SIZE
+    value: "50"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_RABBITMQ_ENABLED:
+    var_name: FEATURE_RABBITMQ_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  RABBITMQ_MATRIX_QUEUE_EXTERNAL:
+    var_name: RABBITMQ_MATRIX_QUEUE_EXTERNAL
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_VIDEOCONFERENCE_ENABLED:
+    var_name: FEATURE_VIDEOCONFERENCE_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_MATRIX_MESSENGER_ENABLED:
+    var_name: FEATURE_MATRIX_MESSENGER_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__URI:
+    var_name: MATRIX_MESSENGER__URI
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__SERVERNAME:
+    var_name: MATRIX_MESSENGER__SERVERNAME
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__STUDENT_ROOM_CREATION:
+    var_name: MATRIX_MESSENGER__STUDENT_ROOM_CREATION
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN:
+    var_name: MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER:
+    var_name: MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER
+    server: true
+    client: false
+    nuxtcleint: false
+  MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT:
+    var_name: MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT
+    server: true
+    client: false
+    nuxtcleint: false
+  # Lernstore
+  FEATURE_LERNSTORE_ENABLED:
+    var_name: FEATURE_LERNSTORE_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  ES_DOMAIN:
+    var_name: ES_DOMAIN
+    value: "https://mv-repo.schul-cloud.org"
+    server: true
+    client: false
+    nuxtcleint: false
+  ES_USER:
+    var_name: ES_USER
+    value: ""
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_ES_MERLIN_ENABLED:
+    var_name: FEATURE_ES_MERLIN_ENABLED
+    value: "false"
+    server: true
+    client: false
+    nuxtcleint: false
+  ES_MERLIN_AUTH_URL:
+    var_name: ES_MERLIN_AUTH_URL
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_SKIP_FIRST_LOGIN_ENABLED:
+    var_name: FEATURE_SKIP_FIRST_LOGIN_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_ES_COLLECTIONS_ENABLED:
+    var_name: FEATURE_ES_COLLECTIONS_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_ES_SEARCHABLE_ENABLED:
+    var_name: FEATURE_ES_SEARCHABLE_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
+    var_name: ADMIN_TABLES_DISPLAY_CONSENT_COLUMN
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_EXTENSIONS_ENABLED:
+    var_name: FEATURE_EXTENSIONS_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  FEATURE_TEAMS_ENABLED:
+    var_name: FEATURE_TEAMS_ENABLED
+    server: true
+    client: false
+    nuxtcleint: false
+  JWT_SHOW_TIMEOUT_WARNING_SECONDS:
+    var_name: JWT_SHOW_TIMEOUT_WARNING_SECONDS
+    server: true
+    client: false
+    nuxtcleint: false
+  NOT_AUTHENTICATED_REDIRECT_URL:
+    var_name: NOT_AUTHENTICATED_REDIRECT_URL
+    server: true
+    client: false
+    nuxtcleint: false
+
+    
