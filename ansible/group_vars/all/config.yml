@@ -187,14 +187,14 @@ configuration_all:
     server: false
     client: true
     nuxtcleint: false
-  SENTRY_DSN:
+  SENTRY_DSN_SERVER:
+    var_name: SENTRY_DSN
     server: true
     client: false
     nuxtcleint: false
   SENTRY_DSN_NUXTCLIENT:
     var_name: SENTRY_DSN
-    value: "true"
-    server: true
+    server: false
     client: true
     nuxtcleint: true
   SENTRY_SAMPLE_RATE:
