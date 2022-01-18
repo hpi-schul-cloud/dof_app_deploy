@@ -229,6 +229,12 @@ configuration_all:
   ROCKET_CHAT_URI:
     value: "http://rocketchat-svc:5000"
     server: true
+    client: false
+    nuxtcleint: false
+  ROCKET_CHAT_URI_CLIENT:
+    var_name: ROCKET_CHAT_URI
+    value: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
+    server: false
     client: true
     nuxtcleint: false
   ROCKETCHAT_SERVICE_ENABLED:
@@ -507,7 +513,7 @@ configuration_all:
     client: true
     nuxtcleint: false
   EDTR_SOURCE:
-    value: "editor.{{ DOMAIN }}"
+    value: "https://editor.{{ DOMAIN }}"
     server: false
     client: true
     nuxtcleint: false
