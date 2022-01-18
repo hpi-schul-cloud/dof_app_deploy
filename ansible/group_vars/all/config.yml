@@ -180,7 +180,6 @@ configuration_all:
     client: false
     nuxtcleint: false
   CONSENT_AGE_SECOND:
-    value: "true"
     server: true
     client: false
     nuxtcleint: false
@@ -203,10 +202,12 @@ configuration_all:
     client: true
     nuxtcleint: true
   DATABASE_AUDIT:
+    value: "false"
     server: true
     client: false
     nuxtcleint: false
   DATABASE__AUDIT:
+    value: "false"
     server: true
     client: false
     nuxtcleint: false
@@ -240,7 +241,7 @@ configuration_all:
     nuxtcleint: false
   # anything else
   KEEP_ALIVE:
-    value: ""
+    value: "true"
     server: true
     client: true
     nuxtcleint: false
@@ -367,13 +368,11 @@ configuration_all:
     client: true
     nuxtcleint: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    value: "enabled"
     server: true
     client: false
     nuxtcleint: false
   CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
     var_name: "FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY"
-    value: "enabled"
     server: false
     client: true
     nuxtcleint: false
@@ -502,11 +501,6 @@ configuration_all:
     server: false
     client: true
     nuxtcleint: false
-  FEATURE_VIDEOCONFERENCE_ENABLED:
-    value: "false"
-    server: false
-    client: true
-    nuxtcleint: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
     server: false
@@ -574,6 +568,11 @@ configuration_all:
     server: false
     client: true
     nuxtcleint: true
+  CALENDAR_URI:
+    value: "http://calendar-svc:3000"
+    server: true
+    client: false
+    nuxtcleint: false
   # insights
   FEATURE_INSIGHTS_ENABLED:
     value: "false"
