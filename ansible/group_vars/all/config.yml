@@ -559,12 +559,10 @@ configuration_all:
     client: true
     nuxtcleint: true
   MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE:
-    value: "false"
     server: false
     client: true
     nuxtcleint: true
   MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED:
-    value: "false"
     server: false
     client: true
     nuxtcleint: true
