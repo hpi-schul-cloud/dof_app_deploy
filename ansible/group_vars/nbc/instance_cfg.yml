@@ -81,3 +81,15 @@ GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER: ""
 PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
+
+# Ingress
+group_ingress:
+  api_v1_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_registration:
+    serviceName: default-backend-404-svc
+    servicePort: 8080
