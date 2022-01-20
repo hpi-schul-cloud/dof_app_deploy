@@ -1,0 +1,249 @@
+default_ingress:
+  default:
+    path: /
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
+  themes:
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+    path: "/themes/{{ SC_THEME }}/favicon.png"
+  runtime:
+    path: /runtime.config.json
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  account:
+    path: /account
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  activation:
+    path: /activation
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  metrics:
+    path: /metrics
+    serviceName: default-backend-404-svc
+    servicePort: 8080
+  login-instances:
+    path: /login-instances
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  login:
+    path: /login
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
+  login_success:
+    path: /login/success
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
+  error:
+    path: /error
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  imprint:
+    path: /imprint
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  termsofuse:
+    path: /termsofuse
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  mint-ec:
+    path: /mint-ec
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  insights:
+    path: /insights
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  news:
+    path: /news
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  tasks:
+    path: /tasks
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  homework:
+    path: /homework
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  nuxtversion:
+    path: /nuxtversion
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  content:
+    path: /content
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  _nuxt:
+    path: /_nuxt
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  systems_ldap:
+    path: /systems/ldap
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_ldap:
+    path: /administration/ldap
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_migration:
+    path: /administration/migration/
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_systems_ldap:
+    path: /administration/systems/ldap
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_school-settings:
+    path: /administration/school-settings
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration/datasources:
+    path: /administration/datasources
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_students:
+    path: /administration/students/
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_teachers:
+    path: /administration/teachers/
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  rooms-overview:
+    path: /rooms-overview
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  rooms-list:
+    path: /rooms-list
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  rooms:
+    path: /rooms
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  api:
+    path: /api
+    serviceName: default-backend-404-svc
+    servicePort: 8080
+  api_v1_metrics:
+    path: /api/v1/metrics
+    serviceName: default-backend-404-svc
+    servicePort: 8080
+  api_v1_accounts:
+    path: /api/v1/accounts
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_edu-sharing:
+    path: /api/v1/edu-sharing
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_me:
+    path: /api/v1/me
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_tasks:
+    path: /api/v3/tasks
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_me:
+    path: /api/v3/user/me
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_import:
+    path: /api/v3/user/import
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_news:
+    path: /api/v3/news
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_dashboard:
+    path: /api/v3/dashboard
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_courses:
+    path: /api/v3/courses
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_roster:
+    path: /api/v1/roster
+  api_roster:
+    path: /api/roster
+  api_v1_schools:
+    path: /api/v1/schools/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_years:
+    path: /api/v1/years/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_federalStates:
+    path: /api/v1/federalStates
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_systems:
+    path: /api/v1/systems
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_ldap-config:
+    path: /api/v1/ldap-config
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_version:
+    path: /api/v1/version
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_wopi:
+    path: /api/v1/wopi
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_courses:
+    path: /api/v1/courses
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_lessons:
+    path: /api/v1/lessons
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_authentication:
+    path: /api/v1/authentication
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_sync:
+    path: /api/v1/sync
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_ldap:
+    path: /api/v1/ldap
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_registration:
+    path: /api/v1/registration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_users:
+    path: /api/v1/users
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_classes:
+    path: /api/v1/classes
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_roles_user:
+    path: /api/v1/roles/user
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_config_app_public:
+    path: /api/v1/config/app/public
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  etherpad:
+    path: /etherpad
+    serviceName: etherpad-nginx-svc
+    servicePort: 80
+  etherpad_socket.io:
+    path: /etherpad/socket.io
+    serviceName: etherpad-nginx-svc
+    servicePort: 80
