@@ -1,0 +1,661 @@
+configuration_all:
+#  ITAM_NAME:
+#    var_name: OPTIONAL_EVN_ITEM_NAME
+#    config_name: OPTIONAL for the host and group vars
+#    value: "true"
+#    server: true
+#    client: true
+#    nuxtclient: true
+  HOST:
+    config_name: CFG_HOST
+    value: "https://{{ DOMAIN }}"
+    server: true
+    client: true
+    nuxtclient: false
+  API_HOST:
+    value: "http://api-svc:3030/api"
+    server: true
+    client: false
+    nuxtclient: false
+  BACKEND_URL:
+    config_name: API_HOST
+    value: "http://api-svc:3030/api/"
+    server: false
+    client: true
+    nuxtclient: false
+  API_URL:
+    value: "https://{{ DOMAIN }}/api"
+    server: false
+    client: false
+    nuxtclient: true
+  PUBLIC_BACKEND_URL:
+    config_name: API_URL
+    value: "https://{{ DOMAIN }}/api"
+    server: false
+    client: true
+    nuxtclient: false
+  LEGACY_CLIENT_URL:
+    value: "http://client-svc:3100"
+    server: false
+    client: false
+    nuxtclient: true
+  REQUEST_TIMEOUT_MS:
+    value: "8000"
+    server: false
+    client: true
+    nuxtclient: false
+  SUPPORT_PROBLEM_EMAIL_ADDRESS:
+    server: true
+    client: false
+    nuxtclient: false
+  SUPPORT_WISH_EMAIL_ADDRESS:
+    server: true
+    client: false
+    nuxtclient: false
+  SC_CONTACT_EMAIL:
+    value: "dataportlernen.cloud@dataport.de"
+    server: false
+    client: true
+    nuxtclient: false
+  HELPAREA_URL:
+    value: ""
+    server: false
+    client: true
+    nuxtclient: false
+  CORS:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  CORS_ENABLED:
+    config_name: CORS
+    value: "true"
+    server: false
+    client: false
+    nuxtclient: true
+  SECURITY_HEADERS_ENABLED:
+    config_name: SECURITY_HEADERS
+    value: "true"
+    server: false
+    client: false
+    nuxtclient: true
+  SECURITY_HEADERS:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  DOCUMENT_BASE_DIR:
+    value: "https://s3.hidrive.strato.com/cloud-instances/"
+    server: true
+    client: true
+    nuxtclient: false
+  LIBRE_OFFICE_CLIENT_URL:
+    value: "https://{{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}"
+    server: false
+    client: true
+    nuxtclient: false
+  # STAIC Infos
+  MEMORY_INTERVAL_TIME:
+    value: "0"
+    server: true
+    client: false
+    nuxtclient: false
+  REQUEST_LOGGING_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  # LDAP SYNC
+  LDAP_SCHOOL_SYNCER_POOL_SIZE:
+    value: "1"
+    server: true
+    client: false
+    nuxtclient: false
+  LDAP_SYSTEM_SYNCER_POOL_SIZE:
+    value: "2"
+    server: true
+    client: false
+    nuxtclient: false
+  # SMTP
+  SMTP:
+    server: true
+    client: false
+    nuxtclient: false
+  SMTP_SENDER:
+    value: "noreply@DOMAIN"
+    server: true
+    client: false
+    nuxtclient: false
+  SHOW_VERSION:
+    value: "0"
+    server: true
+    client: true
+    nuxtclient: false
+  SILENT_ERROR_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
+    server: true
+    client: true
+    nuxtclient: false
+  STUDENT_TEAM_CREATION:
+    server: true
+    client: true
+    nuxtclient: false
+  # Storage
+  AWS_ENDPOINT_URL:
+    value: "https://storage-{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: false
+  AWS_REGION:
+    server: true
+    client: false
+    nuxtclient: false
+  IGNORE_DISCOVERABILITY:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  HYDRA_URI:
+    value: "https://hydra-svc:4445"
+    server: true
+    client: false
+    nuxtclient: false
+  DISPLAY_REQUEST_LEVEL:
+    value: "-1"
+    server: true
+    client: false
+    nuxtclient: false
+  # Consent Mindestalter
+  CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS:
+    value: "16"
+    server: true
+    client: true
+    nuxtclient: false
+  CONSENT_AGE_FIRST:
+    server: true
+    client: false
+    nuxtclient: false
+  CONSENT_AGE_SECOND:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_LOG_REQUEST:
+    server: false
+    client: true
+    nuxtclient: false
+  SENTRY_DSN_SERVER:
+    var_name: SENTRY_DSN
+    server: true
+    client: false
+    nuxtclient: false
+  SENTRY_DSN_NUXTCLIENT:
+    var_name: SENTRY_DSN
+    server: false
+    client: true
+    nuxtclient: true
+  SENTRY_SAMPLE_RATE:
+    server: true
+    client: true
+    nuxtclient: true
+  DATABASE_AUDIT:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  DATABASE__AUDIT:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  LOGIN_BLOCK_TIME:
+    value: "15"
+    server: true
+    client: true
+    nuxtclient: false
+  DISABLED_BRUTE_FORCE_CHECK:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  STORAGE_SIGNED_URL_EXPIRE:
+    server: true
+    client: false
+    nuxtclient: false
+  # rocketchat
+  ROCKET_CHAT_URI:
+    value: "http://rocketchat-svc:5000"
+    server: true
+    client: false
+    nuxtclient: false
+  ROCKET_CHAT_URI_CLIENT:
+    var_name: ROCKET_CHAT_URI
+    value: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
+    server: false
+    client: true
+    nuxtclient: false
+  ROCKETCHAT_SERVICE_ENABLED:
+    server: false
+    client: true
+    nuxtclient: false
+  ROCKET_CHAT_DEPRECATION_DATE:
+    server: false
+    client: true
+    nuxtclient: false
+  # anything else
+  KEEP_ALIVE:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
+  CONTENT_URI:
+    server: true
+    client: false
+    nuxtclient: false
+  # Antivirus
+  ENABLE_FILE_SECURITY_CHECK:
+    server: true
+    client: false
+    nuxtclient: false
+  FILE_SECURITY_CHECK_SERVICE_URI:
+    server: true
+    client: false
+    nuxtclient: false
+  # FEATURE TOGGLE
+  CALENDAR_SERVICE_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  CALENDAR_DASHBOARD_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  # Etherpad
+  ETHERPAD_URI:
+    value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
+    server: true
+    client: false
+    nuxtclient: false
+  ETHERPAD_API_PATH:
+    value: "/api/1.2.14"
+    server: true
+    client: false
+    nuxtclient: false
+  ETHERPAD_COOKIE__EXPIRES_SECONDS:
+    value: "7200"
+    server: true
+    client: false
+    nuxtclient: false
+  ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
+    value: "7200"
+    server: true
+    client: false
+    nuxtclient: false
+  ETHERPAD_BASE_URL:
+    value: "https://{{ DOMAIN }}/etherpad/p/"
+    server: false
+    client: true
+    nuxtclient: false
+  ETHERPAD__PAD_PATH:
+    value: "/etherpad/p"
+    server: false
+    client: true
+    nuxtclient: false
+  ETHERPAD__PAD_URI:
+    value: "https://{{ DOMAIN }}/etherpad/p"
+    server: false
+    client: true
+    nuxtclient: false
+  ETHERPAD__NEW_DOMAIN:
+    value: "{{ DOMAIN }}"
+    server: false
+    client: true
+    nuxtclient: false
+  ETHERPAD__OLD_DOMAIN:
+    value: "etherpad.{{ DOMAIN }}"
+    server: false
+    client: true
+    nuxtclient: false
+  # notification
+  NOTIFICATION_PLATFORM:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  NOTIFICATION_URI:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  JWT_TIMEOUT_SECONDS:
+    value: "7200"
+    server: true
+    client: true
+    nuxtclient: false
+  SKIP_CONDITIONS_CONSENT:
+    value: ""
+    server: true
+    client: true
+    nuxtclient: false
+  # TSP
+  FEATURE_TSP_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_ENCRYPTION_KEY:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_SIGNATURE_KEY:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_CLIENT_ID:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_CLIENT_SECRET:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_BASE_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  LEGACY_COURSE_OVERVIEW_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
+    server: true
+    client: false
+    nuxtclient: false
+  CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
+    var_name: "FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
+    server: false
+    client: true
+    nuxtclient: false
+  ADMIN_TOGGLE_STUDENT_VISIBILITY:
+    value: "enabled"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ALERTS_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  ALERT_STATUS_URL:
+    value: "https://status.dbildungscloud.de"
+    server: true
+    client: true
+    nuxtclient: false
+  ROOM_VIEW_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_MORGAN_LOG_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_S3_BUCKET_CORS:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TSP_AUTO_CONSENT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_API_VALIDATION_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_API_RESPONSE_VALIDATION_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  MONGOOSE_CONNECTION_POOL_SIZE:
+    value: "50"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_RABBITMQ_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  RABBITMQ_MATRIX_QUEUE_EXTERNAL:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_VIDEOCONFERENCE_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_COURSE_COPY:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_COURSE_SHARE:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_COURSE_IMPORT:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ENTERTHECLOUD:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ETHERPAD_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_EXTENSION_PORTFOLIO_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_MINT_PAGES_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_NEXBOARD_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_SCHOOL_POLICY_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_TOPIC_SHARE_IMPORT:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_MULTI_LOGIN_INSTANCES:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  EDTR_SOURCE:
+    value: "https://editor.{{ DOMAIN }}"
+    server: false
+    client: true
+    nuxtclient: false
+  EDITOR_URL:
+    server: false
+    client: true
+    nuxtclient: false
+  BODYPRASER_JSON_LIMIT:
+    value: "10mb"
+    server: false
+    client: true
+    nuxtclient: false
+  # Matrix Messenger
+  FEATURE_MATRIX_MESSENGER_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__URI:
+    server: true
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__SERVERNAME:
+    server: true
+    client: false
+    nuxtclient: false
+  MATRIX_MESSENGER__STUDENT_ROOM_CREATION:
+    server: true
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN:
+    server: true
+    client: false
+    nuxtclient: false
+  MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER:
+    server: true
+    client: false
+    nuxtclient: false
+  MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT:
+    server: true
+    client: false
+    nuxtclient: false
+  MATRIX_MESSENGER__EMBED_URI:
+    server: false
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__DISCOVER_URI:
+    server: false
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE:
+    server: false
+    client: true
+    nuxtclient: true
+  MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED:
+    server: false
+    client: true
+    nuxtclient: true
+  CALENDAR_URI:
+    value: "http://calendar-svc:3000"
+    server: true
+    client: false
+    nuxtclient: false
+  # insights
+  FEATURE_INSIGHTS_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  INSIGHTS_COLLECTOR_URI:
+    value: "http://insights-collector-svc:3000"
+    server: false
+    client: true
+    nuxtclient: false
+  # Lernstore
+  FEATURE_LERNSTORE_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  ES_DOMAIN:
+    value: "https://mv-repo.schul-cloud.org"
+    server: true
+    client: false
+    nuxtclient: false
+  ES_USER:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ES_MERLIN_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  ES_MERLIN_AUTH_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ES_COLLECTIONS_ENABLED:
+    server: true
+    client: false
+    nuxtclient: true
+  FEATURE_ES_SEARCHABLE_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SKIP_FIRST_LOGIN_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
+    server: true
+    client: false
+    nuxtclient: true
+  FEATURE_EXTENSIONS_ENABLED:
+    server: true
+    client: true
+    nuxtclient: true
+  FEATURE_TEAMS_ENABLED:
+    server: true
+    client: true
+    nuxtclient: true
+  JWT_SHOW_TIMEOUT_WARNING_SECONDS:
+    server: true
+    client: false
+    nuxtclient: false
+  NOT_AUTHENTICATED_REDIRECT_URL:
+    server: true
+    client: true
+    nuxtclient: false
+  # GLOBAL ANNOUNCEMENT
+  GLOBAL_LOGIN_ANNOUNCEMENT:
+    server: false
+    client: true
+    nuxtclient: false
+  GLOBAL_ANNOUNCEMENT:
+    server: false
+    client: true
+    nuxtclient: false
+  GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
+    server: false
+    client: true
+    nuxtclient: false
+    

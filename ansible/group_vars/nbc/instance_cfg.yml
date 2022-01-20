@@ -42,7 +42,6 @@ CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY: enabled
 FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED: "true"
 FEATURE_LOG_REQUEST: "false"
 
-SENTRY_SAMPLE_RATE: 0
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
 
@@ -65,7 +64,7 @@ JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
 SKIP_CONDITIONS_CONSENT: "student employee"
 
 # TSP
-FEATURE_TSP_ENABLED: false
+FEATURE_TSP_ENABLED: "false"
 # EDU-SHARING brabu
 # FEATURE_LERNSTORE_ENABLED: Completely enables or disables the ES_..., LERNSTORE_... variables.
 FEATURE_LERNSTORE_ENABLED: "true"
@@ -75,9 +74,19 @@ ES_DOMAIN: https://content.schul-cloud.dev
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
-GLOBAL_ANNOUNCEMENT: ""
-GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER: ""
 # produktive Instanz
 PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
+
+# Ingress
+group_ingress:
+  api_v1_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_registration:
+    serviceName: default-backend-404-svc
+    servicePort: 8080
