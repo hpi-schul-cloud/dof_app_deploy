@@ -625,10 +625,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-    FEATURE_OAUTH_LOGIN_ENABLED:
+  FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
-    client: false
+    client: true
     nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
