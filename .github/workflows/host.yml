@@ -15,9 +15,18 @@ jobs:
   set_versions:
     runs-on: ubuntu-latest
     outputs:
-      branch: ${{ steps.server.outputs.version }}
+      server: ${{ steps.server.outputs.version }}
     steps:
       - name: Export server version
         shell: bash
         run: echo "##[set-output name=version;]${{ inputs.host_name }}"
         id: server
+        
+  show_version:
+    needs:
+      - set_versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: show version
+        run: echo "${{ needs.set_versions.outputs.server }}"
+      
