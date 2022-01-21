@@ -1,0 +1,23 @@
+---
+name: Host set configuration to host
+
+on:
+  workflow_call:
+    inputs:
+      cfg_version:
+        required: true
+        type: string
+      host_name:
+         required: true
+         type: string
+
+jobs:
+  set_versions:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.server.outputs.version }}
+    steps:
+      - name: Export server version
+        shell: bash
+        run: echo "##[set-output name=version;]${{ inputs.host_name }}"
+        id: server
