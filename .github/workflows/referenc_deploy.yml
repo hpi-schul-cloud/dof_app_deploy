@@ -1,4 +1,4 @@
-name: Deploy on Events
+name: Deploy config to conifg reposetory
 
 on:
   push:
