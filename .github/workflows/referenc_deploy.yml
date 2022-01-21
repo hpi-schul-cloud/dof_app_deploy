@@ -21,12 +21,12 @@ on:
 
 jobs:
   brb:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC_1128
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1128
     with:
       cfg_version: 27.1.0
       host_name: ref-brb
   nbc:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC_1128
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1128
     with:
       cfg_version: 27.1.0
       host_name: ref-nbc
