@@ -10,23 +10,85 @@ on:
       host_name:
          required: true
          type: string
+      host_group:
+         required: true
+         type: string
+      host_stage:
+         required: true
+         type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
   set_versions:
     runs-on: ubuntu-latest
-    outputs:
-      server: ${{ steps.server.outputs.version }}
     steps:
-      - name: Export server version
+      - run: mkdir repo
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/dof_app_deploy
+          path: repo/dof_app_deploy
+          token: ${{ secrets.token }}
+          ref: ${{ inputs.cfg_version }}
+      - name: Export versions
         shell: bash
-        run: echo "##[set-output name=version;]${{ inputs.host_name }}"
-        id: server
-        
-  show_version:
-    needs:
-      - set_versions
-    runs-on: ubuntu-latest
-    steps:
-      - name: show version
-        run: echo "${{ needs.set_versions.outputs.server }}"
-      
+        working-directory: ${{github.workspace }}/repo/dof_app_deploy/ansible/host_vars/${{ inputs.host_name }}
+        run: |
+          sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/schulcloud-server
+          path: repo/schulcloud-server
+          token: ${{ secrets.token }}
+          ref: ${{ env.SCHULCLOUD_SERVER_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/schulcloud-client
+          path: repo/schulcloud-client
+          token: ${{ secrets.token }}
+          ref: ${{ env.SCHULCLOUD_CLIENT_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/nuxt-client
+          path: repo/nuxt-client
+          token: ${{ secrets.token }}
+          ref: ${{ env.NUXT_CLIENT_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/superhero-dashboard
+          path: repo/superhero-dashboard
+          token: ${{ secrets.token }}
+          ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/schulcloud-calendar
+          path: repo/schulcloud-calendar
+          token: ${{ secrets.token }}
+          ref: ${{ env.SCHULCLOUD_CALENDAR_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/antivirus_check_service
+          path: repo/antivirus_check_service
+          token: ${{ secrets.token }}
+          ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
+      - working-directory: ${{github.workspace }}
+        run: |
+          mkdir ansible
+          mkdir ansible/host_vars
+          mkdir ansible/group_vars
+          cd repo
+          find */ansible/host_vars -type d -name "${{ inputs.host_name }}" -exec cp -rfv {} ../ansible/host_vars \;
+          find */ansible/group_vars -type d -name "all" -exec cp -rfv {} ../ansible/group_vars \;
+          find */ansible/group_vars -type d -name "${{ inputs.host_group }}" -exec cp -rfv {} ../ansible/group_vars \;
+          find */ansible/group_vars -type d -name "${{ inputs.host_stage }}" -exec cp -rfv {} ../ansible/group_vars \;
+          cd ..
+          cd ansible/group_vars
+          mv all all_${{ inputs.host_name }}
+          mv ${{ inputs.host_group }} ${{ inputs.host_group }}_${{ inputs.host_name }}
+          mv ${{ inputs.host_stage }} ${{ inputs.host_stage }}_${{ inputs.host_name }}
+      - run: tar -cf ${{ inputs.host_name }}.tar ansible
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ inputs.host_name }}
+          path: ${{github.workspace }}/${{ inputs.host_name }}.tar
