@@ -1,12 +1,11 @@
 name: Deploy config to conifg reposetory
 
 on:
-  push:
   workflow_dispatch:
-#    inputs:
-#      config_tag_name:
-#        description: 'Tag from the dof_app_deploy'
-#        required: true
+    inputs:
+      config_tag_name:
+        description: 'Tag from the dof_app_deploy'
+        required: true
 #      server_tag_name:
 #        description: 'Tag from the server reposetory'
 #        required: true
