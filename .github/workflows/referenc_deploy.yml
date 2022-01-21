@@ -1,6 +1,7 @@
 name: Deploy config to conifg reposetory
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       config_tag_name:
