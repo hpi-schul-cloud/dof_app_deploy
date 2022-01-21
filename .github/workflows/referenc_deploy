@@ -1,0 +1,31 @@
+name: Deploy on Events
+
+on:
+  workflow_dispatch:
+#    inputs:
+#      config_tag_name:
+#        description: 'Tag from the dof_app_deploy'
+#        required: true
+#      server_tag_name:
+#        description: 'Tag from the server reposetory'
+#        required: true
+#      client_tag_name:
+#        description: 'Tag from the client_reposetory'
+#        required: true
+#      nuxtclient_tag_name:
+#        description: 'Tag from the configuration deployment'
+#        required: true
+#      instanc_group:
+#        description: "Instanc group"
+
+jobs:
+  brb:
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC_1128
+    with:
+      cfg_version: 27.1.0
+      host_name: ref-brb
+  nbc:
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC_1128
+    with:
+      cfg_version: 27.1.0
+      host_name: ref-nbc
