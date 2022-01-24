@@ -16,6 +16,9 @@ on:
       host_stage:
          required: true
          type: string
+      execut_grp:
+         required: true
+         type: string
     secrets:
       token:
         required: true
@@ -23,6 +26,7 @@ on:
 jobs:
   set_versions:
     runs-on: ubuntu-latest
+    if: input.execut_grp == input.host_name or input.execut_grp == input.host_group or input.execut_grp == input.host_stage or input.execut_grp == "all"
     steps:
       - run: mkdir repo
       - uses: actions/checkout@v2
