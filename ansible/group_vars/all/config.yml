@@ -53,7 +53,7 @@ configuration_all:
     client: false
     nuxtclient: false
   SC_CONTACT_EMAIL:
-    value: "dataportlernen.cloud@dataport.de"
+    value: "support@dbildungscloud.de"
     server: false
     client: true
     nuxtclient: false
