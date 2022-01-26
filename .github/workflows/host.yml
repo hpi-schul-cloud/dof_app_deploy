@@ -16,7 +16,7 @@ on:
       host_stage:
          required: true
          type: string
-      execut_grp:
+      execute_group:
          required: true
          type: string
     secrets:
@@ -26,7 +26,7 @@ on:
 jobs:
   set_versions:
     runs-on: ubuntu-latest
-    if: inputs.execut_grp == inputs.host_name || inputs.execut_grp == inputs.host_group || inputs.execut_grp == 'all'
+    if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == 'all'
     concurrency: 
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
