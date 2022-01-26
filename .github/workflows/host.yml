@@ -85,18 +85,39 @@ jobs:
           mkdir ansible
           mkdir ansible/host_vars
           mkdir ansible/group_vars
+          mkdir ansible/roles
           cd repo
+          find */ansible/roles -mindepth 1 -maxdepth 1 -type d -exec cp -rfv {} ../ansible/roles \;
           find */ansible/host_vars -type d -name "${{ inputs.host_name }}" -exec cp -rfv {} ../ansible/host_vars \;
           find */ansible/group_vars -type d -name "all" -exec cp -rfv {} ../ansible/group_vars \;
           find */ansible/group_vars -type d -name "${{ inputs.host_group }}" -exec cp -rfv {} ../ansible/group_vars \;
           find */ansible/group_vars -type d -name "${{ inputs.host_stage }}" -exec cp -rfv {} ../ansible/group_vars \;
+          cp dof_app_deploy/ansible/*.yml ../ansible
+          cp dof_app_deploy/ansible/hosts ../ansible
           cd ..
-          cd ansible/group_vars
-          mv all all_${{ inputs.host_name }}
-          mv ${{ inputs.host_group }} ${{ inputs.host_group }}_${{ inputs.host_name }}
-          mv ${{ inputs.host_stage }} ${{ inputs.host_stage }}_${{ inputs.host_name }}
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
+#      - shell: bash
+#        run: |
+#          python3 -m pip install kubernetes
+#          
+#      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+#        run: |
+#          echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
+#          echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
+#      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+#        run: |
+#          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> dof_etherpad.yml
+#      - name: 1Password
+#        working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+#        run: |
+#          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> dof_deploy.yml
+#          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> dof_deploy.yml
+#      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+#      - working-directory: ${{github.workspace }}/ansible/roles/sys
+#        run: |
+#          mkdir files
+#          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
