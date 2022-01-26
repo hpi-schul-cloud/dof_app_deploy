@@ -43,6 +43,8 @@ jobs:
         shell: bash
         working-directory: ${{github.workspace }}/repo/dof_app_deploy/ansible/host_vars/${{ inputs.host_name }}
         run: |
+          # convert yaml to bash env vars to get git tags
+          # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
       - uses: actions/checkout@v2
         with:
