@@ -100,24 +100,30 @@ jobs:
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
-#      - shell: bash
-#        run: |
-#          python3 -m pip install kubernetes
-#          
-#      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-#        run: |
-#          echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
-#          echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
-#      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-#        run: |
-#          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> dof_etherpad.yml
-#      - name: 1Password
-#        working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-#        run: |
-#          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> dof_deploy.yml
-#          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> dof_deploy.yml
-#      - run: ansible-galaxy install -r ansible/collections/requirements.yml
-#      - working-directory: ${{github.workspace }}/ansible/roles/sys
-#        run: |
-#          mkdir files
-#          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
+      - shell: bash
+        run: |
+          python3 -m pip install kubernetes
+          
+      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+        run: |
+          echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
+          echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
+      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+        run: |
+          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> dof_etherpad.yml
+      - name: 1Password
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+        run: |
+          echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
+          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
+      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+      - working-directory: ${{github.workspace }}/ansible/roles/sys
+        run: |
+          mkdir files
+          echo "${{ secrets.KUBECONFIG }}" > files/config
+      - run: ansible-playbook ./playbook_rollout.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+        working-directory: ${{github.workspace }}/ansible
+      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
+        run: |
+          rm -rf  /config
+
