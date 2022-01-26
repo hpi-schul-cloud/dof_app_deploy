@@ -1,0 +1,197 @@
+name: Rollout to the instances
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_tag_name:
+        description: 'Tag from the dof_app_deploy'
+        required: true
+      instance_group:
+        description: "All Instances, Instance group or Host"
+        required: true
+        default: all
+
+jobs:
+  approve_ref:
+    environment: approve_ref
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      
+#  ref-audit:
+#    needs:
+#      - approve_ref
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: ref-audit
+#      host_group: default
+#      host_stage: reference
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+      
+#  ref-brb:
+#    needs:
+#      - approve_ref
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: ref-brb
+#      host_group: brb
+#      host_stage: reference
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+      
+  ref-dbildungscloud:
+    needs:
+      - approve_ref
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-dbildungscloud
+      host_group: default
+      host_stage: reference
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      
+  ref-int:
+    needs:
+      - approve_ref
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-int
+      host_group: international
+      host_stage: reference
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      
+  ref-nbc:
+    needs:
+      - approve_ref
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-nbc
+      host_group: nbc
+      host_stage: reference
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      
+#  ref-thr:
+#    needs:
+#      - approve_ref
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: ref-thr
+#      host_group: thr
+#      host_stage: reference
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+      
+#  approve_prod_stage_1:
+#    if: ${{ !failure() }}
+#    needs:
+#      - ref-audit
+#      - ref-brb
+#      - ref-dbildungscloud
+#      - ref-int
+#      - ref-nbc
+#      - ref-thr
+#    environment: approve_prod_stage_1
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      
+#  prod-dbc:
+#    needs:
+#      - approve_prod_stage_1
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-dbc
+#      host_group: default
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#      
+#  approve_prod_stage_2:
+#    needs:
+#      - prod-dbc
+#    environment: approve_prod_stage_2
+#    runs-on: ubuntu-latest
+#    steps:
+#      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+#      
+#  prod-brb:
+#    needs:
+#      - approve_prod_stage_2
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-brb
+#      host_group: brb
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#      
+#  prod-demo:
+#    needs:
+#      - approve_prod_stage_2
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-demo
+#      host_group: default
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#  
+#  prod-int:
+#    needs:
+#      - approve_prod_stage_2
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-int
+#      host_group: international
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#  
+#  prod-nbc:
+#    needs:
+#      - approve_prod_stage_2
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-nbc
+#      host_group: nbc
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
+#      
+#  prod-thr:
+#    needs:
+#      - approve_prod_stage_2
+#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    with:
+#      cfg_version: ${{ github.event.inputs.config_tag_name }}
+#      host_name: prod-thr
+#      host_group: thr
+#      host_stage: production
+#      execute_group: ${{ github.event.inputs.instance_group }}
+#    secrets:
+#      token: ${{ secrets.GITHUB_TOKEN }}
