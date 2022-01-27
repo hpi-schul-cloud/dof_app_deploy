@@ -1,0 +1,4 @@
+host_ingress:
+  api_v1_registration:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
