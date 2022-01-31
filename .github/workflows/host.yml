@@ -120,7 +120,8 @@ jobs:
         run: |
           echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
-      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+      - working-directory: ${{github.workspace }}
+        run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
