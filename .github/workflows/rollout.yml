@@ -47,7 +47,7 @@ jobs:
   ref-dbildungscloud:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbildungscloud
@@ -56,11 +56,14 @@ jobs:
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-int:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-int
@@ -69,11 +72,14 @@ jobs:
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-nbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-nbc
@@ -82,6 +88,9 @@ jobs:
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
 #  ref-thr:
 #    needs:
