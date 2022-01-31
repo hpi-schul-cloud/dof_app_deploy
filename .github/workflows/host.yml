@@ -22,12 +22,6 @@ on:
     secrets:
       token:
         required: true
-      ETHERPAD_API_KEY:
-        required: true
-      ONEPASSWORD_VAULT:
-        required: true
-      KUBECONFIG:
-        required: true
 
 jobs:
   set_versions:
@@ -36,6 +30,7 @@ jobs:
     concurrency: 
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
+    environment: ${{ inputs.host_name }}
     steps:
       - run: mkdir repo
       - uses: actions/checkout@v2
