@@ -22,6 +22,12 @@ on:
     secrets:
       token:
         required: true
+      ONEPASSWORD_VAULT:
+        required: true
+      ETHERPAD_API_KEY:
+        required: true
+      KUBECONFIG:
+        required: true
 
 jobs:
   set_versions:
