@@ -88,6 +88,7 @@ jobs:
           mkdir ansible/host_vars
           mkdir ansible/group_vars
           mkdir ansible/roles
+          mkdir ansible/collections
           cd repo
           find */ansible/roles -mindepth 1 -maxdepth 1 -type d -exec cp -rfv {} ../ansible/roles \;
           find */ansible/host_vars -type d -name "${{ inputs.host_name }}" -exec cp -rfv {} ../ansible/host_vars \;
@@ -96,6 +97,7 @@ jobs:
           find */ansible/group_vars -type d -name "${{ inputs.host_stage }}" -exec cp -rfv {} ../ansible/group_vars \;
           cp dof_app_deploy/ansible/*.yml ../ansible
           cp dof_app_deploy/ansible/hosts ../ansible
+          cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
       - uses: actions/upload-artifact@v2
