@@ -47,7 +47,7 @@ jobs:
   ref-dbildungscloud:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbildungscloud
@@ -63,7 +63,7 @@ jobs:
   ref-int:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-int
@@ -79,7 +79,7 @@ jobs:
   ref-nbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@BC-1202
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-nbc
