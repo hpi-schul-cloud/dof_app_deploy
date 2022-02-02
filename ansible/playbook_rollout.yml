@@ -4,6 +4,7 @@
     - reference
   connection: local
   roles:
+    - role: sys
     - role: dof_rabbitmq
     - role: dof_redis
     - role: libreoffice
