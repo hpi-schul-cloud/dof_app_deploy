@@ -1,11 +1,11 @@
 configuration_all:
-#  ITAM_NAME:
-#    var_name: OPTIONAL_EVN_ITEM_NAME
-#    config_name: OPTIONAL for the host and group vars
-#    value: "true"
-#    server: true
-#    client: true
-#    nuxtclient: true
+  #  ITAM_NAME:
+  #    var_name: OPTIONAL_EVN_ITEM_NAME
+  #    config_name: OPTIONAL for the host and group vars
+  #    value: "true"
+  #    server: true
+  #    client: true
+  #    nuxtclient: true
   HOST:
     config_name: CFG_HOST
     value: "https://{{ DOMAIN }}"
@@ -146,6 +146,11 @@ configuration_all:
     nuxtclient: false
   # Storage
   AWS_ENDPOINT_URL:
+    value: "https://storage-{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: false
+  FILES_STORAGE__S3_ENDPOINT:
     value: "https://storage-{{ DOMAIN }}"
     server: true
     client: false
@@ -658,4 +663,3 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-    
