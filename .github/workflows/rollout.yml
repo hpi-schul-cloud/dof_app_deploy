@@ -44,13 +44,13 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
       
-  ref-dbildungscloud:
+  ref-dbc:
     needs:
       - approve_ref
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: ref-dbildungscloud
+      host_name: ref-dbc
       host_group: default
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
