@@ -1,3 +1,6 @@
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
+
 API_LDAP_SYNC_SVC: api-ldapsync-svc
+
+ES_DOMAIN: https://mv-repo.schul-cloud.org
