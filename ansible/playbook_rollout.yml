@@ -2,6 +2,7 @@
 - name: App Deploy
   hosts: 
     - reference
+    - production
   connection: local
   roles:
     - role: sys
