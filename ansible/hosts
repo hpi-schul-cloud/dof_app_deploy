@@ -4,6 +4,7 @@ brb_host
 [default]
 default_host
 ref-dbc
+prod-dbc
 
 [nbc]
 nbc_host
@@ -23,6 +24,12 @@ nbc_host
 ref-int
 ref-dbc
 ref-nbc
+
+[production]
+prod-dbc
+
+[production:vars]
+ansible_group_priority=10
 
 [sc:children]
 brb
