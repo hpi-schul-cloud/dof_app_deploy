@@ -20,10 +20,16 @@ brb_host
 default_host
 nbc_host
 
+[develop:vars]
+ansible_group_priority=10
+
 [reference]
 ref-int
 ref-dbc
 ref-nbc
+
+[reference:vars]
+ansible_group_priority=10
 
 [production]
 prod-dbc
