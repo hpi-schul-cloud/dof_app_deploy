@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: insights-engine-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: insights-engine
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3001
+    targetPort: 3001
+    protocol: TCP
+    name: insights-engine
+  selector:
+    app: insights-engine
