@@ -45,6 +45,7 @@ international
 thr
 develop
 reference
+production
 
 [sc:vars]
 ansible_host=localhost
