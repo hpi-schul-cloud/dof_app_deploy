@@ -43,6 +43,8 @@ default
 nbc
 international
 thr
+develop
+reference
 
 [sc:vars]
 ansible_host=localhost
