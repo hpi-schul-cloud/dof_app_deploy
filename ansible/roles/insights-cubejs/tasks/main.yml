@@ -20,6 +20,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: secret.yml.j2
+      apply: yes
     when: WITH_INSIGHTS and ( ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR ) )
     
   - name: remove Secret
