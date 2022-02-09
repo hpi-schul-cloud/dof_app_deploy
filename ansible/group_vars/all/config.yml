@@ -630,6 +630,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  LDAP_PASSWORD_ENCRYPTION_KEY:
+    server: true
+    client: false
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
