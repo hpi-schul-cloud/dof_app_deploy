@@ -14,6 +14,9 @@
     - maildrop
     - storage
     - hydra
+    - insights-collector
+    - insights-cubejs
+    - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
     - schulcloud-server-core
