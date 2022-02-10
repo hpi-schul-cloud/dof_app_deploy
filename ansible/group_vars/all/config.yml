@@ -466,7 +466,7 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
     server: false
