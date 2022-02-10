@@ -17,6 +17,7 @@
     - role: insights-engine
     - role: dof_etherpad_nginx
     - role: dof_etherpad
+    - role: clamav
     - role: schulcloud-server-core
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
