@@ -1,5 +1,5 @@
 NAMESPACE: international
-DOMAIN: staging.international.hpi-schul-cloud.de
+DOMAIN: staging.international.dbildungscloud.org
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"

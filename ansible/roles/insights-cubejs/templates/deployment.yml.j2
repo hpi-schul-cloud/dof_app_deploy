@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insights-cubejs-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: insights-cubejs
+spec:
+  replicas: {{ INSIGHTS_CUBEJS_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: insights-cubejs
+  template:
+    metadata:
+      labels:
+        app: insights-cubejs
+    spec:
+      containers:
+      - name: insights-cubejs
+        image: {{ INSIGHTS_CUBEJS_IMAGE_NAME }}:{{ INSIGHTS_CUBEJS_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4000
+        envFrom:
+        - secretRef:
+            name: insights-cubejs-secret
+        resources:
+          limits:
+            cpu: {{ INSIGHTS_CUBEJS_CPU_MAX|default("1000m", true) }}
+            memory: {{ INSIGHTS_CUBEJS_MEMORY_MAX|default("1Gi", true) }}
+          requests:
+            cpu: {{ INSIGHTS_CUBEJS_CPU_MIN|default("100m", true) }}
+            memory: {{ INSIGHTS_CUBEJS_MEMORY_MIN|default("128Mi", true) }}
+              
