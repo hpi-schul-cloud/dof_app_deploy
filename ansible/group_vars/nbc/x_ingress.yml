@@ -1,5 +1,4 @@
 group_ingress:
   api_v3_sso_ouauth:
-    path: /api/v3/sso/oauth/
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
