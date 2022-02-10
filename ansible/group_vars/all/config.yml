@@ -625,6 +625,15 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_OAUTH_LOGIN_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  LDAP_PASSWORD_ENCRYPTION_KEY:
+    server: true
+    client: false
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
