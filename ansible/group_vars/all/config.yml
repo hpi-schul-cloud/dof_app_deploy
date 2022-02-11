@@ -633,6 +633,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  FEATURE_OAUTH_LOGIN_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true
