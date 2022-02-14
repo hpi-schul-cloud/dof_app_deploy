@@ -53,7 +53,7 @@ configuration_all:
     client: false
     nuxtclient: false
   SC_CONTACT_EMAIL:
-    value: "dataportlernen.cloud@dataport.de"
+    value: "support@dbildungscloud.de"
     server: false
     client: true
     nuxtclient: false
@@ -469,7 +469,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_ENTERTHECLOUD:
@@ -633,6 +633,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  FEATURE_OAUTH_LOGIN_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true

@@ -4,6 +4,7 @@
     - reference
   connection: local
   roles:
+    - role: sys
     - role: dof_rabbitmq
     - role: dof_redis
     - role: libreoffice
@@ -11,8 +12,12 @@
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
     - role: hydra
+    - role: insights-collector
+    - role: insights-cubejs
+    - role: insights-engine
     - role: dof_etherpad_nginx
     - role: dof_etherpad
+    - role: clamav
     - role: schulcloud-server-core
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool

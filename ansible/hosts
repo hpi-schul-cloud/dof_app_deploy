@@ -3,7 +3,7 @@ brb_host
 
 [default]
 default_host
-ref-dbildungscloud
+ref-dbc
 
 [nbc]
 nbc_host
@@ -19,10 +19,16 @@ brb_host
 default_host
 nbc_host
 
+[develop:vars]
+ansible_group_priority=10
+
 [reference]
 ref-int
-ref-dbildungscloud
+ref-dbc
 ref-nbc
+
+[reference:vars]
+ansible_group_priority=10
 
 [sc:children]
 brb
@@ -30,6 +36,8 @@ default
 nbc
 international
 thr
+develop
+reference
 
 [sc:vars]
 ansible_host=localhost
