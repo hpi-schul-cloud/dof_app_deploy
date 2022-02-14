@@ -112,8 +112,8 @@ jobs:
     if: ${{ !failure() }}
     needs:
 #      - ref-audit
-#      - ref-brb
-      - ref-dbildungscloud
+      - ref-brb
+      - ref-dbc
       - ref-int
       - ref-nbc
 #      - ref-thr
