@@ -1,5 +1,6 @@
 [brb]
 brb_host
+ref-brb
 
 [default]
 default_host
@@ -24,6 +25,7 @@ nbc_host
 ansible_group_priority=10
 
 [reference]
+ref-brb
 ref-int
 ref-dbc
 ref-nbc
