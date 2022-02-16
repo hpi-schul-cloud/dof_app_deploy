@@ -31,18 +31,21 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
       
-#  ref-brb:
-#    needs:
-#      - approve_ref
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: ref-brb
-#      host_group: brb
-#      host_stage: reference
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
+  ref-brb:
+    needs:
+      - approve_ref
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-brb
+      host_group: brb
+      host_stage: reference
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-dbc:
     needs:
@@ -105,32 +108,35 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
       
-#  approve_prod_stage_1:
-#    if: ${{ !failure() }}
-#    needs:
+  approve_prod_stage_1:
+    if: ${{ !failure() }}
+    needs:
 #      - ref-audit
-#      - ref-brb
-#      - ref-dbildungscloud
-#      - ref-int
-#      - ref-nbc
+      - ref-brb
+      - ref-dbc
+      - ref-int
+      - ref-nbc
 #      - ref-thr
-#    environment: approve_prod_stage_1
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+    environment: approve_prod_stage_1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo " ${{ github.event.inputs.config_tag_name }}"
       
-#  prod-dbc:
-#    needs:
-#      - approve_prod_stage_1
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: prod-dbc
-#      host_group: default
-#      host_stage: production
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
+  prod-dbc:
+    needs:
+      - approve_prod_stage_1
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: prod-dbc
+      host_group: default
+      host_stage: production
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #      
 #  approve_prod_stage_2:
 #    needs:

@@ -469,7 +469,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_ENTERTHECLOUD:

@@ -1,9 +1,11 @@
 [brb]
 brb_host
+ref-brb
 
 [default]
 default_host
 ref-dbc
+prod-dbc
 
 [nbc]
 nbc_host
@@ -23,11 +25,18 @@ nbc_host
 ansible_group_priority=10
 
 [reference]
+ref-brb
 ref-int
 ref-dbc
 ref-nbc
 
 [reference:vars]
+ansible_group_priority=10
+
+[production]
+prod-dbc
+
+[production:vars]
 ansible_group_priority=10
 
 [sc:children]
@@ -38,6 +47,7 @@ international
 thr
 develop
 reference
+production
 
 [sc:vars]
 ansible_host=localhost
