@@ -92,3 +92,6 @@ group_ingress:
   api_v3_sso_ouauth:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_clientsecret_encrypt:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
