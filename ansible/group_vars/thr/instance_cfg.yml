@@ -40,7 +40,7 @@ ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 AWS_REGION: eu-central-1
 STORAGE_SIGNED_URL_EXPIRE: 600
 DISPLAY_REQUEST_LEVEL: -1
-CONTENT_URI: https://content.schulcloud-thueringen.de #Edusharing
+CONTENT_URI: https://content.schulcloud-thueringen.de
 
 SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
 JWT_TIMEOUT_SECONDS: 7200
