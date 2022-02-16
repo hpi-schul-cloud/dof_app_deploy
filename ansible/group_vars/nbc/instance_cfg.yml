@@ -41,6 +41,7 @@ ADMIN_TOGGLE_STUDENT_VISIBILITY: opt-in
 CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY: enabled
 FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED: "true"
 FEATURE_LOG_REQUEST: "false"
+FEATURE_OAUTH_LOGIN_ENABLED: "true"
 
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
@@ -88,3 +89,6 @@ group_ingress:
   api_v1_registration:
     serviceName: default-backend-404-svc
     servicePort: 8080
+  api_v3_sso_ouauth:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insights-engine-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: insights-engine
+spec:
+  replicas: {{ INSIGHTS_ENGINE_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: insights-engine
+  template:
+    metadata:
+      labels:
+        app: insights-engine
+    spec:
+      containers:
+      - name: insights-engine
+        image: {{ INSIGHTS_ENGINE_IMAGE_NAME }}:{{ INSIGHTS_ENGINE_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+        envFrom:
+        - configMapRef:
+            name: insights-engine-configmap
+        - secretRef:
+            name: insights-engine-secret
+        resources:
+          limits:
+            cpu: {{ INSIGHTS_ENGINE_CPU_MAX|default("1000m", true) }}
+            memory: {{ INSIGHTS_ENGINE_MEMORY_MAX|default("1Gi", true) }}
+          requests:
+            cpu: {{ INSIGHTS_ENGINE_CPU_MIN|default("100m", true) }}
+            memory: {{ INSIGHTS_ENGINE_MEMORY_MIN|default("128Mi", true) }}
+              

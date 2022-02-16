@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clamav-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clamav
+spec:
+  ports:
+  - protocol: TCP
+    port: 3310
+    targetPort: 3310
+  selector:
+    app: clamav
