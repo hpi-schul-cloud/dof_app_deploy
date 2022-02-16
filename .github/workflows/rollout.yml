@@ -107,7 +107,7 @@ jobs:
 #      execute_group: ${{ github.event.inputs.instance_group }}
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
-      
+
   approve_prod_stage_1:
     if: ${{ !failure() }}
     needs:
@@ -210,3 +210,15 @@ jobs:
 #      execute_group: ${{ github.event.inputs.instance_group }}
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
+
+  test-loadtest-01:
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: test-loadtest-01
+      host_group: default
+      host_stage: test
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
