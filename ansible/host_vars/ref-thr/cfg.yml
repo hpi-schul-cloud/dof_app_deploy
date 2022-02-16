@@ -1,65 +1,7 @@
 NAMESPACE: thueringen
 DOMAIN: test.schulcloud-thueringen.de
 
-ES_DOMAIN: https://mv-repo.schul-cloud.org
-ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
-
-SC_THEME: thr
-SC_TITLE: Thüringer Schulcloud
-SC_SHORT_TITLE: Thüringer Schulcloud
-SC_PRODUCTNAME: Thüringer Schulcloud
-SC_NAV_TITLE: Thüringer Schulcloud
-SC_CONTACT_EMAIL: schulcloud-support@thillm.de
-
-DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
-SMTP_SENDER: thr-noreply@hpi-schul-cloud.de
-TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
-STUDENT_TEAM_CREATION: disabled
-CORS: "true"
-SECURITY_HEADERS: "true"
-
-# FEATURE TOGGLES
-ROCKETCHAT_SERVICE_ENABLED: "true"
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
-FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED: "true"
-FEATURE_ENTERTHECLOUD: "false"
-FEATURE_EXTENSIONS_ENABLED: "false"
-FEATURE_INSIGHTS_ENABLED: "true"
-FEATURE_MINT_PAGES_ENABLED: "false"
-FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
-FEATURE_S3_BUCKET_CORS: "false"
-FEATURE_TEAMS_ENABLED: "true"
-FEATURE_VIDEOCONFERENCE_ENABLED: "false"
-FEATURE_RABBITMQ_ENABLED: "true"
-FEATURE_TSP_AUTO_CONSENT_ENABLED: "true"
-FEATURE_LOG_REQUEST: "false"
-FEATURE_NUXT_SCHOOL_ADMIN_BETA: "true"
-FEATURE_LERNSTORE_ENABLED: "true"
-FEATURE_ES_COLLECTIONS_ENABLED: "true"
-FEATURE_ES_SEARCHABLE_ENABLED: "true"
-FEATURE_ES_MERLIN_ENABLED: "true"
-
-# AUTH
-NOT_AUTHENTICATED_REDIRECT_URL: https://test.schulportal-thueringen.de/cas/login?service=https://test.schulcloud-thueringen.de/tsp-login
-
-# ADMIN TABLES
-ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
-AWS_REGION: eu-central-1
-STORAGE_SIGNED_URL_EXPIRE: 600
-DISPLAY_REQUEST_LEVEL: -1
-CONTENT_URI: https://content.schulcloud-thueringen.de #Edusharing
-
-SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
-JWT_TIMEOUT_SECONDS: 7200
-
-# TSP (Thüringer Schulportal)
-FEATURE_TSP_ENABLED: true
-TSP_API_BASE_URL: https://test.schulportal-thueringen.de
-
-# ANTIVIRUS
-ENABLE_FILE_SECURITY_CHECK: "true"
-FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
-
-ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
-LEGACY_COURSE_OVERVIEW_ENABLED: "false"
+ES_DOMAIN: https://mv-repo.schul-cloud.org
+ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
