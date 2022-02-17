@@ -32,9 +32,6 @@ FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
 FEATURE_ES_MERLIN_ENABLED: "true"
 
-# AUTH
-NOT_AUTHENTICATED_REDIRECT_URL: https://test.schulportal-thueringen.de/cas/login?service=https://test.schulcloud-thueringen.de/tsp-login
-
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 AWS_REGION: eu-central-1
@@ -47,7 +44,6 @@ JWT_TIMEOUT_SECONDS: 7200
 
 # TSP (Thüringer Schulportal)
 FEATURE_TSP_ENABLED: true
-TSP_API_BASE_URL: https://test.schulportal-thueringen.de
 
 # ANTIVIRUS
 ENABLE_FILE_SECURITY_CHECK: "true"
