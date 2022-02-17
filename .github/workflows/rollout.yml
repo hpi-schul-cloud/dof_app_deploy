@@ -97,20 +97,23 @@ jobs:
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      
-#  ref-thr:
-#    needs:
-#      - approve_ref
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: ref-thr
-#      host_group: thr
-#      host_stage: reference
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-      
+
+  ref-thr:
+    needs:
+     - approve_ref
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-thr
+      host_group: thr
+      host_stage: reference
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
   approve_prod_stage_1:
     if: ${{ !failure() }}
     needs:
@@ -119,7 +122,7 @@ jobs:
       - ref-dbc
       - ref-int
       - ref-nbc
-#      - ref-thr
+      - ref-thr
     environment: approve_prod_stage_1
     runs-on: ubuntu-latest
     steps:
