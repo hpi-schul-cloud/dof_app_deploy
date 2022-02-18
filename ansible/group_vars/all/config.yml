@@ -464,12 +464,12 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
-    server: true
+    server: false
     client: true
     nuxtclient: false
   FEATURE_ENTERTHECLOUD:
