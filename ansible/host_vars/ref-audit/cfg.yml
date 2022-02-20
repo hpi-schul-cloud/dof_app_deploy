@@ -3,5 +3,6 @@ DOMAIN: staging.audit.dbildungscloud.org
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
+FEATURE_MULTI_LOGIN_INSTANCES: "false"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
