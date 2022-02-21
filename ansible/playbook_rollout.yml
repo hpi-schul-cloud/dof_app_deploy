@@ -6,6 +6,10 @@
   connection: local
   roles:
     - role: sys
+    - role: dof_mongo
+      when: WITH_DATABASES is defined and WITH_DATABASES|bool
+    - role: dof_postgresql
+      when: WITH_DATABASES is defined and WITH_DATABASES|bool
     - role: dof_rabbitmq
     - role: dof_redis
     - role: libreoffice
@@ -38,7 +42,3 @@
     - role: antivirus_check_service
     - role: rocketchat
     - role: ingress
-    - role: dof_mongo
-      when: WITH_DATABASES is defined and WITH_DATABASES|bool
-    - role: dof_postgresql
-      when: WITH_DATABASES is defined and WITH_DATABASES|bool
