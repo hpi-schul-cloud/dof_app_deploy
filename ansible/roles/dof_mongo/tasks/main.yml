@@ -1,17 +1,20 @@
   - name: Service
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
       
-  - name: Persistent Volumes Claim  
+  - name: Persistent Volumes Claim
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
 
   - name: Configmap
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
@@ -19,6 +22,7 @@
 
   - name: Deployment
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2

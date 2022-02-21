@@ -1,17 +1,20 @@
   - name: Service
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
       
   - name: Persistent Volumes Claim  
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
       
   - name: Configmap
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
@@ -20,7 +23,8 @@
       
   - name: Secret
     kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config 
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
+      kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: secret.yml.j2
       apply: yes
@@ -28,6 +32,7 @@
       
   - name: Secred by 1Password
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
@@ -35,6 +40,7 @@
       
   - name: Deployment
     kubernetes.core.k8s:
+      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
