@@ -5,6 +5,7 @@ ref-brb
 [default]
 default_host
 ref-dbc
+ref-audit
 prod-dbc
 test-loadtest-01
 
@@ -36,6 +37,7 @@ ref-brb
 ref-int
 ref-dbc
 ref-nbc
+ref-audit
 
 [reference:vars]
 ansible_group_priority=10

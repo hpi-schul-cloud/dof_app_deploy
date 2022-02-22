@@ -181,6 +181,10 @@ default_ingress:
     path: /api/v1/federalStates
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v1_consentVersions:
+    path: /api/v1/consentVersions
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_systems:
     path: /api/v1/systems
     serviceName: api-svc
