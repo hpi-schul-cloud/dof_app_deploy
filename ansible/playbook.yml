@@ -19,6 +19,7 @@
     - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
+    - schulcloud-synapse-synchronization
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync

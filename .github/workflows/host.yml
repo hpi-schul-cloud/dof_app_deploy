@@ -88,6 +88,12 @@ jobs:
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/schulcloud-synapse-synchronization
+          path: repo/schulcloud-synapse-synchronization
+          token: ${{ secrets.token }}
+          ref: ${{ env.MESSENGER_SYNC_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
