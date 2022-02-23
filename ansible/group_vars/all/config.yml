@@ -165,6 +165,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FILES_STORAGE__S3_REGION:
+    value: "eu-central-1"
     server: true
     client: false
     nuxtclient: false
