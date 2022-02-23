@@ -1,0 +1,3 @@
+---
+RABBITMQ_IMAGE_NAME: rabbitmq
+RABBITMQ_IMAGE_TAG: 3.8.9-management
