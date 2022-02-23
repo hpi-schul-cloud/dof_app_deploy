@@ -479,7 +479,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
@@ -648,6 +648,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  FEATURE_OAUTH_LOGIN_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true

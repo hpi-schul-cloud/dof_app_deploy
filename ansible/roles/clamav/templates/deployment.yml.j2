@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clamav-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clamav
+spec:
+  replicas: {{ CLAMAV_REPLICAS|default(1, true) }}
+  selector:
+    matchLabels:
+      app: clamav
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: clamav
+    spec:
+      containers:
+      - name: postgres
+        image: {{ CLAMAV_IMAGE_NAME }}:{{ CLAMAV_IMAGE_TAG }}
+        ports:
+        - containerPort: 3310
+        resources:
+          limits:
+            cpu: {{ CLAMAV_CPU_MAX|default("500m", true) }}
+            memory: {{ CLAMAV_MEMORY_MAX|default("3Gi", true) }}
+          requests:
+            cpu: {{ CLAMAV_CPU_MIN|default("100m", true) }}
+            memory: {{ CLAMAV_MEMORY_MIN|default("1Gi", true) }}
