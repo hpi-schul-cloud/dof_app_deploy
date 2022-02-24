@@ -42,6 +42,9 @@ CONTENT_URI: https://content.schulcloud-thueringen.de
 SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
 JWT_TIMEOUT_SECONDS: 7200
 
+# SERVER PORT
+PORT_SERVER: 3030
+
 # TSP (Thüringer Schulportal)
 FEATURE_TSP_ENABLED: true
 
