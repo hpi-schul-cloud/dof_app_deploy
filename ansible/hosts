@@ -32,6 +32,7 @@ ref-int
 ref-dbc
 ref-nbc
 ref-audit
+ref-thr
 
 [reference:vars]
 ansible_group_priority=10
