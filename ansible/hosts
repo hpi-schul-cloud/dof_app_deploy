@@ -16,6 +16,7 @@ ref-nbc
 ref-int
 
 [thr]
+ref-thr
 
 [develop]
 brb_host
