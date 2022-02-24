@@ -7,7 +7,7 @@ metadata:
     app: postgres
 data:
   # general
-  POSTGRES_DB: "{{ POSTGRES_DB }}"
-  POSTGRES_USER: "{{ POSTGRES_USER }}"
+  POSTGRES_DB: "{{ POSTGRES_DB|default("calendar", true) }}"
+  POSTGRES_USER: "{{ POSTGRES_USER|default("node", true) }}"
   PGDATA: /var/lib/postgresql/data/pgdata
   
