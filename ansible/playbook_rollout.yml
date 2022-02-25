@@ -26,7 +26,6 @@
     - role: schulcloud-server-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: schulcloud-server-tspsync
-      when: WITH_TSP is defined and WITH_TSP|bool
     - role: schulcloud-client-core
     - role: schulcloud-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
