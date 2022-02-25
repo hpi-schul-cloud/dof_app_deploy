@@ -23,7 +23,7 @@
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync
-    #- schulcloud-server-tspsync
+    - schulcloud-server-tspsync
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
