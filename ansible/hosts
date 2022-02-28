@@ -1,6 +1,7 @@
 [brb]
 brb_host
 ref-brb
+prod-brb
 
 [default]
 default_host

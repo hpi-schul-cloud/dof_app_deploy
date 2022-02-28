@@ -648,6 +648,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  FEATURE_NUXT_SCHOOL_ADMIN_BETA:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
