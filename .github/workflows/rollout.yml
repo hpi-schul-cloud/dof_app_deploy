@@ -143,15 +143,15 @@ jobs:
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-#      
-#  approve_prod_stage_2:
-#    needs:
-#      - prod-dbc
-#    environment: approve_prod_stage_2
-#    runs-on: ubuntu-latest
-#    steps:
-#      - run: echo " ${{ github.event.inputs.config_tag_name }}"
-#      
+      
+  approve_prod_stage_2:
+    needs:
+      - prod-dbc
+    environment: approve_prod_stage_2
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      
 #  prod-brb:
 #    needs:
 #      - approve_prod_stage_2
@@ -178,19 +178,22 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
 #  
-#  prod-int:
-#    needs:
-#      - approve_prod_stage_2
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: prod-int
-#      host_group: international
-#      host_stage: production
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-#  
+  prod-int:
+    needs:
+      - approve_prod_stage_2
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: prod-int
+      host_group: international
+      host_stage: production
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+  
 #  prod-nbc:
 #    needs:
 #      - approve_prod_stage_2
