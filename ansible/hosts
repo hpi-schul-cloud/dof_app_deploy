@@ -42,6 +42,7 @@ ansible_group_priority=10
 [production]
 prod-dbc
 prod-int
+prod-brb
 
 [production:vars]
 ansible_group_priority=10
