@@ -12,6 +12,7 @@ prod-dbc
 [nbc]
 nbc_host
 ref-nbc
+prod-nbc
 
 [international]
 ref-int
@@ -43,6 +44,7 @@ ansible_group_priority=10
 prod-dbc
 prod-int
 prod-brb
+prod-nbc
 
 [production:vars]
 ansible_group_priority=10
