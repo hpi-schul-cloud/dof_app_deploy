@@ -154,6 +154,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FILES_STORAGE__SERVICE_BASE_URL:
+    value: "http://api-files-svc:4444"
+    server: true
+    client: false
+    nuxtclient: false
   FILES_STORAGE__S3_ENDPOINT:
     value: "https://storage-{{ DOMAIN }}"
     server: true
