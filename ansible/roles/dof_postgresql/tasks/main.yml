@@ -1,47 +1,105 @@
   - name: Service
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-      
+    when: WITH_DATABASES
+
+  - name: Service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: Service
+      name: postgres-svc
+      state: absent
+    when: not WITH_DATABASES
+
   - name: Persistent Volumes Claim  
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
-      
+    when: WITH_DATABASES
+
+  - name: Persistent Volumes Claim  
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: postgres-pvc
+      state: absent
+    when: not WITH_DATABASES
+
   - name: Configmap
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
-    when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
+    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
       
+  - name: Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: ConfigMap
+      name: postgres-configmap
+      apply: yes
+      state: absent
+    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
   - name: Secret
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: secret.yml.j2
       apply: yes
-    when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
-      
+    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+  - name: Secret
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: Secret
+      name: postgres-secret
+      apply: yes
+      state: absent
+    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
   - name: Secred by 1Password
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
-    when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
-      
+    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+  - name: Secred by 1Password
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: onepassword.com/v1
+      kind: OnePasswordItem
+      name: postgres-secret
+      state: absent
+    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
   - name: Deployment
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
-      
+    when: WITH_DATABASES
+
+  - name: Deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: apps/v1
+      kind: Deployment
+      name: postgres-deployment
+      state: absent
+    when: not WITH_DATABASES

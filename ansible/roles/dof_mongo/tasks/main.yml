@@ -1,29 +1,69 @@
   - name: Service
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-      
+    when: WITH_DATABASES
+
+  - name: Service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: Service
+      name: postgres-svc
+      state: absent
+    when: not WITH_DATABASES
+
   - name: Persistent Volumes Claim
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
+    when: WITH_DATABASES
+
+  - name: Persistent Volumes Claim
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: postgres-pvc
+      state: absent
+    when: not WITH_DATABASES
 
   - name: Configmap
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
+    when: WITH_DATABASES
+
+  - name: Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: v1
+      kind: ConfigMap
+      name: postgres-configmap
+      apply: yes
+      state: absent
+    when: not WITH_DATABASES
 
   - name: Deployment
     kubernetes.core.k8s:
-      state: "{{ 'present' if WITH_DATABASES else 'absent' }}"
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+    when: WITH_DATABASES
 
+  - name: Deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      apiVersion: apps/v1
+      kind: Deployment
+      name: postgres-deployment
+      state: absent
+    when: not WITH_DATABASES

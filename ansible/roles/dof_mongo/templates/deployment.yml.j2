@@ -29,7 +29,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: mongo
-        image: {{ MONGO_IMAGE_NAME|default("mongo", true) }}:{{ MONGO_IMAGE_TAG|default("4.2.9", true) }}
+        image: {{ MONGO_IMAGE_NAME }}:{{ MONGO_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
         args: ["--replSet", "rs0", "--oplogSize", "10"]
         ports:
