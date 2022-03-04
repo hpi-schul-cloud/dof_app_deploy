@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: {{ POSTGRES_IMAGE_NAME|default("postgres", true) }}:{{ POSTGRES_IMAGE_TAG|default("11.9", true) }}
+        image: {{ POSTGRES_IMAGE_NAME }}:{{ POSTGRES_IMAGE_TAG }}
         ports:
         - containerPort: 5432
         envFrom:
