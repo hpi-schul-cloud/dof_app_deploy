@@ -34,7 +34,6 @@
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
-    - role: edtrio
     - role: antivirus_check_service
     - role: rocketchat
     - role: ingress
