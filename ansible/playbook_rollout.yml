@@ -21,13 +21,13 @@
     - role: dof_etherpad_nginx
     - role: dof_etherpad
     - role: clamav
+    - role: schulcloud-synapse-synchronization
     - role: schulcloud-server-core
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
     - role: schulcloud-server-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: schulcloud-server-tspsync
-      when: WITH_TSP is defined and WITH_TSP|bool
     - role: schulcloud-client-core
     - role: schulcloud-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool

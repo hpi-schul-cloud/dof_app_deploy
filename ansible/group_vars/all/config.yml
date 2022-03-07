@@ -1,11 +1,11 @@
 configuration_all:
-#  ITAM_NAME:
-#    var_name: OPTIONAL_EVN_ITEM_NAME
-#    config_name: OPTIONAL for the host and group vars
-#    value: "true"
-#    server: true
-#    client: true
-#    nuxtclient: true
+  #  ITAM_NAME:
+  #    var_name: OPTIONAL_EVN_ITEM_NAME
+  #    config_name: OPTIONAL for the host and group vars
+  #    value: "true"
+  #    server: true
+  #    client: true
+  #    nuxtclient: true
   HOST:
     config_name: CFG_HOST
     value: "https://{{ DOMAIN }}"
@@ -151,6 +151,26 @@ configuration_all:
     client: false
     nuxtclient: false
   AWS_REGION:
+    server: true
+    client: false
+    nuxtclient: false
+  FILES_STORAGE__SERVICE_BASE_URL:
+    value: "http://api-files-svc:4444"
+    server: true
+    client: false
+    nuxtclient: false
+  FILES_STORAGE__S3_ENDPOINT:
+    value: "https://storage-{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: false
+  FILES_STORAGE__S3_BUCKET:
+    value: "{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: false
+  FILES_STORAGE__S3_REGION:
+    value: "eu-central-1"
     server: true
     client: false
     nuxtclient: false
@@ -392,7 +412,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_ALERTS_ENABLED:
-    value: "false"
+    value: "true"
     server: false
     client: true
     nuxtclient: false
@@ -633,6 +653,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  FEATURE_NUXT_SCHOOL_ADMIN_BETA:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
@@ -663,4 +688,3 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-    

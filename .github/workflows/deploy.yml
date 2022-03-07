@@ -42,6 +42,7 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - antivirus_check_service
+         - schulcloud-synapse-synchronization
          - dof_app_deploy
     steps:
       - run: |
