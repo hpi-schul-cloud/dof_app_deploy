@@ -6,6 +6,8 @@
   connection: local
   roles:
     - role: sys
+    - role: dof_mongo
+    - role: dof_postgresql
     - role: dof_rabbitmq
     - role: dof_redis
     - role: libreoffice
