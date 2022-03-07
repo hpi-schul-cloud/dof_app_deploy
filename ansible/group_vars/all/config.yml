@@ -537,10 +537,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  EDITOR_URL:
-    server: false
-    client: true
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
