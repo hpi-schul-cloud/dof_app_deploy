@@ -1,104 +1,102 @@
-  - name: Service
+  - name: Add or Update Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
     when: WITH_DATABASES
 
-  - name: Service
+  - name: remove Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      apiVersion: v1
+      api_version: v1
       kind: Service
       name: postgres-svc
       state: absent
     when: not WITH_DATABASES
 
-  - name: Persistent Volumes Claim  
+  - name: Add or Update Persistent Volumes Claim  
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
     when: WITH_DATABASES
 
-  - name: Persistent Volumes Claim  
+  - name: remove Persistent Volumes Claim  
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      apiVersion: v1
+      api_version: v1
       kind: PersistentVolumeClaim
       name: postgres-pvc
       state: absent
     when: not WITH_DATABASES
 
-  - name: Configmap
+  - name: Add or Update Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
-    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
       
-  - name: Configmap
+  - name: remove Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      apiVersion: v1
+      api_version: v1
       kind: ConfigMap
       name: postgres-configmap
-      apply: yes
       state: absent
-    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
 
-  - name: Secret
+  - name: Add or Update Secret
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: secret.yml.j2
       apply: yes
-    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
 
-  - name: Secret
+  - name: remove Secret
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      apiVersion: v1
+      api_version: v1
       kind: Secret
       name: postgres-secret
-      apply: yes
       state: absent
-    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR ) )
 
-  - name: Secred by 1Password
+  - name: Add or Update Secred by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
-  - name: Secred by 1Password
+  - name: remove Secred by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      apiVersion: onepassword.com/v1
+      api_version: onepassword.com/v1
       kind: OnePasswordItem
       name: postgres-secret
       state: absent
     when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
-  - name: Deployment
+  - name: Add or Update Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
     when: WITH_DATABASES
 
-  - name: Deployment
+  - name: remove Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      apiVersion: apps/v1
+      api_version: apps/v1
       kind: Deployment
       name: postgres-deployment
       state: absent
