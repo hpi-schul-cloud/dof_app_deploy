@@ -207,20 +207,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  SENTRY_DSN_SERVER:
-    var_name: SENTRY_DSN
-    server: true
-    client: false
-    nuxtclient: false
-  SENTRY_DSN_NUXTCLIENT:
-    var_name: SENTRY_DSN
-    server: false
-    client: true
-    nuxtclient: true
-  SENTRY_SAMPLE_RATE:
-    server: true
-    client: true
-    nuxtclient: true
   DATABASE_AUDIT:
     value: "false"
     server: true
