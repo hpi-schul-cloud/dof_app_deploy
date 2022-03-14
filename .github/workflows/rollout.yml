@@ -105,7 +105,6 @@ jobs:
       - ref-brb
       - ref-dbc
       - ref-int
-      - ref-nbc
       - ref-thr
     environment: approve_prod_stage_1
     runs-on: ubuntu-latest
