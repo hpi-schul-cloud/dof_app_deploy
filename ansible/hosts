@@ -1,21 +1,26 @@
 [brb]
 brb_host
 ref-brb
+prod-brb
 
 [default]
 default_host
 ref-dbc
 ref-audit
 prod-dbc
+test-loadtest-01
 
 [nbc]
 nbc_host
 ref-nbc
+prod-nbc
 
 [international]
 ref-int
+prod-int
 
 [thr]
+ref-thr
 
 [develop]
 brb_host
@@ -25,18 +30,28 @@ nbc_host
 [develop:vars]
 ansible_group_priority=10
 
+[test]
+test-loadtest-01
+
+[test:vars]
+ansible_group_priority=10
+
 [reference]
 ref-brb
 ref-int
 ref-dbc
 ref-nbc
 ref-audit
+ref-thr
 
 [reference:vars]
 ansible_group_priority=10
 
 [production]
 prod-dbc
+prod-int
+prod-brb
+prod-nbc
 
 [production:vars]
 ansible_group_priority=10
@@ -50,6 +65,7 @@ thr
 develop
 reference
 production
+test
 
 [sc:vars]
 ansible_host=localhost
