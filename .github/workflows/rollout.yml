@@ -82,21 +82,6 @@ jobs:
       ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
-  ref-nbc:
-    needs:
-      - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: ref-nbc
-      host_group: nbc
-      host_stage: reference
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   ref-thr:
     needs:
@@ -199,21 +184,6 @@ jobs:
       ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
   
-  prod-nbc:
-    needs:
-      - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: prod-nbc
-      host_group: nbc
-      host_stage: production
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #      
 #  prod-thr:
 #    needs:
