@@ -29,6 +29,8 @@
     - role: schulcloud-server-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: schulcloud-server-tspsync
+    - role: schulcloud-server-init
+      when: WITH_SCHULCLOUD_INIT is defined and WITH_SCHULCLOUD_INIT|bool
     - role: schulcloud-client-core
     - role: schulcloud-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
