@@ -14,18 +14,21 @@
     - maildrop
     - storage
     - hydra
+    - insights-collector
+    - insights-cubejs
+    - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
+    - schulcloud-synapse-synchronization
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync
-    #- schulcloud-server-tspsync
+    - schulcloud-server-tspsync
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
     - schulcloud-calendar-core
     - schulcloud-calendar-init
-    - edtrio
     - antivirus_check_service
     - rocketchat
     - ingress

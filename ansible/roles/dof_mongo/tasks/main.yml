@@ -1,24 +1,68 @@
-  - name: Service
+  - name: Add or Update Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-      
-  - name: Persistent Volumes Claim  
+    when: WITH_DATABASES
+
+  - name: remove Service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: v1
+      kind: Service
+      name: mongo-svc
+    when: not WITH_DATABASES
+
+  - name: Add or Update Persistent Volumes Claim
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
+    when: WITH_DATABASES
 
-  - name: Configmap
+  - name: remove Persistent Volumes Claim
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: v1
+      kind: PersistentVolumeClaim
+      name: mongo-pvc
+    when: not WITH_DATABASES
+
+  - name: Add or Update Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
+      apply: yes
+    when: WITH_DATABASES
 
-  - name: Deployment
+  - name: remove Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: v1
+      kind: ConfigMap
+      name: mongo-configmap
+    when: not WITH_DATABASES
+
+  - name: Add or Update Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+    when: WITH_DATABASES
 
+  - name: remove Deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: apps/v1
+      kind: Deployment
+      name: mongo-deployment
+    when: not WITH_DATABASES

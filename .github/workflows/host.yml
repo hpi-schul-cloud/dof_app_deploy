@@ -22,6 +22,12 @@ on:
     secrets:
       token:
         required: true
+      ONEPASSWORD_VAULT:
+        required: true
+      ETHERPAD_API_KEY:
+        required: true
+      KUBECONFIG:
+        required: true
 
 jobs:
   set_versions:
@@ -82,12 +88,19 @@ jobs:
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
+      - uses: actions/checkout@v2
+        with:
+          repository: hpi-schul-cloud/schulcloud-synapse-synchronization
+          path: repo/schulcloud-synapse-synchronization
+          token: ${{ secrets.token }}
+          ref: ${{ env.MESSENGER_SYNC_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
           mkdir ansible/host_vars
           mkdir ansible/group_vars
           mkdir ansible/roles
+          mkdir ansible/collections
           cd repo
           find */ansible/roles -mindepth 1 -maxdepth 1 -type d -exec cp -rfv {} ../ansible/roles \;
           find */ansible/host_vars -type d -name "${{ inputs.host_name }}" -exec cp -rfv {} ../ansible/host_vars \;
@@ -96,6 +109,7 @@ jobs:
           find */ansible/group_vars -type d -name "${{ inputs.host_stage }}" -exec cp -rfv {} ../ansible/group_vars \;
           cp dof_app_deploy/ansible/*.yml ../ansible
           cp dof_app_deploy/ansible/hosts ../ansible
+          cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
       - uses: actions/upload-artifact@v2
@@ -118,7 +132,8 @@ jobs:
         run: |
           echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
-      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+      - working-directory: ${{github.workspace }}
+        run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
