@@ -55,8 +55,12 @@ default_ingress:
     path: /insights
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  news:
-    path: /news
+  news_new:
+    path: /news/new
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  news_edit:
+    path: /news/[a-z0-9]+/edit
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   tasks:
