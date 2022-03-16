@@ -128,6 +128,7 @@ jobs:
       - run: echo " ${{ github.event.inputs.config_tag_name }}"
       
   prod-dbc:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_1
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -144,6 +145,7 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   approve_prod_stage_2:
+    if: ${{ !failure() }}
     needs:
       - prod-dbc
     environment: approve_prod_stage_2
@@ -152,6 +154,7 @@ jobs:
       - run: echo " ${{ github.event.inputs.config_tag_name }}"
       
   prod-brb:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -184,6 +187,7 @@ jobs:
 #      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #  
   prod-int:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -200,6 +204,7 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
   
   prod-nbc:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -214,22 +219,23 @@ jobs:
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-#      
-#  prod-thr:
-#    needs:
-#      - approve_prod_stage_2
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: prod-thr
-#      host_group: thr
-#      host_stage: production
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-#      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-#      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
-#      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      
+  prod-thr:
+    if: ${{ !failure() }}
+    needs:
+      - approve_prod_stage_2
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: prod-thr
+      host_group: thr
+      host_stage: production
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   test-loadtest-01:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
