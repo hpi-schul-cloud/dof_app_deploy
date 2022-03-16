@@ -112,6 +112,7 @@ jobs:
       - run: echo " ${{ github.event.inputs.config_tag_name }}"
       
   prod-dbc:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_1
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -137,6 +138,7 @@ jobs:
       - run: echo " ${{ github.event.inputs.config_tag_name }}"
       
   prod-brb:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
@@ -169,6 +171,7 @@ jobs:
 #      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #  
   prod-int:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
