@@ -180,7 +180,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_URI:
-    value: "https://hydra-svc:4445"
+    value: "http://hydra-svc:4445"
     server: true
     client: false
     nuxtclient: false
