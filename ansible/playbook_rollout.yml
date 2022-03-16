@@ -29,6 +29,7 @@
     - role: schulcloud-server-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: schulcloud-server-tspsync
+    - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: schulcloud-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
@@ -37,6 +38,7 @@
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
+    - role: schulcloud-calendar-init
     - role: antivirus_check_service
     - role: rocketchat
     - role: ingress
