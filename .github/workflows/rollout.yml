@@ -128,6 +128,7 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   approve_prod_stage_2:
+    if: ${{ !failure() }}
     needs:
       - prod-dbc
     environment: approve_prod_stage_2
