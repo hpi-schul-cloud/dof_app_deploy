@@ -45,10 +45,12 @@ configuration_all:
     client: true
     nuxtclient: false
   SUPPORT_PROBLEM_EMAIL_ADDRESS:
+    value: "support@dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
   SUPPORT_WISH_EMAIL_ADDRESS:
+    value: "support@dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
