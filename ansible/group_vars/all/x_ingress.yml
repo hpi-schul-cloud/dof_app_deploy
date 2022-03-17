@@ -87,6 +87,10 @@ default_ingress:
     path: /administration/ldap
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_migration:
+    path: /administration/migration/
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_systems_ldap:
     path: /administration/systems/ldap
     serviceName: nuxtclient-svc
@@ -149,6 +153,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user_me:
     path: /api/v3/user/me
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_import:
+    path: /api/v3/user/import
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_news:
