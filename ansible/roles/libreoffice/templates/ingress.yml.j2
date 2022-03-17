@@ -16,6 +16,9 @@ spec:
   tls:
   - hosts:
       - {{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+        secretName: {{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
 {% endif %}
   rules:
   - host: {{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}

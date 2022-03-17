@@ -25,6 +25,9 @@ spec:
   tls:
   - hosts:
       - {{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+        secretName: {{ DOMAIN }}-tls
+{% endif %}
 {% endif %}
   rules:
   - host: {{ DOMAIN }}

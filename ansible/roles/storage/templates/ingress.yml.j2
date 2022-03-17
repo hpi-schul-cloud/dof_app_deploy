@@ -18,6 +18,9 @@ spec:
   tls:
   - hosts:
       - {{ STORAGE_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+        secretName: {{ STORAGE_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
 {% endif %}
   rules:
   - host: {{ STORAGE_PREFIX }}{{ DOMAIN }}
