@@ -246,6 +246,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ROCKETCHAT_SERVICE_ENABLED:
+    value: "true"
     server: true
     client: true
     nuxtclient: false
