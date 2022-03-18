@@ -79,16 +79,8 @@ default_ingress:
     path: /_nuxt
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  systems_ldap:
-    path: /systems/ldap
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_ldap:
     path: /administration/ldap
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration_systems_ldap:
-    path: /administration/systems/ldap
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_school-settings:
@@ -100,11 +92,11 @@ default_ingress:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_students:
-    path: /administration/students/
+    path: /administration/students
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_teachers:
-    path: /administration/teachers/
+    path: /administration/teachers
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-overview:
