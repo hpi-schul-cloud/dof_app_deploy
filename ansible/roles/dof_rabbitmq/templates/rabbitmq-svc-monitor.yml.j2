@@ -9,10 +9,10 @@ metadata:
 spec:
   selector:
     matchExpressions:
-      - key: app
+      - key: app.kubernetes.io/name
         operator: in
         values:
-          - rabbitmq
+          - rabbitmq-svc
   endpoints:
   - path: /metrics
-    port: rabbitmq-metric
+    port: prometheus
