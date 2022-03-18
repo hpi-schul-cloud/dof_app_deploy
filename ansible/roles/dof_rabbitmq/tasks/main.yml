@@ -20,4 +20,8 @@
       namespace: "{{ NAMESPACE }}"
       template: rabbitmq.yaml.j2
 
-      
+  - name: Service Monitor
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: templates/rabbitmq-svc-monitor.yml.j2
