@@ -232,11 +232,10 @@ configuration_all:
   ROCKET_CHAT_URI_CLIENT:
     var_name: ROCKET_CHAT_URI
     value: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ROCKETCHAT_SERVICE_ENABLED:
-    value: "true"
     server: true
     client: true
     nuxtclient: false
