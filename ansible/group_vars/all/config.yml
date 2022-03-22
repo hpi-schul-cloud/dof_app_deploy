@@ -45,10 +45,12 @@ configuration_all:
     client: true
     nuxtclient: false
   SUPPORT_PROBLEM_EMAIL_ADDRESS:
+    value: "support@dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
   SUPPORT_WISH_EMAIL_ADDRESS:
+    value: "support@dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
@@ -156,16 +158,6 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__SERVICE_BASE_URL:
     value: "http://api-files-svc:4444"
-    server: true
-    client: false
-    nuxtclient: false
-  FILES_STORAGE__S3_ENDPOINT:
-    value: "https://storage-{{ DOMAIN }}"
-    server: true
-    client: false
-    nuxtclient: false
-  FILES_STORAGE__S3_BUCKET:
-    value: "{{ DOMAIN }}"
     server: true
     client: false
     nuxtclient: false
@@ -472,6 +464,11 @@ configuration_all:
     value: "false"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_LESSON_SHARE:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
