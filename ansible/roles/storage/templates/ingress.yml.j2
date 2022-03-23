@@ -19,7 +19,7 @@ spec:
   - hosts:
       - {{ STORAGE_PREFIX }}{{ DOMAIN }}
 {% if CLUSTER_ISSUER is defined %}
-        secretName: {{ STORAGE_PREFIX }}{{ DOMAIN }}-tls
+    secretName: {{ STORAGE_PREFIX }}{{ DOMAIN }}-tls
 {% endif %}
 {% endif %}
   rules:
