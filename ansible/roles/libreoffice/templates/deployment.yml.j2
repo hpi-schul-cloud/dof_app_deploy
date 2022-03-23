@@ -40,10 +40,10 @@ spec:
           readOnly: true
         resources:
           limits:
-            cpu: "1000m"
+            cpu: "{{ LIBREOFFICE_CPU_MAX|default("1000m", true) }}"
             memory: "{{ LIBREOFFICE_MEM_MAX|default("1Gi", true) }}"
           requests:
-            cpu: "100m"
+            cpu: "{{ LIBREOFFICE_CPU_MIN|default("100m", true) }}"
             memory: "{{ LIBREOFFICE_MEM_MIN|default("128Mi", true) }}"
       volumes:
       - name: loolwsdxml
