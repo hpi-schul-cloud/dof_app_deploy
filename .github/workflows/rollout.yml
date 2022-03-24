@@ -31,7 +31,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-brb:
@@ -47,7 +46,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-dbc:
@@ -63,7 +61,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-int:
@@ -79,7 +76,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-nbc:
@@ -95,7 +91,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   ref-thr:
@@ -111,7 +106,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   approve_prod_stage_1:
@@ -141,7 +135,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   approve_prod_stage_2:
@@ -167,7 +160,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #      
 #  prod-demo:
@@ -183,7 +175,6 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
 #      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-#      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
 #      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #  
   prod-int:
@@ -200,7 +191,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
   
   prod-nbc:
@@ -217,7 +207,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   prod-thr:
@@ -234,7 +223,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   test-loadtest-01:
@@ -248,5 +236,4 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
