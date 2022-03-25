@@ -21,7 +21,7 @@ jobs:
   ref-audit:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-audit
@@ -36,7 +36,7 @@ jobs:
   ref-brb:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-brb
@@ -51,7 +51,7 @@ jobs:
   ref-dbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbc
@@ -66,7 +66,7 @@ jobs:
   ref-int:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-int
@@ -81,7 +81,7 @@ jobs:
   ref-nbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-nbc
@@ -96,7 +96,7 @@ jobs:
   ref-thr:
     needs:
      - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-thr
@@ -125,7 +125,7 @@ jobs:
     if: ${{ !failure() }}
     needs:
       - approve_prod_stage_1
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-dbc
@@ -150,7 +150,7 @@ jobs:
     if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-brb
@@ -165,7 +165,7 @@ jobs:
 #  prod-demo:
 #    needs:
 #      - approve_prod_stage_2
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    uses: ./.github/workflows/host.yml
 #    with:
 #      cfg_version: ${{ github.event.inputs.config_tag_name }}
 #      host_name: prod-demo
@@ -181,7 +181,7 @@ jobs:
     if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-int
@@ -197,7 +197,7 @@ jobs:
     if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-nbc
@@ -213,7 +213,7 @@ jobs:
     if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-thr
@@ -226,7 +226,7 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   test-loadtest-01:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: test-loadtest-01
