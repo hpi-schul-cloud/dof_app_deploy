@@ -17,7 +17,7 @@ spec:
   - hosts:
       - {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}
 {% if CLUSTER_ISSUER is defined %}
-        secretName: {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}-tls
+    secretName: {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}-tls
 {% endif %}
 {% endif %}
   rules:

@@ -5,8 +5,6 @@ DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "true"
-ES_DOMAIN: https://mv-repo.schul-cloud.org
-DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: "https://status.international.hpi-schul-cloud.de"
 
 MATRIX_MESSENGER__DISCOVER_URI: "https://international.messenger.schule"
