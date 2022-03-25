@@ -20,7 +20,7 @@ jobs:
   deploy:
     needs:
       - branch_name
-    uses: ./.github/workflows/deploy.yml@main
+    uses: ./.github/workflows/deploy.yml
     with:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
