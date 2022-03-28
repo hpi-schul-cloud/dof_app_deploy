@@ -161,16 +161,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FILES_STORAGE__S3_ENDPOINT:
-    value: "https://storage-{{ DOMAIN }}"
-    server: true
-    client: false
-    nuxtclient: false
-  FILES_STORAGE__S3_BUCKET:
-    value: "{{ DOMAIN }}"
-    server: true
-    client: false
-    nuxtclient: false
   FILES_STORAGE__S3_REGION:
     value: "eu-central-1"
     server: true
@@ -474,6 +464,11 @@ configuration_all:
     value: "false"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_LESSON_SHARE:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
