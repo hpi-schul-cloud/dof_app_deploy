@@ -251,7 +251,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   infra-schulcloud-02:
@@ -267,5 +266,4 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
