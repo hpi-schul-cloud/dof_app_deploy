@@ -24,8 +24,6 @@ on:
         required: true
       ONEPASSWORD_VAULT:
         required: true
-      ETHERPAD_API_KEY:
-        required: true
       KUBECONFIG:
         required: true
 
@@ -124,9 +122,6 @@ jobs:
         run: |
           echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
           echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
-      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-        run: |
-          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> dof_etherpad.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
         run: |
