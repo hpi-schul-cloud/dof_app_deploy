@@ -237,3 +237,33 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+  infra-schulcloud-01:
+    needs:
+      - approve_ref  
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-01
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+  infra-schulcloud-02:
+    needs:
+      - approve_ref 
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-02
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
