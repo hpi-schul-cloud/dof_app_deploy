@@ -143,6 +143,10 @@ default_ingress:
     path: /api/v3/user/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_language:
+    path: /api/v3/user/language
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_news:
     path: /api/v3/news
     serviceName: api-svc
