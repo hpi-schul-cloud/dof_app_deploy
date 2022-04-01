@@ -17,7 +17,7 @@ spec:
   - hosts:
       - {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}
 {% if CLUSTER_ISSUER is defined %}
-        secretName: {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}-tls
+    secretName: {{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}-tls
 {% endif %}
 {% endif %}
   rules:

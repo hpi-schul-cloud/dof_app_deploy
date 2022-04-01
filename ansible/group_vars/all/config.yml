@@ -457,13 +457,18 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_COPY:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_LESSON_SHARE:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
     value: "false"
