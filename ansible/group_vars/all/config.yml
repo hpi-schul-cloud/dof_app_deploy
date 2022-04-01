@@ -371,15 +371,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    server: true
-    client: false
-    nuxtclient: false
-  CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    var_name: "FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY"
-    server: false
-    client: true
-    nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
     server: true
     client: true
