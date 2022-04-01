@@ -149,6 +149,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user_import:
     path: /api/v3/user/import
+  api_v3_user_language:
+    path: /api/v3/user/language
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_news:
