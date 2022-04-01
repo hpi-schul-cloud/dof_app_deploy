@@ -23,7 +23,7 @@ on:
       DEV_KUBE_CONFIG:
         required: true
       ETHERPAD_API_KEY:
-        required: true
+        required: false
       TOKEN_INVENTORY:
         required: true
 
@@ -126,9 +126,6 @@ jobs:
         run: |
           echo "NOTIFICATION_PLATFORM: testplatform" >> develop/node-notification-service.yml
           echo "NOTIFICATION_URI: http://notification-svc:3031" >> develop/node-notification-service.yml
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}" >> develop/dof_etherpad.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

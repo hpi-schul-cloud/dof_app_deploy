@@ -143,6 +143,10 @@ default_ingress:
     path: /api/v3/user/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_language:
+    path: /api/v3/user/language
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_news:
     path: /api/v3/news
     serviceName: api-svc
@@ -199,6 +203,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_course-share:
     path: /api/v1/courses-share
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_link:
+    path: /api/v1/link
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_lessons:

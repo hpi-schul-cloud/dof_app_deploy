@@ -4,8 +4,6 @@ DOMAIN: brandenburg.cloud
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
 
-ES_DOMAIN: https://mv-repo.schul-cloud.org
-DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.brandenburg.cloud
 # no rollout of new COURSE OVERVIEW to federal instances (THR, NBC, BRB)
-LEGACY_COURSE_OVERVIEW_ENABLED: "false" 
+LEGACY_COURSE_OVERVIEW_ENABLED: "false"
