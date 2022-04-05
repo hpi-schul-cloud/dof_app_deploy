@@ -30,7 +30,7 @@ on:
 jobs:
   set_versions:
     runs-on: ubuntu-latest
-    if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == 'all'
+    if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
     concurrency: 
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
