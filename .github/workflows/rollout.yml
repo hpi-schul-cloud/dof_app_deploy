@@ -16,7 +16,8 @@ jobs:
     environment: approve_ref
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
       
   ref-audit:
     needs:
@@ -119,7 +120,8 @@ jobs:
     environment: approve_prod_stage_1
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
       
   prod-dbc:
     if: ${{ !failure() }}
@@ -144,7 +146,8 @@ jobs:
     environment: approve_prod_stage_2
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
       
   prod-brb:
     if: ${{ !failure() }}
@@ -241,7 +244,7 @@ jobs:
   infra-schulcloud-01:
     needs:
       - approve_ref  
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: infra.schulcloud-01
@@ -256,7 +259,7 @@ jobs:
   infra-schulcloud-02:
     needs:
       - approve_ref 
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: infra.schulcloud-02
