@@ -4,6 +4,7 @@
     - reference
     - production
     - test
+    - infra
   connection: local
   roles:
     - role: sys

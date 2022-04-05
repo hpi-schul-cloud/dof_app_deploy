@@ -457,7 +457,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_COURSE_COPY:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE:
@@ -666,4 +666,14 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_USER_MIGRATION_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_USER_MIGRATION_SYSTEM_ID:
+    value: ""
+    server: true
+    client: false
     nuxtclient: false
