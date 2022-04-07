@@ -262,7 +262,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # FEATURE TOGGLE
+  # CALENDAR
   CALENDAR_SERVICE_ENABLED:
     value: "true"
     server: false
@@ -365,6 +365,12 @@ configuration_all:
   TSP_API_BASE_URL:
     server: true
     client: false
+    nuxtclient: false
+# FEATURE TOGGLE
+  I18N__AVAILABLE_LANGUAGES:
+    value: "de,en,es"
+    server: true
+    client: true
     nuxtclient: false
   LEGACY_COURSE_OVERVIEW_ENABLED:
     value: "false"
