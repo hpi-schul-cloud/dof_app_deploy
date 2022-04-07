@@ -1,0 +1,36 @@
+- name: Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: svc.yml.j2
+  when: WITH_ERWINIDM
+
+- name: Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: secret.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+- name: Secred by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: onepassword.yml.j2
+  when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+- name: Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: deployment.yml.j2
+  when: WITH_ERWINIDM
+
+- name: Ingress
+  environment:
+    K8S_AUTH_KUBECONFIG: '{{ ansible_env.HOME }}/.kube/config'
+  kubernetes.core.k8s:
+    namespace: '{{ NAMESPACE }}'
+    template: ingress.yml.j2
+  when: WITH_ERWINIDM

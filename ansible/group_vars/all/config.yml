@@ -8,113 +8,113 @@ configuration_all:
   #    nuxtclient: true
   HOST:
     config_name: CFG_HOST
-    value: "https://{{ DOMAIN }}"
+    value: 'https://{{ DOMAIN }}'
     server: true
     client: true
     nuxtclient: false
   API_HOST:
-    value: "http://api-svc:3030/api"
+    value: 'http://api-svc:3030/api'
     server: true
     client: false
     nuxtclient: false
   BACKEND_URL:
     config_name: API_HOST
-    value: "http://api-svc:3030/api/"
+    value: 'http://api-svc:3030/api/'
     server: false
     client: true
     nuxtclient: false
   API_URL:
-    value: "https://{{ DOMAIN }}/api"
+    value: 'https://{{ DOMAIN }}/api'
     server: false
     client: false
     nuxtclient: true
   PUBLIC_BACKEND_URL:
     config_name: API_URL
-    value: "https://{{ DOMAIN }}/api"
+    value: 'https://{{ DOMAIN }}/api'
     server: false
     client: true
     nuxtclient: false
   LEGACY_CLIENT_URL:
-    value: "http://client-svc:3100"
+    value: 'http://client-svc:3100'
     server: false
     client: false
     nuxtclient: true
   REQUEST_TIMEOUT_MS:
-    value: "8000"
+    value: '8000'
     server: false
     client: true
     nuxtclient: false
   SUPPORT_PROBLEM_EMAIL_ADDRESS:
-    value: "support@dbildungscloud.de"
+    value: 'support@dbildungscloud.de'
     server: true
     client: false
     nuxtclient: false
   SUPPORT_WISH_EMAIL_ADDRESS:
-    value: "support@dbildungscloud.de"
+    value: 'support@dbildungscloud.de'
     server: true
     client: false
     nuxtclient: false
   SC_CONTACT_EMAIL:
-    value: "support@dbildungscloud.de"
+    value: 'support@dbildungscloud.de'
     server: false
     client: true
     nuxtclient: false
   HELPAREA_URL:
-    value: ""
+    value: ''
     server: false
     client: true
     nuxtclient: false
   CORS:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   CORS_ENABLED:
     config_name: CORS
-    value: "true"
+    value: 'true'
     server: false
     client: false
     nuxtclient: true
   SECURITY_HEADERS_ENABLED:
     config_name: SECURITY_HEADERS
-    value: "true"
+    value: 'true'
     server: false
     client: false
     nuxtclient: true
   SECURITY_HEADERS:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   DOCUMENT_BASE_DIR:
-    value: "https://s3.hidrive.strato.com/cloud-instances/"
+    value: 'https://s3.hidrive.strato.com/cloud-instances/'
     server: true
     client: true
     nuxtclient: false
   LIBRE_OFFICE_CLIENT_URL:
-    value: "https://{{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}"
+    value: 'https://{{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}'
     server: false
     client: true
     nuxtclient: false
   # STAIC Infos
   MEMORY_INTERVAL_TIME:
-    value: "0"
+    value: '0'
     server: true
     client: false
     nuxtclient: false
   REQUEST_LOGGING_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   # LDAP SYNC
   LDAP_SCHOOL_SYNCER_POOL_SIZE:
-    value: "1"
+    value: '1'
     server: true
     client: false
     nuxtclient: false
   LDAP_SYSTEM_SYNCER_POOL_SIZE:
-    value: "2"
+    value: '2'
     server: true
     client: false
     nuxtclient: false
@@ -124,17 +124,17 @@ configuration_all:
     client: false
     nuxtclient: false
   SMTP_SENDER:
-    value: "noreply@DOMAIN"
+    value: 'noreply@DOMAIN'
     server: true
     client: false
     nuxtclient: false
   SHOW_VERSION:
-    value: "0"
+    value: '0'
     server: true
     client: true
     nuxtclient: false
   SILENT_ERROR_ENABLED:
-    value: "true"
+    value: 'true'
     server: true
     client: false
     nuxtclient: false
@@ -148,7 +148,7 @@ configuration_all:
     nuxtclient: false
   # Storage
   AWS_ENDPOINT_URL:
-    value: "https://storage-{{ DOMAIN }}"
+    value: 'https://storage-{{ DOMAIN }}'
     server: true
     client: false
     nuxtclient: false
@@ -157,33 +157,60 @@ configuration_all:
     client: false
     nuxtclient: false
   FILES_STORAGE__SERVICE_BASE_URL:
-    value: "http://api-files-svc:4444"
+    value: 'http://api-files-svc:4444'
     server: true
     client: false
     nuxtclient: false
   FILES_STORAGE__S3_REGION:
-    value: "eu-central-1"
+    value: 'eu-central-1'
+    server: true
+    client: false
+    nuxtclient: false
+  # Identity Management
+  FEATURE_IDENTITY_MANAGEMENT_ENABLED:
+    value: 'false'
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__TENANT:
+    value: 'dBildungscloud'
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__ADMIN_CLIENTID:
+    value: 'admin-cli'
+    server: true
+    client: false
+    nuxtclient: false
+  # TODO Where and how to pass credentials to schulcloud-server
+  IDENTITY_MANAGEMENT__ADMIN_USER:
+    value: 'TBA'
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__ADMIN_PASSWORD:
+    value: 'TBA'
     server: true
     client: false
     nuxtclient: false
   IGNORE_DISCOVERABILITY:
-    value: "true"
+    value: 'true'
     server: true
     client: false
     nuxtclient: false
   HYDRA_URI:
-    value: "http://hydra-svc:4445"
+    value: 'http://hydra-svc:4445'
     server: true
     client: false
     nuxtclient: false
   DISPLAY_REQUEST_LEVEL:
-    value: "-1"
+    value: '-1'
     server: true
     client: false
     nuxtclient: false
   # Consent Mindestalter
   CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS:
-    value: "16"
+    value: '16'
     server: true
     client: true
     nuxtclient: false
@@ -200,22 +227,22 @@ configuration_all:
     client: true
     nuxtclient: false
   DATABASE_AUDIT:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   DATABASE__AUDIT:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   LOGIN_BLOCK_TIME:
-    value: "15"
+    value: '15'
     server: true
     client: true
     nuxtclient: false
   DISABLED_BRUTE_FORCE_CHECK:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
@@ -225,13 +252,13 @@ configuration_all:
     nuxtclient: false
   # rocketchat
   ROCKET_CHAT_URI:
-    value: "http://rocketchat-svc:5000"
+    value: 'http://rocketchat-svc:5000'
     server: true
     client: false
     nuxtclient: false
   ROCKET_CHAT_URI_CLIENT:
     var_name: ROCKET_CHAT_URI
-    value: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
+    value: 'https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}'
     server: false
     client: true
     nuxtclient: false
@@ -245,7 +272,7 @@ configuration_all:
     nuxtclient: false
   # anything else
   KEEP_ALIVE:
-    value: "true"
+    value: 'true'
     server: true
     client: true
     nuxtclient: false
@@ -264,85 +291,85 @@ configuration_all:
     nuxtclient: false
   # FEATURE TOGGLE
   CALENDAR_SERVICE_ENABLED:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   CALENDAR_DASHBOARD_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   # Etherpad
   ETHERPAD_URI:
-    value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
+    value: 'http://etherpad-nginx-svc/etherpad/api/1.2.14'
     server: true
     client: false
     nuxtclient: false
   ETHERPAD_API_PATH:
-    value: "/api/1.2.14"
+    value: '/api/1.2.14'
     server: true
     client: false
     nuxtclient: false
   ETHERPAD_COOKIE__EXPIRES_SECONDS:
-    value: "7200"
+    value: '7200'
     server: true
     client: false
     nuxtclient: false
   ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
-    value: "7200"
+    value: '7200'
     server: true
     client: false
     nuxtclient: false
   ETHERPAD_BASE_URL:
-    value: "https://{{ DOMAIN }}/etherpad/p/"
+    value: 'https://{{ DOMAIN }}/etherpad/p/'
     server: false
     client: true
     nuxtclient: false
   ETHERPAD__PAD_PATH:
-    value: "/etherpad/p"
+    value: '/etherpad/p'
     server: false
     client: true
     nuxtclient: false
   ETHERPAD__PAD_URI:
-    value: "https://{{ DOMAIN }}/etherpad/p"
+    value: 'https://{{ DOMAIN }}/etherpad/p'
     server: false
     client: true
     nuxtclient: false
   ETHERPAD__NEW_DOMAIN:
-    value: "{{ DOMAIN }}"
+    value: '{{ DOMAIN }}'
     server: false
     client: true
     nuxtclient: false
   ETHERPAD__OLD_DOMAIN:
-    value: "etherpad.{{ DOMAIN }}"
+    value: 'etherpad.{{ DOMAIN }}'
     server: false
     client: true
     nuxtclient: false
   # notification
   NOTIFICATION_PLATFORM:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   NOTIFICATION_URI:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   JWT_TIMEOUT_SECONDS:
-    value: "7200"
+    value: '7200'
     server: true
     client: true
     nuxtclient: false
   SKIP_CONDITIONS_CONSENT:
-    value: ""
+    value: ''
     server: true
     client: true
     nuxtclient: false
   # TSP
   FEATURE_TSP_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
@@ -367,7 +394,7 @@ configuration_all:
     client: false
     nuxtclient: false
   LEGACY_COURSE_OVERVIEW_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
@@ -376,7 +403,7 @@ configuration_all:
     client: false
     nuxtclient: false
   CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    var_name: "FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY"
+    var_name: 'FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY'
     server: false
     client: true
     nuxtclient: false
@@ -385,42 +412,42 @@ configuration_all:
     client: true
     nuxtclient: false
   ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    value: "enabled"
+    value: 'enabled'
     server: true
     client: false
     nuxtclient: false
   FEATURE_ALERTS_ENABLED:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   ALERT_STATUS_URL:
-    value: "https://status.dbildungscloud.de"
+    value: 'https://status.dbildungscloud.de'
     server: true
     client: true
     nuxtclient: false
   ROOM_VIEW_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_MORGAN_LOG_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: true
   FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   FEATURE_S3_BUCKET_CORS:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   FEATURE_TSP_AUTO_CONSENT_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: false
@@ -433,7 +460,7 @@ configuration_all:
     client: false
     nuxtclient: false
   MONGOOSE_CONNECTION_POOL_SIZE:
-    value: "50"
+    value: '50'
     server: true
     client: false
     nuxtclient: false
@@ -446,88 +473,88 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_VIDEOCONFERENCE_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   FEATURE_COURSE_COPY:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: false
   FEATURE_LESSON_SHARE:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
   FEATURE_COURSE_IMPORT:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_ENTERTHECLOUD:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_ETHERPAD_ENABLED:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   FEATURE_EXTENSION_PORTFOLIO_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_MINT_PAGES_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_TOPIC_SHARE_IMPORT:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   EDTR_SOURCE:
-    value: "https://editor.{{ DOMAIN }}"
+    value: 'https://editor.{{ DOMAIN }}'
     server: false
     client: true
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
-    value: "10mb"
+    value: '10mb'
     server: false
     client: true
     nuxtclient: false
   # Matrix Messenger
   FEATURE_MATRIX_MESSENGER_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: true
@@ -572,39 +599,39 @@ configuration_all:
     client: true
     nuxtclient: true
   CALENDAR_URI:
-    value: "http://calendar-svc:3000"
+    value: 'http://calendar-svc:3000'
     server: true
     client: false
     nuxtclient: false
   # insights
   FEATURE_INSIGHTS_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
   INSIGHTS_COLLECTOR_URI:
-    value: "http://insights-collector-svc:3000"
+    value: 'http://insights-collector-svc:3000'
     server: false
     client: true
     nuxtclient: false
   # Lernstore
   FEATURE_LERNSTORE_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: true
   ES_DOMAIN:
-    value: "https://mv-repo.schul-cloud.org"
+    value: 'https://mv-repo.schul-cloud.org'
     server: true
     client: false
     nuxtclient: false
   ES_USER:
-    value: ""
+    value: ''
     server: true
     client: false
     nuxtclient: false
   FEATURE_ES_MERLIN_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: false
     nuxtclient: false
@@ -633,12 +660,12 @@ configuration_all:
     client: true
     nuxtclient: true
   FEATURE_NUXT_SCHOOL_ADMIN_BETA:
-    value: "true"
+    value: 'true'
     server: false
     client: true
     nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
-    value: "false"
+    value: 'false'
     server: false
     client: true
     nuxtclient: false
@@ -668,12 +695,12 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
-    value: "false"
+    value: 'false'
     server: true
     client: true
     nuxtclient: false
   FEATURE_USER_MIGRATION_SYSTEM_ID:
-    value: ""
+    value: ''
     server: true
     client: false
     nuxtclient: false
