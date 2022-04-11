@@ -1,3 +1,4 @@
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: erwinidm-configmap
@@ -6,9 +7,10 @@ metadata:
     app: erwinidm
 data:
   # See https://www.keycloak.org/server/all-config?f=config
-  KC_HOSTNAME: {{ ERWINIDM_PREFIX }}{{ DOMAIN }}
+  KC_HOSTNAME: "{{ ERWINIDM_PREFIX }}{{ DOMAIN }}"
   KC_HTTP_ENABLED: "true"
-  KC_HTTP_PORT: {{ ERWINIDM_PORT }}
+  KC_HTTP_PORT: "{{ ERWINIDM_PORT }}"
   KC_PROXY: "edge"
-  #TODO PostgresSQL Connection
+  #TODO PostgresSQL Connection / Secret?
   #KC_DB_URL: "TBA"
+  

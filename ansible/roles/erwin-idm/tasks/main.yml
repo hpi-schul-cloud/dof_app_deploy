@@ -5,6 +5,14 @@
     template: svc.yml.j2
   when: WITH_ERWINIDM
 
+- name: Add or Update Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: configmap.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM
+
 - name: Secret
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
