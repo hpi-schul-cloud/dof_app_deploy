@@ -33,6 +33,10 @@ spec:
         - name: postgres-data-pv
           mountPath: /var/lib/postgresql/data
           readOnly: false
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash","-c","sleep 20 && PGPASSWORD=$POSTGRES_PASSWORD psql $POSTGRES_DB -U $POSTGRES_USER -c 'CREATE SCHEMA IF NOT EXISTS erwinidm;'"]
         resources:
           limits:
             cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}

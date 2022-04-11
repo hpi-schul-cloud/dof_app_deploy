@@ -1,6 +1,0 @@
-# TODO use prod image instead of dev (no persistence yet, testing only)
-ERWINIDM_IMAGE_NAME: ghcr.io/hpi-schul-cloud/erwin-idm/dev
-#ERWINIDM_IMAGE_NAME: ghcr.io/hpi-schul-cloud/erwin-idm
-ERWINIDM_IMAGE_TAG: 0.3.1-prod-test
-ERWINIDM_PORT: 8089
-ERWINIDM_PREFIX: idm-
