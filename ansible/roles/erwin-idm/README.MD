@@ -10,12 +10,22 @@ This role depends on the 'dof_postgressql' role providing persistence. In 'dof_p
 
 Following configuration group or host variables are used:
 
-| Variable            | Description                             |
-| ------------------- | --------------------------------------- |
-| ERWINIDM_IMAGE_NAME | The URL to the ErWIn-IDM docker image   |
-| ERWINIDM_IMAGE_TAG  | The ErWin-IDM docker image tag to use   |
-| ERWINIDM_PORT       | Internally user HTTP port for ErWin-IDM |
-| ERWINIDM_PREFIX     | The ErWin-IDM base url prefix           |
+| Variable                 | Description                                  |
+| ------------------------ | -------------------------------------------- |
+| ERWINIDM_IMAGE_NAME      | The URL to the ErWIn-IDM docker image        |
+| ERWINIDM_IMAGE_TAG       | The ErWin-IDM docker image tag to use        |
+| ERWINIDM_PORT            | Internally user HTTP port for ErWin-IDM      |
+| ERWINIDM_PREFIX          | The ErWin-IDM base url prefix                |
+| ERWINIDM_ADMIN_USER      | The Keycloak super admin                     |
+| ERWINIDM_ADMIN_PASSWORD  | The Keycloak super admin's password          |
+| ERWINIDM_DB_URL          | Connection string to PostgresSQL in JDBC Format, e.g. 'jdbc:postgresql://postgres:5432/postgres?currentSchema=\<schema\>'. This must include the used schema, see: <https://github.com/keycloak/ keycloak/issues/10235> |
+| ERWINIDM_DB_USER         | The PostgresSQL user                         |
+| ERWINIDM_DB_PASSWORD     | The PostgresSQL user's passsword             |
+| ERWINIDM_REPLICAS        | Deployment maximum amount of replica Pods    |
+| ERWINIDM_CPU_LIMITS      | Deployment CPU upper bound                   |
+| ERWINIDM_CPU_REQUESTS    | Deployment CPU lower bound                   |
+| ERWINIDM_MEMORY_LIMITS   | Deployment memory upper bound                |
+| ERWINIDM_MEMORY_REQUESTS | Deployment memory lower bound                |
 
 ## Secrets
 
