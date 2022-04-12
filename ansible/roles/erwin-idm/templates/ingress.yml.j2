@@ -26,9 +26,15 @@ spec:
   - host: {{ ERWINIDM_PREFIX }}{{ DOMAIN }}
     http:
       paths:
-      ### SHD
-      - path: /
+      - path: /realms/
         backend:
           serviceName: erwinidm-svc
           servicePort: {{ ERWINIDM_PORT }}
-
+      - path: /resources/
+        backend:
+          serviceName: erwinidm-svc
+          servicePort: {{ ERWINIDM_PORT }}
+      - path: /robots.txt
+        backend:
+          serviceName: erwinidm-svc
+          servicePort: {{ ERWINIDM_PORT }}
