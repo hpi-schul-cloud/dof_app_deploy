@@ -34,8 +34,8 @@ spec:
           mountPath: /var/lib/postgresql/data
           readOnly: false
         - name: postgres-data-init
-          mountPath: /docker-entrypoint-initdb.d/init_erwinidm_schema.sh
-          subPath: init_erwinidm_schema.sh
+          mountPath: /docker-entrypoint-initdb.d/01_erwinidm.sql
+          subPath: 01_erwinidm.sql
         resources:
           limits:
             cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}
@@ -51,5 +51,5 @@ spec:
         configMap:
           name: postgres-configmap-init
           items:
-          - key: init_erwinidm_schema.sh
-            path: init_erwinidm_schema.sh
+          - key: 01_erwinidm.sql
+            path: 01_erwinidm.sql

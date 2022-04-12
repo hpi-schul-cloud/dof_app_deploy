@@ -6,6 +6,5 @@ metadata:
   labels:
     app: postgres
 data:
-  init_erwinidm_schema.sh: |
-    #!/bin/bash
-    psql -v ON_ERROR_STOP=1 $POSTGRES_DB -U $POSTGRES_USER -c 'CREATE SCHEMA IF NOT EXISTS erwinidm;'
+  01_erwinidm.sql: |
+CREATE SCHEMA IF NOT EXISTS erwinidm;

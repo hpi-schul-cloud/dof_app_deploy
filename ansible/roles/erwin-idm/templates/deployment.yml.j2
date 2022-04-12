@@ -46,9 +46,22 @@ spec:
             memory: {{ ERWINIDM_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
             cpu: {{ ERWINIDM_CPU_REQUESTS|default("100m", true) }}
-            # Keycloak Quarkus benchmark min 512Mi
-            memory: {{ ERWINIDM_MEMORY_REQUESTS|default("1Gi", true) }}
+            memory: {{ ERWINIDM_MEMORY_REQUESTS|default("512Mi", true) }}
         readinessProbe:
           httpGet:
-            path: /realms/master
+            path: /health/ready
             port: {{ ERWINIDM_PORT }}
+        livenessProbe:
+          httpGet:
+            path: /health/ready
+            port: {{ ERWINIDM_PORT }}
+          timeoutSeconds: 4
+          failureThreshold: 1
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /health/ready
+            port: {{ ERWINIDM_PORT }}
+          timeoutSeconds: 4
+          failureThreshold: 30
+          periodSeconds: 10

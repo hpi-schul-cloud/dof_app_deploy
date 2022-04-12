@@ -8,7 +8,7 @@ This role depends on the 'dof_postgressql' role providing persistence. In 'dof_p
 
 ## Configuration variables
 
-Following configuration variables are used (see './ansible/group_vars' folder):
+Following configuration group or host variables are used:
 
 | Variable            | Description                             |
 | ------------------- | --------------------------------------- |
