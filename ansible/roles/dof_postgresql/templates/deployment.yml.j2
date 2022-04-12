@@ -33,10 +33,9 @@ spec:
         - name: postgres-data-pv
           mountPath: /var/lib/postgresql/data
           readOnly: false
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/bash","-c","sleep 20 && PGPASSWORD=$POSTGRES_PASSWORD psql $POSTGRES_DB -U $POSTGRES_USER -c 'CREATE SCHEMA IF NOT EXISTS erwinidm;'"]
+        - name: postgres-data-init
+          mountPath: /docker-entrypoint-initdb.d/init_erwinidm_schema.sh
+          subPath: init_erwinidm_schema.sh
         resources:
           limits:
             cpu: {{ POSTGRES_CPU_LIMITS|default("2000m", true) }}
@@ -45,6 +44,12 @@ spec:
             cpu: {{ POSTGRES_CPU_REQUESTS|default("500m", true) }}
             memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
       volumes:
-      - name: postgres-data-pv 
+      - name: postgres-data-pv
         persistentVolumeClaim:
           claimName: postgres-pvc
+      - name: postgres-data-init
+        configMap:
+          name: postgres-configmap-init
+          items:
+          - key: init_erwinidm_schema.sh
+            path: init_erwinidm_schema.sh
