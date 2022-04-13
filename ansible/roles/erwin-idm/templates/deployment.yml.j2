@@ -59,7 +59,7 @@ spec:
           periodSeconds: 5
         livenessProbe:
           httpGet:
-            path: /health/ready
+            path: /health/live
             port: {{ ERWINIDM_PORT }}
           timeoutSeconds: 4
           failureThreshold: 3
