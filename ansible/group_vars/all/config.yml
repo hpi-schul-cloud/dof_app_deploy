@@ -377,12 +377,12 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
+  TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE:
     server: true
     client: true
     nuxtclient: false
-  ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    value: "enabled"
+  TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
