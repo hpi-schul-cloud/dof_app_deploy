@@ -168,28 +168,25 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: 'false'
+    value: "false"
     server: true
     client: false
     nuxtclient: false
   IDENTITY_MANAGEMENT__TENANT:
-    value: 'dBildungscloud'
+    value: "{NAMESPACE}"
     server: true
     client: false
     nuxtclient: false
   IDENTITY_MANAGEMENT__ADMIN_CLIENTID:
-    value: 'admin-cli'
+    value: "admin-cli"
     server: true
     client: false
     nuxtclient: false
-  # TODO Where and how to pass credentials to schulcloud-server
   IDENTITY_MANAGEMENT__ADMIN_USER:
-    value: 'TBA'
     server: true
     client: false
     nuxtclient: false
   IDENTITY_MANAGEMENT__ADMIN_PASSWORD:
-    value: 'TBA'
     server: true
     client: false
     nuxtclient: false
