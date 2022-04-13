@@ -260,7 +260,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ROCKETCHAT_SERVICE_ENABLED:
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ROCKET_CHAT_DEPRECATION_DATE:
@@ -286,7 +286,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # FEATURE TOGGLE
+  # CALENDAR
   CALENDAR_SERVICE_ENABLED:
     value: "true"
     server: false
@@ -390,22 +390,19 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+# FEATURE TOGGLE
+  I18N__AVAILABLE_LANGUAGES:
+    value: "de,en,es,ua"
+    server: true
+    client: true
+    nuxtclient: false
   LEGACY_COURSE_OVERVIEW_ENABLED:
     value: "false"
     server: false
     client: true
     nuxtclient: false
-  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    server: true
-    client: false
-    nuxtclient: false
-  CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    var_name: "FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY"
-    server: false
-    client: true
-    nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ADMIN_TOGGLE_STUDENT_VISIBILITY:
@@ -616,7 +613,7 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   ES_DOMAIN:
     value: "https://mv-repo.schul-cloud.org"
     server: true
