@@ -28,13 +28,16 @@ Following configuration group or host variables are used:
 
 Secrets are configured via OnePassword. See `secret.yml` for secret configuration examples
 
-| Variable                 | Description                                  |
-| ------------------------ | -------------------------------------------- |
-| ERWINIDM_ADMIN_USER      | The Keycloak super admin                     |
-| ERWINIDM_ADMIN_PASSWORD  | The Keycloak super admin's password          |
-| ERWINIDM_DB_URL          | Connection string to PostgreSQL in JDBC Format, e.g. 'jdbc:postgresql://postgres:5432/postgres?currentSchema=\<schema\>'. This must include the used schema, see: <https://github.com/keycloak/ keycloak/issues/10235> |
-| ERWINIDM_DB_USER         | The PostgreSQL user                          |
-| ERWINIDM_DB_PASSWORD     | The PostgreSQL user's passsword              |
+| Variable                            | Description                                  |
+| ----------------------------------- | -------------------------------------------- |
+| ERWINIDM_ADMIN_USER                 | The Keycloak super admin                     |
+| ERWINIDM_ADMIN_PASSWORD             | The Keycloak super admin's password          |
+| ERWINIDM_DB_URL                     | Connection string to PostgreSQL in JDBC Format, e.g. 'jdbc:postgresql://postgres:5432/postgres?currentSchema=\<schema\>'. This must include the used schema, see: <https://github.com/keycloak/ keycloak/issues/10235> |
+| ERWINIDM_DB_USER                    | The PostgreSQL user                          |
+| ERWINIDM_DB_PASSWORD                | The PostgreSQL user's passsword              |
+| IDENTITY_MANAGEMENT__ADMIN_USER     | dBildungscloud realm admin                   |
+| IDENTITY_MANAGEMENT__ADMIN_PASSWORD | dBildungscloud realm admin's passsword       |
+| IDENTITY_MANAGEMENT__ADMIN_CLIENTID | dBildungscloud realm admin defined client    |
 
 ## Additional information
 

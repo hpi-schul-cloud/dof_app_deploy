@@ -177,11 +177,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  IDENTITY_MANAGEMENT__ADMIN_CLIENTID:
-    value: "admin-cli"
-    server: true
-    client: false
-    nuxtclient: false
   IGNORE_DISCOVERABILITY:
     value: "true"
     server: true
