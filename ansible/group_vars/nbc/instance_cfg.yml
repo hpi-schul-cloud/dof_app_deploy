@@ -10,7 +10,7 @@ SMTP: ""
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
 STUDENT_TEAM_CREATION: disabled
-HELPAREA_URL: https://docs.schul-cloud.org/x/CQCaB
+HELPAREA_URL: https://docs.dbildungscloud.de/x/CQCaB
 # cors header
 CORS: "true"
 SECURITY_HEADERS: "true"
