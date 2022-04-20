@@ -639,6 +639,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_LOGIN_LINK_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true
