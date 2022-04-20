@@ -366,7 +366,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-# FEATURE TOGGLE
+  # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
     value: "de,en,es,ua"
     server: true
@@ -397,8 +397,8 @@ configuration_all:
     client: true
     nuxtclient: false
   ROOM_VIEW_ENABLED:
-    value: "false"
-    server: false
+    value: "true"
+    server: true
     client: true
     nuxtclient: false
   FEATURE_MORGAN_LOG_ENABLED:
