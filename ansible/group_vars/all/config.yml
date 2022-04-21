@@ -59,11 +59,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  HELPAREA_URL:
-    value: ""
-    server: false
-    client: true
-    nuxtclient: false
   CORS:
     value: "true"
     server: false
