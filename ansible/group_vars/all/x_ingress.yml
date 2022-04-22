@@ -131,6 +131,10 @@ default_ingress:
     path: /api/v1/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v1_homework:
+    path: /api/v1/homework
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_tasks:
     path: /api/v3/tasks
     serviceName: api-svc
