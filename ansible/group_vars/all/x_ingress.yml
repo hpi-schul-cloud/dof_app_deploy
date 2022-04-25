@@ -11,10 +11,6 @@ default_ingress:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  account:
-    path: /account
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   activation:
     path: /activation
     serviceName: nuxtclient-svc

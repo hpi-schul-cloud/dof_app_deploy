@@ -4,13 +4,14 @@ SC_TITLE: Niedersächsische Bildungscloud
 SC_SHORT_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
+SC_CONTACT_EMAIL: nbc-support@netz-21.de
 
 #DOCUMENT_BASE_DIR:
 SMTP: ""
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
 STUDENT_TEAM_CREATION: disabled
-HELPAREA_URL: https://docs.schul-cloud.org/x/CQCaB
+HELPAREA_URL: https://docs.dbildungscloud.de/x/CQCaB
 # cors header
 CORS: "true"
 SECURITY_HEADERS: "true"
@@ -41,6 +42,7 @@ ADMIN_TOGGLE_STUDENT_VISIBILITY: opt-in
 FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED: "true"
 FEATURE_LOG_REQUEST: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
+FEATURE_LOGIN_LINK_ENABLED: "true"
 
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
