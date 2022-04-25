@@ -100,7 +100,7 @@
     namespace: "{{ NAMESPACE }}"
     apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
-    name: "{{ NAMESPACE }}"-erwinidm-ingress
+    name: "{{ NAMESPACE }}-erwinidm-ingress"
     state: absent
   when: not WITH_ERWINIDM
 
