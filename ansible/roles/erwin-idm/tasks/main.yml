@@ -5,6 +5,16 @@
     template: svc.yml.j2
   when: WITH_ERWINIDM
 
+- name: remove Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Service
+    name: erwinidm-svc
+    state: absent
+  when: not WITH_ERWINIDM
+
 - name: Add or Update Configmap
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
@@ -12,6 +22,16 @@
     template: configmap.yml.j2
     apply: yes
   when: WITH_ERWINIDM
+
+- name: remove Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: ConfigMap
+    name: erwinidm-configmap
+    state: absent
+  when: not WITH_ERWINIDM
 
 - name: Secret
   kubernetes.core.k8s:
@@ -21,12 +41,34 @@
     apply: yes
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
 
+- name: remove Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Secret
+    name: erwinidm-secret
+    state: absent
+  when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+
 - name: Secred by 1Password
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: onepassword.yml.j2
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+- name: remove Secred by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: onepassword.com/v1
+    kind: OnePasswordItem
+    name: erwinidm-secret
+    state: absent
+  when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
 
 - name: Deployment
   kubernetes.core.k8s:
@@ -35,13 +77,32 @@
     template: deployment.yml.j2
   when: WITH_ERWINIDM
 
-- name: Ingress
-  environment:
-    K8S_AUTH_KUBECONFIG: "{{ ansible_env.HOME }}/.kube/config"
+- name: remove Deployment
   kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: apps/v1
+    kind: Deployment
+    name: erwinidm-deployment
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
     namespace: "{{ NAMESPACE }}"
     template: ingress.yml.j2
   when: WITH_ERWINIDM
+
+- name: remove Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    apiVersion: networking.k8s.io/v1beta1
+    kind: Ingress
+    name: "{{ NAMESPACE }}"-erwinidm-ingress
+    state: absent
+  when: not WITH_ERWINIDM
 
 - name: Service Monitor
   kubernetes.core.k8s:
@@ -49,3 +110,13 @@
     namespace: "{{ NAMESPACE }}"
     template: templates/erwinidm-svc-monitor.yml.j2
   when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
+
+- name: remove Service Monitor
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    apiVersion: monitoring.coreos.com/v1
+    kind: ServiceMonitor
+    name: monitoring-prometheus-sc-erwinidm-svc
+    state: absent
+  when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
