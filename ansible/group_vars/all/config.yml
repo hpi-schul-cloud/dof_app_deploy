@@ -383,11 +383,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  LEGACY_COURSE_OVERVIEW_ENABLED:
-    value: "false"
-    server: false
-    client: true
-    nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
     server: true
     client: true
