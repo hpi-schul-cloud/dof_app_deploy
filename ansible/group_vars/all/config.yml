@@ -161,6 +161,17 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # Identity Management
+  FEATURE_IDENTITY_MANAGEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__TENANT:
+    value: "{NAMESPACE}"
+    server: true
+    client: false
+    nuxtclient: false
   IGNORE_DISCOVERABILITY:
     value: "true"
     server: true
