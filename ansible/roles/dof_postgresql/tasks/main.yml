@@ -49,6 +49,24 @@
       name: postgres-configmap
       state: absent
     when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
+    
+  - name: Add or Update init scripts Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: configmap-init.yml.j2
+      apply: yes
+    when: WITH_DATABASES
+
+  - name: remove init scripts Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      api_version: v1
+      kind: ConfigMap
+      name: postgres-configmap-init
+      state: absent
+    when: not WITH_DATABASES
 
   - name: Add or Update Secret
     kubernetes.core.k8s:
