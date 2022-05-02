@@ -1,6 +1,6 @@
 ---
 - name: App Deploy
-  hosts: 
+  hosts:
     - develop
   connection: local
   roles:
@@ -14,11 +14,13 @@
     - maildrop
     - storage
     - hydra
+    - erwin-idm
     - insights-collector
     - insights-cubejs
     - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
+    - clamav
     - schulcloud-synapse-synchronization
     - schulcloud-server-core
     - schulcloud-server-init

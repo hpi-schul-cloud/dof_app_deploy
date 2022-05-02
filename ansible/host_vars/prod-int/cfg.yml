@@ -5,8 +5,6 @@ DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "true"
-ES_DOMAIN: https://mv-repo.schul-cloud.org
-DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: "https://status.international.hpi-schul-cloud.de"
 
 MATRIX_MESSENGER__DISCOVER_URI: "https://international.messenger.schule"
@@ -16,7 +14,7 @@ MATRIX_MESSENGER__SERVERNAME: international.messenger.schule
 MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE: "true"
 MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED: "false"
 MATRIX_MESSENGER__STUDENT_ROOM_CREATION: "true"
-MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.schul-cloud.org/pages/viewpage.action?pageId=113650243) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
-MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.schul-cloud.org/pages/viewpage.action?pageId=113650243) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
-MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.schul-cloud.org/pages/viewpage.action?pageId=113651573) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
+MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.dbildungscloud.de/pages/viewpage.action?pageId=113650243) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
+MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.dbildungscloud.de/pages/viewpage.action?pageId=113650243) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
+MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT: 'Willkommen im Messenger der HPI Schul-Cloud!\nDu bist neu hier und möchtest gerne mehr über die Grundfunktionen des Messengers erfahren? Dann schaue dir [DIESE ANLEITUNG](https://docs.dbildungscloud.de/pages/viewpage.action?pageId=113651573) an.\nWir wünschen euch einen konstruktiven und respektvollen Austausch untereinander!\nEuer HPI Schul-Cloud Team 🙂'
 

@@ -16,12 +16,14 @@ jobs:
     environment: approve_ref
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-audit
@@ -31,13 +33,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-brb:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-brb
@@ -47,13 +48,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-dbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbc
@@ -63,13 +63,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-int:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-int
@@ -79,13 +78,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   ref-nbc:
     needs:
       - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-nbc
@@ -95,13 +93,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   ref-thr:
     needs:
      - approve_ref
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-thr
@@ -111,7 +108,6 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   approve_prod_stage_1:
@@ -125,12 +121,15 @@ jobs:
     environment: approve_prod_stage_1
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   prod-dbc:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_1
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-dbc
@@ -140,21 +139,24 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       
   approve_prod_stage_2:
+    if: ${{ !failure() }}
     needs:
       - prod-dbc
     environment: approve_prod_stage_2
     runs-on: ubuntu-latest
     steps:
-      - run: echo " ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   prod-brb:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-brb
@@ -164,13 +166,12 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #      
 #  prod-demo:
 #    needs:
 #      - approve_prod_stage_2
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+#    uses: ./.github/workflows/host.yml
 #    with:
 #      cfg_version: ${{ github.event.inputs.config_tag_name }}
 #      host_name: prod-demo
@@ -180,13 +181,13 @@ jobs:
 #    secrets:
 #      token: ${{ secrets.GITHUB_TOKEN }}
 #      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-#      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
 #      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 #  
   prod-int:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-int
@@ -196,13 +197,13 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
   
   prod-nbc:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-nbc
@@ -212,27 +213,26 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-#      
-#  prod-thr:
-#    needs:
-#      - approve_prod_stage_2
-#    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: prod-thr
-#      host_group: thr
-#      host_stage: production
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-#      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-#      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
-#      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      
+  prod-thr:
+    if: ${{ !failure() }}
+    needs:
+      - approve_prod_stage_2
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: prod-thr
+      host_group: thr
+      host_stage: production
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
   test-loadtest-01:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/host.yml@main
+    uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: test-loadtest-01
@@ -242,5 +242,34 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      ETHERPAD_API_KEY: ${{ secrets.ETHERPAD_API_KEY }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+  infra-schulcloud-01:
+    needs:
+      - approve_ref  
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-01
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+  infra-schulcloud-02:
+    needs:
+      - approve_ref 
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-02
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}

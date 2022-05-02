@@ -9,6 +9,8 @@ ref-dbc
 ref-audit
 prod-dbc
 test-loadtest-01
+infra.schulcloud-01
+infra.schulcloud-02
 
 [nbc]
 nbc_host
@@ -21,6 +23,7 @@ prod-int
 
 [thr]
 ref-thr
+prod-thr
 
 [develop]
 brb_host
@@ -34,6 +37,13 @@ ansible_group_priority=10
 test-loadtest-01
 
 [test:vars]
+ansible_group_priority=10
+
+[infra]
+infra.schulcloud-01
+infra.schulcloud-02
+
+[infra:vars]
 ansible_group_priority=10
 
 [reference]
@@ -52,6 +62,7 @@ prod-dbc
 prod-int
 prod-brb
 prod-nbc
+prod-thr
 
 [production:vars]
 ansible_group_priority=10
