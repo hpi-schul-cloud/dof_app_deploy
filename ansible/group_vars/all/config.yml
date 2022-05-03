@@ -378,6 +378,21 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  LEGACY_COURSE_OVERVIEW_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
     server: true
     client: true
