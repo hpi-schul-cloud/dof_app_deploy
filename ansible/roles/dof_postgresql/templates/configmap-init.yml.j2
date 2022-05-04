@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap-init
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: postgres
+data:
+  01_erwinidm.sql: |
+    CREATE SCHEMA IF NOT EXISTS erwinidm;

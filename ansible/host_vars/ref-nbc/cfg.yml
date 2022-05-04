@@ -1,5 +1,5 @@
 NAMESPACE: niedersachsen
-DOMAIN: staging.niedersachsen.hpi-schul-cloud.org
+DOMAIN: staging.niedersachsen.dbildungscloud.org
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"

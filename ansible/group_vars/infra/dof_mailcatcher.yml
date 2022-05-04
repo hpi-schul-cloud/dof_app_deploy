@@ -1,0 +1,3 @@
+---
+MAILCATCHER_IMAGE_NAME: schickling/mailcatcher
+MAILCATCHER_IMAGE_TAG: latest

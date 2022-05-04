@@ -9,12 +9,18 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 50m
     nginx.ingress.kubernetes.io/client_max_body_size: 50m
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
 
 spec:
-{% if TLS_ENABELD is defined and TLS_ENABELD|bool %}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
       - {{ STORAGE_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+    secretName: {{ STORAGE_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
 {% endif %}
   rules:
   - host: {{ STORAGE_PREFIX }}{{ DOMAIN }}

@@ -11,13 +11,6 @@
       template: configmap.yml.j2
       apply: yes
       
-  - name: Configmap Files
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config 
-      namespace: "{{ NAMESPACE }}"
-      template: configmap-files.yml.j2
-      apply: yes
-      
   - name: Secret
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 

@@ -1,3 +1,2 @@
-SUPPORT_WISH_EMAIL_ADDRESS: "ticketsystem@schul-cloud.org"
-# SUPPORT_EMAIL
-SUPPORT_PROBLEM_EMAIL_ADDRESS: "ticketsystem@schul-cloud.org"
+SUPPORT_WISH_EMAIL_ADDRESS: schulcloud-support@thillm.de,ticketsystem@schul-cloud.org
+SUPPORT_PROBLEM_EMAIL_ADDRESS: "schulcloud-support@thillm.de"

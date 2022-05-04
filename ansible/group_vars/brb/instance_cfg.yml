@@ -6,7 +6,6 @@ SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 
-#DOCUMENT_BASE_DIR:
 SMTP: ""
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -31,11 +30,15 @@ FEATURE_VIDEOCONFERENCE_ENABLED: "true"
 FEATURE_RABBITMQ_ENABLED: "true"
 FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
 FEATURE_LOG_REQUEST: "false"
+FEATURE_NUXT_SCHOOL_ADMIN_BETA: "true"
+FEATURE_OAUTH_LOGIN_ENABLED: "false"
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
 
+TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
+TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
+
 ADMIN_TOGGLE_STUDENT_VISIBILITY: opt-in
-CLIENT_FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY: enabled
 FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED: "true"
 
 # ADMIN TABLES
@@ -69,7 +72,15 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
+# import users
+FEATURE_USER_MIGRATION_ENABLED: "true"
+FEATURE_USER_MIGRATION_SYSTEM_ID: ""
+
 # Ingress
-#group_ingress:
-#  themes:
-#    path: "/themes/{{ SC_THEME }}/favicon.png"
+group_ingress:
+  api_v1_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_roster:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"

@@ -1,0 +1,9 @@
+FEATURE_MATRIX_MESSENGER_ENABLED: "false"
+FEATURE_NEXBOARD_ENABLED: "false"
+ROOM_VIEW_ENABLED: "true"
+CLUSTER_ISSUER: sc-cert-manager-clusterissuer-letsencrypt
+
+NAMESPACE: "{{ inventory_hostname | replace('.', '-') }}"
+DOMAIN: "{{ inventory_hostname }}.dbildungscloud.dev"
+DISPLAY_REQUEST_LEVEL: -1
+ALERT_STATUS_URL: https://status.dbildungscloud.dev/

@@ -55,10 +55,10 @@ spec:
             memory: {{ ETHERPA_MEMORY_REQUESTS|default("128Mi", true) }}
       volumes:
       - name: apikey
-        configMap:
-          name: etherpad-configmap-files
+        secret:
+          secretName: etherpad-secret
           items:
-          - key: APIKEY.txt
+          - key: ETHERPAD_API_KEY
             path: APIKEY.txt
         
               

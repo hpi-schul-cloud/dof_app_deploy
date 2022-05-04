@@ -8,7 +8,7 @@ metadata:
 data:
   update.sh: |
     #! /bin/bash
-    set -euxo pipefail
+    set -euo pipefail
     until mongo $MONGO_URL --eval "print(\"waited for connection\")"
       do
         sleep 1
