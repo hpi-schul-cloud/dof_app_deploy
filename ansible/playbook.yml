@@ -1,6 +1,6 @@
 ---
 - name: App Deploy
-  hosts: 
+  hosts:
     - develop
   connection: local
   roles:
@@ -14,6 +14,7 @@
     - maildrop
     - storage
     - hydra
+    - erwin-idm
     - insights-collector
     - insights-cubejs
     - insights-engine

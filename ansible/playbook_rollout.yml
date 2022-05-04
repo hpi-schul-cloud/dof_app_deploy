@@ -1,6 +1,6 @@
 ---
 - name: App Deploy
-  hosts: 
+  hosts:
     - reference
     - production
     - test
@@ -35,7 +35,7 @@
     - role: schulcloud-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: nuxt-client-core
-    - role: nuxt-client-ldap 
+    - role: nuxt-client-ldap
       when: WITH_LDAP_SEPERATION is defined and WITH_LDAP_SEPERATION|bool
     - role: superhero-dashboard
     - role: schulcloud-calendar-core

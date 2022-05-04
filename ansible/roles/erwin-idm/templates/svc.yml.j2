@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: erwinidm-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: erwinidm
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ ERWINIDM_PORT }}
+      targetPort: {{ ERWINIDM_PORT }}
+      protocol: TCP
+      name: erwinidm
+  selector:
+    app: erwinidm
