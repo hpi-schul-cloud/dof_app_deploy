@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: erwinidm-init-file
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: erwinidm
+data:
+  create_dbc_realm.sh: |
+    #!/bin/bash
+    set -e
+
+    IDM_URL_BASE=erwinidm-svc:{{ ERWINIDM_PORT }}
+    IDM_URL=$IDM_URL_BASE/admin/realms
+    IDM_CLIENT=$IDENTITY_MANAGEMENT__ADMIN_CLIENTID
+    IDM_ADMIN=$KEYCLOAK_ADMIN
+    IDM_ADMIN_PWD=$KEYCLOAK_ADMIN_PASSWORD
+
+    IDM_REALM_NAME={{ IDENTITY_MANAGEMENT__TENANT }}
+    IDM_REALM_ADMIN=$IDENTITY_MANAGEMENT__ADMIN_USER
+    IDM_REALM_ADMIN_PWD=$IDENTITY_MANAGEMENT__ADMIN_PASSWORD
+    IDM_REALM_ADMIN_ROLE=realm-admin
+
+    IDM_CLIENT_NAME={{ IDENTITY_MANAGEMENT__CLIENTID }}
+    IDM_CLIENT_URL_BASE=https://{{ DOMAIN }}
+
+    # Wait for IDM to be ready or fail
+    curl --retry 60 --retry-all-errors --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
+    echo "KEYCLOAK_INIT: Connection OK"
+
+    # Request authorization
+    RES_TOKEN=$(curl -d "client_id=$IDM_CLIENT" -d "username=$IDM_ADMIN" -d "password=$IDM_ADMIN_PWD" -d "grant_type=password" -s "$IDM_URL_BASE/realms/master/protocol/openid-connect/token")
+    TOKEN=`echo $RES_TOKEN | sed 's/.*access_token":"//g' | sed 's/".*//g'`
+
+    echo "KEYCLOAK_INIT: Authorization OK"
+
+    # Create realm
+    echo "KEYCLOAK_INIT: Create realm"
+    RES_REALMCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"enabled":true,"id":"'"$IDM_REALM_NAME"'","realm":"'"$IDM_REALM_NAME"'", "loginWithEmailAllowed":false}')
+    if [[ $RES_REALMCREATE -ne 201 ]] ; then
+        exit 1
+    fi
+
+    # Create client
+    echo "KEYCLOAK_INIT: Create client"
+    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}'
+
+    # Create realm admin user
+    echo "KEYCLOAK_INIT: Create realm admin user"
+    curl "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}'
+
+    # Add realm management role to admin user
+    echo "KEYCLOAK_INIT: Configure realm admin user"
+    ## Get target user id
+    RES_USERID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users?username="$IDM_REALM_ADMIN" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    ### extract id (remove prefix), extract id (remove suffix)
+    USERID=`echo $RES_USERID | sed 's/.*id":"//g' | sed 's/",.*//g'`
+
+    ## Get target client id
+    RES_CLIENTID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    ### extract id (remove prefix), extract id (remove suffix)
+    CLIENTID=`echo $RES_CLIENTID | sed 's/.*id":"//g' | sed 's/",.*//g'`
+
+    ## Get target role id
+    RES_ROLEID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID"/available -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    ### split json objects in lines, find object with name realm-admim , extract id (remove prefix), extract id (remove suffix)
+    ROLEID=`echo $RES_ROLEID | sed -E 's/\},\s*\{/\},\n\{/g' | grep '"name":"'"$IDM_REALM_ADMIN_ROLE"'"' | sed 's/.*id":"//g' | sed 's/",.*//g'`
+
+    ## add role to admin
+    curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"id":"'"$ROLEID"'","name":"'"$IDM_REALM_ADMIN_ROLE"'","containerId":"'"$CLIENTID"'"}]'

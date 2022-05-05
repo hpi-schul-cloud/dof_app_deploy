@@ -167,8 +167,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  IDENTITY_MANAGEMENT__URI:
+    value: "http://erwinidm-svc:8089"
+    server: true
+    client: false
+    nuxtclient: false
   IDENTITY_MANAGEMENT__TENANT:
-    value: "{NAMESPACE}"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__CLIENTID:
     server: true
     client: false
     nuxtclient: false
