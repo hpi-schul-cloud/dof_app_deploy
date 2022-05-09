@@ -22,8 +22,6 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
-      ETHERPAD_API_KEY:
-        required: false
       TOKEN_INVENTORY:
         required: true
 
