@@ -18,6 +18,7 @@ jobs:
     steps:
       - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
     needs:
@@ -122,6 +123,7 @@ jobs:
     steps:
       - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   prod-dbc:
     if: ${{ !failure() }}
@@ -148,6 +150,7 @@ jobs:
     steps:
       - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   prod-brb:
     if: ${{ !failure() }}
@@ -164,22 +167,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-#      
-#  prod-demo:
-#    needs:
-#      - approve_prod_stage_2
-#    uses: ./.github/workflows/host.yml
-#    with:
-#      cfg_version: ${{ github.event.inputs.config_tag_name }}
-#      host_name: prod-demo
-#      host_group: default
-#      host_stage: production
-#      execute_group: ${{ github.event.inputs.instance_group }}
-#    secrets:
-#      token: ${{ secrets.GITHUB_TOKEN }}
-#      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-#      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-#  
+  
   prod-int:
     if: ${{ !failure() }}
     needs:

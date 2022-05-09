@@ -166,6 +166,17 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # Identity Management
+  FEATURE_IDENTITY_MANAGEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__TENANT:
+    value: "{NAMESPACE}"
+    server: true
+    client: false
+    nuxtclient: false
   IGNORE_DISCOVERABILITY:
     value: "true"
     server: true
@@ -366,9 +377,9 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-# FEATURE TOGGLE
+  # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
-    value: "de,en,es"
+    value: "de,en,es,ua"
     server: true
     client: true
     nuxtclient: false
@@ -376,6 +387,16 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
+    value: "true"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
     server: true
@@ -398,7 +419,7 @@ configuration_all:
     nuxtclient: false
   ROOM_VIEW_ENABLED:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_MORGAN_LOG_ENABLED:
@@ -638,6 +659,11 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_LOGIN_LINK_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_TEAMS_ENABLED:
     server: true
