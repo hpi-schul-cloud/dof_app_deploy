@@ -11,3 +11,5 @@ host_ingress:
     serviceName: api-ldap-svc
   api_v1_registration:
     serviceName: api-ldap-svc
+  api_v3_sso_ouauth:
+    serviceName: api-ldap-svc
