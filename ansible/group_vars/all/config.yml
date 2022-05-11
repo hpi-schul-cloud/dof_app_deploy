@@ -700,3 +700,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # NEXTCLOUD
+  NEXTCLOUD_DOMAIN:
+    server: false
+    client: true
+    nuxtclient: false
