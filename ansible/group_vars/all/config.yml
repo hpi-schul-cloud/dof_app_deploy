@@ -688,5 +688,5 @@ configuration_all:
   FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
     value: "false"
     server: false
-    client: false
+    client: true
     nuxtclient: false
