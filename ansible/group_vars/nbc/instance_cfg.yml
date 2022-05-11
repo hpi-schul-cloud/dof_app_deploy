@@ -44,6 +44,8 @@ FEATURE_LOG_REQUEST: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 FEATURE_LOGIN_LINK_ENABLED: "true"
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
+# after custom_oidc have to be the internal socialloginplugin name
+NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/sociallogin/custom_oidc/SchulcloudNextcloud?login_redirect_url=/apps/files/?dir=/
 
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
