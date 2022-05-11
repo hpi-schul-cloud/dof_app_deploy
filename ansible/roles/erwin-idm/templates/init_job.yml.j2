@@ -3,9 +3,12 @@ kind: Job
 metadata:
   name: erwinidm-init-job
   labels:
-    app: api
+    app: erwinidm
 spec:
   template:
+    metadata:
+      labels:
+        app: erwinidm-init
     spec:
       containers:
       - name: erwinidm-init

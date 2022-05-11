@@ -25,7 +25,7 @@ data:
     IDM_CLIENT_URL_BASE=https://{{ DOMAIN }}
 
     # Wait for IDM to be ready or fail
-    curl --retry 60 --retry-all-errors --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
+    curl --retry 90 --retry-all-errors --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
     echo "KEYCLOAK_INIT: Connection OK"
 
     # Request authorization
