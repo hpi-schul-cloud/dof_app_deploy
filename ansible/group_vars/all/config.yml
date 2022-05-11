@@ -690,3 +690,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  NEXTCLOUD_REDIRECT_URL:
+    value: ""
+    server: false
+    client: true
+    nuxtclient: false
