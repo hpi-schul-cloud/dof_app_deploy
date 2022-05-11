@@ -253,6 +253,34 @@ default_ingress:
     path: /api/v1/config/app/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_file_upload:
+    path: /api/v3/file/upload
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_download:
+    path: /api/v3/file/download
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_list:
+    path: /api/v3/file/list
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_rename:
+    path: /api/v3/file/rename
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_delete:
+    path: /api/v3/file/delete
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_restore:
+    path: /api/v3/file/restore
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_copy:
+    path: /api/v3/file/copy
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
