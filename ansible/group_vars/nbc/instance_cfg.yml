@@ -80,7 +80,7 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 #Nextcloud
-NEXTCLOUD_DOMAIN: nextcloud-nbc.dbildungscloud.dev
+NEXTCLOUD_DOMAIN: .dbildungscloud.dev
 
 # Ingress
 group_ingress:
