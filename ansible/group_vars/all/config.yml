@@ -2,7 +2,7 @@ configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
   #    config_name: OPTIONAL for the host and group vars
-  #    value: "true"
+  #    value: "true" OPTIONAL
   #    server: true
   #    client: true
   #    nuxtclient: true
@@ -57,6 +57,10 @@ configuration_all:
   SC_CONTACT_EMAIL:
     value: "support@dbildungscloud.de"
     server: false
+    client: true
+    nuxtclient: false
+  ACCESSIBILITY_REPORT_EMAIL:
+    server: true
     client: true
     nuxtclient: false
   CORS:
