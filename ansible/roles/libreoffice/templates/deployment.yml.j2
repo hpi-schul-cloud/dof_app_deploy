@@ -45,10 +45,6 @@ spec:
           requests:
             cpu: "{{ LIBREOFFICE_CPU_MIN|default("100m", true) }}"
             memory: "{{ LIBREOFFICE_MEM_MIN|default("128Mi", true) }}"
-        securityPolicy:
-          capabilities:
-            add:
-              - MKNOD
       volumes:
       - name: loolwsdxml
         configMap:
