@@ -642,6 +642,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
