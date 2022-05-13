@@ -704,3 +704,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  NEXTCLOUD_REDIRECT_URL:
+    value: ""
+    server: false
+    client: true
+    nuxtclient: false
