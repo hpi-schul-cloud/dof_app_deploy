@@ -59,11 +59,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  HELPAREA_URL:
-    value: ""
-    server: false
-    client: true
-    nuxtclient: false
   CORS:
     value: "true"
     server: false
@@ -96,6 +91,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  NO_COLOR:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: true
   # STAIC Infos
   MEMORY_INTERVAL_TIME:
     value: "0"
@@ -382,6 +382,21 @@ configuration_all:
     value: "de,en,es,ua"
     server: true
     client: true
+    nuxtclient: false
+  LEGACY_COURSE_OVERVIEW_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
+    value: "true"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
     server: true
