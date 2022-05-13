@@ -91,6 +91,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  NO_COLOR:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: true
   # STAIC Infos
   MEMORY_INTERVAL_TIME:
     value: "0"
@@ -694,4 +699,14 @@ configuration_all:
     value: ""
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  NEXTCLOUD_REDIRECT_URL:
+    value: ""
+    server: false
+    client: true
     nuxtclient: false
