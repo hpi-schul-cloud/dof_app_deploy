@@ -1,10 +1,10 @@
 NAMESPACE: niedersachsen
 DOMAIN: niedersachsen.cloud
 DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
-ES_DOMAIN: https://mv-repo.schul-cloud.org
-ALERT_STATUS_URL: https://status.niedersachsen.cloud/
+
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "false"
-FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+ES_DOMAIN: https://mv-repo.schul-cloud.org
+ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
