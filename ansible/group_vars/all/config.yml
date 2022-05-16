@@ -2,7 +2,7 @@ configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
   #    config_name: OPTIONAL for the host and group vars
-  #    value: "true"
+  #    value: "true" OPTIONAL
   #    server: true
   #    client: true
   #    nuxtclient: true
@@ -57,6 +57,10 @@ configuration_all:
   SC_CONTACT_EMAIL:
     value: "support@dbildungscloud.de"
     server: false
+    client: true
+    nuxtclient: false
+  ACCESSIBILITY_REPORT_EMAIL:
+    server: true
     client: true
     nuxtclient: false
   CORS:
@@ -707,4 +711,14 @@ configuration_all:
     value: ""
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  NEXTCLOUD_REDIRECT_URL:
+    value: ""
+    server: false
+    client: true
     nuxtclient: false
