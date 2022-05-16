@@ -52,14 +52,14 @@
   when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
 
 
-- name: Secred by 1Password
+- name: Secret by 1Password
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: onepassword.yml.j2
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
-- name: remove Secred by 1Password
+- name: remove Secret by 1Password
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config 
     namespace: "{{ NAMESPACE }}"
@@ -120,3 +120,38 @@
     name: monitoring-prometheus-sc-erwinidm-svc
     state: absent
   when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
+
+- name: Add or Update init scripts Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap-init.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM
+
+- name: remove init scripts Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: ConfigMap
+    name: erwinidm-init-file
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Init Job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: init_job.yml.j2
+  when: WITH_ERWINIDM
+
+- name: Remove Init Job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    state: absent
+    api_version: batch/v1
+    kind: Job
+    name: erwinidm-init-job
+  when: not WITH_ERWINIDM
