@@ -176,8 +176,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  IDENTITY_MANAGEMENT__URI:
+    value: "http://erwinidm-svc:8089"
+    server: true
+    client: false
+    nuxtclient: false
   IDENTITY_MANAGEMENT__TENANT:
-    value: "{NAMESPACE}"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__CLIENTID:
     server: true
     client: false
     nuxtclient: false
@@ -399,15 +407,6 @@ configuration_all:
     nuxtclient: false
   TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
     value: "true"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
-  ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    value: "enabled"
     server: true
     client: false
     nuxtclient: false
