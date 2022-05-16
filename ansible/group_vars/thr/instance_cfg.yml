@@ -51,6 +51,9 @@ PORT_FILE_SERVICE: 4444
 # TSP (Thüringer Schulportal)
 FEATURE_TSP_ENABLED: "true"
 
+# accessibility
+ACCESSIBILITY_REPORT_EMAIL: institut@thillm.de
+
 # ANTIVIRUS
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file

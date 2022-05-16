@@ -76,6 +76,8 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # import users
 FEATURE_USER_MIGRATION_ENABLED: "true"
 FEATURE_USER_MIGRATION_SYSTEM_ID: ""
+# accessibility
+ACCESSIBILITY_REPORT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 
 # Ingress
 group_ingress:

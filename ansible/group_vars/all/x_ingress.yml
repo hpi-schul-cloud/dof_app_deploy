@@ -59,10 +59,6 @@ default_ingress:
     path: /tasks
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  homework:
-    path: /homework
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
     path: /nuxtversion
     serviceName: nuxtclient-svc
