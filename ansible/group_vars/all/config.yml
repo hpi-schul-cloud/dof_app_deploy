@@ -170,6 +170,12 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # WOPI
+  WOPI_MAX_FILE_SIZE:
+    value: "104857600",
+    server: true
+    client: false
+    nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
     value: "false"
