@@ -1,0 +1,157 @@
+- name: Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: svc.yml.j2
+  when: WITH_ERWINIDM
+
+- name: remove Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Service
+    name: erwinidm-svc
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Add or Update Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM
+
+- name: remove Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: ConfigMap
+    name: erwinidm-configmap
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: secret.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+- name: remove Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Secret
+    name: erwinidm-secret
+    state: absent
+  when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+
+- name: Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: onepassword.yml.j2
+  when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+- name: remove Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: onepassword.com/v1
+    kind: OnePasswordItem
+    name: erwinidm-secret
+    state: absent
+  when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+
+- name: Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: deployment.yml.j2
+  when: WITH_ERWINIDM
+
+- name: remove Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: apps/v1
+    kind: Deployment
+    name: erwinidm-deployment
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: ingress.yml.j2
+  when: WITH_ERWINIDM
+
+- name: remove Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: networking.k8s.io/v1beta1
+    kind: Ingress
+    name: "{{ NAMESPACE }}-erwinidm-ingress"
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Service Monitor
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: templates/erwinidm-svc-monitor.yml.j2
+  when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
+
+- name: remove Service Monitor
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: monitoring.coreos.com/v1
+    kind: ServiceMonitor
+    name: monitoring-prometheus-sc-erwinidm-svc
+    state: absent
+  when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
+
+- name: Add or Update init scripts Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap-init.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM
+
+- name: remove init scripts Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: ConfigMap
+    name: erwinidm-init-file
+    state: absent
+  when: not WITH_ERWINIDM
+
+- name: Init Job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: init_job.yml.j2
+  when: WITH_ERWINIDM
+
+- name: Remove Init Job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    state: absent
+    api_version: batch/v1
+    kind: Job
+    name: erwinidm-init-job
+  when: not WITH_ERWINIDM

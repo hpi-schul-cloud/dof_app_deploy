@@ -1,4 +1,4 @@
-SUPPORT_WISH_EMAIL_ADDRESS: ticketsystem@schul-cloud.org
+SUPPORT_WISH_EMAIL_ADDRESS: ticketsystem@dbildungscloud.de
 # SUPPORT_EMAIL
-SUPPORT_PROBLEM_EMAIL_ADDRESS: "ticketsystem@schul-cloud.org"
-SMTP_SENDER: noreply@hpi-schul-cloud.de
+SUPPORT_PROBLEM_EMAIL_ADDRESS: "ticketsystem@dbildungscloud.de"
+SMTP_SENDER: noreply@dbildungscloud.de

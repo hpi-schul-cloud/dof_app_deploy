@@ -11,10 +11,6 @@ default_ingress:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  account:
-    path: /account
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   activation:
     path: /activation
     serviceName: nuxtclient-svc
@@ -63,10 +59,6 @@ default_ingress:
     path: /tasks
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  homework:
-    path: /homework
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
     path: /nuxtversion
     serviceName: nuxtclient-svc
@@ -81,6 +73,10 @@ default_ingress:
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_ldap:
     path: /administration/ldap
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_migration:
+    path: /administration/migration
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_school-settings:
@@ -131,6 +127,10 @@ default_ingress:
     path: /api/v1/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v1_homework:
+    path: /api/v1/homework
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_tasks:
     path: /api/v3/tasks
     serviceName: api-svc
@@ -141,6 +141,14 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user_me:
     path: /api/v3/user/me
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_import:
+    path: /api/v3/user/import
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user_language:
+    path: /api/v3/user/language
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_news:
@@ -201,6 +209,10 @@ default_ingress:
     path: /api/v1/courses-share
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v1_link:
+    path: /api/v1/link
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_lessons:
     path: /api/v1/lessons
     serviceName: api-svc
@@ -237,6 +249,34 @@ default_ingress:
     path: /api/v1/config/app/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_file_upload:
+    path: /api/v3/file/upload
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_download:
+    path: /api/v3/file/download
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_list:
+    path: /api/v3/file/list
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_rename:
+    path: /api/v3/file/rename
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_delete:
+    path: /api/v3/file/delete
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_restore:
+    path: /api/v3/file/restore
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_copy:
+    path: /api/v3/file/copy
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
