@@ -172,7 +172,7 @@ configuration_all:
     nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
-    value: "104857600",
+    value: "104857600"
     server: true
     client: false
     nuxtclient: false
