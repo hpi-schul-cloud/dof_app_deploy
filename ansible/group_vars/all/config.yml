@@ -669,6 +669,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
+    value: "true"
+    server: false
+    client: true
   FEATURE_LOGIN_LINK_ENABLED:
     value: "false"
     server: true
