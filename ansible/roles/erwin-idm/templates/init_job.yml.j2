@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: erwinidm-init-job
+  labels:
+    app: erwinidm
+spec:
+  template:
+    metadata:
+      labels:
+        app: erwinidm-init
+    spec:
+      containers:
+      - name: erwinidm-init
+        image: schulcloud/infra-tools:latest
+        envFrom:
+        - configMapRef:
+            name: erwinidm-configmap
+        - secretRef:
+            name: erwinidm-secret
+        volumeMounts:
+        - name: script
+          mountPath: /create_dbc_realm.sh
+          subPath: create_dbc_realm.sh
+        command: ['/bin/bash','-c']
+        args: ['cp /create_dbc_realm.sh /create_dbc_realm.run.sh && chmod +x /create_dbc_realm.run.sh &&./create_dbc_realm.run.sh']
+      volumes:
+      - name: script
+        configMap:
+          name: erwinidm-init-file
+          items:
+          - key: create_dbc_realm.sh
+            path: create_dbc_realm.sh
+      restartPolicy: Never
+  backoffLimit: 4

@@ -2,7 +2,7 @@ configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
   #    config_name: OPTIONAL for the host and group vars
-  #    value: "true"
+  #    value: "true" OPTIONAL
   #    server: true
   #    client: true
   #    nuxtclient: true
@@ -57,6 +57,10 @@ configuration_all:
   SC_CONTACT_EMAIL:
     value: "support@dbildungscloud.de"
     server: false
+    client: true
+    nuxtclient: false
+  ACCESSIBILITY_REPORT_EMAIL:
+    server: true
     client: true
     nuxtclient: false
   CORS:
@@ -166,14 +170,28 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # WOPI
+  WOPI_MAX_FILE_SIZE:
+    value: "104857600"
+    server: true
+    client: false
+    nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
     value: "false"
     server: true
     client: false
     nuxtclient: false
+  IDENTITY_MANAGEMENT__URI:
+    value: "http://erwinidm-svc:8089"
+    server: true
+    client: false
+    nuxtclient: false
   IDENTITY_MANAGEMENT__TENANT:
-    value: "{NAMESPACE}"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__CLIENTID:
     server: true
     client: false
     nuxtclient: false
@@ -395,15 +413,6 @@ configuration_all:
     nuxtclient: false
   TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
     value: "true"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_ADMIN_TOGGLE_STUDENT_VISIBILITY_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
-  ADMIN_TOGGLE_STUDENT_VISIBILITY:
-    value: "enabled"
     server: true
     client: false
     nuxtclient: false
@@ -642,6 +651,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
@@ -660,6 +679,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
+    value: "true"
+    server: false
+    client: true
   FEATURE_LOGIN_LINK_ENABLED:
     value: "false"
     server: true
@@ -699,6 +722,16 @@ configuration_all:
     value: ""
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  NEXTCLOUD_REDIRECT_URL:
+    value: ""
+    server: false
+    client: true
     nuxtclient: false
   HYDRA_LOGOUT_URI:
     server: false
