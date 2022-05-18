@@ -700,8 +700,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # NEXTCLOUD
-  NEXTCLOUD_DOMAIN:
+  HYDRA_LOGOUT_URI:
     server: false
     client: true
     nuxtclient: false
