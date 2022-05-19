@@ -23,11 +23,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FILES_STORAGE_BACKEND_URL:
-    value: "http://api-files-svc:4444/api/"
-    server: false
-    client: true
-    nuxtclient: false
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: false
@@ -168,7 +163,7 @@ configuration_all:
   FILES_STORAGE__SERVICE_BASE_URL:
     value: "http://api-files-svc:4444"
     server: true
-    client: false
+    client: true
     nuxtclient: false
   FILES_STORAGE__S3_REGION:
     value: "eu-central-1"
