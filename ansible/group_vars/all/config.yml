@@ -23,6 +23,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FILES_STORAGE_BACKEND_URL:
+    value: "http://api-files-svc:4444/api/"
+    server: false
+    client: true
+    nuxtclient: false
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: false
