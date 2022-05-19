@@ -84,7 +84,7 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 #Hydralogout
-HYDRA_LOGOUT_URI: http://hydra-svc:4444/oauth2/sessions/logout
+HYDRA_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 
