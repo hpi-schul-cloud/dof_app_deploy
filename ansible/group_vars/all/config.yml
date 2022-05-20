@@ -733,3 +733,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  OAUTH2_LOGOUT_URI:
+    server: false
+    client: true
+    nuxtclient: false
