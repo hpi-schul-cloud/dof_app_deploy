@@ -12,6 +12,8 @@ data:
   URLS_SELF_ISSUER: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
   URLS_CONSENT: "https://{{ DOMAIN }}/oauth2/consent"
   URLS_LOGIN: https://{{ DOMAIN }}/oauth2/login
+  URLS_LOGOUT: https://{{ DOMAIN }}/oauth2/logout/redirect
+  URLS_POST_LOGOUT_REDIRECT: https://{{ DOMAIN }}/logout/
   SERVE_TLS_ALLOW_TERMINATION_FROM: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
   OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: "public,pairwise"
   SC_FRONTEND: "https://{{ DOMAIN }}"
