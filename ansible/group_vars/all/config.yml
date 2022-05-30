@@ -169,6 +169,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FILES_STORAGE__INCOMING_REQUEST_TIMEOUT:
+    value: "600000"
+    server: true
+    client: true
+    nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
     value: "104857600"
