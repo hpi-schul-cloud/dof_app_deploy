@@ -715,8 +715,8 @@ configuration_all:
     nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
-    server: false
-    client: false
+    server: true
+    client: true
     nuxtclient: false
   FEATURE_USER_MIGRATION_SYSTEM_ID:
     value: ""
