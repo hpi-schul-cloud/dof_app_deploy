@@ -15,12 +15,6 @@ configuration_all:
   API_HOST:
     value: "http://api-svc:3030/api"
     server: true
-    client: false
-    nuxtclient: false
-  BACKEND_URL:
-    config_name: API_HOST
-    value: "http://api-svc:3030/api/"
-    server: false
     client: true
     nuxtclient: false
   API_URL:
@@ -39,9 +33,14 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
-  REQUEST_TIMEOUT_MS:
+  REQUEST_OPTION__TIMEOUT_MS:
     value: "8000"
-    server: false
+    server: true
+    client: true
+    nuxtclient: false
+  REQUEST_OPTION__KEEP_ALIVE:
+    value: "true"
+    server: true
     client: true
     nuxtclient: false
   SUPPORT_PROBLEM_EMAIL_ADDRESS:
@@ -163,12 +162,17 @@ configuration_all:
   FILES_STORAGE__SERVICE_BASE_URL:
     value: "http://api-files-svc:4444"
     server: true
-    client: false
+    client: true
     nuxtclient: false
   FILES_STORAGE__S3_REGION:
     value: "eu-central-1"
     server: true
     client: false
+    nuxtclient: false
+  FILES_STORAGE__INCOMING_REQUEST_TIMEOUT:
+    value: "600000"
+    server: true
+    client: true
     nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
@@ -273,11 +277,6 @@ configuration_all:
     client: true
     nuxtclient: false
   # anything else
-  KEEP_ALIVE:
-    value: "true"
-    server: true
-    client: true
-    nuxtclient: false
   CONTENT_URI:
     server: true
     client: false
