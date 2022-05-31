@@ -73,7 +73,7 @@ PROD_INSTANCE: true
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # import users
-FEATURE_USER_MIGRATION_ENABLED: "true"
+FEATURE_USER_MIGRATION_ENABLED: "false"
 FEATURE_USER_MIGRATION_SYSTEM_ID: ""
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
