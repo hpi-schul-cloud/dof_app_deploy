@@ -486,6 +486,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_TASK_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
     server: true
