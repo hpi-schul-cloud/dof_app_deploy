@@ -140,7 +140,7 @@ jobs:
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
-      add github action to push to rocket chat 
+      # add github action to push to rocket chat 
       - name: Send Notification to Rocket Chat
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: always()
