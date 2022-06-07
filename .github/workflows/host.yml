@@ -148,6 +148,6 @@ jobs:
           type: ${{ job.status }}
           job_name: 'Rollout of ${{ inputs.host_name }} triggered by ${{ github.actor }}:'
           url: ${{ secrets.RC_WEBHOOK }}
-          channel: '#releases2'
-          username: dof_app_deploy
+          channel: '#releases'
+          username: Autodeployment Info
 
