@@ -91,7 +91,7 @@ jobs:
           repository: hpi-schul-cloud/schulcloud-synapse-synchronization
           path: repo/schulcloud-synapse-synchronization
           token: ${{ secrets.token }}
-          ref: ${{ env.MESSENGER_SYNC_VERSION }}
+          ref: ${{ env.SCHULCLOUD_SYNAPSE_SYNCHRONIZATION_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
