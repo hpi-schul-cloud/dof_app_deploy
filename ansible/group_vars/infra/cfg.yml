@@ -1,6 +1,5 @@
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
-ROOM_VIEW_ENABLED: "true"
 CLUSTER_ISSUER: sc-cert-manager-clusterissuer-letsencrypt
 
 NAMESPACE: "{{ inventory_hostname | replace('.', '-') }}"
