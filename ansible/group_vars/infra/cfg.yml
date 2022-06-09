@@ -12,7 +12,6 @@ MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED: "false"
 MATRIX_MESSENGER__SYNC_USER_DISPLAYNAME: "dBildungscloud Sync-Bot"
 
 FEATURE_NEXBOARD_ENABLED: "false"
-ROOM_VIEW_ENABLED: "true"
 CLUSTER_ISSUER: sc-cert-manager-clusterissuer-letsencrypt
 
 NAMESPACE: "{{ inventory_hostname | replace('.', '-') }}"
