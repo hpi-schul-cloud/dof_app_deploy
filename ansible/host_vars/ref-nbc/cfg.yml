@@ -5,3 +5,6 @@ FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 ES_DOMAIN: https://mv-repo.schul-cloud.org
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
+
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+#NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
