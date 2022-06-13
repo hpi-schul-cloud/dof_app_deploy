@@ -142,11 +142,11 @@ jobs:
           rm -rf  /config
       - name: Send Notification to Rocket Chat
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
-        if: always()
+        if: always() && (contains(inputs.host_name, 'ref')) || (contains(inputs.host_name, 'prod'))
         with:
           type: ${{ job.status }}
           job_name: 'Rollout of ${{ inputs.host_name }} triggered by ${{ github.actor }}:'
           url: ${{ secrets.RC_WEBHOOK }}
-          channel: '#releases'
+          channel: '#release'
           username: Autodeployment Info
 
