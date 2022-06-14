@@ -1,0 +1,68 @@
+name: Rollout to the infra instances
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_tag_name:
+        description: 'Tag from the dof_app_deploy'
+        required: true
+      instance_group:
+        description: "All Instances, Instance group or Host"
+        required: true
+        default: all
+
+jobs:
+  approve_infra:
+    environment: approve_infra
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
+      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
+      
+
+  test-loadtest-01:
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: test-loadtest-01
+      host_group: default
+      host_stage: test
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
+
+  infra-schulcloud-01:
+    needs:
+      - approve_infra  
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-01
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
+
+  infra-schulcloud-02:
+    needs:
+      - approve_infra
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: infra.schulcloud-02
+      host_group: default
+      host_stage: infra
+      execute_group: ${{ github.event.inputs.instance_group }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
