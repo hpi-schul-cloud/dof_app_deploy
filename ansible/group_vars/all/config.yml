@@ -174,6 +174,12 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FILES_STORAGE__MAX_FILE_SIZE:
+  # in MB
+    value: "5120"
+    server: true
+    client: true
+    nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
     value: "104857600"
@@ -426,7 +432,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ROOM_VIEW_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -482,6 +488,11 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_COURSE_COPY:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_TASK_COPY_ENABLED:
     value: "false"
     server: true
     client: true
