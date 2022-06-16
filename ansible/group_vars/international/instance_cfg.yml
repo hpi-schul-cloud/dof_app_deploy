@@ -66,7 +66,7 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 
-#ghost blog
+# Ghost blog
 GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
 
 # Ingress
