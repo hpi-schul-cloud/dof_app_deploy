@@ -752,3 +752,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  GHOST_API_URL:
+    server: false
+    client: true
+    nuxtclient: false
