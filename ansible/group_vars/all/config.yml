@@ -497,6 +497,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_COURSE_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
     server: true
@@ -744,6 +749,10 @@ configuration_all:
     client: true
     nuxtclient: false
   OAUTH2_LOGOUT_URI:
+    server: false
+    client: true
+    nuxtclient: false
+  GHOST_API_URL:
     server: false
     client: true
     nuxtclient: false
