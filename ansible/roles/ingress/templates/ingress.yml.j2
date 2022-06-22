@@ -16,8 +16,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
-    nginx.ingress.kubernetes.io/proxy-body-size: "{{ FILES_STORAGE__MAX_FILE_SIZE }}m"
-    nginx.org/client-max-body-size: "{{ FILES_STORAGE__MAX_FILE_SIZE }}m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "{{ FILES_STORAGE__MAX_FILE_SIZE|default("5120") }}m"
+    nginx.org/client-max-body-size: "{{ FILES_STORAGE__MAX_FILE_SIZE|default("5120") }}m"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
