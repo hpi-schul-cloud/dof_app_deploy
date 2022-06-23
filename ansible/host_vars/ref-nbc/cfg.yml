@@ -7,4 +7,4 @@ ES_DOMAIN: https://mv-repo.schul-cloud.org
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
-NEXTCLOUD_REDIRECT_URL: https://staging.nextcloud-nbc.dbildungscloud.org/apps/files/?dir=/
+NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
