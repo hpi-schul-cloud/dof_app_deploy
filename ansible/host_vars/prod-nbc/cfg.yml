@@ -10,3 +10,4 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 #NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
+#NEXTCLOUD_API_PATH: https://nextcloud-nbc.dbildungscloud.dev/
