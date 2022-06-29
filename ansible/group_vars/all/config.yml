@@ -176,7 +176,7 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
   # in MB
-    value: "5120"
+    value: "2560"
     server: true
     client: true
     nuxtclient: false
