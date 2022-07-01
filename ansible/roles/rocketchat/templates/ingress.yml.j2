@@ -197,4 +197,47 @@ spec:
         backend:
           serviceName: rocketchat-svc
           servicePort: 5000
-
+      - path: /api/v1/banners
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/listCustomSounds
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/apps:is-enabled
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/listCustomUserStatus
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/getUserRoles
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/loadHistory
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/rooms:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/userSetUtcOffset
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/permissions:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.call/loadLocale
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
+      - path: /api/v1/method.callAnon/subscriptions:get
+        backend:
+          serviceName: rocketchat-svc
+          servicePort: 5000
