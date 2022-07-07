@@ -23,6 +23,7 @@ data:
 
     IDM_CLIENT_NAME={{ IDENTITY_MANAGEMENT__CLIENTID }}
     IDM_CLIENT_URL_BASE=https://{{ DOMAIN }}
+    IDM_CLIENT_SECRET=$IDENTITY_MANAGEMENT__DBC_CLIENTID_SECRET
 
     # Wait for IDM to be ready or fail
     curl --retry 5000 --retry-all-errors --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
@@ -43,7 +44,7 @@ data:
 
     # Create client
     echo "KEYCLOAK_INIT: Create client"
-    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}'
+    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}'
 
     # Create realm admin user
     echo "KEYCLOAK_INIT: Create realm admin user"
