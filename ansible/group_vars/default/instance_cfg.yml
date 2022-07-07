@@ -69,4 +69,4 @@ RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
 # Ghost blog
-GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
+GHOST_BASE_URL: https://blog.dbildungscloud.de

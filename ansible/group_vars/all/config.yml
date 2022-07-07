@@ -762,7 +762,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GHOST_API_URL:
-    server: false
+  GHOST_BASE_URL:
+    server: true
     client: true
     nuxtclient: false
