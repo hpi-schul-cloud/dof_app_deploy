@@ -431,11 +431,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  ROOM_VIEW_ENABLED:
-    value: "true"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_MORGAN_LOG_ENABLED:
     value: "false"
     server: true
