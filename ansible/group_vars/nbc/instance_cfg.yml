@@ -87,6 +87,7 @@ ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
+GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
 
 # Ingress
 group_ingress:
