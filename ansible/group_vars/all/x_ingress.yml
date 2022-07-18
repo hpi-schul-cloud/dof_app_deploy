@@ -193,8 +193,8 @@ default_ingress:
     path: /api/v1/ldap-config
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_version:
-    path: /api/v1/version
+  api_version:
+    path: /serverversion
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_wopi:

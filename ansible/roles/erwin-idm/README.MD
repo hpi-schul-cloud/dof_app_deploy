@@ -58,4 +58,4 @@ More information can be found here:
 
 - Base image: <https://github.com/hpi-schul-cloud/erwin-idm/>
 - Keycloak specific configuration: <https://www.keycloak.org/server/all-config?options-filter=all#_proxy>
-- Keycloak Admin API: <https://www.keycloak.org/docs-api/17.0/rest-api/index.html>
+- Keycloak Admin API: <https://www.keycloak.org/docs-api/18.0/rest-api/index.html>
