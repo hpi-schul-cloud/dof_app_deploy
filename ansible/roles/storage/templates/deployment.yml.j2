@@ -22,11 +22,6 @@ spec:
       annotations:
         configmapHash: ""
     spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        runAsNonRoot: true
       containers:
       - name: storage
         image: {{ STORAGE_IMAGE_NAME }}
