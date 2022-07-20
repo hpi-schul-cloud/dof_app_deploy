@@ -40,6 +40,7 @@ spec:
           requests:
             cpu: {{ POSTGRES_CPU_REQUESTS|default("500m", true) }}
             memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
+      volumes:
       - name: postgres-data-init
         configMap:
           name: postgres-configmap-init
