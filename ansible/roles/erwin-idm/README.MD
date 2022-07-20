@@ -38,16 +38,17 @@ Following configuration variables are used for internal and external (instance s
 
 Secrets are configured via OnePassword. See `secret.yml` for secret configuration examples. Following secretes are defined:
 
-| Variable                              | Description                                                |
-| ------------------------------------- | ---------------------------------------------------------- |
-| KEYCLOAK_ADMIN                        | The Keycloak super admin                                   |
-| KEYCLOAK_ADMIN_PASSWORD               | The Keycloak super admin's password                        |
-| KC_DB_URL                             | Connection string to PostgreSQL in JDBC Format [^psqlnote] |
-| KC_DB_USERNAME                        | The PostgreSQL user                                        |
-| KC_DB_PASSWORD                        | The PostgreSQL user's password                             |
-| IDENTITY_MANAGEMENT\_\_ADMIN_USER     | The instance's realm admin                                 |
-| IDENTITY_MANAGEMENT\_\_ADMIN_PASSWORD | The instance's realm admin's password                      |
-| IDENTITY_MANAGEMENT\_\_ADMIN_CLIENTID | The instance's realm admin defined client                  |
+| Variable                                   | Description                                                |
+| ------------------------------------------ | ---------------------------------------------------------- |
+| KEYCLOAK_ADMIN                             | The Keycloak super admin                                   |
+| KEYCLOAK_ADMIN_PASSWORD                    | The Keycloak super admin's password                        |
+| KC_DB_URL                                  | Connection string to PostgreSQL in JDBC Format [^psqlnote] |
+| KC_DB_USERNAME                             | The PostgreSQL user                                        |
+| KC_DB_PASSWORD                             | The PostgreSQL user's password                             |
+| IDENTITY_MANAGEMENT\_\_ADMIN_USER          | The instance's realm admin                                 |
+| IDENTITY_MANAGEMENT\_\_ADMIN_PASSWORD      | The instance's realm admin's password                      |
+| IDENTITY_MANAGEMENT\_\_ADMIN_CLIENTID      | The instance's realm admin defined client                  |
+| IDENTITY_MANAGEMENT\_\_DBC_CLIENTID_SECRET | The instance's realm client secret                         |
 
 [^psqlnote]: The connection string has to be given in JDBC Format, e.g. 'jdbc:postgresql://postgres:5432/postgres?currentSchema=\<schema\>'. This must include the used schema, see: <https://github.com/keycloak/keycloak/issues/10235>
 

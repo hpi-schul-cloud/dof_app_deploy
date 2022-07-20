@@ -23,6 +23,7 @@ data:
 
     IDM_CLIENT_NAME={{ IDENTITY_MANAGEMENT__CLIENTID }}
     IDM_CLIENT_URL_BASE=https://{{ DOMAIN }}
+    IDM_CLIENT_SECRET=$IDENTITY_MANAGEMENT__DBC_CLIENTID_SECRET
 
     # Wait for IDM to be ready or fail
     curl --retry 5000 --retry-all-errors --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
@@ -38,33 +39,63 @@ data:
     echo "KEYCLOAK_INIT: Create realm"
     RES_REALMCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"enabled":true,"id":"'"$IDM_REALM_NAME"'","realm":"'"$IDM_REALM_NAME"'", "loginWithEmailAllowed":false}')
     if [[ $RES_REALMCREATE -ne 201 ]] ; then
-        exit 1
+      echo "KEYCLOAK_INIT: realm exists"
     fi
 
     # Create client
     echo "KEYCLOAK_INIT: Create client"
-    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}'
+    RES_CLIENTCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}')
+    if [[ $RES_CLIENTCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: client exists"
+    fi
 
     # Create realm admin user
     echo "KEYCLOAK_INIT: Create realm admin user"
-    curl "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}'
+    RES_ADMINCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}')
+    if [[ $RES_ADMINCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: realm admin exists"
+    fi
 
     # Add realm management role to admin user
     echo "KEYCLOAK_INIT: Configure realm admin user"
     ## Get target user id
-    RES_USERID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users?username="$IDM_REALM_ADMIN" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    RES_USERID=$(curl -s "$IDM_URL"/"$IDM_REALM_NAME"/users?username="$IDM_REALM_ADMIN" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### extract id (remove prefix), extract id (remove suffix)
     USERID=`echo $RES_USERID | sed 's/.*id":"//g' | sed 's/",.*//g'`
 
+    ## Update password if realm admin user already exists
+    if [[ ! -z $USERID && $RES_ADMINCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: Update admin user password"
+      RES_UPDATEADMINPWD=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/reset-password -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}')
+      if [[ $RES_UPDATEADMINPWD -ne 204 ]] ; then
+      echo "KEYCLOAK_INIT: Password update failed"
+      fi
+    fi
+
     ## Get target client id
-    RES_CLIENTID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    RES_CLIENTID=$(curl -s "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### extract id (remove prefix), extract id (remove suffix)
     CLIENTID=`echo $RES_CLIENTID | sed 's/.*id":"//g' | sed 's/",.*//g'`
 
+    ## Update client settings if client already exists
+    if [[ ! -z $CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: Update client details"
+      RES_UPDATECLIENTSECRET=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"baseUrl":"'"$IDM_CLIENT_URL_BASE"'","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"]}')
+      if [[ $RES_UPDATECLIENTSECRET -ne 204 ]] ; then
+      echo "KEYCLOAK_INIT: Client update failed"
+      fi
+    fi
+
     ## Get target role id
-    RES_ROLEID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID"/available -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    RES_ROLEID=$(curl -s  "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID"/available -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### split json objects in lines, find object with name realm-admim , extract id (remove prefix), extract id (remove suffix)
     ROLEID=`echo $RES_ROLEID | sed -E 's/\},\s*\{/\},\n\{/g' | grep '"name":"'"$IDM_REALM_ADMIN_ROLE"'"' | sed 's/.*id":"//g' | sed 's/",.*//g'`
-
-    ## add role to admin
-    curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"id":"'"$ROLEID"'","name":"'"$IDM_REALM_ADMIN_ROLE"'","containerId":"'"$CLIENTID"'"}]'
+    if [[ -z $ROLEID ]] ; then
+      echo "KEYCLOAK_INIT: Target role not found"
+    else
+      ## add role to admin if not set before
+      curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"id":"'"$ROLEID"'","name":"'"$IDM_REALM_ADMIN_ROLE"'","containerId":"'"$CLIENTID"'"}]'
+      if [[ $RES_REALMCREATE -ne 201 ]] ; then
+      echo
+      fi
+    fi
