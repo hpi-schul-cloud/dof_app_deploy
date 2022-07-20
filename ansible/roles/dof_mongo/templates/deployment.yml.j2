@@ -39,10 +39,6 @@ spec:
         envFrom:
         - configMapRef:
             name: mongo-configmap
-        volumeMounts:
-        - name: mongodb-data-pv
-          mountPath: /data/db
-          readOnly: false
         resources:
           limits:
             cpu: {{ MONGO_CPU_LIMITS|default("2000m", true) }}
@@ -50,7 +46,3 @@ spec:
           requests:
             cpu: {{ MONGO_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MONGO_MEMORY_REQUESTS|default("256Mi", true) }}
-      volumes:
-      - name: mongodb-data-pv
-        persistentVolumeClaim:
-          claimName: mongo-pvc

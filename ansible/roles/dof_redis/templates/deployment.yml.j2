@@ -29,10 +29,6 @@ spec:
         - name: redis
           containerPort: 6379
           protocol: TCP
-        volumeMounts:
-        - name: redis-data-pv
-          mountPath: /data
-          readOnly: false
         resources:
           limits:
             cpu: {{ REDIS_CPU_LIMITS|default("2000m", true) }}
@@ -40,7 +36,3 @@ spec:
           requests:
             cpu: {{ REDIS_CPU_REQUESTS|default("100m", true) }}
             memory: {{ REDIS_MEMORY_REQUESTS|default("128Mi", true) }}
-      volumes:
-      - name: redis-data-pv
-        persistentVolumeClaim:
-          claimName: redis-pvc
