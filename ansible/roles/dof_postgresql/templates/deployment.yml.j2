@@ -30,9 +30,6 @@ spec:
         - secretRef:
             name: postgres-secret
         volumeMounts:
-        - name: postgres-data-pv
-          mountPath: /var/lib/postgresql/data
-          readOnly: false
         - name: postgres-data-init
           mountPath: /docker-entrypoint-initdb.d/01_erwinidm.sql
           subPath: 01_erwinidm.sql
@@ -44,9 +41,6 @@ spec:
             cpu: {{ POSTGRES_CPU_REQUESTS|default("500m", true) }}
             memory: {{ POSTGRES_MEMORY_REQUESTS|default("256Mi", true) }}
       volumes:
-      - name: postgres-data-pv
-        persistentVolumeClaim:
-          claimName: postgres-pvc
       - name: postgres-data-init
         configMap:
           name: postgres-configmap-init
