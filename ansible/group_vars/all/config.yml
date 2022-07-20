@@ -539,7 +539,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
     value: "true"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
