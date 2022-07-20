@@ -29,6 +29,7 @@ spec:
 {% endif %}
         - secretRef:
             name: postgres-secret
+        volumeMounts:
         - name: postgres-data-init
           mountPath: /docker-entrypoint-initdb.d/01_erwinidm.sql
           subPath: 01_erwinidm.sql
