@@ -61,8 +61,6 @@ data:
     RES_CLIENTID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### extract id (remove prefix), extract id (remove suffix)
     CLIENTID=`echo $RES_CLIENTID | sed 's/.*id":"//g' | sed 's/",.*//g'`
-    echo "ClientID: $CLIENTID"
-    echo "RES_CLIENTID: $RES_CLIENTID"
 
     ## Get target role id
     RES_ROLEID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID"/available -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
@@ -74,11 +72,9 @@ data:
 
     ## Get 'security-admin-console' client id
     SAC_CLIENT=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
-    echo "SAC_CLIENT: $SAC_CLIENT"
     ### extract id (remove suffix), extract id (remove prefix)
-    SAC_ID=`echo $SAC_CLIENT | sed 's/",.*//g' | sed 's/.*id":"//g'`
-    echo "SAC_ID: $SAC_ID"
+    SAC_CLIENTID=`echo $SAC_CLIENT | sed 's/",.*//g' | sed 's/.*id":"//g'`
     ## add valid redirect uri to security-admin-console client
-    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$SAC_ID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"redirectUris":"'"$ADMIN_CONSOLE_REDIRECT_URI"'"}]'
+    curl --location --request PUT '$IDM_URL"/"$IDM_REALM_NAME"/clients/"$SAC_CLIENTID"' --header 'Authorization: bearer $TOKEN' --header 'Content-Type: application/json' --data-raw '{"redirectUris": ["/admin/master/console/*","http://localhost:{{ ERWINIDM_PORT }}/admin/master/console/*"]}'
     CONTROL=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     echo "Control: $CONTROL"
