@@ -477,6 +477,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false

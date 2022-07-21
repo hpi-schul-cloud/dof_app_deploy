@@ -11,3 +11,5 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
+
+FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "false"
