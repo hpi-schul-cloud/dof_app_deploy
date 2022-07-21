@@ -340,7 +340,7 @@ configuration_all:
     nuxtclient: false
   ETHERPAD__PAD_URI:
     value: "https://{{ DOMAIN }}/etherpad/p"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ETHERPAD__NEW_DOMAIN:
@@ -544,7 +544,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
     value: "true"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
