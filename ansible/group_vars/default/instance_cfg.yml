@@ -71,3 +71,7 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
 GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
+
+# import users
+FEATURE_USER_MIGRATION_ENABLED: "false"
+FEATURE_USER_MIGRATION_SYSTEM_ID: ""
