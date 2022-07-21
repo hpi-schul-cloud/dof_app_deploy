@@ -20,6 +20,7 @@ data:
     IDM_REALM_ADMIN=$IDENTITY_MANAGEMENT__ADMIN_USER
     IDM_REALM_ADMIN_PWD=$IDENTITY_MANAGEMENT__ADMIN_PASSWORD
     IDM_REALM_ADMIN_ROLE=realm-admin
+    ADMIN_CONSOLE_REDIRECT_URI=http://localhost:{{ ERWINIDM_PORT }}/admin/master/console/
 
     IDM_CLIENT_NAME={{ IDENTITY_MANAGEMENT__CLIENTID }}
     IDM_CLIENT_URL_BASE=https://{{ DOMAIN }}
@@ -60,6 +61,8 @@ data:
     RES_CLIENTID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### extract id (remove prefix), extract id (remove suffix)
     CLIENTID=`echo $RES_CLIENTID | sed 's/.*id":"//g' | sed 's/",.*//g'`
+    echo "$CLIENTID"
+    echo "$RES_CLIENTID"
 
     ## Get target role id
     RES_ROLEID=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID"/available -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
@@ -68,3 +71,14 @@ data:
 
     ## add role to admin
     curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"id":"'"$ROLEID"'","name":"'"$IDM_REALM_ADMIN_ROLE"'","containerId":"'"$CLIENTID"'"}]'
+
+    ## Get security-admin-console client id
+    SAC_CLIENT=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    echo "$SAC_CLIENT"
+    ### extract id (remove prefix), extract id (remove suffix)
+    SAC_ID=`echo $SAC_CLIENT | sed 's/.*id":"//g' | sed 's/",.*//g'`
+    echo "$SAC_ID"
+    ## add valid redirect uri to security-admin-console client
+    curl "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$SAC_ID"?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"redirectUris":"'"$ADMIN_CONSOLE_REDIRECT_URI"'"}]'
+    CONTROL=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    echo "$CONTROL"
