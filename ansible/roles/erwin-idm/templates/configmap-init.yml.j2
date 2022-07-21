@@ -74,6 +74,6 @@ data:
     ### extract id (remove suffix), extract id (remove prefix)
     SAC_CLIENTID=`echo $SAC_CLIENT | sed 's/",.*//g' | sed 's/.*id":"//g'`
     ## add valid redirect uri to security-admin-console client
-    curl -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$SAC_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris": ["/admin/master/console/*","http://localhost/*"]}'
+    curl -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$SAC_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris": ["/admin/master/console/*","http://localhost:{{ ERWINIDM_PORT }}/*"]}'
     CONTROL=$(curl "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     echo "Control: $CONTROL"
