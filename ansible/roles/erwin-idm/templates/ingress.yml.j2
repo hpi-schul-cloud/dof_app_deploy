@@ -24,7 +24,6 @@ spec:
   tls:
   - hosts:
       - {{ ERWINIDM_PREFIX }}{{ DOMAIN }}
-      - localhost
 {% if CLUSTER_ISSUER is defined %}
     secretName: {{ ERWINIDM_PREFIX }}{{ DOMAIN }}-tls
 {% endif %}
