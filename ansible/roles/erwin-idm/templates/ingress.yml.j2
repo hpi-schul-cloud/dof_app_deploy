@@ -38,7 +38,6 @@ spec:
   tls:
   - hosts:
       - {{ ERWINIDM_PREFIX }}{{ DOMAIN }}
-      - localhost
 {% if CLUSTER_ISSUER is defined %}
     secretName: {{ ERWINIDM_PREFIX }}{{ DOMAIN }}-tls
 {% endif %}
@@ -60,13 +59,6 @@ spec:
           serviceName: erwinidm-svc
           servicePort: {{ ERWINIDM_PORT }}
       - path: /robots.txt
-        backend:
-          serviceName: erwinidm-svc
-          servicePort: {{ ERWINIDM_PORT }}
-  - host: http://localhost/
-    http:
-      paths: 
-      - path: /admin/
         backend:
           serviceName: erwinidm-svc
           servicePort: {{ ERWINIDM_PORT }}
