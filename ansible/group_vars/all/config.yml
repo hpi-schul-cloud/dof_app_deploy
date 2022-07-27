@@ -725,6 +725,7 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
+    value: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Informationen und Hinweise zum Schuljahreswechsel</a>'
     server: false
     client: true
     nuxtclient: false
