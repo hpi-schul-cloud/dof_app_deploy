@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidcmock-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: oidcmock
+spec:
+  replicas: {{ OIDCMOCK_REPLICAS|default(1, true) }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      #maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  selector:
+    matchLabels:
+      app: oidcmock
+  template:
+    metadata:
+      labels:
+        app: oidcmock
+      annotations:
+        configmapHash: ""
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+      containers:
+      - name: oidcmock
+        image: {{ OIDCMOCK_IMAGE_NAME }}:{{ OIDCMOCK_IMAGE_TAG }}
+        ports:
+        - containerPort: {{ OIDCMOCK_PORT }}
+          name: oidcmock
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: oidcmock-configmap
+        - secretRef:
+            name: oidcmock-secret
+        resources:
+        # find reasonable limits
+          limits:
+            cpu: {{ OIDCMOCK_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ OIDCMOCK_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_REQUESTS|default("512Mi", true) }}
