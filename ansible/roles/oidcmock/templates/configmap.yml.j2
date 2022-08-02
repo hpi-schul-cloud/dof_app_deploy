@@ -27,8 +27,8 @@ data:
     [
       {
         "SubjectId": "1",
-        "Username": {{ OIDCMOCK_USER }},
-        "Password": {{ OIDCMOCK_USER_PASSWORD }},
+        "Username": "{{ OIDCMOCK_USER }}",
+        "Password": "{{ OIDCMOCK_USER_PASSWORD }}",
         "Claims": [
           {
             "Type": "given_name",
@@ -43,8 +43,8 @@ data:
      ]
   CLIENTS_CONFIGURATION_INLINE: |
     {
-      "ClientId": {{ OIDCMOCK_CLIENT_ID }},
-      "ClientSecrets": [{{ OIDCMOCK_CLIENT_SECRET }}],
+      "ClientId": "{{ OIDCMOCK_CLIENT_ID }}",
+      "ClientSecrets": ["{{ OIDCMOCK_CLIENT_SECRET }}"],
       "Description": "Client for client credentials flow",
       "AllowedGrantTypes": ["client_credentials", "authorization_code"],
       "RequirePkce": false,
