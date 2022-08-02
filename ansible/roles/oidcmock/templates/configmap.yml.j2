@@ -26,31 +26,29 @@ data:
   USERS_CONFIGURATION_INLINE: |
     [
       {
-        "SubjectId":"1",
-        "Username":"User1",
-        "Password":"pwd",
+        "SubjectId": "1",
+        "Username": {{ OIDCMOCK_USER }},
+        "Password": {{ OIDCMOCK_USER_PASSWORD }},
+        "Claims": [
+          {
+            "Type": "given_name",
+            "Value": "Emil"
+          },
+          {
+            "Type": "family_name",
+            "Value": "Extern"
+          }
+        ]
       }
      ]
   CLIENTS_CONFIGURATION_INLINE: |
-  {
-    "ClientId": "client-credentials-mock-client",
-    "ClientSecrets": ["client-credentials-mock-client-secret"],
-    "Description": "Client for client credentials flow",
-    "AllowedGrantTypes": ["client_credentials", "authorization_code"],
-    "RequirePkce": false,
-    "RedirectUris": ["http://localhost:8080/realms/dBildungscloud/broker/oidc/endpoint"],
-    "AllowedScopes": ["openid"],
-    "ClientClaimsPrefix": "",
-    "Claims": [
-      {
-        "Type": "string_claim",
-        "Value": "string_claim_value"
-      },
-      {
-        "Type": "json_claim",
-        "Value": "['value1', 'value2']",
-        "ValueType": "json"
-      }
-    ]
-  }
+    {
+      "ClientId": {{ OIDCMOCK_CLIENT_ID }},
+      "ClientSecrets": [{{ OIDCMOCK_CLIENT_SECRET }}],
+      "Description": "Client for client credentials flow",
+      "AllowedGrantTypes": ["client_credentials", "authorization_code"],
+      "RequirePkce": false,
+      "RedirectUris": ["http://localhost:8080/realms/dBildungscloud/broker/oidc/endpoint"],
+      "AllowedScopes": ["openid"]
+    }
 
