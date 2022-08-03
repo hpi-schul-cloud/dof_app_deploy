@@ -90,6 +90,10 @@ ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
 GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3
 
+# Nextcloud
+NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
+
 # Ingress
 group_ingress:
   api_v1_roster:
