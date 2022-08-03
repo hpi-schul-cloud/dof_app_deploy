@@ -27,8 +27,8 @@ data:
     [
       {
         "SubjectId": "1",
-        "Username": "${OIDCMOCK_USER}",
-        "Password": "${OIDCMOCK_USER_PASSWORD}",
+        "Username": "${OIDCMOCK__USER}",
+        "Password": "${OIDCMOCK__USER_PASSWORD}",
         "Claims": [
           {
             "Type": "given_name",
@@ -48,7 +48,7 @@ data:
       "Description": "Client for client credentials flow",
       "AllowedGrantTypes": ["client_credentials", "authorization_code"],
       "RequirePkce": false,
-      "RedirectUris": ["http://localhost:8080/realms/dBildungscloud/broker/oidc/endpoint"],
+      "RedirectUris": ["https://{{ OIDCMOCK_PREFIX }}-{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
       "AllowedScopes": ["openid"]
     }
 
