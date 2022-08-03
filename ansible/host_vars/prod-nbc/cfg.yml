@@ -10,5 +10,7 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
+NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 
 FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "false"

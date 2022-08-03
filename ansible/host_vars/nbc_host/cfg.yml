@@ -1,2 +1,4 @@
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
+NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
