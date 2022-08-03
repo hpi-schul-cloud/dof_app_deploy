@@ -45,8 +45,8 @@ spec:
         resources:
         # find reasonable limits
           limits:
-            cpu: {{ OIDCMOCK_CPU_LIMITS|default("1000m", true) }}
-            memory: {{ OIDCMOCK_MEMORY_LIMITS|default("1Gi", true) }}
+            cpu: {{ OIDCMOCK_CPU_LIMITS|default("250m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_LIMITS|default("256Mi", true) }}
           requests:
-            cpu: {{ OIDCMOCK_CPU_REQUESTS|default("100m", true) }}
-            memory: {{ OIDCMOCK_MEMORY_REQUESTS|default("512Mi", true) }}
+            cpu: {{ OIDCMOCK_CPU_REQUESTS|default("50m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_REQUESTS|default("128Mi", true) }}
