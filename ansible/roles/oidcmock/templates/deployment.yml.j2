@@ -9,7 +9,9 @@ metadata:
 spec:
   replicas: {{ OIDCMOCK_REPLICAS|default(1, true) }}
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
   selector:
     matchLabels:
       app: oidcmock
