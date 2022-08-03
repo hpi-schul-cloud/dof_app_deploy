@@ -207,7 +207,8 @@ configuration_all:
     nuxtclient: false
   OIDCMOCK__BASE_URL:
     value: "https://{{ OIDCMOCK_PREFIX }}-{{ DOMAIN }}"
-    server: false
+    server: true
+    client: false
     nuxtclient: false
   IGNORE_DISCOVERABILITY:
     value: "true"
