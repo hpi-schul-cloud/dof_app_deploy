@@ -20,14 +20,14 @@ data:
       }
     }
   LOGIN_OPTIONS_INLINE: |
-        {
-          "AllowRememberLogin": false
-        }
+    {
+      "AllowRememberLogin": false
+    }
   USERS_CONFIGURATION_INLINE: |
     [
       {
         "SubjectId": "1",
-        "Username": "${OIDCMOCK__USER}",
+        "Username": "'${OIDCMOCK__USER}'",
         "Password": "${OIDCMOCK__USER_PASSWORD}",
         "Claims": [
           {
@@ -42,13 +42,15 @@ data:
       }
      ]
   CLIENTS_CONFIGURATION_INLINE: |
-    {
-      "ClientId": "${OIDCMOCK_CLIENT_ID}",
-      "ClientSecrets": ["${OIDCMOCK_CLIENT_SECRET}"],
-      "Description": "Client for client credentials flow",
-      "AllowedGrantTypes": ["client_credentials", "authorization_code"],
-      "RequirePkce": false,
-      "RedirectUris": ["https://{{ OIDCMOCK_PREFIX }}-{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
-      "AllowedScopes": ["openid"]
-    }
+    [
+      {
+        "ClientId": "${OIDCMOCK_CLIENT_ID}",
+        "ClientSecrets": ["${OIDCMOCK_CLIENT_SECRET}"],
+        "Description": "Client for client credentials flow",
+        "AllowedGrantTypes": ["client_credentials", "authorization_code"],
+        "RequirePkce": false,
+        "RedirectUris": ["https://{{ OIDCMOCK_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
+        "AllowedScopes": ["openid"]
+      }
+    ]
 
