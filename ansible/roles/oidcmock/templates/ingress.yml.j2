@@ -24,12 +24,23 @@ spec:
   - host: {{ OIDCMOCK_PREFIX }}{{ DOMAIN }}
     http:
       paths:
-      - path: /connect/authorize
+      - path: /home/
         backend:
           serviceName: oidcmock-svc
           servicePort: {{ OIDCMOCK_PORT }}
-      - path: /connect/token
+      - path: /Account/
         backend:
           serviceName: oidcmock-svc
           servicePort: {{ OIDCMOCK_PORT }}
-      
+      - path: /connect/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /lib/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /css/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}

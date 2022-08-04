@@ -6,6 +6,7 @@ metadata:
   labels:
     app: oidcmock
 data:
+  DOTNET_EnableDiagnostics: "0"
   # See https://github.com/Soluto/oidc-server-mock/blob/master/README.md
   ASPNETCORE_ENVIRONMENT: Development
   SERVER_OPTIONS_INLINE: |
@@ -23,12 +24,14 @@ data:
     {
       "AllowRememberLogin": false
     }
-  USERS_CONFIGURATION_INLINE: |
+  USERS_CONFIGURATION_PATH: /cfg/usersConfigurationContent.json
+  CLIENTS_CONFIGURATION_PATH: /cfg/clientsConfigurationContent.json
+  usersConfigurationContent.json: |
     [
       {
         "SubjectId": "1",
-        "Username": "'${OIDCMOCK__USER}'",
-        "Password": "${OIDCMOCK__USER_PASSWORD}",
+        "Username": "$OIDCMOCK__USER",
+        "Password": "$OIDCMOCK__USER_PASSWORD",
         "Claims": [
           {
             "Type": "given_name",
@@ -41,16 +44,16 @@ data:
         ]
       }
      ]
-  CLIENTS_CONFIGURATION_INLINE: |
+  clientsConfigurationContent.json: |
     [
       {
-        "ClientId": "${OIDCMOCK_CLIENT_ID}",
-        "ClientSecrets": ["${OIDCMOCK_CLIENT_SECRET}"],
+        "ClientId": "$OIDCMOCK__CLIENT_ID",
+        "ClientSecrets": ["$OIDCMOCK__CLIENT_SECRET"],
         "Description": "Client for client credentials flow",
         "AllowedGrantTypes": ["client_credentials", "authorization_code"],
         "RequirePkce": false,
-        "RedirectUris": ["https://{{ OIDCMOCK_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
-        "AllowedScopes": ["openid"]
+        "RedirectUris": ["https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
+        "AllowedScopes": ["openid", "profile"]
       }
     ]
 

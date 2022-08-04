@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
     - port: {{ OIDCMOCK_PORT }}
-      targetPort: {{ OIDCMOCK_PORT }}
+      targetPort: 80
       protocol: TCP
       name: oidcmock
   selector:
