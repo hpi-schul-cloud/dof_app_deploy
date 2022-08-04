@@ -754,6 +754,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  COLLABORATIVE_STORAGE_PROVIDER:
+    server: true
+    client: false
+    nuxtclient: false
   NEXTCLOUD_REDIRECT_URL:
     value: ""
     server: false

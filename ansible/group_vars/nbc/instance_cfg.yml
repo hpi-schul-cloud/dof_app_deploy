@@ -91,6 +91,7 @@ GHOST_BASE_URL: https://blog.niedersachsen.cloud
 GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3
 
 # Nextcloud
+COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 
