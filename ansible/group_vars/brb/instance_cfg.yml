@@ -64,7 +64,7 @@ CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS: 18
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://content.schul-cloud.dev
+ES_DOMAIN: https://edusharing.staging.hpi-schul-cloud.org
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
