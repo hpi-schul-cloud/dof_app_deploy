@@ -771,3 +771,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  INCOMING_REQUEST_TIMEOUT:
+    value: "60000"
+    server: true
+    client: false
+    nuxtclient: false
