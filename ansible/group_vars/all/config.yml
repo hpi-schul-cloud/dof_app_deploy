@@ -477,6 +477,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
@@ -725,6 +730,7 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
+    value: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Informationen und Hinweise zum Schuljahreswechsel</a>'
     server: false
     client: true
     nuxtclient: false
@@ -742,6 +748,15 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  COLLABORATIVE_STORAGE_PROVIDER:
+    server: true
+    client: false
     nuxtclient: false
   NEXTCLOUD_REDIRECT_URL:
     value: ""

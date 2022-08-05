@@ -36,6 +36,7 @@ FEATURE_TOPIC_SHARE_IMPORT: "true"
 FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED: "false"
 FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 FEATURE_VIDEOCONFERENCE_ENABLED: "true"
+FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "true"
 FEATURE_RABBITMQ_ENABLED: "true"
 FEATURE_SCHOOL_POLICY_ENABLED: "true"
 FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
@@ -80,7 +81,7 @@ ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
-#Hydralogout
+# Hydralogout
 OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
@@ -88,6 +89,11 @@ ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
 GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3
+
+# Nextcloud
+COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
+NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 
 # Ingress
 group_ingress:
