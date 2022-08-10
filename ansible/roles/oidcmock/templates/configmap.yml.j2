@@ -52,7 +52,7 @@ data:
         "Description": "Client for client credentials flow",
         "AllowedGrantTypes": ["client_credentials", "authorization_code"],
         "RequirePkce": false,
-        "RedirectUris": ["https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
+        "RedirectUris": ["https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint", "https://openidconnect.net/callback"],
         "AllowedScopes": ["openid", "profile"]
       }
     ]
