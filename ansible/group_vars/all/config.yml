@@ -681,6 +681,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_CONSENT_NECESSARY:
+    server: true
+    client: true
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
