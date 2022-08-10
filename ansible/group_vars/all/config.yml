@@ -488,22 +488,22 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_COURSE_COPY:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
   FEATURE_TASK_COPY_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
   FEATURE_COURSE_COPY_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
   FEATURE_LESSON_COPY_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
