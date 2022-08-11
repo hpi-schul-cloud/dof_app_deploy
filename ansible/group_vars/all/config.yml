@@ -175,7 +175,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-  # in MB
+    # in MB
     value: "2560"
     server: true
     client: true
@@ -682,6 +682,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_CONSENT_NECESSARY:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
