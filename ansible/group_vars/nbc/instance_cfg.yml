@@ -48,6 +48,9 @@ FEATURE_LOGIN_LINK_ENABLED: "true"
 ENABLE_FILE_SECURITY_CHECK: "true"
 FILE_SECURITY_CHECK_SERVICE_URI: http://antivirus-webserver-svc:8080/scan/file
 
+# CONSENT
+FEATURE_CONSENT_NECESSARY: "false"
+
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 # Zusätzlich freigegebene routen

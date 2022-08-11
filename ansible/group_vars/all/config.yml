@@ -175,7 +175,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-  # in MB
+    # in MB
     value: "2560"
     server: true
     client: true
@@ -679,6 +679,11 @@ configuration_all:
   FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED:
     value: "false"
     server: false
+    client: true
+    nuxtclient: false
+  FEATURE_CONSENT_NECESSARY:
+    value: "true"
+    server: true
     client: true
     nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
