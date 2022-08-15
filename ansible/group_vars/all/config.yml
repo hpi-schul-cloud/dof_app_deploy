@@ -490,7 +490,7 @@ configuration_all:
   FEATURE_COURSE_COPY:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_TASK_COPY_ENABLED:
     value: "true"
