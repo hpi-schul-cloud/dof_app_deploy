@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oidcmock-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: oidcmock
+data:
+  DOTNET_EnableDiagnostics: "0"
+  # See https://github.com/Soluto/oidc-server-mock/blob/master/README.md
+  ASPNETCORE_ENVIRONMENT: Development
+  SERVER_OPTIONS_INLINE: |
+    {
+      "AccessTokenJwtType": "JWT",
+      "Discovery": {
+        "ShowKeySet": true
+      },
+      "Authentication": {
+        "CookieSameSiteMode": "Lax",
+        "CheckSessionCookieSameSiteMode": "Lax"
+      }
+    }
+  LOGIN_OPTIONS_INLINE: |
+    {
+      "AllowRememberLogin": false
+    }
+  USERS_CONFIGURATION_PATH: /cfg/usersConfigurationContent.json
+  CLIENTS_CONFIGURATION_PATH: /cfg/clientsConfigurationContent.json
+  usersConfigurationContent.json: |
+    [
+      {
+        "SubjectId": "c6635610-1a20-11ed-861d-0242ac120002",
+        "Username": "$OIDCMOCK__USER",
+        "Password": "$OIDCMOCK__USER_PASSWORD",
+        "Claims": [
+          {
+            "Type": "name",
+            "Value": "Emil Extern"
+          },
+          {
+            "Type": "given_name",
+            "Value": "Emil"
+          },
+          {
+            "Type": "family_name",
+            "Value": "Extern"
+          },
+          {
+            "Type": "email",
+            "Value": "emil.extern@not.amail"
+          }
+        ]
+      }
+     ]
+  clientsConfigurationContent.json: |
+    [
+      {
+        "ClientId": "$OIDCMOCK__CLIENT_ID",
+        "ClientSecrets": ["$OIDCMOCK__CLIENT_SECRET"],
+        "Description": "Client for client credentials flow",
+        "AllowedGrantTypes": ["client_credentials", "authorization_code"],
+        "RequirePkce": false,
+        "RedirectUris": ["https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}/realms/{{ IDENTITY_MANAGEMENT__TENANT }}/broker/oidcmock/endpoint"],
+        "AllowedScopes": ["openid", "profile", "email"]
+      }
+    ]
+

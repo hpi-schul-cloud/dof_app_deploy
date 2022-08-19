@@ -15,6 +15,7 @@
     - storage
     - hydra
     - erwin-idm
+    - oidcmock
     - insights-collector
     - insights-cubejs
     - insights-engine
