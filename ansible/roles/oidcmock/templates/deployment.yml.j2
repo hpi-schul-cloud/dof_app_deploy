@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidcmock-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: oidcmock
+spec:
+  replicas: {{ OIDCMOCK_REPLICAS|default(1, true) }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: oidcmock
+  template:
+    metadata:
+      labels:
+        app: oidcmock
+      annotations:
+        configmapHash: ""
+    spec:
+      initContainers:
+      - name: oidcmock-initcontainers
+        image: schulcloud/infra-tools:latest
+        command: ['sh', '-c', 'echo create configs...; ls /cfg; envsubst < /tmp/usersConfigurationContent.json > /cfg/usersConfigurationContent.json; envsubst < /tmp/clientsConfigurationContent.json > /cfg/clientsConfigurationContent.json; echo done;']
+        envFrom:
+        - secretRef:
+            name: oidcmock-secret
+        volumeMounts:
+        - name: oidcmock-config-files
+          mountPath: /tmp
+        - name: config-directory
+          mountPath: /cfg
+      securityContext:
+        runAsNonRoot: false
+        readOnlyRootFilesystem: false
+      containers:
+      - name: oidcmock
+        image: {{ OIDCMOCK_IMAGE_NAME }}:{{ OIDCMOCK_IMAGE_TAG }}
+        ports:
+        - containerPort: 80
+          name: oidcmock
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: oidcmock-configmap
+        - secretRef:
+            name: oidcmock-secret
+        volumeMounts:
+        - name: oidcmock-config-files
+          mountPath: /tmp
+        - name: config-directory
+          mountPath: /cfg
+        resources:
+        # find reasonable limits
+          limits:
+            cpu: {{ OIDCMOCK_CPU_LIMITS|default("250m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_LIMITS|default("256Mi", true) }}
+          requests:
+            cpu: {{ OIDCMOCK_CPU_REQUESTS|default("50m", true) }}
+            memory: {{ OIDCMOCK_MEMORY_REQUESTS|default("128Mi", true) }}
+      volumes:
+      - name: oidcmock-config-files
+        configMap:
+          name: oidcmock-configmap
+          items:
+          - key: usersConfigurationContent.json
+            path: usersConfigurationContent.json
+          - key: clientsConfigurationContent.json
+            path: clientsConfigurationContent.json
+      - name: config-directory
+        emptyDir: {}
