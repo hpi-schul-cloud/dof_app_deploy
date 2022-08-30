@@ -4,3 +4,6 @@ FEATURE_NEXBOARD_ENABLED: "false"
 API_LDAP_SYNC_SVC: api-ldapsync-svc
 
 ES_DOMAIN: https://mv-repo.schul-cloud.org
+
+COOKIE__SAME_SITE: "None"
+COOKIE__SECURE: "true"

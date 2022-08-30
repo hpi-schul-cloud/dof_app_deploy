@@ -775,3 +775,28 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  INCOMING_REQUEST_TIMEOUT_API:
+    value: "60000"
+    server: true
+    client: false
+    nuxtclient: false
+  COOKIE__HTTP_ONLY:
+    value: false
+    server: true
+    client: true
+    nuxtclient: false
+  COOKIE__SAME_SITE:
+    value: "Lax"
+    server: true
+    client: true
+    nuxtclient: false
+  COOKIE__SECURE:
+    value: true
+    server: true
+    client: true
+    nuxtclient: false
+  COOKIE__EXPIRES_SECONDS:
+    value: "2592000000"
+    server: true
+    client: true
+    nuxtclient: false
