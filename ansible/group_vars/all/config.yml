@@ -786,7 +786,7 @@ configuration_all:
     client: true
     nuxtclient: false
   COOKIE__SAME_SITE:
-    value: "lax"
+    value: "none"
     server: true
     client: true
     nuxtclient: false

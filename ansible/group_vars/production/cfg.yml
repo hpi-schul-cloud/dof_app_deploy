@@ -2,6 +2,3 @@ FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_S3_BUCKET_CORS: "true"
 ES_DOMAIN: https://mv-repo.schul-cloud.org
-
-COOKIE__SAME_SITE: "none"
-COOKIE__SECURE: "true"
