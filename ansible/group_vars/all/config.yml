@@ -781,17 +781,17 @@ configuration_all:
     client: false
     nuxtclient: false
   COOKIE__HTTP_ONLY:
-    value: false
+    value: "false"
     server: true
     client: true
     nuxtclient: false
   COOKIE__SAME_SITE:
-    value: "Lax"
+    value: "lax"
     server: true
     client: true
     nuxtclient: false
   COOKIE__SECURE:
-    value: true
+    value: "true"
     server: true
     client: true
     nuxtclient: false
