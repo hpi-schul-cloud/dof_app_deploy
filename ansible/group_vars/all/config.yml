@@ -206,7 +206,7 @@ configuration_all:
     client: false
     nuxtclient: false
   OIDCMOCK__BASE_URL:
-    value: "https://{{ OIDCMOCK_PREFIX }}{{ DOMAIN }}"
+    value: "https://idp-{{ DOMAIN }}"
     server: true
     client: false
     nuxtclient: false
@@ -492,25 +492,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_COURSE_COPY:
+  FEATURE_COPY_SERVICE_ENABLED:
     value: "true"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_TASK_COPY_ENABLED:
-    value: "true"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_COPY_ENABLED:
-    value: "true"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_LESSON_COPY_ENABLED:
-    value: "true"
-    server: true
-    client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
@@ -789,9 +774,4 @@ configuration_all:
   GHOST_API_URL:
     server: false
     client: true
-    nuxtclient: false
-  INCOMING_REQUEST_TIMEOUT_API:
-    value: "60000"
-    server: true
-    client: false
     nuxtclient: false
