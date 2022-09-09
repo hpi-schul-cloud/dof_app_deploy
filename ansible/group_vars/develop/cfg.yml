@@ -20,3 +20,5 @@ FEATURE_COURSE_COPY: "true"
 FEATURE_TASK_COPY_ENABLED: "true"
 FEATURE_COURSE_COPY_ENABLED: "true"
 FEATURE_LESSON_COPY_ENABLED: "true"
+
+ES_DOMAIN: https://repository.dev-edusharing.staging.dbildungscloud.org/edu-sharing
