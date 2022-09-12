@@ -4,12 +4,10 @@ DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
-FEATURE_OAUTH_LOGIN_ENABLED: "false"
+FEATURE_OAUTH_LOGIN_ENABLED: "true"
 ES_DOMAIN: https://mv-repo.schul-cloud.org
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
-FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
-FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "false"

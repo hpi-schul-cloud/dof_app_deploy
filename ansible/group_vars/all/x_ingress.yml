@@ -253,6 +253,10 @@ default_ingress:
     path: /api/v3/file/upload
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_upload_from_url:
+    path: /api/v3/file/upload-from-url
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
   api_v3_file_download:
     path: /api/v3/file/download
     serviceName: api-files-svc
