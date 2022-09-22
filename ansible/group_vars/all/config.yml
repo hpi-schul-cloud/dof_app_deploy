@@ -221,7 +221,6 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_PUBLIC_URI:
-    value: "http://hydra-svc:4445"
     server: true
     client: false
     nuxtclient: false
