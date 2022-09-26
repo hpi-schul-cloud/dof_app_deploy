@@ -165,6 +165,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_ouauth:
     path: /api/v3/sso/oauth/
+  api_v3_sso_hydra:
+    path: /api/v3/sso/hydra/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
