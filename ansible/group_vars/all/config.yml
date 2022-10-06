@@ -220,6 +220,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  HYDRA_PUBLIC_URI:
+    server: true
+    client: false
+    nuxtclient: false
   DISPLAY_REQUEST_LEVEL:
     value: "-1"
     server: true
@@ -750,6 +754,11 @@ configuration_all:
     client: true
     nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  NEXTCLOUD_SCOPES:
     value: ""
     server: true
     client: false

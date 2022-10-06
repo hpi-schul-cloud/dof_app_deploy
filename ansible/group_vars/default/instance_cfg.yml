@@ -14,7 +14,7 @@ STUDENT_TEAM_CREATION: opt-out
 CORS: "true"
 SECURITY_HEADERS: "true"
 ## CLIENT | NUXT
-SC_FEDERALSTATE: 
+SC_FEDERALSTATE:
 # FEATURE TOGGLE
 ROCKETCHAT_SERVICE_ENABLED: "true"
 FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED: "true"
@@ -25,6 +25,7 @@ FEATURE_MINT_PAGES_ENABLED: "true"
 FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_TEAMS_ENABLED: "true"
 FEATURE_VIDEOCONFERENCE_ENABLED: "true"
+FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "true"
 FEATURE_RABBITMQ_ENABLED: "true"
 FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
 FEATURE_MULTI_LOGIN_INSTANCES: "true"
@@ -70,3 +71,9 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
 GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
+
+# Ingress
+group_ingress:
+  api_v3_sso_ouauth:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
