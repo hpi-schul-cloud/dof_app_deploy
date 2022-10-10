@@ -98,6 +98,7 @@ COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
+FEATURE_LEGACY_HYDRA_ENABLED: false
 
 # Ingress
 group_ingress:
