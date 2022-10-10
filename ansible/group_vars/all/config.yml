@@ -751,7 +751,7 @@ configuration_all:
   FEATURE_LEGACY_HYDRA_ENABLED:
     value: "false"
     server: false
-    client: true
+    client: false
     nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
     value: ""
