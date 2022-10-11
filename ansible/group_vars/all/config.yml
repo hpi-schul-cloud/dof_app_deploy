@@ -506,6 +506,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_LESSON_SHARE:
     value: "false"
     server: true
