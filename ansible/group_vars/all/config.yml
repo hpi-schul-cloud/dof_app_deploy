@@ -175,7 +175,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-  # in MB
+    # in MB
     value: "2560"
     server: true
     client: true
@@ -205,6 +205,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  OIDCMOCK__BASE_URL:
+    value: "https://idp-{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: false
   IGNORE_DISCOVERABILITY:
     value: "true"
     server: true
@@ -212,6 +217,10 @@ configuration_all:
     nuxtclient: false
   HYDRA_URI:
     value: "http://hydra-svc:4445"
+    server: true
+    client: false
+    nuxtclient: false
+  HYDRA_PUBLIC_URI:
     server: true
     client: false
     nuxtclient: false
@@ -477,36 +486,31 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
     client: true
     nuxtclient: false
-  FEATURE_COURSE_COPY:
-    value: "false"
+  FEATURE_COPY_SERVICE_ENABLED:
+    value: "true"
     server: true
-    client: true
-    nuxtclient: false
-  FEATURE_TASK_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_LESSON_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "false"
     server: true
     client: true
     nuxtclient: false
+  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_LESSON_SHARE:
     value: "false"
     server: true
@@ -676,6 +680,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_CONSENT_NECESSARY:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
@@ -725,6 +734,7 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
+    value: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Informationen und Hinweise zum Schuljahreswechsel</a>'
     server: false
     client: true
     nuxtclient: false
@@ -742,6 +752,20 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  NEXTCLOUD_SCOPES:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  COLLABORATIVE_STORAGE_PROVIDER:
+    server: true
+    client: false
     nuxtclient: false
   NEXTCLOUD_REDIRECT_URL:
     value: ""

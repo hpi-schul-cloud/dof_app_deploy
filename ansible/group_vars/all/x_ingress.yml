@@ -163,8 +163,20 @@ default_ingress:
     path: /api/v3/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_lessons:
+    path: /api/v3/lessons
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sharetoken:
+    path: /api/v3/sharetoken
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_ouauth:
     path: /api/v3/sso/oauth/
+  api_v3_sso_hydra:
+    path: /api/v3/sso/hydra/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
@@ -251,6 +263,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_file_upload:
     path: /api/v3/file/upload
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_upload_from_url:
+    path: /api/v3/file/upload-from-url
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
   api_v3_file_download:

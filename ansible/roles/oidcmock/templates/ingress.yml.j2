@@ -1,0 +1,46 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ NAMESPACE }}-oidcmock-ingress
+  namespace: {{ NAMESPACE }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
+
+spec:
+{% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
+  tls:
+  - hosts:
+      - {{ OIDCMOCK_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+    secretName: {{ OIDCMOCK_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
+{% endif %}
+  rules:
+  - host: {{ OIDCMOCK_PREFIX }}{{ DOMAIN }}
+    http:
+      paths:
+      - path: /home/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /Account/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /connect/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /lib/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}
+      - path: /css/
+        backend:
+          serviceName: oidcmock-svc
+          servicePort: {{ OIDCMOCK_PORT }}

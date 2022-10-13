@@ -1,0 +1,104 @@
+- name: Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: svc.yml.j2
+  when: WITH_OIDCMOCK
+
+- name: remove Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Service
+    name: oidcmock-svc
+    state: absent
+  when: not WITH_OIDCMOCK
+
+- name: Add or Update Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap.yml.j2
+    apply: yes
+  when: WITH_OIDCMOCK
+
+- name: remove Configmap
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: ConfigMap
+    name: oidcmock-configmap
+    state: absent
+  when: not WITH_OIDCMOCK
+
+- name: Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: secret.yml.j2
+    apply: yes
+  when: WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+- name: remove Secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: v1
+    kind: Secret
+    name: oidcmock-secret
+    state: absent
+  when: not WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
+
+- name: Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: onepassword.yml.j2
+  when: WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+- name: remove Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: onepassword.com/v1
+    kind: OnePasswordItem
+    name: oidcmock-secret
+    state: absent
+  when: not WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+- name: Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: deployment.yml.j2
+  when: WITH_OIDCMOCK
+
+- name: remove Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: apps/v1
+    kind: Deployment
+    name: oidcmock-deployment
+    state: absent
+  when: not WITH_OIDCMOCK
+
+- name: Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: ingress.yml.j2
+  when: WITH_OIDCMOCK
+
+- name: remove Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    api_version: networking.k8s.io/v1beta1
+    kind: Ingress
+    name: "{{ NAMESPACE }}-oidcmock-ingress"
+    state: absent
+  when: not WITH_OIDCMOCK
+
