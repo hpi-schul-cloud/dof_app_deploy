@@ -551,6 +551,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TASK_INDIVIDUAL:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_TOPIC_SHARE_IMPORT:
     value: "false"
     server: false
