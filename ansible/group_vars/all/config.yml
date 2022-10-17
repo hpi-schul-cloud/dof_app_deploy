@@ -551,7 +551,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_INDIVIDUAL:
+  FEATURE_TASK_ASSIGNMENT_ENABLED:
     value: "false"
     server: true
     client: false
