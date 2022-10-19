@@ -29,10 +29,12 @@ spec:
         - name: redis
           containerPort: 6379
           protocol: TCP
+{% if WITH_REDIS_PERSISTENCE is defined and WITH_REDIS_PERSISTENCE|bool %}
         volumeMounts:
         - name: redis-data-pv
           mountPath: /data
           readOnly: false
+{% endif %}
         resources:
           limits:
             cpu: {{ REDIS_CPU_LIMITS|default("2000m", true) }}
@@ -40,7 +42,9 @@ spec:
           requests:
             cpu: {{ REDIS_CPU_REQUESTS|default("100m", true) }}
             memory: {{ REDIS_MEMORY_REQUESTS|default("128Mi", true) }}
+{% if WITH_REDIS_PERSISTENCE is defined and WITH_REDIS_PERSISTENCE|bool %}
       volumes:
       - name: redis-data-pv
         persistentVolumeClaim:
           claimName: redis-pvc
+{% endif %}

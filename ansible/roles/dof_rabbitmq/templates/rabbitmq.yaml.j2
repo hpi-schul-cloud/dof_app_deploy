@@ -13,7 +13,7 @@ spec:
       cpu: {{ RABBITMQ_CPU_REQUESTS|default("100m", true) }}
       memory: {{ RABBITMQ_MEMORY_REQUESTS|default("256Mi", true) }}
   persistence:
-    storage: "{{ RABBITMQ_PERSISTENCE_STORAGE|default("1Gi", true) }}"
+    storage: "{{ RABBITMQ_PERSISTENCE_STORAGE|default("0", true) }}"
   override:
     statefulSet:
       spec:
