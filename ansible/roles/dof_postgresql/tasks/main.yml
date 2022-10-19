@@ -15,6 +15,23 @@
       state: absent
     when: not WITH_DATABASES
 
+  - name: Add or Update Persistent Volumes Claim  
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: pvc.yml.j2
+    when: WITH_DATABASES
+
+  - name: remove Persistent Volumes Claim  
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      api_version: v1
+      kind: PersistentVolumeClaim
+      name: postgres-pvc
+      state: absent
+    when: not WITH_DATABASES
+
   - name: Add or Update Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 

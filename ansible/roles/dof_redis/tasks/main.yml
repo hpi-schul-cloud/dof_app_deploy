@@ -9,7 +9,6 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
-    when: WITH_REDIS_PERSISTENCE is defined and WITH_REDIS_PERSISTENCE|bool
       
   - name: Deployment
     kubernetes.core.k8s:
