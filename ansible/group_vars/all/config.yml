@@ -551,6 +551,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_NEW_TASK_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_TOPIC_SHARE_IMPORT:
     value: "false"
     server: false
@@ -752,6 +757,11 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "false"
+    server: false
+    client: false
     nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
     value: ""
