@@ -738,8 +738,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
-    value: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Informationen und Hinweise zum Schuljahreswechsel</a>'
+  GLOBAL_ANNOUNCEMENT_TEACHER:
+    value: 'Nehmen Sie an unserer Zufriedenheitsumfrage teil und helfen Sie uns, die Cloud zu verbessern. <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Hier</a> geht`s zur Befragung. '
     server: false
     client: true
     nuxtclient: false
