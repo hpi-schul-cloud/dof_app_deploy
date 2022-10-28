@@ -738,7 +738,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
+  GLOBAL_ANNOUNCEMENT_TEACHER:
     value: ""
     server: false
     client: true
