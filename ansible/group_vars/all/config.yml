@@ -739,7 +739,7 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_TEACHER:
-    value: 'Nehmen Sie an unserer Zufriedenheitsumfrage teil und helfen Sie uns, die Cloud zu verbessern. <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Hier</a> geht`s zur Befragung. '
+    value: ""
     server: false
     client: true
     nuxtclient: false
