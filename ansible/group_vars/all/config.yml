@@ -511,6 +511,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_LESSON_SHARE:
     value: "false"
     server: true
@@ -550,6 +555,11 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_NEW_TASK_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_TOPIC_SHARE_IMPORT:
     value: "false"
@@ -733,8 +743,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_ADMIN_TEACHER:
-    value: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/x/6QtbBw\">Informationen und Hinweise zum Schuljahreswechsel</a>'
+  GLOBAL_ANNOUNCEMENT_TEACHER:
+    value: ""
     server: false
     client: true
     nuxtclient: false
@@ -752,6 +762,11 @@ configuration_all:
     value: "false"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "false"
+    server: false
+    client: false
     nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
     value: ""
