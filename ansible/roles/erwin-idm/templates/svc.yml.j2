@@ -6,7 +6,6 @@ metadata:
   labels:
     app: erwinidm
 spec:
-  type: ClusterIP
   ports:
     - port: {{ ERWINIDM_PORT }}
       targetPort: {{ ERWINIDM_PORT }}
@@ -14,3 +13,5 @@ spec:
       name: erwinidm
   selector:
     app: erwinidm
+  clusterIP: None
+  publishNotReadyAddresses: true
