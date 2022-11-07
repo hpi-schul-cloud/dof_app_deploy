@@ -107,10 +107,18 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  cfiles:
+    path: /cfiles
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
+  api_v1_alert:
+    path: /api/v1/alert
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_metrics:
     path: /api/v1/metrics
     serviceName: default-backend-404-svc

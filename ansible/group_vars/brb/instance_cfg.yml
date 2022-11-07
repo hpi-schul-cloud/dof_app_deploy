@@ -5,6 +5,7 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
+GLOBAL_ANNOUNCEMENT_TEACHER: 'Nehmen Sie an unserer Zufriedenheitsumfrage teil und helfen Sie uns, die Cloud zu verbessern. <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://befragungen.dataport.de/umfrage/1550669/n5E593\">Hier</a> geht es zur Befragung.'
 
 SMTP: ""
 SHOW_VERSION: 1
@@ -27,7 +28,7 @@ FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_TEAMS_ENABLED: "true"
 FEATURE_VIDEOCONFERENCE_ENABLED: "true"
-FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "false"
+FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "true"
 FEATURE_RABBITMQ_ENABLED: "true"
 FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
 FEATURE_LOG_REQUEST: "false"
