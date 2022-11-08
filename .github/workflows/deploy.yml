@@ -1,5 +1,5 @@
 ---
-name: Deoply Action
+name: Deploy Action
 
 on:
   workflow_call:
