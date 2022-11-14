@@ -25,7 +25,7 @@ spec:
         envFrom:
         - secretRef:
             name: maildrop-secret
-        - env:
+        env:
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_TIMEOUT
             value: 10000
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_CONNECTIONTIMEOUT
