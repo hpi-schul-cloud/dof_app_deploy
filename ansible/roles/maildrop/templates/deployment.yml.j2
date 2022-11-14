@@ -18,9 +18,6 @@ spec:
       labels:
         app: maildrop
     spec:
-      securityContext:  
-        #readOnlyRootFilesystem: true
-        #runAsNonRoot: true
       containers:
       - name: maildrop
         image: {{ MAILDROP_IMAGE_NAME }}:{{ MAILDROP_IMAGE_TAG }}
@@ -28,10 +25,17 @@ spec:
         envFrom:
         - secretRef:
             name: maildrop-secret
+        - env:
+          - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_TIMEOUT
+            value: 10000
+          - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_CONNECTIONTIMEOUT
+            value: 10000
+          - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_WRITETIMEOUT
+            value: 10000
         resources:
           limits:
             cpu: {{ MAILDROP_CPU_LIMITS|default("1000m", true) }}
-            memory: {{ MAILDROP_MEMORY_LIMITS|default("1Gi", true) }}
+            memory: {{ MAILDROP_MEMORY_LIMITS|default("256Mi", true) }}
           requests:
             cpu: {{ MAILDROP_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MAILDROP_MEMORY_REQUESTS|default("128Mi", true) }}
