@@ -1,5 +1,5 @@
 ---
-name: Deoply Action
+name: Deploy Action
 
 on:
   workflow_call:
@@ -89,7 +89,7 @@ jobs:
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
-          echo "##[set-output name=id;]$(echo $temp)"
+          echo "id=$temp" >> $GITHUB_OUTPUT
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
         run: |
