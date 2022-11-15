@@ -118,7 +118,7 @@ jobs:
           cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
