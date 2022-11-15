@@ -42,7 +42,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -60,7 +60,7 @@ jobs:
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         if: ${{ always() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: ${{ matrix.repos }}
@@ -83,7 +83,7 @@ jobs:
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
-          echo "##[set-output name=id;]$(echo $temp)"
+          echo "id=$temp" >> $GITHUB_OUTPUT
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
@@ -91,7 +91,7 @@ jobs:
           echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
           echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.tennens }}
           path: ${{github.workspace }}/${{ matrix.tennens }}.tar
@@ -102,11 +102,11 @@ jobs:
       - create_artifacts_workspaces
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ansible
           path: ${{github.workspace }}/ansible.tar
