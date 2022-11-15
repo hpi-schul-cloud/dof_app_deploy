@@ -362,17 +362,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  # notification
-  NOTIFICATION_PLATFORM:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  NOTIFICATION_URI:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   JWT_TIMEOUT_SECONDS:
     value: "7200"
     server: true
