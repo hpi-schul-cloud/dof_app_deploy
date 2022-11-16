@@ -47,10 +47,6 @@ default_ingress:
     path: /mint-ec
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  insights:
-    path: /insights
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
     serviceName: nuxtclient-svc

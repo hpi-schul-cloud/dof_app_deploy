@@ -16,9 +16,6 @@
     - hydra
     - erwin-idm
     - oidcmock
-    - insights-collector
-    - insights-cubejs
-    - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
     - clamav

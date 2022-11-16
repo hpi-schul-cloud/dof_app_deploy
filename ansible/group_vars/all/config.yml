@@ -621,17 +621,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # insights
-  FEATURE_INSIGHTS_ENABLED:
-    value: "false"
-    server: false
-    client: true
-    nuxtclient: false
-  INSIGHTS_COLLECTOR_URI:
-    value: "http://insights-collector-svc:3000"
-    server: false
-    client: true
-    nuxtclient: false
   # Lernstore
   FEATURE_LERNSTORE_ENABLED:
     value: "false"
