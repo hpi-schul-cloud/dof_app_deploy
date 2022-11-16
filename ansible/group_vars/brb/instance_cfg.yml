@@ -7,7 +7,6 @@ SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 GLOBAL_ANNOUNCEMENT_TEACHER: 'Nehmen Sie an unserer Zufriedenheitsumfrage teil und helfen Sie uns, die Cloud zu verbessern. <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://befragungen.dataport.de/umfrage/1550669/n5E593\">Hier</a> geht es zur Befragung.'
 
-SMTP: ""
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
 STUDENT_TEAM_CREATION: opt-out

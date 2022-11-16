@@ -6,8 +6,6 @@ SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
 
-#DOCUMENT_BASE_DIR:
-SMTP: ""
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
 STUDENT_TEAM_CREATION: disabled

@@ -121,11 +121,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # SMTP
-  SMTP:
-    server: true
-    client: false
-    nuxtclient: false
   SMTP_SENDER:
     value: "noreply@DOMAIN"
     server: true
