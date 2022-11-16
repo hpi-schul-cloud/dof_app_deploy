@@ -131,11 +131,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  SILENT_ERROR_ENABLED:
-    value: "true"
-    server: true
-    client: false
-    nuxtclient: false
   TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
     server: true
     client: true
@@ -241,16 +236,6 @@ configuration_all:
   FEATURE_LOG_REQUEST:
     server: false
     client: true
-    nuxtclient: false
-  DATABASE_AUDIT:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  DATABASE__AUDIT:
-    value: "false"
-    server: true
-    client: false
     nuxtclient: false
   LOGIN_BLOCK_TIME:
     value: "15"
@@ -424,11 +409,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_MORGAN_LOG_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: true
   FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED:
     value: "false"
     server: true
@@ -454,10 +434,6 @@ configuration_all:
     nuxtclient: false
   MONGOOSE_CONNECTION_POOL_SIZE:
     value: "50"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_RABBITMQ_ENABLED:
     server: true
     client: false
     nuxtclient: false
@@ -552,11 +528,6 @@ configuration_all:
     nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
-    server: false
-    client: true
-    nuxtclient: false
-  EDTR_SOURCE:
-    value: "https://editor.{{ DOMAIN }}"
     server: false
     client: true
     nuxtclient: false
