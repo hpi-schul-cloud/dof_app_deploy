@@ -278,10 +278,12 @@ configuration_all:
     nuxtclient: false
   # Antivirus
   ENABLE_FILE_SECURITY_CHECK:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FILE_SECURITY_CHECK_SERVICE_URI:
+    value: "http://antivirus-webserver-svc:8080/scan/file"
     server: true
     client: false
     nuxtclient: false
