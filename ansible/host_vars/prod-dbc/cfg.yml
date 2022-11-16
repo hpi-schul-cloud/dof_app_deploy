@@ -1,6 +1,5 @@
 NAMESPACE: hpibosscloud
 DOMAIN: dbildungscloud.de
-DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
 ROCKETCHAT_DNS_PREFIX: scchat.
 
 
