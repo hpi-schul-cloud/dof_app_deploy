@@ -30,5 +30,6 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - antivirus_check_service
+    - version-aggregator
     - rocketchat
     - ingress

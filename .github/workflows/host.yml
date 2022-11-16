@@ -90,6 +90,12 @@ jobs:
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
       - uses: actions/checkout@v3
         with:
+          repository: hpi-schul-cloud/version-aggregator
+          path: repo/version-aggregator
+          token: ${{ secrets.token }}
+          ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
+      - uses: actions/checkout@v3
+        with:
           repository: hpi-schul-cloud/schulcloud-synapse-synchronization
           path: repo/schulcloud-synapse-synchronization
           token: ${{ secrets.token }}

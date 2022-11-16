@@ -1,5 +1,5 @@
 #jinja2: trim_blocks: "True", lstrip_blocks: "True"
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ NAMESPACE }}-hydra-ingress
@@ -25,7 +25,9 @@ spec:
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: hydra-svc
-          servicePort: 4444
-
+          service:
+            name: hydra-svc
+            port:
+              number: 4444
