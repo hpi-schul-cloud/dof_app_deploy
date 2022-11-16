@@ -8,7 +8,7 @@
   {% set ingress_cfg = ingress_cfg| combine(host_ingress, recursive=True, list_merge='append_rp') %}
 {% endif %}
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ NAMESPACE }}-ingress
@@ -39,8 +39,10 @@ spec:
   {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
       - path: {{ idata.path }}
         backend:
-          serviceName: {{ idata.serviceName }}
-          servicePort: {{ idata.servicePort }}
+          service:
+            name: {{ idata.serviceName }}
+            port:
+              number: {{ idata.servicePort }}
     {% if idata.pathType is defined %}
         pathType: {{ idata.pathType }}
     {% else %}
