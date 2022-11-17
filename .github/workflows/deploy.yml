@@ -53,12 +53,10 @@ jobs:
           token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ env.git_ref_name }}
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true 
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
+          git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
