@@ -38,6 +38,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  REQUEST_OPTION__TIMEOUT_ES:
+    value: "10000"
+    server: true
+    client: false
+    nuxtclient: false
   REQUEST_OPTION__KEEP_ALIVE:
     value: "true"
     server: true
