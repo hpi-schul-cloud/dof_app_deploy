@@ -121,11 +121,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  # SMTP
-  SMTP:
-    server: true
-    client: false
-    nuxtclient: false
   SMTP_SENDER:
     value: "noreply@DOMAIN"
     server: true
@@ -135,11 +130,6 @@ configuration_all:
     value: "0"
     server: true
     client: true
-    nuxtclient: false
-  SILENT_ERROR_ENABLED:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
     server: true
@@ -247,16 +237,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  DATABASE_AUDIT:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  DATABASE__AUDIT:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   LOGIN_BLOCK_TIME:
     value: "15"
     server: true
@@ -298,10 +278,12 @@ configuration_all:
     nuxtclient: false
   # Antivirus
   ENABLE_FILE_SECURITY_CHECK:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FILE_SECURITY_CHECK_SERVICE_URI:
+    value: "http://antivirus-webserver-svc:8080/scan/file"
     server: true
     client: false
     nuxtclient: false
@@ -361,17 +343,6 @@ configuration_all:
     value: "etherpad.{{ DOMAIN }}"
     server: false
     client: true
-    nuxtclient: false
-  # notification
-  NOTIFICATION_PLATFORM:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  NOTIFICATION_URI:
-    value: "false"
-    server: true
-    client: false
     nuxtclient: false
   JWT_TIMEOUT_SECONDS:
     value: "7200"
@@ -440,11 +411,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_MORGAN_LOG_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: true
   FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED:
     value: "false"
     server: true
@@ -470,10 +436,6 @@ configuration_all:
     nuxtclient: false
   MONGOOSE_CONNECTION_POOL_SIZE:
     value: "50"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_RABBITMQ_ENABLED:
     server: true
     client: false
     nuxtclient: false
@@ -571,11 +533,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  EDTR_SOURCE:
-    value: "https://editor.{{ DOMAIN }}"
-    server: false
-    client: true
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
@@ -631,17 +588,6 @@ configuration_all:
     value: "http://calendar-svc:3000"
     server: true
     client: false
-    nuxtclient: false
-  # insights
-  FEATURE_INSIGHTS_ENABLED:
-    value: "false"
-    server: false
-    client: true
-    nuxtclient: false
-  INSIGHTS_COLLECTOR_URI:
-    value: "http://insights-collector-svc:3000"
-    server: false
-    client: true
     nuxtclient: false
   # Lernstore
   FEATURE_LERNSTORE_ENABLED:

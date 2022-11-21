@@ -40,6 +40,7 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - antivirus_check_service
+         - version-aggregator
          - schulcloud-synapse-synchronization
          - dof_app_deploy
     steps:
@@ -52,12 +53,10 @@ jobs:
           token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ env.git_ref_name }}
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true 
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
+          git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
@@ -120,10 +119,6 @@ jobs:
         run: |
           python3 -m pip install kubernetes
           
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "NOTIFICATION_PLATFORM: testplatform" >> develop/node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> develop/node-notification-service.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

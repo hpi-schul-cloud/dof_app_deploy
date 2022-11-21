@@ -90,6 +90,12 @@ jobs:
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
       - uses: actions/checkout@v3
         with:
+          repository: hpi-schul-cloud/version-aggregator
+          path: repo/version-aggregator
+          token: ${{ secrets.token }}
+          ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
+      - uses: actions/checkout@v3
+        with:
           repository: hpi-schul-cloud/schulcloud-synapse-synchronization
           path: repo/schulcloud-synapse-synchronization
           token: ${{ secrets.token }}
@@ -120,10 +126,6 @@ jobs:
         run: |
           python3 -m pip install kubernetes
           
-      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-        run: |
-          echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
         run: |
