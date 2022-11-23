@@ -1,0 +1,13 @@
+- name: Clear potential old job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: job.yml.j2
+    state: absent
+
+- name: Create deployment marker job
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: job.yml.j2
+    state: present

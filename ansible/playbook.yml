@@ -5,6 +5,7 @@
   connection: local
   roles:
     - sys
+    - deployment_start_metrics
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: deployment-metrics-marker-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: deployment-metrics-marker
+        image: schulcloud/infra-tools:latest
+        command: ['sleep','5m']
+      restartPolicy: Never
+  backoffLimit: 4
