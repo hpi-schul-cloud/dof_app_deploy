@@ -34,3 +34,4 @@
     - version-aggregator
     - rocketchat
     - ingress
+    - deployment_end_metrics
