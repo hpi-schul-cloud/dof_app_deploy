@@ -6,3 +6,5 @@
     api_version: batch/v1
     kind: Job
     name: deployment-metrics-marker-job
+    delete_options:
+      propagationPolicy: Foreground

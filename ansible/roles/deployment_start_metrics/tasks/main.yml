@@ -4,6 +4,8 @@
     namespace: "{{ NAMESPACE }}"
     template: job.yml.j2
     state: absent
+    delete_options:
+      propagationPolicy: Foreground
 
 - name: Create deployment marker job
   kubernetes.core.k8s:
