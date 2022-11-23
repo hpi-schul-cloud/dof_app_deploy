@@ -360,22 +360,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  TSP_API_ENCRYPTION_KEY:
-    server: true
-    client: false
-    nuxtclient: false
-  TSP_API_SIGNATURE_KEY:
-    server: true
-    client: false
-    nuxtclient: false
-  TSP_API_CLIENT_ID:
-    server: true
-    client: false
-    nuxtclient: false
-  TSP_API_CLIENT_SECRET:
-    server: true
-    client: false
-    nuxtclient: false
   TSP_API_BASE_URL:
     server: true
     client: false
