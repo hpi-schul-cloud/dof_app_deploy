@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  namespace: sc-common
+  labels:
+    app: mongo
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 4
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+      containers:
+        - name: mongo
+          image: docker.io/mongo:4.4
+          imagePullPolicy: IfNotPresent
+          args: ["--replSet", "rs0", "--oplogSize", "10"]
+          ports:
+            - containerPort: 27017
+              name: mongo
+              protocol: TCP
+          volumeMounts:
+            - name: mongodb-data-pv
+              mountPath: /data/db
+              readOnly: false
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      volumes:
+        - name: mongodb-data-pv
+          persistentVolumeClaim:
+            claimName: mongo-pvc
