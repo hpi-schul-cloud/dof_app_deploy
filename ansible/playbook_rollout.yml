@@ -8,6 +8,7 @@
   connection: local
   roles:
     - role: sys
+    - role: deployment_start_metrics
     - role: dof_mongo
     - role: dof_postgresql
     - role: dof_rabbitmq
@@ -40,3 +41,4 @@
     - role: antivirus_check_service
     - role: rocketchat
     - role: ingress
+    - role: deployment_end_metrics
