@@ -5,7 +5,7 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEACHER: "hello world"
+GLOBAL_ANNOUNCEMENT_TEACHER: ""
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
