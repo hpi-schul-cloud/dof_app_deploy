@@ -28,11 +28,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  LEGACY_CLIENT_URL:
-    value: "http://client-svc:3100"
-    server: false
-    client: false
-    nuxtclient: true
   REQUEST_OPTION__TIMEOUT_MS:
     value: "8000"
     server: true
@@ -461,7 +456,7 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_LESSON_SHARE:
     value: "false"
     server: true
@@ -527,11 +522,11 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__URI:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__SERVERNAME:
     server: true
     client: false
@@ -539,7 +534,7 @@ configuration_all:
   MATRIX_MESSENGER__STUDENT_ROOM_CREATION:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN:
     server: true
     client: false
@@ -555,19 +550,19 @@ configuration_all:
   MATRIX_MESSENGER__EMBED_URI:
     server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__DISCOVER_URI:
     server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE:
     server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED:
     server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   CALENDAR_URI:
     value: "http://calendar-svc:3000"
     server: true
@@ -601,7 +596,7 @@ configuration_all:
   FEATURE_ES_COLLECTIONS_ENABLED:
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_ES_SEARCHABLE_ENABLED:
     server: true
     client: false
@@ -628,11 +623,11 @@ configuration_all:
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_EXTENSIONS_ENABLED:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_NUXT_SCHOOL_ADMIN_BETA:
     value: "true"
     server: false
@@ -655,7 +650,7 @@ configuration_all:
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     server: true
     client: false
