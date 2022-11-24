@@ -734,6 +734,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+# !!devcluster specific vars, usually those are secrets!!
   DB_URL:
     server: true
     client: false
