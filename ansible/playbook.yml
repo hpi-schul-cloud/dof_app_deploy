@@ -16,9 +16,6 @@
     - hydra
     - erwin-idm
     - oidcmock
-    - insights-collector
-    - insights-cubejs
-    - insights-engine
     - dof_etherpad_nginx
     - dof_etherpad
     - clamav
@@ -33,5 +30,6 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - antivirus_check_service
+    - version-aggregator
     - rocketchat
     - ingress

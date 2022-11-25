@@ -1,5 +1,5 @@
 #jinja2: trim_blocks: "True", lstrip_blocks: "True"
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ NAMESPACE }}-libreoffice-ingress
@@ -25,23 +25,37 @@ spec:
     http:
       paths:
       - path: /loleaflet
+        pathType: ImplementationSpecific
         backend:
-          serviceName: libreoffice-svc
-          servicePort: 9980
+          service:
+            name: libreoffice-svc
+            port:
+              number: 9980
       - path: /hosting/discovery
+        pathType: ImplementationSpecific
         backend:
-          serviceName: libreoffice-svc
-          servicePort: 9980
+          service:
+            name: libreoffice-svc
+            port:
+              number: 9980
       - path: /lool/(.*)/ws
+        pathType: ImplementationSpecific
         backend:
-          serviceName: libreoffice-svc
-          servicePort: 9980
+          service:
+            name: libreoffice-svc
+            port:
+              number: 9980
       - path: /lool
+        pathType: ImplementationSpecific
         backend:
-          serviceName: libreoffice-svc
-          servicePort: 9980
+          service:
+            name: libreoffice-svc
+            port:
+              number: 9980
       - path: /lool/adminws
+        pathType: ImplementationSpecific
         backend:
-          serviceName: libreoffice-svc
-          servicePort: 9980
-
+          service:
+            name: libreoffice-svc
+            port:
+              number: 9980

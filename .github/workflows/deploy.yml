@@ -1,5 +1,5 @@
 ---
-name: Deoply Action
+name: Deploy Action
 
 on:
   workflow_call:
@@ -40,24 +40,23 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - antivirus_check_service
+         - version-aggregator
          - schulcloud-synapse-synchronization
          - dof_app_deploy
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ env.git_ref_name }}
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-        continue-on-error: true 
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
+          git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
@@ -68,7 +67,7 @@ jobs:
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
@@ -89,7 +88,7 @@ jobs:
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
-          echo "##[set-output name=id;]$(echo $temp)"
+          echo "id=$temp" >> $GITHUB_OUTPUT
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
         run: |
@@ -97,7 +96,7 @@ jobs:
           echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg_host.yml
           echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.tennens }}
           path: ${{github.workspace }}/${{ matrix.tennens }}.tar
@@ -108,11 +107,11 @@ jobs:
       - create_artifacts_workspaces
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ansible
           path: ${{github.workspace }}/ansible.tar
@@ -120,10 +119,6 @@ jobs:
         run: |
           python3 -m pip install kubernetes
           
-      - working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "NOTIFICATION_PLATFORM: testplatform" >> develop/node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> develop/node-notification-service.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

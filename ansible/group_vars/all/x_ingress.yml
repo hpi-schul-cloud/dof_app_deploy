@@ -47,10 +47,6 @@ default_ingress:
     path: /mint-ec
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  insights:
-    path: /insights
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
     serviceName: nuxtclient-svc
@@ -107,10 +103,18 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  cfiles:
+    path: /cfiles
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
+  api_v1_alert:
+    path: /api/v1/alert
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_metrics:
     path: /api/v1/metrics
     serviceName: default-backend-404-svc
@@ -163,8 +167,20 @@ default_ingress:
     path: /api/v3/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_lessons:
+    path: /api/v3/lessons
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sharetoken:
+    path: /api/v3/sharetoken
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_ouauth:
     path: /api/v3/sso/oauth/
+  api_v3_sso_hydra:
+    path: /api/v3/sso/hydra/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:

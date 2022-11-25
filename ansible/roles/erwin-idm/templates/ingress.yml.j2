@@ -1,5 +1,5 @@
 #jinja2: trim_blocks: "True", lstrip_blocks: "True"
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ NAMESPACE }}-erwinidm-ingress
@@ -33,18 +33,30 @@ spec:
     http:
       paths:
       - path: /realms/
+        pathType: ImplementationSpecific
         backend:
-          serviceName: erwinidm-svc
-          servicePort: {{ ERWINIDM_PORT }}
+          service:
+            name: erwinidm-svc
+            port:
+              number: {{ ERWINIDM_PORT }}
       - path: /resources/
+        pathType: ImplementationSpecific
         backend:
-          serviceName: erwinidm-svc
-          servicePort: {{ ERWINIDM_PORT }}
+          service:
+            name: erwinidm-svc
+            port:
+              number: {{ ERWINIDM_PORT }}
       - path: /js/
+        pathType: ImplementationSpecific
         backend:
-          serviceName: erwinidm-svc
-          servicePort: {{ ERWINIDM_PORT }}
+          service:
+            name: erwinidm-svc
+            port:
+              number: {{ ERWINIDM_PORT }}
       - path: /robots.txt
+        pathType: ImplementationSpecific
         backend:
-          serviceName: erwinidm-svc
-          servicePort: {{ ERWINIDM_PORT }}
+          service:
+            name: erwinidm-svc
+            port:
+              number: {{ ERWINIDM_PORT }}

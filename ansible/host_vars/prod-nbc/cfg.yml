@@ -1,6 +1,5 @@
 NAMESPACE: niedersachsen
 DOMAIN: niedersachsen.cloud
-DOCUMENT_BASE_DIR: https://s3.hidrive.strato.com/cloud-instances/
 
 FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
