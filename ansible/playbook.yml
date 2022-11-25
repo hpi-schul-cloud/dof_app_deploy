@@ -5,7 +5,7 @@
   connection: local
   roles:
     - sys
-    - deployment_start_metrics
+    - pre_deployment
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
@@ -34,4 +34,4 @@
     - version-aggregator
     - rocketchat
     - ingress
-    - deployment_end_metrics
+    - post_deployment

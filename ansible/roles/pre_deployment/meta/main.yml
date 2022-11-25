@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: deployment_end_metrics
+  role_name: pre_deployment
   author: Schul-Cloud Verbund
-  description: Role to delete the job to mark the end of the deployment (for metrics)
+  description: Role to start a job that marks the start of the deployment (for metrics)
   company: Schul-Cloud Verbund
   license: license (AGPLv3)
   min_ansible_version: 2.8
