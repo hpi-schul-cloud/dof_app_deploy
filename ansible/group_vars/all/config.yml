@@ -676,7 +676,7 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEACHER:
     value: ""
     server: false
-    client: false
+    client: true
     nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
