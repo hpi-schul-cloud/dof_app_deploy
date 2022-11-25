@@ -638,6 +638,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_SCHOOL_SANIS_USER_MIGRATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
