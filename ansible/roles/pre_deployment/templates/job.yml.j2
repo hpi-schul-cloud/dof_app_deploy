@@ -8,6 +8,6 @@ spec:
       containers:
       - name: deployment-metrics-marker
         image: schulcloud/infra-tools:latest
-        command: ['sleep','30m']
+        command: {{ deployment_marker_job_command }}
       restartPolicy: Never
   backoffLimit: 4
