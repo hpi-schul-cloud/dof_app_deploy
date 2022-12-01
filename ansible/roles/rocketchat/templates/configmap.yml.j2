@@ -35,3 +35,8 @@ data:
   Iframe_Restrict_Access: 'false'
   Accounts_Iframe_api_method: 'GET'
   OVERWRITE_SETTING_Show_Setup_Wizard: 'completed'
+  # dev env specific, do not set anywhere else
+{% if ROCKETCHAT_MONGODB_URL is defined %}
+  MONGO_URL: {{ ROCKETCHAT_MONGODB_URL }}
+  ROCKETCHAT_MONGODB_OPLOG_URL: {{ ROCKETCHAT_MONGODB_URL }}
+{% endif %}

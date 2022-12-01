@@ -19,5 +19,10 @@ IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 FEATURE_COURSE_SHARE_NEW: "true"
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
 FEATURE_NEW_TASK_ENABLED: "true"
+#!! dev system specific, do not use anywhere else!!
 DB_URL: "mongodb://mongo-svc.sc-common.svc.cluster.local:27017/{{ NAMESPACE }}?directConnection=true"
 DATABASE__URL: "mongodb://mongo-svc.sc-common.svc.cluster.local:27017/{{ NAMESPACE }}?directConnection=true"
+
+ROCKETCHAT_MONGODB_URL: "mongodb://mongo-svc.sc-common.svc.cluster.local:27017/{{ NAMESPACE }}-rocketchat"
+ROCKETCHAT_MONGODB_OPLOG_URL: "mongodb://mongo-svc.sc-common.svc.cluster.local:27017/local"
+ETHERPAD_DB_URL: "mongodb://mongo-svc.sc-common.svc.cluster.local:27017/{{ NAMESPACE }}-etherpad"
