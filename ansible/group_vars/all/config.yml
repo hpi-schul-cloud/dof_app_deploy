@@ -642,7 +642,7 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
