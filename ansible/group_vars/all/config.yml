@@ -453,7 +453,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE_NEW:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
