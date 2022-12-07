@@ -305,3 +305,7 @@ default_ingress:
     path: /etherpad/socket.io
     serviceName: etherpad-nginx-svc
     servicePort: 80
+  version_aggregator:
+    path: /version
+    serviceName: version-aggregator-svc
+    servicePort: 8080
