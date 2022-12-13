@@ -1,5 +1,5 @@
 ---
-name: dev deployment
+name: Deploy Action
 
 on:
   workflow_call:
