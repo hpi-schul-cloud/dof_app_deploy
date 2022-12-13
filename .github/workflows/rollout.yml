@@ -1,5 +1,5 @@
 name: Rollout to the instances
-run-name: Rollout ${{ inputs.config_tag_name }} to ${{ inputs.config_tag_name }}
+run-name: Rollout of ${{ inputs.config_tag_name }} to ${{ inputs.instance_group }}
 
 on:
   workflow_dispatch:

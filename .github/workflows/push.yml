@@ -1,6 +1,5 @@
 ---
 name: Auto-deployment for Branches
-run-name: dev deployment of ${{ github.ref_name }} by @${{ github.actor }}
 
 on:
   push:
