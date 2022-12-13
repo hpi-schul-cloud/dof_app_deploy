@@ -1,6 +1,5 @@
 ---
 name: dev deployment
-run-name: dev deployment of ${{ inputs.branch }} by @${{ github.actor }}
 
 on:
   workflow_call:
