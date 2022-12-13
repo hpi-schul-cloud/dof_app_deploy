@@ -1,4 +1,5 @@
 name: Rollout to the instances
+run-name: Rollout ${{ inputs.config_tag_name }} to ${{ inputs.config_tag_name }}
 
 on:
   workflow_dispatch:
@@ -18,7 +19,7 @@ jobs:
     steps:
       - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
-      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
+      - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
     needs:
