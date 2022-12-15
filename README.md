@@ -4,7 +4,7 @@
 dof: **D**ev**O**ps**F**uture - this was a working title that stuck to this repository
 
 ## why
-goal is to enabled a push based deployment (contary to pull in [gitops speech](https://www.gitops.tech/#push-based-deployments))
+goal is to enable a push based deployment (contrary to pull in [gitops speech](https://www.gitops.tech/#push-based-deployments))
 this repository would be the environment repository for that matter
 
 ## how
