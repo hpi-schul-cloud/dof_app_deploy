@@ -20,4 +20,4 @@ FEATURE_COURSE_SHARE_NEW: "true"
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
 FEATURE_NEW_TASK_ENABLED: "true"
 
-ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
+ES_DOMAIN: "https://repository.dev-edusharing.staging.dbildungscloud.org"
