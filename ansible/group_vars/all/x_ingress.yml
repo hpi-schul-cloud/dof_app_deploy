@@ -49,6 +49,14 @@ default_ingress:
     servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
+  news-new:
+    path: /news/new
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  news-id-edit:
+    path: /news/.*/edit
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   tasks:
