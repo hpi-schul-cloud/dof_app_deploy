@@ -440,8 +440,8 @@ configuration_all:
   VIDEOCONFERENCE_DEFAULT_PRESENTATION:
     value: ""
     server: true
-    client: true
-    nuxtclient: true
+    client: false
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
