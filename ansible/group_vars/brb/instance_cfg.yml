@@ -78,7 +78,7 @@ FEATURE_USER_MIGRATION_SYSTEM_ID: ""
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 # BigBlueButton
-VIDEOCONFERENCE_DEFAULT_PRESENTATION: "https://s3.hidrive.strato.com/cloud-instances/thr/bbb/presentation.pdf"
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/thr/bbb/presentation.pdf
 
 # Ingress
 group_ingress:
