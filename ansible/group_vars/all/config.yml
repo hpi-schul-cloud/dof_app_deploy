@@ -28,6 +28,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  LEGACY_CLIENT_URL:
+    value: "http://client-svc:3100"
+    server: false
+    client: false
+    nuxtclient: true
   REQUEST_OPTION__TIMEOUT_MS:
     value: "8000"
     server: true
