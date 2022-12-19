@@ -95,10 +95,18 @@ default_ingress:
     path: /administration/students
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_students-edit:
+    path: /administration/students/.*/edit
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
   administration_teachers:
     path: /administration/teachers
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_teachers-edit:
+    path: /administration/teachers/.*/edit
+    serviceName: client-svc
+    servicePort: "{{ CLIENT_PORT }}"
   rooms-overview:
     path: /rooms-overview
     serviceName: nuxtclient-svc
