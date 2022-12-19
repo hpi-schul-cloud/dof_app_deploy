@@ -47,18 +47,10 @@ default_ingress:
     path: /mint-ec
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  news-id-edit:
-    path: /news/.*/edit
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
-  news-new:
-    path: /news/new
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
-    serviceName: client-svc
-    servicePort: "{{ CLIENT_PORT }}"
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   tasks:
     path: /tasks
     serviceName: nuxtclient-svc
@@ -91,14 +83,10 @@ default_ingress:
     path: /administration/datasources
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration_students-id-edit:
-    path: /administration/students/.*/edit
-    serviceName: client-svc
-    servicePort: "{{ CLIENT_PORT }}"
-  administration_teachers-id-edit:
-    path: /administration/teachers/.*/edit
-    serviceName: client-svc
-    servicePort: "{{ CLIENT_PORT }}"
+  administration_students:
+    path: /administration/students
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_teachers:
     path: /administration/teachers
     serviceName: nuxtclient-svc
