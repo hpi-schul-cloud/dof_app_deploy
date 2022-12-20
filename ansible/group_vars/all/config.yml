@@ -437,6 +437,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  VIDEOCONFERENCE_DEFAULT_PRESENTATION:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
@@ -453,7 +458,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_COURSE_SHARE_NEW:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -637,6 +642,11 @@ configuration_all:
     value: "true"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_SCHOOL_SANIS_USER_MIGRATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
