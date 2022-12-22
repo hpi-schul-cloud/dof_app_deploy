@@ -182,6 +182,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   IDENTITY_MANAGEMENT__URI:
     value: "http://erwinidm-svc:8089"
     server: true
