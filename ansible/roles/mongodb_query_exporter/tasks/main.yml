@@ -14,7 +14,7 @@
       release_state: present
       create_namespace: yes
       kubeconfig: ~/.kube/config
-      update_repo_cache: yes
+      update_repo_cache: no
       values_files: 
         - /ansible/roles/mongodb-query-exporter/files/values.yaml
 
