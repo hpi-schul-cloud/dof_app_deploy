@@ -9,6 +9,9 @@ mongodb_query_exporter_values:
   existingSecret:
     name: "mongodb-query-exporter-secret"
 
+  service:
+    enabled: true
+
   serviceMonitor:
     enabled: true
 
