@@ -1,0 +1,38 @@
+image:
+  tag: 2.0.2
+
+mongodb:
+ - mongodb://mongo-svc:27017/?directConnection=true
+
+existingSecret:
+  name: "mongodb-query-exporter-secret"
+
+serviceMonitor:
+  enabled: true
+
+config: |
+  version: 3.0
+  bind: 0.0.0.0:9412
+  metricsPath: /metrics
+  logLevel: debug
+  global:
+    queryTimeout: "10s"
+    maxConnection: 3
+    defaultCache: 0
+  aggregations:
+  - database: scapp
+    collection: accounts
+    metrics:
+    - name: sc_accounts_total
+      type: gauge
+      help: 'The number of schools'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
