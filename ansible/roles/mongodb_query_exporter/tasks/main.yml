@@ -7,14 +7,14 @@
 
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
-      name: "mongodb-query-exporter"
-      create_namespace: yes
-      chart_ref: "oci://ghcr.io/raffis/charts/mongodb-query-exporter"
-      update_repo_cache: yes
-      wait: yes
-      chart_version: "3.0.1"
-      kubeconfig: ~/.kube/config
+      chart_ref: oci://ghcr.io/raffis/charts/mongodb-query-exporter
+      chart_version: 3.0.1
+      release_name: mongodb-query-exporter
       release_namespace: "{{ NAMESPACE }}"
+      release_state: present
+      create_namespace: yes
+      kubeconfig: ~/.kube/config
+      update_repo_cache: yes
       values_files: 
         - /ansible/roles/mongodb-query-exporter/files/values.yaml
 
