@@ -25,19 +25,22 @@ mongodb_query_exporter_values:
       maxConnection: 3
       defaultCache: 0
     aggregations:
-    - database: scapp
-      collection: accounts
-      metrics:
-      - name: sc_accounts_total
-        type: gauge
-        help: 'The number of schools'
-        value: total
-        overrideEmpty: true
-        emptyValue: 0
-        labels: []
-        constLabels: []
-      mode: pull
-      pipeline: |
-        [
-          {"$count":"total"}
-        ]
+      {{ mongodb_query_exporter_aggregations }}
+
+mongodb_query_exporter_aggregations: |
+  - database: scapp
+    collection: accounts
+    metrics:
+    - name: sc_accounts_total
+      type: gauge
+      help: 'The number of schools'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
