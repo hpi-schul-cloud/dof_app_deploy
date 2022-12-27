@@ -28,7 +28,6 @@ permissions:
 
 jobs:
   create_artifacts_repos:
-    continue-on-error: true
     runs-on: ubuntu-latest
     strategy:
       matrix:
