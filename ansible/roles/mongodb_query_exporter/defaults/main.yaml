@@ -33,7 +33,87 @@ mongodb_query_exporter_aggregations: |
     metrics:
     - name: sc_accounts_total
       type: gauge
+      help: 'The number of accounts'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
+  - database: scapp
+    collection: schools
+    metrics:
+    - name: sc_schools_total
+      type: gauge
       help: 'The number of schools'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
+  - database: scapp
+    collection: classes
+    metrics:
+    - name: sc_classes_total
+      type: gauge
+      help: 'The number of classes'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
+  - database: scapp
+    collection: courses
+    metrics:
+    - name: sc_courses_total
+      type: gauge
+      help: 'The number of courses'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
+  - database: scapp
+    collection: coursegroups
+    metrics:
+    - name: sc_coursegroups_total
+      type: gauge
+      help: 'The number of coursegroups'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: []
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"total"}
+      ]
+  - database: scapp
+    collection: lessons
+    metrics:
+    - name: sc_lessons_total
+      type: gauge
+      help: 'The number of lessons'
       value: total
       overrideEmpty: true
       emptyValue: 0
