@@ -23,6 +23,9 @@ on:
       TOKEN_INVENTORY:
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   create_artifacts_repos:
     continue-on-error: true
