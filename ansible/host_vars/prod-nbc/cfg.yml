@@ -5,7 +5,7 @@ FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 FEATURE_SCHOOL_SANIS_USER_MIGRATION_ENABLED: "false"
-ES_DOMAIN: https://mv-repo.schul-cloud.org
+ES_DOMAIN: https://repository.edusharing.dbildungscloud.de
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/

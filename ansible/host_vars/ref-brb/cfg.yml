@@ -5,6 +5,6 @@ FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
 FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 
-ES_DOMAIN: https://mv-repo.schul-cloud.org
+ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.brandenburg.cloud

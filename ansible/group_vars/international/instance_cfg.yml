@@ -47,7 +47,7 @@ JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://mv-repo.schul-cloud.org
+ES_DOMAIN: https://repository.edusharing.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
