@@ -20,3 +20,7 @@ class TestEverything(unittest.TestCase):
                     useless_declarations.append(entry)
 
             self.assertEqual([], useless_declarations, 'populating a variable that is never set anywhere')
+
+
+if __name__ == '__main__':
+    unittest.main()
