@@ -708,11 +708,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_LEGACY_HYDRA_ENABLED:
-    value: "false"
-    server: false
-    client: false
-    nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
     value: ""
     server: true
