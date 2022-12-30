@@ -2,6 +2,7 @@ mongodb_query_exporter_chart_version: 3.0.1
 mongodb_query_exporter_image_version: 2.0.2
 mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
 mongodb_query_exporter_secret_name: "mongodb-query-exporter-secret"
+mongodb_query_exporter_sampling_time: 60s
 mongodb_query_exporter_aggregations: "{{ mongodb_query_exporter_aggregation_list | join('\n') }}"
 mongodb_query_exporter_values:
   image:
@@ -18,7 +19,7 @@ mongodb_query_exporter_values:
 
   serviceMonitor:
     enabled: true
-    interval: 60s
+    interval: "{{ mongodb_query_exporter_sampling_time }}"
 
   config: |-
     version: 3.0
