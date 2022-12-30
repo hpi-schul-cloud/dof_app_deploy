@@ -20,7 +20,7 @@ mongodb_query_exporter_values:
     enabled: true
     interval: 60s
 
-  config: |
+  config: |-
     version: 3.0
     bind: 0.0.0.0:9412
     metricsPath: /metrics
@@ -30,10 +30,10 @@ mongodb_query_exporter_values:
       maxConnection: 3
       defaultCache: 0
     aggregations:
-      {{ mongodb_query_exporter_aggregations }}
+    {{ mongodb_query_exporter_aggregations }}
 
 mongodb_query_exporter_aggregation_list:
-  - |
+  - |-
       - database: scapp
         collection: schools
         metrics:
@@ -50,7 +50,7 @@ mongodb_query_exporter_aggregation_list:
           [
             {"$count":"total"}
           ]
-  - |
+  - |-
       - database: scapp
         collection: accounts
         metrics:
@@ -94,7 +94,7 @@ mongodb_query_exporter_aggregation_list:
               },
               { $count: "total" }
           ]
-  - |
+  - |-
       - database: scapp
         collection: classes
         metrics:
