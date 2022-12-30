@@ -3,6 +3,7 @@ mongodb_query_exporter_image_version: 2.0.2
 mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
 mongodb_query_exporter_secret_name: "mongodb-query-exporter-secret"
 mongodb_query_exporter_sampling_time: 60s
+#TODO: Join strings from multiple files
 mongodb_query_exporter_aggregations: "{{ mongodb_query_exporter_aggregation_list | join('\n') }}"
 mongodb_query_exporter_values:
   image:
@@ -27,69 +28,3 @@ mongodb_query_exporter_values:
       defaultCache: 0
     aggregations:
     {{ mongodb_query_exporter_aggregations }}
-mongodb_query_exporter_aggregation_list:
-  - |-
-      - database: scapp
-        collection: classes
-        metrics:
-        - name: sc_classes_total
-          type: gauge
-          help: 'The number of classes'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: courses
-        metrics:
-        - name: sc_courses_total
-          type: gauge
-          help: 'The number of courses'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: coursegroups
-        metrics:
-        - name: sc_coursegroups_total
-          type: gauge
-          help: 'The number of coursegroups'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: lessons
-        metrics:
-        - name: sc_lessons_total
-          type: gauge
-          help: 'The number of lessons'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
