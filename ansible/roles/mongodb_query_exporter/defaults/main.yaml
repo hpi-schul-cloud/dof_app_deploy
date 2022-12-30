@@ -33,7 +33,7 @@ mongodb_query_exporter_values:
       {{ mongodb_query_exporter_aggregations }}
 
 mongodb_query_exporter_aggregation_list:
-  - mongodb_query_exporter_aggregation_schools: |
+  - |
       - database: scapp
         collection: schools
         metrics:
@@ -50,7 +50,7 @@ mongodb_query_exporter_aggregation_list:
           [
             {"$count":"total"}
           ]
-  - mongodb_query_exporter_aggregation_accounts: |
+  - |
       - database: scapp
         collection: accounts
         metrics:
@@ -94,7 +94,7 @@ mongodb_query_exporter_aggregation_list:
               },
               { $count: "total" }
           ]
-  - mongodb_query_exporter_aggregation_basics: |
+  - |
       - database: scapp
         collection: classes
         metrics:
