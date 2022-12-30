@@ -1,7 +1,9 @@
+mongodb_query_exporter_chart_version: 3.0.1
+mongodb_query_exporter_image_version: 2.0.2
 mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
 mongodb_query_exporter_values:
   image:
-    tag: 2.0.2
+    tag: {{ mongodb_query_exporter_image_version }}
 
   mongodb:
   - "{{ mongodb_query_exporter_mongodb_uri }}"
