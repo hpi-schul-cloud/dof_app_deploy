@@ -16,6 +16,7 @@ mongodb_query_exporter_values:
 
   serviceMonitor:
     enabled: true
+    interval: 60s
 
   config: |
     version: 3.0
