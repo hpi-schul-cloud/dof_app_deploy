@@ -3,4 +3,4 @@ FEATURE_NEXBOARD_ENABLED: "false"
 
 API_LDAP_SYNC_SVC: api-ldapsync-svc
 
-ES_DOMAIN: https://mv-repo.schul-cloud.org
+ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
