@@ -8,7 +8,7 @@
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
       chart_ref: oci://ghcr.io/raffis/charts/mongodb-query-exporter
-      chart_version: {{ mongodb_query_exporter_chart_version }}
+      chart_version: "{{ mongodb_query_exporter_chart_version }}"
       release_name: mongodb-query-exporter
       release_namespace: "{{ NAMESPACE }}"
       release_state: present
