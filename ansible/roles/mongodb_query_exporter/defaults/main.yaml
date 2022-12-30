@@ -7,20 +7,15 @@ mongodb_query_exporter_aggregations: "{{ mongodb_query_exporter_aggregation_list
 mongodb_query_exporter_values:
   image:
     tag: "{{ mongodb_query_exporter_image_version }}"
-
   mongodb:
   - "{{ mongodb_query_exporter_mongodb_uri }}"
-
   existingSecret:
     name: "{{ mongodb_query_exporter_secret_name }}"
-
   service:
     enabled: true
-
   serviceMonitor:
     enabled: true
     interval: "{{ mongodb_query_exporter_sampling_time }}"
-
   config: |-
     version: 3.0
     bind: 0.0.0.0:9412
@@ -32,7 +27,6 @@ mongodb_query_exporter_values:
       defaultCache: 0
     aggregations:
     {{ mongodb_query_exporter_aggregations }}
-
 mongodb_query_exporter_aggregation_list:
   - |-
       - database: scapp
