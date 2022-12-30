@@ -30,7 +30,7 @@ mongodb_query_exporter_values:
       maxConnection: 3
       defaultCache: 0
     aggregations:
-    {{ mongodb_query_exporter_aggregations }}
+      {{ mongodb_query_exporter_aggregations }}
 
 mongodb_query_exporter_aggregation_list:
   - mongodb_query_exporter_aggregation_schools: |
