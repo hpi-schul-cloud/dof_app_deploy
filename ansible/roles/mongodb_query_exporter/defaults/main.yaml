@@ -2,6 +2,7 @@ mongodb_query_exporter_chart_version: 3.0.1
 mongodb_query_exporter_image_version: 2.0.2
 mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
 mongodb_query_exporter_secret_name: "mongodb-query-exporter-secret"
+mongodb_query_exporter_aggregations: "{{ mongodb_query_exporter_aggregation_list | join('\n') }}"
 mongodb_query_exporter_values:
   image:
     tag: "{{ mongodb_query_exporter_image_version }}"
@@ -10,7 +11,7 @@ mongodb_query_exporter_values:
   - "{{ mongodb_query_exporter_mongodb_uri }}"
 
   existingSecret:
-    name: "mongodb-query-exporter-secret"
+    name: "{{ mongodb_query_exporter_secret_name }}"
 
   service:
     enabled: true
@@ -31,100 +32,130 @@ mongodb_query_exporter_values:
     aggregations:
     {{ mongodb_query_exporter_aggregations }}
 
-mongodb_query_exporter_aggregations: |
-  - database: scapp
-    collection: accounts
-    metrics:
-    - name: sc_accounts_total
-      type: gauge
-      help: 'The number of accounts'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
-  - database: scapp
-    collection: schools
-    metrics:
-    - name: sc_schools_total
-      type: gauge
-      help: 'The number of schools'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
-  - database: scapp
-    collection: classes
-    metrics:
-    - name: sc_classes_total
-      type: gauge
-      help: 'The number of classes'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
-  - database: scapp
-    collection: courses
-    metrics:
-    - name: sc_courses_total
-      type: gauge
-      help: 'The number of courses'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
-  - database: scapp
-    collection: coursegroups
-    metrics:
-    - name: sc_coursegroups_total
-      type: gauge
-      help: 'The number of coursegroups'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
-  - database: scapp
-    collection: lessons
-    metrics:
-    - name: sc_lessons_total
-      type: gauge
-      help: 'The number of lessons'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: []
-      constLabels: []
-    mode: pull
-    pipeline: |
-      [
-        {"$count":"total"}
-      ]
+mongodb_query_exporter_aggregation_list:
+  - mongodb_query_exporter_aggregation_schools: |
+      - database: scapp
+        collection: schools
+        metrics:
+        - name: sc_schools_total
+          type: gauge
+          help: 'The number of schools'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
+  - mongodb_query_exporter_aggregation_accounts: |
+      - database: scapp
+        collection: accounts
+        metrics:
+        - name: sc_accounts_total
+          type: gauge
+          help: 'The number of accounts'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
+      - database: scapp
+        collection: accounts
+        metrics:
+        - name: sc_accounts_total
+          type: gauge
+          help: 'The number of accounts'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+              {
+                  "$lookup" : {
+                      "from" : "users",
+                      "localField" : "userId",
+                      "foreignField" : "_id",
+                      "as" : "->users"
+                  }
+              },
+              {
+                  $match: { "->users.roles": { $in: [ObjectId("0000d186816abba584714c98")] } }
+              },
+              { $count: "total" }
+          ]
+  - mongodb_query_exporter_aggregation_basics: |
+      - database: scapp
+        collection: classes
+        metrics:
+        - name: sc_classes_total
+          type: gauge
+          help: 'The number of classes'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
+      - database: scapp
+        collection: courses
+        metrics:
+        - name: sc_courses_total
+          type: gauge
+          help: 'The number of courses'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
+      - database: scapp
+        collection: coursegroups
+        metrics:
+        - name: sc_coursegroups_total
+          type: gauge
+          help: 'The number of coursegroups'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
+      - database: scapp
+        collection: lessons
+        metrics:
+        - name: sc_lessons_total
+          type: gauge
+          help: 'The number of lessons'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {"$count":"total"}
+          ]
