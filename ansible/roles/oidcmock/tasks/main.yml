@@ -33,24 +33,6 @@
     state: absent
   when: not WITH_OIDCMOCK
 
-- name: Secret
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config
-    namespace: "{{ NAMESPACE }}"
-    template: secret.yml.j2
-    apply: yes
-  when: WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
-
-- name: remove Secret
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config
-    namespace: "{{ NAMESPACE }}"
-    api_version: v1
-    kind: Secret
-    name: oidcmock-secret
-    state: absent
-  when: not WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR)
-
 - name: Secret by 1Password
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config

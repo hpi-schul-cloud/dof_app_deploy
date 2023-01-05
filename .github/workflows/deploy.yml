@@ -28,6 +28,9 @@ on:
 env:
   tennens: "brb default nbc"
 
+permissions:
+  contents: read
+
 jobs:
   create_artifacts_repos:
     runs-on: ubuntu-latest
