@@ -1,188 +1,558 @@
-mongodb_query_exporter_aggregation_list:
-  - |-
-      - database: scapp
-        collection: schools
-        metrics:
-        - name: sc_schools_total
-          type: gauge
-          help: 'The number of schools'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-  - |-
-      - database: scapp
-        collection: accounts
-        metrics:
-        - name: sc_accounts_total
-          type: gauge
-          help: 'The number of accounts'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-# Admin Accounts
-  - |-
-      - database: scapp
-        collection: accounts
-        metrics:
-        - name: sc_accounts_admin_total
-          type: gauge
-          help: 'The number of admin accounts'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
-                }
-            },
-            {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c96"] } }
-            },
-            { "$count": "total" }
-          ]
-# Teacher Accounts
-  - |-
-      - database: scapp
-        collection: accounts
-        metrics:
-        - name: sc_accounts_teachers_total
-          type: gauge
-          help: 'The number of teacher accounts'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
-                }
-            },
-            {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c98"] } }
-            },
-            { "$count": "total" }
-          ]
-# Pupil Accounts
-  - |-
-      - database: scapp
-        collection: accounts
-        metrics:
-        - name: sc_accounts_pupils_total
-          type: gauge
-          help: 'The number of pupil accounts'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
-                }
-            },
-            {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c99"] } }
-            },
-            { "$count": "total" }
-          ]
-#TODO: Split up basic count metrics
-  - |-
-      - database: scapp
-        collection: classes
-        metrics:
-        - name: sc_classes_total
-          type: gauge
-          help: 'The number of classes'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: courses
-        metrics:
-        - name: sc_courses_total
-          type: gauge
-          help: 'The number of courses'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: coursegroups
-        metrics:
-        - name: sc_coursegroups_total
-          type: gauge
-          help: 'The number of coursegroups'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
-      - database: scapp
-        collection: lessons
-        metrics:
-        - name: sc_lessons_total
-          type: gauge
-          help: 'The number of lessons'
-          value: total
-          overrideEmpty: true
-          emptyValue: 0
-          labels: []
-          constLabels: []
-        mode: pull
-        pipeline: |
-          [
-            {"$count":"total"}
-          ]
+mongodb_query_exporter_aggregations: |-
+    - database: scapp
+      collection: schools
+      metrics:
+      - name: sc_schools_total
+        type: gauge
+        help: 'The number of schools'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+
+    - database: scapp
+      collection: accounts
+      metrics:
+      - name: sc_accounts_total
+        type: gauge
+        help: 'The number of accounts'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+    - database: scapp
+      collection: accounts
+      metrics:
+      - name: sc_accounts_admin_total
+        type: gauge
+        help: 'The number of admin accounts'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {
+              "$lookup" : {
+                  "from" : "users",
+                  "localField" : "userId",
+                  "foreignField" : "_id",
+                  "as" : "->users"
+              }
+          },
+          {
+              "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c96"] } }
+          },
+          { "$count": "total" }
+        ]
+    - database: scapp
+      collection: accounts
+      metrics:
+      - name: sc_accounts_teachers_total
+        type: gauge
+        help: 'The number of teacher accounts'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {
+              "$lookup" : {
+                  "from" : "users",
+                  "localField" : "userId",
+                  "foreignField" : "_id",
+                  "as" : "->users"
+              }
+          },
+          {
+              "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c98"] } }
+          },
+          { "$count": "total" }
+        ]
+    - database: scapp
+      collection: accounts
+      metrics:
+      - name: sc_accounts_pupils_total
+        type: gauge
+        help: 'The number of pupil accounts'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {
+              "$lookup" : {
+                  "from" : "users",
+                  "localField" : "userId",
+                  "foreignField" : "_id",
+                  "as" : "->users"
+              }
+          },
+          {
+              "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c99"] } }
+          },
+          { "$count": "total" }
+        ]
+
+    - database: scapp
+      collection: classes
+      metrics:
+      - name: sc_classes_total
+        type: gauge
+        help: 'The number of classes'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+    - database: scapp
+      collection: courses
+      metrics:
+      - name: sc_courses_total
+        type: gauge
+        help: 'The number of courses'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+    - database: scapp
+      collection: coursegroups
+      metrics:
+      - name: sc_coursegroups_total
+        type: gauge
+        help: 'The number of coursegroups'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_total
+        type: gauge
+        help: 'The number of lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_text_total
+        type: gauge
+        help: 'The number of text lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "contents.component" : "text" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "text" }}, 
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_task_total
+        type: gauge
+        help: 'The number of task lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+            { "$match" : { "contents.component" : "internal" }}, 
+            { "$project" : { "contents" : 1 }}, 
+            { "$unwind" : { "path" : "$contents" }}, 
+            { "$match" : { "contents.component" : "internal" }}, 
+            { "$count" : "Themeninhalte" }
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_resource_total
+        type: gauge
+        help: 'The number of resource lessons (Lern-Store)'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+            { "$match" : { "contents.component" : "resources" }}, 
+            { "$project" : { "contents" : 1 }}, 
+            { "$unwind" : { "path" : "$contents" }}, 
+            { "$match" : { "contents.component" : "resources" }}, 
+            { "$count" : "Themeninhalte" }
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_nexboard_total
+        type: gauge
+        help: 'The number of nexboard lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "contents.component" : "neXboard" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "neXboard" }}, 
+          { "$count" : "Themeninhalte" }
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_etherpad_total
+        type: gauge
+        help: 'The number of etherpad lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "contents.component" : "Etherpad" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "Etherpad" }}, 
+          { "$count" : "Themeninhalte" }
+        ]
+    - database: scapp
+      collection: lessons
+      metrics:
+      - name: sc_lessons_geogebra_total
+        type: gauge
+        help: 'The number of geoGebra lessons'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "contents.component" : "geoGebra" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "geoGebra" }}, 
+          { "$count" : "Themeninhalte" }
+        ]
+
+    - database: scapp
+      collection: homeworks
+      metrics:
+      - name: sc_homeworks_total
+        type: gauge
+        help: 'The number of homeworks'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+    - database: scapp
+      collection: homeworks
+      metrics:
+      - name: sc_homeworks_private_total
+        type: gauge
+        help: 'The number of private homeworks'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "private" : true }},
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: homeworks
+      metrics:
+      - name: sc_homeworks_teamsubmission_total
+        type: gauge
+        help: 'The number of homeworks submitted by a team'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "teamSubmissions" : true }},
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: homeworks
+      metrics:
+      - name: sc_homeworks_course_total
+        type: gauge
+        help: 'The number of homeworks as part of a course'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "lessonId" : { $not : { $type : 7 } }, "courseId" : { $type : 7 } }},
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: homeworks
+      metrics:
+      - name: sc_homeworks_coursegroup_total
+        type: gauge
+        help: 'The number of homeworks as part of a coursegroup'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "lessonId" : { $type : 7 }, "courseId" : { $type : 7 } }},
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: filerecords
+      metrics:
+      - name: sc_homeworks_with_files_total
+        type: gauge
+        help: 'The number of homeworks with files'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : { "parentType" : "tasks" }}, 
+          { "$project" : { "_id" : 1, "parent" : 1 }}, 
+          { "$group" : { "_id" : "$parent" }}, 
+          { "$count" : "total" }
+        ]
+
+    - database: scapp
+      collection: submissions
+      metrics:
+      - name: sc_submissions_total
+        type: gauge
+        help: 'The number of submissions'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+
+    - database: scapp
+      collection: teams
+      metrics:
+      - name: sc_teams_total
+        type: gauge
+        help: 'The number of teams'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+
+    - database: scapp
+      collection: videoconferences
+      metrics:
+      - name: sc_videoconferences_total
+        type: gauge
+        help: 'The number of videoconferences'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          {"$count":"total"}
+        ]
+
+    - database: scapp
+      collection: files
+      metrics:
+      - name: sc_files_old_filestorage_total
+        type: gauge
+        help: 'The number of files in the old file storage'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: files
+      metrics:
+      - name: sc_files_old_filestorage_user_total
+        type: gauge
+        help: 'The number of files in the old file storage that belong to a user'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : {"refOwnerModel": "user"} },
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: files
+      metrics:
+      - name: sc_files_old_filestorage_course_total
+        type: gauge
+        help: 'The number of files in the old file storage that belong to a course'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : {"refOwnerModel": "course"} },
+          { "$count" : "total" }
+        ]
+    - database: scapp
+      collection: files
+      metrics:
+      - name: sc_files_old_filestorage_team_total
+        type: gauge
+        help: 'The number of files in the old file storage that belong to a team'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$match" : {"refOwnerModel": "teams"} },
+          { "$count" : "total" }
+        ]
+
+    - database: scapp
+      collection: filerecords
+      metrics:
+      - name: sc_files_new_filestorage_total
+        type: gauge
+        help: 'The number of files in the new file storage'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$count" : "total" }
+        ]
+
+    - database: scapp
+      collection: news
+      metrics:
+      - name: sc_news_total
+        type: gauge
+        help: 'The number of news entries'
+        value: total
+        overrideEmpty: true
+        emptyValue: 0
+        labels: []
+        constLabels: []
+      mode: pull
+      pipeline: |
+        [
+          { "$count" : "total" }
+        ]
