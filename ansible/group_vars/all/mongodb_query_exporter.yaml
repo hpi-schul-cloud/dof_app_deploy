@@ -364,7 +364,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            { "$match" : { "lessonId" : { $not : { $type : 7 } }, "courseId" : { $type : 7 } }},
+            { "$match" : { "lessonId" : { $not : { "$type" : 7 } }, "courseId" : { "$type" : 7 } }},
             { "$count" : "total" }
           ]
       - database: scapp
@@ -381,7 +381,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            { "$match" : { "lessonId" : { $type : 7 }, "courseId" : { $type : 7 } }},
+            { "$match" : { "lessonId" : { "$type" : 7 }, "courseId" : { "$type" : 7 } }},
             { "$count" : "total" }
           ]
       - database: scapp
