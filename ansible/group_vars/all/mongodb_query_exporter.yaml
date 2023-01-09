@@ -217,7 +217,7 @@ mongodb_query_exporter_aggregations: |-
               { "$project" : { "contents" : 1 }}, 
               { "$unwind" : { "path" : "$contents" }}, 
               { "$match" : { "contents.component" : "internal" }}, 
-              { "$count" : "Themeninhalte" }
+              { "$count" : "total" }
           ]
       - database: scapp
         collection: lessons
@@ -237,7 +237,7 @@ mongodb_query_exporter_aggregations: |-
               { "$project" : { "contents" : 1 }}, 
               { "$unwind" : { "path" : "$contents" }}, 
               { "$match" : { "contents.component" : "resources" }}, 
-              { "$count" : "Themeninhalte" }
+              { "$count" : "total" }
           ]
       - database: scapp
         collection: lessons
@@ -257,7 +257,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "neXboard" }}, 
-            { "$count" : "Themeninhalte" }
+            { "$count" : "total" }
           ]
       - database: scapp
         collection: lessons
@@ -277,7 +277,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "Etherpad" }}, 
-            { "$count" : "Themeninhalte" }
+            { "$count" : "total" }
           ]
       - database: scapp
         collection: lessons
@@ -297,7 +297,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "geoGebra" }}, 
-            { "$count" : "Themeninhalte" }
+            { "$count" : "total" }
           ]
 
       - database: scapp
