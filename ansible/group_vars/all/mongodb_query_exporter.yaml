@@ -55,7 +55,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c96"] } }
+                "$match": { "->users.roles": { "$in": ["ObjectId",0000d186816abba584714c96] } }
             },
             { "$count": "total" }
           ]
@@ -82,7 +82,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c98"] } }
+                "$match": { "->users.roles": { "$in": ["ObjectId(0000d186816abba584714c98)"] } }
             },
             { "$count": "total" }
           ]
@@ -109,7 +109,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             {
-                "$match": { "->users.roles": { "$in": ["ObjectId","0000d186816abba584714c99"] } }
+                "$match": { "->users.roles": { "$in": ["ObjectId("0000d186816abba584714c99")"] } }
             },
             { "$count": "total" }
           ]
