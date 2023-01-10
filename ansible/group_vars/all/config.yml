@@ -590,7 +590,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ES_DOMAIN:
-    value: "https://mv-repo.schul-cloud.org"
+    value: "https://mv-repo.dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
