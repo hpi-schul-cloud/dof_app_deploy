@@ -32,12 +32,13 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
+
       - database: scapp
-        collection: accounts
+        collection: users
         metrics:
-        - name: sc_accounts_admin_total
+        - name: sc_users_total
           type: gauge
-          help: 'The number of admin accounts'
+          help: 'The number of users'
           value: total
           overrideEmpty: true
           emptyValue: 0
@@ -46,25 +47,14 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
-                }
-            },
-            {
-                "$match": { "->users.roles": { "$in": ["ObjectId",0000d186816abba584714c96] } }
-            },
-            { "$count": "total" }
+            {"$count":"total"}
           ]
       - database: scapp
-        collection: accounts
+        collection: users
         metrics:
-        - name: sc_accounts_teachers_total
+        - name: sc_users_admin_total
           type: gauge
-          help: 'The number of teacher accounts'
+          help: 'The number of admin users'
           value: total
           overrideEmpty: true
           emptyValue: 0
@@ -74,24 +64,33 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
+                "$lookup": {
+                  "from": "roles",
+                  "localField": "roles",
+                  "foreignField": "_id",
+                  "as": "userRole"
                 }
             },
             {
-                "$match": { "->users.roles": { "$in": ["ObjectId(0000d186816abba584714c98)"] } }
+                "$unwind": {
+                  "path": "$userRole"
+                }
             },
-            { "$count": "total" }
+            {
+                "$match": {
+                  "userRole.name": "administrator"
+                }
+            },
+            { 
+                "$count": "total" 
+            }
           ]
       - database: scapp
-        collection: accounts
+        collection: users
         metrics:
-        - name: sc_accounts_pupils_total
+        - name: sc_users_teachers_total
           type: gauge
-          help: 'The number of pupil accounts'
+          help: 'The number of teacher users'
           value: total
           overrideEmpty: true
           emptyValue: 0
@@ -101,17 +100,62 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             {
-                "$lookup" : {
-                    "from" : "users",
-                    "localField" : "userId",
-                    "foreignField" : "_id",
-                    "as" : "->users"
+                "$lookup": {
+                  "from": "roles",
+                  "localField": "roles",
+                  "foreignField": "_id",
+                  "as": "userRole"
                 }
             },
             {
-                "$match": { "->users.roles": { "$in": ["ObjectId("0000d186816abba584714c99")"] } }
+                "$unwind": {
+                  "path": "$userRole"
+                }
             },
-            { "$count": "total" }
+            {
+                "$match": {
+                  "userRole.name": "teacher"
+                }
+            },
+            { 
+                "$count": "total" 
+            }
+          ]
+      - database: scapp
+        collection: users
+        metrics:
+        - name: sc_users_student_total
+          type: gauge
+          help: 'The number of student users'
+          value: total
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: []
+        mode: pull
+        pipeline: |
+          [
+            {
+                "$lookup": {
+                  "from": "roles",
+                  "localField": "roles",
+                  "foreignField": "_id",
+                  "as": "userRole"
+                }
+            },
+            {
+                "$unwind": {
+                  "path": "$userRole"
+                }
+            },
+            {
+                "$match": {
+                  "userRole.name": "student"
+                }
+            },
+            { 
+                "$count": "total" 
+            }
           ]
 
       - database: scapp
