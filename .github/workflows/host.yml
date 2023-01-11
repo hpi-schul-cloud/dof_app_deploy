@@ -29,6 +29,9 @@ on:
       RC_WEBHOOK: 
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   set_versions:
     runs-on: ubuntu-latest

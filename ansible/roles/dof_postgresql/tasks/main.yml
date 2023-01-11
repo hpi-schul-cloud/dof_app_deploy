@@ -68,32 +68,14 @@
       state: absent
     when: not WITH_DATABASES
 
-  - name: Add or Update Secret
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      template: secret.yml.j2
-      apply: yes
-    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
-
-  - name: remove Secret
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      api_version: v1
-      kind: Secret
-      name: postgres-secret
-      state: absent
-    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR ) )
-
-  - name: Add or Update Secred by 1Password
+  - name: Add or Update Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
-  - name: remove Secred by 1Password
+  - name: remove Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"

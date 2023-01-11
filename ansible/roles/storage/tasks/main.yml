@@ -10,15 +10,7 @@
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
       
-  - name: Secret
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config 
-      namespace: "{{ NAMESPACE }}"
-      template: secret.yml.j2
-      apply: yes
-    when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
-      
-  - name: Secred by 1Password
+  - name: Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
