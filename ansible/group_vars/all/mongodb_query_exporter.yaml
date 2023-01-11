@@ -52,7 +52,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: users
         metrics:
-        - name: sc_users_admin
+        - name: sc_admin_users
           type: gauge
           help: 'The number of admin users'
           value: total
@@ -88,7 +88,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: users
         metrics:
-        - name: sc_users_teachers
+        - name: sc_teacher_users
           type: gauge
           help: 'The number of teacher users'
           value: total
@@ -124,7 +124,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: users
         metrics:
-        - name: sc_users_student
+        - name: sc_student_users
           type: gauge
           help: 'The number of student users'
           value: total
@@ -226,7 +226,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_text
+        - name: sc_text_lessons
           type: gauge
           help: 'The number of text lessons'
           value: total
@@ -246,7 +246,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_task
+        - name: sc_task_lessons
           type: gauge
           help: 'The number of task lessons'
           value: total
@@ -266,7 +266,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_resource
+        - name: sc_learning_store_lessons
           type: gauge
           help: 'The number of resource lessons (Lern-Store)'
           value: total
@@ -286,7 +286,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_nexboard
+        - name: sc_nexboard_lessons
           type: gauge
           help: 'The number of nexboard lessons'
           value: total
@@ -306,7 +306,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_etherpad
+        - name: sc_etherpad_lessons
           type: gauge
           help: 'The number of etherpad lessons'
           value: total
@@ -326,7 +326,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: lessons
         metrics:
-        - name: sc_lessons_geogebra
+        - name: sc_geogebra_lessons
           type: gauge
           help: 'The number of geoGebra lessons'
           value: total
@@ -363,7 +363,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: homeworks
         metrics:
-        - name: sc_homeworks_private
+        - name: sc_private_homeworks
           type: gauge
           help: 'The number of private homeworks'
           value: total
@@ -380,7 +380,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: homeworks
         metrics:
-        - name: sc_homeworks_teamsubmission
+        - name: sc_teamsubmission_homeworks
           type: gauge
           help: 'The number of homeworks submitted by a team'
           value: total
@@ -397,7 +397,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: homeworks
         metrics:
-        - name: sc_homeworks_course
+        - name: sc_course_homeworks
           type: gauge
           help: 'The number of homeworks as part of a course'
           value: total
@@ -414,7 +414,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: homeworks
         metrics:
-        - name: sc_homeworks_coursegroup
+        - name: sc_coursegroup_homeworks
           type: gauge
           help: 'The number of homeworks as part of a coursegroup'
           value: total
@@ -431,9 +431,9 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: filerecords
         metrics:
-        - name: sc_homeworks_with_files
+        - name: sc_task_attached_files
           type: gauge
-          help: 'The number of homeworks with files'
+          help: 'The number of files that are attached to a task'
           value: total
           overrideEmpty: true
           emptyValue: 0
@@ -502,7 +502,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: files
         metrics:
-        - name: sc_files_old_filestorage
+        - name: sc_old_filestorage_files
           type: gauge
           help: 'The number of files in the old file storage'
           value: total
@@ -518,7 +518,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: files
         metrics:
-        - name: sc_files_old_filestorage_user
+        - name: sc_old_filestorage_user_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a user'
           value: total
@@ -535,7 +535,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: files
         metrics:
-        - name: sc_files_old_filestorage_course
+        - name: sc_old_filestorage_course_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a course'
           value: total
@@ -552,7 +552,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: files
         metrics:
-        - name: sc_files_old_filestorage_team
+        - name: sc_old_filestorage_team_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a team'
           value: total
@@ -570,7 +570,7 @@ mongodb_query_exporter_aggregations: |-
       - database: scapp
         collection: filerecords
         metrics:
-        - name: sc_files_new_filestorage
+        - name: sc_new_filestorage_files
           type: gauge
           help: 'The number of files in the new file storage'
           value: total
