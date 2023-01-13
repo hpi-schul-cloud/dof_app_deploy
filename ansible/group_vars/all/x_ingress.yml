@@ -143,7 +143,7 @@ default_ingress:
     path: /api/v3/tasks
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_task-cardss:
+  api_v3_task-cards:
     path: /api/v3/cards/task
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
