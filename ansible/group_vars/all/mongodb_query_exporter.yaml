@@ -1,5 +1,5 @@
 mongodb_query_exporter_aggregations: |-
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: schools
         metrics:
         - name: sc_schools
@@ -16,7 +16,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: accounts
         metrics:
         - name: sc_accounts
@@ -33,7 +33,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_users
@@ -49,7 +49,7 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_admin_users
@@ -85,7 +85,7 @@ mongodb_query_exporter_aggregations: |-
                 "$count": "total" 
             }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_teacher_users
@@ -121,7 +121,7 @@ mongodb_query_exporter_aggregations: |-
                 "$count": "total" 
             }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_student_users
@@ -158,7 +158,7 @@ mongodb_query_exporter_aggregations: |-
             }
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: classes
         metrics:
         - name: sc_classes
@@ -174,7 +174,7 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: courses
         metrics:
         - name: sc_courses
@@ -190,7 +190,7 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: coursegroups
         metrics:
         - name: sc_coursegroups
@@ -207,7 +207,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_lessons
@@ -223,7 +223,7 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_text_lessons
@@ -243,7 +243,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "contents.component" : "text" }}, 
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_task_lessons
@@ -263,7 +263,7 @@ mongodb_query_exporter_aggregations: |-
               { "$match" : { "contents.component" : "internal" }}, 
               { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_learning_store_lessons
@@ -283,7 +283,7 @@ mongodb_query_exporter_aggregations: |-
               { "$match" : { "contents.component" : "resources" }}, 
               { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_nexboard_lessons
@@ -303,7 +303,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "contents.component" : "neXboard" }}, 
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_etherpad_lessons
@@ -323,7 +323,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "contents.component" : "Etherpad" }}, 
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
         metrics:
         - name: sc_geogebra_lessons
@@ -344,7 +344,7 @@ mongodb_query_exporter_aggregations: |-
             { "$count" : "total" }
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
         metrics:
         - name: sc_homeworks
@@ -360,7 +360,7 @@ mongodb_query_exporter_aggregations: |-
           [
             {"$count":"total"}
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
         metrics:
         - name: sc_private_homeworks
@@ -377,7 +377,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "private" : true }},
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
         metrics:
         - name: sc_teamsubmission_homeworks
@@ -394,7 +394,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "teamSubmissions" : true }},
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
         metrics:
         - name: sc_course_homeworks
@@ -411,7 +411,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "lessonId" : { "$not" : { "$type" : 7 } }, "courseId" : { "$type" : 7 } }},
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
         metrics:
         - name: sc_coursegroup_homeworks
@@ -428,7 +428,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "lessonId" : { "$type" : 7 }, "courseId" : { "$type" : 7 } }},
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: filerecords
         metrics:
         - name: sc_task_attached_files
@@ -448,7 +448,7 @@ mongodb_query_exporter_aggregations: |-
             { "$count" : "total" }
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: submissions
         metrics:
         - name: sc_submissions
@@ -465,7 +465,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: teams
         metrics:
         - name: sc_teams
@@ -482,7 +482,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: videoconferences
         metrics:
         - name: sc_videoconferences
@@ -499,7 +499,7 @@ mongodb_query_exporter_aggregations: |-
             {"$count":"total"}
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
         metrics:
         - name: sc_old_filestorage_files
@@ -515,7 +515,7 @@ mongodb_query_exporter_aggregations: |-
           [
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
         metrics:
         - name: sc_old_filestorage_user_files
@@ -532,7 +532,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : {"refOwnerModel": "user"} },
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
         metrics:
         - name: sc_old_filestorage_course_files
@@ -549,7 +549,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : {"refOwnerModel": "course"} },
             { "$count" : "total" }
           ]
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
         metrics:
         - name: sc_old_filestorage_team_files
@@ -567,7 +567,7 @@ mongodb_query_exporter_aggregations: |-
             { "$count" : "total" }
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: filerecords
         metrics:
         - name: sc_new_filestorage_files
@@ -584,7 +584,7 @@ mongodb_query_exporter_aggregations: |-
             { "$count" : "total" }
           ]
 
-      - database: scapp
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: news
         metrics:
         - name: sc_news
