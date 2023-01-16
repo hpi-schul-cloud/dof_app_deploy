@@ -201,6 +201,10 @@ default_ingress:
     path: /api/v3/tools
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-migration:
+    path: /api/v3/user-migration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
