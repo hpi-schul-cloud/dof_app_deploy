@@ -5,7 +5,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_schools
           type: gauge
           help: 'The number of schools'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -13,7 +13,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -22,7 +22,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_accounts
           type: gauge
           help: 'The number of accounts'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -30,7 +30,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -39,7 +39,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_users
           type: gauge
           help: 'The number of users'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -47,7 +47,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
@@ -55,7 +55,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_admin_users
           type: gauge
           help: 'The number of admin users'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -82,7 +82,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             { 
-                "$count": "total" 
+                "$count": "count" 
             }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -91,7 +91,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_teacher_users
           type: gauge
           help: 'The number of teacher users'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -118,7 +118,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             { 
-                "$count": "total" 
+                "$count": "count" 
             }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -127,7 +127,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_student_users
           type: gauge
           help: 'The number of student users'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -154,7 +154,7 @@ mongodb_query_exporter_aggregations: |-
                 }
             },
             { 
-                "$count": "total" 
+                "$count": "count" 
             }
           ]
 
@@ -164,7 +164,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_classes
           type: gauge
           help: 'The number of classes'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -172,7 +172,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: courses
@@ -180,7 +180,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_courses
           type: gauge
           help: 'The number of courses'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -188,7 +188,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: coursegroups
@@ -196,7 +196,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_coursegroups
           type: gauge
           help: 'The number of coursegroups'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -204,7 +204,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -213,7 +213,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_lessons
           type: gauge
           help: 'The number of lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -221,7 +221,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -229,7 +229,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_text_lessons
           type: gauge
           help: 'The number of text lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -241,7 +241,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "text" }}, 
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -249,7 +249,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_task_lessons
           type: gauge
           help: 'The number of task lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -261,7 +261,7 @@ mongodb_query_exporter_aggregations: |-
               { "$project" : { "contents" : 1 }}, 
               { "$unwind" : { "path" : "$contents" }}, 
               { "$match" : { "contents.component" : "internal" }}, 
-              { "$count" : "total" }
+              { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -269,7 +269,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_learning_store_lessons
           type: gauge
           help: 'The number of resource lessons (Lern-Store)'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -281,7 +281,7 @@ mongodb_query_exporter_aggregations: |-
               { "$project" : { "contents" : 1 }}, 
               { "$unwind" : { "path" : "$contents" }}, 
               { "$match" : { "contents.component" : "resources" }}, 
-              { "$count" : "total" }
+              { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -289,7 +289,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_nexboard_lessons
           type: gauge
           help: 'The number of nexboard lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -301,7 +301,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "neXboard" }}, 
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -309,7 +309,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_etherpad_lessons
           type: gauge
           help: 'The number of etherpad lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -321,7 +321,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "Etherpad" }}, 
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: lessons
@@ -329,7 +329,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_geogebra_lessons
           type: gauge
           help: 'The number of geoGebra lessons'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -341,7 +341,7 @@ mongodb_query_exporter_aggregations: |-
             { "$project" : { "contents" : 1 }}, 
             { "$unwind" : { "path" : "$contents" }}, 
             { "$match" : { "contents.component" : "geoGebra" }}, 
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -350,7 +350,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_homeworks
           type: gauge
           help: 'The number of homeworks'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -358,7 +358,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
@@ -366,7 +366,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_private_homeworks
           type: gauge
           help: 'The number of private homeworks'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -375,7 +375,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : { "private" : true }},
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
@@ -383,7 +383,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_teamsubmission_homeworks
           type: gauge
           help: 'The number of homeworks submitted by a team'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -392,7 +392,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : { "teamSubmissions" : true }},
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
@@ -400,7 +400,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_course_homeworks
           type: gauge
           help: 'The number of homeworks as part of a course'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -409,7 +409,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : { "lessonId" : { "$not" : { "$type" : 7 } }, "courseId" : { "$type" : 7 } }},
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: homeworks
@@ -417,7 +417,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_coursegroup_homeworks
           type: gauge
           help: 'The number of homeworks as part of a coursegroup'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -426,7 +426,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : { "lessonId" : { "$type" : 7 }, "courseId" : { "$type" : 7 } }},
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: filerecords
@@ -434,7 +434,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_task_attached_files
           type: gauge
           help: 'The number of files that are attached to a task'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -445,7 +445,7 @@ mongodb_query_exporter_aggregations: |-
             { "$match" : { "parentType" : "tasks" }}, 
             { "$project" : { "_id" : 1, "parent" : 1 }}, 
             { "$group" : { "_id" : "$parent" }}, 
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -454,7 +454,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_submissions
           type: gauge
           help: 'The number of submissions'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -462,7 +462,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -471,7 +471,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_teams
           type: gauge
           help: 'The number of teams'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -479,7 +479,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -488,7 +488,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_videoconferences
           type: gauge
           help: 'The number of videoconferences'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -496,7 +496,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            {"$count":"total"}
+            {"$count":"count"}
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -505,7 +505,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_old_filestorage_files
           type: gauge
           help: 'The number of files in the old file storage'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -513,7 +513,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
@@ -521,7 +521,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_old_filestorage_user_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a user'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -530,7 +530,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : {"refOwnerModel": "user"} },
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
@@ -538,7 +538,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_old_filestorage_course_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a course'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -547,7 +547,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : {"refOwnerModel": "course"} },
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: files
@@ -555,7 +555,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_old_filestorage_team_files
           type: gauge
           help: 'The number of files in the old file storage that belong to a team'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -564,7 +564,7 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$match" : {"refOwnerModel": "teams"} },
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -573,7 +573,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_new_filestorage_files
           type: gauge
           help: 'The number of files in the new file storage'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -581,7 +581,7 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -590,7 +590,7 @@ mongodb_query_exporter_aggregations: |-
         - name: sc_news
           type: gauge
           help: 'The number of news entries'
-          value: total
+          value: count
           overrideEmpty: true
           emptyValue: 0
           labels: []
@@ -598,5 +598,5 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [
-            { "$count" : "total" }
+            { "$count" : "count" }
           ]
