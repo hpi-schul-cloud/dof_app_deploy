@@ -482,6 +482,16 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TASK_SHARE:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_TASK_IMPORT:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_ENTERTHECLOUD:
     value: "false"
     server: false
