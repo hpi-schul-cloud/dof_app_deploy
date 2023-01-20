@@ -9,7 +9,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "schools"}]
+          constLabels: [{"mongodb_collection": "schools"}]
         mode: pull
         pipeline: |
           [
@@ -26,7 +26,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "accounts"}]
+          constLabels: [{"mongodb_collection": "accounts"}]
         mode: pull
         pipeline: |
           [
@@ -43,7 +43,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "users"}]
+          constLabels: [{"mongodb_collection": "users"}]
         mode: pull
         pipeline: |
           [
@@ -59,7 +59,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "users"}]
+          constLabels: [{"mongodb_collection": "users"}]
         mode: pull
         pipeline: |
           [
@@ -95,7 +95,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "users"}]
+          constLabels: [{"mongodb_collection": "users"}]
         mode: pull
         pipeline: |
           [
@@ -131,7 +131,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "users"}]
+          constLabels: [{"mongodb_collection": "users"}]
         mode: pull
         pipeline: |
           [
@@ -168,7 +168,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "classes"}]
+          constLabels: [{"mongodb_collection": "classes"}]
         mode: pull
         pipeline: |
           [
@@ -184,7 +184,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "courses"}]
+          constLabels: [{"mongodb_collection": "courses"}]
         mode: pull
         pipeline: |
           [
@@ -200,7 +200,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "coursegroups"}]
+          constLabels: [{"mongodb_collection": "coursegroups"}]
         mode: pull
         pipeline: |
           [
@@ -217,7 +217,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -233,7 +233,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -253,7 +253,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -273,7 +273,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -293,7 +293,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -313,7 +313,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -333,7 +333,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "lessons"}]
+          constLabels: [{"mongodb_collection": "lessons"}]
         mode: pull
         pipeline: |
           [
@@ -354,7 +354,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "homeworks"}]
+          constLabels: [{"mongodb_collection": "homeworks"}]
         mode: pull
         pipeline: |
           [
@@ -370,7 +370,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "homeworks"}]
+          constLabels: [{"mongodb_collection": "homeworks"}]
         mode: pull
         pipeline: |
           [
@@ -387,7 +387,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "homeworks"}]
+          constLabels: [{"mongodb_collection": "homeworks"}]
         mode: pull
         pipeline: |
           [
@@ -404,7 +404,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "homeworks"}]
+          constLabels: [{"mongodb_collection": "homeworks"}]
         mode: pull
         pipeline: |
           [
@@ -421,7 +421,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "homeworks"}]
+          constLabels: [{"mongodb_collection": "homeworks"}]
         mode: pull
         pipeline: |
           [
@@ -438,7 +438,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "filerecords"}]
+          constLabels: [{"mongodb_collection": "filerecords"}]
         mode: pull
         pipeline: |
           [
@@ -458,7 +458,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "submissions"}]
+          constLabels: [{"mongodb_collection": "submissions"}]
         mode: pull
         pipeline: |
           [
@@ -475,7 +475,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "teams"}]
+          constLabels: [{"mongodb_collection": "teams"}]
         mode: pull
         pipeline: |
           [
@@ -492,7 +492,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "videoconferences"}]
+          constLabels: [{"mongodb_collection": "videoconferences"}]
         mode: pull
         pipeline: |
           [
@@ -509,7 +509,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "files"}]
+          constLabels: [{"mongodb_collection": "files"}]
         mode: pull
         pipeline: |
           [
@@ -525,7 +525,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "files"}]
+          constLabels: [{"mongodb_collection": "files"}]
         mode: pull
         pipeline: |
           [
@@ -542,7 +542,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "files"}]
+          constLabels: [{"mongodb_collection": "files"}]
         mode: pull
         pipeline: |
           [
@@ -559,7 +559,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "files"}]
+          constLabels: [{"mongodb_collection": "files"}]
         mode: pull
         pipeline: |
           [
@@ -577,7 +577,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "filerecords"}]
+          constLabels: [{"mongodb_collection": "filerecords"}]
         mode: pull
         pipeline: |
           [
@@ -594,7 +594,7 @@ mongodb_query_exporter_aggregations: |-
           overrideEmpty: true
           emptyValue: 0
           labels: []
-          constLabels: [{"collection": "news"}]
+          constLabels: [{"mongodb_collection": "news"}]
         mode: pull
         pipeline: |
           [
