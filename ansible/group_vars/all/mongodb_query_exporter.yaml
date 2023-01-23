@@ -64,21 +64,8 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             {
-                "$lookup": {
-                  "from": "roles",
-                  "localField": "roles",
-                  "foreignField": "_id",
-                  "as": "userRole"
-                }
-            },
-            {
-                "$unwind": {
-                  "path": "$userRole"
-                }
-            },
-            {
                 "$match": {
-                  "userRole.name": "administrator"
+                  "roles": { "$in": [{"$oid": "0000d186816abba584714c96"}] }
                 }
             },
             { 
@@ -100,21 +87,8 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             {
-                "$lookup": {
-                  "from": "roles",
-                  "localField": "roles",
-                  "foreignField": "_id",
-                  "as": "userRole"
-                }
-            },
-            {
-                "$unwind": {
-                  "path": "$userRole"
-                }
-            },
-            {
                 "$match": {
-                  "userRole.name": "teacher"
+                  "roles": { "$in": [{"$oid": "0000d186816abba584714c98"}] }
                 }
             },
             { 
@@ -136,21 +110,8 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             {
-                "$lookup": {
-                  "from": "roles",
-                  "localField": "roles",
-                  "foreignField": "_id",
-                  "as": "userRole"
-                }
-            },
-            {
-                "$unwind": {
-                  "path": "$userRole"
-                }
-            },
-            {
                 "$match": {
-                  "userRole.name": "student"
+                  "roles": { "$in": [{"$oid": "0000d186816abba584714c99"}] }
                 }
             },
             { 
