@@ -1,0 +1,20 @@
+  - name: Secret for mongodb-query-exporter
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: onepassword.yml.j2
+    when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+
+  - name: Install mongodb-query-exporter
+    kubernetes.core.helm:
+      chart_ref: oci://ghcr.io/raffis/charts/mongodb-query-exporter
+      chart_version: "{{ mongodb_query_exporter_chart_version }}"
+      release_name: mongodb-query-exporter
+      release_namespace: "{{ NAMESPACE }}"
+      release_state: present
+      create_namespace: yes
+      kubeconfig: ~/.kube/config
+      update_repo_cache: no
+      values: 
+        "{{ mongodb_query_exporter_values }}"
+

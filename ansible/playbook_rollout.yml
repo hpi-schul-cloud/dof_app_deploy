@@ -41,5 +41,6 @@
     - role: antivirus_check_service
     - role: version-aggregator
     - role: rocketchat
+    - role: mongodb_query_exporter
     - role: ingress
     - role: post_deployment
