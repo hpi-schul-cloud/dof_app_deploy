@@ -2,7 +2,8 @@ mongodb_query_exporter_chart_version: 3.0.1
 mongodb_query_exporter_image_version: 2.0.2
 mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
 mongodb_query_exporter_mongodb_sc_db_name: "scapp"
-mongodb_query_exporter_secret_name: "mongodb-query-exporter-secret"
+mongodb_query_exporter_op_item_name: "mongodb-query-exporter"
+mongodb_query_exporter_secret_name: "{{mongodb_query_exporter_op_item_name}}-secret"
 mongodb_query_exporter_sampling_time: 60s
 mongodb_query_exporter_values:
   image:
