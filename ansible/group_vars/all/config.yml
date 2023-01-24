@@ -178,7 +178,7 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
