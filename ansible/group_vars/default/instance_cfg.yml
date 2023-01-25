@@ -62,6 +62,10 @@ PROD_INSTANCE: true
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
+
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
 GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3

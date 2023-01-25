@@ -55,6 +55,10 @@ default_ingress:
     path: /tasks
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  task-cards:
+    path: /task-cards
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
     path: /nuxtversion
     serviceName: nuxtclient-svc
@@ -139,6 +143,10 @@ default_ingress:
     path: /api/v3/tasks
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_task-cards:
+    path: /api/v3/cards/task
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_rooms:
     path: /api/v3/rooms
     serviceName: api-svc
@@ -171,6 +179,10 @@ default_ingress:
     path: /api/v3/lessons
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_school:
+    path: /api/v3/school
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_submissions:
     path: /api/v3/submissions
     serviceName: api-svc
@@ -183,6 +195,14 @@ default_ingress:
     path: /api/v3/sso/oauth/
   api_v3_sso_hydra:
     path: /api/v3/sso/hydra/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_tools:
+    path: /api/v3/tools
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-migration:
+    path: /api/v3/user-migration
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:

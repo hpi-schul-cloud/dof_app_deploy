@@ -33,5 +33,6 @@
     - antivirus_check_service
     - version-aggregator
     - rocketchat
+    - mongodb_query_exporter
     - ingress
     - post_deployment
