@@ -744,3 +744,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_USE_LOGIN_ENDPOINTS_V3:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
