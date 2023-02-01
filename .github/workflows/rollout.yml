@@ -106,7 +106,6 @@ jobs:
     needs:
       - ref-brb
       - ref-dbc
-      - ref-int
       - ref-nbc
       - ref-thr
     environment: approve_prod_stage_1
