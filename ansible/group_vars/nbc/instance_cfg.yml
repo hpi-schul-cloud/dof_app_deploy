@@ -87,7 +87,6 @@ IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
-GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3
 
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
