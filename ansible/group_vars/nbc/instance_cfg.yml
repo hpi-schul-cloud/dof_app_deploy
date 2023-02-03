@@ -81,6 +81,10 @@ OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/l
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
+
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
 GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3

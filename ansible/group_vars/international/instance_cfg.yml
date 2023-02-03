@@ -47,7 +47,7 @@ JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://mv-repo.schul-cloud.org
+ES_DOMAIN: https://mv-repo.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
@@ -57,6 +57,9 @@ ROUTE_ROSTER: true
 PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
+
+# Identity Management
+FEATURE_IDENTITY_MANAGEMENT_ENABLED: "false"
 
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de

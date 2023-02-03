@@ -1,0 +1,30 @@
+mongodb_query_exporter_chart_version: 3.0.1
+mongodb_query_exporter_image_version: 2.0.2
+mongodb_query_exporter_mongodb_uri: mongodb://mongo-svc:27017/?directConnection=true
+mongodb_query_exporter_mongodb_sc_db_name: "scapp"
+mongodb_query_exporter_op_item_name: "mongodb-query-exporter"
+mongodb_query_exporter_secret_name: "{{mongodb_query_exporter_op_item_name}}-secret"
+mongodb_query_exporter_sampling_time: 60s
+mongodb_query_exporter_values:
+  image:
+    tag: "{{ mongodb_query_exporter_image_version }}"
+  mongodb:
+  - "{{ mongodb_query_exporter_mongodb_uri }}"
+  existingSecret:
+    name: "{{ mongodb_query_exporter_secret_name }}"
+  service:
+    enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: "{{ mongodb_query_exporter_sampling_time }}"
+  config: |-
+    version: 3.0
+    bind: 0.0.0.0:9412
+    metricsPath: /metrics
+    logLevel: debug
+    global:
+      queryTimeout: "10s"
+      maxConnection: 3
+      defaultCache: 0
+    aggregations:
+    {{ mongodb_query_exporter_aggregations }}

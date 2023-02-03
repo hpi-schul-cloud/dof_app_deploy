@@ -178,11 +178,16 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
     value: "false"
     server: true
     client: false
@@ -590,7 +595,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ES_DOMAIN:
-    value: "https://mv-repo.schul-cloud.org"
+    value: "https://mv-repo.dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
@@ -741,6 +746,11 @@ configuration_all:
     client: true
     nuxtclient: false
   GHOST_API_URL:
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_USE_LOGIN_ENDPOINTS_V3:
+    value: "false"
     server: false
     client: true
     nuxtclient: false
