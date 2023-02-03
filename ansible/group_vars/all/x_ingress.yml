@@ -210,7 +210,7 @@ default_ingress:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_system:
-    path: /api/v3/system
+    path: /api/v3/systems/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
