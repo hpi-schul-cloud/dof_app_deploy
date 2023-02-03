@@ -44,6 +44,24 @@ spec:
           requests:
             cpu: {{ ROCKETCHAT_CPU_REQUESTS|default("100m", true) }}
             memory: {{ ROCKETCHAT_MEMORY_REQUESTS|default("256Mi", true) }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 443
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 443
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
       volumes:
       - name: rocketchat-uploads-data
         emptyDir: {}
