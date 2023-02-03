@@ -22,6 +22,8 @@ mongodb_query_exporter_values:
     bind: 0.0.0.0:9412
     metricsPath: /metrics
     logLevel: debug
+    serviceAccount:
+      create: false
     global:
       queryTimeout: "10s"
       maxConnection: 3
