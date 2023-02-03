@@ -52,6 +52,10 @@ PORT_FILE_SERVICE: 4444
 # TSP (Thüringer Schulportal)
 FEATURE_TSP_ENABLED: "true"
 
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
+
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: institut@thillm.de
 
