@@ -105,3 +105,6 @@ group_ingress:
   api_v1_registration:
     serviceName: default-backend-404-svc
     servicePort: 8080
+  api_v3_sso_ouauth:
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
