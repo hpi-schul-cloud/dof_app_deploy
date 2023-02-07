@@ -6,7 +6,7 @@ default_ingress:
   themes:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    path: "/themes/{{ SC_THEME }}/favicon.png"
+    path: "/favicon.png"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
@@ -193,6 +193,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_ouauth:
     path: /api/v3/sso/oauth/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_hydra:
     path: /api/v3/sso/hydra/
     serviceName: api-svc
