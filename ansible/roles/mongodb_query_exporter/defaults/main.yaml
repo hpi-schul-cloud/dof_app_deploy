@@ -17,6 +17,8 @@ mongodb_query_exporter_values:
   serviceMonitor:
     enabled: true
     interval: "{{ mongodb_query_exporter_sampling_time }}"
+  serviceAccount:
+    create: false
   config: |-
     version: 3.0
     bind: 0.0.0.0:9412
