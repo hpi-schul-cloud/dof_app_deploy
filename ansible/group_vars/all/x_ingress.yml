@@ -195,8 +195,14 @@ default_ingress:
     path: /api/v3/sharetoken
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_ouauth:
+  api_v3_sso_login:
+    path: /api/v3/sso/login/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_oauth:
     path: /api/v3/sso/oauth/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_hydra:
     path: /api/v3/sso/hydra/
     serviceName: api-svc
