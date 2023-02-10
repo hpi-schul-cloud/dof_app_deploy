@@ -111,6 +111,10 @@ default_ingress:
     path: /cfiles
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  migration:
+    path: /migration
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
@@ -193,6 +197,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_ouauth:
     path: /api/v3/sso/oauth/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_hydra:
     path: /api/v3/sso/hydra/
     serviceName: api-svc
@@ -203,6 +209,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user-migration:
     path: /api/v3/user-migration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_system:
+    path: /api/v3/systems/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:

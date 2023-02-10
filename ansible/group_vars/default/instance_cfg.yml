@@ -71,6 +71,3 @@ GHOST_BASE_URL: https://blog.dbildungscloud.de
 
 # Ingress
 group_ingress:
-  api_v3_sso_ouauth:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"

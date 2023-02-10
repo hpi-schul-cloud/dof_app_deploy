@@ -18,6 +18,7 @@
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
     - role: hydra
+    - role: erwin-idm
     - role: dof_etherpad_nginx
     - role: dof_etherpad
     - role: clamav
