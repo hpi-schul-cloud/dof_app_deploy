@@ -6,7 +6,7 @@ default_ingress:
   themes:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    path: "/themes/{{ SC_THEME }}/favicon.png"
+    path: "/favicon.png"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc

@@ -17,10 +17,6 @@ nbc_host
 ref-nbc
 prod-nbc
 
-[international]
-ref-int
-prod-int
-
 [thr]
 ref-thr
 prod-thr
@@ -48,7 +44,6 @@ ansible_group_priority=10
 
 [reference]
 ref-brb
-ref-int
 ref-dbc
 ref-nbc
 ref-audit
@@ -59,7 +54,6 @@ ansible_group_priority=10
 
 [production]
 prod-dbc
-prod-int
 prod-brb
 prod-nbc
 prod-thr
@@ -71,7 +65,6 @@ ansible_group_priority=10
 brb
 default
 nbc
-international
 thr
 develop
 reference
