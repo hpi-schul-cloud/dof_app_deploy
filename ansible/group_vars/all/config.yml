@@ -19,13 +19,13 @@ configuration_all:
     nuxtclient: false
   API_URL:
     value: "https://{{ DOMAIN }}/api"
-    server: false
+    server: true
     client: false
     nuxtclient: true
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
-    server: true
+    server: false
     client: true
     nuxtclient: false
   LEGACY_CLIENT_URL:
