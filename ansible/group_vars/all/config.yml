@@ -20,7 +20,7 @@ configuration_all:
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: true
-    client: false
+    client: true
     nuxtclient: true
   PUBLIC_BACKEND_URL:
     config_name: API_URL
