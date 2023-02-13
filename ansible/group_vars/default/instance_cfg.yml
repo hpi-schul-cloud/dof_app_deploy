@@ -68,10 +68,6 @@ IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
-GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
 
 # Ingress
 group_ingress:
-  api_v3_sso_ouauth:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
