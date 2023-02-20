@@ -71,6 +71,9 @@ PROD_INSTANCE: true
 # Matrix
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 # import users
 FEATURE_USER_MIGRATION_ENABLED: "false"
 FEATURE_USER_MIGRATION_SYSTEM_ID: ""
