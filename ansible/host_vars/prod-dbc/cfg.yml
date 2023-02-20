@@ -3,7 +3,7 @@ DOMAIN: dbildungscloud.de
 ROCKETCHAT_DNS_PREFIX: scchat.
 
 
-FEATURE_MATRIX_MESSENGER_ENABLED: "true"
+FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
 ALERT_STATUS_URL: "https://status.dbildungscloud.de"
 
