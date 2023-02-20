@@ -1,5 +1,5 @@
 WITH_STORAGE: false
-WITH_ERWINIDM: false
+WITH_ERWINIDM: true
 WITH_LDAP: false
 WITH_LDAP_SEPERATION: false
 WITH_TSP: false
