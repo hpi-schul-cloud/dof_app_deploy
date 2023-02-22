@@ -17,6 +17,7 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  # deprecated?
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: false
@@ -25,7 +26,7 @@ configuration_all:
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   LEGACY_CLIENT_URL:
