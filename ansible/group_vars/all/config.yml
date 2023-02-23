@@ -479,11 +479,6 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_LESSON_SHARE:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_LESSON_SHARE_NEW:
     value: "true"
     server: true
     client: false
@@ -527,11 +522,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_TOPIC_SHARE_IMPORT:
-    value: "false"
-    server: false
-    client: true
     nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
