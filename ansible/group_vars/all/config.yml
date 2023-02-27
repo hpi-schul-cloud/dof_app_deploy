@@ -166,7 +166,8 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
     # in Byte
-    value: "2560000000"
+    # We use the Windows convention here that 1kB = 1024B. Thus 2,5GB = 2684354560B.
+    value: "2684354560"
     server: true
     client: true
     nuxtclient: false
