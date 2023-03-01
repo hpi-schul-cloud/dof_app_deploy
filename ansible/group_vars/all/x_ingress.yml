@@ -175,6 +175,10 @@ default_ingress:
     path: /api/v3/dashboard
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_fwu:
+    path: /api/v3/fwu
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_courses:
     path: /api/v3/courses
     serviceName: api-svc
