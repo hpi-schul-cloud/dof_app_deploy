@@ -8,3 +8,8 @@ FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 ES_DOMAIN: https://mv-repo.dbildungscloud.de
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.brandenburg.cloud
+
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/
+
