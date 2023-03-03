@@ -6,7 +6,7 @@ default_ingress:
   themes:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    path: "/themes/{{ SC_THEME }}/favicon.png"
+    path: "/favicon.png"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
@@ -111,6 +111,10 @@ default_ingress:
     path: /cfiles
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  migration:
+    path: /migration
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
@@ -191,8 +195,14 @@ default_ingress:
     path: /api/v3/sharetoken
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_ouauth:
+  api_v3_sso_login:
+    path: /api/v3/sso/login/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_oauth:
     path: /api/v3/sso/oauth/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_sso_hydra:
     path: /api/v3/sso/hydra/
     serviceName: api-svc
@@ -203,6 +213,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user-migration:
     path: /api/v3/user-migration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_system:
+    path: /api/v3/systems/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
@@ -243,10 +257,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_courses:
     path: /api/v1/courses
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_course-share:
-    path: /api/v1/courses-share
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_link:
