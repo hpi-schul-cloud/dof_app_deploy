@@ -720,6 +720,26 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FWU_CONTENT__S3_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_REGION:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_BUCKET:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_ACCESS_KEY:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_SECRET_KEY:
+    server: true
+    client: false
+    nuxtclient: false
   NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
     value: ""
     server: true
