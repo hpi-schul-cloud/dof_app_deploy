@@ -591,6 +591,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  ES_USE_OLD_API:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   ES_DOMAIN:
     value: "https://mv-repo.dbildungscloud.de"
     server: true
