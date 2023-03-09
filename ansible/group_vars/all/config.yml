@@ -591,8 +591,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  ES_USE_OLD_API:
-    value: "true"
+  ES_API_V7:
+    value: "false"
     server: true
     client: false
     nuxtclient: false
