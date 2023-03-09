@@ -5,7 +5,8 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEACHER: ""
+GLOBAL_ANNOUNCEMENT_TEXT: 'Bettermarks ist seit Februar 2022 kostenlos in der Schul-Cloud verfügbar. Bettermarks bietet interaktive Mathematik-Aufgaben mit personalisierten Rückmeldungen und automatischer Korrektur für Lehrkräfte. Mehr Informationen: <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/pages/viewpage.action?pageId=148537453\">hier</a>.'
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in

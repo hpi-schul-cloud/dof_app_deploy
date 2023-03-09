@@ -17,6 +17,7 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  # deprecated?
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: false
@@ -25,7 +26,7 @@ configuration_all:
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   LEGACY_CLIENT_URL:
@@ -165,8 +166,9 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-    # in MB
-    value: "2560"
+    # in Byte
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    value: "2684354560"
     server: true
     client: true
     nuxtclient: false
@@ -478,11 +480,6 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_LESSON_SHARE:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_LESSON_SHARE_NEW:
     value: "true"
     server: true
     client: false
@@ -526,11 +523,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_TOPIC_SHARE_IMPORT:
-    value: "false"
-    server: false
-    client: true
     nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
@@ -598,6 +590,11 @@ configuration_all:
     value: "false"
     server: true
     client: true
+    nuxtclient: false
+  ES_USE_OLD_API:
+    value: "true"
+    server: true
+    client: false
     nuxtclient: false
   ES_DOMAIN:
     value: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
@@ -694,11 +691,12 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT:
+  GLOBAL_ANNOUNCEMENT_TEXT:
+    value: ""
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_TEACHER:
+  GLOBAL_ANNOUNCEMENT_ROLES:
     value: ""
     server: false
     client: true
