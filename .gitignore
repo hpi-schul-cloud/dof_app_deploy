@@ -16,3 +16,5 @@ configuration/
 .repository/
 .attach_pid*
 sessions
+
+__pycache__

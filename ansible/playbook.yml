@@ -5,6 +5,7 @@
   connection: local
   roles:
     - sys
+    - pre_deployment
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
@@ -32,4 +33,6 @@
     - antivirus_check_service
     - version-aggregator
     - rocketchat
+    - mongodb_query_exporter
     - ingress
+    - post_deployment

@@ -4,7 +4,8 @@ SC_TITLE: dBildungscloud
 SC_SHORT_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-GLOBAL_ANNOUNCEMENT_TEACHER: 'Nehmen Sie an unserer Zufriedenheitsumfrage teil und helfen Sie uns, die Cloud zu verbessern. <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://befragungen.dataport.de/umfrage/1550669/n5E593\">Hier</a> geht es zur Befragung.'
+GLOBAL_ANNOUNCEMENT_TEXT: 'Für Rückfragen zu Vertragsangelegenheiten sind wir ab sofort unter folgender E-Mail-Adresse erreichbar: dBildungscloud[at]dataport.de.'
+GLOBAL_ANNOUNCEMENT_ROLES: administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -28,6 +29,7 @@ FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
 FEATURE_MULTI_LOGIN_INSTANCES: "true"
 FEATURE_NUXT_SCHOOL_ADMIN_BETA: "true"
 FEATURE_LOG_REQUEST: "false"
+FEATURE_USER_MIGRATION_ENABLED: "true"
 
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
@@ -49,6 +51,7 @@ JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
+ES_DOMAIN: https://mv-repo.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
@@ -60,12 +63,12 @@ PROD_INSTANCE: true
 RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
+
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
-GHOST_API_URL: https://blog.dbildungscloud.de/ghost/api/v3
 
 # Ingress
 group_ingress:
-  api_v3_sso_ouauth:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
