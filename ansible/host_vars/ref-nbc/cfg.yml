@@ -1,7 +1,6 @@
 NAMESPACE: niedersachsen
 DOMAIN: staging.niedersachsen.dbildungscloud.org
 
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 ES_DOMAIN: https://mv-repo.dbildungscloud.de
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/

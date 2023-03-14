@@ -1,7 +1,6 @@
 NAMESPACE: thueringen
 DOMAIN: test.schulcloud-thueringen.de
 
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
 ES_DOMAIN: https://mv-repo.dbildungscloud.de
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
