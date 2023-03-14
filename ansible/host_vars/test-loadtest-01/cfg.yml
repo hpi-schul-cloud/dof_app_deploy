@@ -1,6 +1,5 @@
 NAMESPACE: loadtest-01
 DOMAIN: test.loadtest-01.dbildungscloud.org
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "true"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
