@@ -4,7 +4,8 @@ SC_TITLE: dBildungscloud
 SC_SHORT_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-GLOBAL_ANNOUNCEMENT_TEACHER: ""
+GLOBAL_ANNOUNCEMENT_TEXT: 'Für Rückfragen zu Vertragsangelegenheiten sind wir ab sofort unter folgender E-Mail-Adresse erreichbar: dBildungscloud[at]dataport.de.'
+GLOBAL_ANNOUNCEMENT_ROLES: administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in

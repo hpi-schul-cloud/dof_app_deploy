@@ -480,11 +480,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_LESSON_SHARE:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
-  FEATURE_LESSON_SHARE_NEW:
+  FEATURE_TASK_SHARE:
     value: "true"
     server: true
     client: false
@@ -528,11 +528,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_TOPIC_SHARE_IMPORT:
-    value: "false"
-    server: false
-    client: true
     nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
@@ -701,11 +696,12 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT:
+  GLOBAL_ANNOUNCEMENT_TEXT:
+    value: ""
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_TEACHER:
+  GLOBAL_ANNOUNCEMENT_ROLES:
     value: ""
     server: false
     client: true
