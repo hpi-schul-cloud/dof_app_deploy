@@ -435,10 +435,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  RABBITMQ_MATRIX_QUEUE_EXTERNAL:
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_VIDEOCONFERENCE_ENABLED:
     value: "false"
     server: true
@@ -480,6 +476,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_LESSON_SHARE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TASK_SHARE:
     value: "true"
     server: true
     client: false
@@ -531,52 +532,6 @@ configuration_all:
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
-    server: false
-    client: true
-    nuxtclient: false
-  # Matrix Messenger
-  FEATURE_MATRIX_MESSENGER_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__URI:
-    server: true
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__SERVERNAME:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__STUDENT_ROOM_CREATION:
-    server: true
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__EMBED_URI:
-    server: false
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__DISCOVER_URI:
-    server: false
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE:
-    server: false
-    client: true
-    nuxtclient: false
-  MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED:
     server: false
     client: true
     nuxtclient: false
