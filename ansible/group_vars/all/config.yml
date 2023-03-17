@@ -223,6 +223,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_PUBLIC_URI:
+    value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
     server: true
     client: false
     nuxtclient: false
