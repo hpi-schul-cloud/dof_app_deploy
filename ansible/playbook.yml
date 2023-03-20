@@ -20,7 +20,6 @@
     - dof_etherpad_nginx
     - dof_etherpad
     - clamav
-    - schulcloud-synapse-synchronization
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync

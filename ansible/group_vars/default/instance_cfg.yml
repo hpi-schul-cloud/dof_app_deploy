@@ -59,8 +59,6 @@ ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 ROUTE_ROSTER: false
 # produktive Instanz
 PROD_INSTANCE: true
-# Matrix
-RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
 # Identity Management
