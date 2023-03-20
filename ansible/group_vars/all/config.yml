@@ -732,7 +732,6 @@ configuration_all:
     client: false
     nuxtclient: false
   COLLABORATIVE_STORAGE_PROVIDER:
-    value: ""
     server: true
     client: false
     nuxtclient: false
