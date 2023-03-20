@@ -122,6 +122,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SYNC_LAST_SYNCED_AT_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   SMTP_SENDER:
     value: "noreply@DOMAIN"
     server: true
