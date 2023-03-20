@@ -17,6 +17,7 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  # deprecated?
   API_URL:
     value: "https://{{ DOMAIN }}/api"
     server: false
@@ -25,7 +26,7 @@ configuration_all:
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   LEGACY_CLIENT_URL:
@@ -121,6 +122,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SYNC_LAST_SYNCED_AT_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   SMTP_SENDER:
     value: "noreply@DOMAIN"
     server: true
@@ -165,8 +171,9 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-    # in MB
-    value: "2560"
+    # in Byte
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    value: "2684354560"
     server: true
     client: true
     nuxtclient: false
@@ -178,11 +185,16 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
     value: "false"
     server: true
     client: false
@@ -428,10 +440,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  RABBITMQ_MATRIX_QUEUE_EXTERNAL:
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_VIDEOCONFERENCE_ENABLED:
     value: "false"
     server: true
@@ -471,9 +479,14 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_LESSON_SHARE:
-    value: "false"
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TASK_SHARE:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -517,11 +530,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_TOPIC_SHARE_IMPORT:
-    value: "false"
-    server: false
-    client: true
-    nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
     server: false
@@ -532,52 +540,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  # Matrix Messenger
-  FEATURE_MATRIX_MESSENGER_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__URI:
-    server: true
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__SERVERNAME:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__STUDENT_ROOM_CREATION:
-    server: true
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__WELCOME_MESSAGE_ADMIN:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__WELCOME_MESSAGE_TEACHER:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__WELCOME_MESSAGE_STUDENT:
-    server: true
-    client: false
-    nuxtclient: false
-  MATRIX_MESSENGER__EMBED_URI:
-    server: false
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__DISCOVER_URI:
-    server: false
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__SCHOOL_SETTINGS_VISIBLE:
-    server: false
-    client: true
-    nuxtclient: true
-  MATRIX_MESSENGER__SCHOOL_ROOM_ENABLED:
-    server: false
-    client: true
-    nuxtclient: true
   CALENDAR_URI:
     value: "http://calendar-svc:3000"
     server: true
@@ -590,7 +552,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ES_DOMAIN:
-    value: "https://mv-repo.schul-cloud.org"
+    value: "https://mv-repo.dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
@@ -611,7 +573,7 @@ configuration_all:
   FEATURE_ES_COLLECTIONS_ENABLED:
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_ES_SEARCHABLE_ENABLED:
     server: true
     client: false
@@ -638,11 +600,11 @@ configuration_all:
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_EXTENSIONS_ENABLED:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_NUXT_SCHOOL_ADMIN_BETA:
     value: "true"
     server: false
@@ -670,7 +632,7 @@ configuration_all:
   FEATURE_TEAMS_ENABLED:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     server: true
     client: false
@@ -684,11 +646,12 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT:
+  GLOBAL_ANNOUNCEMENT_TEXT:
+    value: ""
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_TEACHER:
+  GLOBAL_ANNOUNCEMENT_ROLES:
     value: ""
     server: false
     client: true
@@ -738,9 +701,5 @@ configuration_all:
     nuxtclient: false
   GHOST_BASE_URL:
     server: true
-    client: true
-    nuxtclient: false
-  GHOST_API_URL:
-    server: false
     client: true
     nuxtclient: false

@@ -17,16 +17,13 @@ SC_FEDERALSTATE: niedersachsen
 # FEATURE TOGGLE
 ROCKETCHAT_SERVICE_ENABLED: "true"
 FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED: "true"
-FEATURE_LESSON_SHARE: "true"
 FEATURE_ENTERTHECLOUD: "false"
 FEATURE_EXTENSIONS_ENABLED: "true"
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_MINT_PAGES_ENABLED: "false"
 FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_NUXT_SCHOOL_ADMIN_BETA: "true"
 FEATURE_TEAMS_ENABLED: "true"
-FEATURE_TOPIC_SHARE_IMPORT: "true"
 FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED: "false"
 FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 FEATURE_VIDEOCONFERENCE_ENABLED: "true"
@@ -67,23 +64,24 @@ SKIP_CONDITIONS_CONSENT: "student employee"
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://content.schul-cloud.dev
+ES_DOMAIN: https://mv-repo.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 # produktive Instanz
 PROD_INSTANCE: true
-# Matrix
-RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated2
 # Hydra
 HYDRA_PUBLIC_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
 OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
 
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
+
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
-GHOST_API_URL: https://blog.niedersachsen.cloud/ghost/api/v3
 
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
@@ -102,6 +100,3 @@ group_ingress:
   api_v1_registration:
     serviceName: default-backend-404-svc
     servicePort: 8080
-  api_v3_sso_ouauth:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"

@@ -5,7 +5,8 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEACHER: ""
+GLOBAL_ANNOUNCEMENT_TEXT: 'Bettermarks ist seit Februar 2022 kostenlos in der Schul-Cloud verfügbar. Bettermarks bietet interaktive Mathematik-Aufgaben mit personalisierten Rückmeldungen und automatischer Korrektur für Lehrkräfte. Mehr Informationen: <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://docs.dbildungscloud.de/pages/viewpage.action?pageId=148537453\">hier</a>.'
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -20,7 +21,6 @@ ROCKETCHAT_SERVICE_ENABLED: "true"
 FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED: "true"
 FEATURE_ENTERTHECLOUD: "false"
 FEATURE_EXTENSIONS_ENABLED: "false"
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_MINT_PAGES_ENABLED: "false"
 FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_NEXBOARD_ENABLED: "false"
@@ -63,15 +63,16 @@ CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS: 18
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://content.schul-cloud.dev
+ES_DOMAIN: https://mv-repo.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 # produktive Instanz
 PROD_INSTANCE: true
-# Matrix
-RABBITMQ_MATRIX_QUEUE_EXTERNAL: matrix_sync_populated
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
+# Identity Management
+IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
+IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 # import users
 FEATURE_USER_MIGRATION_ENABLED: "false"
 FEATURE_USER_MIGRATION_SYSTEM_ID: ""
