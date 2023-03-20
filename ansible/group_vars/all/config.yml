@@ -615,6 +615,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  MIGRATION_END_GRACE_PERIOD:
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
     server: false
