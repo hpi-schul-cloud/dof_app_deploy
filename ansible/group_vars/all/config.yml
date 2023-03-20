@@ -547,12 +547,12 @@ configuration_all:
     client: true
     nuxtclient: false
   ES_API_V7:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   ES_DOMAIN:
-    value: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
+    value: "https://repository.edusharing.dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false
