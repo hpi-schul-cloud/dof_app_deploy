@@ -86,10 +86,6 @@ NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
-# Hydra
-HYDRA_PUBLIC_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
-OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
-
 # Ingress
 group_ingress:
   api_v1_roster:
