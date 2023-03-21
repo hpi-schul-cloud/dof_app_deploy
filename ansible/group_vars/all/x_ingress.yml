@@ -333,7 +333,7 @@ default_ingress:
     servicePort: "{{ PORT_FILE_SERVICE }}"
   api_v3_fwu:
     path: /api/v3/fwu
-    serviceName: api-svc
+    serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
   etherpad:
     path: /etherpad
