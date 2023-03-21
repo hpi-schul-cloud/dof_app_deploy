@@ -703,3 +703,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
