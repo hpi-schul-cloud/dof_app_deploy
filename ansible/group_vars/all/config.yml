@@ -615,7 +615,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  MIGRATION_END_GRACE_PERIOD:
+  MIGRATION_END_GRACE_PERIOD_MS:
     value: "604800000"
     server: true
     client: false
