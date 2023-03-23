@@ -1,4 +1,5 @@
-default_ingress:
+default_ingress: "{{ default_ingress_paths | combine( additional_ingress_paths | default({})) }}"
+default_ingress_paths:
   default:
     path: /
     serviceName: client-svc
@@ -331,10 +332,6 @@ default_ingress:
     path: /api/v3/file/copy
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_fwu:
-    path: /api/v3/fwu
-    serviceName: api-fwu-svc
-    servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc

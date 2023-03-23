@@ -70,6 +70,12 @@ FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 # Lernstore FWU Content
 FEATURE_FWU_CONTENT_ENABLED: "true"
+FWU_CONTENT__S3_REGION: "de"
+FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-1.ionoscloud.com
+# FWU_CONTENT__S3_BUCKET: fwu-content-dev
+FWU_CONTENT__S3_BUCKET: fwu-content
+FWU_CONTENT__INCOMING_REQUEST_TIMEOUT: 6000000
+
 # produktive Instanz
 PROD_INSTANCE: true
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
@@ -90,3 +96,9 @@ group_ingress:
   api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+
+additional_ingress_paths:
+  api_v3_fwu:
+    path: /api/v3/fwu
+    serviceName: api-fwu-svc
+    servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"

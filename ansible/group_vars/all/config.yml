@@ -566,6 +566,22 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FWU_CONTENT__S3_REGION:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_BUCKET:
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT:
+    server: true
+    client: false
+    nuxtclient: false
   ES_MERLIN_AUTH_URL:
     server: true
     client: false
