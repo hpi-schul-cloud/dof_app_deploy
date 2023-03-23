@@ -8,5 +8,6 @@ NOT_AUTHENTICATED_REDIRECT_URL: https://www.schulportal-thueringen.de/cas/login?
 TSP_API_BASE_URL: https://www.schulportal-thueringen.de
 TSP_API_BASE_NO_WWW_URL: https://schulportal-thueringen.de
 
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.schulcloud-thueringen.de/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
