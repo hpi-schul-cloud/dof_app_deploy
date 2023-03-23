@@ -87,6 +87,12 @@ FEATURE_USER_MIGRATION_SYSTEM_ID: ""
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 
+# Nextcloud
+COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
+NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
+NEXTCLOUD_SCOPES: "openid offline profile email groups"
+
 # Ingress
 group_ingress:
   api_v1_roster:
