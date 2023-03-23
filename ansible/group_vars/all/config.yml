@@ -552,8 +552,13 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  ES_API_V7:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   ES_DOMAIN:
-    value: "https://mv-repo.dbildungscloud.de"
+    value: "https://repository.edusharing.dbildungscloud.de"
     server: true
     client: false
     nuxtclient: false

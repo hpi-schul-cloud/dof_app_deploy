@@ -4,6 +4,5 @@ DOMAIN: staging.brandenburg.dbildungscloud.org
 FEATURE_NEXBOARD_ENABLED: "true"
 FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 
-ES_DOMAIN: https://mv-repo.dbildungscloud.de
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.brandenburg.cloud

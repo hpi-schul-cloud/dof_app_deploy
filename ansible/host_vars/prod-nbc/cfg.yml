@@ -4,7 +4,6 @@ DOMAIN: niedersachsen.cloud
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 FEATURE_SCHOOL_SANIS_USER_MIGRATION_ENABLED: "false"
-ES_DOMAIN: https://mv-repo.dbildungscloud.de
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
