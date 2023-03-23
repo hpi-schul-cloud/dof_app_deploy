@@ -228,6 +228,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_PUBLIC_URI:
+    value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
     server: true
     client: false
     nuxtclient: false
@@ -701,6 +702,7 @@ configuration_all:
     client: false
     nuxtclient: false
   OAUTH2_LOGOUT_URI:
+    value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
     server: false
     client: true
     nuxtclient: false
