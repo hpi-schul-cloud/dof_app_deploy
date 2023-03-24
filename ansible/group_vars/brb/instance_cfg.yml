@@ -95,8 +95,6 @@ group_ingress:
   api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-
-additional_ingress_rules:
   api_v3_fwu:
     path: /api/v3/fwu
     serviceName: api-fwu-svc

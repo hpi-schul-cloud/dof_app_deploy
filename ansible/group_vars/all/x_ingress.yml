@@ -1,5 +1,4 @@
-default_ingress: "{{ default_ingress_rules | combine( additional_ingress_rules | default({})) }}"
-default_ingress_rules:
+default_ingress:
   default:
     path: /
     serviceName: client-svc
