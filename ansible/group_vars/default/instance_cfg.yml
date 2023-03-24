@@ -4,7 +4,7 @@ SC_TITLE: dBildungscloud
 SC_SHORT_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-GLOBAL_ANNOUNCEMENT_TEXT: 'Für Rückfragen zu Vertragsangelegenheiten sind wir ab sofort unter folgender E-Mail-Adresse erreichbar: dBildungscloud[at]dataport.de.'
+GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: administrator
 
 SHOW_VERSION: 1
@@ -51,7 +51,6 @@ JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
 FEATURE_LERNSTORE_ENABLED: "true"
 FEATURE_ES_COLLECTIONS_ENABLED: "true"
 FEATURE_ES_SEARCHABLE_ENABLED: "true"
-ES_DOMAIN: https://mv-repo.dbildungscloud.de
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php

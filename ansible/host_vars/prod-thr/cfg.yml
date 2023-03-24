@@ -7,3 +7,7 @@ ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
 NOT_AUTHENTICATED_REDIRECT_URL: https://www.schulportal-thueringen.de/cas/login?service=https://schulcloud-thueringen.de/tsp-login
 TSP_API_BASE_URL: https://www.schulportal-thueringen.de
 TSP_API_BASE_NO_WWW_URL: https://schulportal-thueringen.de
+
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+NEXTCLOUD_REDIRECT_URL: https://nextcloud.schulcloud-thueringen.de/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
