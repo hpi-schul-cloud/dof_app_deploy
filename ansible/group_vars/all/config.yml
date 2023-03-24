@@ -622,7 +622,7 @@ configuration_all:
     client: false
     nuxtclient: false
   MIGRATION_END_GRACE_PERIOD_MS:
-    value: "604800000"
+    value: "1209600000"
     server: true
     client: false
     nuxtclient: false
