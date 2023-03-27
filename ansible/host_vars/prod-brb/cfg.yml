@@ -4,3 +4,7 @@ DOMAIN: brandenburg.cloud
 FEATURE_NEXBOARD_ENABLED: "true"
 
 ALERT_STATUS_URL: https://status.brandenburg.cloud
+
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+NEXTCLOUD_REDIRECT_URL: https://nextcloud.brandenburg.cloud/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud.brandenburg.cloud
