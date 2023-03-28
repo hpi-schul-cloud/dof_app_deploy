@@ -7,8 +7,7 @@ FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.brandenburg.cloud
 
-# FWU_CONTENT__S3_BUCKET: fwu-content-staging
-FWU_CONTENT__S3_BUCKET: fwu-content
+FWU_CONTENT__S3_BUCKET: sc-staging-fwu-txl-bucket
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/

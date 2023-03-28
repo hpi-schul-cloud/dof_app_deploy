@@ -71,8 +71,7 @@ ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 FEATURE_FWU_CONTENT_ENABLED: "true"
 FWU_CONTENT__S3_REGION: "de"
 FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-1.ionoscloud.com
-# FWU_CONTENT__S3_BUCKET: fwu-content-dev
-FWU_CONTENT__S3_BUCKET: fwu-content
+FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
 FWU_CONTENT__INCOMING_REQUEST_TIMEOUT: 6000000
 
 # produktive Instanz
