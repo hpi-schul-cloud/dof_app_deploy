@@ -55,8 +55,8 @@ default_ingress:
     path: /tasks
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  task-cards:
-    path: /task-cards
+  beta-task:
+    path: /beta-task
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
