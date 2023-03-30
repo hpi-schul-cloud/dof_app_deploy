@@ -646,7 +646,7 @@ configuration_all:
     client: false
     nuxtclient: false
   MIGRATION_END_GRACE_PERIOD_MS:
-    value: "604800000"
+    value: "1209600000"
     server: true
     client: false
     nuxtclient: false
@@ -736,6 +736,11 @@ configuration_all:
     client: true
     nuxtclient: false
   GHOST_BASE_URL:
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
