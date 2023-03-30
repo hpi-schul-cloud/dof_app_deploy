@@ -592,7 +592,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT:
+  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS:
     server: true
     client: false
     nuxtclient: false
