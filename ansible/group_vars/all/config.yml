@@ -81,7 +81,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_FRAME_SRC_URLS:
-    value: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/ https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.edusharing.dbildungscloud.de/"
+    value: ""
     server: false
     client: false
     nuxtclient: true
