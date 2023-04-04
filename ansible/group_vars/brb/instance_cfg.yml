@@ -51,6 +51,7 @@ SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
 # PORTS
 PORT_SERVER: 3030
 PORT_FILE_SERVICE: 4444
+PORT_FWU_LEARNING_CONTENTS: 4446
 # JWT  CCONFIG
 JWT_WHITELIST_ACCEPT_ALL: "false"
 JWT_TIMEOUT_SECONDS: 7200
@@ -66,6 +67,13 @@ FEATURE_ES_SEARCHABLE_ENABLED: "true"
 # LERNSTORE_ MERLIN
 FEATURE_ES_MERLIN_ENABLED: "true"
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
+# Lernstore FWU Content
+FEATURE_FWU_CONTENT_ENABLED: "true"
+FWU_CONTENT__S3_REGION: "eu-central-2"
+FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
+FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
+FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
+
 # produktive Instanz
 PROD_INSTANCE: true
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
@@ -92,3 +100,7 @@ group_ingress:
   api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_fwu:
+    path: /api/v3/fwu
+    serviceName: api-fwu-svc
+    servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"

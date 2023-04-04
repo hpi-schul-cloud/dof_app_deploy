@@ -572,6 +572,30 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_FWU_CONTENT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_REGION:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_ENDPOINT:
+    value: "http://localhost:4568"
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__S3_BUCKET:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS:
+    server: true
+    client: false
+    nuxtclient: false
   ES_MERLIN_AUTH_URL:
     server: true
     client: false
