@@ -351,3 +351,11 @@ default_ingress:
     path: /version
     serviceName: version-aggregator-svc
     servicePort: 8080
+  tldraw_test:
+    path: /tldraw-test
+    serviceName: tldraw-entrypoint
+    servicePort: 80
+  tldraw_static:
+    path: /static
+    serviceName: tldraw-entrypoint
+    servicePort: 80
