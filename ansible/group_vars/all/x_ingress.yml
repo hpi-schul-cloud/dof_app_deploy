@@ -359,3 +359,7 @@ default_ingress:
     path: /static
     serviceName: tldraw-entrypoint
     servicePort: 80
+  nuxt-tldraw:
+    path: /tldraw
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
