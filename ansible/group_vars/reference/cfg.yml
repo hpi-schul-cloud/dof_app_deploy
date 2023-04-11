@@ -3,3 +3,5 @@ FEATURE_NEXBOARD_ENABLED: "false"
 API_LDAP_SYNC_SVC: api-ldapsync-svc
 
 ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
+
+H5P_FRAME_SRC_URLS: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/"
