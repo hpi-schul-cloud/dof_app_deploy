@@ -44,7 +44,7 @@ data:
 
     # Create client
     echo "KEYCLOAK_INIT: Create client"
-    RES_CLIENTCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"http://localhost","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","webOrigins":"*","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}')
+    RES_CLIENTCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","webOrigins":"*","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}')
     if [[ $RES_CLIENTCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: client exists"
     fi
