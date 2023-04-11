@@ -108,7 +108,7 @@ data:
     ## Update client settings if client of admin console already exists
     if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: Update security admin console client details"
-      RES_UPDATECLIENTSECRET=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"rootUrl":"http://localhost","webOrigins":"*"}')
+      RES_UPDATECLIENTSECRET=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"baseUrl":"'"$IDM_CLIENT_URL_BASE"'","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"rootUrl":"http://localhost","webOrigins":"*"}')
       if [[ $RES_UPDATECLIENTSECRET -ne 204 ]] ; then
       echo "KEYCLOAK_INIT: Client update failed"
       fi
