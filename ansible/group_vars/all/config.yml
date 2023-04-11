@@ -80,6 +80,11 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
+  H5P_FRAME_SRC_URLS:
+    value: ""
+    server: false
+    client: false
+    nuxtclient: true
   SECURITY_HEADERS:
     value: "true"
     server: false
