@@ -749,3 +749,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
