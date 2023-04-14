@@ -26,7 +26,7 @@ data:
     IDM_CLIENT_SECRET=$IDENTITY_MANAGEMENT__DBC_CLIENTID_SECRET
 
     # Wait for IDM to be ready or fail
-    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE/health/live" || exit 1
+    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE/health/ready" || exit 1
     echo "KEYCLOAK_INIT: Connection OK"
 
     # Request authorization
