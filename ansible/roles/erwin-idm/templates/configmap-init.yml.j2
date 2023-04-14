@@ -109,6 +109,7 @@ data:
     if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: Update security admin console client details"
       RES_UPDATEADMINCONSOLE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/master/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
+      echo $RES_UPDATEADMINCONSOLE
       if [[ $RES_UPDATEADMINCONSOLE -ne 204 ]] ; then
       echo "KEYCLOAK_INIT: Admin console update failed"
       fi
@@ -122,8 +123,9 @@ data:
     ## Update client settings if client of admin console already exists
     if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: Update security admin console realm client details"
-      RES_UPDATEADMINCONSOLE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
-      if [[ $RES_UPDATEADMINCONSOLE -ne 204 ]] ; then
+      RES_UPDATEADMINCONSOLE_DEFAULT=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
+      echo &RES_UPDATEADMINCONSOLE_DEFAULT
+      if [[ $RES_UPDATEADMINCONSOLE_DEFAULT -ne 204 ]] ; then
       echo "KEYCLOAK_INIT: Admin console realm update failed"
       fi
     fi
