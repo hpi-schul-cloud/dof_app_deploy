@@ -72,6 +72,36 @@ data:
       fi
     fi
 
+    ## Get target client id of admin console
+    ADMIN_CONSOLE_CLIENTID=$(curl -s "$IDM_URL"/master/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    ### extract id (remove prefix), extract id (remove suffix)
+    ADMIN_CLIENTID=`echo $ADMIN_CONSOLE_CLIENTID | sed -E 's/^.*"id":"([^"]+)".*"protocolMappers".*$/\1/'`
+
+    ## Update client settings if client of admin console already exists
+    if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: Update security admin console client details"
+      RES_UPDATEADMINCONSOLE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/master/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
+      echo $RES_UPDATEADMINCONSOLE
+      if [[ $RES_UPDATEADMINCONSOLE -ne 204 ]] ; then
+      echo "KEYCLOAK_INIT: Admin console update failed"
+      fi
+    fi
+
+    ## Get target client id of admin console
+    ADMIN_CONSOLE_CLIENTID=$(curl -s "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
+    ### extract id (remove prefix), extract id (remove suffix)
+    ADMIN_CLIENTID=`echo $ADMIN_CONSOLE_CLIENTID | sed -E 's/^.*"id":"([^"]+)".*"protocolMappers".*$/\1/'`
+
+    ## Update client settings if client of admin console already exists
+    if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
+      echo "KEYCLOAK_INIT: Update security admin console realm client details"
+      RES_UPDATEADMINCONSOLE_DEFAULT=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
+      echo $RES_UPDATEADMINCONSOLE_DEFAULT
+      if [[ $RES_UPDATEADMINCONSOLE_DEFAULT -ne 204 ]] ; then
+      echo "KEYCLOAK_INIT: Admin console realm update failed"
+      fi
+    fi
+
     ## Get target client id
     RES_CLIENTID=$(curl -s "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=realm-management -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
     ### extract id (remove prefix), extract id (remove suffix)
@@ -97,35 +127,5 @@ data:
       curl "$IDM_URL"/"$IDM_REALM_NAME"/users/"$USERID"/role-mappings/clients/"$CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '[{"id":"'"$ROLEID"'","name":"'"$IDM_REALM_ADMIN_ROLE"'","containerId":"'"$CLIENTID"'"}]'
       if [[ $RES_REALMCREATE -ne 201 ]] ; then
       echo
-      fi
-    fi
-
-    ## Get target client id of admin console
-    ADMIN_CONSOLE_CLIENTID=$(curl -s "$IDM_URL"/master/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
-    ### extract id (remove prefix), extract id (remove suffix)
-    ADMIN_CLIENTID=`echo $ADMIN_CONSOLE_CLIENTID | sed -E 's/^.*"id":"([^"]+)".*"protocolMappers".*$/\1/'`
-
-    ## Update client settings if client of admin console already exists
-    if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
-      echo "KEYCLOAK_INIT: Update security admin console client details"
-      RES_UPDATEADMINCONSOLE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/master/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
-      echo $RES_UPDATEADMINCONSOLE
-      if [[ $RES_UPDATEADMINCONSOLE -ne 204 ]] ; then
-      echo "KEYCLOAK_INIT: Admin console update failed"
-      fi
-    fi
-
-    ## Get target client id of admin console
-    ADMIN_CONSOLE_CLIENTID=$(curl -s "$IDM_URL"/"$IDM_REALM_NAME"/clients?clientId=security-admin-console -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN")
-    ### extract id (remove prefix), extract id (remove suffix)
-    ADMIN_CLIENTID=`echo $ADMIN_CONSOLE_CLIENTID | sed -E 's/^.*"id":"([^"]+)".*"protocolMappers".*$/\1/'`
-
-    ## Update client settings if client of admin console already exists
-    if [[ ! -z $ADMIN_CLIENTID && $RES_CLIENTCREATE -ne 201 ]] ; then
-      echo "KEYCLOAK_INIT: Update security admin console realm client details"
-      RES_UPDATEADMINCONSOLE_DEFAULT=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/clients/"$ADMIN_CLIENTID" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"redirectUris":["/admin/master/console/*","http://localhost/admin/master/console/*"],"webOrigins":["*"]}')
-      echo &RES_UPDATEADMINCONSOLE_DEFAULT
-      if [[ $RES_UPDATEADMINCONSOLE_DEFAULT -ne 204 ]] ; then
-      echo "KEYCLOAK_INIT: Admin console realm update failed"
       fi
     fi
