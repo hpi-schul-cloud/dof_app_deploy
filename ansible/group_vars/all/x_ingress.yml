@@ -353,15 +353,15 @@ default_ingress:
     servicePort: 8080
   tldraw_client:
     path: /tldraw-client
-    serviceName: tldraw-client-entrypoint
+    serviceName: tldraw-client
     servicePort: 80
   tldraw_static:
     path: /static
-    serviceName: tldraw-client-entrypoint
+    serviceName: tldraw-client
     servicePort: 80
   tldraw_server:
     path: /tldraw-server
-    serviceName: tldraw-server-entrypoint
+    serviceName: tldraw-server
     servicePort: 3333
   nuxt-tldraw:
     path: /tldraw
