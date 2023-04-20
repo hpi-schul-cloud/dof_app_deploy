@@ -1,0 +1,19 @@
+name:  Rocket.Chat Notification
+uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+if: always()
+on:
+  pull_request:
+    types: [review_requested]
+jobs:
+  runs-on: ubuntu-latest
+  steps:
+    - run echo "A review has been requested, Sending notification to chat."
+    - name: 🚀 Send Notification to Rocket Chat 🚀
+      uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+      with:
+        type: ${{ env.WORKFLOW_CONCLUSION }}
+        job_name: 'RocketChat notification'
+        mention: 'all'
+        channel: '#Review-Test'
+        url: ${{ secrets.RC_WEBHOOK_URL }}
+        username: Manual Trigger Test Run
