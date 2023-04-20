@@ -351,14 +351,18 @@ default_ingress:
     path: /version
     serviceName: version-aggregator-svc
     servicePort: 8080
-  tldraw_test:
-    path: /tldraw-test
-    serviceName: tldraw-entrypoint
+  tldraw_client:
+    path: /tldraw-client
+    serviceName: tldraw-client-entrypoint
     servicePort: 80
   tldraw_static:
     path: /static
-    serviceName: tldraw-entrypoint
+    serviceName: tldraw-client-entrypoint
     servicePort: 80
+  tldraw_server:
+    path: /tldraw-server
+    serviceName: tldraw-server-entrypoint
+    servicePort: 3333
   nuxt-tldraw:
     path: /tldraw
     serviceName: nuxtclient-svc
