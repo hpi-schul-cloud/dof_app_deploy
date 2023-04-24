@@ -1,4 +1,5 @@
-FEATURE_MATRIX_MESSENGER_ENABLED: "false"
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_S3_BUCKET_CORS: "true"
 ES_DOMAIN: https://mv-repo.dbildungscloud.de
+ES_API_V7: "false"
+H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"

@@ -18,10 +18,10 @@
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
     - role: hydra
+    - role: erwin-idm
     - role: dof_etherpad_nginx
     - role: dof_etherpad
     - role: clamav
-    - role: schulcloud-synapse-synchronization
     - role: schulcloud-server-core
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
