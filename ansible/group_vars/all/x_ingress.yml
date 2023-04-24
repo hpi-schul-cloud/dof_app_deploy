@@ -159,6 +159,10 @@ default_ingress:
     path: /api/v3/boards
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_columns:
+    path: /api/v3/columns
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_cards:
     path: /api/v3/cards
     serviceName: api-svc
