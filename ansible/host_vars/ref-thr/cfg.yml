@@ -7,3 +7,4 @@ ES_DOMAIN: https://mv-repo.dbildungscloud.de
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
 NOT_AUTHENTICATED_REDIRECT_URL: https://test.schulportal-thueringen.de/cas/login?service=https://test.schulcloud-thueringen.de/tsp-login
 TSP_API_BASE_URL: https://test.schulportal-thueringen.de
+ROOT_URL_REDIRECT: https://test.schulportal-thueringen.de/thueringer_schulcloud
