@@ -195,12 +195,12 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
