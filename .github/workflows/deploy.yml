@@ -22,8 +22,6 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
-      TOKEN_INVENTORY:
-        required: true
 
 env:
   tennens: "brb default nbc"
