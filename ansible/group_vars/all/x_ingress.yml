@@ -239,6 +239,10 @@ default_ingress:
     path: /api/v3/systems/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_h5p:
+    path: /api/v3/h5p-editor
+    serviceName: api-svc
+    servicePort: "{{ H5PEDITOR_PORT }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
