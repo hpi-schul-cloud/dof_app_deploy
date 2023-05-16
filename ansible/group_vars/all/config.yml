@@ -577,6 +577,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_H5P_EDITOR_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   FEATURE_FWU_CONTENT_ENABLED:
     value: "false"
     server: true
