@@ -239,10 +239,6 @@ default_ingress:
     path: /api/v3/systems/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_h5p:
-    path: /api/v3/h5p-editor
-    serviceName: api-h5p-svc
-    servicePort: "{{ PORT_H5P_EDITOR }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
@@ -355,6 +351,10 @@ default_ingress:
     path: /api/v3/file/copy
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_h5p:
+    path: /api/v3/h5p-editor
+    serviceName: api-h5p-svc
+    servicePort: "{{ PORT_H5P_EDITOR }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
