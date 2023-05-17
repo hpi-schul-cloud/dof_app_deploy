@@ -107,8 +107,12 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  H5P:
-    path: /H5P
+  h5p-player:
+    path: /h5p/player
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5p-editor:
+    path: /h5p/editor
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   cfiles:
