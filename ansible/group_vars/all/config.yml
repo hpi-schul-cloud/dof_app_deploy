@@ -175,7 +175,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
-  # in MB
+    # in MB
     value: "2560"
     server: true
     client: true
@@ -402,7 +402,7 @@ configuration_all:
     nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
-    value: "de,en,es,ua"
+    value: "de,en,es,uk"
     server: true
     client: true
     nuxtclient: false
