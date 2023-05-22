@@ -6,7 +6,7 @@ default_ingress:
   themes:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    path: "/themes/{{ SC_THEME }}/favicon.png"
+    path: "/favicon.png"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
@@ -47,16 +47,16 @@ default_ingress:
     path: /mint-ec
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  insights:
-    path: /insights
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   news:
     path: /news
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   tasks:
     path: /tasks
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  beta-task:
+    path: /beta-task
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
@@ -107,10 +107,22 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  cfiles:
+    path: /cfiles
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  migration:
+    path: /migration
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
+  api_v1_alert:
+    path: /api/v1/alert
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_metrics:
     path: /api/v1/metrics
     serviceName: default-backend-404-svc
@@ -135,8 +147,28 @@ default_ingress:
     path: /api/v3/tasks
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_task-cards:
+    path: /api/v3/cards/task
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_rooms:
     path: /api/v3/rooms
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_boards:
+    path: /api/v3/boards
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_columns:
+    path: /api/v3/columns
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_cards:
+    path: /api/v3/cards
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_elements:
+    path: /api/v3/elements
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user_me:
@@ -163,8 +195,46 @@ default_ingress:
     path: /api/v3/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_ouauth:
+  api_v3_lessons:
+    path: /api/v3/lessons
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_school:
+    path: /api/v3/school
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_submissions:
+    path: /api/v3/submissions
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sharetoken:
+    path: /api/v3/sharetoken
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_login:
+    path: /api/v3/sso/login/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_oauth:
     path: /api/v3/sso/oauth/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_sso_hydra:
+    path: /api/v3/sso/hydra/
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_tools:
+    path: /api/v3/tools
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-migration:
+    path: /api/v3/user-migration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_system:
+    path: /api/v3/systems/public
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
@@ -203,10 +273,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_courses:
     path: /api/v1/courses
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_course-share:
-    path: /api/v1/courses-share
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_link:
@@ -253,6 +319,10 @@ default_ingress:
     path: /api/v3/file/upload
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_upload_from_url:
+    path: /api/v3/file/upload-from-url
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
   api_v3_file_download:
     path: /api/v3/file/download
     serviceName: api-files-svc
@@ -285,3 +355,7 @@ default_ingress:
     path: /etherpad/socket.io
     serviceName: etherpad-nginx-svc
     servicePort: 80
+  version_aggregator:
+    path: /version
+    serviceName: version-aggregator-svc
+    servicePort: 8080

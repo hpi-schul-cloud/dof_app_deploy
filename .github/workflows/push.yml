@@ -1,5 +1,5 @@
 ---
-name: Autodeploymend for Branches
+name: Auto-deployment for Branches
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
         id: extract_branch
 
   deploy:
@@ -27,7 +27,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       DEV_VAULT: ${{ secrets.DEV_VAULT }}
       DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
-      TOKEN_INVENTORY: ${{ secrets.TOKEN_INVENTORY }}
 
   deploy-successful:
     needs:

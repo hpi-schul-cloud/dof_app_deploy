@@ -21,7 +21,7 @@ jobs:
           echo git_ref_name $git_ref_name
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${git_ref_name})"
+        run: echo "branch=${git_ref_name}" >> $GITHUB_OUTPUT
         id: extract_branch
 
   deploy:
@@ -34,5 +34,4 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       DEV_VAULT: ${{ secrets.DEV_VAULT }}
       DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
-      TOKEN_INVENTORY: ${{ secrets.TOKEN_INVENTORY }}
-      
+

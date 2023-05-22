@@ -1,4 +1,5 @@
 name: Rollout to the instances
+run-name: Rollout of ${{ inputs.config_tag_name }} to ${{ inputs.instance_group }}
 
 on:
   workflow_dispatch:
@@ -18,7 +19,7 @@ jobs:
     steps:
       - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
-      - run: echo "Workflow is triggerd by ${{ github.ref_type }} ${{ github.ref_name }}"
+      - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
     needs:
@@ -68,22 +69,6 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
-  ref-int:
-    needs:
-      - approve_ref
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: ref-int
-      host_group: international
-      host_stage: reference
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
-      
   ref-nbc:
     needs:
       - approve_ref
@@ -121,7 +106,6 @@ jobs:
     needs:
       - ref-brb
       - ref-dbc
-      - ref-int
       - ref-nbc
       - ref-thr
     environment: approve_prod_stage_1
@@ -168,23 +152,6 @@ jobs:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-brb
       host_group: brb
-      host_stage: production
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
-  
-  prod-int:
-    if: ${{ !failure() }}
-    needs:
-      - approve_prod_stage_2
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: prod-int
-      host_group: international
       host_stage: production
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:

@@ -5,6 +5,7 @@
   connection: local
   roles:
     - sys
+    - pre_deployment
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
@@ -15,13 +16,10 @@
     - storage
     - hydra
     - erwin-idm
-    - insights-collector
-    - insights-cubejs
-    - insights-engine
+    - oidcmock
     - dof_etherpad_nginx
     - dof_etherpad
     - clamav
-    - schulcloud-synapse-synchronization
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync
@@ -32,5 +30,8 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - antivirus_check_service
+    - version-aggregator
     - rocketchat
+    - mongodb_query_exporter
     - ingress
+    - post_deployment

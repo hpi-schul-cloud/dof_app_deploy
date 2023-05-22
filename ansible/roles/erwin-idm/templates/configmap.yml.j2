@@ -11,4 +11,4 @@ data:
   KC_HTTP_ENABLED: "true"
   KC_HTTP_PORT: "{{ ERWINIDM_PORT }}"
   KC_PROXY: "edge"
-  KC_DB_SCHEMA: "erwinidm"
+  JAVA_OPTS_APPEND: "-Djgroups.dns.query=erwinidm-svc.{{ NAMESPACE }}.svc.cluster.local"

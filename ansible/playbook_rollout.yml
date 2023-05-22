@@ -8,6 +8,7 @@
   connection: local
   roles:
     - role: sys
+    - role: pre_deployment
     - role: dof_mongo
     - role: dof_postgresql
     - role: dof_rabbitmq
@@ -17,13 +18,10 @@
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
     - role: hydra
-    - role: insights-collector
-    - role: insights-cubejs
-    - role: insights-engine
+    - role: erwin-idm
     - role: dof_etherpad_nginx
     - role: dof_etherpad
     - role: clamav
-    - role: schulcloud-synapse-synchronization
     - role: schulcloud-server-core
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
@@ -41,5 +39,8 @@
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
+    - role: version-aggregator
     - role: rocketchat
+    - role: mongodb_query_exporter
     - role: ingress
+    - role: post_deployment

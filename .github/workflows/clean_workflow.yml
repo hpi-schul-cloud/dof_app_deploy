@@ -20,12 +20,12 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
-      TOKEN_INVENTORY:
-        required: true
+
+permissions:
+  contents: read
 
 jobs:
   create_artifacts_repos:
-    continue-on-error: true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,38 +36,33 @@ jobs:
          - superhero-dashboard
          - schulcloud-calendar
          - antivirus_check_service
-         - schulcloud-synapse-synchronization
+         - version-aggregator
          - dof_app_deploy
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
           fetch-depth: 0
-      - run: git checkout ${{ env.git_ref_name }}
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
       - name: Add Flag for existing branch
-        if: ${{ success() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
-        run: |
-          mkdir -pv ansible/group_vars/all
-          echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
+        run: | 
+          if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
+            echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
+          fi
       - run: tar -cf ${{ matrix.repos }}.tar ansible
-        if: ${{ always() }}
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v2
-        if: ${{ always() }}
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
           
   create_artifacts_workspaces:
-    if: ${{ always() }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -83,7 +78,7 @@ jobs:
           
           temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "before" $git_ref_name "after" $temp
-          echo "##[set-output name=id;]$(echo $temp)"
+          echo "id=$temp" >> $GITHUB_OUTPUT
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
@@ -91,7 +86,7 @@ jobs:
           echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
           echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.tennens }}
           path: ${{github.workspace }}/${{ matrix.tennens }}.tar
@@ -102,11 +97,11 @@ jobs:
       - create_artifacts_workspaces
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ansible
           path: ${{github.workspace }}/ansible.tar

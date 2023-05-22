@@ -29,6 +29,9 @@ on:
       RC_WEBHOOK: 
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   set_versions:
     runs-on: ubuntu-latest
@@ -39,7 +42,7 @@ jobs:
     environment: ${{ inputs.host_name }}
     steps:
       - run: mkdir repo
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/dof_app_deploy
           path: repo/dof_app_deploy
@@ -52,48 +55,48 @@ jobs:
           # convert yaml to bash env vars to get git tags
           # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-server
           path: repo/schulcloud-server
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_SERVER_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-client
           path: repo/schulcloud-client
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CLIENT_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/nuxt-client
           path: repo/nuxt-client
           token: ${{ secrets.token }}
           ref: ${{ env.NUXT_CLIENT_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/superhero-dashboard
           path: repo/superhero-dashboard
           token: ${{ secrets.token }}
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-calendar
           path: repo/schulcloud-calendar
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CALENDAR_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/antivirus_check_service
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          repository: hpi-schul-cloud/schulcloud-synapse-synchronization
-          path: repo/schulcloud-synapse-synchronization
+          repository: hpi-schul-cloud/version-aggregator
+          path: repo/version-aggregator
           token: ${{ secrets.token }}
-          ref: ${{ env.SCHULCLOUD_SYNAPSE_SYNCHRONIZATION_VERSION }}
+          ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
@@ -112,7 +115,7 @@ jobs:
           cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
@@ -120,10 +123,6 @@ jobs:
         run: |
           python3 -m pip install kubernetes
           
-      - working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
-        run: |
-          echo "NOTIFICATION_PLATFORM: schul-cloud" >> node-notification-service.yml
-          echo "NOTIFICATION_URI: http://notification-svc:3031" >> node-notification-service.yml
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
         run: |
