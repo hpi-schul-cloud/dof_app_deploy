@@ -387,6 +387,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
+    value: "10"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
+    value: "150"
+    server: true
+    client: false
+    nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
     value: "de,en,es,ua"
