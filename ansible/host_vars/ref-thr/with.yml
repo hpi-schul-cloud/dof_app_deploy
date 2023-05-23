@@ -1,4 +1,4 @@
 WITH_STORAGE: true
-WITH_LDAP: true
+WITH_LDAP: false
 WITH_LDAP_SEPERATION: false
 WITH_TSP: true
