@@ -754,3 +754,23 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_PROMETHEUS_METRICS_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_ROUTE:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_PORT:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_DEFAULT_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_METRICS_ROUTE_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
