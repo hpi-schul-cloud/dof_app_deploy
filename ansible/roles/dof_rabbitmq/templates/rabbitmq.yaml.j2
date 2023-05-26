@@ -33,4 +33,4 @@ spec:
     additionalConfig: |
       load_definitions = /path/to/exported/definitions.json
       disk_free_limit.absolute = "{{ RABBITMQ_LOW_WATERMARK_DISK|default("50MB", true) }}"
-      prometheus.return_per_object_metrics = {{ RABBITMQ_PER_OBJECT_METRICS|default(true, true) }}
+      prometheus.return_per_object_metrics = {{ RABBITMQ_PER_OBJECT_METRICS|default("true", true) }}
