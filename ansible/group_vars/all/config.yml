@@ -764,3 +764,13 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_CTL_TOOLS_TAB_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_LTI_TOOLS_TAB_ENABLED:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
