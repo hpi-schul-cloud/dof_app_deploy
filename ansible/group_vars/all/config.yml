@@ -471,8 +471,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_COLUMN_BOARD:
-    value: "true"
+  FEATURE_COLUMN_BOARD_ENABLED:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
