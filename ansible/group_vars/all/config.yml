@@ -750,6 +750,10 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TREAT_USER_AS_REGISTERED_WITHOUT_CONSENTS_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
   GHOST_BASE_URL:
     server: true
     client: true
