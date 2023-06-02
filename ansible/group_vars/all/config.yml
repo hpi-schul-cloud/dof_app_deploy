@@ -399,7 +399,7 @@ configuration_all:
     nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
-    value: "de,en,es,ua"
+    value: "de,en,es,uk"
     server: true
     client: true
     nuxtclient: false
@@ -766,6 +766,16 @@ configuration_all:
     nuxtclient: false
   FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
     value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_CTL_TOOLS_TAB_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_LTI_TOOLS_TAB_ENABLED:
+    value: "true"
     server: true
     client: true
     nuxtclient: false
