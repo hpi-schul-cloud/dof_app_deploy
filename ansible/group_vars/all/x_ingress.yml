@@ -107,6 +107,14 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5p-player:
+    path: /h5p/player
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5p-editor:
+    path: /h5p/editor
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   cfiles:
     path: /cfiles
     serviceName: nuxtclient-svc
@@ -347,6 +355,10 @@ default_ingress:
     path: /api/v3/file/copy
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_h5p:
+    path: /api/v3/h5p-editor
+    serviceName: api-h5p-svc
+    servicePort: "{{ PORT_H5P_EDITOR }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
