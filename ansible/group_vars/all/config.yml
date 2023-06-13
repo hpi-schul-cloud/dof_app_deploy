@@ -779,3 +779,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
