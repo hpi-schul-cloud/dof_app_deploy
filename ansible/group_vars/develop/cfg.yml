@@ -9,3 +9,5 @@ FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
 ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
+
+FEATURE_PROMETHEUS_METRICS_ENABLED: "true"
