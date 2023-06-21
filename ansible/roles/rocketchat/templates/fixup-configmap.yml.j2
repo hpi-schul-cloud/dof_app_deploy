@@ -9,11 +9,11 @@ data:
   update.sh: |
     #! /bin/bash
     set -euo pipefail
-    until mongo $MONGO_URL --eval "print(\"waited for connection\")"
+    until mongosh $MONGO_URL --eval "print(\"waited for connection\")"
       do
         sleep 1
       done
-    mongo $MONGO_URL --eval '
+    mongosh $MONGO_URL --eval '
       db.rocketchat_permissions.update({ _id: "create-team"}, { $set: { roles: ["admin"] }},{ upsert: true });
       db.rocketchat_permissions.update({ _id: "delete-team"}, { $set: { roles: ["admin"] }},{ upsert: true });
       db.rocketchat_permissions.update({ _id: "edit-team"}, { $set: { roles: ["admin" ] }},{ upsert: true });
