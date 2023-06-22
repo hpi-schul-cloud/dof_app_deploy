@@ -800,6 +800,7 @@ configuration_all:
     client: false
     nuxtclient: false
   ROOT_URL_REDIRECT:
+    value: ""
     server: false
     client: true
     nuxtclient: false
