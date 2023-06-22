@@ -1,4 +1,3 @@
 WITH_STORAGE: true
 WITH_LDAP: true
 WITH_LDAP_SEPERATION: true
-WITH_TSP: false

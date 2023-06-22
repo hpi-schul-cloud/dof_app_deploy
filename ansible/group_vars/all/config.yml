@@ -195,7 +195,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -778,6 +778,26 @@ configuration_all:
     value: "true"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_PROMETHEUS_METRICS_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_ROUTE:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_PORT:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_DEFAULT_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_METRICS_ROUTE_METRICS:
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_LEGACY_HYDRA_ENABLED:
     value: "true"
