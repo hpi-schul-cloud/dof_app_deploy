@@ -799,3 +799,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  ROOT_URL_REDIRECT:
+    server: false
+    client: true
+    nuxtclient: false
