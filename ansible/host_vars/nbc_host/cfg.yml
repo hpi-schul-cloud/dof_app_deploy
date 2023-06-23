@@ -1,4 +1,2 @@
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
-
-FEATURE_LEGACY_HYDRA_ENABLED: "false"
