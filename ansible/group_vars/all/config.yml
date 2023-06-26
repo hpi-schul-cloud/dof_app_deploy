@@ -12,6 +12,10 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  HOSTNAME:
+    server: true
+    client: false
+    nuxtclient: false
   API_HOST:
     value: "http://api-svc:3030/api"
     server: true
