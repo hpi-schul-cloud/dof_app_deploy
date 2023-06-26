@@ -804,7 +804,7 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  HEALTHCHECKS_EXCLUDE_MONGODB_READ_OP_TIME_CHECK:
+  HEALTHCHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
     nuxtclient: false
