@@ -806,7 +806,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_LEGACY_HYDRA_ENABLED:
-    value: "true"
+    value: "false"
     server: false
     client: true
     nuxtclient: false
