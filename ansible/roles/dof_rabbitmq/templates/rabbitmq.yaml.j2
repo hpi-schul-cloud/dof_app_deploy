@@ -5,6 +5,7 @@ metadata:
   namespace: {{ NAMESPACE }}
 spec:
   image: {{ RABBITMQ_IMAGE_NAME }}:{{ RABBITMQ_IMAGE_TAG }}
+  delayStartSeconds: {{ RABBITMQ_DELAY_START_SECSONDS|default(0, true) }}
   replicas: {{ RABBITMQ_REPLICAS|default("1", true) }}
   resources:
     limits:
