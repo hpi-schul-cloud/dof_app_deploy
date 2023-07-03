@@ -542,10 +542,10 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
-    value: "false"
-    server: false
+    value: "true"
+    server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
   FEATURE_TASK_CARD_ENABLED:
     value: "false"
     server: true

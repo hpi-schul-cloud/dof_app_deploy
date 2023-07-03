@@ -71,3 +71,6 @@ GHOST_BASE_URL: https://blog.dbildungscloud.de
 
 # Ingress
 group_ingress:
+
+# School policy
+FEATURE_SCHOOL_POLICY_ENABLED: "true"

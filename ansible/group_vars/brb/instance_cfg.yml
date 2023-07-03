@@ -106,3 +106,6 @@ group_ingress:
     path: /api/v3/fwu
     serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
+
+# School policy
+FEATURE_SCHOOL_POLICY_ENABLED: "true"
