@@ -545,7 +545,7 @@ configuration_all:
     value: "true"
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_TASK_CARD_ENABLED:
     value: "false"
     server: true
