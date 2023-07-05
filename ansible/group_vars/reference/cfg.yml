@@ -5,3 +5,6 @@ API_LDAP_SYNC_SVC: api-ldapsync-svc
 ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
 
 H5P_FRAME_SRC_URLS: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/"
+
+FEATURE_IDENTITY_MANAGEMENT_ENABLED: "true"
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "true"
