@@ -69,5 +69,8 @@ IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
 
+# Column Board
+COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
+
 # Ingress
 group_ingress:

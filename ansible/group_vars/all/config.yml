@@ -397,6 +397,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # Column Board
+  COLUMN_BOARD_HELP_LINK:
+    value: https://{{ DOMAIN }}/help/confluence/270827606
+    server: true
+    client: false
+    nuxtclient: false
+  COLUMN_BOARD_FEEDBACK_LINK:
+    server: true
+    client: false
+    nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
     value: "de,en,es,uk"
@@ -780,6 +790,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_PROMETHEUS_METRICS_ENABLED:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -801,6 +812,11 @@ configuration_all:
     nuxtclient: false
   ROOT_URL_REDIRECT:
     value: ""
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "false"
     server: false
     client: true
     nuxtclient: false
