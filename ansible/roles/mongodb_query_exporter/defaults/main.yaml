@@ -30,3 +30,10 @@ mongodb_query_exporter_values:
       defaultCache: 0
     aggregations:
     {{ mongodb_query_exporter_aggregations }}
+  resources:
+    limits:
+      cpu: 200m
+      memory: 50Mi
+    requests:
+      cpu: 100m
+      memory: 30Mi

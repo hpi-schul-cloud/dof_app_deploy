@@ -24,6 +24,13 @@ spec:
         - mountPath: /etc/nginx/conf.d/default.conf
           subPath: default.conf
           name: defaultconf
+        resources:
+          limits:
+            cpu: {{ API_CPU_LIMITS|default("200m", true) }}
+            memory: {{ API_MEMORY_LIMITS|default("100Mi", true) }}
+          requests:
+            cpu: {{ API_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ API_MEMORY_REQUESTS|default("50Mi", true) }}
       volumes:
       - name: defaultconf
         configMap:

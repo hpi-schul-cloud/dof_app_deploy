@@ -26,6 +26,13 @@ spec:
           subPath: update.sh
         command: ['/bin/sh','-c']
         args: ['cp /update.sh /tmp/update.run.sh && chmod +x /tmp/update.run.sh && sh /tmp/update.run.sh']
+        resources:
+          limits:
+            cpu: {{ API_CPU_LIMITS|default("200m", true) }}
+            memory: {{ API_MEMORY_LIMITS|default("20Mi", true) }}
+          requests:
+            cpu: {{ API_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ API_MEMORY_REQUESTS|default("10Mi", true) }}
       volumes:
       - name: script
         configMap:
@@ -35,4 +42,3 @@ spec:
             path: update.sh
       restartPolicy: Never
   backoffLimit: 3
-
