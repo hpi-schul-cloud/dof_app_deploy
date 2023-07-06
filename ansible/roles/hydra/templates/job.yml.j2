@@ -29,10 +29,10 @@ spec:
         resources:
           limits:
             cpu: {{ HYDRA_CPU_MAX|default("1000m", true) }}
-            memory: {{ HYDRA_MEM_MAX|default("20Mi", true) }}
+            memory: {{ HYDRA_MEM_MAX|default("256Mi", true) }}
           requests:
             cpu: {{ HYDRA_CPU_MIN|default("100m", true) }}
-            memory: {{ HYDRA_MEM_MIN|default("10Mi", true) }}
+            memory: {{ HYDRA_MEM_MIN|default("128Mi", true) }}
       volumes:
       - name: script
         configMap:
