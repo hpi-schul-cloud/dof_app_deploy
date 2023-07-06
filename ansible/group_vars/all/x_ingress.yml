@@ -241,8 +241,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_videoconference2:
     path: /api/v3/videoconference2
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
