@@ -556,6 +556,11 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TASK_CARD_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_MULTI_LOGIN_INSTANCES:
     value: "false"
     server: false
