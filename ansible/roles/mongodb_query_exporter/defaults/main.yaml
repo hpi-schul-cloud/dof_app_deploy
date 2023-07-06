@@ -32,7 +32,7 @@ mongodb_query_exporter_values:
     {{ mongodb_query_exporter_aggregations }}
   resources:
     limits:
-      cpu: 200m
+      cpu: 1000m
       memory: 50Mi
     requests:
       cpu: 100m
