@@ -28,11 +28,11 @@ spec:
             args: ['cp /update.sh /update.run.sh && chmod +x /update.run.sh &&./update.run.sh']
             resources:
               limits:
-                cpu: "1000m"
-                memory: "100Mi"
+                cpu: {{ ROCKETCHAT_FIXUP_CPU_LIMITS|default("1000m", true) }}
+                memory: {{ ROCKETCHAT_FIXUP_MEMORY_LIMITS|default("100Mi", true) }}
               requests:
-                cpu: "100m"
-                memory: "50Mi"
+                cpu: {{ ROCKETCHAT_FIXUP_CPU_REQUESTS|default("100m", true) }}
+                memory: {{ ROCKETCHAT_FIXUP_MEMORY_REQUESTS|default("50Mi", true) }}
           volumes:
           - name: script
             configMap:
