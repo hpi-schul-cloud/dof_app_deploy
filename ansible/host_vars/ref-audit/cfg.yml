@@ -2,7 +2,6 @@ NAMESPACE: audit
 DOMAIN: staging.audit.dbildungscloud.org
 
 FEATURE_NEXBOARD_ENABLED: "true"
-FEATURE_MULTI_LOGIN_INSTANCES: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/

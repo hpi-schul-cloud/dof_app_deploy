@@ -19,10 +19,6 @@ default_ingress:
     path: /metrics
     serviceName: default-backend-404-svc
     servicePort: 8080
-  login-instances:
-    path: /login-instances
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   login:
     path: /login
     serviceName: client-svc

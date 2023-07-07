@@ -561,11 +561,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_MULTI_LOGIN_INSTANCES:
-    value: "false"
-    server: false
-    client: true
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
