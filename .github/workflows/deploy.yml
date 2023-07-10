@@ -43,6 +43,7 @@ jobs:
          - antivirus_check_service
          - version-aggregator
          - dof_app_deploy
+         - tldraw-client
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
