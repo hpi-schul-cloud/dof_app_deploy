@@ -26,6 +26,13 @@ spec:
               subPath: update.sh
             command: ['/bin/sh','-c']
             args: ['cp /update.sh /update.run.sh && chmod +x /update.run.sh &&./update.run.sh']
+            resources:
+              limits:
+                cpu: {{ ROCKETCHAT_FIXUP_CPU_LIMITS|default("1000m", true) }}
+                memory: {{ ROCKETCHAT_FIXUP_MEMORY_LIMITS|default("100Mi", true) }}
+              requests:
+                cpu: {{ ROCKETCHAT_FIXUP_CPU_REQUESTS|default("100m", true) }}
+                memory: {{ ROCKETCHAT_FIXUP_MEMORY_REQUESTS|default("50Mi", true) }}
           volumes:
           - name: script
             configMap:
