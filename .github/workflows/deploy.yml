@@ -108,7 +108,7 @@ jobs:
     with:
       branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
     secrets:
-      bingo_token: ${{ secrets.BINGO_TOKEN }}
+      bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
   deploy:
     needs: 
