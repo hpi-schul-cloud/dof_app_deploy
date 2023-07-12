@@ -32,7 +32,7 @@ permissions:
 jobs:
 
   create_branch_identifier:
-    uses: ./github/workflows/branch-to-namespace.yml
+    uses: /./github/workflows/branch-to-namespace.yml
     with:
       branch: ${{ inputs.branch }}
 
