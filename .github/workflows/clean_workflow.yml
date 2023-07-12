@@ -34,7 +34,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: ${{ fromJson(.github/workflows repos.json) }}
+        repo:
+          - schulcloud-server
+          - schulcloud-client
+          - nuxt-client
+          - superhero-dashboard
+          - schulcloud-calendar
+          - antivirus_check_service
+          - version-aggregator
+          - dof_app_deploy
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
@@ -84,7 +92,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: ${{ fromJson(.github/workflows repos.json) }}
+        repo:
+          - schulcloud-server
+          - schulcloud-client
+          - nuxt-client
+          - superhero-dashboard
+          - schulcloud-calendar
+          - antivirus_check_service
+          - version-aggregator
+          - dof_app_deploy
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
