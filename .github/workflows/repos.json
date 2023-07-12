@@ -1,10 +1,1 @@
-[
-  "schulcloud-server",
-  "schulcloud-client",
-  "nuxt-client",
-  "superhero-dashboard",
-  "schulcloud-calendar",
-  "antivirus_check_serv,ice"
-  "version-aggregator",
-  "dof_app_deploy"
-]
+[  "schulcloud-server",  "schulcloud-client",  "nuxt-client",  "superhero-dashboard",  "schulcloud-calendar",  "antivirus_check_serv,ice"  "version-aggregator",  "dof_app_deploy"]
