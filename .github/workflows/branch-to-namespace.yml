@@ -16,7 +16,7 @@ jobs:
   convert_branch_name:
     runs-on: ubuntu-latest
     outputs:
-      id_branch: ${{ steps.make_identifier.outputs.id_branch }}
+      id_branch: ${{ steps.create_branch_identifier.outputs.id_branch }}
     steps:
       - id: create_branch_identifier
         shell: bash
