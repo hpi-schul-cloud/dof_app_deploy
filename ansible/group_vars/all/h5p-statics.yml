@@ -1,0 +1,4 @@
+H5P_STATICFILES_SERVER_IMAGE: docker.io/schulcloud/h5p-staticfiles-server
+H5P_STATICFILES_SERVER_IMAGE_TAG: 0.1.0
+H5P_PORT: 8080
+H5P_PREFIX: h5p

@@ -63,6 +63,10 @@ default_ingress:
     path: /nuxtversion
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5pStatics:
+    path: statics/h5p
+    serviceName: h5p-staticfiles-server-svc
+    servicePort: "{{ H5P_PORT }}"    
   content:
     path: /content
     serviceName: nuxtclient-svc
