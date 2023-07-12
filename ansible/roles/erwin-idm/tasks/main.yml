@@ -90,7 +90,8 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: templates/erwinidm-svc-monitor.yml.j2
-  when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR)
+    # TODO set monitoring true
+  when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is undefined or ERWINIDM_SERVICE_MONITOR is defined and not ERWINIDM_SERVICE_MONITOR) 
 
 - name: remove Service Monitor
   kubernetes.core.k8s:
