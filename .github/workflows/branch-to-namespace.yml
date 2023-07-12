@@ -1,4 +1,4 @@
-name: Remove Branch
+name: Branch to Namespace
 
 on:
   workflow_call:
@@ -10,7 +10,7 @@ on:
     outputs:
       id_branch:
         description: "branch in namespace compatible fashion"
-        value: ${{ jobs.get_values_insert_branch_if_not_existent.outputs.deploy_to_instances }}
+        value: ${{ jobs.convert_branch_name.outputs.id_branch }}
 
 jobs:
   convert_branch_name:
