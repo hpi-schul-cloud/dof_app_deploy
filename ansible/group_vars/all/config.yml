@@ -820,3 +820,28 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_TLDRAW_GC_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_CALLBACK_DEBOUNCE_WAIT:
+    value: "2000"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_CALLBACK_TIMEOUT:
+    value: "5000"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_CALLBACK_URL:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_CALLBACK_OBJ:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
