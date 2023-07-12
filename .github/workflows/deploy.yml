@@ -30,19 +30,17 @@ permissions:
   contents: read
 
 jobs:
+
+  create_branch_identifier:
+    uses: ./github/workflows/branch-to-namespace.yml
+    with:
+      branch: ${{ inputs.branch }}
+
   create_artifacts_repos:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
-         - schulcloud-server
-         - schulcloud-client
-         - nuxt-client
-         - superhero-dashboard
-         - schulcloud-calendar
-         - antivirus_check_service
-         - version-aggregator
-         - dof_app_deploy
+        repos: ${{ fromJson(.github/workflows repos.json) }}
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
@@ -74,33 +72,36 @@ jobs:
           
   create_artifacts_workspaces:
     runs-on: ubuntu-latest
+    needs:
+      - create_branch_identifier
     strategy:
       matrix:
         tennens: [ brb, default, nbc ]
     steps:
       - shell: bash
-        id: make_identifier
         run: |
           mkdir -pv ansible/host_vars/${{ matrix.tennens }}_host
-          
-          git_ref_name=${{ inputs.branch }}
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-          
-          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
-          echo "before" $git_ref_name "after" $temp
-          echo "id=$temp" >> $GITHUB_OUTPUT
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
         run: |
-          #declare test='${{ steps.make_identifier.outputs.id }}'
-          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg_host.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg_host.yml
+          echo "NAMESPACE: ${{ matrix.tennens }}-${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
+          echo "DOMAIN: ${{ matrix.tennens }}-${{ needs.create_branch_identifier.outputs.id_branch }}.cd.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.tennens }}
           path: ${{github.workspace }}/${{ matrix.tennens }}.tar
-  
+
+
+  bingo_add_branch:
+    needs:
+      - create_branch_identifier
+    uses: hpi-schul-cloud/dof_bingo/.github/workflows/add-branch.yml@main
+    with:
+      branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      bingo_token: ${{ secrets.BINGO_TOKEN }}
+
   deploy:
     needs: 
       - create_artifacts_repos

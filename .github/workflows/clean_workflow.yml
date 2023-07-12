@@ -25,42 +25,89 @@ permissions:
   contents: read
 
 jobs:
-  create_artifacts_repos:
+  create_branch_identifier:
+    uses: ./github/workflows/branch-to-namespace.yml
+    with:
+      branch: ${{ inputs.branch }}
+
+  gather_branch_exists:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
-         - schulcloud-server
-         - schulcloud-client
-         - nuxt-client
-         - superhero-dashboard
-         - schulcloud-calendar
-         - antivirus_check_service
-         - version-aggregator
-         - dof_app_deploy
+        repo: ${{ fromJson(.github/workflows repos.json) }}
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
       - uses: actions/checkout@v3
         with:
-          repository: hpi-schul-cloud/${{ matrix.repos }}
+          repository: hpi-schul-cloud/${{ matrix.repo }}
           token: ${{ secrets.token }}
-          path: ${{ matrix.repos }}
+          path: ${{ matrix.repo }}
           fetch-depth: 0
       - name: Add Flag for existing branch
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+        working-directory: ${{github.workspace }}/${{ matrix.repo }}
+        shell: bash
+        run: |
+          if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
+            echo "${{ matrix.repo }}=true" >> $GITHUB_ENV
+          else
+            echo "${{ matrix.repo }}=false" >> $GITHUB_ENV
+
+  delete:
+    runs-on: ubuntu-latest
+    needs: gather_branch_exists
+    steps:
+      - name: are_all_branches_deleted
+        id: are_all_branches_deleted
+        run: |
+          existing_branches=$(echo '${{ toJSON(gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))') 
+          echo "repos with existing branches are: $existing_branches"
+          if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
+            echo "no branches left";
+             echo "are_all_branches_deleted=true" >> $GITHUB_ENV
+          else
+             echo "are_all_branches_deleted=false" >> $GITHUB_ENV
+
+  bingo_delete_branch:
+    if: ${{ needs.delete.outputs.are_all_branches_deleted }} == 'true'
+    needs:
+      - delete
+      - create_branch_identifier
+    uses: hpi-schul-cloud/dof_bingo/.github/workflows/remove-branch.yml@main
+    with:
+      branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      bingo_token: ${{ secrets.BINGO_TOKEN }}
+
+  create_artifacts_repos:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: ${{ fromJson(.github/workflows repos.json) }}
+    steps:
+      - run: |
+          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
+          echo git_ref_name ${{ inputs.branch }}
+      - uses: actions/checkout@v3
+        with:
+          repository: hpi-schul-cloud/${{ matrix.repo }}
+          token: ${{ secrets.token }}
+          path: ${{ matrix.repo }}
+          fetch-depth: 0
+      - name: Add Flag for existing branch
+        working-directory: ${{github.workspace }}/${{ matrix.repo }}
         shell: bash
         run: | 
           if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
-            echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
+            echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repo }}.yml
           fi
-      - run: tar -cf ${{ matrix.repos }}.tar ansible
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+      - run: tar -cf ${{ matrix.repo }}.tar ansible
+        working-directory: ${{github.workspace }}/${{ matrix.repo }}
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.repos }}
-          path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
+          name: ${{ matrix.repo }}
+          path: ${{github.workspace }}/${{ matrix.repo }}/${{ matrix.repo }}.tar
           
   create_artifacts_workspaces:
     runs-on: ubuntu-latest
@@ -82,9 +129,7 @@ jobs:
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
         run: |
-          #declare test='${{ steps.make_identifier.outputs.id }}'
           echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg.yml
       - run: tar -cf ${{ matrix.tennens }}.tar ansible
       - uses: actions/upload-artifact@v3
         with:
