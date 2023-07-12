@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: ${{ fromJson(.github/workflows repos.json) }}
+        repos: ${{ fromJson(./.github/workflows repos.json) }}
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
