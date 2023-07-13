@@ -397,6 +397,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # Column Board
+  COLUMN_BOARD_HELP_LINK:
+    value: https://{{ DOMAIN }}/help/confluence/270827606
+    server: true
+    client: false
+    nuxtclient: false
+  COLUMN_BOARD_FEEDBACK_LINK:
+    server: true
+    client: false
+    nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
     value: "de,en,es,uk"
@@ -550,11 +560,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_MULTI_LOGIN_INSTANCES:
-    value: "false"
-    server: false
-    client: true
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
@@ -807,6 +812,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_LEGACY_HYDRA_ENABLED:
     value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ALERTS_ON_HOMEPAGE_ENABLED:
+    value: "true"
     server: false
     client: true
     nuxtclient: false

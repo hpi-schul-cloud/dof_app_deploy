@@ -2,11 +2,9 @@ FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_COLUMN_BOARD_ENABLED: "true"
 
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
-FEATURE_TASK_CARD_ENABLED: "true"
 
 FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
 
 ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
-
