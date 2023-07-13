@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+Metadata:
+  labels:
+    name: mongo-svc-monitor
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: mongo
+spec:
+  selector:
+    matchExpressions:
+      - key: app.kubernetes.io/name
+        operator: in
+        values:
+          - mongo-svc
+  endpoints:
+  - interval: 15s
+    port: mongo-exporter

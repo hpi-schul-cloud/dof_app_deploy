@@ -50,6 +50,23 @@ spec:
           requests:
             cpu: {{ MONGO_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MONGO_MEMORY_REQUESTS|default("256Mi", true) }}
+      - name: mongo-exporter
+        image: {{ MONGO_EXPORTER_IMAGE_NAME }}:{{ MONGO_EXPORTER_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: mongo-secret
+        ports:
+        - containerPort: 9216
+          name: mongo-exporter
+          protocol: TCP
+        resources:
+          limits:
+            cpu: {{ MONGO_EXPORTER_CPU_LIMITS|default("2000m", true) }}
+            memory: {{ MONGO_EXPORTER_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ MONGO_EXPORTER_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ MONGO_EXPORTER_MEMORY_REQUESTS|default("64Mi", true) }}
       volumes:
       - name: mongodb-data-pv
         persistentVolumeClaim:

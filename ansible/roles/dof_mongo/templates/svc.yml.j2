@@ -12,5 +12,9 @@ spec:
       targetPort: 27017
       protocol: TCP
       name: mongo
+    - port: 9216
+      targetPort: 9216
+      protocol: TCP
+      name: mongo-exporter
   selector:
     app: mongo

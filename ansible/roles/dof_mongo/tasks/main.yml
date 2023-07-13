@@ -13,7 +13,41 @@
       api_version: v1
       kind: Service
       name: mongo-svc
-    when: not WITH_DATABASES
+    when: not WITH_DATABASES 
+
+  - name: Add or Update ServiceMonitor
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: svc-monitor.yml.j2
+    when: WITH_DATABASES
+
+  - name: remove ServiceMonitor
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: monitoring.coreos.com/v1
+      kind: ServiceMonitor
+      name: mongo-svc-monitor
+    when: not WITH_DATABASES 
+   
+  - name: Add or Update Secret by 1Password
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: onepassword.yml.j2
+    when: WITH_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+
+  - name: remove Secret by 1Password
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      state: absent
+      api_version: onepassword.com/v1
+      kind: OnePasswordItem
+      name: monog-secret
+    when: not WITH_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
 
   - name: Add or Update Persistent Volumes Claim
     kubernetes.core.k8s:
