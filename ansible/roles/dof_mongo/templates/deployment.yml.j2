@@ -53,6 +53,7 @@ spec:
       - name: mongo-exporter
         image: {{ MONGO_EXPORTER_IMAGE_NAME }}:{{ MONGO_EXPORTER_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
+        args: ["--compatible-mode", "--collect-all" ]
         envFrom:
         - secretRef:
             name: mongo-secret
