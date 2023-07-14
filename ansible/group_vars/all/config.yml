@@ -195,7 +195,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -397,6 +397,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # Column Board
+  COLUMN_BOARD_HELP_LINK:
+    value: https://{{ DOMAIN }}/help/confluence/270827606
+    server: true
+    client: false
+    nuxtclient: false
+  COLUMN_BOARD_FEEDBACK_LINK:
+    server: true
+    client: false
+    nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
     value: "de,en,es,uk"
@@ -550,11 +560,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_MULTI_LOGIN_INSTANCES:
-    value: "false"
-    server: false
-    client: true
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
@@ -782,5 +787,41 @@ configuration_all:
   FEATURE_LTI_TOOLS_TAB_ENABLED:
     value: "true"
     server: true
+    client: true
+    nuxtclient: false
+  FEATURE_PROMETHEUS_METRICS_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_ROUTE:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_PORT:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_DEFAULT_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_METRICS_ROUTE_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  ROOT_URL_REDIRECT:
+    value: ""
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ALERTS_ON_HOMEPAGE_ENABLED:
+    value: "true"
+    server: false
     client: true
     nuxtclient: false
