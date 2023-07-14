@@ -35,6 +35,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-brb:
@@ -51,6 +52,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-dbc:
@@ -67,6 +69,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-nbc:
@@ -83,6 +86,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   ref-thr:
@@ -99,6 +103,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   approve_prod_stage_1:
@@ -130,6 +135,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   approve_prod_stage_2:
@@ -158,6 +164,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
   
   prod-nbc:
@@ -175,6 +182,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   prod-thr:
@@ -192,6 +200,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   test-loadtest-01:
@@ -206,6 +215,7 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   infra-dbildungscloud-01:
@@ -222,5 +232,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
