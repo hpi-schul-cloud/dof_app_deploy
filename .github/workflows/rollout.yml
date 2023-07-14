@@ -218,13 +218,13 @@ jobs:
       PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  infra-schulcloud-01:
+  infra-dbildungscloud-01:
     needs:
       - approve_ref  
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: infra.schulcloud-01
+      host_name: infra.dbildungscloud-01
       host_group: default
       host_stage: infra
       execute_group: ${{ github.event.inputs.instance_group }}
@@ -235,19 +235,3 @@ jobs:
       PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  infra-schulcloud-02:
-    needs:
-      - approve_ref 
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: infra.schulcloud-02
-      host_group: default
-      host_stage: infra
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
