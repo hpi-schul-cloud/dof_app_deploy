@@ -26,6 +26,8 @@ on:
         required: true
       KUBECONFIG:
         required: true
+      PROXY_CREDENTIALS:
+        required: false
       RC_WEBHOOK: 
         required: true
 
@@ -40,6 +42,12 @@ jobs:
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
     environment: ${{ inputs.host_name }}
+    env:
+      # Necessary for ansible k8s module (doesn't use proxy defined in kubeconfig)
+      # https://github.com/kubernetes-client/python/issues/1862
+      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
+      K8S_AUTH_PROXY: ${{ vars.PROXY_URL }}
+      K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH: ${{ secrets.PROXY_CREDENTIALS }}
     steps:
       - run: mkdir repo
       - uses: actions/checkout@v3
@@ -128,6 +136,7 @@ jobs:
       - shell: bash
         run: |
           python3 -m pip install kubernetes
+          python3 -m pip install urllib3~=1.26.16
           
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
