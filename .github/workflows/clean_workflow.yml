@@ -65,7 +65,7 @@ jobs:
           fi
       - name: test
         run: |
-          echo "muuuuuh ${{ steps.branch_exists.outputs.branch_exists }}"  
+          echo "muuuuuh ${{ steps.branch_exists.outputs }}"
       ## Write for matrix outputs workaround https://github.com/orgs/community/discussions/17245
       - uses: cloudposse/github-action-matrix-outputs-write@0.4.2
         id: out
