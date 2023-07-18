@@ -70,7 +70,7 @@ jobs:
           matrix-step-name: ${{ github.job }}
           matrix-key: ${{ matrix.repo }}
           outputs: |-
-            branch_exists: ${{ env.branch_exists }}"
+            branch_exists: ${{ env.branch_exists }}
             
 
   delete:
@@ -85,15 +85,15 @@ jobs:
       - name: are_all_branches_deleted
         id: are_all_branches_deleted
         run: |
-          echo "huhu ${{ steps.read.outputs.result }}"
-#          existing_branches=$(echo '${{ toJSON(jobs.gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))')
-#          echo "repos with existing branches are: $existing_branches"
-#          if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
-#             echo "no branches left";
-#             echo "are_all_branches_deleted=true" >> $GITHUB_ENV
-#          else
-#             echo "are_all_branches_deleted=false" >> $GITHUB_ENV
-#          fi
+          existing_branches=$(echo '${{ toJSON(steps.read.outputs.result) }}' | jq '.branch_exists | del(..|select(. == "false"))')
+          echo "repos with existing branches are: $existing_branches"
+          if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
+             echo "no branches left";
+             echo "are_all_branches_deleted=true" >> $GITHUB_ENV
+          else
+          echo "branches left in: $existing_branches"
+             echo "are_all_branches_deleted=false" >> $GITHUB_ENV
+          fi
 
   bingo_delete_branch:
     if: ${{ needs.delete.outputs.are_all_branches_deleted }} == 'true'
