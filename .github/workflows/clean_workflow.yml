@@ -76,7 +76,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: gather_branch_exists
     steps:
-      - uses: cloudposse/github-action-matrix-outputs-read@v0.1.1
+      ## read for matrix outputs workaround https://github.com/orgs/community/discussions/17245
+      - uses: cloudposse/github-action-matrix-outputs-read@0.1.1
         id: read
         with:
           matrix-step-name: gather_branch_exists
