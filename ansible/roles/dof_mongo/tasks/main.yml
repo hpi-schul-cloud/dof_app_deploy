@@ -46,7 +46,7 @@
       state: absent
       api_version: onepassword.com/v1
       kind: OnePasswordItem
-      name: monog-secret
+      name: mongo-secret
     when: not WITH_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
 
   - name: Add or Update Persistent Volumes Claim
