@@ -62,11 +62,6 @@ jobs:
             echo "${{ matrix.repo }}=true" >> $GITHUB_ENV
           else
             echo "${{ matrix.repo }}=false" >> $GITHUB_ENV
-      - name: are_all_branches_deleted
-        id: are_all_branches_deleted
-        run: |
-          echo "huhu   ${{ steps.gather_branch_exists.outputs }}"
-          kubectl --version
-          echo "are_all_branches_deleted=false" >> $GITHUB_ENV
+
 
 
