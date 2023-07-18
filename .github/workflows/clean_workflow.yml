@@ -70,7 +70,7 @@ jobs:
           matrix-step-name: ${{ github.job }}
           matrix-key: ${{ matrix.repo }}
           outputs: |-
-            branch_exists: ${{ steps.branch_exists.outputs.branch_exists }}"
+            branch_exists: ${{ steps.branch_exists.outputs.branch_exists }}
             
 
   delete:
