@@ -89,6 +89,12 @@ jobs:
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
       - uses: actions/checkout@v3
         with:
+          repository: hpi-schul-cloud/h5p-staticfiles-server
+          path: repo/h5p-staticfiles-server
+          token: ${{ secrets.token }}
+          ref: ${{ env.H5P_STATICFILES_SERVER_VERSION }}
+      - uses: actions/checkout@v3
+        with:
           repository: hpi-schul-cloud/schulcloud-calendar
           path: repo/schulcloud-calendar
           token: ${{ secrets.token }}
