@@ -30,7 +30,7 @@ jobs:
     with:
       branch: ${{ inputs.branch }}
 
-  delete_namespaces:
+  gather_branch_exists:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -62,6 +62,43 @@ jobs:
             echo "${{ matrix.repo }}=true" >> $GITHUB_ENV
           else
             echo "${{ matrix.repo }}=false" >> $GITHUB_ENV
+          fi
 
+  delete:
+    runs-on: ubuntu-latest
+    needs: gather_branch_exists
+    steps:
+      - name: are_all_branches_deleted
+        id: are_all_branches_deleted
+        run: |
+          existing_branches=$(echo '${{ toJSON(gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))') 
+          echo "repos with existing branches are: $existing_branches"
+          if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
+             echo "no branches left";
+             echo "are_all_branches_deleted=true" >> $GITHUB_ENV
+          else
+             echo "are_all_branches_deleted=false" >> $GITHUB_ENV
+          fi
 
+  bingo_delete_branch:
+    if: ${{ needs.delete.outputs.are_all_branches_deleted }} == 'true'
+    needs:
+      - delete
+      - create_branch_identifier
+    uses: hpi-schul-cloud/dof_bingo/.github/workflows/remove-branch.yml@main
+    with:
+      branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
+
+  delete_namespaces:
+    runs-on: ubuntu-latest
+    if: ${{ needs.delete.outputs.are_all_branches_deleted }} == 'true'
+    needs:
+      - delete
+      - create_branch_identifier
+    steps:
+      - name: delete namespaces
+        run: |
+          kubectl --version
 
