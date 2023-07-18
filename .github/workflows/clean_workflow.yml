@@ -85,7 +85,7 @@ jobs:
       - name: are_all_branches_deleted
         id: are_all_branches_deleted
         run: |
-          existing_branches=$(echo '${{ toJSON(steps.read.outputs.result) }}' | jq '.branch_exists | del(..|select(. == "false"))')
+          existing_branches=$(echo ${{ toJSON(steps.read.outputs.result) }} | jq '.branch_exists | del(..|select(. == "false"))')
           echo "repos with existing branches are: $existing_branches"
           if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
              echo "no branches left";
