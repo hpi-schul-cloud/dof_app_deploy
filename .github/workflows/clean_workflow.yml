@@ -69,7 +69,7 @@ jobs:
       - name: are_all_branches_deleted
         id: are_all_branches_deleted
         run: |
-          echo "huhu   ${{ gather_branch_exists.outputs }}"
+          echo "huhu   ${{ jobs }}"
           existing_branches=$(echo '${{ toJSON(gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))') 
           echo "repos with existing branches are: $existing_branches"
           if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
