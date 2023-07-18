@@ -54,7 +54,6 @@ jobs:
           path: ${{ matrix.repo }}
           fetch-depth: 0
       - name: Add Flag for existing branch
-        id: gather_branch_exists
         working-directory: ${{github.workspace }}/${{ matrix.repo }}
         shell: bash
         run: |
@@ -71,7 +70,8 @@ jobs:
       - name: are_all_branches_deleted
         id: are_all_branches_deleted
         run: |
-          existing_branches=$(echo '${{ toJSON(gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))') 
+          echo "${{ jobs }}"
+          existing_branches=$(echo '${{ toJSON(jobs.gather_branch_exists.outputs) }}' | jq '.gather_branch_exists.outputs | del(..|select(. == "false"))') 
           echo "repos with existing branches are: $existing_branches"
           if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
              echo "no branches left";
