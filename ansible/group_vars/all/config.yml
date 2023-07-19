@@ -482,7 +482,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -593,6 +593,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_ES_MERLIN_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_H5P_EDITOR_ENABLED:
     value: "false"
     server: true
     client: false
