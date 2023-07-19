@@ -8,3 +8,6 @@ FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
 ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
+
+GLOBAL_ANNOUNCEMENT_TEXT: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://dbildungscloud.de/help/confluence/123407337\">Informationen und Hinweise zum Schuljahreswechsel</a>.'
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
