@@ -714,11 +714,11 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEXT:
     server: false
     client: true
-    nuxtclient: false
+    nuxtclient: true
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: false
     client: true
-    nuxtclient: false
+    nuxtclient: true
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
