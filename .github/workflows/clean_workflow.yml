@@ -87,7 +87,7 @@ jobs:
         run: |
           existing_branches=$(echo ${{ toJSON(steps.read.outputs.result) }} | jq '.branch_exists | del(..|select(. == "false"))')
           echo "repos with existing branches are: $existing_branches"
-          if [ $(echo $existing_branches | jq 'length') == "0" ]; then;
+          if [ $(echo $existing_branches | jq 'length') == "0" ]; then
              echo "no branches left";
              echo "are_all_branches_deleted=true" >> $GITHUB_ENV;
           else
