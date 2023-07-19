@@ -20,6 +20,8 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
+      bingo_token:
+        required: true
 
 permissions:
   contents: read
@@ -104,7 +106,7 @@ jobs:
     with:
       branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
     secrets:
-      bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
+      bingo_token: ${{ secrets.bingo_token }}
 
   delete_namespaces:
     runs-on: ubuntu-latest
