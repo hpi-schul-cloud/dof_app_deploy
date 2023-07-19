@@ -115,7 +115,14 @@ jobs:
       - delete
       - create_branch_identifier
     steps:
+      - run: |
+          mkdir files
+          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
       - name: delete namespaces
         run: |
-          kubectl --version
+          kubectl --kubeconfig=files/config version
+      - name: remove kubeconfig
+        run: |
+          rm -rf  /config
+
 
