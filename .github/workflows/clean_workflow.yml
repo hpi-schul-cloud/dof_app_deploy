@@ -120,7 +120,8 @@ jobs:
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
       - name: delete namespaces
         run: |
-          kubectl --kubeconfig=files/config version
+          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
+          kubectl --kubeconfig=files/config delete ns brb-$branch_identifier nbc-$branch_identifier default-$branch_identifier
       - name: remove kubeconfig
         run: |
           rm -rf  /config
