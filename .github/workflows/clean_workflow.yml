@@ -99,7 +99,7 @@ jobs:
   bingo_delete_branch:
     if: needs.examine_branch_existence.outputs.are_all_branches_deleted == 'true'
     needs:
-      - delete
+      - examine_branch_existence
       - create_branch_identifier
     uses: hpi-schul-cloud/dof_bingo/.github/workflows/remove-branch.yml@main
     with:
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-latest
 #    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
     needs:
-      - delete
+      - examine_branch_existence
       - create_branch_identifier
     steps:
       - run: |
