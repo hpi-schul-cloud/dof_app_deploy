@@ -109,7 +109,7 @@ jobs:
 
   delete_namespaces:
     runs-on: ubuntu-latest
-    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
+#    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
     needs:
       - delete
       - create_branch_identifier
