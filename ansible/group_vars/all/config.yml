@@ -825,3 +825,8 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_SHOW_OUTDATED_USERS:
+    value: "false"
+    server: false
+    client: false
+    nuxtclient: true
