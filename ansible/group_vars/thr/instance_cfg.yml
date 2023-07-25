@@ -71,11 +71,11 @@ NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
-WITH_TSP: true
+WITH_TSP: false
 
 # Ingress
 group_ingress:
   h5p-statics:
     path: /h5pstatics
     serviceName: h5p-staticfiles-server-svc
-    servicePort: "{{ H5P_PORT }}" 
+    servicePort: "{{ H5P_PORT }}"
