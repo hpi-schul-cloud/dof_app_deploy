@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
+        repo: 
          - schulcloud-server
          - schulcloud-client
          - nuxt-client
