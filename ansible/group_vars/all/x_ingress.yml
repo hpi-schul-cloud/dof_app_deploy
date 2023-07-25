@@ -363,3 +363,5 @@ default_ingress:
     path: /version
     serviceName: version-aggregator-svc
     servicePort: 8080
+  h5p-statics:
+    path: /h5pstatics

@@ -3,3 +3,5 @@ FEATURE_S3_BUCKET_CORS: "true"
 ES_DOMAIN: "https://repository.edusharing.dbildungscloud.de"
 ES_API_V7: "true"
 H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"
+
+BETTERMARKS_CSP_URL: "https://apps.bettermarks.com"
