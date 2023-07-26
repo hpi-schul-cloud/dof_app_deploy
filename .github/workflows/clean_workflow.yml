@@ -94,9 +94,9 @@ jobs:
           echo "repos with existing branches are: $existing_branches"
           if [ $(echo $existing_branches | jq 'length') == "0" ]; then
              echo "no branches left";
-             echo "are_all_branches_deleted=true" >> $GITHUB_ENV;
+             echo "are_all_branches_deleted=true" >> $GITHUB_OUTPUT;
           else
-             echo "are_all_branches_deleted=false" >> $GITHUB_ENV;
+             echo "are_all_branches_deleted=false" >> $GITHUB_OUTPUT;
           fi
 
   bingo_delete_branch:
