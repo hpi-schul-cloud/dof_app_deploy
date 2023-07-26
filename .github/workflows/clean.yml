@@ -26,7 +26,7 @@ jobs:
         run: echo "branch=${git_ref_name}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-  deploy:
+  clean:
     needs:
       - branch_name
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/clean_workflow.yml@main
@@ -35,3 +35,4 @@ jobs:
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      BINGO_REPO_TOKEN: ${{ secrets.BINGO_REPO_TOKEN }}
