@@ -20,7 +20,7 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
-      bingo_token:
+      BINGO_REPO_TOKEN:
         required: true
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: 
+        repo:
          - schulcloud-server
          - schulcloud-client
          - nuxt-client
@@ -108,7 +108,7 @@ jobs:
     with:
       branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
     secrets:
-      bingo_token: ${{ secrets.bingo_token }}
+      bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
   delete_namespaces:
     runs-on: ubuntu-latest
