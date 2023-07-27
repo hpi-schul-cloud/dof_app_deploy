@@ -5,7 +5,7 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEXT: ""
+GLOBAL_ANNOUNCEMENT_TEXT: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://brandenburg.cloud/help/confluence/123407337\">Informationen und Hinweise zum Schuljahreswechsel</a>.'
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
