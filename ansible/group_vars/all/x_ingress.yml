@@ -291,10 +291,6 @@ default_ingress:
     path: /api/v1/authentication
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_sync:
-    path: /api/v1/sync
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_ldap:
     path: /api/v1/ldap
     serviceName: api-svc
