@@ -52,11 +52,7 @@ jobs:
          - antivirus_check_service
          - version-aggregator
          - dof_app_deploy
-<<<<<<< HEAD
          - tldraw-client
-=======
-         - h5p-staticfiles-server
->>>>>>> deab650fb0443690039027e2145720d3e859d4ff
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
