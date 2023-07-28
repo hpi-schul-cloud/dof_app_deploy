@@ -1,0 +1,7 @@
+# Ingress
+group_ingress:
+  h5p-statics:
+    path: /h5pstatics
+    serviceName: h5p-staticfiles-server-svc
+    servicePort: "{{ H5P_PORT }}"
+    

@@ -29,6 +29,7 @@
     - superhero-dashboard
     - schulcloud-calendar-core
     - schulcloud-calendar-init
+    - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator
     - rocketchat

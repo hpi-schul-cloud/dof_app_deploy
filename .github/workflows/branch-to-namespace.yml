@@ -1,0 +1,26 @@
+name: Branch to Namespace
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: "original branch name"
+        required: true
+        type: string
+    outputs:
+      id_branch:
+        description: "branch in namespace compatible fashion"
+        value: ${{ jobs.convert_branch_name.outputs.id_branch }}
+
+jobs:
+  convert_branch_name:
+    runs-on: ubuntu-latest
+    outputs:
+      id_branch: ${{ steps.create_branch_identifier.outputs.id_branch }}
+    steps:
+      - id: create_branch_identifier
+        shell: bash
+        run: |
+          temp=$(echo ${{ inputs.branch }} | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
+          echo "before" ${{ inputs.branch }} "after" $temp
+          echo "id_branch=$temp" >> $GITHUB_OUTPUT

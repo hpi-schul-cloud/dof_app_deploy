@@ -4,8 +4,8 @@ SC_TITLE: dBildungscloud
 SC_SHORT_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-GLOBAL_ANNOUNCEMENT_TEXT: ""
-GLOBAL_ANNOUNCEMENT_ROLES: administrator
+GLOBAL_ANNOUNCEMENT_TEXT: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://dbildungscloud.de/help/confluence/123407337\">Informationen und Hinweise zum Schuljahreswechsel</a>.'
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -43,6 +43,8 @@ WITH_LDAP: true
 PORT_SERVER: 3030
 PORT_FILE_SERVICE: 4444
 PORT_METRICS_SERVER: 9090
+PORT_TLDRAW: 3345
+TLDRAW_CLIENT_PORT: 3046
 # JWT  CCONFIG
 JWT_WHITELIST_ACCEPT_ALL: "false"
 JWT_TIMEOUT_SECONDS: 7200
