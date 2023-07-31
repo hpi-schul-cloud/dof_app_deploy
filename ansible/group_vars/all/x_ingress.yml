@@ -363,7 +363,7 @@ default_ingress:
     path: /h5pstatics
   tldraw_client:
     path: /tldraw
-    serviceName: nuxtclient-svc
+    serviceName: tldraw-client-svc
     servicePort: "{{ PORT_TLDRAW_CLIENT }}"
   tldraw_server:
     path: /tldraw-server
