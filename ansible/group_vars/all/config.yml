@@ -482,7 +482,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -827,4 +827,9 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
+  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
