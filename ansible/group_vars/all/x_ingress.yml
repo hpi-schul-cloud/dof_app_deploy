@@ -275,10 +275,6 @@ default_ingress:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_link:
-    path: /api/v1/link
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_lessons:
     path: /api/v1/lessons
     serviceName: api-svc
