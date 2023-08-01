@@ -36,4 +36,4 @@
     - mongodb_query_exporter
     - ingress
     - post_deployment
-    - tldraw-client
+    - tldraw-client-core
