@@ -123,10 +123,6 @@ default_ingress:
     path: /api/v1/alert
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_metrics:
-    path: /api/v1/metrics
-    serviceName: default-backend-404-svc
-    servicePort: 8080
   api_v1_accounts:
     path: /api/v1/accounts
     serviceName: api-svc
@@ -279,20 +275,12 @@ default_ingress:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_link:
-    path: /api/v1/link
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_lessons:
     path: /api/v1/lessons
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_authentication:
     path: /api/v1/authentication
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_sync:
-    path: /api/v1/sync
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_ldap:

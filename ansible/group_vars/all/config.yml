@@ -823,3 +823,13 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_SHOW_OUTDATED_USERS:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false

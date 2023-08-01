@@ -4,6 +4,7 @@ FEATURE_COLUMN_BOARD_ENABLED: "true"
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
 
 FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
+FEATURE_COLUMN_BOARD_ENABLED: "true"
 
 ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
