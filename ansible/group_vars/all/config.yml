@@ -836,6 +836,12 @@ configuration_all:
   # at the moment only used in shd
   FEATURE_CTL_TOOLS_ENABLED:
     value: "false"
+    server: false
+    client: false
+    nuxtclient: false
   # at the moment only used in shd
   FEATURE_LTI_TOOLS_ENABLED:
     value: "true"
+    server: false
+    client: false
+    nuxtclient: false
