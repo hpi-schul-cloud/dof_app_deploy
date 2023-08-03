@@ -123,8 +123,8 @@ default_ingress:
     path: /api/v1/alert
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_accounts:
-    path: /api/v1/accounts
+  api_v1_accounts_jwt-timer:
+    path: /api/v1/accounts/jwtTimer
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_edu-sharing:
@@ -133,10 +133,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_me:
     path: /api/v1/me
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_homework:
-    path: /api/v1/homework
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_tasks:
