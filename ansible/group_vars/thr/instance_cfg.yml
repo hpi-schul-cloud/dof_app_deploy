@@ -34,6 +34,7 @@ FEATURE_ES_SEARCHABLE_ENABLED: "true"
 FEATURE_ES_MERLIN_ENABLED: "true"
 FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED: "false"
 FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
+TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "false"
 
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
@@ -80,4 +81,4 @@ group_ingress:
   h5p-statics:
     path: /h5pstatics
     serviceName: h5p-staticfiles-server-svc
-    servicePort: "{{ H5P_PORT }}" 
+    servicePort: "{{ H5P_PORT }}"
