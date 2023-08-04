@@ -39,3 +39,4 @@
     - role: mongodb_query_exporter
     - role: ingress
     - role: post_deployment
+    - role: tldraw-client-core
