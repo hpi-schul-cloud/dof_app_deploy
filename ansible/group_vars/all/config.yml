@@ -428,6 +428,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_VISIBLE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_ALERTS_ENABLED:
     value: "true"
     server: false
@@ -482,7 +487,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
