@@ -561,11 +561,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_CARD_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
