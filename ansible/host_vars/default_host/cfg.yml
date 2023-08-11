@@ -1,4 +1,4 @@
-FEATURE_H5P_EDITOR_ENABLED: "true"
+FEATURE_H5P_EDITOR_ENABLED: "false"
 
 H5P_EDITOR__S3_BUCKET_CONTENT: "sc-dev-cd-txl-h5p-content-bucket-0000"
 H5P_EDITOR__S3_BUCKET_LIBRARIES: "sc-dev-cd-txl-h5p-library-bucket-0000"
