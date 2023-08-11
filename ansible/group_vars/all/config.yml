@@ -739,6 +739,15 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ROLES:
+    server: true
+    client: true
+    nuxtclient: true
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
