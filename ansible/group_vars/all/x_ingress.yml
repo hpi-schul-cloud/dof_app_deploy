@@ -335,6 +335,10 @@ default_ingress:
     path: /api/v3/file/copy
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_preview:
+    path: /api/v3/file/preview
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
   api_v3_h5p:
     path: /api/v3/h5p-editor
     serviceName: api-h5p-svc
