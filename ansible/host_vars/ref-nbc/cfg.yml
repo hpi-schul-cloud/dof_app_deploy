@@ -8,4 +8,4 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.o
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 
 FEATURE_SHOW_OUTDATED_USERS: "false"
-FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "false"
+FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "true"
