@@ -561,11 +561,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_CARD_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
@@ -605,8 +600,28 @@ configuration_all:
   FEATURE_H5P_EDITOR_ENABLED:
     value: "false"
     server: true
+    client: true
+    nuxtclient: false
+  H5P_EDITOR__S3_REGION: 
+    value: "s3-eu-central-2"
+    server: true
     client: false
     nuxtclient: false
+  H5P_EDITOR__S3_ENDPOINT: 
+    value: "https://s3-eu-central-2.ionoscloud.com"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_LIBRARIES: 
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_CONTENT: 
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false  
   FEATURE_FWU_CONTENT_ENABLED:
     value: "false"
     server: true
@@ -721,6 +736,15 @@ configuration_all:
     client: true
     nuxtclient: true
   GLOBAL_ANNOUNCEMENT_ROLES:
+    server: true
+    client: true
+    nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ROLES:
     server: true
     client: true
     nuxtclient: true

@@ -3,7 +3,6 @@ DOMAIN: niedersachsen.cloud
 
 FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
-FEATURE_SHOW_OUTDATED_USERS: "false"
 FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "false"
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
