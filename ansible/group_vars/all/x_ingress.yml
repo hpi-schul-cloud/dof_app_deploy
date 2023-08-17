@@ -373,3 +373,7 @@ default_ingress:
     path: /tldraw-server
     serviceName: tldraw-svc
     servicePort: "{{ PORT_TLDRAW }}"
+  static:
+    path: /static
+    serviceName: tldraw-client-svc
+    servicePort: "{{ PORT_TLDRAW_CLIENT }}"
