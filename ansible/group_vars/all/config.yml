@@ -828,6 +828,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
+  FEATURE_TLDRAW_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: true
   TLDRAW__GC_ENABLED:
     value: "true"
     server: true
