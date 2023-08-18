@@ -6,10 +6,3 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
-
-FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "false"
-
-FEATURE_CTL_TOOLS_TAB_ENABLED: "false"
-FEATURE_LTI_TOOLS_TAB_ENABLED: "true"
-FEATURE_CTL_TOOLS_ENABLED: "false"
-FEATURE_LTI_TOOLS_ENABLED: "true"
