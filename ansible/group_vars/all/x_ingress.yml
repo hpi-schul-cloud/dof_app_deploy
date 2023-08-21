@@ -224,7 +224,7 @@ default_ingress:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user-login-migration:
-    path: /api/v3/user-login-migration
+    path: /api/v3/user-login-migrations
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_system:
