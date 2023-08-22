@@ -109,3 +109,6 @@ group_ingress:
     path: /api/v3/fwu
     serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf
