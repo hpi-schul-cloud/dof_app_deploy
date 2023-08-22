@@ -602,26 +602,26 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  H5P_EDITOR__S3_REGION: 
+  H5P_EDITOR__S3_REGION:
     value: "s3-eu-central-2"
     server: true
     client: false
     nuxtclient: false
-  H5P_EDITOR__S3_ENDPOINT: 
+  H5P_EDITOR__S3_ENDPOINT:
     value: "https://s3-eu-central-2.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
-  H5P_EDITOR__S3_BUCKET_LIBRARIES: 
+  H5P_EDITOR__S3_BUCKET_LIBRARIES:
     value: ""
     server: true
     client: false
     nuxtclient: false
-  H5P_EDITOR__S3_BUCKET_CONTENT: 
+  H5P_EDITOR__S3_BUCKET_CONTENT:
     value: ""
     server: true
     client: false
-    nuxtclient: false  
+    nuxtclient: false
   FEATURE_FWU_CONTENT_ENABLED:
     value: "false"
     server: true
@@ -888,6 +888,9 @@ configuration_all:
     client: false
     nuxtclient: false
   TLDRAW__DB_MULTIPLE_COLLECTIONS:
+    value: false
+    server: true
+    client: false
     nuxtclient: false
   PORT_TLDRAW:
     value: "3345"
