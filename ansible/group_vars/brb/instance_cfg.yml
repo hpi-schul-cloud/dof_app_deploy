@@ -5,8 +5,10 @@ SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEXT: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://brandenburg.cloud/help/confluence/123407337\">Informationen und Hinweise zum Schuljahreswechsel</a>.'
+GLOBAL_ANNOUNCEMENT_TEXT: 'Für Informationen und Hinweise zum Schuljahreswechsel <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Informationen und Hinweise zum Schuljahreswechsel\" href=\"https://brandenburg.cloud/help/confluence/123407337\">hier</a> klicken.'
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+BETTERMARKS_ANNOUNCEMENT_ENABLED: "true"
+BETTERMARKS_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -36,6 +38,7 @@ FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
+TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
 
 # CONSENT
 FEATURE_CONSENT_NECESSARY: "false"

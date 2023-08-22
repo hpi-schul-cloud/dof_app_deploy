@@ -4,7 +4,7 @@ SC_SHORT_TITLE: Thüringer Schulcloud
 SC_PRODUCTNAME: Thüringer Schulcloud
 SC_NAV_TITLE: Thüringer Schulcloud
 SC_CONTACT_EMAIL: schulcloud-support@thillm.de
-GLOBAL_ANNOUNCEMENT_TEXT: 'Für Informationen zum Schuljahreswechsel in der Thüringer Schulcloud und dem Thüringer Schulportal schauen Sie einmal auf die folgende <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.schulportal-thueringen.de/thueringer_schulcloud/tsc-admins/der_schuljahreswechsel\">Infoseite</a> oder wenden Sie sich bitte an die Kolleg:innen am ThILLM, die Sie unter <a href=\"mailto:schulcloud-support@thillm.de\" target=\"blank\" rel=\"noopener\" class=\"externalLink\">schulcloud-support@thillm.de</a> erreichen können.'
+GLOBAL_ANNOUNCEMENT_TEXT: 'Für Informationen zum Schuljahreswechsel in der Thüringer Schulcloud und dem Thüringer Schulportal schauen Sie einmal auf die folgende <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" href=\"https://www.schulportal-thueringen.de/thueringer_schulcloud/tsc-admins/der_schuljahreswechsel\">Infoseite</a> oder wenden Sie sich bitte an die Kolleg:innen am ThILLM, die Sie unter <a href=\"mailto:schulcloud-support@thillm.de\" target=\"blank\" rel=\"noopener\" class=\"externalLink\">schulcloud-support@thillm.de</a> erreichen können.'
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -34,6 +34,7 @@ FEATURE_ES_SEARCHABLE_ENABLED: "true"
 FEATURE_ES_MERLIN_ENABLED: "true"
 FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED: "false"
 FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
+TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "false"
 
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
@@ -82,4 +83,3 @@ group_ingress:
   h5p-statics:
     path: /h5pstatics
     serviceName: h5p-staticfiles-server-svc
-    servicePort: "{{ H5P_PORT }}" 
