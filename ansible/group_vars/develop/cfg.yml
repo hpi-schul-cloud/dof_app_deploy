@@ -10,8 +10,8 @@ H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildung
 
 FEATURE_H5P_EDITOR_ENABLED: "false"
 
+BETTERMARKS_CSP_URL: "https://apps-ci00.bettermarks.com"
+
 TLDRAW_CLIENT_REPLICAS: 3
 
 TLDRAW_EDITOR_REPLICAS: 3
-
-BETTERMARKS_CSP_URL: "https://apps-ci00.bettermarks.com"

@@ -856,8 +856,13 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
-  FEATURE_TLDRAW_ENABLED:
+    nuxtclient: false
+  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+     FEATURE_TLDRAW_ENABLED:
     value: "false"
     server: true
     client: false
@@ -883,11 +888,6 @@ configuration_all:
     client: false
     nuxtclient: false
   TLDRAW__DB_MULTIPLE_COLLECTIONS:
-    nuxtclient: false
-  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
-    value: "false"
-    server: true
-    client: false
     nuxtclient: false
   PORT_TLDRAW:
     value: "3345"
