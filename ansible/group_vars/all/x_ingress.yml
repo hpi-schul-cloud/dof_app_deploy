@@ -243,10 +243,6 @@ default_ingress:
     path: /api/v1/schools/
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_years:
-    path: /api/v1/years/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_federalStates:
     path: /api/v1/federalStates
     serviceName: api-svc
