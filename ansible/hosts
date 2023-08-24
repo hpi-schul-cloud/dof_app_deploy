@@ -8,7 +8,7 @@ default_host
 ref-dbc
 ref-audit
 prod-dbc
-test-loadtest-01
+dev-loadtest-01
 infra.dbildungscloud-01
 
 [nbc]
@@ -29,7 +29,7 @@ nbc_host
 ansible_group_priority=10
 
 [test]
-test-loadtest-01
+dev-loadtest-01
 
 [test:vars]
 ansible_group_priority=10
