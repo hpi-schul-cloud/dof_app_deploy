@@ -1,3 +1,0 @@
----
-MONGO_IMAGE_NAME: mongo
-MONGO_IMAGE_TAG: 4.4.13

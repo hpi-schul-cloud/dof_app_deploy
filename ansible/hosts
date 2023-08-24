@@ -24,14 +24,9 @@ prod-thr
 brb_host
 default_host
 nbc_host
-
-[develop:vars]
-ansible_group_priority=10
-
-[test]
 dev-loadtest-01
 
-[test:vars]
+[develop:vars]
 ansible_group_priority=10
 
 [infra]
@@ -67,7 +62,6 @@ thr
 develop
 reference
 production
-test
 
 [sc:vars]
 ansible_host=localhost
