@@ -1,7 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: n21
 SC_TITLE: Niedersächsische Bildungscloud
-SC_SHORT_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
