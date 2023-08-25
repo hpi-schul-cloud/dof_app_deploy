@@ -428,6 +428,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_VISIBLE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_ALERTS_ENABLED:
     value: "true"
     server: false
@@ -484,7 +489,7 @@ configuration_all:
   FEATURE_COLUMN_BOARD_ENABLED:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
@@ -556,11 +561,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_CARD_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
@@ -599,6 +599,26 @@ configuration_all:
     nuxtclient: false
   FEATURE_H5P_EDITOR_ENABLED:
     value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  H5P_EDITOR__S3_REGION:
+    value: "s3-eu-central-2"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_ENDPOINT:
+    value: "https://s3-eu-central-2.ionoscloud.com"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_LIBRARIES:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_CONTENT:
+    value: ""
     server: true
     client: false
     nuxtclient: false
@@ -712,15 +732,22 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_TEXT:
-    value: ""
-    server: false
+    server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
   GLOBAL_ANNOUNCEMENT_ROLES:
-    value: ""
-    server: false
+    server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  BETTERMARKS_ANNOUNCEMENT_ROLES:
+    server: true
+    client: true
+    nuxtclient: true
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
@@ -824,4 +851,19 @@ configuration_all:
     value: "true"
     server: false
     client: true
+    nuxtclient: false
+  FEATURE_SHOW_OUTDATED_USERS:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false

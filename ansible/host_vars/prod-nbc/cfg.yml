@@ -2,11 +2,9 @@ NAMESPACE: niedersachsen
 DOMAIN: niedersachsen.cloud
 
 FEATURE_NEXBOARD_ENABLED: "false"
-FEATURE_OAUTH_LOGIN_ENABLED: "true"
-FEATURE_CTL_TOOLS_TAB_ENABLED: "false"
-FEATURE_LTI_TOOLS_TAB_ENABLED: "true"
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
+FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION: "false"

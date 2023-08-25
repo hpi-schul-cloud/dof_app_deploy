@@ -51,10 +51,6 @@ default_ingress:
     path: /tasks
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  beta-task:
-    path: /beta-task
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   nuxtversion:
     path: /nuxtversion
     serviceName: nuxtclient-svc
@@ -103,6 +99,14 @@ default_ingress:
     path: /rooms
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5p-player:
+    path: /h5p/player
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  h5p-editor:
+    path: /h5p/editor
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   cfiles:
     path: /cfiles
     serviceName: nuxtclient-svc
@@ -123,12 +127,8 @@ default_ingress:
     path: /api/v1/alert
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_metrics:
-    path: /api/v1/metrics
-    serviceName: default-backend-404-svc
-    servicePort: 8080
-  api_v1_accounts:
-    path: /api/v1/accounts
+  api_v1_accounts_jwt-timer:
+    path: /api/v1/accounts/jwtTimer
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_edu-sharing:
@@ -139,16 +139,8 @@ default_ingress:
     path: /api/v1/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_homework:
-    path: /api/v1/homework
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v3_tasks:
     path: /api/v3/tasks
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_task-cards:
-    path: /api/v3/cards/task
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_rooms:
@@ -169,6 +161,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_elements:
     path: /api/v3/elements
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_submissionItems:
+    path: /api/v3/board-submissions
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user_me:
@@ -231,6 +227,10 @@ default_ingress:
     path: /api/v3/user-migration
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-login-migration:
+    path: /api/v3/user-login-migrations
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_system:
     path: /api/v3/systems/public
     serviceName: api-svc
@@ -279,20 +279,12 @@ default_ingress:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_link:
-    path: /api/v1/link
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_lessons:
     path: /api/v1/lessons
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_authentication:
     path: /api/v1/authentication
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_sync:
-    path: /api/v1/sync
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_ldap:
@@ -351,6 +343,13 @@ default_ingress:
     path: /api/v3/file/copy
     serviceName: api-files-svc
     servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_file_preview:
+    path: /api/v3/file/preview
+    serviceName: api-files-svc
+    servicePort: "{{ PORT_FILE_SERVICE }}"
+  api_v3_h5p:
+    path: /api/v3/h5p-editor
+    serviceName: api-h5p-svc
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
