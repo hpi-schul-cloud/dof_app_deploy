@@ -4,8 +4,8 @@ SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
-GLOBAL_ANNOUNCEMENT_TEXT: 'Für Informationen und Hinweise zum Schuljahreswechsel <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Informationen und Hinweise zum Schuljahreswechsel\" href=\"https://blog.niedersachsen.cloud/schuljahreswechsel-mit-der-nbc/\">hier</a> klicken.'
-GLOBAL_ANNOUNCEMENT_ROLES: ''
+GLOBAL_ANNOUNCEMENT_TEXT: ''
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
