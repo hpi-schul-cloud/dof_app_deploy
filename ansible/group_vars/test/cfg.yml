@@ -1,2 +1,0 @@
-FEATURE_NEXBOARD_ENABLED: "false"
-CLUSTER_ISSUER: sc-cert-manager-clusterissuer-letsencrypt

@@ -1,3 +1,0 @@
----
-CLAMAV_IMAGE_NAME: docker.io/mkodockx/docker-clamav
-CLAMAV_IMAGE_TAG: alpine
