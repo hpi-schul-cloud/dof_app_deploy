@@ -495,7 +495,7 @@ configuration_all:
     value: "false"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
