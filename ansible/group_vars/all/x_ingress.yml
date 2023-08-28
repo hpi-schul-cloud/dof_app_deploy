@@ -364,7 +364,7 @@ default_ingress:
     servicePort: 8080
   h5p-statics:
     path: /h5pstatics
- tldraw_client:
+  tldraw_client:
     path: /tldraw
     serviceName: tldraw-client-svc
     servicePort: "{{ PORT_TLDRAW_CLIENT }}"
