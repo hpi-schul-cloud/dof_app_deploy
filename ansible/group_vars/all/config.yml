@@ -563,7 +563,7 @@ configuration_all:
     nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
     value: "false"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
