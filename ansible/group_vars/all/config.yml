@@ -868,3 +868,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TLDRAW_URI:
+    value: "http://tldraw-management-svc:3349"
+    server: true
+    client: false
+    nuxtclient: false
