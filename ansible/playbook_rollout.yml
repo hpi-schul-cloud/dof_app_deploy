@@ -26,6 +26,7 @@
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
     - role: schulcloud-server-tspsync
+    - role: schulcloud-server-h5p
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
