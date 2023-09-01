@@ -163,6 +163,10 @@ default_ingress:
     path: /api/v3/elements
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_submissionItems:
+    path: /api/v3/board-submissions
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_user_me:
     path: /api/v3/user/me
     serviceName: api-svc
@@ -221,6 +225,10 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_user-migration:
     path: /api/v3/user-migration
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-login-migration:
+    path: /api/v3/user-login-migrations
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v3_system:
