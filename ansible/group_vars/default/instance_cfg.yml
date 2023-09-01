@@ -73,3 +73,6 @@ COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 
 # Ingress
 group_ingress:
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/default/bbb/presentation.pdf
