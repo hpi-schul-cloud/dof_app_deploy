@@ -882,6 +882,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TLDRAW__SOCKET_PORT:
+    value: "3345"
+    server: true
+    client: false
+    nuxtclient: false
   TLDRAW__PING_TIMEOUT:
     value: "30000"
     server: true
