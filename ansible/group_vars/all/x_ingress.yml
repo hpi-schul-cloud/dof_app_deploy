@@ -227,6 +227,10 @@ default_ingress:
     path: /api/v3/user-migration
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-login-migration:
+    path: /api/v3/user-login-migrations
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_system:
     path: /api/v3/systems/public
     serviceName: api-svc
@@ -241,10 +245,6 @@ default_ingress:
     path: /api/roster
   api_v1_schools:
     path: /api/v1/schools/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_years:
-    path: /api/v1/years/
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_federalStates:

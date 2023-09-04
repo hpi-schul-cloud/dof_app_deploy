@@ -3,7 +3,7 @@
   hosts:
     - reference
     - production
-    - test
+    - dev-loadtest-01
     - infra
   connection: local
   roles:

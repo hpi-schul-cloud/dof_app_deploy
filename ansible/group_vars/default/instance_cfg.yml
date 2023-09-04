@@ -1,7 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: default
 SC_TITLE: dBildungscloud
-SC_SHORT_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
 GLOBAL_ANNOUNCEMENT_TEXT: 'Für Informationen und Hinweise zum Schuljahreswechsel <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Informationen und Hinweise zum Schuljahreswechsel\" href=\"https://dbildungscloud.de/help/confluence/123407337\">hier</a> klicken.'
@@ -76,3 +75,6 @@ COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 
 # Ingress
 group_ingress:
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/default/bbb/presentation.pdf

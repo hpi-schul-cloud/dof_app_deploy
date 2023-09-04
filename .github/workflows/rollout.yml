@@ -203,13 +203,13 @@ jobs:
       PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  test-loadtest-01:
+  dev-loadtest-01:
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: test-loadtest-01
+      host_name: dev-loadtest-01
       host_group: default
-      host_stage: test
+      host_stage: dev
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}

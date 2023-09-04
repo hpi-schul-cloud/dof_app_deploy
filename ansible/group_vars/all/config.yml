@@ -491,6 +491,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
@@ -853,6 +858,11 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_SHOW_OUTDATED_USERS:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION:
     value: "false"
     server: true
     client: false

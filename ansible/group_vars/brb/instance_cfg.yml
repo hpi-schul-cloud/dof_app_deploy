@@ -1,7 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: brb
 SC_TITLE: Schul-Cloud Brandenburg
-SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
@@ -111,3 +110,6 @@ group_ingress:
     path: /api/v3/fwu
     serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf
