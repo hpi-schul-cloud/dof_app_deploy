@@ -30,6 +30,7 @@
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
+    - role: h5p-library-management
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
