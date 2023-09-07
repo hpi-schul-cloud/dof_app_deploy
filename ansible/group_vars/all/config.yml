@@ -877,3 +877,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
