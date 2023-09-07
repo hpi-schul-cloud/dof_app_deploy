@@ -62,6 +62,7 @@ jobs:
         run: |
           # convert yaml to bash env vars to get git tags
           # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
+          echo "DOF_APP_DEPLOY_IMAGE_TAG: ${{ inputs.cfg_version }}" >> version.yml
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
       - uses: actions/checkout@v3
         with:
