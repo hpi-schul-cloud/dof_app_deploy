@@ -877,3 +877,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_CYPRESS_SETUP:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
