@@ -907,6 +907,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  PORT_TLDRAW_MANAGEMENT:
+    value: "3349"
+    server: true
+    client: false
+    nuxtclient: false
   PORT_TLDRAW_CLIENT:
     value: "3046"
     server: true
