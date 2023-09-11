@@ -209,7 +209,7 @@ jobs:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: dev-loadtest-01
       host_group: default
-      host_stage: dev
+      host_stage: develop
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
