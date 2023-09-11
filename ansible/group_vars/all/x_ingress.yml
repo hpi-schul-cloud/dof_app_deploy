@@ -35,10 +35,6 @@ default_ingress:
     path: /imprint
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  termsofuse:
-    path: /termsofuse
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   mint-ec:
     path: /mint-ec
     serviceName: nuxtclient-svc
