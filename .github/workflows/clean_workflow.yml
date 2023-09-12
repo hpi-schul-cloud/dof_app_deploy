@@ -61,6 +61,7 @@ jobs:
         id: branch_exists
         shell: bash
         run: |
+          git checkout --quiet ${{ env.git_ref_name }} | true
           if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
             echo "branch_exists=true" >> $GITHUB_ENV
           else
