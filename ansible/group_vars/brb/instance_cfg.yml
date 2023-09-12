@@ -6,7 +6,7 @@ SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
-BETTERMARKS_ANNOUNCEMENT_ENABLED: "true"
+BETTERMARKS_ANNOUNCEMENT_ENABLED: "false"
 BETTERMARKS_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
