@@ -24,9 +24,14 @@ prod-thr
 brb_host
 default_host
 nbc_host
-dev-loadtest-01
 
 [develop:vars]
+ansible_group_priority=10
+
+[dev]
+dev-loadtest-01
+
+[dev:vars]
 ansible_group_priority=10
 
 [infra]
@@ -60,6 +65,7 @@ default
 nbc
 thr
 develop
+dev
 reference
 production
 
