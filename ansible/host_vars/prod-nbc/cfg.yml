@@ -8,3 +8,10 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
 FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION: "false"
+
+FEATURE_CTL_TOOLS_TAB_ENABLED: "false"
+FEATURE_LTI_TOOLS_TAB_ENABLED: "true"
+FEATURE_CTL_TOOLS_ENABLED: "false"
+FEATURE_LTI_TOOLS_ENABLED: "true"
+
+FEATURE_SANIS_GROUP_PROVISIONING_ENABLED: "false"
