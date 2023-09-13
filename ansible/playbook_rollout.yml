@@ -31,6 +31,7 @@
     - role: schulcloud-client-core
     - role: nuxt-client-core
     - role: h5p-library-management
+      when: WITH_H5P_LIBRARY_MANAGEMENT is defined and WITH_H5P_LIBRARY_MANAGEMENT|bool
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
