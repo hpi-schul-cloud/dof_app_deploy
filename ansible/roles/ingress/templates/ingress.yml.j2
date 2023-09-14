@@ -46,8 +46,8 @@ spec:
     http:
       paths:
 {% for iname, idata in ingress_cfg.items() %}
-  {% if idata.when is defined and idata.when in hostvars[inventory_hostname] %}
-    {% if hostvars[inventory_hostname][idata.when] %}
+  {% if idata.with is defined and idata.with in hostvars[inventory_hostname] %}
+    {% if hostvars[inventory_hostname][idata.with] %}
       {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
       - path: {{ idata.path }}
         backend:
