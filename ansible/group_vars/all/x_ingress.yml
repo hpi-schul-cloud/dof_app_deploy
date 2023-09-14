@@ -378,7 +378,7 @@ default_ingress:
     servicePort: "{{ PORT_TLDRAW }}"
   tldraw_server_management:
     path: /tldraw-management
-    serviceName: tldraw-management-svc
+    serviceName: tldraw-svc
     servicePort: "{{ PORT_TLDRAW_MANAGEMENT }}"
   static:
     path: /static
