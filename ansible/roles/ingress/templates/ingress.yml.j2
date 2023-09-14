@@ -46,17 +46,35 @@ spec:
     http:
       paths:
 {% for iname, idata in ingress_cfg.items() %}
-  {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
+  {% if idata.with is defined and idata.with in hostvars[inventory_hostname] %}
+    {% if hostvars[inventory_hostname][idata.with] %}
+      {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
       - path: {{ idata.path }}
         backend:
           service:
             name: {{ idata.serviceName }}
             port:
               number: {{ idata.servicePort }}
-    {% if idata.pathType is defined %}
+        {% if idata.pathType is defined %}
         pathType: {{ idata.pathType }}
-    {% else %}
+        {% else %}
         pathType: Prefix
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% else %}
+    {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
+      - path: {{ idata.path }}
+        backend:
+          service:
+            name: {{ idata.serviceName }}
+            port:
+              number: {{ idata.servicePort }}
+      {% if idata.pathType is defined %}
+        pathType: {{ idata.pathType }}
+      {% else %}
+        pathType: Prefix
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endfor %}

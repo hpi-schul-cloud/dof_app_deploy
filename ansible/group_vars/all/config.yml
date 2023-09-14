@@ -571,6 +571,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
