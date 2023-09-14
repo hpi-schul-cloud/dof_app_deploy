@@ -918,7 +918,7 @@ configuration_all:
     client: false
     nuxtclient: false
   TLDRAW_URI:
-    value: "http://tldraw-svc:3349/tldraw-management"
+    value: "http://tldraw-svc:3349/api/v3"
     server: true
     client: false
     nuxtclient: false
