@@ -903,7 +903,7 @@ configuration_all:
     client: false
     nuxtclient: false
   TLDRAW__DB_MULTIPLE_COLLECTIONS:
-    value: false
+    value: "false"
     server: true
     client: false
     nuxtclient: false
