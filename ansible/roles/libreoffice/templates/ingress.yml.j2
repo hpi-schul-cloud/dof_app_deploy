@@ -12,6 +12,7 @@ metadata:
 {% endif %}
 
 spec:
+ingressClassName: nginx
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
