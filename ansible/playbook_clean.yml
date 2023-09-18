@@ -1,7 +1,7 @@
 ---
 - name: App Clean
   hosts: 
-    - develop:!dev-loadtest-01
+    - develop
   connection: local
   roles:
     - clean
