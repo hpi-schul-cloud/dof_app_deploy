@@ -566,6 +566,16 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  FEATURE_SCHOOL_POLICY_ENABLED_NEW:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
     server: false
@@ -868,6 +878,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
     value: "false"
     server: true
     client: false

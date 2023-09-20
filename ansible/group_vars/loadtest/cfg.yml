@@ -1,23 +1,9 @@
 FEATURE_NEXBOARD_ENABLED: "false"
-
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
-
 FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
-
 ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
-
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
-
 FEATURE_H5P_EDITOR_ENABLED: "false"
-
 BETTERMARKS_CSP_URL: "https://apps-ci00.bettermarks.com"
-
 FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED: "true"
-
 FEATURE_SCHOOL_POLICY_ENABLED_NEW: "true"
-
-FEATURE_SCHOOL_TERMS_OF_USE_ENABLED: "true"
-
-TLDRAW_CLIENT_REPLICAS: 3
-
-TLDRAW_EDITOR_REPLICAS: 3

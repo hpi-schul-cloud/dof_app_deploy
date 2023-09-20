@@ -35,10 +35,6 @@ default_ingress:
     path: /imprint
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  termsofuse:
-    path: /termsofuse
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   mint-ec:
     path: /mint-ec
     serviceName: nuxtclient-svc
@@ -103,10 +99,12 @@ default_ingress:
     path: /h5p/player
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+    with: WITH_H5P_EDITOR
   h5p-editor:
     path: /h5p/editor
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+    with: WITH_H5P_EDITOR
   cfiles:
     path: /cfiles
     serviceName: nuxtclient-svc
@@ -346,6 +344,7 @@ default_ingress:
   api_v3_h5p:
     path: /api/v3/h5p-editor
     serviceName: api-h5p-svc
+    with: WITH_H5P_EDITOR
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
@@ -360,6 +359,7 @@ default_ingress:
     servicePort: 8080
   h5p-statics:
     path: /h5pstatics
+    with: WITH_H5P_EDITOR
   tldraw_client:
     path: /tldraw
     serviceName: tldraw-client-svc
