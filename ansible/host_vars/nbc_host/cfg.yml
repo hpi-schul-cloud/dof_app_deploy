@@ -1,3 +1,2 @@
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
-FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED: "true"
