@@ -34,28 +34,28 @@ spec:
     http:
       paths:
       - path: /realms/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /resources/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /js/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /robots.txt
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc

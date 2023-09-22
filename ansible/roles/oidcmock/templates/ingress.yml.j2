@@ -25,35 +25,35 @@ spec:
     http:
       paths:
       - path: /home/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /Account/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /connect/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /lib/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /css/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
