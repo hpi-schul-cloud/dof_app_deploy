@@ -8,3 +8,5 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.o
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 
 FEATURE_SANIS_GROUP_PROVISIONING_ENABLED: "false"
+
+FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"
