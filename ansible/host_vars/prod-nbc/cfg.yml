@@ -6,3 +6,7 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
+
+FEATURE_SANIS_GROUP_PROVISIONING_ENABLED: "false"
+
+FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"

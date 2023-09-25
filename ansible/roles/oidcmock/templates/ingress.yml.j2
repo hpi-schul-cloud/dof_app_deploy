@@ -5,13 +5,13 @@ metadata:
   name: {{ NAMESPACE }}-oidcmock-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
+  ingressClassName: nginx
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
@@ -25,35 +25,35 @@ spec:
     http:
       paths:
       - path: /home/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /Account/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /connect/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /lib/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
             port:
               number: {{ OIDCMOCK_PORT }}
       - path: /css/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: oidcmock-svc
