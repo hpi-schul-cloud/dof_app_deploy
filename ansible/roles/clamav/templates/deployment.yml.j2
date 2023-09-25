@@ -22,6 +22,9 @@ spec:
         image: {{ CLAMAV_IMAGE_NAME }}:{{ CLAMAV_IMAGE_TAG }}
         ports:
         - containerPort: 3310
+        envFrom:
+        - configMapRef:
+            name: clamav-configmap
         resources:
           limits:
             cpu: {{ CLAMAV_CPU_MAX|default("500m", true) }}

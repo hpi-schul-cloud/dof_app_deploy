@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clamav-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clamav
+data:
+
+  CLAMD_CONF_StreamMaxLength: 2500M
