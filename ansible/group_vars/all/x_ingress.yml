@@ -245,6 +245,10 @@ default_ingress:
     path: /api/v3/groups
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_pseudonyms:
+    path: /api/v3/pseudonyms
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
