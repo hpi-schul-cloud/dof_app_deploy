@@ -897,8 +897,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  CLAMAV_SERVICE_HOSTNAME:
+  CLAMAV__SERVICE_HOSTNAME:
     value: "clamav-svc"
+    server: true
+    client: false
+    nuxtclient: false
+  CLAMAV__SERVICE_PORT:
+    value: "3310"
     server: true
     client: false
     nuxtclient: false
