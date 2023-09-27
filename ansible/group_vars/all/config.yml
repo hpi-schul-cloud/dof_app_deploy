@@ -628,12 +628,12 @@ configuration_all:
     client: true
     nuxtclient: false
   H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-2"
+    value: "s3-eu-central-1"
     server: true
     client: false
     nuxtclient: false
   H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-2.ionoscloud.com"
+    value: "https://s3-eu-central-1.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
