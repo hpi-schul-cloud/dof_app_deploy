@@ -185,7 +185,7 @@ configuration_all:
   FILES_STORAGE__USE_STREAM_TO_ANTIVIRUS:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
