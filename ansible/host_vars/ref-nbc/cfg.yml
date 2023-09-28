@@ -10,3 +10,5 @@ NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 FEATURE_SANIS_GROUP_PROVISIONING_ENABLED: "false"
 
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"
+
+FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED: "false"
