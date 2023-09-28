@@ -887,6 +887,12 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
     server: true
