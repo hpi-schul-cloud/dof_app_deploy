@@ -922,6 +922,16 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TLDRAW__DB_URL:
+    value: "mongodb://127.0.0.1:27017/tldraw"
+    server: true
+    client: false
+    nuxtclient: false
+  TLDRAW__DB_TEST_URL:
+    value: "mongodb://127.0.0.1:27017/tldraw-test"
+    server: true
+    client: false
+    nuxtclient: false
   PORT_TLDRAW:
     value: "3345"
     server: true
@@ -932,3 +942,4 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+
