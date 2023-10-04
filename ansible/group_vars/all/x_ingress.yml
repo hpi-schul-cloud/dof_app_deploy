@@ -141,6 +141,10 @@ default_ingress:
     path: /api/v1/me
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_user-authentication-local:
+    path: /api/v3/authentication/local
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_tasks:
     path: /api/v3/tasks
     serviceName: api-svc
