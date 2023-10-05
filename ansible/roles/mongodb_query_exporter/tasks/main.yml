@@ -5,16 +5,9 @@
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
 
-  - name: Add mongodb-query-exporter repo
-    kubernetes.core.helm_repository:
-      name: raffis
-      repo_url: "https://ghcr.io/raffis/charts"
-    delegate_to: localhost
-    changed_when: false
-
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
-      chart_ref: raffis/mongodb-query-exporter
+      chart_ref: "oci://ghcr.io/raffis/charts/mongodb-query-exporter"
       chart_version: "{{ mongodb_query_exporter_chart_version }}"
       release_name: mongodb-query-exporter
       release_namespace: "{{ NAMESPACE }}"
