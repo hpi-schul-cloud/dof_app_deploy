@@ -8,12 +8,12 @@
   - name: Git clone mongodb-query-exporter
     ansible.builtin.git:
      repo: "https://github.com/raffis/mongodb-query-exporter.git"
-     dest: /tmp/raffis/helm_repo
+     dest: /tmp/{{ inventory_hostname }}/
      version: v2.0.3
 
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
-      chart_ref: /tmp/raffis/helm_repo/chart/mongodb-query-exporter
+      chart_ref: /tmp/{{ inventory_hostname }}/chart/mongodb-query-exporter
       release_name: mongodb-query-exporter
       release_namespace: "{{ NAMESPACE }}"
       release_state: present
