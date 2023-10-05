@@ -8,7 +8,7 @@
   - name: Add mongodb-query-exporter repo
     kubernetes.core.helm_repository:
       name: raffis
-      repo_url: "oci://ghcr.io/raffis/charts/mongodb-query-exporter"
+      repo_url: "https://ghcr.io/raffis/charts"
     delegate_to: localhost
     changed_when: false
 
