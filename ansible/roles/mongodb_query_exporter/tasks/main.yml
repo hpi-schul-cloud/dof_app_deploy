@@ -5,10 +5,15 @@
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
 
+   - name: Git clone stable repo on HEAD
+     ansible.builtin.git:
+      repo: "https://github.com/raffis/mongodb-query-exporter.git"
+      dest: /tmp/raffis/helm_repo
+      version: v2.0.3
+
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
-      chart_ref: "oci://ghcr.io/raffis/charts/mongodb-query-exporter"
-      chart_version: "{{ mongodb_query_exporter_chart_version }}"
+      chart_ref: /tmp/raffis/helm_repo/chart/mongodb-query-exporter
       release_name: mongodb-query-exporter
       release_namespace: "{{ NAMESPACE }}"
       release_state: present
