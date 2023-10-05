@@ -29,9 +29,6 @@ on:
 env:
   tennens: "brb default nbc thr"
 
-permissions:
-  contents: read
-
 jobs:
 
   create_branch_identifier:
