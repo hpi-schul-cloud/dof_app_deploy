@@ -89,7 +89,7 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: templates/erwinidm-svc-monitor.yml.j2
-  when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR is true)
+  when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR)
 
 - name: remove Service Monitor
   kubernetes.core.k8s:
@@ -99,7 +99,7 @@
     kind: ServiceMonitor
     name: monitoring-prometheus-sc-erwinidm-svc
     state: absent
-  when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR is true)
+  when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR)
 
 - name: Add or Update init scripts Configmap
   kubernetes.core.k8s:
