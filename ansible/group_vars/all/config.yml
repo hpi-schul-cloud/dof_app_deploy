@@ -883,7 +883,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_CYPRESS_SETUP_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
