@@ -892,13 +892,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
     server: true
     client: false
     nuxtclient: false
-
   FEATURE_TLDRAW_ENABLED:
     value: "false"
     server: true
