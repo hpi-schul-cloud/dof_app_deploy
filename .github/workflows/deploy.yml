@@ -27,7 +27,7 @@ on:
 
 
 env:
-  tennens: "brb default nbc"
+  tennens: "brb default nbc thr"
 
 permissions:
   contents: read
@@ -89,7 +89,7 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tennens: [ brb, default, nbc ]
+        tennens: [ brb, default, nbc, thr ]
     steps:
       - shell: bash
         run: |

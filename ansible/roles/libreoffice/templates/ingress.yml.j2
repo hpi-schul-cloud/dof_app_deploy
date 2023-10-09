@@ -25,35 +25,35 @@ spec:
     http:
       paths:
       - path: /loleaflet
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /hosting/discovery
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /lool/(.*)/ws
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /lool
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /lool/adminws
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
