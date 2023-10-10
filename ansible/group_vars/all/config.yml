@@ -913,6 +913,13 @@ configuration_all:
     client: false
     nuxtclient: false
   TLDRAW__DB_MULTIPLE_COLLECTIONS:
+  FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+
+  FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
     server: true
     client: false

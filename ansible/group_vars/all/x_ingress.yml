@@ -83,6 +83,10 @@ default_ingress:
     path: /administration/teachers
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_groups_classes:
+    path: /administration/groups/classes
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-overview:
     path: /rooms-overview
     serviceName: nuxtclient-svc
@@ -235,6 +239,14 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v3_videoconference2:
     path: /api/v3/videoconference2
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_groups:
+    path: /api/v3/groups
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v3_pseudonyms:
+    path: /api/v3/pseudonyms
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
