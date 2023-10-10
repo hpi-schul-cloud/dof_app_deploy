@@ -892,7 +892,17 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-     FEATURE_TLDRAW_ENABLED:
+  FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  TLDRAW_URI:
+    value: "http://tldraw-svc:3349/api/v3"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_ENABLED:
     value: "true"
     server: true
     client: false
@@ -922,12 +932,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
- PORT_TLDRAW:
+  PORT_TLDRAW:
     value: "3345"
     server: true
     client: false
@@ -939,11 +944,6 @@ configuration_all:
     nuxtclient: false
   PORT_TLDRAW_CLIENT:
     value: "3046"
-    server: true
-    client: false
-    nuxtclient: false
-  TLDRAW_URI:
-    value: "http://tldraw-svc:3349/api/v3"
     server: true
     client: false
     nuxtclient: false
