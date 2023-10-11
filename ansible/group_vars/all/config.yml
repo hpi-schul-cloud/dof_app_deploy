@@ -506,6 +506,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
