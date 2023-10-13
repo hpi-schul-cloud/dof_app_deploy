@@ -23,10 +23,6 @@ default_ingress:
     path: /login
     serviceName: client-svc
     servicePort: "{{ CLIENT_PORT }}"
-  login_success:
-    path: /login/success
-    serviceName: client-svc
-    servicePort: "{{ CLIENT_PORT }}"
   error:
     path: /error
     serviceName: nuxtclient-svc
