@@ -7,6 +7,9 @@ on:
       host_name:
          required: true
          type: string
+      tenannt:
+         required: true
+         type: string         
     secrets:
       ONEPASSWORD_VAULT:
         required: true
@@ -18,7 +21,7 @@ permissions:
 
 jobs:
   deploy:
-    name: deploy for ${{ inputs.host_name }}
+    name: deploy for dev ${{ inputs.tenannt }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
@@ -31,8 +34,7 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install kubernetes
-          
+          python3 -m pip install kubernetes          
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

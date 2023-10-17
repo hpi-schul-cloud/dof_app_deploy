@@ -121,6 +121,7 @@ jobs:
     uses: ./.github/workflows/deploy_host.yml
     with:
       host_name: default_host
+      tenannt: dbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
@@ -132,6 +133,7 @@ jobs:
     uses: ./.github/workflows/deploy_host.yml
     with:
       host_name: nbc_host
+      tenannt: nbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
@@ -143,6 +145,7 @@ jobs:
     uses: ./.github/workflows/deploy_host.yml
     with:
       host_name: brb_host
+      tenannt: brb
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
