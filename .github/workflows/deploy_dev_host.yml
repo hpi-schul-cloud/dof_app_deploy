@@ -7,6 +7,9 @@ on:
       host_name:
          required: true
          type: string
+      tenannt:
+         required: true
+         type: string  
     secrets:
       ONEPASSWORD_VAULT:
         required: true
@@ -19,7 +22,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: deploy for ${{ inputs.host_name }}
+    name: deploy for ${{ inputs.tenannt }}
     steps:
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
