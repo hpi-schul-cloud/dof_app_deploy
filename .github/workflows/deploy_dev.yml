@@ -1,5 +1,5 @@
 ---
-name: Deploymen Job for Develop Host 
+name: deploy dev 
 
 on:
   workflow_call:
