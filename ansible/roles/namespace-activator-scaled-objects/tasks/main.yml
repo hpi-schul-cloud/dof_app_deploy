@@ -1,21 +1,30 @@
 ---
-  - vars:
-    deployments-for-scaled-objects:
-      - api-deployment
-      - client-deployment
+
+  - name: 1pwd
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: keda-secret.yml.j2
+
+  - name: trigger auth
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: trigger-auth.yml.j2
 
   - name: "generate scaled objects"
     template:
       src: scaled-object.yml.j2
-      dest: "{{ item }}"-scaled-object.yml
-    loop: "{{ deployments-for-scaled-objects }}"
+      dest: "{{ item }}-scaled-object.yml"
+    loop: "{{ deployments_for_scaled_objects }}"
 
   - name: apply scaled objects
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: "{{ item }}"-scaled-object.yml
-    loop: "{{ deployments-for-scaled-objects }}"
+      template: "{{ item }}-scaled-object.yml"
+      apply: true
+    loop: "{{ deployments_for_scaled_objects }}"
 
 
 

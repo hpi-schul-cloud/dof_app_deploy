@@ -1,0 +1,3 @@
+deployments_for_scaled_objects:
+  - api-deployment
+  - client-deployment

@@ -5,7 +5,7 @@ metadata:
   namespace: {{ NAMESPACE }}
 spec:
   scaleTargetRef:
-    name: api-deployment
+    name: {{item}}
   idleReplicaCount: 0
   minReplicaCount: 1
   maxReplicaCount: 1
@@ -17,7 +17,7 @@ spec:
       port: "27017"
       dbName: "keda"
       collection: "namespaces"
-      query: ''{"name" : {{ NAMESPACE }}, "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}''
+      query: '{"name" : "{{ NAMESPACE }}", "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}'
       queryValue: "1"
     authenticationRef:
       name: mongodb-auth-trigger
