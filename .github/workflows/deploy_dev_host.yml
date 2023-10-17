@@ -22,7 +22,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: deploy for ${{ inputs.tenannt }}
+    name: deploy ${{ inputs.tenannt }}
     steps:
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
