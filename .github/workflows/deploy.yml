@@ -118,7 +118,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: ./.github/workflows/deploy_host.yml
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: default_host
       tenannt: dbc
@@ -130,7 +130,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: ./.github/workflows/deploy_host.yml
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: nbc_host
       tenannt: nbc
@@ -142,7 +142,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: ./.github/workflows/deploy_host.yml
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: brb_host
       tenannt: brb
