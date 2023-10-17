@@ -1,3 +1,27 @@
 deployments_for_scaled_objects:
   - api-deployment
   - client-deployment
+  - amqp-files-deployment
+  - antivirus-webserver-deployment
+  - api-files-deployment
+  - api-fwu-deployment
+  - calendar-deployment
+  - clamav-deployment
+  - default-backend-404-deployment
+  - erwinidm-deployment
+  - etherpad-deployment
+  - etherpad-nginx-deployment
+  - hydra-deployment
+  - libreoffice-deployment
+  - mailcatcher-deployment
+  - management-deployment
+  - mongo-deployment
+  - mongodb-query-exporter
+  - nuxtclient-deployment
+  - oidcmock-deployment
+  - postgres-deployment
+  - redis-deployment
+  - rocketchat-deployment
+  - shd-deployment
+  - storage-deployment
+  - version-aggregator-deployment
