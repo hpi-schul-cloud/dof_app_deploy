@@ -1,0 +1,21 @@
+---
+  - vars:
+    deployments-for-scaled-objects:
+      - api-deployment
+      - client-deployment
+
+  - name: "generate scaled objects"
+    template:
+      src: scaled-object.yml.j2
+      dest: "{{ item }}"-scaled-object.yml
+    loop: "{{ deployments-for-scaled-objects }}"
+
+  - name: apply scaled objects
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: "{{ item }}"-scaled-object.yml
+    loop: "{{ deployments-for-scaled-objects }}"
+
+
+
