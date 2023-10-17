@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   deploy:
-    name: deploy for dev ${{ inputs.tenannt }}
+    name: deploy dev ${{ inputs.tenannt }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
