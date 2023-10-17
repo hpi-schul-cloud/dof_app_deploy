@@ -19,6 +19,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    name: deploy for ${{ inputs.host_name }}
     steps:
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
