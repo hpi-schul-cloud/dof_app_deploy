@@ -15,8 +15,6 @@ deployments_for_scaled_objects:
   - libreoffice-deployment
   - mailcatcher-deployment
   - management-deployment
-  - mongo-deployment
-  - mongodb-query-exporter
   - nuxtclient-deployment
   - oidcmock-deployment
   - postgres-deployment
