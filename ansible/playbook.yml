@@ -39,3 +39,4 @@
     - post_deployment
     - tldraw-client-core
     - dof_tldraw_nginx
+    - dof_tldraw
