@@ -62,11 +62,11 @@ spec:
             name: ns-activator-secret
         resources:
           limits:
-            cpu: 500m
-            memory: 124Mi
+            cpu: 2000m
+            memory: 512Mi
           requests:
-            cpu: 500m
-            memory: 124Mi
+            cpu: 100m
+            memory: 64Mi
 
 ---
 apiVersion: v1
