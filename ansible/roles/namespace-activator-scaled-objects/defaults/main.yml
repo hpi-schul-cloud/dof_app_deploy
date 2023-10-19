@@ -17,7 +17,6 @@ deployments_for_scaled_objects:
   - management-deployment
   - nuxtclient-deployment
   - oidcmock-deployment
-  - postgres-deployment
   - redis-deployment
   - rocketchat-deployment
   - shd-deployment
