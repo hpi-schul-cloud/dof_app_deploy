@@ -1,3 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ns-activator-configmap
+  namespace: sc-common
+  labels:
+    app: ns-activator
+data:
+  EXTERNALHOSTNAME: "activate.cd.dbildungscloud.dev"
+
+---
+apiVersion: onepassword.com/v1
+kind: OnePasswordItem
+metadata:
+  name: ns-activator-secret
+  namespace: sc-common
+  labels:
+    app: api
+spec:
+  itemPath: "vaults/sc-dev-cd/items/namespace-activator"
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,7 +49,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: ns-activator
-        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:main
+        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator@sha256:209e9c3649f0d69fb0890093c41085fcc850c6ae633345dd10107ba01d47fc4e
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -36,6 +58,8 @@ spec:
         envFrom:
         - configMapRef:
             name: ns-activator-configmap
+        - secretRef:
+            name: ns-activator-secret
         resources:
           limits:
             cpu: 500m
@@ -43,16 +67,6 @@ spec:
           requests:
             cpu: 500m
             memory: 124Mi
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ns-activator-configmap
-  namespace: sc-common
-  labels:
-    app: ns-activator
-data:
-  QUARKUS_MONGODB_CONNECTION_STRING: "mongodb://mongo-svc:27017"
 
 ---
 apiVersion: v1
