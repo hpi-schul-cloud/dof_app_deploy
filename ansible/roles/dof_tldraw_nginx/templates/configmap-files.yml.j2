@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tldraw-nginx-configmap-files
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: tldraw-nginx
+data:
+  default.conf: |
+    server {
+      listen       80;
+      server_name  localhost;
+
+      #charset koi8-r;
+      #access_log  /var/log/nginx/host.access.log  main;
+
+      # Etherpad-Fu
+      location /tldraw-management {
+        rewrite                /tldraw-management$/(.*) /$1 break;
+        rewrite                ^/tldraw-management$ /tldraw-management/ permanent;
+        proxy_pass             http://tldraw-svc:{{ PORT_TLDRAW_MANAGEMENT }}/;
+        proxy_pass_header Server;
+        proxy_redirect         / /tldraw-management/;
+        proxy_set_header       Host $host;
+        proxy_buffering off;
+      }
+      location /tldraw-server {
+        rewrite                /tldraw-server/(.*) $1 break;
+        proxy_pass http://tldraw-svc:{{ PORT_TLDRAW }};
+        proxy_redirect         / /tldraw-server/;
+        proxy_set_header Host $http_host;
+        proxy_buffering off;
+        proxy_set_header X-Real-IP $remote_addr;  # http://wiki.nginx.org/HttpProxyModule
+        proxy_http_version 1.1;  # recommended with keepalive connections
+        # WebSocket proxying - from http://nginx.org/en/docs/http/websocket.html
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+      }
+
+      location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+      }
+
+      #error_page  404              /404.html;
+      # redirect server error pages to the static page /50x.html
+      #
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+        root   /usr/share/nginx/html;
+      }
+    }
+    map $http_upgrade $connection_upgrade {
+      default upgrade;
+      ''      close;
+    }

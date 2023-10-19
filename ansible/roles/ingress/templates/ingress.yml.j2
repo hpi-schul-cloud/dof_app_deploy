@@ -21,16 +21,6 @@ metadata:
     # The header size of the request is too big. For e.g. state and the permanent growing jwt.
     # Nginx throws away the Location header, resulting in the 502 Bad Gateway.
     nginx.ingress.kubernetes.io/client-header-buffer-size: 100k
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      set $forwarded_client_ip "";
-      if ($http_x_forwarded_for ~ "^([^,]+)") {
-        set $forwarded_client_ip $1;
-      }
-      set $client_ip $remote_addr;
-      if ($forwarded_client_ip != "") {
-        set $client_ip $forwarded_client_ip;
-      }
-    nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
     nginx.ingress.kubernetes.io/http2-max-header-size: 96k
     nginx.ingress.kubernetes.io/large-client-header-buffers: 4 100k
     nginx.ingress.kubernetes.io/proxy-buffer-size: 96k

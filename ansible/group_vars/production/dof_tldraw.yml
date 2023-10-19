@@ -1,0 +1,6 @@
+---
+PORT_TLDRAW: 3345
+TLDRAW_IMAGE_NAME: docker.io/tldraw/tldraw
+TLDRAW_IMAGE_TAG: 1.9.3
+TLDRAW_NGINX_IMAGE_NAME: docker.io/nginx
+TLDRAW_NGINX_IMAGE_TAG: 1.25-alpine
