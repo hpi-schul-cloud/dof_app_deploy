@@ -23,7 +23,7 @@ spec:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '8080'
     spec:
-      securityContext:  
+      securityContext:
         #readOnlyRootFilesystem: true
         # run as user etherpad (uid 1000)
         runAsUser: 1000
@@ -42,8 +42,6 @@ spec:
         envFrom:
         - configMapRef:
             name: tldraw-configmap
-        - secretRef:
-            name: tldraw-secret
         command: ['npm', 'run', 'nest:start:tldraw:prod']
         resources:
           limits:
@@ -52,12 +50,5 @@ spec:
           requests:
             cpu: {{ TLDRAW_EDITOR_CPU_REQUESTS|default("100m", true) }}
             memory: {{ TLDRAW_EDITOR_MEMORY_REQUESTS|default("50Mi", true) }}
-      volumes:
-      - name: apikey
-        secret:
-          secretName: tldraw-secret
-          items:
-          - key: TLDRAW_API_KEY
-            path: APIKEY.txt
-        
-              
+
+
