@@ -14,7 +14,7 @@ data:
       #charset koi8-r;
       #access_log  /var/log/nginx/host.access.log  main;
 
-      # Etherpad-Fu
+      # Tldraw-Management
       location /tldraw-management {
         rewrite                /tldraw-management$/(.*) /$1 break;
         rewrite                ^/tldraw-management$ /tldraw-management/ permanent;
@@ -24,6 +24,7 @@ data:
         proxy_set_header       Host $host;
         proxy_buffering off;
       }
+      # Tldraw-websocket
       location /tldraw-server {
         rewrite                /tldraw-server/(.*) $1 break;
         proxy_pass http://tldraw-svc:{{ PORT_TLDRAW }};
@@ -35,19 +36,6 @@ data:
         # WebSocket proxying - from http://nginx.org/en/docs/http/websocket.html
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
-      }
-
-      location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-      }
-
-      #error_page  404              /404.html;
-      # redirect server error pages to the static page /50x.html
-      #
-      error_page   500 502 503 504  /50x.html;
-      location = /50x.html {
-        root   /usr/share/nginx/html;
       }
     }
     map $http_upgrade $connection_upgrade {
