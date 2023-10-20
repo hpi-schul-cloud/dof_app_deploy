@@ -245,6 +245,10 @@ default_ingress:
     path: /api/v3/videoconference2
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v3_meta_tag_extractor:
+    path: /api/v3/meta-tag-extractor
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v3_groups:
     path: /api/v3/groups
     serviceName: api-svc
