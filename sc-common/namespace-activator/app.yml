@@ -49,7 +49,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: ns-activator
-        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator@sha256:639c8891e675f3afd77242219e52a9ca08474e9c62ade9e57aba788fc0cecf3b
+        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator@1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
