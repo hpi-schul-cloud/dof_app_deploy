@@ -15,7 +15,7 @@ metadata:
   name: ns-activator-secret
   namespace: sc-common
   labels:
-    app: api
+    app: ns-activator
 spec:
   itemPath: "vaults/sc-dev-cd/items/namespace-activator"
 
