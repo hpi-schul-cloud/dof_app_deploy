@@ -27,8 +27,8 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
       client_header_buffer_size 100k;
       large_client_header_buffers 4 100k;
-      proxy_intercept_errors on;
 {% if KEDA_NAMESPACE_ACTIVATOR_ENABLED is defined %}
+      proxy_intercept_errors on;
       error_page 503 = @errorpages;
 
       location @errorpages {
