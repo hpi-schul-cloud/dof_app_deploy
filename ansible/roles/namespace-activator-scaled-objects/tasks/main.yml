@@ -12,17 +12,11 @@
       namespace: "{{ NAMESPACE }}"
       template: trigger-auth.yml.j2
 
-  - name: "generate scaled objects"
-    template:
-      src: scaled-object.yml.j2
-      dest: "{{ item }}-scaled-object.yml"
-    loop: "{{ deployments_for_scaled_objects }}"
-
   - name: apply scaled objects
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: "{{ item }}-scaled-object.yml"
+      template: scaled-object.yml.j2
       apply: true
     loop: "{{ deployments_for_scaled_objects }}"
 
