@@ -17,6 +17,8 @@
     - role: maildrop
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
+    - role: keda
+      when: KEDA_ENABLED is defined and KEDA_ENABLED|bool
     - role: hydra
     - role: erwin-idm
     - role: dof_etherpad_nginx
