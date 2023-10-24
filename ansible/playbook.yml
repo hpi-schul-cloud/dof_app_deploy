@@ -6,6 +6,7 @@
   roles:
     - sys
     - pre_deployment
+    - namespace-activator-scaled-objects
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
