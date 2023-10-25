@@ -1,0 +1,10 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: mongodb-auth-trigger
+  namespace: "{{ NAMESPACE }}"
+spec:
+  secretTargetRef:
+    - parameter: connectionString
+      name: keda-secret
+      key: sc-common-mongodb-url

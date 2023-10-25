@@ -902,6 +902,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_GROUPS_IN_COURSE_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
 
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
