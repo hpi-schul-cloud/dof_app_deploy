@@ -1,0 +1,54 @@
+---
+name: deploy dev 
+
+on:
+  workflow_call:
+    inputs:
+      host_name:
+         required: true
+         type: string
+      tenannt:
+         required: true
+         type: string  
+    secrets:
+      ONEPASSWORD_VAULT:
+        required: true
+      KUBECONFIG:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy ${{ inputs.tenannt }}
+    steps:
+      - uses: actions/download-artifact@v3
+      - run: mv */*.tar ./
+      - run: find -name "*.tar" -exec tar -xf {} \;
+      - run: tar -cf ansible.tar ansible
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ansible
+          path: ${{github.workspace }}/ansible.tar
+      - shell: bash
+        run: |
+          python3 -m pip install kubernetes
+          
+      - name: 1Password
+        working-directory: ${{github.workspace }}/ansible/group_vars
+        run: |
+          echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
+          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
+          echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
+      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+      - working-directory: ${{github.workspace }}/ansible/roles/sys
+        run: |
+          mkdir files
+          echo "${{ secrets.KUBECONFIG }}" > files/config
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+        working-directory: ${{github.workspace }}/ansible
+      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
+        run: |
+          rm -rf  /config
