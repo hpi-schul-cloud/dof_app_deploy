@@ -20,4 +20,4 @@ spec:
       query: '{"name" : "{{ NAMESPACE }}", "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}'
       queryValue: "1"
     authenticationRef:
-      name: mongodb-auth-trigger
+      name: sc-common-mongodb-trigger-auth

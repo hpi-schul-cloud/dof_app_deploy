@@ -1,16 +1,10 @@
 ---
 
-  - name: 1pwd
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      template: keda-secret.yml.j2
-
   - name: trigger auth
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: trigger-auth.yml.j2
+      template: sc-common-mongodb-trigger-auth.yml.j2
 
   - name: apply scaled objects
     kubernetes.core.k8s:
