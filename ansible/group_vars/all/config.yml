@@ -764,15 +764,16 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
-  BETTERMARKS_ANNOUNCEMENT_ENABLED:
-    value: "false"
-    server: true
+  DASHBOARD_ANNOUNCEMENT_ENABLED:
+    value: "true"
+    server: false
     client: true
-    nuxtclient: true
-  BETTERMARKS_ANNOUNCEMENT_ROLES:
-    server: true
+    nuxtclient: false
+  DASHBOARD_ANNOUNCEMENT_ROLES:
+    value: "teacher"
+    server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
