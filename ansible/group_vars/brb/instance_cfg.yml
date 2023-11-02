@@ -6,8 +6,6 @@ SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
-BETTERMARKS_ANNOUNCEMENT_ENABLED: "false"
-BETTERMARKS_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -106,10 +104,6 @@ group_ingress:
   api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_fwu:
-    path: /api/v3/fwu
-    serviceName: api-fwu-svc
-    servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
 
 # BigBlueButton
 VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf
