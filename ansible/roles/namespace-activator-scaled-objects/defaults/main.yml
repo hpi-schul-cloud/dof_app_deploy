@@ -4,6 +4,7 @@ deployments_for_scaled_objects:
   - amqp-files-deployment
   - antivirus-webserver-deployment
   - api-files-deployment
+  - preview-generator-deployment
   - api-fwu-deployment
   - calendar-deployment
   - clamav-deployment
