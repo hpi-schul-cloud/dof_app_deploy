@@ -200,7 +200,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -764,15 +764,16 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
-  BETTERMARKS_ANNOUNCEMENT_ENABLED:
-    value: "false"
-    server: true
+  DASHBOARD_ANNOUNCEMENT_ENABLED:
+    value: "true"
+    server: false
     client: true
-    nuxtclient: true
-  BETTERMARKS_ANNOUNCEMENT_ROLES:
-    server: true
+    nuxtclient: false
+  DASHBOARD_ANNOUNCEMENT_ROLES:
+    value: "teacher"
+    server: false
     client: true
-    nuxtclient: true
+    nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
@@ -929,7 +930,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: true
