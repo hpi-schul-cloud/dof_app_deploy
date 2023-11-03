@@ -892,7 +892,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_CYPRESS_SETUP_ENABLED:
+  FEATURE_DEMO_SCHOOLS_ENABLED:
     value: "false"
     server: true
     client: false

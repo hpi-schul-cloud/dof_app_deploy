@@ -153,7 +153,7 @@ default_ingress:
     path: /api/v3/demo-schools
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-    with: WITH_CYPRESS_SETUP
+    with: WITH_DEMO_SCHOOLS
   api_v3_tasks:
     path: /api/v3/tasks
     serviceName: api-svc
