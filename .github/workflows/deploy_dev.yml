@@ -15,6 +15,8 @@ on:
         required: true
       KUBECONFIG:
         required: true
+      PROXY_CREDENTIALS:
+        required: false
 
 permissions:
   contents: read
@@ -23,6 +25,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: deploy ${{ inputs.tenannt }}
+    env:
+      # Necessary for ansible k8s module (doesn't use proxy defined in kubeconfig)
+      # https://github.com/kubernetes-client/python/issues/1862
+      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
+      K8S_AUTH_PROXY: ${{ vars.PROXY_URL }}
+      K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH: ${{ secrets.PROXY_CREDENTIALS }}
     steps:
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
@@ -35,7 +43,8 @@ jobs:
       - shell: bash
         run: |
           python3 -m pip install kubernetes
-          
+          python3 -m pip install urllib3~=1.26.16
+
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

@@ -34,4 +34,5 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       DEV_VAULT: ${{ secrets.DEV_VAULT }}
       DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      DEV_PROXY_CREDENTIALS: ${{ secrets.DEV_PROXY_CREDENTIALS }}
 

@@ -22,6 +22,8 @@ on:
         required: true
       DEV_KUBE_CONFIG:
         required: true
+      DEV_PROXY_CREDENTIALS:
+        required: false
       BINGO_REPO_TOKEN:
         required: true
 
@@ -125,6 +127,7 @@ jobs:
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.DEV_PROXY_CREDENTIALS }}
 
   deploy_nbc_dev:
     needs: 
@@ -137,6 +140,7 @@ jobs:
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.DEV_PROXY_CREDENTIALS }}
 
   deploy_brb_dev:
     needs: 
@@ -149,3 +153,4 @@ jobs:
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      PROXY_CREDENTIALS: ${{ secrets.DEV_PROXY_CREDENTIALS }}
