@@ -232,14 +232,6 @@ default_ingress:
     path: /tldraw-client-runtime.config.json
     serviceName: tldraw-client-svc
     servicePort: "{{ PORT_TLDRAW_CLIENT }}"
-  tldraw_server:
-    path: /tldraw-server
-    serviceName: tldraw-svc
-    servicePort: "{{ PORT_TLDRAW }}"
-  tldraw_server_management:
-    path: /tldraw-management
-    serviceName: tldraw-svc
-    servicePort: "{{ PORT_TLDRAW_MANAGEMENT }}"
   static:
     path: /static
     serviceName: tldraw-client-svc
