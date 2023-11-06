@@ -85,6 +85,16 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
+  H5P_IMG_SRC_URLS:
+    value: "https://h5p.org/"
+    server: false
+    client: false
+    nuxtclient: true
+  H5P_SCRIPT_SRC_URLS:
+    value: "https://{{ DOMAIN }}/h5pstatics/editor/scripts/"
+    server: false
+    client: false
+    nuxtclient: true
   SECURITY_HEADERS:
     value: "true"
     server: false
@@ -628,12 +638,12 @@ configuration_all:
     client: true
     nuxtclient: false
   H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-2"
+    value: "s3-eu-central-1"
     server: true
     client: false
     nuxtclient: false
   H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-2.ionoscloud.com"
+    value: "https://s3-eu-central-1.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
