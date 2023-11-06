@@ -27,7 +27,7 @@ on:
 
 
 env:
-  tennens: "brb default nbc"
+  tennens: "brb default nbc thr"
 
 permissions:
   contents: read
@@ -88,7 +88,7 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tennens: [ brb, default, nbc ]
+        tennens: [ brb, default, nbc, thr ]
     steps:
       - shell: bash
         run: |
@@ -114,37 +114,38 @@ jobs:
     secrets:
       bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
-  deploy:
+  deploy_dbc_dev:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-      - run: mv */*.tar ./
-      - run: find -name "*.tar" -exec tar -xf {} \;
-      - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ansible
-          path: ${{github.workspace }}/ansible.tar
-      - shell: bash
-        run: |
-          python3 -m pip install kubernetes
-          
-      - name: 1Password
-        working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
-          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
-          echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
-      - run: ansible-galaxy install -r ansible/collections/requirements.yml
-      - working-directory: ${{github.workspace }}/ansible/roles/sys
-        run: |
-          mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
-        working-directory: ${{github.workspace }}/ansible
-      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
-        run: |
-          rm -rf  /config
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: default_host
+      tenannt: dbc
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+
+  deploy_nbc_dev:
+    needs: 
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: nbc_host
+      tenannt: nbc
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+
+  deploy_brb_dev:
+    needs: 
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: brb_host
+      tenannt: brb
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}

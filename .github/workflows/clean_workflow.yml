@@ -61,7 +61,7 @@ jobs:
         id: branch_exists
         shell: bash
         run: |
-          if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
+          if git show-ref --quiet --verify refs/remotes/origin/${{ env.git_ref_name }} > /dev/null; then
             echo "branch_exists=true" >> $GITHUB_ENV
           else
             echo "branch_exists=false" >> $GITHUB_ENV
@@ -123,7 +123,7 @@ jobs:
       - name: delete namespaces
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config delete ns brb-$branch_identifier nbc-$branch_identifier default-$branch_identifier
+          kubectl --kubeconfig=files/config delete --ignore-not-found=true ns brb-$branch_identifier nbc-$branch_identifier default-$branch_identifier
       - name: remove kubeconfig
         run: |
           rm -rf  /config

@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mongo-configmap
+  name: clamav-configmap
   namespace: {{ NAMESPACE }}
   labels:
-    app: mongo
+    app: clamav
 data:
-  # general
-  NODE_ENV: "production"
 
+  CLAMD_CONF_StreamMaxLength: 3000M

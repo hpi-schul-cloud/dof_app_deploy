@@ -36,9 +36,6 @@ spec:
         - containerPort: 27017
           name: mongo
           protocol: TCP
-        envFrom:
-        - configMapRef:
-            name: mongo-configmap
         volumeMounts:
         - name: mongodb-data-pv
           mountPath: /data/db

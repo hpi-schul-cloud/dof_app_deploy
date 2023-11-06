@@ -23,20 +23,12 @@ default_ingress:
     path: /login
     serviceName: client-svc
     servicePort: "{{ CLIENT_PORT }}"
-  login_success:
-    path: /login/success
-    serviceName: client-svc
-    servicePort: "{{ CLIENT_PORT }}"
   error:
     path: /error
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   imprint:
     path: /imprint
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
-  termsofuse:
-    path: /termsofuse
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   mint-ec:
@@ -87,6 +79,10 @@ default_ingress:
     path: /administration/teachers
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_groups_classes:
+    path: /administration/groups/classes
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-overview:
     path: /rooms-overview
     serviceName: nuxtclient-svc
@@ -103,10 +99,12 @@ default_ingress:
     path: /h5p/player
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+    with: WITH_H5P_EDITOR
   h5p-editor:
     path: /h5p/editor
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+    with: WITH_H5P_EDITOR
   cfiles:
     path: /cfiles
     serviceName: nuxtclient-svc
@@ -135,108 +133,12 @@ default_ingress:
     path: /api/v1/edu-sharing
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+  api_v1_edu-sharing-merlin:
+    path: /api/v1/edu-sharing-merlinToken
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   api_v1_me:
     path: /api/v1/me
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_tasks:
-    path: /api/v3/tasks
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_rooms:
-    path: /api/v3/rooms
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_boards:
-    path: /api/v3/boards
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_columns:
-    path: /api/v3/columns
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_cards:
-    path: /api/v3/cards
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_elements:
-    path: /api/v3/elements
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_submissionItems:
-    path: /api/v3/board-submissions
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_user_me:
-    path: /api/v3/user/me
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_user_import:
-    path: /api/v3/user/import
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_user_language:
-    path: /api/v3/user/language
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_news:
-    path: /api/v3/news
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_dashboard:
-    path: /api/v3/dashboard
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_courses:
-    path: /api/v3/courses
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_lessons:
-    path: /api/v3/lessons
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_school:
-    path: /api/v3/school
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_submissions:
-    path: /api/v3/submissions
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_sharetoken:
-    path: /api/v3/sharetoken
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_login:
-    path: /api/v3/sso/login/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_oauth:
-    path: /api/v3/sso/oauth/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_sso_hydra:
-    path: /api/v3/sso/hydra/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_tools:
-    path: /api/v3/tools
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_user-migration:
-    path: /api/v3/user-migration
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_user-login-migration:
-    path: /api/v3/user-login-migrations
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_system:
-    path: /api/v3/systems/public
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v3_videoconference2:
-    path: /api/v3/videoconference2
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
@@ -307,45 +209,6 @@ default_ingress:
     path: /api/v1/config/app/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_file_upload:
-    path: /api/v3/file/upload
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_upload_from_url:
-    path: /api/v3/file/upload-from-url
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_download:
-    path: /api/v3/file/download
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_list:
-    path: /api/v3/file/list
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_rename:
-    path: /api/v3/file/rename
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_delete:
-    path: /api/v3/file/delete
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_restore:
-    path: /api/v3/file/restore
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_copy:
-    path: /api/v3/file/copy
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_file_preview:
-    path: /api/v3/file/preview
-    serviceName: api-files-svc
-    servicePort: "{{ PORT_FILE_SERVICE }}"
-  api_v3_h5p:
-    path: /api/v3/h5p-editor
-    serviceName: api-h5p-svc
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
@@ -360,3 +223,4 @@ default_ingress:
     servicePort: 8080
   h5p-statics:
     path: /h5pstatics
+    with: WITH_H5P_EDITOR
