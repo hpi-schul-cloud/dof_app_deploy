@@ -4,5 +4,4 @@ group_ingress:
     path: /h5pstatics
     serviceName: h5p-staticfiles-server-svc
     servicePort: "{{ H5P_PORT }}"
-  api_v3_h5p:
-    servicePort: 4448
+

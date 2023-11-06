@@ -38,21 +38,7 @@ spec:
             name: libreoffice-svc
             port:
               number: 9980
-      - path: /lool/(.*)/ws
-        pathType: Prefix
-        backend:
-          service:
-            name: libreoffice-svc
-            port:
-              number: 9980
       - path: /lool
-        pathType: Prefix
-        backend:
-          service:
-            name: libreoffice-svc
-            port:
-              number: 9980
-      - path: /lool/adminws
         pathType: Prefix
         backend:
           service:
