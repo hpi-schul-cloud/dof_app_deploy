@@ -8,3 +8,5 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"
+
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
