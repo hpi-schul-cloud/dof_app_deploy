@@ -29,9 +29,12 @@ jobs:
       # Necessary for ansible k8s module (doesn't use proxy defined in kubeconfig)
       # https://github.com/kubernetes-client/python/issues/1862
       # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
-      K8S_AUTH_PROXY: ${{ vars.DEV_PROXY_URL }}
+      K8S_AUTH_PROXY: ${{ secrets.PROXY_CREDENTIALS != '' && vars.DEV_PROXY_URL || '' }}
       K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH: ${{ secrets.PROXY_CREDENTIALS }}
     steps:
+      - if: ${{ env.K8S_AUTH_PROXY == '' && vars.DEV_PROXY_URL != '' }}
+        run: |
+          echo "::warning:: Proxy specified, but no credentials. Ignoring proxy."
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;

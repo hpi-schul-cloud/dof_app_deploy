@@ -120,7 +120,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@OPS-5015-use-proxy-for-auto-deployments
     with:
       host_name: default_host
       tenannt: dbc
@@ -133,7 +133,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@OPS-5015-use-proxy-for-auto-deployments
     with:
       host_name: nbc_host
       tenannt: nbc
@@ -146,7 +146,7 @@ jobs:
     needs: 
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@OPS-5015-use-proxy-for-auto-deployments
     with:
       host_name: brb_host
       tenannt: brb
