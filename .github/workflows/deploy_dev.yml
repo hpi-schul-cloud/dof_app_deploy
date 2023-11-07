@@ -62,8 +62,8 @@ jobs:
       - name: Set proxy environment variable if included in the kubeconfig
         working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
-          yq ".clusters[0].cluster.proxy-url" infra-dev-admin-01.yaml | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
-          yq ".clusters[0].cluster.proxy-url" infra-dev-admin-01.yaml | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p'
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p'
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
