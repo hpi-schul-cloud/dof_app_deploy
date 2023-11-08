@@ -24,9 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     name: deploy ${{ inputs.tenannt }}
     steps:
-      - if: ${{ env.K8S_AUTH_PROXY == '' && vars.DEV_PROXY_URL != '' }}
-        run: |
-          echo "::warning:: Proxy specified, but no credentials. Ignoring proxy."
       - uses: actions/download-artifact@v3
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
