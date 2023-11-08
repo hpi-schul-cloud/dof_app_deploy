@@ -75,7 +75,7 @@ jobs:
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_BRANCH_NAME: ${{ inputs.branch }}" >> ansible/host_vars/${i}_host/$filename.yml
-            echo "${ansible_varname}_REPO_NAME: ${{ filename }}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_REPO_NAME: ${filename}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
