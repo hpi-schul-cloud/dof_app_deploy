@@ -71,11 +71,12 @@ jobs:
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
+          reponame=$(echo ${filename} | tr _ - )
           for i in ${{ env.tennens }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_BRANCH_NAME: ${{ inputs.branch }}" >> ansible/host_vars/${i}_host/$filename.yml
-            echo "${ansible_varname}_REPO_NAME: ${filename}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
