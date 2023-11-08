@@ -5,3 +5,5 @@ ES_API_V7: "true"
 H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"
 
 BETTERMARKS_CSP_URL: "https://apps.bettermarks.com"
+
+FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED: "true"
