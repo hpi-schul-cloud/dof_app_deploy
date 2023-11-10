@@ -924,6 +924,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
   TLDRAW_URI:
     value: "http://tldraw-svc:3349/api/v3"
     server: true
