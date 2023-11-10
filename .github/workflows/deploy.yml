@@ -35,7 +35,7 @@ permissions:
 jobs:
 
   create_branch_identifier:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@BC-4710-new-tldraw-manage
     with:
       branch: ${{ inputs.branch }}
 
