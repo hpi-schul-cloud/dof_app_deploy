@@ -5,6 +5,10 @@ metadata:
   #namespace: {{ NAMESPACE }}
   labels:
     app: rocketchat
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+    git.branch: {{ ROCKETCHAT_BRANCH_NAME }}
+    git.repo: {{ ROCKETCHAT_REPO_NAME }}
 spec:
   replicas: {{ ROCKET_CHAT_REPLICAS|default(1, true) }}
   selector:
@@ -14,8 +18,12 @@ spec:
     metadata:
       labels:
         app: rocketchat
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+        git.branch: {{ ROCKETCHAT_BRANCH_NAME }}
+        git.repo: {{ ROCKETCHAT_REPO_NAME }}
     spec:
-      securityContext:  
+      securityContext:
         runAsUser: 99999
         runAsGroup: 99999
         fsGroup: 99999

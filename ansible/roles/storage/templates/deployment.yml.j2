@@ -6,6 +6,10 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: storage
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: {{ STORAGE_IMAGE_TAG }}
+    git.branch: {{ STORAGE_BRANCH_NAME }}
+    git.repo: {{ STORAGE_REPO_NAME }}
 spec:
   replicas: {{ STORAGE_REPLICAS|default(1, true) }}
   strategy:
@@ -19,6 +23,10 @@ spec:
     metadata:
       labels:
         app: storage
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: {{ STORAGE_IMAGE_TAG }}
+        git.branch: {{ STORAGE_BRANCH_NAME }}
+        git.repo: {{ STORAGE_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:

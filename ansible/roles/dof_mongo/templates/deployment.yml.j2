@@ -6,6 +6,10 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: mongo
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: {{ MONGO_IMAGE_TAG }}
+    git.branch: {{ MONGO_BRANCH_NAME }}
+    git.repo: {{ MONGO_REPO_NAME }}
 spec:
   replicas: {{ MONGO_REPLICAS|default(1, true) }}
   strategy:
@@ -19,6 +23,10 @@ spec:
     metadata:
       labels:
         app: mongo
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: {{ MONGO_IMAGE_TAG }}
+        git.branch: {{ MONGO_BRANCH_NAME }}
+        git.repo: {{ MONGO_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:

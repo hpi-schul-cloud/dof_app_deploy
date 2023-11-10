@@ -6,6 +6,10 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: erwinidm
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+    git.branch: {{ ERWINIDM_BRANCH_NAME }}
+    git.repo: {{ ERWINIDM_REPO_NAME }}
 spec:
   replicas: {{ ERWINIDM_REPLICAS|default(1, true) }}
   strategy:
@@ -22,6 +26,10 @@ spec:
     metadata:
       labels:
         app: erwinidm
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+        git.branch: {{ ERWINIDM_BRANCH_NAME }}
+        git.repo: {{ ERWINIDM_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:

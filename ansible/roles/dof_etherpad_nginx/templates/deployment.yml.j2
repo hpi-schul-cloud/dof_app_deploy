@@ -5,6 +5,10 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: etherpad-nginx
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: {{ ETHERPAD_NGINX_IMAGE_TAG }}
+    git.branch: {{ ETHERPAD_NGINX_BRANCH_NAME }}
+    git.repo: {{ ETHERPAD_NGINX_REPO_NAME }}
 spec:
   replicas: {{ ETHERPAD_NGINX_REPLICAS|default(1, true) }}
   strategy:
@@ -19,8 +23,12 @@ spec:
     metadata:
       labels:
         app: etherpad-nginx
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: {{ ETHERPAD_NGINX_IMAGE_TAG }}
+        git.branch: {{ ETHERPAD_NGINX_BRANCH_NAME }}
+        git.repo: {{ ETHERPAD_NGINX_REPO_NAME }}
     spec:
-      #securityContext:  
+      #securityContext:
         #readOnlyRootFilesystem: true
         # run as user node (uid 1000)
         #runAsUser: 1000
