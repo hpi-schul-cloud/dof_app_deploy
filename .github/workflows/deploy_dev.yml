@@ -34,8 +34,7 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install kubernetes
-          python3 -m pip install urllib3~=1.26.16
+          python3 -m pip install kubernetes 'urllib3>=1.26.16'
 
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
