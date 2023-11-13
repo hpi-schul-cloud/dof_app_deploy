@@ -7,7 +7,6 @@ metadata:
   labels:
     app: storage
     app.kubernetes.io/part-of: schulcloud-verbund
-    # app.kubernetes.io/version: {{ STORAGE_IMAGE_TAG }}
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
@@ -24,7 +23,6 @@ spec:
       labels:
         app: storage
         app.kubernetes.io/part-of: schulcloud-verbund
-        # app.kubernetes.io/version: {{ STORAGE_IMAGE_TAG }}
         git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
