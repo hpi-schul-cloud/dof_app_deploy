@@ -14,4 +14,6 @@ FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.schulcloud-thueringen.de/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
 
+ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS: "schul-cloud.org"
+
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
