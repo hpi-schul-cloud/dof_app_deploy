@@ -8,6 +8,9 @@ metadata:
     app: erwinidm
     app.kubernetes.io/part-of: schulcloud-verbund
     app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+    app.kubernetes.io/name: erwinidm
+    app.kubernetes.io/component: idm
+    app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
@@ -28,6 +31,9 @@ spec:
         app: erwinidm
         app.kubernetes.io/part-of: schulcloud-verbund
         app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+        app.kubernetes.io/name: erwinidm
+        app.kubernetes.io/component: idm
+        app.kubernetes.io/managed-by: ansible
         git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:

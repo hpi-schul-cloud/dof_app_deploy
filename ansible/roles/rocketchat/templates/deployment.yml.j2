@@ -7,6 +7,9 @@ metadata:
     app: rocketchat
     app.kubernetes.io/part-of: schulcloud-verbund
     app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+    app.kubernetes.io/name: rocketchat
+    app.kubernetes.io/component: chat
+    app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
@@ -20,6 +23,9 @@ spec:
         app: rocketchat
         app.kubernetes.io/part-of: schulcloud-verbund
         app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+        app.kubernetes.io/name: rocketchat
+        app.kubernetes.io/component: chat
+        app.kubernetes.io/managed-by: ansible
         git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:

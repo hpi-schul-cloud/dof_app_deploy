@@ -7,6 +7,9 @@ metadata:
     app: libreoffice
     app.kubernetes.io/part-of: schulcloud-verbund
     app.kubernetes.io/version: {{ LIBREOFFICE_IMAGE_TAG }}
+    app.kubernetes.io/name: libreoffice
+    app.kubernetes.io/component: libreoffice
+    app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
@@ -27,6 +30,9 @@ spec:
         app: libreoffice
         app.kubernetes.io/part-of: schulcloud-verbund
         app.kubernetes.io/version: {{ LIBREOFFICE_IMAGE_TAG }}
+        app.kubernetes.io/name: libreoffice
+        app.kubernetes.io/component: libreoffice
+        app.kubernetes.io/managed-by: ansible
         git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
