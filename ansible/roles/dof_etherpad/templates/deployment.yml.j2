@@ -7,8 +7,8 @@ metadata:
     app: etherpad
     app.kubernetes.io/part-of: schulcloud-verbund
     app.kubernetes.io/version: {{ ETHERPAD_IMAGE_TAG }}
-    git.branch: {{ ETHERPAD_BRANCH_NAME }}
-    git.repo: {{ ETHERPAD_REPO_NAME }}
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ ETHERPAD_REPLICAS|default(1, true) }}
   strategy:
@@ -25,8 +25,8 @@ spec:
         app: etherpad
         app.kubernetes.io/part-of: schulcloud-verbund
         app.kubernetes.io/version: {{ ETHERPAD_IMAGE_TAG }}
-        git.branch: {{ ETHERPAD_BRANCH_NAME }}
-        git.repo: {{ ETHERPAD_REPO_NAME }}
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
         prometheus.io/scrape: 'true'
         prometheus.io/port: '8080'

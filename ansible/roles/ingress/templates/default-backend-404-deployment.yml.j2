@@ -6,9 +6,9 @@ metadata:
   labels:
     app: default-backend-404
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ NGINX_IMAGE_TAG }}
-    git.branch: {{ NGINX_BRANCH_NAME }}
-    git.repo: {{ NGINX_REPO_NAME }}
+    # app.kubernetes.io/version: {{ NGINX_IMAGE_TAG }}
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: 1
   selector:
@@ -19,9 +19,9 @@ spec:
       labels:
         app: default-backend-404
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ NGINX_IMAGE_TAG }}
-        git.branch: {{ NGINX_BRANCH_NAME }}
-        git.repo: {{ NGINX_REPO_NAME }}
+        # app.kubernetes.io/version: {{ NGINX_IMAGE_TAG }}
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
       - name: default-backend-404
