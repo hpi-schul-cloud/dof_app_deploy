@@ -930,7 +930,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: true
