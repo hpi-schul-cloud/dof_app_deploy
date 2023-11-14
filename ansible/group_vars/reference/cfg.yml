@@ -7,5 +7,3 @@ ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
 H5P_FRAME_SRC_URLS: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/"
 
 BETTERMARKS_CSP_URL: "https://apps-ci00.bettermarks.com"
-
-FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED: "false"

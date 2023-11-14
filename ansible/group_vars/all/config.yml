@@ -909,7 +909,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
