@@ -827,11 +827,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
     value: "false"
     server: true
@@ -925,6 +920,10 @@ configuration_all:
     nuxtclient: false
   CLAMAV__SERVICE_PORT:
     value: "3310"
+    server: true
+    client: false
+    nuxtclient: false
+  ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
     server: true
     client: false
     nuxtclient: false
