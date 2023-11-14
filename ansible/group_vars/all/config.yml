@@ -904,12 +904,12 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
