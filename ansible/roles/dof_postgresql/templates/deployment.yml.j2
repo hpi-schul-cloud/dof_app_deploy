@@ -6,7 +6,7 @@ metadata:
   labels:
     app: postgres
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ quote POSTGRES_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ POSTGRES_IMAGE_TAG }}"
     app.kubernetes.io/name: postgres
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: ansible
@@ -24,7 +24,7 @@ spec:
       labels:
         app: postgres
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ quote POSTGRES_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ POSTGRES_IMAGE_TAG }}"
         app.kubernetes.io/name: postgres
         app.kubernetes.io/component: database
         app.kubernetes.io/managed-by: ansible
