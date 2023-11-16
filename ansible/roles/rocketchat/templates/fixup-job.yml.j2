@@ -14,14 +14,6 @@ metadata:
 spec:
   schedule: "*/5 * * * *"
   jobTemplate:
-    labels:
-      app: rocketchat
-      app.kubernetes.io/part-of: schulcloud-verbund
-      app.kubernetes.io/name: rocketchat-cleanup
-      app.kubernetes.io/component: chat
-      app.kubernetes.io/managed-by: ansible
-      git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
-      git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       activeDeadlineSeconds: 300
       template:
@@ -55,3 +47,11 @@ spec:
               - key: update.sh
                 path: update.sh
           restartPolicy: Never
+        labels:
+          app: rocketchat
+          app.kubernetes.io/part-of: schulcloud-verbund
+          app.kubernetes.io/name: rocketchat-cleanup
+          app.kubernetes.io/component: chat
+          app.kubernetes.io/managed-by: ansible
+          git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+          git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
