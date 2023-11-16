@@ -63,7 +63,7 @@ jobs:
           # convert yaml to bash env vars to get git tags
           # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
-          sed -e "s/IMAGE_TAG: /BRANCH_NAME=/g" version.yml >> branchname.yml
+          sed -e "s/IMAGE_TAG: /BRANCH_NAME=/g" version.yml >> branch_name.yml
       - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-server
