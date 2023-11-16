@@ -6,7 +6,7 @@ metadata:
   labels:
     app: clamav
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ CLAMAV_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ CLAMAV_IMAGE_TAG }}"
     app.kubernetes.io/name: clamav
     app.kubernetes.io/component: antivirus
     app.kubernetes.io/managed-by: ansible
@@ -24,7 +24,7 @@ spec:
       labels:
         app: clamav
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ CLAMAV_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ CLAMAV_IMAGE_TAG }}"
         app.kubernetes.io/name: clamav
         app.kubernetes.io/component: antivirus
         app.kubernetes.io/managed-by: ansible

@@ -7,7 +7,7 @@ metadata:
   labels:
     app: erwinidm
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ ERWINIDM_IMAGE_TAG }}"
     app.kubernetes.io/name: erwinidm
     app.kubernetes.io/component: idm
     app.kubernetes.io/managed-by: ansible
@@ -30,7 +30,7 @@ spec:
       labels:
         app: erwinidm
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ ERWINIDM_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ ERWINIDM_IMAGE_TAG }}"
         app.kubernetes.io/name: erwinidm
         app.kubernetes.io/component: idm
         app.kubernetes.io/managed-by: ansible

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: etherpad
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ ETHERPAD_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ ETHERPAD_IMAGE_TAG }}"
     app.kubernetes.io/name: etherpad
     app.kubernetes.io/component: etherpad
     app.kubernetes.io/managed-by: ansible
@@ -27,7 +27,7 @@ spec:
       labels:
         app: etherpad
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ ETHERPAD_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ ETHERPAD_IMAGE_TAG }}"
         app.kubernetes.io/name: etherpad
         app.kubernetes.io/component: etherpad
         app.kubernetes.io/managed-by: ansible

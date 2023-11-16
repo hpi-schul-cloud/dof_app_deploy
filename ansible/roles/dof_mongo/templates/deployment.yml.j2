@@ -7,7 +7,7 @@ metadata:
   labels:
     app: mongo
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ MONGO_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
     app.kubernetes.io/name: mongo
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: ansible
@@ -27,7 +27,7 @@ spec:
       labels:
         app: mongo
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ MONGO_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
         app.kubernetes.io/name: mongo
         app.kubernetes.io/component: database
         app.kubernetes.io/managed-by: ansible

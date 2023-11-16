@@ -7,7 +7,7 @@ metadata:
   labels:
     app: redis
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ REDIS_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ REDIS_IMAGE_TAG }}"
     app.kubernetes.io/name: redis
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: ansible
@@ -25,7 +25,7 @@ spec:
       labels:
         app: redis
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ REDIS_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ REDIS_IMAGE_TAG }}"
         app.kubernetes.io/name: redis
         app.kubernetes.io/component: database
         app.kubernetes.io/managed-by: ansible

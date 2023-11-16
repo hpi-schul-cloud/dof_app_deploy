@@ -6,7 +6,7 @@ metadata:
   labels:
     app: rocketchat
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ ROCKETCHAT_IMAGE_TAG }}"
     app.kubernetes.io/name: rocketchat
     app.kubernetes.io/component: chat
     app.kubernetes.io/managed-by: ansible
@@ -22,7 +22,7 @@ spec:
       labels:
         app: rocketchat
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ ROCKETCHAT_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ ROCKETCHAT_IMAGE_TAG }}"
         app.kubernetes.io/name: rocketchat
         app.kubernetes.io/component: chat
         app.kubernetes.io/managed-by: ansible

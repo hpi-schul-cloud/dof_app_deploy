@@ -6,7 +6,7 @@ metadata:
   labels:
     app: libreoffice
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/version: {{ LIBREOFFICE_IMAGE_TAG }}
+    app.kubernetes.io/version: "{{ LIBREOFFICE_IMAGE_TAG }}"
     app.kubernetes.io/name: libreoffice
     app.kubernetes.io/component: libreoffice
     app.kubernetes.io/managed-by: ansible
@@ -29,7 +29,7 @@ spec:
       labels:
         app: libreoffice
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/version: {{ LIBREOFFICE_IMAGE_TAG }}
+        app.kubernetes.io/version: "{{ LIBREOFFICE_IMAGE_TAG }}"
         app.kubernetes.io/name: libreoffice
         app.kubernetes.io/component: libreoffice
         app.kubernetes.io/managed-by: ansible
