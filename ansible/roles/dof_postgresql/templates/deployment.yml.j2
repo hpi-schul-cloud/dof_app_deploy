@@ -5,6 +5,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: postgres
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ POSTGRES_IMAGE_TAG }}"
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ POSTGRES_REPLICAS|default(1, true) }}
   selector:
@@ -16,6 +23,13 @@ spec:
     metadata:
       labels:
         app: postgres
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ POSTGRES_IMAGE_TAG }}"
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
       - name: postgres
