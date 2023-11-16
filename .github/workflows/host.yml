@@ -28,17 +28,34 @@ on:
         required: true
       PROXY_CREDENTIALS:
         required: false
-      RC_WEBHOOK: 
+      RC_WEBHOOK:
         required: true
 
 permissions:
   contents: read
 
 jobs:
+  branch_name:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+    steps:
+      - run: |
+          temp=${{ github.event.client_payload.branch }}
+          git_ref_name=${temp:-'${{ github.event.inputs.branch_name }}'}
+          echo "git_ref_name=$git_ref_name" >> $GITHUB_ENV
+          echo git_ref_name $git_ref_name
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${git_ref_name}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
   set_versions:
     runs-on: ubuntu-latest
     if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
-    concurrency: 
+    needs:
+      - branch_name
+    concurrency:
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
     environment: ${{ inputs.host_name }}
@@ -48,6 +65,7 @@ jobs:
       # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
       K8S_AUTH_PROXY: ${{ vars.PROXY_URL }}
       K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH: ${{ secrets.PROXY_CREDENTIALS }}
+      repos: "schulcloud-server schulcloud-client nuxt-client superhero-dashboard schulcloud-calendar antivirus_check_service version-aggregator dof_app_deploy h5p-staticfiles-server"
     steps:
       - run: mkdir repo
       - uses: actions/checkout@v3
@@ -128,6 +146,20 @@ jobs:
           cp dof_app_deploy/ansible/hosts ../ansible
           cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
+
+      - name: Labels
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
+        run: |
+          for i in ${{ env.repos }}; do
+            branchname=§(echo ${{ needs.branch_name.outputs.branch }})
+            ansible_varname=$(echo ${{ i }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
+            filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
+            reponame=$(echo ${filename} | tr _ - )
+            echo "${ansible_varname}_IMAGE_TAG: ${{ inputs.cfg_version }}" >> ${i}_host/$filename.yml
+            echo "${ansible_varname}_BRANCH_NAME: ${branchname}" >> ${i}_host/$filename.yml
+            echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ${i}_host/$filename.yml
+          done
+
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
       - uses: actions/upload-artifact@v3
         with:
@@ -137,7 +169,7 @@ jobs:
         run: |
           python3 -m pip install kubernetes
           python3 -m pip install urllib3~=1.26.16
-          
+
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
         run: |
@@ -154,6 +186,7 @@ jobs:
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
+
       - name: Send Notification to Rocket Chat
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: always() && contains(inputs.host_name, 'ref') || contains(inputs.host_name, 'prod')
@@ -163,4 +196,3 @@ jobs:
           url: ${{ secrets.RC_WEBHOOK }}
           channel: '#release'
           username: Autodeployment Info
-
