@@ -1,0 +1,9 @@
+SCHULCLOUD_SERVER_REPO_NAME: schulcloud-server
+SCHULCLOUD_CLIENT_REPO_NAME: schulcloud-client
+NUXT_CLIENT_REPO_NAME: nuxt-client
+SUPERHERO_DASHBOARD_REPO_NAME: superhero-dashboard
+SCHULCLOUD_CALENDAR_REPO_NAME: schulcloud-calendar
+ANTIVIRUS_CHECK_SERVICE_REPO_NAME: antivirus-check-service
+VERSION_AGGREGATOR_REPO_NAME: version-aggregator
+DOF_APP_DEPLOY_REPO_NAME: dof-app-deploy
+H5P_STATICFILES_SERVER_REPO_NAME: h5p-staticfiles-server
