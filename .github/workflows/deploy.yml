@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
+        repos:
          - schulcloud-server
          - schulcloud-client
          - nuxt-client
@@ -71,9 +71,12 @@ jobs:
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
+          reponame=$(echo ${filename} | tr _ - )
           for i in ${{ env.tennens }}; do
             mkdir -pv ansible/host_vars/${i}_host
-            echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml 
+            echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_BRANCH_NAME: ${{ inputs.branch }}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
@@ -81,7 +84,7 @@ jobs:
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
-          
+
   create_artifacts_workspaces:
     runs-on: ubuntu-latest
     needs:
@@ -115,7 +118,7 @@ jobs:
       bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
   deploy_dbc_dev:
-    needs: 
+    needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
@@ -127,7 +130,7 @@ jobs:
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
 
   deploy_nbc_dev:
-    needs: 
+    needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
@@ -139,7 +142,7 @@ jobs:
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
 
   deploy_brb_dev:
-    needs: 
+    needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main

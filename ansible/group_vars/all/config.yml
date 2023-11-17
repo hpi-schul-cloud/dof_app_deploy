@@ -85,6 +85,16 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
+  H5P_IMG_SRC_URLS:
+    value: ""
+    server: false
+    client: false
+    nuxtclient: true
+  H5P_SCRIPT_SRC_URLS:
+    value: "https://{{ DOMAIN }}/h5pstatics/editor/scripts/"
+    server: false
+    client: false
+    nuxtclient: true
   SECURITY_HEADERS:
     value: "true"
     server: false
@@ -628,12 +638,12 @@ configuration_all:
     client: true
     nuxtclient: false
   H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-2"
+    value: "s3-eu-central-1"
     server: true
     client: false
     nuxtclient: false
   H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-2.ionoscloud.com"
+    value: "https://s3-eu-central-1.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
@@ -827,11 +837,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
     value: "false"
     server: true
@@ -908,7 +913,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-
+  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
     server: true
@@ -921,6 +930,10 @@ configuration_all:
     nuxtclient: false
   CLAMAV__SERVICE_PORT:
     value: "3310"
+    server: true
+    client: false
+    nuxtclient: false
+  ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
     server: true
     client: false
     nuxtclient: false

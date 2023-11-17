@@ -8,17 +8,17 @@ on:
         required: true
         type: string
       host_name:
-         required: true
-         type: string
+        required: true
+        type: string
       host_group:
-         required: true
-         type: string
+        required: true
+        type: string
       host_stage:
-         required: true
-         type: string
+        required: true
+        type: string
       execute_group:
-         required: true
-         type: string
+        required: true
+        type: string
     secrets:
       token:
         required: true
@@ -40,7 +40,7 @@ jobs:
   set_versions:
     runs-on: ubuntu-latest
     if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
-    concurrency: 
+    concurrency:
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
     environment: ${{ inputs.host_name }}
@@ -59,6 +59,7 @@ jobs:
           # convert yaml to bash env vars to get git tags
           # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
+          sed -e "s/IMAGE_TAG: /BRANCH_NAME=/g" version.yml >> branch_name.yml
       - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-server
@@ -162,6 +163,7 @@ jobs:
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
+
       - name: Send Notification to Rocket Chat
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: always() && contains(inputs.host_name, 'ref') || contains(inputs.host_name, 'prod')
@@ -171,4 +173,3 @@ jobs:
           url: ${{ secrets.RC_WEBHOOK }}
           channel: '#release'
           username: Autodeployment Info
-
