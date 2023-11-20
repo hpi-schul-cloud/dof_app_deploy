@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Branch or tag'     
+        description: 'Branch or tag'
         required: true
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
   clean:
     needs:
       - branch_name
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/clean_workflow.yml@BC-4710-new-tldraw-manage
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/clean_workflow.yml@main
     with:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
