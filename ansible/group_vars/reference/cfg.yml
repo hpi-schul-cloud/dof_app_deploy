@@ -7,3 +7,6 @@ ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
 H5P_FRAME_SRC_URLS: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/"
 
 BETTERMARKS_CSP_URL: "https://apps-ci00.bettermarks.com"
+
+TLDRAW_CLIENT_REPLICAS: 3
+TLDRAW_SERVER_REPLICAS: 3
