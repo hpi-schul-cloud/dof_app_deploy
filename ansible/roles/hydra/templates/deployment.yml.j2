@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/name: hydra
     app.kubernetes.io/component: oauth
     app.kubernetes.io/managed-by: ansible
-    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.branch: "{{ DOF_APP_DEPLOY_BRANCH_NAME }}"
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ HYDRA_REPLICAS|default(1, true) }}
@@ -31,7 +31,7 @@ spec:
         app.kubernetes.io/name: hydra
         app.kubernetes.io/component: oauth
         app.kubernetes.io/managed-by: ansible
-        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.branch: "{{ DOF_APP_DEPLOY_BRANCH_NAME }}"
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
