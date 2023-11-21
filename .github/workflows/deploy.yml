@@ -72,7 +72,7 @@ jobs:
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
           reponame=$(echo ${filename} | tr _ - )
-          branch_varname=$(echo ${{ inputs.branch }} | tr [:cntrl:]  | tr / \. | tr [:blank:] _ )
+          branch_varname=$(echo ${{ inputs.branch }} | tr -d [:cntrl:]  | tr / \. | tr [:blank:] _ )
           for i in ${{ env.tennens }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
