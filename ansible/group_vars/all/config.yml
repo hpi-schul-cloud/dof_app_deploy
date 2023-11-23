@@ -837,11 +837,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
     value: "false"
     server: true
@@ -918,7 +913,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-
+  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
     server: true

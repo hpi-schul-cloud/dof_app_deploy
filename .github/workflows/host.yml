@@ -8,17 +8,17 @@ on:
         required: true
         type: string
       host_name:
-         required: true
-         type: string
+        required: true
+        type: string
       host_group:
-         required: true
-         type: string
+        required: true
+        type: string
       host_stage:
-         required: true
-         type: string
+        required: true
+        type: string
       execute_group:
-         required: true
-         type: string
+        required: true
+        type: string
     secrets:
       token:
         required: true
@@ -26,10 +26,12 @@ on:
         required: true
       KUBECONFIG:
         required: true
-      PROXY_CREDENTIALS:
-        required: false
       RC_WEBHOOK: 
         required: true
+      # Not used, kept for compatibility with already running workflows
+      # Can be removed later
+      PROXY_CREDENTIALS:
+        required: false
 
 permissions:
   contents: read
@@ -38,16 +40,10 @@ jobs:
   set_versions:
     runs-on: ubuntu-latest
     if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
-    concurrency: 
+    concurrency:
       group: ${{ inputs.host_name }}
       cancel-in-progress: true
     environment: ${{ inputs.host_name }}
-    env:
-      # Necessary for ansible k8s module (doesn't use proxy defined in kubeconfig)
-      # https://github.com/kubernetes-client/python/issues/1862
-      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
-      K8S_AUTH_PROXY: ${{ vars.PROXY_URL }}
-      K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH: ${{ secrets.PROXY_CREDENTIALS }}
     steps:
       - run: mkdir repo
       - uses: actions/checkout@v3
@@ -63,6 +59,8 @@ jobs:
           # convert yaml to bash env vars to get git tags
           # for example SCHULCLOUD_SERVER_IMAGE_TAG to SCHULCLOUD_SERVER_VERSION
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
+          sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
+          echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
       - uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/schulcloud-server
@@ -135,8 +133,7 @@ jobs:
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
       - shell: bash
         run: |
-          python3 -m pip install kubernetes
-          python3 -m pip install urllib3~=1.26.16
+          python3 -m pip install kubernetes 'urllib3>=1.26.16'
           
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
@@ -149,11 +146,25 @@ jobs:
         run: |
           mkdir files
           echo "${{ secrets.KUBECONFIG }}" > files/config
+      # It's necessary for the ansible k8s module to define proxy options as environment vars 
+      # (doesn't use the proxy defined in kubeconfig)
+      # https://github.com/kubernetes-client/python/issues/1862
+      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
+      # Format in kubeconfig is <protocoll>://<user>:<password>@<domain>:<port>
+      # Set K8S_AUTH_PROXY=<protocoll>://<domain>:<port>
+      # Set K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=<user>:<password>
+      # If proxy-url is not defined in the kubeconfig no variables are set
+      - name: Set proxy environment variable if included in the kubeconfig
+        working-directory: ${{github.workspace }}/ansible/roles/sys/files
+        run: |
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
       - run: ansible-playbook ./playbook_rollout.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
+
       - name: Send Notification to Rocket Chat
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: always() && contains(inputs.host_name, 'ref') || contains(inputs.host_name, 'prod')
@@ -163,4 +174,3 @@ jobs:
           url: ${{ secrets.RC_WEBHOOK }}
           channel: '#release'
           username: Autodeployment Info
-
