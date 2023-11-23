@@ -121,9 +121,18 @@ jobs:
       - run: |
           mkdir files
           echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
-      - name: delete namespaces
+      - name: delete custom resources and namespaces 
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
+          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config delete --ignore-not-found=true ns brb-$branch_identifier nbc-$branch_identifier default-$branch_identifier
       - name: remove kubeconfig
         run: |
