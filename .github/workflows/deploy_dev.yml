@@ -34,8 +34,8 @@ jobs:
           path: ${{github.workspace }}/ansible.tar
       - shell: bash
         run: |
-          python3 -m pip install kubernetes
-          
+          python3 -m pip install kubernetes 'urllib3>=1.26.16'
+
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
@@ -47,6 +47,19 @@ jobs:
         run: |
           mkdir files
           echo "${{ secrets.KUBECONFIG }}" > files/config
+      # It's necessary for the ansible k8s module to define proxy options as environment vars 
+      # (doesn't use the proxy defined in kubeconfig)
+      # https://github.com/kubernetes-client/python/issues/1862
+      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
+      # Format in kubeconfig is <protocoll>://<user>:<password>@<domain>:<port>
+      # Set K8S_AUTH_PROXY=<protocoll>://<domain>:<port>
+      # Set K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=<user>:<password>
+      # If proxy-url is not defined in the kubeconfig no variables are set
+      - name: Set proxy environment variable if included in the kubeconfig
+        working-directory: ${{github.workspace }}/ansible/roles/sys/files
+        run: |
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
+          yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
       - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
