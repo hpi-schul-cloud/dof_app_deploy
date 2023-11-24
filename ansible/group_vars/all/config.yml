@@ -937,6 +937,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_NEST_SYSTEMS_API_ENABLED:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
     server: true
     client: false
