@@ -109,6 +109,12 @@ jobs:
           path: repo/version-aggregator
           token: ${{ secrets.token }}
           ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
+      - uses: actions/checkout@v3
+        with:
+          repository: hpi-schul-cloud/tldraw-client
+          path: repo/tldraw-client
+          token: ${{ secrets.token }}
+          ref: ${{ env.TLDRAW_CLIENT_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible

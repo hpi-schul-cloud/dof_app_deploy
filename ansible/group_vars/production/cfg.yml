@@ -6,3 +6,5 @@ H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
+
+FEATURE_TLDRAW_ENABLED: "false"
