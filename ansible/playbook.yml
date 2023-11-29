@@ -32,10 +32,13 @@
     - superhero-dashboard
     - schulcloud-calendar-core
     - schulcloud-calendar-init
+    - h5p-library-management
     - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator
     - rocketchat
     - mongodb_query_exporter
+    - tldraw-client-core
     - ingress
     - post_deployment
+    
