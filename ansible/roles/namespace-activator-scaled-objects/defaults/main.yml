@@ -17,7 +17,8 @@ deployments_for_scaled_objects:
   - management-deployment
   - nuxtclient-deployment
   - oidcmock-deployment
-  - redis-deployment
   - rocketchat-deployment
   - shd-deployment
   - version-aggregator-deployment
+  - tldraw-deployment
+  - tldraw-client-deployment

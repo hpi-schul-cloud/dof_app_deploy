@@ -224,15 +224,3 @@ default_ingress:
   h5p-statics:
     path: /h5pstatics
     with: WITH_H5P_EDITOR
-  tldraw_client:
-    path: /tldraw
-    serviceName: tldraw-client-svc
-    servicePort: "{{ PORT_TLDRAW_CLIENT }}"
-  tldraw_client_runtime_config:
-    path: /tldraw-client-runtime.config.json
-    serviceName: tldraw-client-svc
-    servicePort: "{{ PORT_TLDRAW_CLIENT }}"
-  static:
-    path: /static
-    serviceName: tldraw-client-svc
-    servicePort: "{{ PORT_TLDRAW_CLIENT }}"

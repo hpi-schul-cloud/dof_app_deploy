@@ -942,58 +942,12 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  TLDRAW_URI:
-    value: "http://tldraw-svc:3349/api/v3"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: true
-  TLDRAW__GC_ENABLED:
-    value: "true"
     server: true
     client: false
     nuxtclient: false
-  TLDRAW__SOCKET_PORT:
-    value: "3345"
-    server: true
-    client: false
-    nuxtclient: false
-  TLDRAW__PING_TIMEOUT:
-    value: "30000"
-    server: true
-    client: false
-    nuxtclient: false
-  TLDRAW__DB_COLLECTION_NAME:
-    value: "drawings"
-    server: true
-    client: false
-    nuxtclient: false
-  TLDRAW__DB_FLUSH_SIZE:
-    value: 400
-    server: true
-    client: false
-    nuxtclient: false
-  TLDRAW__DB_MULTIPLE_COLLECTIONS:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  PORT_TLDRAW:
-    value: "3345"
-    server: true
-    client: false
-    nuxtclient: false
-  PORT_TLDRAW_MANAGEMENT:
-    value: "3349"
-    server: true
-    client: false
-    nuxtclient: false
-  PORT_TLDRAW_CLIENT:
-    value: "3046"
+  TLDRAW_URI:
+    value: "http://tldraw-server-svc:3349"
     server: true
     client: false
     nuxtclient: false
