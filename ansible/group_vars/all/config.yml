@@ -86,7 +86,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: ""
+    value: "https://h5p.org/"
     server: false
     client: false
     nuxtclient: true

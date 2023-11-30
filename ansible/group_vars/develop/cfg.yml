@@ -8,7 +8,7 @@ ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
 
-FEATURE_H5P_EDITOR_ENABLED: "false"
+FEATURE_H5P_EDITOR_ENABLED: "true"
 
 BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
