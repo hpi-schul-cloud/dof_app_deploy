@@ -48,6 +48,12 @@ spec:
             value: "10000"
           - name: MAILDROP_RETRY_DELAY
             value: "180"
+          - name: MAILDROP_RETRY_EXCHANGE
+            value: "retry-mail-drop-v2"
+          - name: MAILDROP_RETRY_ROUTING_KEY
+            value: "retry-mail-drop-v2"
+          - name: MAILDROP_RETRY_QUEUE
+            value: "retry-mail-drop-v2"
         resources:
           limits:
             cpu: {{ MAILDROP_CPU_LIMITS|default("1000m", true) }}
