@@ -46,6 +46,8 @@ spec:
             value: "10000"
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_WRITETIMEOUT
             value: "10000"
+          - name: MAILDROP_RETRY_DELAY
+            value: "2700"
         resources:
           limits:
             cpu: {{ MAILDROP_CPU_LIMITS|default("1000m", true) }}
