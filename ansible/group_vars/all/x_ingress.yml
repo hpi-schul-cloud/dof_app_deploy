@@ -224,3 +224,4 @@ default_ingress:
   h5p-statics:
     path: /h5pstatics
     with: WITH_H5P_EDITOR
+    
