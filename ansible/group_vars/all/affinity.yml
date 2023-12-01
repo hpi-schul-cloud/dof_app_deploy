@@ -1,0 +1,2 @@
+ANIT_AFFINITY_NODEPOOL_ENABLE = true
+ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY = "cloud.ionos.com/nodepool-name"
