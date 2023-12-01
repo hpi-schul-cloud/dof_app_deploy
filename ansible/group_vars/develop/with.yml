@@ -3,12 +3,6 @@ WITH_SCHULCLOUD_INIT: true
 WITH_CALENDAR_INIT: true
 WITH_ERWINIDM: true
 WITH_OIDCMOCK: true
-<<<<<<< HEAD
-WITH_H5P_LIBRARY_MANAGEMENT: false
-WITH_H5P_EDITOR: false
-WITH_TLDRAW: true
-WITH_API_ADMIN: true
-=======
 WITH_H5P_LIBRARY_MANAGEMENT: true
 WITH_H5P_EDITOR: true
->>>>>>> origin/THR-56-knowledge-transfer-showcase
+WITH_H5P_PROXY: true
