@@ -20,7 +20,7 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: configmap.yml.j2
-    apply: yes
+    apply: true
   when: WITH_OIDCMOCK
 
 - name: remove Configmap

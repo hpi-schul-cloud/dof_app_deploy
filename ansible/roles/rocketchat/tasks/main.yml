@@ -15,7 +15,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
-      apply: yes
+      apply: true
 
   - name: Secret by 1Password
     kubernetes.core.k8s:
@@ -35,7 +35,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: fixup-configmap.yml.j2
-      apply: yes
+      apply: true
 
   - name: fixup job
     kubernetes.core.k8s:

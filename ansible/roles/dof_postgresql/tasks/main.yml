@@ -37,7 +37,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
-      apply: yes
+      apply: true
     when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
       
   - name: remove Configmap
@@ -55,7 +55,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: configmap-init.yml.j2
-      apply: yes
+      apply: true
     when: WITH_DATABASES
 
   - name: remove init scripts Configmap
@@ -90,7 +90,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
-      apply: yes
+      apply: true
     when: WITH_DATABASES
 
   - name: remove Deployment

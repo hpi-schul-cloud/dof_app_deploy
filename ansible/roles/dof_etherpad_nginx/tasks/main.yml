@@ -9,7 +9,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: configmap-files.yml.j2
-      apply: yes
+      apply: true
       
   - name: Deployment
     kubernetes.core.k8s:
