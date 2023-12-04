@@ -74,6 +74,7 @@ spec:
           items:
           - key: ETHERPAD_API_KEY
             path: APIKEY.txt
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -109,3 +110,4 @@ spec:
                   values:
                   - etherpad
               topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

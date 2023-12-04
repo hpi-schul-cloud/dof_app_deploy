@@ -85,6 +85,7 @@ spec:
             path: clientsConfigurationContent.json
       - name: config-directory
         emptyDir: {}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -98,3 +99,4 @@ spec:
                   - schulcloud-verbund
               topologyKey: "kubernetes.io/hostname"
               namespaceSelector: {}
+{% endif %}

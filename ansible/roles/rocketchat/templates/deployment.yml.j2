@@ -79,6 +79,7 @@ spec:
       volumes:
       - name: rocketchat-uploads-data
         emptyDir: {}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -114,3 +115,4 @@ spec:
                   values:
                   - rocketchat
               topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

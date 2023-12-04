@@ -66,6 +66,7 @@ spec:
       - name: storage-pv
         persistentVolumeClaim:
           claimName: storage-pvc
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -101,3 +102,4 @@ spec:
                   values:
                   - minio
               topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

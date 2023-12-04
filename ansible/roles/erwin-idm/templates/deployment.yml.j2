@@ -85,6 +85,7 @@ spec:
           timeoutSeconds: 4
           failureThreshold: 30
           periodSeconds: 10
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -120,3 +121,4 @@ spec:
                   values:
                   - erwinidm
               topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

@@ -61,6 +61,7 @@ spec:
           requests:
             cpu: {{ MAILDROP_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MAILDROP_MEMORY_REQUESTS|default("128Mi", true) }}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -74,3 +75,4 @@ spec:
                   - schulcloud-verbund
               topologyKey: "kubernetes.io/hostname"
               namespaceSelector: {}
+{% endif %}
