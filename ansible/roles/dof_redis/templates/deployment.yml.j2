@@ -58,7 +58,7 @@ spec:
       - name: redis-data-pv
         persistentVolumeClaim:
           claimName: redis-pvc
-{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE_REDIS is defined and AFFINITY_ENABLE|bool and AFFINITY_ENABLE_REDIS|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
