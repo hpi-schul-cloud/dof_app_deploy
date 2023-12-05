@@ -83,18 +83,3 @@ spec:
       - name: mongodb-data-pv
         persistentVolumeClaim:
           claimName: mongo-pvc
-{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
-      affinity:
-        podAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 9
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/part-of
-                  operator: In
-                  values:
-                  - schulcloud-verbund
-              topologyKey: {{ AFFINITY_MONGO_TOPOLOGY_KEY }}
-              namespaceSelector: {}
-{% endif %}
