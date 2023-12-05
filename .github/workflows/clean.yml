@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Branch or tag'     
+        description: 'Branch or tag'
         required: true
 
 jobs:

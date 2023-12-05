@@ -22,6 +22,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+      apply: yes
       
   - name: Ingress
     environment:
