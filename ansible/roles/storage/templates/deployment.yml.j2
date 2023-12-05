@@ -66,7 +66,7 @@ spec:
       - name: storage-pv
         persistentVolumeClaim:
           claimName: storage-pvc
-{% if AFFINITY_ENABLE is defined and AFFINITY_STORAGE_ENABLE is defined and AFFINITY_ENABLE|bool and AFFINITY_STORAGE_ENABLE|bool %}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -78,7 +78,7 @@ spec:
                   operator: In
                   values:
                   - schulcloud-verbund
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: {{ AFFINITY_STORAGE_TOPOLOGY_KEY }}
               namespaceSelector: {}
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

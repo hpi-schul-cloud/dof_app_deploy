@@ -58,11 +58,10 @@ spec:
       - name: redis-data-pv
         persistentVolumeClaim:
           claimName: redis-pvc
-{% if AFFINITY_ENABLE is defined and AFFINITY_REDIS_ENABLE is defined and AFFINITY_ENABLE|bool and AFFINITY_REDIS_ENABLE|bool %}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-{% if AFFINITY_REDIS_ENABLE is defined and AFFINITY_REDIS_ENABLE|bool %}
           - weight: 9
             podAffinityTerm:
               labelSelector:
@@ -73,7 +72,6 @@ spec:
                   - schulcloud-verbund
               topologyKey: "kubernetes.io/hostname"
               namespaceSelector: {}
-{% endif %}
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
 {% if ANIT_AFFINITY_NODEPOOL_ENABLE is defined and ANIT_AFFINITY_NODEPOOL_ENABLE|bool %}

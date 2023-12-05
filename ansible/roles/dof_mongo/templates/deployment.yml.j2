@@ -83,11 +83,11 @@ spec:
       - name: mongodb-data-pv
         persistentVolumeClaim:
           claimName: mongo-pvc
-{% if AFFINITY_ENABLE is defined and AFFINITY_MONGO_ENABLE is defined and AFFINITY_ENABLE|bool and AFFINITY_MONGO_ENABLE|bool %}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: {{ AFFINITY_MONGO_WEIGHT }}
+          - weight: 9
             podAffinityTerm:
               labelSelector:
                 matchExpressions:

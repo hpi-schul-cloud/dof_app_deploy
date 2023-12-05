@@ -67,7 +67,7 @@ spec:
           items:
           - key: 01_erwinidm.sql
             path: 01_erwinidm.sql
-{% if AFFINITY_ENABLE is defined and AFFINITY_POSTGRES_ENABLE is defined and AFFINITY_ENABLE|bool and AFFINITY_POSTGRES_ENABLE|bool %}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -79,6 +79,6 @@ spec:
                   operator: In
                   values:
                   - schulcloud-verbund
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: {{ AFFINITY_POSTGRES_TOPOLOGY_KEY }}
               namespaceSelector: {}
 {% endif %}
