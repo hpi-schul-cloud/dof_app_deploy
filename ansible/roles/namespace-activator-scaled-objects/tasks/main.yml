@@ -11,7 +11,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: scaled-object.yml.j2
-      apply: true
+      apply: yes
     loop: "{{ deployments_for_scaled_objects }}"
 
 

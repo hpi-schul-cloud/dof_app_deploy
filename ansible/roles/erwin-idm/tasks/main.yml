@@ -20,7 +20,7 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: configmap.yml.j2
-    apply: true
+    apply: yes
   when: WITH_ERWINIDM
 
 - name: remove Configmap
@@ -106,7 +106,7 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: configmap-init.yml.j2
-    apply: true
+    apply: yes
   when: WITH_ERWINIDM
 
 - name: remove init scripts Configmap
