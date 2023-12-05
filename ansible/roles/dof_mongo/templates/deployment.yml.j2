@@ -87,7 +87,7 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
+          - weight: {{ AFFINITY_MONGO_WEIGHT }}
             podAffinityTerm:
               labelSelector:
                 matchExpressions:
