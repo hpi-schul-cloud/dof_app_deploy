@@ -1,7 +1,3 @@
 AFFINITY_ENABLE: true
-AFFINITY_MONGO_TOPOLOGY_KEY: kubernetes.io/hostname
-AFFINITY_POSTGRES_TOPOLOGY_KEY: kubernetes.io/hostname
-AFFINITY_REDIS_TOPOLOGY_KEY: kubernetes.io/hostname
-AFFINITY_STORAGE_TOPOLOGY_KEY: kubernetes.io/hostname
 ANIT_AFFINITY_NODEPOOL_ENABLE: true
 ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY: "cloud.ionos.com/nodepool-name"
