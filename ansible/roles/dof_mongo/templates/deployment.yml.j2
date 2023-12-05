@@ -95,6 +95,6 @@ spec:
                   operator: In
                   values:
                   - schulcloud-verbund
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: {{ AFFINITY_MONGO_TOPOLOGY_KEY }}
               namespaceSelector: {}
 {% endif %}
