@@ -87,7 +87,7 @@ spec:
       affinity:
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
+          - weight: 9
             podAffinityTerm:
               labelSelector:
                 matchExpressions:
@@ -95,6 +95,6 @@ spec:
                   operator: In
                   values:
                   - schulcloud-verbund
-              topologyKey: "kubernetes.io/hostname"
+              topologyKey: {{ AFFINITY_MONGO_TOPOLOGY_KEY }}
               namespaceSelector: {}
 {% endif %}
