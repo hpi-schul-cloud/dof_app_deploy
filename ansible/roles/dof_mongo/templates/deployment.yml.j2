@@ -57,7 +57,7 @@ spec:
         resources:
           limits:
             cpu: {{ MONGO_CPU_LIMITS|default("2000m", true) }}
-            memory: {{ MONGO_MEMORY_LIMITS|default("8Gi", true) }}
+            memory: {{ MONGO_MEMORY_LIMITS|default("2Gi", true) }}
           requests:
             cpu: {{ MONGO_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MONGO_MEMORY_REQUESTS|default("512Mi", true) }}
