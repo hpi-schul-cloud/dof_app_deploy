@@ -1,4 +1,4 @@
-- name: Add bitnami chart repo
+  - name: Add bitnami chart repo
     kubernetes.core.helm_repository:
       name: bitnamicharts
       repo_url: "https://charts.bitnami.com/bitnami"
