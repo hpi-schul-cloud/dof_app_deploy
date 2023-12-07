@@ -12,6 +12,7 @@
     - dof_postgresql
     - dof_rabbitmq
     - dof_redis
+    - redis_cluster
     - dof_mailcatcher
     - libreoffice
     - maildrop
