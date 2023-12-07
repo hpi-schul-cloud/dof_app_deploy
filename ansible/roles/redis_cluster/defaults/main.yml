@@ -2,8 +2,8 @@ REDISCLUSTER_CHART_VERSION: 8.6.12
 REDISCLUSTER_COMMON_LABEL: 
   app: redis-cluster
   app.kubernetes.io/part-of: schulcloud-verbund
-  git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
-  git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+  git.branch: "{{ DOF_APP_DEPLOY_BRANCH_NAME }}"
+  git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
 REDISCLUSTER_REGISTRY: docker.io
 REDISCLUSTER_REPOSITORY: bitnami/redis-cluster
 REDISCLUSTER_TAG: 7.0.12-debian-11-r15
