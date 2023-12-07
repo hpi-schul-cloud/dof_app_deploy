@@ -1,5 +1,6 @@
 REDISCLUSTER_CHART_VERSION: 8.6.12
 REDISCLUSTER_LABEL: rediscluster
+REDISCLUSTER_FULLNAME_OVERRIDE: redis-svc
 REDISCLUSTER_COMMON_LABEL: 
   app: "{{ REDISCLUSTER_LABEL }}"
   app.kubernetes.io/part-of: schulcloud-verbund

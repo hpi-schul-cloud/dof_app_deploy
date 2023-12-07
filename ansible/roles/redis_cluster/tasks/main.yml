@@ -17,6 +17,7 @@
       namespace: "{{ NAMESPACE }}"
       release_namespace: "{{ NAMESPACE }}"
       values:
+        fullnameOverride: "{{ REDISCLUSTER_FULLNAME_OVERRIDE }}"
         commonLabel: "{{ REDISCLUSTER_COMMON_LABEL }}"
         image:
           registry: "{{ REDISCLUSTER_REGISTRY }}"
