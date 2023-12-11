@@ -34,5 +34,8 @@ jobs:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-      DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
+      DEV_KUBE_CONFIG_BRB: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
+      DEV_KUBE_CONFIG_NBC: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
+      DEV_KUBE_CONFIG_THR: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
+      DEV_KUBE_CONFIG_DBC: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
       BINGO_REPO_TOKEN: ${{ secrets.BINGO_REPO_TOKEN }}
