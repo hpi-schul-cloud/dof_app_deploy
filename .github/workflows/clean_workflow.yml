@@ -123,20 +123,11 @@ jobs:
     needs:
       - examine_branch_existence
       - create_branch_identifier
-    steps:
-      - run: |
-          mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG_BRB }}" > files/config
-      - name: delete custom resources and namespaces 
-        run: |
-          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config delete --ignore-not-found=true ns brb-$branch_identifier
-      - name: remove kubeconfig
-        run: |
-          rm -rf  /config
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
+    with:
+      name: brb-${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
 
   delete_namespaces_nbc:
     runs-on: ubuntu-latest
@@ -144,20 +135,11 @@ jobs:
     needs:
       - examine_branch_existence
       - create_branch_identifier
-    steps:
-      - run: |
-          mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config
-      - name: delete custom resources and namespaces 
-        run: |
-          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config delete --ignore-not-found=true ns nbc-$branch_identifier 
-      - name: remove kubeconfig
-        run: |
-          rm -rf  /config
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
+    with:
+      name: nbc-${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
 
   delete_namespaces_dbc:
     runs-on: ubuntu-latest
@@ -165,19 +147,10 @@ jobs:
     needs:
       - examine_branch_existence
       - create_branch_identifier
-    steps:
-      - run: |
-          mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config
-      - name: delete custom resources and namespaces 
-        run: |
-          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config --namespace default-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config delete --ignore-not-found=true ns default-$branch_identifier
-      - name: remove kubeconfig
-        run: |
-          rm -rf  /config
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
+    with:
+      name: default-${{ needs.create_branch_identifier.outputs.id_branch }}
+    secrets:
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
 
 
