@@ -117,40 +117,33 @@ jobs:
     secrets:
       bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
-  delete_namespaces_brb:
+  delete_namespaces:
     runs-on: ubuntu-latest
     if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
     needs:
       - examine_branch_existence
       - create_branch_identifier
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
-    with:
-      name: brb-${{ needs.create_branch_identifier.outputs.id_branch }}
-    secrets:
-      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
-
-  delete_namespaces_nbc:
-    runs-on: ubuntu-latest
-    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
-    needs:
-      - examine_branch_existence
-      - create_branch_identifier
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
-    with:
-      name: nbc-${{ needs.create_branch_identifier.outputs.id_branch }}
-    secrets:
-      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
-
-  delete_namespaces_dbc:
-    runs-on: ubuntu-latest
-    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
-    needs:
-      - examine_branch_existence
-      - create_branch_identifier
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/namespace.yml@BC-6013-split
-    with:
-      name: default-${{ needs.create_branch_identifier.outputs.id_branch }}
-    secrets:
-      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
-
-
+    steps:
+      - run: |
+          mkdir files
+          echo "${{ secrets.DEV_KUBE_CONFIG_BRB }}" > files/config_brb
+          echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config_nbc
+          echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config_dbc
+      - name: delete custom resources and namespaces 
+        run: |
+          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
+          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns brb-$branch_identifier
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns nbc-$branch_identifier delete
+          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier} delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns default-$branch_identifier
+      - name: remove kubeconfig
+        run: |
+          rm -rf  files/config_.*
