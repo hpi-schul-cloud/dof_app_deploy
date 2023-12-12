@@ -46,6 +46,9 @@ spec:
             value: "10000"
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_WRITETIMEOUT
             value: "10000"
+          # enabled by default if its running in k8s, but lets be explicit here
+          - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+            value: "true"
           - name: MAILDROP_RETRY_DELAY
             value: "180"
           - name: MAILDROP_RETRY_EXCHANGE
@@ -61,3 +64,25 @@ spec:
           requests:
             cpu: {{ MAILDROP_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MAILDROP_MEMORY_REQUESTS|default("128Mi", true) }}
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          timeoutSeconds: 4
+          failureThreshold: 10
+          periodSeconds: 15
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+{% endif %}

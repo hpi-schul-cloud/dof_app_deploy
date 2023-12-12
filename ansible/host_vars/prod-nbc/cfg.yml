@@ -8,3 +8,7 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
+
+# Bettermarks urls
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
