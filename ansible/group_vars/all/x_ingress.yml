@@ -223,5 +223,6 @@ default_ingress:
     servicePort: 8080
   h5p-statics:
     path: /h5pstatics
-#    with: WITH_H5P_EDITOR
-    
+    serviceName: h5p-staticfiles-server-svc
+    servicePort: "{{ H5P_PORT }}"
+    with: WITH_H5P_EDITOR
