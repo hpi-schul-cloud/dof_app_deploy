@@ -136,12 +136,12 @@ jobs:
           kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
           kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns brb-$branch_identifier
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns nbc-$branch_identifier delete
           kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier} delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
           kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns default-$branch_identifier
       - name: remove kubeconfig
