@@ -67,6 +67,10 @@ default_ingress:
     path: /administration/school-settings
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_provisioning_options:
+    path: /administration/school-settings/provisioning-options
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration/datasources:
     path: /administration/datasources
     serviceName: nuxtclient-svc
@@ -224,4 +228,3 @@ default_ingress:
   h5p-statics:
     path: /h5pstatics
     with: WITH_H5P_EDITOR
-    
