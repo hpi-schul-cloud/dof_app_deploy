@@ -923,7 +923,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_VIEW_PROVISIONING_OPTIONS_ENABLED:
+  FEATURE_PROVISIONING_OPTIONS_ENABLED:
     value: "false"
     server: true
     client: false
