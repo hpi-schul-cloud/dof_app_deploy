@@ -9,6 +9,10 @@ NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"
 
-FEATURE_VIEW_PROVISIONING_OPTIONS_ENABLED: "false"
+FEATURE_PROVISIONING_OPTIONS_ENABLED: "false"
 
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
+
+# Bettermarks urls
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"

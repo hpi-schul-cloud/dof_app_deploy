@@ -6,6 +6,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: mailcatcher
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ MAILCATCHER_IMAGE_TAG }}"
+    app.kubernetes.io/name: mailcatcher
+    app.kubernetes.io/component: mailcatcher
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ MAILCATCHER_REPLICAS|default(1, true) }}
   strategy:
@@ -17,8 +24,15 @@ spec:
     metadata:
       labels:
         app: mailcatcher
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ MAILCATCHER_IMAGE_TAG }}"
+        app.kubernetes.io/name: mailcatcher
+        app.kubernetes.io/component: mailcatcher
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
-      securityContext:  
+      securityContext:
         #readOnlyRootFilesystem: true
         #runAsNonRoot: true
       containers:
@@ -39,3 +53,18 @@ spec:
           requests:
             cpu: {{ MAILCATCHER_CPU_REQUESTS|default("100m", true) }}
             memory: {{ MAILCATCHER_MEMORY_REQUESTS|default("256Mi", true) }}
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+{% endif %}

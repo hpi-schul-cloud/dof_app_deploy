@@ -6,6 +6,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: erwinidm
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ ERWINIDM_IMAGE_TAG }}"
+    app.kubernetes.io/name: erwinidm
+    app.kubernetes.io/component: idm
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ ERWINIDM_REPLICAS|default(1, true) }}
   strategy:
@@ -22,6 +29,13 @@ spec:
     metadata:
       labels:
         app: erwinidm
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ ERWINIDM_IMAGE_TAG }}"
+        app.kubernetes.io/name: erwinidm
+        app.kubernetes.io/component: idm
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:
@@ -71,3 +85,40 @@ spec:
           timeoutSeconds: 4
           failureThreshold: 30
           periodSeconds: 10
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 9
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+{% if ANIT_AFFINITY_NODEPOOL_ENABLE is defined and ANIT_AFFINITY_NODEPOOL_ENABLE|bool %}
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - erwinidm
+              topologyKey: {{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}
+{% endif %}
+          - weight: 20
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - erwinidm
+              topologyKey: "topology.kubernetes.io/zone"
+{% endif %}
