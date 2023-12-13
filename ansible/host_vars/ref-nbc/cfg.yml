@@ -7,8 +7,6 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 
-FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "false"
-
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungscloud.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
 
