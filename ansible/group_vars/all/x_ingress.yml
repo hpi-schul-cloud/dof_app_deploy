@@ -67,10 +67,6 @@ default_ingress:
     path: /administration/school-settings
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration_provisioning_options:
-    path: /administration/school-settings/provisioning-options
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration/datasources:
     path: /administration/datasources
     serviceName: nuxtclient-svc
