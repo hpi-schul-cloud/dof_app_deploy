@@ -923,6 +923,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_PROVISIONING_OPTIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   CLAMAV__SERVICE_HOSTNAME:
     value: "clamav-svc"
     server: true
@@ -934,6 +939,10 @@ configuration_all:
     client: false
     nuxtclient: false
   ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
+  BLOCKLIST_OF_EMAIL_DOMAINS:
     server: true
     client: false
     nuxtclient: false
