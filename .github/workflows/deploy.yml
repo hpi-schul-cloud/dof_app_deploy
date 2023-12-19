@@ -34,12 +34,10 @@ on:
         required: true
       DEV_KUBE_CONFIG_DBC:
         required: true
-      BINGO_REPO_TOKEN:
-        required: true
 
 
 env:
-  tennens: "brb default nbc thr"
+  tenants: "brb default nbc thr"
 
 permissions:
   contents: read
@@ -86,7 +84,7 @@ jobs:
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
           reponame=$(echo ${filename} | tr _ - )
           branch_varname=$(echo ${{ inputs.branch }} | tr -d [:cntrl:]  | tr / \. | tr [:blank:] _ )
-          for i in ${{ env.tennens }}; do
+          for i in ${{ env.tenants }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_BRANCH_NAME: ${branch_varname}" >> ansible/host_vars/${i}_host/$filename.yml
@@ -105,31 +103,22 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tennens: [ brb, default, nbc, thr ]
+        tenants: [ brb, default, nbc, thr ]
     steps:
       - shell: bash
         run: |
-          mkdir -pv ansible/host_vars/${{ matrix.tennens }}_host
+          mkdir -pv ansible/host_vars/${{ matrix.tenants }}_host
       - shell: bash
-        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tenants }}_host
         run: |
-          echo "NAMESPACE: ${{ matrix.tennens }}-${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ needs.create_branch_identifier.outputs.id_branch }}.cd.dbildungscloud.dev" >> cfg_host.yml
-      - run: tar -cf ${{ matrix.tennens }}.tar ansible
+          echo "NAMESPACE: ${{ matrix.tenants }}-${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
+          echo "DOMAIN: ${{ matrix.tenants }}-${{ needs.create_branch_identifier.outputs.id_branch }}.cd.dbildungscloud.dev" >> cfg_host.yml
+      - run: tar -cf ${{ matrix.tenants }}.tar ansible
       - uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.tennens }}
-          path: ${{github.workspace }}/${{ matrix.tennens }}.tar
+          name: ${{ matrix.tenants }}
+          path: ${{github.workspace }}/${{ matrix.tenants }}.tar
 
-
-  bingo_add_branch:
-    needs:
-      - create_branch_identifier
-    uses: hpi-schul-cloud/dof_bingo/.github/workflows/add-branch.yml@main
-    with:
-      branch: ${{ needs.create_branch_identifier.outputs.id_branch }}
-    secrets:
-      bingo_token: ${{ secrets.BINGO_REPO_TOKEN }}
 
   deploy_dbc_dev:
     needs:
