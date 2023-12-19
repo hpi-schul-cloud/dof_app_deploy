@@ -111,8 +111,8 @@ jobs:
       - shell: bash
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tenants }}_host
         run: |
-          echo "NAMESPACE: ${{ matrix.tenants }}-${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
-          echo "DOMAIN: ${{ matrix.tenants }}-${{ needs.create_branch_identifier.outputs.id_branch }}.cd.dbildungscloud.dev" >> cfg_host.yml
+          echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
+          echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.{{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tenants }}.tar ansible
       - uses: actions/upload-artifact@v3
         with:
