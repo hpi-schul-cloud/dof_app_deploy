@@ -101,7 +101,7 @@ metadata:
 spec:
   tls:
   - hosts:
-      - activate.cd.dbildungscloud.dev
+      - $(IngressHost)
   rules:
   - host: activate.cd.dbildungscloud.dev
     http:

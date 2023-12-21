@@ -1,0 +1,7 @@
+resources:
+- ../../base
+configMapGenerator:
+- name: my-config
+  literals:
+    - environment=dbc
+

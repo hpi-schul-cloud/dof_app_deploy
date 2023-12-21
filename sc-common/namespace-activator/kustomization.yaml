@@ -1,0 +1,26 @@
+resources:
+  - ../../app.yml
+
+resources:
+- overlays/dbc
+
+
+patches:
+  - target:
+      kind: Ingress
+      name: ns-activator-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: hug.blubbert
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: hug.blubbert
+
+#- name: IngressHost
+#  objref:
+#    kind: ConfigMap
+#    name: my-config
+#    apiVersion: v1
+#  fieldref:
+#    fieldpath: data.ingressHost
