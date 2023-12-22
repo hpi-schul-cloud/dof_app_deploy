@@ -37,7 +37,7 @@ on:
 
 
 env:
-  tenants: "brb default nbc thr"
+  tenants: "brb dbc nbc thr"
 
 permissions:
   contents: read
@@ -103,7 +103,7 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tenants: [ brb, default, nbc, thr ]
+        tenants: [ brb, dbc, nbc, thr ]
     steps:
       - shell: bash
         run: |
@@ -126,7 +126,7 @@ jobs:
       - create_artifacts_workspaces
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
-      host_name: default_host
+      host_name: dbc_host
       tenannt: dbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_DBC }}
