@@ -11,3 +11,5 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungsc
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
 
 FEATURE_PROVISIONING_OPTIONS_ENABLED: "false"
+
+FEATURE_CTL_TOOLS_COPY_ENABLED: "false"
