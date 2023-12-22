@@ -119,18 +119,18 @@ jobs:
       - name: delete custom resources and namespaces 
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_brb --namespace brb-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns brb-$branch_identifier
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_nbc --namespace nbc-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns nbc-$branch_identifier delete
-          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_dbc --namespace default-$branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns default-$branch_identifier
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns $branch_identifier
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier delete
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns $branch_identifier
       - name: remove kubeconfig
         run: |
           rm -rf  files/config_.*
