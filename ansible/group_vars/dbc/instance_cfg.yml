@@ -1,5 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: default
+SC_SHORTNAME: dbc
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
