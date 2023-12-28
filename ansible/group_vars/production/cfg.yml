@@ -1,4 +1,6 @@
 FEATURE_NEXBOARD_ENABLED: "false"
+FEATURE_NEXBOARD_COPY_ENABLED: "true"
+
 FEATURE_S3_BUCKET_CORS: "true"
 ES_DOMAIN: "https://repository.edusharing.dbildungscloud.de"
 ES_API_V7: "true"
