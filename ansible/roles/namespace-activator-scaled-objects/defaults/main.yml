@@ -1,5 +1,6 @@
 deployments_for_scaled_objects:
   - api-deployment
+  - admin-api-deployment
   - client-deployment
   - amqp-files-deployment
   - antivirus-webserver-deployment
@@ -22,3 +23,4 @@ deployments_for_scaled_objects:
   - version-aggregator-deployment
   - tldraw-deployment
   - tldraw-client-deployment
+  - mailcatcher-deployment
