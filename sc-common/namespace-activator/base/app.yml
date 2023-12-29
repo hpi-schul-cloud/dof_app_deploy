@@ -6,7 +6,8 @@ metadata:
   labels:
     app: ns-activator
 data:
-  EXTERNALHOSTNAME: "activate.cd.dbildungscloud.dev"
+  EXTERNALHOSTNAME: "activate.xxx.dbildungscloud.dev"
+  BASEDOMAIN: "xxx.dbildungscloud.dev"
 
 ---
 apiVersion: onepassword.com/v1
@@ -49,7 +50,7 @@ spec:
         runAsNonRoot: true
       containers:
       - name: ns-activator
-        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:1.0
+        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

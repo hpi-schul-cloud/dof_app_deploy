@@ -23,6 +23,9 @@ patches:
       - op: replace
         path: /data/EXTERNALHOSTNAME
         value: activate.thr.dbildungscloud.dev
+      - op: replace
+        path: /data/BASEDOMAIN
+        value: .thr.dbildungscloud.dev
   - target:
       kind: OnePasswordItem
       name: ns-activator-secret
