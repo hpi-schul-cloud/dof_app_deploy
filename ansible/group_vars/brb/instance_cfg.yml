@@ -1,5 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: brb
+SC_SHORTNAME: brb
 SC_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
