@@ -6,6 +6,7 @@ metadata:
   labels:
     app: redis
 spec:
+  storageClassName: {{ SC_DEFAULT_STORAGE_CLASS_NAME }}
   accessModes:
   - ReadWriteOnce
   volumeMode: Filesystem

@@ -32,7 +32,7 @@ metadata:
       error_page 503 = @errorpages;
 
       location @errorpages {
-        return 302 'https://activate.cd.dbildungscloud.dev/namespace?namespace={{ NAMESPACE }}&redirected-from-503=true';
+        return 302 'https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace?namespace={{ NAMESPACE }}&redirected-from-503=true';
       }
 {% endif %}
 {% if CLUSTER_ISSUER is defined %}

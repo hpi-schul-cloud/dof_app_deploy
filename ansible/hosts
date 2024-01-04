@@ -3,8 +3,8 @@ brb_host
 ref-brb
 prod-brb
 
-[default]
-default_host
+[dbc]
+dbc_host
 ref-dbc
 ref-audit
 prod-dbc
@@ -22,7 +22,7 @@ prod-thr
 
 [develop]
 brb_host
-default_host
+dbc_host
 nbc_host
 
 [develop:vars]
@@ -61,7 +61,7 @@ ansible_group_priority=10
 
 [sc:children]
 brb
-default
+dbc
 nbc
 thr
 develop

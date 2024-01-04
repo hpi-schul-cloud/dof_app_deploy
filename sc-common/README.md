@@ -2,24 +2,18 @@
 
 all those are one time operations
 
-## rabbitmq
-full Tutorial here: https://www.rabbitmq.com/kubernetes/operator/quickstart-operator.html
-
-This will create a new namespace: rabbitmq-system, thats where the cluster operator ... operates
-```
-kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
-```
-
 ## ldap
 we use a central ldap in the dev cluster
+```commandline
+kubectl apply -f sc-common.yml -f sc-openldap-deployment.yml -f sc-openldap-svc.yml
 ```
-kubectl apply -f sc-common.yml
-kubectl apply -f sc-openldap-deployment.yml
-kubectl apply -f sc-openldap-svc.yml
+an additionally ldap server for testing of the single school ldap implementation
+```commandline
+kubectl apply -f sc-common.yml -f sc-openldap-single-deployment.yml -f sc-openldap-single-svc.yml
 ```
-an additionally ldap server for testing of the singel school ldap implementaiton
-```
-kubectl apply -f sc-common.yml
-kubectl apply -f sc-openldap-single-deployment.yml
-kubectl apply -f sc-openldap-single-svc.yml
+
+## namespace activator
+to deploy the namespace activator for each dev-cluster kustomize is used
+```commandline
+kubectl --kubeconfig <config> apply -k namespace-activator/overlays/<tennant>
 ```

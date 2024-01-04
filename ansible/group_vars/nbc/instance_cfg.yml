@@ -1,5 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: n21
+SC_SHORTNAME: nbc
 SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
