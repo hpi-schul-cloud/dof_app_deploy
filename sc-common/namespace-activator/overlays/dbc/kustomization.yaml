@@ -1,0 +1,35 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Ingress
+      name: ns-activator-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: activate.dbc.dbildungscloud.dev
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: activate.dbc.dbildungscloud.dev
+
+  - target:
+      kind: ConfigMap
+      name: ns-activator-configmap
+    patch: |-
+      - op: replace
+        path: /data/EXTERNALHOSTNAME
+        value: activate.dbc.dbildungscloud.dev
+      - op: replace
+        path: /data/BASEDOMAIN
+        value: .dbc.dbildungscloud.dev
+  - target:
+      kind: OnePasswordItem
+      name: ns-activator-secret
+    patch: |-
+      - op: replace
+        path: /spec/itemPath
+        value: vaults/sc-dev-dbc/items/namespace-activator

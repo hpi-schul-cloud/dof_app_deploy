@@ -58,6 +58,7 @@ metadata:
   labels:
     app: mongo
 spec:
+  storageClassName: 'nfs-client'
   accessModes:
   - ReadWriteOnce
   volumeMode: Filesystem
