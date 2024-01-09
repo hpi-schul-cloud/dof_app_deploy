@@ -7,8 +7,6 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
-FEATURE_PROVISIONING_OPTIONS_ENABLED: "false"
-
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
 
 # Bettermarks urls
