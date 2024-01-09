@@ -1,4 +1,5 @@
 FEATURE_NEXBOARD_ENABLED: "false"
+FEATURE_NEXBOARD_COPY_ENABLED: "true"
 
 API_LDAP_SYNC_SVC: api-ldapsync-svc
 
@@ -10,3 +11,6 @@ BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 
 FEATURE_TLDRAW_ENABLED: "false"
+
+
+SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"
