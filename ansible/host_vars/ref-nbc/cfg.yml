@@ -9,5 +9,3 @@ NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungscloud.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
-
-FEATURE_PROVISIONING_OPTIONS_ENABLED: "false"
