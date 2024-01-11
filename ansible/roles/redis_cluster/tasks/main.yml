@@ -14,10 +14,8 @@
       wait: no
       chart_version: "{{ REDISCLUSTER_CHART_VERSION }}"
       kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
       release_namespace: "{{ NAMESPACE }}"
       values:
-        fullnameOverride: "{{ REDISCLUSTER_FULLNAME_OVERRIDE }}"
         commonLabel: "{{ REDISCLUSTER_COMMON_LABEL }}"
         image:
           registry: "{{ REDISCLUSTER_REGISTRY }}"
