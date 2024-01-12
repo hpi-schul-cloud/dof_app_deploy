@@ -928,11 +928,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_PROVISIONING_OPTIONS_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   CLAMAV__SERVICE_HOSTNAME:
     value: "clamav-svc"
     server: true
