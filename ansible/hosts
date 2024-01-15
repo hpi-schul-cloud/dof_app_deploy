@@ -17,6 +17,7 @@ ref-nbc
 prod-nbc
 
 [thr]
+thr_host
 ref-thr
 prod-thr
 
@@ -24,6 +25,7 @@ prod-thr
 brb_host
 dbc_host
 nbc_host
+thr_host
 
 [develop:vars]
 ansible_group_priority=10
