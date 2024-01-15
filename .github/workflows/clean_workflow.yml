@@ -130,7 +130,7 @@ jobs:
           kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier 
           kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_tht --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config_thr delete --ignore-not-found=true ns $branch_identifier 
           kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
