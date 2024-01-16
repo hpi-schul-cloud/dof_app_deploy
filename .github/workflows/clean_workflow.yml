@@ -115,6 +115,7 @@ jobs:
           mkdir files
           echo "${{ secrets.DEV_KUBE_CONFIG_BRB }}" > files/config_brb
           echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config_nbc
+          echo "${{ secrets.DEV_KUBE_CONFIG_THR }}" > files/config_thr
           echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config_dbc
       - name: delete custom resources and namespaces 
         run: |
@@ -126,7 +127,11 @@ jobs:
           kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
           kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier delete
+          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier 
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_thr delete --ignore-not-found=true ns $branch_identifier 
           kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
           kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
