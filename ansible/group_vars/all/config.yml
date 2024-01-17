@@ -960,3 +960,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_CTL_TOOLS_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
