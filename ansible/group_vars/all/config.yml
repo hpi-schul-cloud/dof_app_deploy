@@ -970,3 +970,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/x/VAEbDg?frameable=true"
+    server: true
+    client: false
+    nuxtclient: false
