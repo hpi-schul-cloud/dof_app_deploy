@@ -966,7 +966,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SHOW_MIGRATION_WIZARD:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
