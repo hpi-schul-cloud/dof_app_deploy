@@ -541,6 +541,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_LESSON_SHARE:
     value: "true"
     server: true
