@@ -28,7 +28,6 @@ spec:
         app.kubernetes.io/name: clamav
         app.kubernetes.io/component: antivirus
         app.kubernetes.io/managed-by: ansible
-        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
