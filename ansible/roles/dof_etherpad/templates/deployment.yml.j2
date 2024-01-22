@@ -31,7 +31,6 @@ spec:
         app.kubernetes.io/name: etherpad
         app.kubernetes.io/component: etherpad
         app.kubernetes.io/managed-by: ansible
-        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
         prometheus.io/scrape: 'true'
