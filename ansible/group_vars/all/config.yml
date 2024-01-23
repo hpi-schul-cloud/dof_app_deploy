@@ -597,7 +597,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
