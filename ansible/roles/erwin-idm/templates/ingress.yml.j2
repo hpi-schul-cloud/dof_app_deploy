@@ -5,7 +5,6 @@ metadata:
   name: {{ NAMESPACE }}-erwinidm-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
     nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
@@ -21,6 +20,7 @@ metadata:
 {% endif %}
 
 spec:
+  ingressClassName: {{ INGRESS_CLASS }}
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
@@ -34,28 +34,28 @@ spec:
     http:
       paths:
       - path: /realms/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /resources/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /js/
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /robots.txt
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: erwinidm-svc

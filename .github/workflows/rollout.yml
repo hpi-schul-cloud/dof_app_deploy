@@ -28,14 +28,13 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-audit
-      host_group: default
+      host_group: dbc
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-brb:
@@ -52,7 +51,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-dbc:
@@ -62,14 +60,13 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbc
-      host_group: default
+      host_group: dbc
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   ref-nbc:
@@ -86,7 +83,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   ref-thr:
@@ -103,7 +99,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   approve_prod_stage_1:
@@ -128,14 +123,13 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-dbc
-      host_group: default
+      host_group: dbc
       host_stage: production
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   approve_prod_stage_2:
@@ -164,7 +158,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
   
   prod-nbc:
@@ -182,7 +175,6 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
       
   prod-thr:
@@ -200,22 +192,20 @@ jobs:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  test-loadtest-01:
+  dev-loadtest-01:
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: test-loadtest-01
-      host_group: default
-      host_stage: test
+      host_name: dev-loadtest-01
+      host_group: dbc
+      host_stage: loadtest
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   infra-dbildungscloud-01:
@@ -225,13 +215,12 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: infra.dbildungscloud-01
-      host_group: default
+      host_group: dbc
       host_stage: infra
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
       ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      PROXY_CREDENTIALS: ${{ secrets.PROXY_CREDENTIALS }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 

@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ns-activator-configmap
+  namespace: sc-common
+  labels:
+    app: ns-activator
+data:
+  EXTERNALHOSTNAME: "activate.xxx.dbildungscloud.dev"
+  BASEDOMAIN: "xxx.dbildungscloud.dev"
+
+---
+apiVersion: onepassword.com/v1
+kind: OnePasswordItem
+metadata:
+  name: ns-activator-secret
+  namespace: sc-common
+  labels:
+    app: ns-activator
+spec:
+  itemPath: "vaults/sc-dev-cd/items/namespace-activator"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-activator-deployment
+  namespace: sc-common
+  labels:
+    app: ns-activator
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+  revisionHistoryLimit: 4
+  selector:
+    matchLabels:
+      app: ns-activator
+  template:
+    metadata:
+      labels:
+        app: ns-activator
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+      containers:
+      - name: ns-activator
+        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:2.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: ns-activator-configmap
+        - secretRef:
+            name: ns-activator-secret
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ns-activator-svc
+  namespace: sc-common
+  labels:
+    app: ns-activator
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: ns-activator
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ns-activator-ingress
+  namespace: sc-common
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: sc-cert-manager-clusterissuer-letsencrypt
+
+spec:
+  tls:
+  - hosts:
+      - activate.cd.dbildungscloud.dev
+  rules:
+  - host: activate.cd.dbildungscloud.dev
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: ns-activator-svc
+            port:
+              number: 8080

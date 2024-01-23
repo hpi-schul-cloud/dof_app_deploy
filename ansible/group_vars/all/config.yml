@@ -85,6 +85,16 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
+  H5P_IMG_SRC_URLS:
+    value: ""
+    server: false
+    client: false
+    nuxtclient: true
+  H5P_SCRIPT_SRC_URLS:
+    value: "https://{{ DOMAIN }}/h5pstatics/editor/scripts/"
+    server: false
+    client: false
+    nuxtclient: true
   SECURITY_HEADERS:
     value: "true"
     server: false
@@ -182,6 +192,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FILES_STORAGE__USE_STREAM_TO_ANTIVIRUS:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
     value: "104857600"
@@ -195,7 +210,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -428,6 +443,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_VISIBLE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_ALERTS_ENABLED:
     value: "true"
     server: false
@@ -482,9 +502,19 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
     value: "false"
     server: true
-    client: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED:
+    value: "true"
+    server: true
+    client: false
     nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
@@ -551,12 +581,22 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_NEXBOARD_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
     value: "false"
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_CARD_ENABLED:
+  FEATURE_SCHOOL_POLICY_ENABLED_NEW:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
     value: "false"
     server: true
     client: false
@@ -599,6 +639,26 @@ configuration_all:
     nuxtclient: false
   FEATURE_H5P_EDITOR_ENABLED:
     value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  H5P_EDITOR__S3_REGION:
+    value: "s3-eu-central-1"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_ENDPOINT:
+    value: "https://s3-eu-central-1.ionoscloud.com"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_LIBRARIES:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_CONTENT:
+    value: ""
     server: true
     client: false
     nuxtclient: false
@@ -719,6 +779,16 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
+  DASHBOARD_ANNOUNCEMENT_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  DASHBOARD_ANNOUNCEMENT_ROLES:
+    value: "teacher"
+    server: false
+    client: true
+    nuxtclient: false
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
@@ -764,11 +834,6 @@ configuration_all:
     client: true
     nuxtclient: false
   GHOST_BASE_URL:
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_CLIENT_USER_LOGIN_MIGRATION_ENABLED:
-    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -823,7 +888,74 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_GROUPS_IN_COURSE_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  CLAMAV__SERVICE_HOSTNAME:
+    value: "clamav-svc"
+    server: true
+    client: false
+    nuxtclient: false
+  CLAMAV__SERVICE_PORT:
+    value: "3310"
+    server: true
+    client: false
+    nuxtclient: false
+  ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
+  BLOCKLIST_OF_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_NEST_SYSTEMS_API_ENABLED:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_TLDRAW_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
+  TLDRAW_URI:
+    value: "http://tldraw-server-svc:3349"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_CTL_TOOLS_COPY_ENABLED:
     value: "false"
     server: true
     client: false

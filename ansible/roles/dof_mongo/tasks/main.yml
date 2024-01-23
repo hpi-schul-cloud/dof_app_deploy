@@ -66,29 +66,12 @@
       name: mongo-pvc
     when: not WITH_DATABASES
 
-  - name: Add or Update Configmap
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      template: configmap.yml.j2
-      apply: yes
-    when: WITH_DATABASES
-
-  - name: remove Configmap
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      state: absent
-      api_version: v1
-      kind: ConfigMap
-      name: mongo-configmap
-    when: not WITH_DATABASES
-
   - name: Add or Update Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+      apply: yes
     when: WITH_DATABASES
 
   - name: remove Deployment

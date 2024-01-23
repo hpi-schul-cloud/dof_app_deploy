@@ -6,6 +6,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: mongo
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ MONGO_REPLICAS|default(1, true) }}
   strategy:
@@ -19,6 +26,12 @@ spec:
     metadata:
       labels:
         app: mongo
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
+        app.kubernetes.io/name: mongo
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:
@@ -36,9 +49,6 @@ spec:
         - containerPort: 27017
           name: mongo
           protocol: TCP
-        envFrom:
-        - configMapRef:
-            name: mongo-configmap
         volumeMounts:
         - name: mongodb-data-pv
           mountPath: /data/db

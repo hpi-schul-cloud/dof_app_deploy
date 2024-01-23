@@ -5,7 +5,7 @@ metadata:
   namespace: {{ NAMESPACE }}
 spec:
   image: {{ RABBITMQ_IMAGE_NAME }}:{{ RABBITMQ_IMAGE_TAG }}
-  delayStartSeconds: {{ RABBITMQ_DELAY_START_SECSONDS|default(0, true) }}
+  delayStartSeconds: {{ RABBITMQ_DELAY_START_SECONDS|default(0, true) }}
   replicas: {{ RABBITMQ_REPLICAS|default("1", true) }}
   resources:
     limits:
@@ -16,6 +16,7 @@ spec:
       memory: {{ RABBITMQ_MEMORY_REQUESTS|default("256Mi", true) }}
   persistence:
     storage: "{{ RABBITMQ_PERSISTENCE_STORAGE|default("1Gi", true) }}"
+    storageClassName: {{ SC_DEFAULT_STORAGE_CLASS_NAME }}
   override:
     statefulSet:
       spec:

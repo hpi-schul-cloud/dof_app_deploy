@@ -4,6 +4,12 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: rocketchat
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/name: rocketchat-cleanup
+    app.kubernetes.io/component: chat
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
   name: fixup-rocketchat-job
 spec:
   schedule: "*/5 * * * *"
@@ -15,6 +21,7 @@ spec:
           containers:
           - name: fixup-rocketchat-job
             image: schulcloud/infra-tools:latest
+            imagePullPolicy: IfNotPresent
             envFrom:
             - secretRef:
                 name: rocketchat-secret
@@ -41,3 +48,26 @@ spec:
               - key: update.sh
                 path: update.sh
           restartPolicy: Never
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                    - key: app.kubernetes.io/part-of
+                      operator: In
+                      values:
+                      - schulcloud-verbund
+                  topologyKey: "kubernetes.io/hostname"
+                  namespaceSelector: {}
+{% endif %}
+        metadata:
+          labels:
+            app: rocketchat
+            app.kubernetes.io/part-of: schulcloud-verbund
+            app.kubernetes.io/name: rocketchat-cleanup
+            app.kubernetes.io/component: chat
+            app.kubernetes.io/managed-by: ansible
+            git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}

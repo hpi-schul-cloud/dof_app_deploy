@@ -5,6 +5,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: etherpad-nginx
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ ETHERPAD_NGINX_IMAGE_TAG }}"
+    app.kubernetes.io/name: etherpad-nginx
+    app.kubernetes.io/component: etherpad
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ ETHERPAD_NGINX_REPLICAS|default(1, true) }}
   strategy:
@@ -19,8 +26,14 @@ spec:
     metadata:
       labels:
         app: etherpad-nginx
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ ETHERPAD_NGINX_IMAGE_TAG }}"
+        app.kubernetes.io/name: etherpad-nginx
+        app.kubernetes.io/component: etherpad
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
-      #securityContext:  
+      #securityContext:
         #readOnlyRootFilesystem: true
         # run as user node (uid 1000)
         #runAsUser: 1000
@@ -63,3 +76,40 @@ spec:
           items:
           - key: default.conf
             path: default.conf
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 9
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+{% if ANIT_AFFINITY_NODEPOOL_ENABLE is defined and ANIT_AFFINITY_NODEPOOL_ENABLE|bool %}
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - etherpad-nginx
+              topologyKey: {{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}
+{% endif %}
+          - weight: 20
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - etherpad-nginx
+              topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

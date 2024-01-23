@@ -1,7 +1,14 @@
 FEATURE_NEXBOARD_ENABLED: "false"
+FEATURE_NEXBOARD_COPY_ENABLED: "true"
+
 FEATURE_S3_BUCKET_CORS: "true"
 ES_DOMAIN: "https://repository.edusharing.dbildungscloud.de"
 ES_API_V7: "true"
 H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"
 
-BETTERMARKS_CSP_URL: "https://apps.bettermarks.com"
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.com"
+BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
+
+FEATURE_TLDRAW_ENABLED: "false"
+
+SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"

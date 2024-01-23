@@ -1,11 +1,11 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: brb
+SC_SHORTNAME: brb
 SC_TITLE: Schul-Cloud Brandenburg
-SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEXT: 'Hier finden Sie <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://brandenburg.cloud/help/confluence/123407337\">Informationen und Hinweise zum Schuljahreswechsel</a>.'
+GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
@@ -36,6 +36,7 @@ FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
+TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
 
 # CONSENT
 FEATURE_CONSENT_NECESSARY: "false"
@@ -106,3 +107,6 @@ group_ingress:
     path: /api/v3/fwu
     serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf

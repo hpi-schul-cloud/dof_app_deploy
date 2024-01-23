@@ -25,7 +25,7 @@ mongodb_query_exporter_values:
     metricsPath: /metrics
     logLevel: debug
     global:
-      queryTimeout: "10s"
+      queryTimeout: "15s"
       maxConnection: 3
       defaultCache: 0
     aggregations:

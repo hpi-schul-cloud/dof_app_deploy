@@ -3,12 +3,12 @@ brb_host
 ref-brb
 prod-brb
 
-[default]
-default_host
+[dbc]
+dbc_host
 ref-dbc
 ref-audit
 prod-dbc
-test-loadtest-01
+dev-loadtest-01
 infra.dbildungscloud-01
 
 [nbc]
@@ -17,21 +17,23 @@ ref-nbc
 prod-nbc
 
 [thr]
+thr_host
 ref-thr
 prod-thr
 
 [develop]
 brb_host
-default_host
+dbc_host
 nbc_host
+thr_host
 
 [develop:vars]
 ansible_group_priority=10
 
-[test]
-test-loadtest-01
+[loadtest]
+dev-loadtest-01
 
-[test:vars]
+[loadtest:vars]
 ansible_group_priority=10
 
 [infra]
@@ -61,13 +63,13 @@ ansible_group_priority=10
 
 [sc:children]
 brb
-default
+dbc
 nbc
 thr
 develop
+loadtest
 reference
 production
-test
 
 [sc:vars]
 ansible_host=localhost
