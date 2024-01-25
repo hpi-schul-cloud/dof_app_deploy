@@ -26,7 +26,6 @@ spec:
         app.kubernetes.io/name: default-backend-404
         app.kubernetes.io/component: default-backend
         app.kubernetes.io/managed-by: ansible
-        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
