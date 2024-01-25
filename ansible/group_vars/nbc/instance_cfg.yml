@@ -109,6 +109,10 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 
+# SCHULCONNEX / SANIS / moin.schule CLIENT
+SCHULCONNEX__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/"
+SCHULCONNEX__TOKEN_ENDPOINT: "https://api-dienste.stage.niedersachsen-login.schule/v1/oauth2/token"
+
 # Ingress
 group_ingress:
   api_v1_roster:
