@@ -59,6 +59,8 @@ TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
 # CONSENT
 FEATURE_CONSENT_NECESSARY: "false"
 
+# MIGRATION
+MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/x/uANiEg?frameable=true"
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 # Zusätzlich freigegebene routen
