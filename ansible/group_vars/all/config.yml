@@ -960,6 +960,14 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SCHULCONNEX_CLIENT__API_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__TOKEN_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_SHOW_MIGRATION_WIZARD:
     value: "false"
     server: true
