@@ -968,5 +968,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-
-
+  FEATURE_SHOW_MIGRATION_WIZARD:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/x/VAEbDg?frameable=true"
+    server: true
+    client: false
+    nuxtclient: false
