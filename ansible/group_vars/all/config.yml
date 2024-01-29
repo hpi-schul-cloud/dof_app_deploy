@@ -597,7 +597,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -834,6 +834,11 @@ configuration_all:
     client: true
     nuxtclient: false
   GHOST_BASE_URL:
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
