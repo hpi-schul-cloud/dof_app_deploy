@@ -979,7 +979,7 @@ configuration_all:
     client: false
     nuxtclient: false
   MIGRATION_WIZARD_DOCUMENTATION_LINK:
-    value: "https://docs.dbildungscloud.de/x/VAEbDg?frameable=true"
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
     server: true
     client: false
     nuxtclient: false
