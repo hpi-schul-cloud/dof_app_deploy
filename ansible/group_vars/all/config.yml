@@ -965,3 +965,21 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SCHULCONNEX_CLIENT__API_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__TOKEN_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SHOW_MIGRATION_WIZARD:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
+    server: true
+    client: false
+    nuxtclient: false

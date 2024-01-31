@@ -24,3 +24,4 @@ deployments_for_scaled_objects:
   - tldraw-deployment
   - tldraw-client-deployment
   - mailcatcher-deployment
+  - maildrop-deployment

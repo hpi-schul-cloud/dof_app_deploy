@@ -43,6 +43,8 @@ FEATURE_CONSENT_NECESSARY: "false"
 
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
+# MIGRATION
+MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=196739599&frameable=true"
 
 ## SERVER
 AWS_REGION: eu-central-1
