@@ -597,7 +597,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -837,6 +837,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
     value: "false"
     server: true
@@ -968,5 +973,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-
-
+  FEATURE_SHOW_MIGRATION_WIZARD:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
+    server: true
+    client: false
+    nuxtclient: false

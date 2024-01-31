@@ -1,2 +1,3 @@
 KEDA_ENABLED: true
+#can not be activated yet on dev: https://github:com/kedacore/keda/issues/5442:
 SCALED_PREVIEW_GENERATOR_ENABLED: false
