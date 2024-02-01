@@ -42,10 +42,13 @@ spec:
       - name: storage
         image: {{ STORAGE_IMAGE_NAME }}
         imagePullPolicy: Always
-        args: ["server", "/data"]
+        args: ["server", "--console-address", ":9001", "/data"]
         ports:
         - containerPort: {{ STORAGE_PORT }}
           name: storage
+          protocol: TCP
+        - containerPort: 9001
+          name: storage-console
           protocol: TCP
         envFrom:
         - secretRef:
