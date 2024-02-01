@@ -44,7 +44,7 @@ spec:
         imagePullPolicy: Always
         args: ["server", "--console-address", ":9001", "/data"]
         ports:
-        - containerPort: {{ STORAGE_PORT }}
+        - containerPort: 9000
           name: storage
           protocol: TCP
         - containerPort: 9001

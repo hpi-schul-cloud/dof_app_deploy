@@ -8,8 +8,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: {{ STORAGE_PORT }}
-      targetPort: {{ STORAGE_PORT }}
+    - port: 9000
+      targetPort: 9000
       protocol: TCP
       name: storage
     - port: 9001
