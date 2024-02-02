@@ -1,6 +1,2 @@
 API_H5P_EDITOR_REPLICAS: 1
 API_H5P_LIBRARY_MANAGEMENT_REPLICAS: 1
-
-# vault and onepassword vault returned the vault id not name - search other way for automation
-H5P_EDITOR__S3_BUCKET_CONTENT: "sc-dev-cd-h5p-content-txl-bucket-0000"
-H5P_EDITOR__S3_BUCKET_LIBRARIES: "sc-dev-cd-h5p-library-txl-bucket-0000"
