@@ -155,3 +155,15 @@ jobs:
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_BRB }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
+
+  deploy_thr_dev:
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: thr_host
+      tenannt: thr
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_THR }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_THR }}

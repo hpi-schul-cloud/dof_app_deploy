@@ -541,6 +541,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_LESSON_SHARE:
     value: "true"
     server: true
@@ -928,11 +933,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_PROVISIONING_OPTIONS_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   CLAMAV__SERVICE_HOSTNAME:
     value: "clamav-svc"
     server: true
@@ -962,6 +962,29 @@ configuration_all:
     nuxtclient: false
   TLDRAW_URI:
     value: "http://tldraw-server-svc:3349"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_CTL_TOOLS_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__API_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__TOKEN_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SHOW_MIGRATION_WIZARD:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
     server: true
     client: false
     nuxtclient: false
