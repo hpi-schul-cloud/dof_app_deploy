@@ -1,5 +1,4 @@
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
-
 # Migration wizard
-FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"
+# FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"

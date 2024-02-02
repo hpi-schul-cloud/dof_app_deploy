@@ -11,8 +11,8 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungsc
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
 
 # Migration wizard
-FEATURE_SHOW_MIGRATION_WIZARD: "false"
-FEATURE_USER_MIGRATION_ENABLED: "false"
-# FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
+#FEATURE_SHOW_MIGRATION_WIZARD: "false"
+#FEATURE_USER_MIGRATION_ENABLED: "false"
+#FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
 
 FEATURE_CTL_TOOLS_COPY_ENABLED: "false"
