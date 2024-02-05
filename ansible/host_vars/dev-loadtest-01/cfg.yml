@@ -1,6 +1,5 @@
 NAMESPACE: loadtest-01
 DOMAIN: dev.loadtest-01.dbildungscloud.dev
-FEATURE_NEXBOARD_ENABLED: "false"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 CLUSTER_ISSUER: sc-cert-manager-clusterissuer-letsencrypt

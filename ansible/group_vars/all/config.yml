@@ -957,6 +957,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
+    value: "false"
     server: true
     client: false
     nuxtclient: false

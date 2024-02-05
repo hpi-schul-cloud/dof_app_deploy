@@ -1,7 +1,6 @@
 NAMESPACE: brandenburg
 DOMAIN: staging.brandenburg.dbildungscloud.org
 
-FEATURE_NEXBOARD_ENABLED: "false"
 FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 
 DISPLAY_REQUEST_LEVEL: -1
