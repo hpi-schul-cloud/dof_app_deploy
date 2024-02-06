@@ -109,6 +109,10 @@ default_ingress:
     path: /cfiles
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  media-shelf:
+    path: /media-shelf
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   migration:
     path: /migration
     serviceName: nuxtclient-svc
