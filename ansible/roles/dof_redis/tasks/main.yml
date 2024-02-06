@@ -15,32 +15,31 @@
       name: redis-svc
     when: not WITH_REDIS
 
-  - name: Configmap
+  - name: add Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
 
-  - name: Persistent Volumes Claim
+  - name: add Persistent Volumes Claim
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
     when: WITH_REDIS
 
-  - name: Deployment
+  - name: add/run Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: deployment.yml.
+      template: deployment.yml.j2
     when: WITH_REDIS
       
   - name: remove Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      template: deployment.yml.j2
       state: absent
       api_version: apps/v1
       kind: Deployment
@@ -51,7 +50,6 @@
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
-      template: pvc.yml.j2
       state: absent
       api_version: v1
       kind: PersistentVolumeClaim
