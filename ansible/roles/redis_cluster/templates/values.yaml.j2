@@ -1,4 +1,3 @@
-commonLabel: {{ REDISCLUSTER_COMMON_LABEL }}
 image:
   registry: {{ REDISCLUSTER_REGISTRY }}
   repository: {{ REDISCLUSTER_REPOSITORY }}
@@ -19,9 +18,13 @@ cluster:
     currentNumberOfNodes: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_NODES }}
     currentNumberOfReplicas: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_REPLICAS }}
 redis:
+  podLabels: {{ REDISCLUSTER_POD_LABLES }}
   resources:
     limits: {{ REDISCLUSTER_REDIS_RESOURCES_LIMITS }}
     requests: {{ REDISCLUSTER_REDIS_RESOURCES_REQUESTS }}
+{% if REDISCLUSTER_REDIS_AFFINITY_ENABLE is defined and REDISCLUSTER_REDIS_AFFINITY_ENABLE|bool  %}
+  affinity: {{ REDISCLUSTER_REDIS_AFFINITY_RULES }}
+{% endif %}
 metrics:
   enabled: {{ REDISCLUSTER_METRICS }}
   image:

@@ -1,7 +1,7 @@
 REDISCLUSTER_CHART_VERSION: 8.6.12
 REDISCLUSTER_LABEL: rediscluster
 REDISCLUSTER_FULLNAME_OVERRIDE: redis-svc
-REDISCLUSTER_COMMON_LABEL: 
+REDISCLUSTER_POD_LABLES: 
   app: "{{ REDISCLUSTER_LABEL }}"
   app.kubernetes.io/part-of: schulcloud-verbund
   git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
@@ -21,6 +21,41 @@ REDISCLUSTER_CLUSTER_REPLICAS: 1
 REDISCLUSTER_CLUSTER_UPDATE_ADD_NODES: false
 REDISCLUSTER_CLUSTER_UPDATE_CURRENT_NODES: 6
 REDISCLUSTER_CLUSTER_UPDATE_CURRENT_REPLICAS: 1
+REDISCLUSTER_REDIS_AFFINITY_ENABLE: false
+REDISCLUSTER_REDIS_AFFINITY_RULES:
+  affinity:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 9
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values:
+              - schulcloud-verbund
+          topologyKey: "kubernetes.io/hostname"
+          namespaceSelector: {}
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 10
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - "{{ REDISCLUSTER_LABEL }}"
+          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
+      - weight: 20
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - "{{ REDISCLUSTER_LABEL }}"
+          topologyKey: "topology.kubernetes.io/zone"
 REDISCLUSTER_REDIS_RESOURCES_LIMITS:
   cpu: "2000m"
   memory: "5126Mi"
