@@ -4,7 +4,6 @@ REDISCLUSTER_FULLNAME_OVERRIDE: redis-svc
 REDISCLUSTER_COMMON_LABEL: 
   app: "{{ REDISCLUSTER_LABEL }}"
   app.kubernetes.io/part-of: schulcloud-verbund
-  git.branch: "{{ DOF_APP_DEPLOY_BRANCH_NAME }}"
   git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
 REDISCLUSTER_REGISTRY: docker.io
 REDISCLUSTER_REPOSITORY: bitnami/redis-cluster

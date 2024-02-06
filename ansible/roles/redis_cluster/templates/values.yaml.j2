@@ -1,0 +1,34 @@
+commonLabel: {{ REDISCLUSTER_COMMON_LABEL }}
+image:
+  registry: {{ REDISCLUSTER_REGISTRY }}
+  repository: {{ REDISCLUSTER_REPOSITORY }}
+  tag: {{ REDISCLUSTER_TAG }}
+  pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
+usePassword: {{ REDISCLUSTER_USE_PASSWORD }}
+existingSecret: {{ REDISCLUSTER_SECRET }}
+existingSecretPasswordKey: {{ REDISCLUSTER_PASSWORD_KEY }}
+persistence:
+  enabled: {{ REDISCLUSTER_PERSISTENCE_ENABLED }}
+  storageClass: {{ REDISCLUSTER_PERSISTENCE_STORAGE_CLASS }}
+  size: {{ REDISCLUSTER_PERSISTENCE_SIZE }}
+cluster:
+  nodes: {{ REDISCLUSTER_CLUSTER_NODES }}
+  replicas: {{ REDISCLUSTER_CLUSTER_REPLICAS }}
+  update:
+    addNodes: {{ REDISCLUSTER_CLUSTER_UPDATE_ADD_NODES }}
+    currentNumberOfNodes: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_NODES }}
+    currentNumberOfReplicas: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_REPLICAS }}
+redis:
+  resources:
+    limits: {{ REDISCLUSTER_REDIS_RESOURCES_LIMITS }}
+    requests: {{ REDISCLUSTER_REDIS_RESOURCES_REQUESTS }}
+metrics:
+  enabled: {{ REDISCLUSTER_METRICS }}
+  image:
+    registry: {{ REDISCLUSTER_METRICS_REGISTRY }}
+    repository: {{ REDISCLUSTER_METRICS_REPOSITORY }}
+    tag: {{ REDISCLUSTER_METRICS_TAG }}
+    pullPolicy: {{ REDISCLUSTER_METRICS_PULL_POLICY }}
+  serviceMonitor:
+    enabled: {{ REDISCLUSTER_METRICS_SERVICE_MONITOR }}
+  resources: {{ REDISCLUSTER_METRICS_RESOURCES }}
