@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: redis
+data:
+  # general
+  redis-config: client-output-buffer-limit pubsub 0 0 0

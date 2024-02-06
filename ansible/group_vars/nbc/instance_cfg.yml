@@ -49,6 +49,9 @@ FEATURE_LTI_TOOLS_ENABLED: "false"
 FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED: "true"
 FEATURE_GROUPS_IN_COURSE_ENABLED: "true"
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "true"
+FEATURE_CTL_TOOLS_COPY_ENABLED: "true"
+FEATURE_SHOW_MIGRATION_WIZARD: "true"
+FEATURE_USER_MIGRATION_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
@@ -57,6 +60,8 @@ TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
 # CONSENT
 FEATURE_CONSENT_NECESSARY: "false"
 
+# MIGRATION
+MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=308413368&frameable=true"
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 # Zusätzlich freigegebene routen
@@ -107,6 +112,10 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
+
+# SCHULCONNEX / SANIS / moin.schule Client
+SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
+SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
 # Ingress
 group_ingress:
