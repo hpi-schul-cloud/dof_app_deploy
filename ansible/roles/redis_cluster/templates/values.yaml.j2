@@ -5,6 +5,8 @@ image:
   pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
 networkPolicy:
   enabled: {{ REDISCLUSTER_NETWORKPOLICY_ENABLED }}
+serviceAccount:
+  create: {{ REDISCLUSTER_SERVICE_ACCOUNT_CREATE }}
 nameOverride: {{ REDISCLUSTER_NAME }}
 usePassword: {{ REDISCLUSTER_USE_PASSWORD }}
 existingSecret: {{ REDISCLUSTER_SECRET }}
