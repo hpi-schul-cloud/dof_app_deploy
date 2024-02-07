@@ -1,8 +1,7 @@
 REDISCLUSTER_CHART_VERSION: 8.6.12
-REDISCLUSTER_LABEL: rediscluster
-REDISCLUSTER_FULLNAME_OVERRIDE: redis-svc
+REDISCLUSTER_NAME: rediscluster
 REDISCLUSTER_POD_LABLES: 
-  app: "{{ REDISCLUSTER_LABEL }}"
+  app: "{{ REDISCLUSTER_NAME }}"
   app.kubernetes.io/part-of: schulcloud-verbund
   git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
 REDISCLUSTER_REGISTRY: docker.io
@@ -22,46 +21,10 @@ REDISCLUSTER_CLUSTER_UPDATE_ADD_NODES: false
 REDISCLUSTER_CLUSTER_UPDATE_CURRENT_NODES: 6
 REDISCLUSTER_CLUSTER_UPDATE_CURRENT_REPLICAS: 1
 REDISCLUSTER_REDIS_AFFINITY_ENABLE: false
-REDISCLUSTER_REDIS_AFFINITY_RULES:
-  affinity:
-    podAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 9
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app.kubernetes.io/part-of
-              operator: In
-              values:
-              - schulcloud-verbund
-          topologyKey: "kubernetes.io/hostname"
-          namespaceSelector: {}
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 10
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - "{{ REDISCLUSTER_LABEL }}"
-          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
-      - weight: 20
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - "{{ REDISCLUSTER_LABEL }}"
-          topologyKey: "topology.kubernetes.io/zone"
-REDISCLUSTER_REDIS_RESOURCES_LIMITS:
-  cpu: "2000m"
-  memory: "5126Mi"
-REDISCLUSTER_REDIS_RESOURCES_REQUESTS:
-  cpu: "100m"
-  memory: "128Mi"
+REDISCLUSTER_REDIS_RESOURCES_CPU_LIMITS: 2000m
+REDISCLUSTER_REDIS_RESOURCES_MEMORY_LIMITS: 5126Mi
+REDISCLUSTER_REDIS_RESOURCES_CPU_REQUESTS: 100m
+REDISCLUSTER_REDIS_RESOURCES_MEMORY_REQUESTS: 128Mi
 REDISCLUSTER_METRICS: true
 REDISCLUSTER_METRICS_REGISTRY: docker.io
 REDISCLUSTER_METRICS_REPOSITORY: bitnami/redis-exporter
@@ -70,9 +33,7 @@ REDISCLUSTER_METRICS_PULL_POLICY: IfNotPresent
 REDISCLUSTER_METRICS_PULL_SECRETS: ""
 REDISCLUSTER_METRICS_SERVICE_MONITOR: true
 REDISCLUSTER_METRICS_RESOURCES:
-  limits:
-    cpu: "1000m"
-    memory: "256Mi"
-  requests:
-    cpu: "100m"
-    memory: "128Mi"
+REDISCLUSTER_METRICS_RESOURCES_CPU_LIMITS: 1000m
+REDISCLUSTER_METRICS_RESOURCES_MEMORY_LIMITS: 256Mi
+REDISCLUSTER_METRICS_RESOURCES_CPU_REQUESTS: 100m
+REDISCLUSTER_METRICS_RESOURCES_MEMORY_REQUESTS: 128Mi
