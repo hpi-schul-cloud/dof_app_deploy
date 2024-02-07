@@ -3,6 +3,7 @@ image:
   repository: {{ REDISCLUSTER_REPOSITORY }}
   tag: {{ REDISCLUSTER_TAG }}
   pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
+nameOverride: {{ REDISCLUSTER_NAME }}
 usePassword: {{ REDISCLUSTER_USE_PASSWORD }}
 existingSecret: {{ REDISCLUSTER_SECRET }}
 existingSecretPasswordKey: {{ REDISCLUSTER_PASSWORD_KEY }}
