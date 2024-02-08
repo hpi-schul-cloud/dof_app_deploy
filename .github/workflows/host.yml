@@ -46,7 +46,7 @@ jobs:
     environment: ${{ inputs.host_name }}
     steps:
       - run: mkdir repo
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/dof_app_deploy
           path: repo/dof_app_deploy
@@ -61,55 +61,55 @@ jobs:
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
           sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
           echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/schulcloud-server
           path: repo/schulcloud-server
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_SERVER_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/schulcloud-client
           path: repo/schulcloud-client
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CLIENT_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/nuxt-client
           path: repo/nuxt-client
           token: ${{ secrets.token }}
           ref: ${{ env.NUXT_CLIENT_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/superhero-dashboard
           path: repo/superhero-dashboard
           token: ${{ secrets.token }}
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/h5p-staticfiles-server
           path: repo/h5p-staticfiles-server
           token: ${{ secrets.token }}
           ref: ${{ env.H5P_STATICFILES_SERVER_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/schulcloud-calendar
           path: repo/schulcloud-calendar
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CALENDAR_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/antivirus_check_service
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/version-aggregator
           path: repo/version-aggregator
           token: ${{ secrets.token }}
           ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/tldraw-client
           path: repo/tldraw-client
@@ -133,7 +133,7 @@ jobs:
           cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3     #v4.3.1
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
@@ -172,7 +172,7 @@ jobs:
           rm -rf  /config
 
       - name: Send Notification to Rocket Chat
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@2966f5f2e0313a94f965a51c08700cfecf0b6572 #1.1.1
         if: always() && contains(inputs.host_name, 'ref') || contains(inputs.host_name, 'prod')
         with:
           type: ${{ job.status }}

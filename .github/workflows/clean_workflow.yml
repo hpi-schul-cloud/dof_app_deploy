@@ -51,7 +51,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with:
           repository: hpi-schul-cloud/${{ matrix.repo }}
           token: ${{ secrets.token }}
@@ -68,7 +68,7 @@ jobs:
             echo "branch_exists=false" >> $GITHUB_ENV
           fi
       ## Write for matrix outputs workaround https://github.com/orgs/community/discussions/17245
-      - uses: cloudposse/github-action-matrix-outputs-write@0.4.2
+      - uses: cloudposse/github-action-matrix-outputs-write@e90c7018e27e1c9466e0fa3cfe64720d9969ffca   #v0.5.0
         id: out
         with:
           matrix-step-name: ${{ github.job }}
@@ -84,7 +84,7 @@ jobs:
       are_all_branches_deleted: ${{ steps.are_all_branches_deleted.outputs.are_all_branches_deleted }}
     steps:
       ## read for matrix outputs workaround https://github.com/orgs/community/discussions/17245
-      - uses: cloudposse/github-action-matrix-outputs-read@0.1.1
+      - uses: cloudposse/github-action-matrix-outputs-read@e0de318159d7139fb9e5f1d59e7f43f91d1d0904   #v0.1.2
         id: read
         with:
           matrix-step-name: gather_branch_exists
