@@ -125,11 +125,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          branch_name=${{ inputs.branch }}
-          echo "branch_name: $branch_name"
-
           # gh pr view will exit with 1 when there is no pr for a given branch
-          pr_labels=$(gh pr view $branch_name --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
+          pr_labels=$(gh pr view ${{ inputs.branch }} --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
           echo "pr_labels: $pr_labels"
           has_activation_label=$(echo $pr_labels | jq '.labels[] | select(.name == "auto-extend-activation-time") | length > 0')
 
