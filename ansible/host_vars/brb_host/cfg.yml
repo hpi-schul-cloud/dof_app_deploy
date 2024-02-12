@@ -1,2 +1,4 @@
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-brb.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-brb.dbildungscloud.dev/
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.brb.dbildungscloud.dev"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brb.dbildungscloud.dev"
