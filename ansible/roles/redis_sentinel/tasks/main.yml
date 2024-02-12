@@ -1,0 +1,19 @@
+  - name: Add bitnami chart repo
+    kubernetes.core.helm_repository:
+      name: bitnamicharts
+      repo_url: "https://charts.bitnami.com/bitnami"
+    delegate_to: localhost
+    changed_when: false
+    when: WITH_REDIS_SENTINEL
+
+  - name: redis with sentinel
+    kubernetes.core.helm:
+      name: "{{ REDIS_SENTINEL_NAME }}"
+      chart_ref: bitnamicharts/redis
+      update_repo_cache: yes
+      wait: no
+      chart_version: "{{ REDIS_SENTINEL_CHART_VERSION }}"
+      kubeconfig: ~/.kube/config
+      release_namespace: "{{ NAMESPACE }}"
+      values: "{{ lookup('template', 'values.yaml.j2') | from_yaml }}"
+    when: WITH_REDIS_SENTINEL

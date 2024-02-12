@@ -13,6 +13,7 @@
     - dof_rabbitmq
     - dof_redis
     - redis_cluster
+    - redis_sentinel
     - dof_mailcatcher
     - libreoffice
     - maildrop
