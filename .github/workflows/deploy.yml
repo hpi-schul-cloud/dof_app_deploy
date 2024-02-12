@@ -148,7 +148,7 @@ jobs:
         tenants: ["dbc", "brb", "nbc", "thr"]
     runs-on: ubuntu-latest
     steps:
-      - name: call ns activator
+      - name: call namespace activator
         env:
           NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
           NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
