@@ -23,7 +23,7 @@ jobs:
       
   ref-audit:
     needs:
-      - approve_ref
+      - approve_prod_stage_2
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
