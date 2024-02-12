@@ -112,7 +112,7 @@ jobs:
           name: ${{ matrix.tenants }}
           path: ${{github.workspace }}/${{ matrix.tenants }}.tar
 
-  gather-activate-namespace-activation-facts:
+  gather-namespace-activation-facts:
     runs-on: ubuntu-latest
     outputs:
       activator-function: ${{ steps.gather-facts.outputs.function }}
@@ -143,8 +143,8 @@ jobs:
 
   call-activator:
     needs:
-      - gather-activate-namespace-activation-facts
-      - create-branch-identifier
+      - gather-namespace-activation-facts
+      - create_branch_identifier
     strategy:
       fail-fast: false
       matrix:
@@ -153,8 +153,8 @@ jobs:
     steps:
       - name: call ns activator
         env:
-          NS_ACTIVATOR_FUNCTION: ${{ needs.gather-facts.outputs.activator-function }}
-          NAMESPACE_NAME: ${{ needs.create-branch-identifier.outputs.id_branch }}
+          NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
+          NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
           curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
 
