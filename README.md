@@ -10,6 +10,31 @@ this repository would be the environment repository for that matter
 ## how
 if in any ["auto-deployment" enabled repositories](https://github.com/hpi-schul-cloud/dof_app_deploy/blob/b65488fbc5ecceca8e743327bc66c9092ee30d4e/.github/workflows/deploy.yml#L36) a push happened the [dev deployment workflow](https://github.com/hpi-schul-cloud/dof_app_deploy/files/10235495/dev-deployment.pdf) to our dev system gets executed
 
+## adding new secrets
+_Note: Consult with DevOps for any uncertainties._
+
+### Appending to an Existing Secret
+1. **Update in 1Password**: Modify the secret within development vaults (sc-dev-*) in 1Password.
+2. **Notify DevOps**: Inform DevOps for updates across other stages.
+
+### Creating a New Secret
+
+1. **Create in 1Password**: Add a new item in the development vaults (sc-dev-*).
+2. **Prepare Manifest**:
+   ```yaml
+   apiVersion: "onepassword.com/v1"
+   kind: OnePasswordItem
+   metadata:
+     name: <unique-secret-name>
+     namespace: {{ NAMESPACE }}
+     labels:
+       app: "your-app"
+   spec:
+     itemPath: "vaults/{{ ONEPASSWORD_OPERATOR_VAULT }}/items/<item-name>"
+   ```
+3. Add to Ansible: Incorporate the manifest into the relevant Ansible task, usually `main.yml`.
+4. Inform DevOps: Notify DevOps for deployment to other stages.
+
 ## dev namespace (de)activation
 
 only applies to the dev stage to save resources!
