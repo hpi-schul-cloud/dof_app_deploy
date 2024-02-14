@@ -10,6 +10,8 @@ auth:
   password: {{ REDIS_SENTINEL_AUTH_PASSWORD }}
   existingSecret: {{ REDIS_SENTINEL_AUTH_EXISTING_SECRET }}
   existingSecretPasswordKey: {{ REDIS_SENTINEL_AUTH_PASSWORD_KEY }}
+serviceAccount:
+  create: {{ REDIS_SENTINEL_SERVICE_ACCOUNT_CREATE }}
 networkPolicy:
   enabled: {{ REDIS_SENTINEL_NETWORKPOLICY_ENABLED }}
 replica:
