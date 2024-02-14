@@ -14,6 +14,7 @@
     - role: dof_rabbitmq
     - role: dof_redis
     - role: redis_cluster
+    - role: redis_sentinel
     - role: libreoffice
     - role: maildrop
     - role: storage

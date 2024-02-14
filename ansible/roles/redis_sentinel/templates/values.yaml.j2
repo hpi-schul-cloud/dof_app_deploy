@@ -12,18 +12,23 @@ auth:
   existingSecretPasswordKey: {{ REDIS_SENTINEL_AUTH_PASSWORD_KEY }}
 networkPolicy:
   enabled: {{ REDIS_SENTINEL_NETWORKPOLICY_ENABLED }}
-master:
+replica:
   podLabels: {{ REDIS_SENTINEL_POD_LABLES }}
   serviceAccount:
     create: {{ REDIS_SENTINEL_SERVICE_ACCOUNT_CREATE }}
+  replicaCount: {{ REDIS_SENTINEL_REPLICA_COUNT }}
   resources:
     limits: 
-      cpu: {{ REDIS_SENTINEL_MASTER_RESOURCES_CPU_LIMITS }}
-      memory: {{ REDIS_SENTINEL_MASTER_RESOURCES_MEMORY_LIMITS }}
+      cpu: {{ REDIS_SENTINEL_REPLICA_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_REPLICA_RESOURCES_MEMORY_LIMITS }}
     requests: 
-      cpu: {{ REDIS_SENTINEL_MASTER_RESOURCES_CPU_REQUESTS }}
-      memory: {{ REDIS_SENTINEL_MASTER_RESOURCES_MEMORY_REQUESTS }}
-{% if REDIS_SENTINEL_MASTER_AFFINITY_ENABLE is defined and REDIS_SENTINEL_MASTER_AFFINITY_ENABLE|bool  %}
+      cpu: {{ REDIS_SENTINEL_REPLICA_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_REPLICA_RESOURCES_MEMORY_REQUESTS }}
+  persistence:
+    enabled: {{ REDIS_SENTINEL_REPLICA_PERSISTANCE }}
+    storageClass: {{ REDIS_SENTINEL_REPLICA_PERSISTENCE_STORAGE_CLASS }}
+    size: {{ REDIS_SENTINEL_REPLICA_PERSISTENCE_SIZE }}
+{% if REDIS_SENTINEL_REPLICA_AFFINITY_ENABLE is defined and REDIS_SENTINEL_REPLICA_AFFINITY_ENABLE|bool  %}
   affinity:
     podAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
@@ -58,3 +63,35 @@ master:
               - "{{ REDIS_SENTINEL_NAME }}"
           topologyKey: "topology.kubernetes.io/zone"
 {% endif %}
+sentinel:
+  enabled: true
+  image:
+    registry: {{ REDIS_SENTINEL_SENTINEL_IMAGE_REGISTRY }}
+    repository: {{ REDIS_SENTINEL_SENTINEL_IMAGE_REPOSITORY }}
+    tag: {{ REDIS_SENTINEL_SENTINEL_IMAGE_TAG }}
+    pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
+  resources:
+    limits: 
+      cpu: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_MEMORY_REQUESTS }}
+metrics:
+  enabled: {{ REDIS_SENTINEL_METRICS }}
+  image:
+    registry: {{ REDIS_SENTINEL_METRICS_REGISTRY }}
+    repository: {{ REDIS_SENTINEL_METRICS_REPOSITORY }}
+    tag: {{ REDIS_SENTINEL_METRICS_TAG }}
+    pullPolicy: {{ REDIS_SENTINEL_METRICS_PULL_POLICY }}
+  serviceMonitor:
+    enabled: {{ REDIS_SENTINEL_METRICS_SERVICE_MONITOR }}
+  resources: 
+    limits: 
+      cpu: {{ REDIS_SENTINEL_METRICS_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_METRICS_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDIS_SENTINEL_METRICS_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_METRICS_RESOURCES_MEMORY_REQUESTS }}
+  
+    
