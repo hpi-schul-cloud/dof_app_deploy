@@ -970,11 +970,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  CTL_TOOLS_RELOAD_TIME_MS:
-    value: "299000"
-    server: true
-    client: false
-    nuxtclient: false
   SCHULCONNEX_CLIENT__API_URL:
     server: true
     client: false
