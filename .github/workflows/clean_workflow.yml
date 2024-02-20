@@ -32,7 +32,7 @@ permissions:
 
 jobs:
   create_branch_identifier:
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@bc-6589
     with:
       branch: ${{ inputs.branch }}
 
