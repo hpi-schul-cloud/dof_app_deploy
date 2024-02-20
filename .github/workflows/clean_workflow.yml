@@ -55,7 +55,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/${{ matrix.repo }}
           token: ${{ secrets.token }}
