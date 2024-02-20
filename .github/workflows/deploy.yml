@@ -163,7 +163,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@bc-6589
     with:
       host_name: dbc_host
-      tenannt: dbc
+      tenant: dbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_DBC }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
@@ -175,7 +175,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@bc-6589
     with:
       host_name: nbc_host
-      tenannt: nbc
+      tenant: nbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_NBC }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
@@ -187,7 +187,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@bc-6589
     with:
       host_name: brb_host
-      tenannt: brb
+      tenant: brb
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_BRB }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
@@ -199,7 +199,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@bc-6589
     with:
       host_name: thr_host
-      tenannt: thr
+      tenant: thr
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_THR }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_THR }}

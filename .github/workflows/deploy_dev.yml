@@ -7,7 +7,7 @@ on:
       host_name:
          required: true
          type: string
-      tenannt:
+      tenant:
          required: true
          type: string  
     secrets:
@@ -22,7 +22,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: deploy ${{ inputs.tenannt }}
+    name: deploy ${{ inputs.tenant }}
     steps:
       - uses: actions/download-artifact@v4
       - run: mv */*.tar ./
