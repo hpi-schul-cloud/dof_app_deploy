@@ -27,11 +27,11 @@ jobs:
       - uses: actions/download-artifact@v4
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - run: tar -cf ansible.tar ansible
+      - run: tar -cf ${{ inputs.tenant }}-ansible.tar ansible
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.tenant }}-ansible.tar
-          path: ${{github.workspace }}/ansible.tar
+          path: ${{github.workspace }}/${{ inputs.tenant }}-ansible.tar
       - shell: bash
         run: |
           python3 -m pip install kubernetes 'urllib3>=1.26.16'
