@@ -30,7 +30,7 @@ jobs:
       - run: tar -cf ansible.tar ansible
       - uses: actions/upload-artifact@v4
         with:
-          name: ansible
+          name: ${{ inputs.tenant }}-ansible.tar
           path: ${{github.workspace }}/${{ inputs.tenant }}-ansible.tar
       - shell: bash
         run: |
@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
-          echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
+          echo "TLS_ENABLED: \"true\"" >> develop/dof_deploy.yml
       - run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
