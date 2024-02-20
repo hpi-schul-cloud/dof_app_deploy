@@ -25,6 +25,7 @@ jobs:
     name: deploy ${{ inputs.tenant }}
     steps:
       - uses: actions/download-artifact@v4
+      - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ${{ inputs.tenant }}-ansible.tar ansible
