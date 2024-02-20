@@ -31,8 +31,9 @@ jobs:
       - run: tar -cf ${{ inputs.tenant }}-ansible.tar ansible
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.tenant }}-ansible.tar
+          name: debug-${{ inputs.tenant }}-ansible
           path: ${{github.workspace }}/${{ inputs.tenant }}-ansible.tar
+          overwrite: true
       - shell: bash
         run: |
           python3 -m pip install kubernetes 'urllib3>=1.26.16'
