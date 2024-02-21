@@ -6,11 +6,6 @@ configuration_all:
   #    server: true
   #    client: true
   #    nuxtclient: true
-  TEST_VAR_TO_REMOVE:
-    value: "to remove"
-    server: true
-    client: true
-    nuxtclient: false
   HOST:
     config_name: CFG_HOST
     value: "https://{{ DOMAIN }}"
