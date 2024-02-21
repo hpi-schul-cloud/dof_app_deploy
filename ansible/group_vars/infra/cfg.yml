@@ -5,3 +5,7 @@ NAMESPACE: "{{ inventory_hostname | replace('.', '-') }}"
 DOMAIN: "{{ inventory_hostname }}.dbildungscloud.dev"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
+FEATURE_TLDRAW_ENABLED: "false"
+
+
+SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"

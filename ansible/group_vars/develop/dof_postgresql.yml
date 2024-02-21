@@ -1,4 +1,4 @@
 ---
 POSTGRES_DB: calendar
-POSTGRES_IMAGE_NAME: postgres
-POSTGRES_IMAGE_TAG: 11.9
+POSTGRES_IMAGE_NAME: docker.io/postgres
+POSTGRES_IMAGE_TAG: 15.5-alpine

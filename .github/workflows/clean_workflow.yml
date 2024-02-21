@@ -1,5 +1,5 @@
 ---
-name: Clean Out Branches
+name: Clean up namespaces
 
 on:
   workflow_call:
@@ -18,18 +18,29 @@ on:
     secrets:
       token:
         required: true
-      DEV_KUBE_CONFIG:
+      DEV_KUBE_CONFIG_BRB:
+        required: true
+      DEV_KUBE_CONFIG_NBC:
+        required: true
+      DEV_KUBE_CONFIG_THR:
+        required: true
+      DEV_KUBE_CONFIG_DBC:
         required: true
 
 permissions:
   contents: read
 
 jobs:
-  create_artifacts_repos:
+  create_branch_identifier:
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@main
+    with:
+      branch: ${{ inputs.branch }}
+
+  gather_branch_exists:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
+        repo:
          - schulcloud-server
          - schulcloud-client
          - nuxt-client
@@ -38,84 +49,93 @@ jobs:
          - antivirus_check_service
          - version-aggregator
          - dof_app_deploy
+         - h5p-staticfiles-server
+         - tldraw-client
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
       - uses: actions/checkout@v3
         with:
-          repository: hpi-schul-cloud/${{ matrix.repos }}
+          repository: hpi-schul-cloud/${{ matrix.repo }}
           token: ${{ secrets.token }}
-          path: ${{ matrix.repos }}
+          path: ${{ matrix.repo }}
           fetch-depth: 0
       - name: Add Flag for existing branch
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
+        working-directory: ${{github.workspace }}/${{ matrix.repo }}
+        id: branch_exists
         shell: bash
-        run: | 
-          if git rev-parse --quiet --verify ${{ env.git_ref_name }} > /dev/null; then
-            echo "BRANCH_EXIST: true" > ansible/group_vars/all/${{ matrix.repos }}.yml
+        run: |
+          if git show-ref --quiet --verify refs/remotes/origin/${{ env.git_ref_name }} > /dev/null; then
+            echo "branch_exists=true" >> $GITHUB_ENV
+          else
+            echo "branch_exists=false" >> $GITHUB_ENV
           fi
-      - run: tar -cf ${{ matrix.repos }}.tar ansible
-        working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v3
+      ## Write for matrix outputs workaround https://github.com/orgs/community/discussions/17245
+      - uses: cloudposse/github-action-matrix-outputs-write@0.4.2
+        id: out
         with:
-          name: ${{ matrix.repos }}
-          path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
-          
-  create_artifacts_workspaces:
+          matrix-step-name: ${{ github.job }}
+          matrix-key: ${{ matrix.repo }}
+          outputs: |-
+            branch_exists: ${{ env.branch_exists }}
+            
+
+  examine_branch_existence:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tennens: [ brb, default, nbc ]
+    needs: gather_branch_exists
+    outputs:
+      are_all_branches_deleted: ${{ steps.are_all_branches_deleted.outputs.are_all_branches_deleted }}
+    steps:
+      ## read for matrix outputs workaround https://github.com/orgs/community/discussions/17245
+      - uses: cloudposse/github-action-matrix-outputs-read@0.1.1
+        id: read
+        with:
+          matrix-step-name: gather_branch_exists
+      - name: are_all_branches_deleted
+        id: are_all_branches_deleted
+        run: |
+          existing_branches=$(echo ${{ toJSON(steps.read.outputs.result) }} | jq '.branch_exists | del(..|select(. == false))')
+          echo "repos with existing branches are: $existing_branches"
+          if [ $(echo $existing_branches | jq 'length') == "0" ]; then
+             echo "no branches left";
+             echo "are_all_branches_deleted=true" >> $GITHUB_OUTPUT;
+          else
+             echo "are_all_branches_deleted=false" >> $GITHUB_OUTPUT;
+          fi
+
+  delete_namespaces:
+    runs-on: ubuntu-latest
+    if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
+    needs:
+      - examine_branch_existence
+      - create_branch_identifier
     steps:
       - run: |
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-          echo git_ref_name ${{ inputs.branch }}
-      - shell: bash
-        id: make_identifier
-        run: |
-          mkdir -pv ansible/group_vars/${{ matrix.tennens }}
-          
-          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
-          echo "before" $git_ref_name "after" $temp
-          echo "id=$temp" >> $GITHUB_OUTPUT
-      - shell: bash
-        working-directory: ${{github.workspace }}/ansible/group_vars/${{ matrix.tennens }}
-        run: |
-          #declare test='${{ steps.make_identifier.outputs.id }}'
-          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg.yml
-      - run: tar -cf ${{ matrix.tennens }}.tar ansible
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.tennens }}
-          path: ${{github.workspace }}/${{ matrix.tennens }}.tar
-  
-  clean_cluster:
-    needs: 
-      - create_artifacts_repos
-      - create_artifacts_workspaces
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-      - run: mv */*.tar ./
-      - run: find -name "*.tar" -exec tar -xf {} \;
-      - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ansible
-          path: ${{github.workspace }}/ansible.tar
-      - shell: bash
-        run: |
-          python3 -m pip install openshift
-          
-      - run: ansible-galaxy collection install community.kubernetes:1.2.1
-      - working-directory: ${{github.workspace }}/ansible/roles/clean
-        run: |
           mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
-      - run: ansible-playbook ./playbook_clean.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
-        working-directory: ${{github.workspace }}/ansible
-      - working-directory: ${{github.workspace }}/ansible/roles/clean/files
+          echo "${{ secrets.DEV_KUBE_CONFIG_BRB }}" > files/config_brb
+          echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config_nbc
+          echo "${{ secrets.DEV_KUBE_CONFIG_THR }}" > files/config_thr
+          echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config_dbc
+      - name: delete custom resources and namespaces 
         run: |
-          rm -rf  /config
+          branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns $branch_identifier
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier 
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_thr delete --ignore-not-found=true ns $branch_identifier 
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns $branch_identifier
+      - name: remove kubeconfig
+        run: |
+          rm -rf  files/config_.*

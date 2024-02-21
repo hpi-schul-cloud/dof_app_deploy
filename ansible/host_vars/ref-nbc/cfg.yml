@@ -7,5 +7,12 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/
 
-FEATURE_CTL_TOOLS_TAB_ENABLED: "true"
-FEATURE_LTI_TOOLS_TAB_ENABLED: "true"
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungscloud.org"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
+
+# Migration wizard
+FEATURE_SHOW_MIGRATION_WIZARD: "false"
+FEATURE_USER_MIGRATION_ENABLED: "false"
+# FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
+
+FEATURE_CTL_TOOLS_COPY_ENABLED: "false"

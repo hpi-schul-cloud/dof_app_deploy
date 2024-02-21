@@ -5,13 +5,13 @@ metadata:
   name: rocketchat-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
+  ingressClassName: {{ INGRESS_CLASS }}
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
@@ -26,378 +26,378 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: default-backend-404-svc
             port:
               number: 8080
       - path: /api/v1/method.call/rooms
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/subscriptions
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/permissions
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/public-settings
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/commands.list
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/emoji-custom.list
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/me
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/roles.list
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/listCustomSounds
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/getUserRoles
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/apps
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/loadHistory
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/listCustomUserStatus
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/licenseModules
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/license
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/banners.getNew
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/loadMissedMessages
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/readMessages
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/sendMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/setReaction
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/users.info
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/users.presence
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/deleteMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/getRoomByTypeAndName
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/createDirectMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/getRoomRoles
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/starMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/updateMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/reportMessage
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/license:isEnterprise
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/license:isEnterprise
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/license:getModules
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/license:getModules
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/public-settings:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/public-settings:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/apps:is-enabled
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/rooms:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/subscriptions:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/permissions:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/getRoomByTypeAndName
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/loadLocale
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/banners
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/listCustomSounds
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/apps:is-enabled
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/listCustomUserStatus
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/getUserRoles
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/loadHistory
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/rooms:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/userSetUtcOffset
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/permissions:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/loadLocale
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/subscriptions:get
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: rocketchat-svc

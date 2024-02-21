@@ -13,3 +13,7 @@ ROOT_URL_REDIRECT: https://schulportal-thueringen.de/thueringer_schulcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.schulcloud-thueringen.de/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
+
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
+
+BLOCKLIST_OF_EMAIL_DOMAINS: "schul-cloud.org"

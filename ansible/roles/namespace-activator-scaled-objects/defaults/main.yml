@@ -1,0 +1,27 @@
+deployments_for_scaled_objects:
+  - api-deployment
+  - admin-api-deployment
+  - client-deployment
+  - amqp-files-deployment
+  - antivirus-webserver-deployment
+  - api-files-deployment
+  - preview-generator-deployment
+  - api-fwu-deployment
+  - calendar-deployment
+  - clamav-deployment
+  - default-backend-404-deployment
+  - erwinidm-deployment
+  - etherpad-deployment
+  - etherpad-nginx-deployment
+  - hydra-deployment
+  - libreoffice-deployment
+  - management-deployment
+  - nuxtclient-deployment
+  - oidcmock-deployment
+  - rocketchat-deployment
+  - shd-deployment
+  - version-aggregator-deployment
+  - tldraw-deployment
+  - tldraw-client-deployment
+  - mailcatcher-deployment
+  - maildrop-deployment

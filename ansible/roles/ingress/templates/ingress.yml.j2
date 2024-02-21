@@ -14,7 +14,6 @@ metadata:
   name: {{ NAMESPACE }}-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ INGRESS_MAX_BODY_SIZE|default("2560") }}m"
     nginx.org/client-max-body-size: "{{ INGRESS_MAX_BODY_SIZE|default("2560") }}m"
@@ -28,11 +27,20 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
       client_header_buffer_size 100k;
       large_client_header_buffers 4 100k;
+{% if KEDA_NAMESPACE_ACTIVATOR_ENABLED is defined %}
+      proxy_intercept_errors on;
+      error_page 503 = @errorpages;
+
+      location @errorpages {
+        return 302 'https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace?namespace={{ NAMESPACE }}&redirected-from-503=true';
+      }
+{% endif %}
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
+  ingressClassName: {{ INGRESS_CLASS }}
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
@@ -46,17 +54,35 @@ spec:
     http:
       paths:
 {% for iname, idata in ingress_cfg.items() %}
-  {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
+  {% if idata.with is defined and idata.with in hostvars[inventory_hostname] %}
+    {% if hostvars[inventory_hostname][idata.with] %}
+      {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
       - path: {{ idata.path }}
         backend:
           service:
             name: {{ idata.serviceName }}
             port:
               number: {{ idata.servicePort }}
-    {% if idata.pathType is defined %}
+        {% if idata.pathType is defined %}
         pathType: {{ idata.pathType }}
-    {% else %}
+        {% else %}
         pathType: Prefix
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% else %}
+    {% if idata.path is defined and idata.serviceName is defined and idata.servicePort is defined %}
+      - path: {{ idata.path }}
+        backend:
+          service:
+            name: {{ idata.serviceName }}
+            port:
+              number: {{ idata.servicePort }}
+      {% if idata.pathType is defined %}
+        pathType: {{ idata.pathType }}
+      {% else %}
+        pathType: Prefix
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endfor %}

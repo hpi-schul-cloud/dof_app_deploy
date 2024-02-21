@@ -1,8 +1,8 @@
 FEATURE_NEXBOARD_ENABLED: "false"
-FEATURE_COLUMN_BOARD_ENABLED: "true"
 
 FEATURE_IMSCC_COURSE_EXPORT_ENABLED: "true"
-FEATURE_TASK_CARD_ENABLED: "true"
+
+FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED: "true"
 
 FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
 
@@ -10,3 +10,27 @@ ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
 H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
 
+FEATURE_H5P_EDITOR_ENABLED: "true"
+
+BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
+BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
+
+FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED: "true"
+
+FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED: "true"
+
+FEATURE_SCHOOL_POLICY_ENABLED_NEW: "true"
+
+FEATURE_SCHOOL_TERMS_OF_USE_ENABLED: "true"
+
+KEDA_NAMESPACE_ACTIVATOR_ENABLED: "true"
+
+TLDRAW_CLIENT_REPLICAS: 1
+
+TLDRAW_SERVER_REPLICAS: 3
+
+FEATURE_TLDRAW_ENABLED: "true"
+
+ADMIN_API_SERVER_REPLICAS: 1
+
+SC_DEFAULT_STORAGE_CLASS_NAME: "nfs-client"

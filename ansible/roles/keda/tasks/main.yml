@@ -1,0 +1,13 @@
+---
+
+  - name: 1pwd
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: keda-secret.yml.j2
+
+  - name: trigger auth
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: rabbitmq-trigger-auth.yml.j2

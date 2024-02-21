@@ -6,6 +6,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: redis
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ REDIS_IMAGE_TAG }}"
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ REDIS_REPLICAS|default(1, true) }}
   strategy:
@@ -17,14 +24,22 @@ spec:
     metadata:
       labels:
         app: redis
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ REDIS_IMAGE_TAG }}"
+        app.kubernetes.io/name: redis
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
-      securityContext:  
+      securityContext:
         #readOnlyRootFilesystem: true
         #runAsNonRoot: true
       containers:
       - name: redis
         image: {{ REDIS_IMAGE_NAME }}:{{ REDIS_IMAGE_TAG }}
         imagePullPolicy: IfNotPresent
+        command: ["redis-server"]
+        args: ["/config/redis.conf"]
         ports:
         - name: redis
           containerPort: 6379
@@ -33,6 +48,8 @@ spec:
         - name: redis-data-pv
           mountPath: /data
           readOnly: false
+        - name: config
+          mountPath: /config
         resources:
           limits:
             cpu: {{ REDIS_CPU_LIMITS|default("2000m", true) }}
@@ -44,3 +61,9 @@ spec:
       - name: redis-data-pv
         persistentVolumeClaim:
           claimName: redis-pvc
+      - name: config
+        configMap:
+          name: redis-configmap
+          items:
+            - key: redis-config
+              path: redis.conf

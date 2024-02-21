@@ -6,6 +6,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: mongo
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: {{ MONGO_REPLICAS|default(1, true) }}
   strategy:
@@ -19,6 +26,12 @@ spec:
     metadata:
       labels:
         app: mongo
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ MONGO_IMAGE_TAG }}"
+        app.kubernetes.io/name: mongo
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
       annotations:
         configmapHash: ""
     spec:
@@ -36,9 +49,6 @@ spec:
         - containerPort: 27017
           name: mongo
           protocol: TCP
-        envFrom:
-        - configMapRef:
-            name: mongo-configmap
         volumeMounts:
         - name: mongodb-data-pv
           mountPath: /data/db
@@ -46,10 +56,28 @@ spec:
         resources:
           limits:
             cpu: {{ MONGO_CPU_LIMITS|default("2000m", true) }}
-            memory: {{ MONGO_MEMORY_LIMITS|default("1Gi", true) }}
+            memory: {{ MONGO_MEMORY_LIMITS|default("2Gi", true) }}
           requests:
             cpu: {{ MONGO_CPU_REQUESTS|default("100m", true) }}
-            memory: {{ MONGO_MEMORY_REQUESTS|default("256Mi", true) }}
+            memory: {{ MONGO_MEMORY_REQUESTS|default("512Mi", true) }}
+      - name: mongo-exporter
+        image: {{ MONGO_EXPORTER_IMAGE_NAME }}:{{ MONGO_EXPORTER_IMAGE_TAG }}
+        imagePullPolicy: IfNotPresent
+        args: ["--compatible-mode", "--collect-all" ]
+        envFrom:
+        - secretRef:
+            name: mongo-secret
+        ports:
+        - containerPort: 9216
+          name: mongo-exporter
+          protocol: TCP
+        resources:
+          limits:
+            cpu: {{ MONGO_EXPORTER_CPU_LIMITS|default("2000m", true) }}
+            memory: {{ MONGO_EXPORTER_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ MONGO_EXPORTER_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ MONGO_EXPORTER_MEMORY_REQUESTS|default("64Mi", true) }}
       volumes:
       - name: mongodb-data-pv
         persistentVolumeClaim:

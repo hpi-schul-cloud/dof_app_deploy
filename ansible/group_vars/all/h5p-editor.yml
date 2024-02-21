@@ -1,0 +1,4 @@
+PORT_H5P_EDITOR: 4448
+H5P_PROXY_IMAGE_NAME: docker.io/nginx
+H5P_PROXY_IMAGE_TAG: 1.25-alpine
+

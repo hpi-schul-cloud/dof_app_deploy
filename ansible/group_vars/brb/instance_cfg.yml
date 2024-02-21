@@ -1,11 +1,11 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: brb
+SC_SHORTNAME: brb
 SC_TITLE: Schul-Cloud Brandenburg
-SC_SHORT_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
-GLOBAL_ANNOUNCEMENT_TEXT: ""
+GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1
@@ -36,12 +36,15 @@ FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
+TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
 
 # CONSENT
 FEATURE_CONSENT_NECESSARY: "false"
 
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
+# MIGRATION
+MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=196739599&frameable=true"
 
 ## SERVER
 AWS_REGION: eu-central-1
@@ -94,6 +97,10 @@ NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
+# Bettermarks urls
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
+
 # Ingress
 group_ingress:
   api_v1_roster:
@@ -106,3 +113,6 @@ group_ingress:
     path: /api/v3/fwu
     serviceName: api-fwu-svc
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf

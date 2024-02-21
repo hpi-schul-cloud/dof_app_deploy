@@ -5,7 +5,6 @@ metadata:
   name: {{ NAMESPACE }}-storage-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: 2560m
     nginx.ingress.kubernetes.io/client_max_body_size: 2560m
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
@@ -14,6 +13,7 @@ metadata:
 {% endif %}
 
 spec:
+  ingressClassName: {{ INGRESS_CLASS }}
 {% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
   tls:
   - hosts:
@@ -27,10 +27,10 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: storage-svc
             port:
-              number: {{ STORAGE_PORT }}
+              number: 9000
 

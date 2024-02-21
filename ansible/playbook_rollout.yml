@@ -3,7 +3,7 @@
   hosts:
     - reference
     - production
-    - test
+    - loadtest
     - infra
   connection: local
   roles:
@@ -17,6 +17,8 @@
     - role: maildrop
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
+    - role: keda
+      when: KEDA_ENABLED is defined and KEDA_ENABLED|bool
     - role: hydra
     - role: erwin-idm
     - role: dof_etherpad_nginx
@@ -26,9 +28,15 @@
     - role: schulcloud-server-ldapsync
       when: WITH_LDAP is defined and WITH_LDAP|bool
     - role: schulcloud-server-tspsync
+    - role: schulcloud-server-h5p
+    - role: schulcloud-server-h5p-proxy
+      when: WITH_H5P_PROXY is defined and WITH_H5P_PROXY|bool
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
+    - role: h5p-library-management
+      when: WITH_H5P_LIBRARY_MANAGEMENT is defined and WITH_H5P_LIBRARY_MANAGEMENT|bool
+    - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
@@ -36,5 +44,7 @@
     - role: version-aggregator
     - role: rocketchat
     - role: mongodb_query_exporter
+    - role: tldraw-client-core
     - role: ingress
     - role: post_deployment
+

@@ -5,6 +5,13 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: default-backend-404
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: 1.25-alpine
+    app.kubernetes.io/name: default-backend-404
+    app.kubernetes.io/component: default-backend
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   replicas: 1
   selector:
@@ -14,16 +21,29 @@ spec:
     metadata:
       labels:
         app: default-backend-404
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: 1.25-alpine
+        app.kubernetes.io/name: default-backend-404
+        app.kubernetes.io/component: default-backend
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
       - name: default-backend-404
-        image: nginx:1.23.2-alpine
+        image: nginx:1.25-alpine
         ports:
         - containerPort: 8080
         volumeMounts:
         - mountPath: /etc/nginx/conf.d/default.conf
           subPath: default.conf
           name: defaultconf
+        resources:
+          limits:
+            cpu: {{ NGINX_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ NGINX_MEMORY_LIMITS|default("100Mi", true) }}
+          requests:
+            cpu: {{ NGINX_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ NGINX_MEMORY_REQUESTS|default("50Mi", true) }}
       volumes:
       - name: defaultconf
         configMap:
