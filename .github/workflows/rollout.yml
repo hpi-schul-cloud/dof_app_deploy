@@ -23,7 +23,7 @@ jobs:
       
   ref-audit:
     needs:
-      - approve_ref
+      - approve_prod_stage_2
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
@@ -194,19 +194,21 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  dev-loadtest-01:
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: dev-loadtest-01
-      host_group: dbc
-      host_stage: loadtest
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
+
+  # disable rollout to loadtest instance until it is restructered and fixed in OPS-5141
+  # dev-loadtest-01:
+  #   uses: ./.github/workflows/host.yml
+  #   with:
+  #     cfg_version: ${{ github.event.inputs.config_tag_name }}
+  #     host_name: dev-loadtest-01
+  #     host_group: dbc
+  #     host_stage: loadtest
+  #     execute_group: ${{ github.event.inputs.instance_group }}
+  #   secrets:
+  #     token: ${{ secrets.GITHUB_TOKEN }}
+  #     ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+  #     KUBECONFIG: ${{ secrets.KUBECONFIG }}
+  #     RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
   infra-dbildungscloud-01:
     needs:

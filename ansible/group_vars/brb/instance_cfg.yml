@@ -96,6 +96,10 @@ NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
+# Bettermarks urls
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
+
 # Ingress
 group_ingress:
   api_v1_roster:
