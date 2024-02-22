@@ -31,6 +31,8 @@
       when: WITH_LDAP is defined and WITH_LDAP|bool
     - role: schulcloud-server-tspsync
     - role: schulcloud-server-h5p
+    - role: schulcloud-server-h5p-proxy
+      when: WITH_H5P_PROXY is defined and WITH_H5P_PROXY|bool
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
