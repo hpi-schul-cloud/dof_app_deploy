@@ -86,7 +86,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: ""
+    value: "{{ H5P_PROXY_PREFIX |default('h5p-') }}{{ DOMAIN }}"
     server: false
     client: false
     nuxtclient: true
@@ -541,6 +541,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE:
+    value: "2000000000"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_LESSON_SHARE:
     value: "true"
     server: true
@@ -643,12 +648,12 @@ configuration_all:
     client: true
     nuxtclient: false
   H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-1"
+    value: "s3-eu-central-2"
     server: true
     client: false
     nuxtclient: false
   H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-1.ionoscloud.com"
+    value: "https://s3-eu-central-2.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
@@ -980,6 +985,11 @@ configuration_all:
     nuxtclient: false
   MIGRATION_WIZARD_DOCUMENTATION_LINK:
     value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
+    server: true
+    client: false
+    nuxtclient: false
+  EXIT_ON_ERROR:
+    value: "false"
     server: true
     client: false
     nuxtclient: false
