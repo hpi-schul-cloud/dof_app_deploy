@@ -3,3 +3,5 @@ DOMAIN: staging.dbildungscloud.org
 
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.de/
+
+FEATURE_TLDRAW_ENABLED: "true"
