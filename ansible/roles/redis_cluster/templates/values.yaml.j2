@@ -1,7 +1,4 @@
 image:
-  registry: {{ REDISCLUSTER_REGISTRY }}
-  repository: {{ REDISCLUSTER_REPOSITORY }}
-  tag: {{ REDISCLUSTER_TAG }}
   pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
 networkPolicy:
   enabled: {{ REDISCLUSTER_NETWORKPOLICY_ENABLED }}
@@ -69,10 +66,7 @@ redis:
 metrics:
   enabled: {{ REDISCLUSTER_METRICS }}
   image:
-    registry: {{ REDISCLUSTER_METRICS_REGISTRY }}
-    repository: {{ REDISCLUSTER_METRICS_REPOSITORY }}
-    tag: {{ REDISCLUSTER_METRICS_TAG }}
-    pullPolicy: {{ REDISCLUSTER_METRICS_PULL_POLICY }}
+    pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
   serviceMonitor:
     enabled: {{ REDISCLUSTER_METRICS_SERVICE_MONITOR }}
   resources: 

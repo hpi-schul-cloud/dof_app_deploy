@@ -1,8 +1,5 @@
 # value
 image:
-  registry: {{ REDIS_SENTINEL_IMAGE_REGISTRY }}
-  repository: {{ REDIS_SENTINEL_IMAGE_REPOSITORY }}
-  tag: {{ REDIS_SENTINEL_IMAGE_TAG }}
   pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
 auth:
   enabled: {{ REDIS_SENTINEL_AUTH_ENABLED }}
@@ -68,9 +65,6 @@ replica:
 sentinel:
   enabled: true
   image:
-    registry: {{ REDIS_SENTINEL_SENTINEL_IMAGE_REGISTRY }}
-    repository: {{ REDIS_SENTINEL_SENTINEL_IMAGE_REPOSITORY }}
-    tag: {{ REDIS_SENTINEL_SENTINEL_IMAGE_TAG }}
     pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
   resources:
     limits: 
@@ -82,10 +76,7 @@ sentinel:
 metrics:
   enabled: {{ REDIS_SENTINEL_METRICS }}
   image:
-    registry: {{ REDIS_SENTINEL_METRICS_REGISTRY }}
-    repository: {{ REDIS_SENTINEL_METRICS_REPOSITORY }}
-    tag: {{ REDIS_SENTINEL_METRICS_TAG }}
-    pullPolicy: {{ REDIS_SENTINEL_METRICS_PULL_POLICY }}
+    pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
   serviceMonitor:
     enabled: {{ REDIS_SENTINEL_METRICS_SERVICE_MONITOR }}
   resources: 
