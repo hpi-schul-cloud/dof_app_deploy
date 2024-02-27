@@ -997,7 +997,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  HEALTHCHECKS_EXCLUDE_MONGODB:
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
     nuxtclient: false
