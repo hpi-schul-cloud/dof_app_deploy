@@ -4,4 +4,4 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.nbc.dbildungscloud.dev"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.nbc.dbildungscloud.dev"
 
 # Migration wizard
-# FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"
+FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"
