@@ -4,5 +4,3 @@ DOMAIN: staging.dbildungscloud.org
 FEATURE_NEXBOARD_ENABLED: "true"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.de/
-
-FEATURE_TLDRAW_ENABLED: "true"
