@@ -527,14 +527,9 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COURSE_SHARE:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_SHARE_NEW:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
     value: "false"
@@ -995,6 +990,10 @@ configuration_all:
     nuxtclient: false
   EXIT_ON_ERROR:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
     nuxtclient: false
