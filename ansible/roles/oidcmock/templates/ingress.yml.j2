@@ -5,14 +5,14 @@ metadata:
   name: {{ NAMESPACE }}-oidcmock-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
   ingressClassName: {{ INGRESS_CLASS }}
-{% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
   tls:
   - hosts:
       - {{ OIDCMOCK_PREFIX }}{{ DOMAIN }}

@@ -527,14 +527,9 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COURSE_SHARE:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_SHARE_NEW:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
     value: "false"
@@ -543,6 +538,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE:
+    value: "2000000000"
     server: true
     client: false
     nuxtclient: false
