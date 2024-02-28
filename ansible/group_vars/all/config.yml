@@ -993,3 +993,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
+    server: true
+    client: false
+    nuxtclient: false
