@@ -28,7 +28,6 @@ on:
       DEV_KUBE_CONFIG_DBC:
         required: true
 
-
 env:
   tenants: "brb dbc nbc thr"
 
@@ -36,7 +35,6 @@ permissions:
   contents: read
 
 jobs:
-
   create_branch_identifier:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@main
     with:
@@ -47,16 +45,17 @@ jobs:
     strategy:
       matrix:
         repos:
-         - schulcloud-server
-         - schulcloud-client
-         - nuxt-client
-         - superhero-dashboard
-         - schulcloud-calendar
-         - antivirus_check_service
-         - version-aggregator
-         - dof_app_deploy
-         - h5p-staticfiles-server
-         - tldraw-client
+          - schulcloud-server
+          - schulcloud-client
+          - nuxt-client
+          - superhero-dashboard
+          - schulcloud-calendar
+          - antivirus_check_service
+          - version-aggregator
+          - dof_app_deploy
+          - h5p-staticfiles-server
+          - tldraw-client
+          - poc-board-collaboration-server
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
@@ -96,7 +95,7 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tenants: [ brb, dbc, nbc, thr ]
+        tenants: [brb, dbc, nbc, thr]
     steps:
       - shell: bash
         run: |
@@ -154,7 +153,6 @@ jobs:
           NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
           curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
-
 
   deploy_dbc_dev:
     needs:
