@@ -44,7 +44,7 @@ FEATURE_CONSENT_NECESSARY: "false"
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
 # MIGRATION
-MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/x/DwK6Cw?frameable=true"
+MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=196739599&frameable=true"
 
 ## SERVER
 AWS_REGION: eu-central-1
@@ -96,6 +96,10 @@ COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
+
+# Bettermarks urls
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
 
 # Ingress
 group_ingress:

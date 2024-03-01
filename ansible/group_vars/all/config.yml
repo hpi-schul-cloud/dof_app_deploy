@@ -86,7 +86,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: ""
+    value: "{{ H5P_PROXY_PREFIX |default('h5p-') }}{{ DOMAIN }}"
     server: false
     client: false
     nuxtclient: true
@@ -527,17 +527,22 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_COURSE_SHARE:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_SHARE_NEW:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
   FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE:
+    value: "2000000000"
     server: true
     client: false
     nuxtclient: false
@@ -597,7 +602,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -643,12 +648,12 @@ configuration_all:
     client: true
     nuxtclient: false
   H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-1"
+    value: "s3-eu-central-2"
     server: true
     client: false
     nuxtclient: false
   H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-1.ionoscloud.com"
+    value: "https://s3-eu-central-2.ionoscloud.com"
     server: true
     client: false
     nuxtclient: false
@@ -837,6 +842,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
     value: "false"
     server: true
@@ -960,6 +970,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  CTL_TOOLS_RELOAD_TIME_MS:
+    value: "299000"
+    server: true
+    client: false
+    nuxtclient: false
   SCHULCONNEX_CLIENT__API_URL:
     server: true
     client: false
@@ -974,7 +989,16 @@ configuration_all:
     client: false
     nuxtclient: false
   MIGRATION_WIZARD_DOCUMENTATION_LINK:
-    value: "https://docs.dbildungscloud.de/x/VAEbDg?frameable=true"
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
+    server: true
+    client: false
+    nuxtclient: false
+  EXIT_ON_ERROR:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
     nuxtclient: false

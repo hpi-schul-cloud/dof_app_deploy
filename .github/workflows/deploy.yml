@@ -7,14 +7,7 @@ on:
       branch:
         required: true
         type: string
-      user_name:
-         required: false
-         default: hpi-schul-clud-bot
-         type: string
-      user_email:
-         required: false
-         default: bot@hpi-schul-cloud.de
-         type: string
+
     secrets:
       token:
         required: true
@@ -68,7 +61,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -92,7 +85,7 @@ jobs:
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
@@ -114,10 +107,53 @@ jobs:
           echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
           echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tenants }}.tar ansible
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.tenants }}
           path: ${{github.workspace }}/${{ matrix.tenants }}.tar
+
+  gather-namespace-activation-facts:
+    runs-on: ubuntu-latest
+    outputs:
+      activator-function: ${{ steps.gather-facts.outputs.function }}
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    steps:
+      - name: gather-facts
+        id: gather-facts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # gh pr view will exit with 1 when there is no pr for a given branch
+          pr_labels=$(gh pr view ${{ inputs.branch }} --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
+          echo "pr_labels: $pr_labels"
+          has_activation_label=$(echo $pr_labels | jq '.labels[] | select(.name == "auto-extend-activation-time") | length > 0')
+
+          if [ "$has_activation_label" == "true" ]; then
+              echo "has pr, has label, extend activation time"
+              echo "function=extendAndWait" >> "$GITHUB_OUTPUT"
+          else
+              echo "may have an pr, but if, there is no label, will create initial ns entry if there isn't one already"
+              echo "function=createIfNotExistsAndWait" >> "$GITHUB_OUTPUT"
+          fi
+
+  call-activator:
+    needs:
+      - gather-namespace-activation-facts
+      - create_branch_identifier
+    strategy:
+      fail-fast: false
+      matrix:
+        tenants: ["dbc", "brb", "nbc", "thr"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: call namespace activator
+        env:
+          NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
+          NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
+        run: |
+          curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
 
 
   deploy_dbc_dev:
@@ -127,7 +163,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: dbc_host
-      tenannt: dbc
+      tenant: dbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_DBC }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
@@ -139,7 +175,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: nbc_host
-      tenannt: nbc
+      tenant: nbc
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_NBC }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
@@ -151,7 +187,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: brb_host
-      tenannt: brb
+      tenant: brb
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_BRB }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
@@ -163,7 +199,7 @@ jobs:
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
     with:
       host_name: thr_host
-      tenannt: thr
+      tenant: thr
     secrets:
       ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_THR }}
       KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_THR }}
