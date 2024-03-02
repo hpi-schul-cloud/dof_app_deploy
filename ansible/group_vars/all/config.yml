@@ -86,7 +86,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: "{{ H5P_PROXY_PREFIX |default('h5p-') }}{{ DOMAIN }}"
+    value: "{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}"
     server: false
     client: false
     nuxtclient: true
