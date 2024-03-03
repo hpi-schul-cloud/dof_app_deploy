@@ -37,7 +37,7 @@ data:
         sub_filter_once off;
         sub_filter_types *;
         sub_filter 'h5p.org' '{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}';
-        proxy_pass http://h5p-staticfiles-server-svc:8080/api/v3/h5p-editor/h5pstatics;
+        proxy_pass http://h5p-staticfiles-server-svc:8080/h5pstatics;
       }
 
       location / {
