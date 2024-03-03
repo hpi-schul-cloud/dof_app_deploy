@@ -25,7 +25,7 @@ data:
         proxy_pass http://api-h5p-svc:4448;
       }
     
-      location /api/v3/h5p-editor/h5pstatics {
+      location /h5pstatics {
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
         proxy_ssl_server_name on;
