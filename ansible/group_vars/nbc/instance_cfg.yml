@@ -61,6 +61,7 @@ FEATURE_CONSENT_NECESSARY: "false"
 
 # MIGRATION
 MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=308413368&frameable=true"
+
 # ADMIN TABLES
 ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "false"
 # Zusätzlich freigegebene routen
