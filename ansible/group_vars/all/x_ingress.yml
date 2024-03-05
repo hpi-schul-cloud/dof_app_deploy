@@ -145,10 +145,6 @@ default_ingress:
     path: /api/v1/roster
   api_roster:
     path: /api/roster
-  api_v1_schools:
-    path: /api/v1/schools/
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_federalStates:
     path: /api/v1/federalStates
     serviceName: api-svc
