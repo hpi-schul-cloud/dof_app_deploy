@@ -1,7 +1,6 @@
 NAMESPACE: thueringen
 DOMAIN: test.schulcloud-thueringen.de
 
-FEATURE_NEXBOARD_ENABLED: "true"
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
 NOT_AUTHENTICATED_REDIRECT_URL: https://test.schulportal-thueringen.de/cas/login?service=https://test.schulcloud-thueringen.de/tsp-login
 TSP_API_BASE_URL: https://test.schulportal-thueringen.de
