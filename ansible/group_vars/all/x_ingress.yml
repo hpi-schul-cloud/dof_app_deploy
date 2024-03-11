@@ -137,10 +137,6 @@ default_ingress:
     path: /api/v1/edu-sharing-merlinToken
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_me:
-    path: /api/v1/me
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
