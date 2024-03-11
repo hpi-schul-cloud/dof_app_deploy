@@ -8,6 +8,5 @@ BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED: "true"
 FEATURE_SCHOOL_POLICY_ENABLED_NEW: "true"
-FEATURE_TLDRAW_ENABLED: "false"
 
 SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"

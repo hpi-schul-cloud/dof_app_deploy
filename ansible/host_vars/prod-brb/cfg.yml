@@ -1,9 +1,6 @@
 NAMESPACE: brandenburg
 DOMAIN: brandenburg.cloud
 
-FEATURE_NEXBOARD_ENABLED: "true"
-FEATURE_NEXBOARD_COPY_ENABLED: "true"
-
 ALERT_STATUS_URL: https://status.brandenburg.cloud
 
 FWU_CONTENT__S3_BUCKET: sc-prod-fwu-txl-bucket
