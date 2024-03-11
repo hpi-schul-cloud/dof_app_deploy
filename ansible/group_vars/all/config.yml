@@ -587,7 +587,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -962,6 +962,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
