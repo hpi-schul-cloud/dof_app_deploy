@@ -582,7 +582,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -957,6 +957,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -967,6 +968,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_CTL_TOOLS_COPY_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  CTL_TOOLS_RELOAD_TIME_MS:
+    value: "299000"
     server: true
     client: false
     nuxtclient: false
@@ -990,6 +996,10 @@ configuration_all:
     nuxtclient: false
   EXIT_ON_ERROR:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
     nuxtclient: false
