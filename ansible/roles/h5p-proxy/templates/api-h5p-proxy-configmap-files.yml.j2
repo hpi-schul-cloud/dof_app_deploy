@@ -25,7 +25,7 @@ data:
         proxy_pass http://api-h5p-svc:4448;
       }
     
-      location /h5pstatics {
+      location /api/v3/h5p-editor/h5pstatics/ {
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
         proxy_ssl_server_name on;
@@ -37,7 +37,7 @@ data:
         sub_filter_once off;
         sub_filter_types *;
         sub_filter 'h5p.org' '{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}';
-        proxy_pass http://h5p-staticfiles-server-svc:8080/h5pstatics;
+        proxy_pass http://h5p-staticfiles-server-svc:8080/h5pstatics/;
       }
 
       location / {
