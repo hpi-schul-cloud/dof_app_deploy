@@ -91,7 +91,7 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_SCRIPT_SRC_URLS:
-    value: "https://{{ DOMAIN }}/"
+    value: "https://{{ DOMAIN }}/api/v3/h5p-editor/h5pstatics/editor/scripts/"
     server: false
     client: false
     nuxtclient: true
