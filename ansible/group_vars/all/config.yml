@@ -424,11 +424,7 @@ configuration_all:
     nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
-    value: 
-      - "de"
-      - "en"
-      - "es"
-      - "uk"
+    value: "de,en,es,uk"
     server: true
     client: true
     nuxtclient: false
