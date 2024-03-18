@@ -117,6 +117,10 @@ default_ingress:
     path: /tools/context
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  edu-sharing:
+    path: /vendor/edu-sharing
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
