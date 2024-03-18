@@ -428,6 +428,16 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  I18N__DEFAULT_LANGUAGE:
+    value: "de"
+    server: true
+    client: true
+    nuxtclient: false
+  I18N__FALLBACK_LANGUAGE:
+    value: "de"
+    server: true
+    client: true
+    nuxtclient: false
   I18N__DEFAULT_TIMEZONE:
     value: "Europe/Berlin"
     server: true
