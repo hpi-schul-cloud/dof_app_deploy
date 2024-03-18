@@ -11,6 +11,11 @@ data:
       listen      80;
       server_name  _;
       location /api/v3/h5p-editor {
+        # Make upload of bigger files possible
+        client_max_body_size {{ H5P_PROXY_MAX_BODY_SIZE }};
+        proxy_connect_timeout {{ H5P_PROXY_CONNECT_TIMEOUT }};
+        proxy_read_timeout {{ H5P_PROXY_READ_TIMEOUT }};
+        proxy_send_timeout {{ H5P_PROXY_SEND_TIMEOUT }};
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
         proxy_ssl_server_name on;
