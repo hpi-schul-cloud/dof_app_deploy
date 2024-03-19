@@ -531,7 +531,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+  FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED:
     value: "false"
     server: true
     client: false
@@ -582,7 +582,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -957,6 +957,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
