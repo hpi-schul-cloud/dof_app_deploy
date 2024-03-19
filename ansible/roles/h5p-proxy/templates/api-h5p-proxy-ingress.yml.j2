@@ -37,7 +37,7 @@ spec:
           service:
             name: api-h5p-proxy-svc
             port:
-              number: 80
+              number: {{ H5P_PROXY_PORT }}
         pathType: Prefix
   - host: {{ DOMAIN }}
     http:
@@ -47,5 +47,5 @@ spec:
           service:
             name: api-h5p-proxy-svc
             port:
-              number: 80
+              number: {{ H5P_PROXY_PORT }}
         pathType: Prefix
