@@ -2,5 +2,5 @@ NOT_AUTHENTICATED_REDIRECT_URL: https://test.schulportal-thueringen.de/cas/login
 TSP_API_BASE_URL: https://test.schulportal-thueringen.de
 ROOT_URL_REDIRECT: https://test.schulportal-thueringen.de/thueringer_schulcloud
 
-#NEXTCLOUD_REDIRECT_URL: https://nextcloud.test.schulcloud-thueringen.de/apps/files/?dir=/
-#NEXTCLOUD_BASE_URL: https://nextcloud.test.schulcloud-thueringen.de
+NEXTCLOUD_REDIRECT_URL: https://nextcloud-thr.dbildungscloud.dev/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev/
