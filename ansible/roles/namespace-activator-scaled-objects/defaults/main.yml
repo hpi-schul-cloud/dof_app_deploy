@@ -3,7 +3,6 @@ deployments_for_scaled_objects:
   - admin-api-deployment
   - client-deployment
   - amqp-files-deployment
-  - api-worker-deployment
   - api-h5p-proxy-deployment
   - api-h5p-deployment
   - h5p-staticfiles-server-deployment
