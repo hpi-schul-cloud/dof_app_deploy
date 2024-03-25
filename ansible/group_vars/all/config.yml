@@ -86,12 +86,12 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: "{{ H5P_PROXY_PREFIX |default('h5p-') }}{{ DOMAIN }}"
+    value: "{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}"
     server: false
     client: false
     nuxtclient: true
   H5P_SCRIPT_SRC_URLS:
-    value: "https://{{ DOMAIN }}/h5pstatics/editor/scripts/"
+    value: "https://{{ DOMAIN }}/api/v3/h5p-editor/h5pstatics/editor/scripts/"
     server: false
     client: false
     nuxtclient: true
