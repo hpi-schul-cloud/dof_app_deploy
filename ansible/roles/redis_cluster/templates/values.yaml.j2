@@ -1,0 +1,78 @@
+image:
+  pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
+networkPolicy:
+  enabled: {{ REDISCLUSTER_NETWORKPOLICY_ENABLED }}
+serviceAccount:
+  create: {{ REDISCLUSTER_SERVICE_ACCOUNT_CREATE }}
+nameOverride: {{ REDISCLUSTER_NAME }}
+usePassword: {{ REDISCLUSTER_USE_PASSWORD }}
+existingSecret: {{ REDISCLUSTER_SECRET }}
+existingSecretPasswordKey: {{ REDISCLUSTER_PASSWORD_KEY }}
+persistence:
+  enabled: {{ REDISCLUSTER_PERSISTENCE_ENABLED }}
+  storageClass: {{ REDISCLUSTER_PERSISTENCE_STORAGE_CLASS }}
+  size: {{ REDISCLUSTER_PERSISTENCE_SIZE }}
+cluster:
+  nodes: {{ REDISCLUSTER_CLUSTER_NODES }}
+  replicas: {{ REDISCLUSTER_CLUSTER_REPLICAS }}
+  update:
+    addNodes: {{ REDISCLUSTER_CLUSTER_UPDATE_ADD_NODES }}
+    currentNumberOfNodes: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_NODES }}
+    currentNumberOfReplicas: {{ REDISCLUSTER_CLUSTER_UPDATE_CURRENT_REPLICAS }}
+redis:
+  podLabels: {{ REDISCLUSTER_POD_LABLES }}
+  resources:
+    limits: 
+      cpu: {{ REDISCLUSTER_REDIS_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDISCLUSTER_REDIS_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDISCLUSTER_REDIS_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDISCLUSTER_REDIS_RESOURCES_MEMORY_REQUESTS }}
+{% if REDISCLUSTER_REDIS_AFFINITY_ENABLE is defined and REDISCLUSTER_REDIS_AFFINITY_ENABLE|bool  %}
+  affinity:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 9
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values:
+              - schulcloud-verbund
+          topologyKey: "kubernetes.io/hostname"
+          namespaceSelector: {}
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 10
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - "{{ REDISCLUSTER_NAME }}"
+          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
+      - weight: 20
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - "{{ REDISCLUSTER_NAME }}"
+          topologyKey: "topology.kubernetes.io/zone"
+{% endif %}
+metrics:
+  enabled: {{ REDISCLUSTER_METRICS }}
+  image:
+    pullPolicy: {{ REDISCLUSTER_PULL_POLICY }}
+  serviceMonitor:
+    enabled: {{ REDISCLUSTER_METRICS_SERVICE_MONITOR }}
+  resources: 
+    limits: 
+      cpu: {{ REDISCLUSTER_METRICS_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDISCLUSTER_METRICS_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDISCLUSTER_METRICS_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDISCLUSTER_METRICS_RESOURCES_MEMORY_REQUESTS }}

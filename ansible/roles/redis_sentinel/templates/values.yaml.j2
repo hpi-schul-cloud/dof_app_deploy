@@ -1,0 +1,90 @@
+# value
+image:
+  pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
+auth:
+  enabled: {{ REDIS_SENTINEL_AUTH_ENABLED }}
+  sentinel: {{ REDIS_SENTINEL_AUTH_SENTINEL }}
+  password: {{ REDIS_SENTINEL_AUTH_PASSWORD }}
+  existingSecret: {{ REDIS_SENTINEL_AUTH_EXISTING_SECRET }}
+  existingSecretPasswordKey: {{ REDIS_SENTINEL_AUTH_PASSWORD_KEY }}
+serviceAccount:
+  create: {{ REDIS_SENTINEL_SERVICE_ACCOUNT_CREATE }}
+networkPolicy:
+  enabled: {{ REDIS_SENTINEL_NETWORKPOLICY_ENABLED }}
+replica:
+  podLabels: {{ REDIS_SENTINEL_POD_LABLES }}
+  serviceAccount:
+    create: {{ REDIS_SENTINEL_SERVICE_ACCOUNT_CREATE }}
+  replicaCount: {{ REDIS_SENTINEL_REPLICA_COUNT }}
+  resources:
+    limits: 
+      cpu: {{ REDIS_SENTINEL_REPLICA_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_REPLICA_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDIS_SENTINEL_REPLICA_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_REPLICA_RESOURCES_MEMORY_REQUESTS }}
+  persistence:
+    enabled: {{ REDIS_SENTINEL_REPLICA_PERSISTANCE }}
+    storageClass: {{ REDIS_SENTINEL_REPLICA_PERSISTENCE_STORAGE_CLASS }}
+    size: {{ REDIS_SENTINEL_REPLICA_PERSISTENCE_SIZE }}
+{% if REDIS_SENTINEL_REPLICA_AFFINITY_ENABLE is defined and REDIS_SENTINEL_REPLICA_AFFINITY_ENABLE|bool  %}
+  affinity:
+    podAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 9
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values:
+              - schulcloud-verbund
+          topologyKey: "kubernetes.io/hostname"
+          namespaceSelector: {}
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 10
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - "{{ REDIS_SENTINEL_NAME }}"
+          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
+      - weight: 20
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+              - "{{ REDIS_SENTINEL_NAME }}"
+          topologyKey: "topology.kubernetes.io/zone"
+{% endif %}
+sentinel:
+  enabled: true
+  image:
+    pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
+  resources:
+    limits: 
+      cpu: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_MEMORY_REQUESTS }}
+metrics:
+  enabled: {{ REDIS_SENTINEL_METRICS }}
+  image:
+    pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
+  serviceMonitor:
+    enabled: {{ REDIS_SENTINEL_METRICS_SERVICE_MONITOR }}
+  resources: 
+    limits: 
+      cpu: {{ REDIS_SENTINEL_METRICS_RESOURCES_CPU_LIMITS }}
+      memory: {{ REDIS_SENTINEL_METRICS_RESOURCES_MEMORY_LIMITS }}
+    requests: 
+      cpu: {{ REDIS_SENTINEL_METRICS_RESOURCES_CPU_REQUESTS }}
+      memory: {{ REDIS_SENTINEL_METRICS_RESOURCES_MEMORY_REQUESTS }}
+  
+    
