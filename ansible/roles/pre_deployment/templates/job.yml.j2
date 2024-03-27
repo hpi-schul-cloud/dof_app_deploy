@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: deployment-metrics-marker
-        image: schulcloud/infra-tools:latest
+        image: quay.io/schulcloudverbund/infra-tools:latest
         command: {{ deployment_marker_job_command }}
       restartPolicy: Never
   backoffLimit: 4
