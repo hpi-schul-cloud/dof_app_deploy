@@ -37,19 +37,9 @@
       template: fixup-configmap.yml.j2
       apply: yes
 
-  - name: Test if fixup job exit
-    kubernetes.core.k8s_info:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      api_version: batch/v1
-      kind: Job
-      name: fixup-rocketchat-job
-    register: fixup_rocketchat_present
-
   - name: fixup job
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: fixup-job.yml.j2
-    when: not fixup_rocketchat_present.resources is defined
       

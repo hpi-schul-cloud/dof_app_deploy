@@ -119,7 +119,7 @@
     state: absent
   when: not WITH_ERWINIDM
 
-- name: Test if fixup job exit
+- name: Test if Init Job exit
   kubernetes.core.k8s_info:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
