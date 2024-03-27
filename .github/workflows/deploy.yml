@@ -160,7 +160,7 @@ jobs:
     needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@BC-6994
     with:
       host_name: dbc_host
       tenant: dbc
@@ -172,7 +172,7 @@ jobs:
     needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@BC-6994
     with:
       host_name: nbc_host
       tenant: nbc
@@ -184,7 +184,7 @@ jobs:
     needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@BC-6994
     with:
       host_name: brb_host
       tenant: brb
@@ -196,7 +196,7 @@ jobs:
     needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@BC-6994
     with:
       host_name: thr_host
       tenant: thr
