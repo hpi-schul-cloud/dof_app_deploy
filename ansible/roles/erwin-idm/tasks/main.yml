@@ -128,6 +128,9 @@
     name: erwinidm-init-job
   register: erwinidm_init_job_present
 
+- name: explor init job return
+  shell: echo "{{erwinidm_init_job_present}}"
+
 - name: Init Job
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
