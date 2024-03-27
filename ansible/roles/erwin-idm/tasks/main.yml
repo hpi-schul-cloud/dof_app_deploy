@@ -140,7 +140,7 @@
     template: init_job.yml.j2
   when: 
   - WITH_ERWINIDM
-  - not erwinidm_init_job_present.resources is defined
+  - erwinidm_init_job_present.resources|length == 0
 
 - name: Remove Init Job
   kubernetes.core.k8s:
