@@ -62,8 +62,9 @@ jobs:
         run: |
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+        working-directory: ${{github.workspace }}/ansible
       - run: |
-          ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
           cat /tmp/mu.txt
           rm /tmp/mu.txt
         working-directory: ${{github.workspace }}/ansible

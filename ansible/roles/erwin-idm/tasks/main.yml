@@ -129,7 +129,9 @@
   register: erwinidm_init_job_present
 
 - name: explor init job return
-  shell: echo "{{erwinidm_init_job_present}}" > /tmp/mu.txt
+  shell: |
+    echo "how do i do" >> /tmp/mu.txt
+    echo "{{ erwinidm_init_job_present }}" >> /tmp/mu.txt
 
 - name: Init Job
   kubernetes.core.k8s:
