@@ -1,7 +1,6 @@
 NAMESPACE: thueringen
 DOMAIN: schulcloud-thueringen.de
 
-FEATURE_NEXBOARD_ENABLED: "true"
 AWS_ENDPOINT_URL: https://s3.hidrive.strato.com
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
 NOT_AUTHENTICATED_REDIRECT_URL: https://www.schulportal-thueringen.de/cas/login?service=https://schulcloud-thueringen.de/tsp-login

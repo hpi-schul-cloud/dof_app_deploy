@@ -3,7 +3,11 @@ deployments_for_scaled_objects:
   - admin-api-deployment
   - client-deployment
   - amqp-files-deployment
+  - api-h5p-proxy-deployment
+  - api-h5p-deployment
+  - h5p-staticfiles-server-deployment
   - antivirus-webserver-deployment
+  - antivirus-scanfile-deployment
   - api-files-deployment
   - preview-generator-deployment
   - api-fwu-deployment

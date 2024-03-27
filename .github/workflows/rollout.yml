@@ -22,6 +22,7 @@ jobs:
       - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
+    if: ${{ !failure() }}
     needs:
       - approve_prod_stage_2
     uses: ./.github/workflows/host.yml

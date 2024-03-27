@@ -86,12 +86,12 @@ configuration_all:
     client: false
     nuxtclient: true
   H5P_IMG_SRC_URLS:
-    value: "{{ H5P_PROXY_PREFIX |default('h5p-') }}{{ DOMAIN }}"
+    value: "{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}"
     server: false
     client: false
     nuxtclient: true
   H5P_SCRIPT_SRC_URLS:
-    value: "https://{{ DOMAIN }}/h5pstatics/editor/scripts/"
+    value: "https://{{ DOMAIN }}/api/v3/h5p-editor/h5pstatics/editor/scripts/"
     server: false
     client: false
     nuxtclient: true
@@ -526,12 +526,17 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COLUMN_BOARD_SHARE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COURSE_SHARE:
     value: "true"
     server: true
     client: false
     nuxtclient: false
-  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+  FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED:
     value: "false"
     server: true
     client: false
@@ -582,7 +587,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -957,6 +962,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -967,6 +973,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_CTL_TOOLS_COPY_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  CTL_TOOLS_RELOAD_TIME_MS:
+    value: "299000"
     server: true
     client: false
     nuxtclient: false
