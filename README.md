@@ -1,5 +1,7 @@
 # dof_app_deploy
 
+> This is a product demo branch and will soon be deleted.
+
 ## the name
 dof: **D**ev**O**ps**F**uture - this was a working title that stuck to this repository
 
