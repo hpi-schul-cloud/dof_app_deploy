@@ -20,7 +20,7 @@ spec:
         spec:
           containers:
           - name: fixup-rocketchat-job
-            image: schulcloud/infra-tools:latest
+            image: quay.io/schulcloudverbund/infra-tools:latest
             imagePullPolicy: IfNotPresent
             envFrom:
             - secretRef:
@@ -36,7 +36,7 @@ spec:
             resources:
               limits:
                 cpu: {{ ROCKETCHAT_FIXUP_CPU_LIMITS|default("1000m", true) }}
-                memory: {{ ROCKETCHAT_FIXUP_MEMORY_LIMITS|default("100Mi", true) }}
+                memory: {{ ROCKETCHAT_FIXUP_MEMORY_LIMITS|default("200Mi", true) }}
               requests:
                 cpu: {{ ROCKETCHAT_FIXUP_CPU_REQUESTS|default("100m", true) }}
                 memory: {{ ROCKETCHAT_FIXUP_MEMORY_REQUESTS|default("50Mi", true) }}
