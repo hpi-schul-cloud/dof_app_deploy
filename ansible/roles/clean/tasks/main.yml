@@ -17,7 +17,7 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap-database-deletion.yml.j2
       apply: yes
-    loop: POSTGRES_DATABASES
+    loop: "{{ POSTGRES_DATABASES }}"
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
   - name: Make sure Cluster Secret by 1Password exists
@@ -37,7 +37,7 @@
         type: Complete
         status: "True"
       wait_timeout: 300
-    loop: POSTGRES_DATABASES
+    loop: "{{ POSTGRES_DATABASES }}"
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
   - name: Namespace

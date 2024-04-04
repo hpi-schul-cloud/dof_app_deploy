@@ -10,7 +10,7 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: secret-database.yml.j2
-  loop: POSTGRES_DATABASES
+  loop: "{{ POSTGRES_DATABASES }}"
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
 - name: Create ConfigMap with Script
@@ -19,7 +19,7 @@
     namespace: "{{ NAMESPACE }}"
     template: configmap-database-init.yml.j2
     apply: yes
-  loop: POSTGRES_DATABASES
+  loop: "{{ POSTGRES_DATABASES }}"
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
 - name: Create/execute database configuration script
@@ -27,5 +27,5 @@
     kubeconfig: ~/.kube/config 
     namespace: "{{ NAMESPACE }}"
     template: job-database-init.yml.j2
-  loop: POSTGRES_DATABASES
+  loop: "{{ POSTGRES_DATABASES }}"
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
