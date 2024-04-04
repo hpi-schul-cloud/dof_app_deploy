@@ -9,7 +9,6 @@
   kubernetes.core.k8s_info:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
-    api_version: batch/v1
     kind: Secret
     name: "pg-{{ item }}-secret"
   register: db_secret_present
