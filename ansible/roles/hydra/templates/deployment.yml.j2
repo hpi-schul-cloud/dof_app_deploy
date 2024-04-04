@@ -65,7 +65,7 @@ spec:
             name: pg-hydra-secret
         env:
         - name: DSN
-          value: "postgres://${DB_USER}:${DB_USER_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${DB_NAME}"
+          value: "postgres://$(DB_USER):$(DB_USER_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(DB_NAME)"
 {% endif %}
         resources:
           limits:
