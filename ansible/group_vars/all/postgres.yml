@@ -1,0 +1,6 @@
+POSTGRES_DATABASES:
+  - erwinidm
+  - hydra
+  - calendar
+POSTGRES_PREFIX: ""
+POSTGRES_PORT: 5432

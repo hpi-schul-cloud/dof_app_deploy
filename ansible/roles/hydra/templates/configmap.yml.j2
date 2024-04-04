@@ -6,7 +6,6 @@ metadata:
   labels:
     app: hydra
 data:
-  
   SERVE_PUBLIC_CORS_ENABLED: "true"
   SERVE_PUBLIC_CORS_ALLOWED_METHODS: "POST,GET,PUT,DELETE"
   URLS_SELF_ISSUER: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
@@ -19,3 +18,7 @@ data:
   SC_FRONTEND: "https://{{ DOMAIN }}"
   SQA_OPT_OUT: "true"
   LOG_LEVEL: "info"
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+  POSTGRES_HOST: "{{ POSTGRES_HOST }}"
+  POSTGRES_PORT: "{{ POSTGRES_PORT }}"
+{% endif %}

@@ -1,0 +1,1 @@
+POSTGRES_PREFIX: "{{ (NAMESPACE | replace('-','_'))[:40] }}_"

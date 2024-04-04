@@ -4,14 +4,45 @@
       path: "{{ ansible_env.HOME }}/.kube/"
       state: directory
       mode: 0700
+
   - name: push kube config
     copy:
       src: config
       dest: "{{ ansible_env.HOME }}/.kube/config"
       mode: 0600
+
+  - name: Create ConfigMap with Script
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: configmap-database-deletion.yml.j2
+      apply: yes
+    loop: POSTGRES_DATABASES
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
+  - name: Make sure Cluster Secret by 1Password exists
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: onepassword-pg-cluster.yml.j2
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+
+  - name: Create/execute database deletion script
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: job-database-deletion.yml.j2
+      wait: yes
+      wait_condition:
+        type: Complete
+        status: "True"
+      wait_timeout: 300
+    loop: POSTGRES_DATABASES
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
   - name: Namespace
     kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config 
+      kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: namespace.yml.j2
       state: absent
