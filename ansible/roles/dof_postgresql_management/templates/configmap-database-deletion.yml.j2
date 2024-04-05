@@ -1,14 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pg-{{ item }}-configmap-deletion
+  name: pg-configmap-deletion
   namespace: {{ NAMESPACE }}
   labels:
     app: postgres
 data:
   config_script.sh: |
     #!/bin/bash
-    echo "Delete database"
+{% for item in POSTGRES_DATABASES %}
+    echo "Delete database for {{ item }}"
     echo "DROP DATABASE IF EXISTS {{ (POSTGRES_PREFIX + item) }} WITH (FORCE);" | psql -d postgres -w
-    echo "Delete user"
+    echo "Delete user for {{ item }}"
     echo "DROP USER IF EXISTS {{ (POSTGRES_PREFIX + item) }}" | psql -d postgres -w
+{% endfor %}

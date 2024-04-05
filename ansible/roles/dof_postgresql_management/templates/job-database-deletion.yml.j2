@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pg-{{ item }}-deletion-job
+  name: pg-deletion-job
   namespace: {{ NAMESPACE }}
 spec:
   template:
@@ -12,7 +12,7 @@ spec:
       volumes:
         - name: config-script
           configMap:
-            name: pg-{{ item }}-configmap-deletion
+            name: pg-configmap-deletion
             # 711 in decimal is 457
             defaultMode: 457
       containers:
