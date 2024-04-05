@@ -17,7 +17,7 @@ spec:
             defaultMode: 457
       containers:
         - name:  psql-config
-          image: quay.io/schulcloudverbund/infra-tools:latest
+          image: {{ POSTGRES_JOB_IMAGE }}
           command:
             - /bin/bash
             - -c

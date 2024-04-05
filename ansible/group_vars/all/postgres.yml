@@ -4,3 +4,4 @@ POSTGRES_DATABASES:
   - calendar
 POSTGRES_PREFIX: ""
 POSTGRES_PORT: 5432
+POSTGRES_JOB_IMAGE: "quay.io/schulcloudverbund/infra-tools:4.1"
