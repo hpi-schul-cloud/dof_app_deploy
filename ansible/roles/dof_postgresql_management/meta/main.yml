@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: dof_postgresql_management
   author: Schul-Cloud Verbund
-  description: Creating branch specific postgres databases
+  description: Creating and deleting branch specific postgres databases
   company: Schul-Cloud Verbund
   license: license (AGPLv3)
   min_ansible_version: 2.8
