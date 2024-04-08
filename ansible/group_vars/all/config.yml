@@ -984,6 +984,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED:
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_SHOW_MIGRATION_WIZARD:
     value: "false"
     server: true
