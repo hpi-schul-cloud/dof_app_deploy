@@ -1007,3 +1007,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_MEDIA_SHELF_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
