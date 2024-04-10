@@ -629,7 +629,7 @@ configuration_all:
     client: true
     nuxtclient: false
   CALENDAR_URI:
-    value: "http://calendar-svc:3000"
+    value: "{{ CALENDAR_URI }}"
     server: true
     client: false
     nuxtclient: false
