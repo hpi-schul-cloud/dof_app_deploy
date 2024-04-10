@@ -1,3 +1,6 @@
+# this is the place for all "newer" services that are not based on the api-configmap but which need default values to overwrite them from the values that are supplied from the app
+# with other words this is a place for default values across all envs and stages that NEED to be overwritten from app defaults
+
 ROCKET_CHAT_URI: "http://rocketchat-svc:5000"
 CALENDAR_URI: "http://calendar-svc:3000"
 EXIT_ON_ERROR: "true"
