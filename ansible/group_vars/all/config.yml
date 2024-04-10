@@ -1,3 +1,15 @@
+# this config is only relevant for
+# - schulcloud-client
+# - nuxt-client
+# - all services that use api-configmap including those that shouldn't
+#
+# if you have a general config to add which is used here as well as for example in shd or another "microservice" use xxx.yml,
+# and you might, if necessary, declare it here as well, like so:
+#   ROCKET_CHAT_URI:
+#    value: "{{ROCKET_CHAT_URI}}"
+#    server: true
+#    client: false
+#    nuxtclient: false
 configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
@@ -187,7 +199,7 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
     # in Byte
-    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus, 2,5GB = 2684354560B.
     value: "2684354560"
     server: true
     client: true
@@ -291,7 +303,7 @@ configuration_all:
     nuxtclient: false
   # rocketchat
   ROCKET_CHAT_URI:
-    value: "http://rocketchat-svc:5000"
+    value: "{{ROCKET_CHAT_URI}}"
     server: true
     client: false
     nuxtclient: false
