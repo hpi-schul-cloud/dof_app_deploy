@@ -3,7 +3,7 @@
 # - nuxt-client
 # - all services that use api-configmap including those that shouldn't
 #
-# if you have a general config to add which is used here as well as for example in shd or another "microservice" use xxx.yml,
+# if you have a general config to add which is used here as well as for example in shd or another "microservice" use instance_config_all.yml,
 # and you might, if necessary, declare it here as well, like so:
 #   ROCKET_CHAT_URI:
 #    value: "{{ROCKET_CHAT_URI}}"
