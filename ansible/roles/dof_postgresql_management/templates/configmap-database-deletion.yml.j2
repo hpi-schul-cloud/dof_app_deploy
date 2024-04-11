@@ -8,9 +8,7 @@ metadata:
 data:
   config_script.sh: |
     #!/bin/bash
-{% for item in POSTGRES_DATABASES %}
-    echo "Delete database for {{ item }}"
-    echo "DROP DATABASE IF EXISTS {{ (POSTGRES_PREFIX + item) }} WITH (FORCE);" | psql -d postgres -w
-    echo "Delete user for {{ item }}"
-    echo "DROP USER IF EXISTS {{ (POSTGRES_PREFIX + item) }}" | psql -d postgres -w
-{% endfor %}
+    echo "Delete databases starting with {{ POSTGRES_PREFIX  }}"
+    "SELECT 'DROP DATABASE ' || quote_ident(datname) || ' WITH (FORCE);' FROM pg_database WHERE datname LIKE '{{ POSTGRES_PREFIX }}%' \gexec" | psql -d postgres -w
+    echo "Delete users starting with {{ POSTGRES_PREFIX  }}"
+    "SELECT 'DROP USER ' || quote_ident(usename) || ';' FROM pg_catalog.pg_user WHERE usename LIKE '{{ POSTGRES_PREFIX }}%' \gexec" | psql -d postgres -w
