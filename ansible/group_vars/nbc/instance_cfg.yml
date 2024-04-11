@@ -115,6 +115,7 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 
 WITH_MOIN_SCHULE: true
+WITH_UNSYNCED_ENTITIES_DELETION: true
 
 # SCHULCONNEX / SANIS / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
