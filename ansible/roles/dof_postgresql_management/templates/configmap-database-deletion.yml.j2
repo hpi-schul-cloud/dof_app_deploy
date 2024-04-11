@@ -9,7 +9,7 @@ data:
   config_script.sh: |
     #!/bin/bash
     DB_PREFIX="{{ POSTGRES_PREFIX }}"
-    if [[ ${#DB_PREFIX} -le 5 ]]; then 
+    if [[ {{ '${#DB_PREFIX}' }} -le 5 ]]; then 
       echo "Postgres prefix \"{{ POSTGRES_PREFIX }}\" seems too short. Dropping all matching databases could be dangerous. Aborting."
       exit 1
     fi
