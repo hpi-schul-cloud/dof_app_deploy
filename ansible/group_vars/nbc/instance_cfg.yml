@@ -51,6 +51,7 @@ FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "true"
 FEATURE_CTL_TOOLS_COPY_ENABLED: "true"
 FEATURE_SHOW_MIGRATION_WIZARD: "true"
 FEATURE_USER_MIGRATION_ENABLED: "true"
+FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
@@ -112,6 +113,8 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
+
+WITH_MOIN_SCHULE: true
 
 # SCHULCONNEX / SANIS / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
