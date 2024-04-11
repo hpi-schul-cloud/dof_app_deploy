@@ -55,5 +55,5 @@
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: job-database-deletion.yml.j2
-    force: yes
+    apply: yes
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
