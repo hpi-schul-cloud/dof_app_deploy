@@ -8,7 +8,11 @@ metadata:
 data:
   config_script.sh: |
     #!/bin/bash
-    echo "Delete databases starting with {{ POSTGRES_PREFIX  }}"
+    if [[ "{{ POSTGRES_PREFIX }}" -le 5 ]]; then 
+      echo "Postgres prefix \"{{ POSTGRES_PREFIX }}\" seems too short. Dropping all matching databases could be dangerous. Aborting."
+      exit 1
+    fi
+    echo "Delete databases starting with {{ POSTGRES_PREFIX }}"
     "SELECT 'DROP DATABASE ' || quote_ident(datname) || ' WITH (FORCE);' FROM pg_database WHERE datname LIKE '{{ POSTGRES_PREFIX }}%' \gexec" | psql -d postgres -w
     echo "Delete users starting with {{ POSTGRES_PREFIX  }}"
     "SELECT 'DROP USER ' || quote_ident(usename) || ';' FROM pg_catalog.pg_user WHERE usename LIKE '{{ POSTGRES_PREFIX }}%' \gexec" | psql -d postgres -w
