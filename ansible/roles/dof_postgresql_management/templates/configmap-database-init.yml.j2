@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-{{ database_name }}-configmap-init
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: postgres
+data:
+  config_script.sh: |
+    #!/bin/bash
+    echo "Create owner of the DB"
+    echo "SELECT 'CREATE USER $DB_USER' WHERE NOT EXISTS (SELECT FROM pg_user WHERE usename = '$DB_USER')\gexec" | psql -d postgres -w
+    echo "GRANT $DB_USER TO $PGUSER;" | psql -d postgres -w
+    echo "Set/update password for user $DB_USER"
+    echo "ALTER USER $DB_USER WITH ENCRYPTED PASSWORD '$DB_USER_PASSWORD';" | psql -d postgres -w
+    echo "Create database"
+    echo "SELECT 'CREATE DATABASE $DB_NAME OWNER $DB_USER' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$DB_NAME')\gexec" | psql -d postgres -w
+    echo "Revoke permissions for public role"
+    echo "REVOKE ALL ON DATABASE $DB_NAME FROM PUBLIC;" | psql -d postgres -w

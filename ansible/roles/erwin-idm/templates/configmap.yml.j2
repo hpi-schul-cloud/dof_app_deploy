@@ -13,3 +13,6 @@ data:
   KC_PROXY: "edge"
   JAVA_OPTS: "-Djgroups.dns.query=erwinidm-svc.{{ NAMESPACE }}.svc.cluster.local -XX:MaxRAMPercentage=90.0 -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.err.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90"
   KC_DB_POOL_MAX_SIZE: "100"
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+  DB_BASE_URL: "jdbc:postgresql://{{ POSTGRES_HOST }}:{{ POSTGRES_PORT }}"
+{% endif %}

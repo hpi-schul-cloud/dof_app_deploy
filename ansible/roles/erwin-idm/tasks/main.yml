@@ -1,3 +1,10 @@
+- name: Create database
+  include_role: 
+    name: dof_postgresql_management
+  vars:
+    database_name: erwinidm
+  when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
 - name: Service
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
