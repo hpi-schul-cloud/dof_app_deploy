@@ -614,4 +614,39 @@ mongodb_query_exporter_aggregations: |-
           [           
             { "$match" : {"status": "success"} },           
             { "$count": "count" }
-          ]
+          ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_registered_status
+          type: gauge
+          help: 'The number deletionrequests in registered status'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$match" : {"status": "registered"} },           
+            { "$count": "count" }
+          ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_all
+          type: gauge
+          help: 'The number of all deletionrequests'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$count": "count" }
+          ] 
