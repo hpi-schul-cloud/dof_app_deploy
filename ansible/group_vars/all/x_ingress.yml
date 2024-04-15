@@ -145,10 +145,6 @@ default_ingress:
     path: /api/v1/consentVersions
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_systems:
-    path: /api/v1/systems
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_ldap-config:
     path: /api/v1/ldap-config
     serviceName: api-svc
@@ -191,10 +187,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roles_user:
     path: /api/v1/roles/user
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_config_app_public:
-    path: /api/v1/config/app/public
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   etherpad:

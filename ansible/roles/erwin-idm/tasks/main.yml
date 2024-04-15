@@ -119,12 +119,23 @@
     state: absent
   when: not WITH_ERWINIDM
 
+- name: Test if Init Job exit
+  kubernetes.core.k8s_info:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: batch/v1
+    kind: Job
+    name: erwinidm-init-job
+  register: erwinidm_init_job_present
+
 - name: Init Job
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: init_job.yml.j2
-  when: WITH_ERWINIDM
+  when: 
+  - WITH_ERWINIDM
+  - erwinidm_init_job_present.resources|length == 0
 
 - name: Remove Init Job
   kubernetes.core.k8s:
