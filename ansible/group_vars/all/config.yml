@@ -1023,5 +1023,5 @@ configuration_all:
   FEATURE_MEDIA_SHELF_ENABLED:
     value: "false"
     server: true
-    client: false
+    client: true
     nuxtclient: false
