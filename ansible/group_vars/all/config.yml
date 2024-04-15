@@ -920,11 +920,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
     value: "false"
     server: true
@@ -939,11 +934,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
