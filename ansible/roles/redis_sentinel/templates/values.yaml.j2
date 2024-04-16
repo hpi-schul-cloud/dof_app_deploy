@@ -41,8 +41,6 @@ replica:
               - schulcloud-verbund
           topologyKey: "kubernetes.io/hostname"
           namespaceSelector: {}
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
       - weight: 10
         podAffinityTerm:
           labelSelector:
@@ -51,16 +49,28 @@ replica:
               operator: In
               values:
               - "{{ REDIS_SENTINEL_NAME }}"
-          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
-      - weight: 20
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-              - "{{ REDIS_SENTINEL_NAME }}"
-          topologyKey: "topology.kubernetes.io/zone"
+          topologyKey: "kubernetes.io/hostname"
+          namespaceSelector: {}
+#    podAntiAffinity:
+#      preferredDuringSchedulingIgnoredDuringExecution:
+#      - weight: 10
+#        podAffinityTerm:
+#          labelSelector:
+#            matchExpressions:
+#            - key: app.kubernetes.io/name
+#              operator: In
+#              values:
+#              - "{{ REDIS_SENTINEL_NAME }}"
+#          topologyKey: "{{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}"
+#      - weight: 20
+#        podAffinityTerm:
+#          labelSelector:
+#            matchExpressions:
+#            - key: app.kubernetes.io/name
+#              operator: In
+#              values:
+#              - "{{ REDIS_SENTINEL_NAME }}"
+#          topologyKey: "topology.kubernetes.io/zone"
 {% endif %}
 sentinel:
   enabled: true
