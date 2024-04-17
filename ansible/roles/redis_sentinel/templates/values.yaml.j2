@@ -76,6 +76,7 @@ sentinel:
   masterSet: {{ NAMESPACE }}
   image:
     pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
+    debug: true
   resources:
     limits: 
       cpu: {{ REDIS_SENTINEL_SENTINEL_RESOURCES_CPU_LIMITS }}
