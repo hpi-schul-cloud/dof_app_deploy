@@ -1,3 +1,15 @@
+# this config is only relevant for
+# - schulcloud-client
+# - nuxt-client
+# - all services that use api-configmap including those that shouldn't
+#
+# if you have a general config to add which is used here as well as for example in shd or another "microservice" use instance_config_all.yml,
+# and you might, if necessary, declare it here as well, like so:
+#   ROCKET_CHAT_URI:
+#    value: "{{ROCKET_CHAT_URI}}"
+#    server: true
+#    client: false
+#    nuxtclient: false
 configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
@@ -187,7 +199,7 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
     # in Byte
-    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus, 2,5GB = 2684354560B.
     value: "2684354560"
     server: true
     client: true
@@ -291,7 +303,7 @@ configuration_all:
     nuxtclient: false
   # rocketchat
   ROCKET_CHAT_URI:
-    value: "http://rocketchat-svc:5000"
+    value: "{{ROCKET_CHAT_URI}}"
     server: true
     client: false
     nuxtclient: false
@@ -617,7 +629,7 @@ configuration_all:
     client: true
     nuxtclient: false
   CALENDAR_URI:
-    value: "http://calendar-svc:3000"
+    value: "{{ CALENDAR_URI }}"
     server: true
     client: false
     nuxtclient: false
@@ -908,11 +920,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
     value: "false"
     server: true
@@ -927,11 +934,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
@@ -998,6 +1000,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # overwritten from default true, to ensure existing services won't crash harder than usual
   EXIT_ON_ERROR:
     value: "false"
     server: true
@@ -1010,5 +1013,5 @@ configuration_all:
   FEATURE_MEDIA_SHELF_ENABLED:
     value: "false"
     server: true
-    client: false
+    client: true
     nuxtclient: false

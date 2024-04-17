@@ -42,7 +42,6 @@ FEATURE_CTL_TOOLS_TAB_ENABLED: "true"
 FEATURE_LTI_TOOLS_TAB_ENABLED: "false"
 FEATURE_SHOW_OUTDATED_USERS: "true"
 FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION: "true"
-FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "true"
 FEATURE_CTL_TOOLS_ENABLED: "true"
 FEATURE_LTI_TOOLS_ENABLED: "false"
 FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED: "true"
@@ -113,6 +112,9 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
+
+WITH_MOIN_SCHULE: true
+WITH_UNSYNCED_ENTITIES_DELETION: true
 
 # SCHULCONNEX / SANIS / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
