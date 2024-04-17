@@ -5,14 +5,14 @@ metadata:
   name: {{ NAMESPACE }}-libreoffice-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABELD|default("false") }}"
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
-{% if CLUSTER_ISSUER is defined or (TLS_ENABELD is defined and TLS_ENABELD|bool) %}
+  ingressClassName: {{ INGRESS_CLASS }}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
   tls:
   - hosts:
       - {{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}
@@ -25,35 +25,21 @@ spec:
     http:
       paths:
       - path: /loleaflet
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /hosting/discovery
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: libreoffice-svc
-            port:
-              number: 9980
-      - path: /lool/(.*)/ws
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc
             port:
               number: 9980
       - path: /lool
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: libreoffice-svc
-            port:
-              number: 9980
-      - path: /lool/adminws
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: libreoffice-svc

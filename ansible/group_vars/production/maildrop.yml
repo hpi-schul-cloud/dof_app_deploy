@@ -1,3 +1,3 @@
 ---
 MAILDROP_IMAGE_NAME: ghcr.io/kaffeekrone/mail-drop
-MAILDROP_IMAGE_TAG: 1.3
+MAILDROP_IMAGE_TAG: 1.7

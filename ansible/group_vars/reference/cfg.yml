@@ -1,7 +1,10 @@
-FEATURE_NEXBOARD_ENABLED: "false"
-
 API_LDAP_SYNC_SVC: api-ldapsync-svc
 
 ES_DOMAIN: https://repository.sc-staging-edusharing.dbildungscloud.org
 
 H5P_FRAME_SRC_URLS: "https://rendering.services.sc-staging-edusharing.dbildungscloud.org/"
+
+BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
+BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
+
+SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"

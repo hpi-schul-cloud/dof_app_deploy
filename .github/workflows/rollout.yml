@@ -22,13 +22,14 @@ jobs:
       - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
       
   ref-audit:
+    if: ${{ !failure() }}
     needs:
-      - approve_ref
+      - approve_prod_stage_2
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-audit
-      host_group: default
+      host_group: dbc
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
@@ -60,7 +61,7 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-dbc
-      host_group: default
+      host_group: dbc
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
@@ -123,7 +124,7 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: prod-dbc
-      host_group: default
+      host_group: dbc
       host_stage: production
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
@@ -194,28 +195,30 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  test-loadtest-01:
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: test-loadtest-01
-      host_group: default
-      host_stage: test
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  infra-schulcloud-01:
+  # disable rollout to loadtest instance until it is restructered and fixed in OPS-5141
+  # dev-loadtest-01:
+  #   uses: ./.github/workflows/host.yml
+  #   with:
+  #     cfg_version: ${{ github.event.inputs.config_tag_name }}
+  #     host_name: dev-loadtest-01
+  #     host_group: dbc
+  #     host_stage: loadtest
+  #     execute_group: ${{ github.event.inputs.instance_group }}
+  #   secrets:
+  #     token: ${{ secrets.GITHUB_TOKEN }}
+  #     ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+  #     KUBECONFIG: ${{ secrets.KUBECONFIG }}
+  #     RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
+
+  infra-dbildungscloud-01:
     needs:
       - approve_ref  
     uses: ./.github/workflows/host.yml
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: infra.schulcloud-01
-      host_group: default
+      host_name: infra.dbildungscloud-01
+      host_group: dbc
       host_stage: infra
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
@@ -224,18 +227,3 @@ jobs:
       KUBECONFIG: ${{ secrets.KUBECONFIG }}
       RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
 
-  infra-schulcloud-02:
-    needs:
-      - approve_ref 
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: infra.schulcloud-02
-      host_group: default
-      host_stage: infra
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}

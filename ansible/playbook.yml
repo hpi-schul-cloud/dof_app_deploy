@@ -6,6 +6,8 @@
   roles:
     - sys
     - pre_deployment
+    - keda
+    - namespace-activator-scaled-objects
     - dof_mongo
     - dof_postgresql
     - dof_rabbitmq
@@ -24,14 +26,20 @@
     - schulcloud-server-init
     - schulcloud-server-ldapsync
     - schulcloud-server-tspsync
+    - schulcloud-server-h5p
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
     - schulcloud-calendar-core
     - schulcloud-calendar-init
+    - h5p-library-management
+    - h5p-proxy
+    - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator
     - rocketchat
     - mongodb_query_exporter
+    - tldraw-client-core
     - ingress
     - post_deployment
+    - moin-schule-sync

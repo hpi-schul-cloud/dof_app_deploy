@@ -1,7 +1,6 @@
 NAMESPACE: brandenburg
 DOMAIN: staging.brandenburg.dbildungscloud.org
 
-FEATURE_NEXBOARD_ENABLED: "true"
 FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 
 DISPLAY_REQUEST_LEVEL: -1
@@ -12,3 +11,5 @@ FWU_CONTENT__S3_BUCKET: sc-staging-fwu-txl-bucket
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/
 
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.brandenburg.dbildungscloud.org"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.brandenburg.dbildungscloud.org"

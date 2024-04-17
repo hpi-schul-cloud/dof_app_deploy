@@ -4,6 +4,8 @@ metadata:
   name: rabbitmq-svc
   namespace: {{ NAMESPACE }}
 spec:
+  image: {{ RABBITMQ_IMAGE_NAME }}:{{ RABBITMQ_IMAGE_TAG }}
+  delayStartSeconds: {{ RABBITMQ_DELAY_START_SECONDS|default(0, true) }}
   replicas: {{ RABBITMQ_REPLICAS|default("1", true) }}
   resources:
     limits:
@@ -14,6 +16,7 @@ spec:
       memory: {{ RABBITMQ_MEMORY_REQUESTS|default("256Mi", true) }}
   persistence:
     storage: "{{ RABBITMQ_PERSISTENCE_STORAGE|default("1Gi", true) }}"
+    storageClassName: {{ SC_DEFAULT_STORAGE_CLASS_NAME }}
   override:
     statefulSet:
       spec:
@@ -32,3 +35,4 @@ spec:
     additionalConfig: |
       load_definitions = /path/to/exported/definitions.json
       disk_free_limit.absolute = "{{ RABBITMQ_LOW_WATERMARK_DISK|default("50MB", true) }}"
+      prometheus.return_per_object_metrics = {{ RABBITMQ_PER_OBJECT_METRICS|default("true", true) }}

@@ -1,3 +1,15 @@
+# this config is only relevant for
+# - schulcloud-client
+# - nuxt-client
+# - all services that use api-configmap including those that shouldn't
+#
+# if you have a general config to add which is used here as well as for example in shd or another "microservice" use instance_config_all.yml,
+# and you might, if necessary, declare it here as well, like so:
+#   ROCKET_CHAT_URI:
+#    value: "{{ROCKET_CHAT_URI}}"
+#    server: true
+#    client: false
+#    nuxtclient: false
 configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
@@ -82,6 +94,16 @@ configuration_all:
     nuxtclient: true
   H5P_FRAME_SRC_URLS:
     value: ""
+    server: false
+    client: false
+    nuxtclient: true
+  H5P_IMG_SRC_URLS:
+    value: "{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}"
+    server: false
+    client: false
+    nuxtclient: true
+  H5P_SCRIPT_SRC_URLS:
+    value: "https://{{ DOMAIN }}/api/v3/h5p-editor/h5pstatics/editor/scripts/"
     server: false
     client: false
     nuxtclient: true
@@ -177,10 +199,15 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
     # in Byte
-    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus, 2,5GB = 2684354560B.
     value: "2684354560"
     server: true
     client: true
+    nuxtclient: false
+  FILES_STORAGE__USE_STREAM_TO_ANTIVIRUS:
+    value: "true"
+    server: true
+    client: false
     nuxtclient: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
@@ -276,7 +303,7 @@ configuration_all:
     nuxtclient: false
   # rocketchat
   ROCKET_CHAT_URI:
-    value: "http://rocketchat-svc:5000"
+    value: "{{ROCKET_CHAT_URI}}"
     server: true
     client: false
     nuxtclient: false
@@ -387,9 +414,29 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
+    value: "10"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
+    value: "150"
+    server: true
+    client: false
+    nuxtclient: false
+  # Column Board
+  COLUMN_BOARD_HELP_LINK:
+    value: https://{{ DOMAIN }}/help/confluence/270827606
+    server: true
+    client: false
+    nuxtclient: false
+  COLUMN_BOARD_FEEDBACK_LINK:
+    server: true
+    client: false
+    nuxtclient: false
   # FEATURE TOGGLE
   I18N__AVAILABLE_LANGUAGES:
-    value: "de,en,es,ua"
+    value: "de,en,es,uk"
     server: true
     client: true
     nuxtclient: false
@@ -404,6 +451,11 @@ configuration_all:
     client: true
     nuxtclient: false
   TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  TEACHER_STUDENT_VISIBILITY__IS_VISIBLE:
     value: "true"
     server: true
     client: false
@@ -461,6 +513,21 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_COLUMN_BOARD_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
@@ -471,18 +538,28 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_COURSE_SHARE:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_COURSE_SHARE_NEW:
+  FEATURE_COLUMN_BOARD_SHARE:
     value: "true"
     server: true
-    client: true
+    client: false
     nuxtclient: false
-  FEATURE_IMSCC_COURSE_EXPORT_ENABLED:
+  FEATURE_COURSE_SHARE:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE:
+    value: "2000000000"
     server: true
     client: false
     nuxtclient: false
@@ -522,7 +599,12 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_NEXBOARD_ENABLED:
-    value: "true"
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_NEXBOARD_COPY_ENABLED:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
@@ -531,15 +613,15 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_TASK_CARD_ENABLED:
+  FEATURE_SCHOOL_POLICY_ENABLED_NEW:
     value: "false"
     server: true
     client: false
     nuxtclient: false
-  FEATURE_MULTI_LOGIN_INSTANCES:
+  FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
     value: "false"
-    server: false
-    client: true
+    server: true
+    client: false
     nuxtclient: false
   BODYPRASER_JSON_LIMIT:
     value: "10mb"
@@ -547,7 +629,7 @@ configuration_all:
     client: true
     nuxtclient: false
   CALENDAR_URI:
-    value: "http://calendar-svc:3000"
+    value: "{{ CALENDAR_URI }}"
     server: true
     client: false
     nuxtclient: false
@@ -574,6 +656,31 @@ configuration_all:
     nuxtclient: false
   FEATURE_ES_MERLIN_ENABLED:
     value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_H5P_EDITOR_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  H5P_EDITOR__S3_REGION:
+    value: "s3-eu-central-2"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_ENDPOINT:
+    value: "https://s3-eu-central-2.ionoscloud.com"
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_LIBRARIES:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: false
+  H5P_EDITOR__S3_BUCKET_CONTENT:
+    value: ""
     server: true
     client: false
     nuxtclient: false
@@ -687,12 +794,20 @@ configuration_all:
     client: true
     nuxtclient: false
   GLOBAL_ANNOUNCEMENT_TEXT:
-    value: ""
+    server: true
+    client: true
+    nuxtclient: true
+  GLOBAL_ANNOUNCEMENT_ROLES:
+    server: true
+    client: true
+    nuxtclient: true
+  DASHBOARD_ANNOUNCEMENT_ENABLED:
+    value: "true"
     server: false
     client: true
     nuxtclient: false
-  GLOBAL_ANNOUNCEMENT_ROLES:
-    value: ""
+  DASHBOARD_ANNOUNCEMENT_ROLES:
+    value: "teacher"
     server: false
     client: true
     nuxtclient: false
@@ -748,4 +863,155 @@ configuration_all:
     value: "false"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_CTL_TOOLS_TAB_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_LTI_TOOLS_TAB_ENABLED:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_PROMETHEUS_METRICS_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_ROUTE:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_PORT:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_DEFAULT_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  PROMETHEUS_METRICS_COLLECT_METRICS_ROUTE_METRICS:
+    server: true
+    client: false
+    nuxtclient: false
+  ROOT_URL_REDIRECT:
+    value: ""
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_LEGACY_HYDRA_ENABLED:
+    value: "false"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_ALERTS_ON_HOMEPAGE_ENABLED:
+    value: "true"
+    server: false
+    client: true
+    nuxtclient: false
+  FEATURE_SHOW_OUTDATED_USERS:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_GROUPS_IN_COURSE_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  CLAMAV__SERVICE_HOSTNAME:
+    value: "clamav-svc"
+    server: true
+    client: false
+    nuxtclient: false
+  CLAMAV__SERVICE_PORT:
+    value: "3310"
+    server: true
+    client: false
+    nuxtclient: false
+  ADDITIONAL_BLACKLISTED_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
+  BLOCKLIST_OF_EMAIL_DOMAINS:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TLDRAW_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  TLDRAW_URI:
+    value: "http://tldraw-server-svc:3349"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_CTL_TOOLS_COPY_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  CTL_TOOLS_RELOAD_TIME_MS:
+    value: "299000"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__API_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__TOKEN_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED:
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_SHOW_MIGRATION_WIZARD:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  MIGRATION_WIZARD_DOCUMENTATION_LINK:
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=236650836&frameable=true"
+    server: true
+    client: false
+    nuxtclient: false
+  # overwritten from default true, to ensure existing services won't crash harder than usual
+  EXIT_ON_ERROR:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  HEALTH_CHECKS_EXCLUDE_MONGODB:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_MEDIA_SHELF_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false

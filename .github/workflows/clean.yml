@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       branch_name:
-        description: 'Branch or tag'     
+        description: 'Branch or tag'
         required: true
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         run: echo "branch=${git_ref_name}" >> $GITHUB_OUTPUT
         id: extract_branch
 
-  deploy:
+  clean:
     needs:
       - branch_name
     uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/clean_workflow.yml@main
@@ -34,5 +34,7 @@ jobs:
       branch: ${{ needs.branch_name.outputs.branch }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
-      DEV_KUBE_CONFIG: ${{ secrets.DEV_KUBE_CONFIG }}
-      TOKEN_INVENTORY: ${{ secrets.TOKEN_INVENTORY }}
+      DEV_KUBE_CONFIG_BRB: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
+      DEV_KUBE_CONFIG_NBC: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
+      DEV_KUBE_CONFIG_THR: ${{ secrets.DEV_KUBE_CONFIG_THR }}
+      DEV_KUBE_CONFIG_DBC: ${{ secrets.DEV_KUBE_CONFIG_DBC }}

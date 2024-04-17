@@ -7,36 +7,46 @@ on:
       branch:
         required: true
         type: string
-      user_name:
-         required: false
-         default: hpi-schul-clud-bot
-         type: string
-      user_email:
-         required: false
-         default: bot@hpi-schul-cloud.de
-         type: string
+
     secrets:
       token:
         required: true
-      DEV_VAULT:
+      DEV_VAULT_BRB:
         required: true
-      DEV_KUBE_CONFIG:
+      DEV_VAULT_THR:
         required: true
-      TOKEN_INVENTORY:
+      DEV_VAULT_NBC:
+        required: true
+      DEV_VAULT_DBC:
+        required: true
+      DEV_KUBE_CONFIG_BRB:
+        required: true
+      DEV_KUBE_CONFIG_NBC:
+        required: true
+      DEV_KUBE_CONFIG_THR:
+        required: true
+      DEV_KUBE_CONFIG_DBC:
         required: true
 
+
 env:
-  tennens: "brb default nbc"
+  tenants: "brb dbc nbc thr"
 
 permissions:
   contents: read
 
 jobs:
+
+  create_branch_identifier:
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/branch-to-namespace.yml@main
+    with:
+      branch: ${{ inputs.branch }}
+
   create_artifacts_repos:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repos: 
+        repos:
          - schulcloud-server
          - schulcloud-client
          - nuxt-client
@@ -45,11 +55,13 @@ jobs:
          - antivirus_check_service
          - version-aggregator
          - dof_app_deploy
+         - h5p-staticfiles-server
+         - tldraw-client
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -63,77 +75,131 @@ jobs:
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
-          for i in ${{ env.tennens }}; do
+          reponame=$(echo ${filename} | tr _ - )
+          branch_varname=$(echo ${{ inputs.branch }} | tr -d [:cntrl:]  | tr / \. | tr [:blank:] _ )
+          for i in ${{ env.tenants }}; do
             mkdir -pv ansible/host_vars/${i}_host
-            echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml 
+            echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_BRANCH_NAME: ${branch_varname}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
-          
+
   create_artifacts_workspaces:
     runs-on: ubuntu-latest
+    needs:
+      - create_branch_identifier
     strategy:
       matrix:
-        tennens: [ brb, default, nbc ]
+        tenants: [ brb, dbc, nbc, thr ]
     steps:
       - shell: bash
-        id: make_identifier
         run: |
-          mkdir -pv ansible/host_vars/${{ matrix.tennens }}_host
-          
-          git_ref_name=${{ inputs.branch }}
-          echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
-          
-          temp=$(echo $git_ref_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
-          echo "before" $git_ref_name "after" $temp
-          echo "id=$temp" >> $GITHUB_OUTPUT
+          mkdir -pv ansible/host_vars/${{ matrix.tenants }}_host
       - shell: bash
-        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tennens }}_host
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tenants }}_host
         run: |
-          #declare test='${{ steps.make_identifier.outputs.id }}'
-          echo "NAMESPACE: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}" > cfg_host.yml
-          echo "DOMAIN: ${{ matrix.tennens }}-${{ steps.make_identifier.outputs.id }}.cd.dbildungscloud.dev" >> cfg_host.yml
-      - run: tar -cf ${{ matrix.tennens }}.tar ansible
-      - uses: actions/upload-artifact@v3
+          echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
+          echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
+      - run: tar -cf ${{ matrix.tenants }}.tar ansible
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.tennens }}
-          path: ${{github.workspace }}/${{ matrix.tennens }}.tar
-  
-  deploy:
-    needs: 
+          name: ${{ matrix.tenants }}
+          path: ${{github.workspace }}/${{ matrix.tenants }}.tar
+
+  gather-namespace-activation-facts:
+    runs-on: ubuntu-latest
+    outputs:
+      activator-function: ${{ steps.gather-facts.outputs.function }}
+    needs:
       - create_artifacts_repos
       - create_artifacts_workspaces
+    steps:
+      - name: gather-facts
+        id: gather-facts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # gh pr view will exit with 1 when there is no pr for a given branch
+          pr_labels=$(gh pr view ${{ inputs.branch }} --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
+          echo "pr_labels: $pr_labels"
+          has_activation_label=$(echo $pr_labels | jq '.labels[] | select(.name == "auto-extend-activation-time") | length > 0')
+
+          if [ "$has_activation_label" == "true" ]; then
+              echo "has pr, has label, extend activation time"
+              echo "function=extendAndWait" >> "$GITHUB_OUTPUT"
+          else
+              echo "may have an pr, but if, there is no label, will create initial ns entry if there isn't one already"
+              echo "function=createIfNotExistsAndWait" >> "$GITHUB_OUTPUT"
+          fi
+
+  call-activator:
+    needs:
+      - gather-namespace-activation-facts
+      - create_branch_identifier
+    strategy:
+      fail-fast: false
+      matrix:
+        tenants: ["dbc", "brb", "nbc", "thr"]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
-      - run: mv */*.tar ./
-      - run: find -name "*.tar" -exec tar -xf {} \;
-      - run: tar -cf ansible.tar ansible
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ansible
-          path: ${{github.workspace }}/ansible.tar
-      - shell: bash
+      - name: call namespace activator
+        env:
+          NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
+          NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
-          python3 -m pip install kubernetes
-          
-      - name: 1Password
-        working-directory: ${{github.workspace }}/ansible/group_vars
-        run: |
-          echo "VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
-          echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.DEV_VAULT }}" >> develop/dof_deploy.yml
-          echo "TLS_ENABELD: \"true\"" >> develop/dof_deploy.yml
-      - run: ansible-galaxy install -r ansible/collections/requirements.yml
-      - working-directory: ${{github.workspace }}/ansible/roles/sys
-        run: |
-          mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG }}" > files/config
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts -e 'ansible_python_interpreter=/usr/bin/python3'
-        working-directory: ${{github.workspace }}/ansible
-      - working-directory: ${{github.workspace }}/ansible/roles/sys/files
-        run: |
-          rm -rf  /config
+          curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
+
+
+  deploy_dbc_dev:
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: dbc_host
+      tenant: dbc
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_DBC }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
+
+  deploy_nbc_dev:
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: nbc_host
+      tenant: nbc
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_NBC }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
+
+  deploy_brb_dev:
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: brb_host
+      tenant: brb
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_BRB }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_BRB }}
+
+  deploy_thr_dev:
+    needs:
+      - create_artifacts_repos
+      - create_artifacts_workspaces
+    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
+    with:
+      host_name: thr_host
+      tenant: thr
+    secrets:
+      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_THR }}
+      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_THR }}

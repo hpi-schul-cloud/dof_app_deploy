@@ -1,0 +1,10 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: rabbitmq-trigger-auth
+  namespace: {{ NAMESPACE }}
+spec:
+  secretTargetRef:
+    - parameter: host
+      name: keda-secret
+      key: amqp-url
