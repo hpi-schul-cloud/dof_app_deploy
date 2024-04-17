@@ -73,6 +73,7 @@ replica:
 {% endif %}
 sentinel:
   enabled: true
+  masterSet: {{ NAMESPACE }}
   image:
     pullPolicy: {{ REDIS_SENTINEL_IMAGE_PULL_POLICY }}
   resources:
