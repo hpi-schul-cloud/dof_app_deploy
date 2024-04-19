@@ -1020,3 +1020,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
