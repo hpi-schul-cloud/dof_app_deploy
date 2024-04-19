@@ -3,5 +3,5 @@
 
 ROCKET_CHAT_URI: "http://rocketchat-svc:5000"
 CALENDAR_URI: "http://calendar-svc:3000"
-EXIT_ON_ERROR: "true"
+EXIT_ON_ERROR: "false"
 NEST_LOG_LEVEL: "info"
