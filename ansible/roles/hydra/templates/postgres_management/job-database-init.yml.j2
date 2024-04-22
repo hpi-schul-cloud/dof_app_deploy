@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pg-{{ database_name }}-init-job-{{ 1000000 | random | hash('md5') }}
+  namespace: {{ NAMESPACE }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      volumes:
+        - name: config-script
+          configMap:
+            name: pg-{{ database_name }}-configmap-init
+            # 711 in decimal is 457
+            defaultMode: 457
+      containers:
+        - name:  psql-config
+          image: {{ POSTGRES_JOB_IMAGE }}
+          command:
+            - /bin/bash
+            - -c
+          args:
+            - /scripts/config_script.sh
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: config-script
+              mountPath: /scripts/
+          envFrom:
+            - secretRef:
+                name: pg-{{ database_name }}-secret
+          env:
+            - name: PGHOST
+              value: {{ POSTGRES_HOST }}
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-cluster-secret
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-cluster-secret
+                  key: password
+      restartPolicy: Never
+  ttlSecondsAfterFinished: 86400
