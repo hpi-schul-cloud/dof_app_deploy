@@ -513,6 +513,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_BOARD_LAYOUT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
     value: "true"
     server: true
