@@ -2,7 +2,7 @@
   include_tasks: postgres_management.yml
   vars:
     database_name: erwinidm
-  when: WITH_ERWINIDM AND WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+  when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
 - name: Service
   kubernetes.core.k8s:
