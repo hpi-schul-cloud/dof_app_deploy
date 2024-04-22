@@ -1005,8 +1005,9 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # overwritten from default true, to ensure existing services won't crash harder than usual
   EXIT_ON_ERROR:
-    value: "{{ EXIT_ON_ERROR }}"
+    value: "false"
     server: true
     client: false
     nuxtclient: false
