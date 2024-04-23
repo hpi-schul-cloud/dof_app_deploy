@@ -5,8 +5,8 @@ SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
-GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+GLOBAL_ANNOUNCEMENT_TEXT: 'Wichtig: Schulen mit dem Anmeldeverfahren \"Schulserver\" (IServ) müssen bis 30.04. ihre Benutzerkonten zu moin.schule <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Migration moin.schule & NBC - Was ist zu tun?\" href=\"https://blog.niedersachsen.cloud/moin-schule-einfach-erklaert\">migrieren</a>. Weitere Informationen erhalten Sie im <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Blog von moin.schule\" href=\"https://blog.niedersachsen.cloud/moin-schule\">Blog</a> oder bei <a target=\"_blank\" class=\"alert-link\" rel=\"noopener noreferrer\" aria-label=\"Webseite von moin.schule\" href=\"https://moin.schule/informationen-fuer-schulen\">moin.schule</a>.'
+GLOBAL_ANNOUNCEMENT_ROLES: administrator
 DASHBOARD_ANNOUNCEMENT_ENABLED: "false"
 
 SHOW_VERSION: 1
@@ -42,7 +42,6 @@ FEATURE_CTL_TOOLS_TAB_ENABLED: "true"
 FEATURE_LTI_TOOLS_TAB_ENABLED: "false"
 FEATURE_SHOW_OUTDATED_USERS: "true"
 FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION: "true"
-FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED: "true"
 FEATURE_CTL_TOOLS_ENABLED: "true"
 FEATURE_LTI_TOOLS_ENABLED: "false"
 FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED: "true"
@@ -52,6 +51,8 @@ FEATURE_CTL_TOOLS_COPY_ENABLED: "true"
 FEATURE_SHOW_MIGRATION_WIZARD: "true"
 FEATURE_USER_MIGRATION_ENABLED: "true"
 FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED: "true"
+FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION: "true"
+FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
