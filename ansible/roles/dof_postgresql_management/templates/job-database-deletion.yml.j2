@@ -25,7 +25,7 @@ spec:
             defaultMode: 457
       containers:
         - name:  psql-config
-          image: {{ POSTGRES_MANAGEMENT_HOST_JOB_IMAGE }}
+          image: {{ POSTGRES_MANAGEMENT_JOB_IMAGE }}
           command:
             - /bin/bash
             - -c
