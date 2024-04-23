@@ -1,23 +1,37 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pg-deletion-job
+  name: pg-erwinidm-init-job-{{ 1000000 | random | hash('md5') }}
   namespace: {{ NAMESPACE }}
+  labels:
+    app: erwinidm-postgres-init
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/name: erwinidm-postgres-init
+    app.kubernetes.io/component: idm
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
   template:
     metadata:
       labels:
-        app: postgres
+        app: erwinidm-postgres-init
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/name: erwinidm-postgres-init
+        app.kubernetes.io/component: idm
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       volumes:
         - name: config-script
           configMap:
-            name: pg-configmap-deletion
+            name: pg-erwinidm-configmap-init
             # 711 in decimal is 457
             defaultMode: 457
       containers:
-        - name:  psql-config
-          image: {{ POSTGRES_JOB_IMAGE }}
+        - name:  psql-erwinidm-config
+          image: {{ POSTGRES_MANAGEMENT_HOST_JOB_IMAGE }}
           command:
             - /bin/bash
             - -c
@@ -33,9 +47,12 @@ spec:
           volumeMounts:
             - name: config-script
               mountPath: /scripts/
+          envFrom:
+            - secretRef:
+                name: pg-erwinidm-secret
           env:
             - name: PGHOST
-              value: {{ POSTGRES_HOST }}
+              value: {{ POSTGRES_MANAGEMENT_HOST }}
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
@@ -47,5 +64,4 @@ spec:
                   name: pg-cluster-secret
                   key: password
       restartPolicy: Never
-  suspend: true
-  ttlSecondsAfterFinished: 0
+  ttlSecondsAfterFinished: 1800

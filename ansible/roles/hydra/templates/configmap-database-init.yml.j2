@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pg-{{ database_name }}-configmap-init
+  name: pg-hydra-configmap-init
   namespace: {{ NAMESPACE }}
   labels:
-    app: postgres
+    app: hydra-postgres-init
 data:
   config_script.sh: |
     #!/bin/bash

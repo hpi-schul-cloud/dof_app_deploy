@@ -1,7 +1,32 @@
-  - name: Create database
-    include_tasks: postgres_management.yml
-    vars:
-      database_name: hydra
+  - name: Check if secret with database credentials already exists
+    kubernetes.core.k8s_info:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      kind: Secret
+      name: "pg-hydra-secret"
+    register: db_secret_present
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
+  - name: Create Secret for the database (if not existing)
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: secret-database.yml.j2
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT and db_secret_present.resources|length == 0
+
+  - name: Create ConfigMap with database configuration script
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: configmap-database-init.yml.j2
+      apply: yes
+    when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
+  - name: Create/execute database configuration script
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: job-database-init.yml.j2
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
 
   - name: Service
