@@ -513,6 +513,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_BOARD_LAYOUT_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
     value: "true"
     server: true
@@ -930,6 +935,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
     value: "false"
     server: true
@@ -1016,6 +1026,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_MEDIA_SHELF_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION:
     value: "false"
     server: true
     client: false
