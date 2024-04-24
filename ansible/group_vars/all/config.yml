@@ -821,6 +821,16 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
+  TRAINING_PROGRAM_ANNOUNCEMENT_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: true
+  TRAINING_PROGRAM_ANNOUNCEMENT_ROLES:
+    value: "teacher,administrator"
+    server: true
+    client: true
+    nuxtclient: true
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
