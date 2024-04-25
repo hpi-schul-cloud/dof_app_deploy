@@ -16,10 +16,17 @@ spec:
         image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}
         imagePullPolicy: Always
         envFrom:
-        - configMapRef:
-            name: hydra-configmap
         - secretRef:
             name: hydra-secret
+        - configMapRef:
+            name: hydra-configmap
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+        - secretRef:
+            name: pg-hydra-secret
+        env:
+        - name: DSN
+          value: "postgres://$(DB_USER):$(DB_USER_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(DB_NAME)"
+{% endif %}
         volumeMounts:
         - name: script
           mountPath: /update.sh

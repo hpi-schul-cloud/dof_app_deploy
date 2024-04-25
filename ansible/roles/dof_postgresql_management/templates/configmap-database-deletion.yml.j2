@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-configmap-deletion
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: postgres-management
+data:
+  config_script.sh: |
+    #!/bin/bash
+    DB_PREFIX="{{ POSTGRES_MANAGEMENT_PREFIX }}"
+    if [[ {{ '${#DB_PREFIX}' }} -le 5 ]]; then 
+      echo "Postgres prefix \"{{ POSTGRES_MANAGEMENT_PREFIX }}\" seems too short. Dropping all matching databases could be dangerous. Aborting."
+      exit 1
+    fi
+    echo "Delete databases starting with {{ POSTGRES_MANAGEMENT_PREFIX }}"
+    echo "SELECT 'DROP DATABASE ' || quote_ident(datname) || ' WITH (FORCE);' FROM pg_database WHERE datname LIKE '{{ POSTGRES_MANAGEMENT_PREFIX | replace('_','#_')}}%' ESCAPE '#' \gexec" | psql -d postgres -w
+    echo "Delete users starting with {{ POSTGRES_MANAGEMENT_PREFIX  }}"
+    echo "SELECT 'DROP USER ' || quote_ident(usename) || ';' FROM pg_catalog.pg_user WHERE usename LIKE '{{ POSTGRES_MANAGEMENT_PREFIX | replace('_','#_')}}%' ESCAPE '#' \gexec" | psql -d postgres -w
