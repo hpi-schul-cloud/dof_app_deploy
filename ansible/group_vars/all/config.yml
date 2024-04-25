@@ -1035,3 +1035,12 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL:
+    server: true
+    client: false
+    nuxtclient: false
