@@ -17,7 +17,7 @@ spec:
       port: "27017"
       dbName: "keda"
       collection: "namespaces"
-      query: '{"name" : "{{ NAMESPACE }}", "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}'
+      query: '{"$or" : [{"name" : "{{ NAMESPACE }}", "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}, {"name" : "main"}]}'
       queryValue: "1"
     authenticationRef:
       name: sc-common-mongodb-trigger-auth
