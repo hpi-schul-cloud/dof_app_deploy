@@ -51,10 +51,21 @@ spec:
           name: erwinidm
           protocol: TCP
         envFrom:
-        - configMapRef:
-            name: erwinidm-configmap
         - secretRef:
             name: erwinidm-secret
+        - configMapRef:
+            name: erwinidm-configmap
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+        - secretRef:
+            name: pg-erwinidm-secret
+        env:
+        - name: KC_DB_PASSWORD
+          value: "$(DB_USER_PASSWORD)"
+        - name: KC_DB_USERNAME
+          value: "$(DB_USER)"
+        - name: KC_DB_URL
+          value: "$(DB_BASE_URL)/$(DB_NAME)"
+{% endif %}
         resources:
         # find reasonable limits
           limits:
