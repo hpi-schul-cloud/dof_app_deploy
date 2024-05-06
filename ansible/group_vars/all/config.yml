@@ -1049,3 +1049,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  BOARD_COLLABORATION_URI:
+    value: ""
+    server: true
+    client: false
+    nuxtclient: true
