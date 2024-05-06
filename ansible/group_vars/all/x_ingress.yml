@@ -121,6 +121,10 @@ default_ingress:
     path: /vendor/edu-sharing
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  media_shelf:
+    path: /media-shelf
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
@@ -147,10 +151,6 @@ default_ingress:
     path: /api/roster
   api_v1_consentVersions:
     path: /api/v1/consentVersions
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_systems:
-    path: /api/v1/systems
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_ldap-config:

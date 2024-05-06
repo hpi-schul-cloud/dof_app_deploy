@@ -12,4 +12,5 @@ BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildu
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
 
-FEATURE_CTL_TOOLS_COPY_ENABLED: "false"
+PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL: "https://api-dienste.moin.schule/v1/lizenz-info"
+FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: false

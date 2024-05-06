@@ -35,7 +35,7 @@ spec:
     spec:
       initContainers:
       - name: oidcmock-initcontainers
-        image: schulcloud/infra-tools:latest
+        image: quay.io/schulcloudverbund/infra-tools:latest
         command: ['sh', '-c', 'echo create configs...; ls /cfg; envsubst < /tmp/usersConfigurationContent.json > /cfg/usersConfigurationContent.json; envsubst < /tmp/clientsConfigurationContent.json > /cfg/clientsConfigurationContent.json; echo done;']
         envFrom:
         - secretRef:

@@ -1,3 +1,34 @@
+- name: Check if secret with database credentials already exists
+  kubernetes.core.k8s_info:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    kind: Secret
+    name: "pg-erwinidm-secret"
+  register: db_secret_present
+  when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
+- name: Create Secret for the database (if not existing)
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: secret-database.yml.j2
+  when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT and db_secret_present.resources|length == 0
+
+- name: Create ConfigMap with database configuration script
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap-database-init.yml.j2
+    apply: yes
+  when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
+- name: Create/execute database configuration script
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: job-database-init.yml.j2
+  when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+
 - name: Service
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
@@ -119,12 +150,23 @@
     state: absent
   when: not WITH_ERWINIDM
 
+- name: Test if Init Job exit
+  kubernetes.core.k8s_info:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: batch/v1
+    kind: Job
+    name: erwinidm-init-job
+  register: erwinidm_init_job_present
+
 - name: Init Job
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
     template: init_job.yml.j2
-  when: WITH_ERWINIDM
+  when: 
+  - WITH_ERWINIDM
+  - erwinidm_init_job_present.resources|length == 0
 
 - name: Remove Init Job
   kubernetes.core.k8s:

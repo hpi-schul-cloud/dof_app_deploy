@@ -117,25 +117,19 @@ jobs:
           echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config_nbc
           echo "${{ secrets.DEV_KUBE_CONFIG_THR }}" > files/config_thr
           echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config_dbc
-      - name: delete custom resources and namespaces 
+      - name: delete custom resources, databases and namespaces
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_brb --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_brb delete --ignore-not-found=true ns $branch_identifier
-          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_nbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_nbc delete --ignore-not-found=true ns $branch_identifier 
-          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_thr --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_thr delete --ignore-not-found=true ns $branch_identifier 
-          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config_dbc --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-          kubectl --kubeconfig=files/config_dbc delete --ignore-not-found=true ns $branch_identifier
+          for CLUSTER in brb nbc thr dbc
+          do
+            echo "Cleanup for $CLUSTER"
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+            kubectl --kubeconfig=files/config_$CLUSTER delete --ignore-not-found=true ns $branch_identifier
+          done
       - name: remove kubeconfig
         run: |
           rm -rf  files/config_.*
