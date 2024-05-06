@@ -28,6 +28,7 @@
     - schulcloud-server-ldapsync
     - schulcloud-server-tspsync
     - schulcloud-server-h5p
+    - schulcloud-server-migration-system
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
