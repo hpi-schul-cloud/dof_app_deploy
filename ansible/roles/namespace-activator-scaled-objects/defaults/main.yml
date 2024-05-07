@@ -9,6 +9,7 @@ deployments_for_scaled_objects:
   - antivirus-webserver-deployment
   - antivirus-scanfile-deployment
   - api-files-deployment
+  - api-migration-systems-deployment
   - preview-generator-deployment
   - api-fwu-deployment
   - calendar-deployment
