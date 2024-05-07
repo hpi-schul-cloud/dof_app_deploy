@@ -1050,7 +1050,7 @@ configuration_all:
     client: false
     nuxtclient: false
   BOARD_COLLABORATION_URI:
-    value: "ws://{{ DOMAIN }}"
+    value: ""
     server: true
     client: false
     nuxtclient: true
