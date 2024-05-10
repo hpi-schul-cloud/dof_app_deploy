@@ -665,5 +665,16 @@ mongodb_query_exporter_aggregations: |-
         mode: pull
         pipeline: |
           [           
-            { "$match": {"status" : "pending", "updatedAt" : {"$lt": $subtract: ["$$NOW", 15 * 60 * 1000]}} }
+            { 
+                    "$match": {
+                        "status": "pending",
+                        "$expr": {
+                            "$lt": [
+                                "$updatedAt", 
+                                { "$subtract": ["$$NOW", 15 * 60 * 1000] }
+                            ]
+                        }
+                    }
+                },
+            {"$count" : "count"}
           ]
