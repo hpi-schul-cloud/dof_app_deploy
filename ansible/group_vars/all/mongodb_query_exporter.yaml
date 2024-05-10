@@ -671,7 +671,7 @@ mongodb_query_exporter_aggregations: |-
                         "$expr": {
                             "$lt": [
                                 "$updatedAt", 
-                                { "$subtract": ["$$NOW", 15 * 60 * 1000] }
+                                { "$subtract": ["$$NOW", 900000] }
                             ]
                         }
                     }
