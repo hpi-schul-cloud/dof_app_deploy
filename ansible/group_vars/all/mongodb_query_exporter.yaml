@@ -650,3 +650,31 @@ mongodb_query_exporter_aggregations: |-
           [           
             { "$count": "count" }
           ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_pending_deletion_requests_older_than_15m
+          type: gauge
+          help: 'deletionrequests being stuck in pending over 15 min'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { 
+                    "$match": {
+                        "status": "pending",
+                        "$expr": {
+                            "$lt": [
+                                "$updatedAt", 
+                                { "$subtract": ["$$NOW", 900000] }
+                            ]
+                        }
+                    }
+                },
+            {"$count" : "count"}
+          ]
