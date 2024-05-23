@@ -364,7 +364,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
+  ETHERPAD_COOKIE_RELEASE_THRESHOLD:
     value: "7200"
     server: true
     client: false
