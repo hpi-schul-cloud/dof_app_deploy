@@ -31,3 +31,4 @@ deployments_for_scaled_objects:
   - mailcatcher-deployment
   - maildrop-deployment
   - board-collaboration-deployment
+  - common-cartridge-deployment
