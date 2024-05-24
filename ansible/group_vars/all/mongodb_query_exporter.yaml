@@ -581,6 +581,24 @@ mongodb_query_exporter_aggregations: |-
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: boardnodes
+        metrics:
+        - name: sc_boardnodes_column_boards
+          type: gauge
+          help: 'The number of boardnodes of type drawing-element'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "boardnodes"}]
+        mode: pull
+        pipeline: |
+          [
+            { "$match" : { "type" : "column-board" }},
+            { "$count" : "count" }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: deletionrequests
         metrics:
         - name: sc_deletion_requests_pending_status
