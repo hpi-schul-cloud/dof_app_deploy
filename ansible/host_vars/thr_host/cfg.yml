@@ -4,5 +4,3 @@ ROOT_URL_REDIRECT: https://test.schulportal-thueringen.de/thueringer_schulcloud
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-thr.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev/
-
-FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "true"
