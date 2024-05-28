@@ -1059,3 +1059,23 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  EDU_SHARING__APP_ID:
+    value: schul-cloud
+    server: true
+    client: false
+    nuxtclient: false
+  EDU_SHARING__API_URL:
+    value: https://repo.test.mediathek.dev.dbildungsplattform.de/edu-sharing
+    server: true
+    client: false
+    nuxtclient: true
+  EDU_SHARING__PRIVATE_KEY:
+    value: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCQYVZgfRisoKtp\nz0GT2ax8LyYdFH4tKCdHzo41kYu53YA/G3kEpGji8gAAGfkCZxKzpBdz+dfreJyS\n3OWnldxPdYpACfGZNEOlATuTuOl/m6l+OHgG6PixEbtzdB8cIX2KkjfE2rUTbE9s\nRqqDL5FC/ffsyyULf6JwVjydraGBTaSliEFY7Z3C92B1ntFgRhHNbGsKNwTVcIHo\nb1CCfH6eaEOzoou5ISDDXuhsVR5mafIZEQdxgytiJn2813g5VazKL9znzgY83li/\nuF62+IfcllCZEbYwuVWKEcKO+L/NnIMiymIu1pcM8cFdv+ojxq9xvgZZswgheO9x\n5aTEwActAgMBAAECggEAAN71ccOPazXU6DXTLscjXo8SQHP9MYc1JXO+MTMy5T4h\nez/5LOlTpfrRES8W7MgeZBhbTocf9vr/8XWE/8vMS8ETwmsiRUr8FXoPwpuyR44d\nfvYW6JkYgZ5FGTSGyNlS3ovJ66q+E43rChDVunuGTsx6uwzxU5kY1mtOwPdpKqnW\nQESDZUNUjfNK/lQuqHKRSnkXz6c6+6THWmE54lj64Z6q/hZfuXuq4j/acddSJaTl\nZVj3wVyWrbDe/ic8kmAFFJg9JbOkPyN41HC//Y6BQJYz+YmYQOxFMCSOusx9s2rl\nQtqmN7YGVnubCR7sY9hpCOgo1iWk3aSmd0WUTeUi6QKBgQDHLjEvQFc1oMPyYe54\novzdQdmBSxB+E+ejgcBUC0z8EGHDUlw8XsbTfB8CvMGu9rZeZJd/rc7aDmE5ixdp\np5ydBivr0a+W7xvGhraWZ+OrmKEIGGqoVQyNnKzKxAsreFAVTxgl9IvgzR4yk7+v\nuRdLlOjPRBioMcRPwrT4Jlh3YwKBgQC5kS3YZIdqU4OMG/5HED4mfRQ9chCHfC9K\n3y92e1/tqRU27toTAdDIXhWSkKUkjvjW5JcJD+Skdwe81vGqO9zQVs222E5jJH+t\negjXptQDRngoSvfq/JOrmWCEg1aXahDYnqecsiX8ScrNx2/spODl0NXQI/hDCsjX\n2zHP7VY0LwKBgC2jxv9lxdXy/ZNHn2YjKr/kO9ulgKTzGKvdql1XrY9AjbY85Aet\nS+/fzBdLezIFNCqS8CgAgppymxKdbYL3NirA5EWH6a0zIvEtox75tTB3q8Z4GdBy\nlIrKcMmRfGG8ktUfJ5Bi5b5gIeBC/LRePBlEiMgdeWzo4mvIWMFXwAOzAoGAUiiM\n+7nGmrTPEUFzm1L9sVy/kVTnLJU2+xdFlFebaUXrNp8ZvkCXh57gPjv8YetLERm0\nJTb8LDTnIByqcox+f19vRP0P96U5Qj09nP0n8StKF8zZZxjc6KTHruPXesJjIwVb\ngGz/lGu3dtROIZ/+UsHbaIQEbupfcfKCY2TZPdECgYEAkkVjUHg1MqTWmsWPgMTV\nWhVpWx/pNtXh05z9JZlyAm9JYpZ22YEn2PuhG390G6FFQs8EA5RKmrvSJG7kb3DO\nwpgqntWshZYesKp3SnVdTbO4uOcpVI4pIWuhkVRDQRhz877SS5IWDgAfAShOgp7/\nkTyEW9eSTsxKnnoByxr32O8=\n-----END PRIVATE KEY-----\n"
+    server: true
+    client: false
+    nuxtclient: false
+  EDU_SHARING__PUBLIC_KEY:
+    value: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkGFWYH0YrKCrac9Bk9ms\nfC8mHRR+LSgnR86ONZGLud2APxt5BKRo4vIAABn5AmcSs6QXc/nX63icktzlp5Xc\nT3WKQAnxmTRDpQE7k7jpf5upfjh4Buj4sRG7c3QfHCF9ipI3xNq1E2xPbEaqgy+R\nQv337MslC3+icFY8na2hgU2kpYhBWO2dwvdgdZ7RYEYRzWxrCjcE1XCB6G9Qgnx+\nnmhDs6KLuSEgw17obFUeZmnyGREHcYMrYiZ9vNd4OVWsyi/c584GPN5Yv7hetviH\n3JZQmRG2MLlVihHCjvi/zZyDIspiLtaXDPHBXb/qI8avcb4GWbMIIXjvceWkxMAH\nLQIDAQAB\n-----END PUBLIC KEY-----\n"
+    server: true
+    client: false
+    nuxtclient: false
