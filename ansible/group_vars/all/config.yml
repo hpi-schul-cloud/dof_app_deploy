@@ -359,12 +359,12 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD_COOKIE__EXPIRES_SECONDS:
+  ETHERPAD_COOKIE_EXPIRES_SECONDS:
     value: "7200"
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
+  ETHERPAD_COOKIE_RELEASE_THRESHOLD:
     value: "7200"
     server: true
     client: false
