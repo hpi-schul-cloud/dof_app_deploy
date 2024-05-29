@@ -1057,5 +1057,5 @@ configuration_all:
   FEATURE_NEW_LAYOUT_ENABLED:
     value: "false"
     server: true
-    client: false
+    client: true
     nuxtclient: false
