@@ -1069,3 +1069,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
+  EDU_SHARING_CONNECT_SRC_URLS:
+    value: "https://repo.test.mediathek.dev.dbildungsplattform.de"
+    server: false
+    client: false
+    nuxtclient: true
+  EDU_SHARING_IMG_SRC_URLS:
+    value: "https://repo.test.mediathek.dev.dbildungsplattform.de"
+    server: false
+    client: false
+    nuxtclient: true
