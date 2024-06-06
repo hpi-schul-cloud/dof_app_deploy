@@ -12,3 +12,5 @@ NEXTCLOUD_BASE_URL: https://nextcloud.test.schulcloud-thueringen.de
 FEATURE_H5P_EDITOR_ENABLED: "true"
 
 BLOCKLIST_OF_EMAIL_DOMAINS: "schul-cloud.org"
+
+FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "true"
