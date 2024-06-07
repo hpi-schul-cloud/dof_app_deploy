@@ -354,11 +354,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD_API_PATH:
-    value: "/api/1.2.14"
-    server: true
-    client: false
-    nuxtclient: false
   ETHERPAD_COOKIE_EXPIRES_SECONDS:
     value: "7200"
     server: true
@@ -368,11 +363,6 @@ configuration_all:
     value: "7200"
     server: true
     client: false
-    nuxtclient: false
-  ETHERPAD_BASE_URL:
-    value: "https://{{ DOMAIN }}/etherpad/p/"
-    server: false
-    client: true
     nuxtclient: false
   ETHERPAD__PAD_PATH:
     value: "/etherpad/p"
