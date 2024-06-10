@@ -354,7 +354,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD_COOKIE_EXPIRES_SECONDS:
+  ETHERPAD__COOKIE_EXPIRES_SECONDS:
     value: "7200"
     server: true
     client: false
