@@ -374,6 +374,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  ETHERPAD__OLD_PAD_URI:
+    value: "https://etherpad.{{ DOMAIN }}/p"
+    server: true
+    client: false
+    nuxtclient: false
   ETHERPAD__NEW_DOMAIN:
     value: "{{ DOMAIN }}"
     server: false
