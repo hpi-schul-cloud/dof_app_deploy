@@ -354,16 +354,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  ETHERPAD__COOKIE_EXPIRES_SECONDS:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD__COOKIE_RELEASE_THRESHOLD:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
   ETHERPAD__PAD_PATH:
     value: "/etherpad/p"
     server: false
