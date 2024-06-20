@@ -48,14 +48,14 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { 
-              $match: {
-                lastLogin: {
-                  $gte: new Date(Date.now() - 24 * 60 * 60 * 1000)
+              "$match": {
+                "lastLogin": {
+                  "$gte": new Date(Date.now() - 24 * 60 * 60 * 1000)
                 }
               }
             },
             {
-              $count: "count"
+              "$count": "count"
             }
           ]
 
@@ -704,5 +704,3 @@ mongodb_query_exporter_aggregations: |-
                 },
             {"$count" : "count"}
           ]
-
-      
