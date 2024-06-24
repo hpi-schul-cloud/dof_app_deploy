@@ -49,10 +49,13 @@ mongodb_query_exporter_aggregations: |-
           [
             { 
               "$match": {
-                "lastLogin": {
-                  "$gte": {
-                    "$subtract": ["$$NOW", 86400000]
-                  }
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 86400000]
+                    }
+                  ]
                 }
               }
             },
