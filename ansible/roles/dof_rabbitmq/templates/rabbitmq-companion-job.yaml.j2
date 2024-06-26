@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rabbitmq-companion-job
+  namespace: rabbitmq-sidecar-test
+  labels:
+    app: rabbitmq-companion
+spec:
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-companion
+    spec:
+      containers:
+      - name: rabbitmq-companion-job
+        image: quay.io/fancy_schaum/rabbit-sidecar-test:1
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: api-configmap
+        - secretRef:
+            name: api-secret
+        command:
+              - python3
+              - fun.py
+              - --url
+              - http://sc-admin:Xeith7eajaqu@rabbitmq-svc:15672/api
+              - --vhost
+              - zug
+              - --apply-config
+              - --config
+              - rabbit_c872473fc6e9_2024-3-19.json
+      restartPolicy: Never
+  backoffLimit: 5
