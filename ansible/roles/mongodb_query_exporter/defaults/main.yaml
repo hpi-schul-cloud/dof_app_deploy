@@ -5,7 +5,6 @@ mongodb_query_exporter_mongodb_sc_db_name: "scapp"
 mongodb_query_exporter_op_item_name: "mongodb-query-exporter"
 mongodb_query_exporter_secret_name: "{{mongodb_query_exporter_op_item_name}}-secret"
 mongodb_query_exporter_sampling_time: 60s
-mongodb_query_exporter_aggregations: "{{ lookup('file', 'defaults/mongodb_query_exporter_aggregations.yaml') }}"
 mongodb_query_exporter_values:
   image:
     tag: "{{ mongodb_query_exporter_image_version }}"
@@ -30,7 +29,7 @@ mongodb_query_exporter_values:
       maxConnection: 3
       defaultCache: 0
     aggregations:
-    {{ mongodb_query_exporter_aggregations }}
+      {{ lookup('file', 'defaults/mongodb_query_exporter_aggregations.yaml') | from_yaml | to_nice_yaml | indent(6) }}
   resources:
     limits:
       cpu: "{{ MONGO_QUERY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
