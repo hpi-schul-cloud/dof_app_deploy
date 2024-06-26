@@ -518,11 +518,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_COLUMN_BOARD_COLLABORATIVE_TEXT_EDITOR_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
     value: "false"
     server: true
