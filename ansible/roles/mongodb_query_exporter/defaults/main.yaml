@@ -29,7 +29,7 @@ mongodb_query_exporter_values:
       maxConnection: 3
       defaultCache: 0
     aggregations:
-      {{ lookup('file', 'defaults/mongodb_query_exporter_aggregations.yaml') | from_yaml | to_nice_yaml | indent(6) }}
+      {{ lookup('template', 'defaults/mongodb_query_exporter_aggregations.yaml')) }}
   resources:
     limits:
       cpu: "{{ MONGO_QUERY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
