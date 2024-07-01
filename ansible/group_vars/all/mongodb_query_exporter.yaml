@@ -34,6 +34,192 @@ mongodb_query_exporter_aggregations: |-
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_60m
+          type: gauge
+          help: 'The number of unique user logins in the last 60 minutes.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 3600000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_24h
+          type: gauge
+          help: 'The number of unique user logins in the last 24 hours.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 86400000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_7d
+          type: gauge
+          help: 'The number of unique user logins in the last 7 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 604800000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_30d
+          type: gauge
+          help: 'The number of unique user logins in the last 30 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 2592000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_90d
+          type: gauge
+          help: 'The number of unique user logins in the last 90 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 7776000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_365d
+          type: gauge
+          help: 'The number of unique user logins in the last 365 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 31536000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_users
