@@ -349,30 +349,10 @@ configuration_all:
     client: true
     nuxtclient: false
   # Etherpad
-  ETHERPAD_URI:
+  ETHERPAD__URI:
     value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
     server: true
     client: false
-    nuxtclient: false
-  ETHERPAD_API_PATH:
-    value: "/api/1.2.14"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_COOKIE_EXPIRES_SECONDS:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_COOKIE_RELEASE_THRESHOLD:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_BASE_URL:
-    value: "https://{{ DOMAIN }}/etherpad/p/"
-    server: false
-    client: true
     nuxtclient: false
   ETHERPAD__PAD_PATH:
     value: "/etherpad/p"
@@ -383,6 +363,11 @@ configuration_all:
     value: "https://{{ DOMAIN }}/etherpad/p"
     server: true
     client: true
+    nuxtclient: false
+  ETHERPAD__OLD_PAD_URI:
+    value: "https://etherpad.{{ DOMAIN }}/p"
+    server: true
+    client: false
     nuxtclient: false
   ETHERPAD__NEW_DOMAIN:
     value: "{{ DOMAIN }}"
@@ -530,11 +515,6 @@ configuration_all:
     nuxtclient: false
   FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED:
     value: "true"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_COLUMN_BOARD_COLLABORATIVE_TEXT_EDITOR_ENABLED:
-    value: "false"
     server: true
     client: false
     nuxtclient: false
