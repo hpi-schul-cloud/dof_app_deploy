@@ -217,22 +217,22 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "true"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "true"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
-    value: "false"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   IDENTITY_MANAGEMENT__URI:
-    value: "http://erwinidm-svc:8089"
+    value: "{{ IDENTITY_MANAGEMENT__URI }}"
     server: true
     client: false
     nuxtclient: false
