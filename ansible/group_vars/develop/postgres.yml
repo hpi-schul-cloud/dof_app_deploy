@@ -1,0 +1,2 @@
+# Add prefix if namespace begins with number (not allowed), replace - with _ and trim
+POSTGRES_MANAGEMENT_PREFIX: "{{ (NAMESPACE | regex_replace('^(\\d.+)', 'release_\\1') | replace('-','_'))[:40] }}__"

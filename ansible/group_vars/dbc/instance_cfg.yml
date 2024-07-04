@@ -4,7 +4,7 @@ SC_SHORTNAME: dbc
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeDbc
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 SHOW_VERSION: 1

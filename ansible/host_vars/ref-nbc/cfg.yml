@@ -1,7 +1,6 @@
 NAMESPACE: niedersachsen
 DOMAIN: staging.niedersachsen.dbildungscloud.org
 
-FEATURE_NEXBOARD_ENABLED: "false"
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
@@ -11,8 +10,6 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungsc
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
 
 # Migration wizard
-FEATURE_SHOW_MIGRATION_WIZARD: "false"
-FEATURE_USER_MIGRATION_ENABLED: "false"
-# FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
+FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
 
-FEATURE_CTL_TOOLS_COPY_ENABLED: "false"
+PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL: "https://api-dienste.moin.schule/v1/lizenz-info"

@@ -1,6 +1,6 @@
 NAMESPACE: hpibosscloud
 DOMAIN: staging.dbildungscloud.org
 
-FEATURE_NEXBOARD_ENABLED: "true"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.de/
+FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "true"

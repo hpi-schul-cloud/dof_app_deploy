@@ -34,6 +34,192 @@ mongodb_query_exporter_aggregations: |-
           ]
 
       - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_60m
+          type: gauge
+          help: 'The number of unique user logins in the last 60 minutes.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 3600000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_24h
+          type: gauge
+          help: 'The number of unique user logins in the last 24 hours.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 86400000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_7d
+          type: gauge
+          help: 'The number of unique user logins in the last 7 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 604800000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_30d
+          type: gauge
+          help: 'The number of unique user logins in the last 30 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 2592000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_90d
+          type: gauge
+          help: 'The number of unique user logins in the last 90 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 7776000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: accounts
+        metrics:
+        - name: sc_unique_logins_last_365d
+          type: gauge
+          help: 'The number of unique user logins in the last 365 days.'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "accounts"}]
+        mode: pull
+        pipeline: |
+          [
+            { 
+              "$match": {
+                "$expr": {
+                  "$gte": [
+                    "$lastLogin",
+                    {
+                      "$subtract": ["$$NOW", 31536000000]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "$count": "count"
+            }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
         collection: users
         metrics:
         - name: sc_users
@@ -560,4 +746,121 @@ mongodb_query_exporter_aggregations: |-
         pipeline: |
           [
             { "$count" : "count" }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: boardnodes
+        metrics:
+        - name: sc_boardnodes_drawing_element
+          type: gauge
+          help: 'The number of boardnodes of type drawing-element'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "boardnodes"}]
+        mode: pull
+        pipeline: |
+          [
+            { "$match" : { "type" : "drawing-element" }},
+            { "$count" : "count" }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_pending_status
+          type: gauge
+          help: 'The number deletionrequests in pending status'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$match" : {"status": "pending"} },           
+            { "$count": "count" }
+          ]
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_success_status
+          type: gauge
+          help: 'The number deletionrequests in success status'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$match" : {"status": "success"} },           
+            { "$count": "count" }
+          ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_registered_status
+          type: gauge
+          help: 'The number deletionrequests in registered status'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$match" : {"status": "registered"} },           
+            { "$count": "count" }
+          ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_deletion_requests_all
+          type: gauge
+          help: 'The number of all deletionrequests'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { "$count": "count" }
+          ] 
+
+      - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+        collection: deletionrequests
+        metrics:
+        - name: sc_pending_deletion_requests_older_than_15m
+          type: gauge
+          help: 'deletionrequests being stuck in pending over 15 min'
+          value: count
+          overrideEmpty: true
+          emptyValue: 0
+          labels: []
+          constLabels: [{"mongodb_collection": "deletionrequests"}]
+        mode: pull
+        pipeline: |
+          [           
+            { 
+                    "$match": {
+                        "status": "pending",
+                        "$expr": {
+                            "$lt": [
+                                "$updatedAt", 
+                                { "$subtract": ["$$NOW", 900000] }
+                            ]
+                        }
+                    }
+                },
+            {"$count" : "count"}
           ]

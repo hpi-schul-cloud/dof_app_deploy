@@ -4,7 +4,7 @@ SC_TITLE: Thüringer Schulcloud
 SC_PRODUCTNAME: Thüringer Schulcloud
 SC_NAV_TITLE: Thüringer Schulcloud
 SC_CONTACT_EMAIL: schulcloud-support@thillm.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeThr
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -71,7 +71,7 @@ VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instan
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
-FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
 WITH_TSP: true
