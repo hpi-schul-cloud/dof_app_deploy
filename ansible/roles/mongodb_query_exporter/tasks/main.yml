@@ -29,7 +29,8 @@
           interval: "{{ mongodb_query_exporter_sampling_time }}"
         serviceAccount:
           create: false
-        config: "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
+        config: |-
+          "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
         resources:
           limits:
             cpu: "{{ MONGO_QUERY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
