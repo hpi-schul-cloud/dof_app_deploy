@@ -1,0 +1,875 @@
+
+version: 3.0
+bind: 0.0.0.0:9412
+metricsPath: /metrics
+logLevel: debug
+global:
+  queryTimeout: "15s"
+  maxConnection: 3
+  defaultCache: 0
+aggregations: 
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: schools
+    metrics:
+    - name: sc_schools
+      type: gauge
+      help: 'The number of schools'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "schools"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_accounts
+      type: gauge
+      help: 'The number of accounts'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_60m
+      type: gauge
+      help: 'The number of unique user logins in the last 60 minutes.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                {
+              "$subtract": ["$$NOW", 3600000]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_24h
+      type: gauge
+      help: 'The number of unique user logins in the last 24 hours.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                  {
+                    "$subtract": ["$$NOW", 86400000]
+                  }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_7d
+      type: gauge
+      help: 'The number of unique user logins in the last 7 days.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                  {
+                    "$subtract": ["$$NOW", 604800000]
+                  }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_30d
+      type: gauge
+      help: 'The number of unique user logins in the last 30 days.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                  {
+                    "$subtract": ["$$NOW", 2592000000]
+                  }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_90d
+      type: gauge
+      help: 'The number of unique user logins in the last 90 days.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                  {
+                    "$subtract": ["$$NOW", 7776000000]
+                  }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: accounts
+    metrics:
+    - name: sc_unique_logins_last_365d
+      type: gauge
+      help: 'The number of unique user logins in the last 365 days.'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "accounts"}]
+    mode: pull
+    pipeline: |
+      [
+        { 
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$lastLogin",
+                  {
+                    "$subtract": ["$$NOW", 31536000000]
+                  }
+              ]
+            }
+          }
+        },
+        {
+          "$count": "count"
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_users
+      type: gauge
+      help: 'The number of users'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "users"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_admin_users
+      type: gauge
+      help: 'The number of admin users'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "users"}]
+    mode: pull
+    pipeline: |
+      [
+        {
+          "$match": {
+            "roles": { "$in": [{"$oid": "0000d186816abba584714c96"}] }
+          }
+        },
+        { 
+        "$count": "count" 
+        }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_teacher_users
+      type: gauge
+      help: 'The number of teacher users'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "users"}]
+    mode: pull
+    pipeline: |
+      [
+        {
+          "$match": {
+            "roles": { "$in": [{"$oid": "0000d186816abba584714c98"}] }
+          }
+        },
+        { 
+        "$count": "count" 
+        }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_student_users
+      type: gauge
+      help: 'The number of student users'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "users"}]
+    mode: pull
+    pipeline: |
+      [
+        {
+          "$match": {
+            "roles": { "$in": [{"$oid": "0000d186816abba584714c99"}] }
+          }
+        },
+        { 
+        "$count": "count" 
+        }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: classes
+    metrics:
+    - name: sc_classes
+      type: gauge
+      help: 'The number of classes'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "classes"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: courses
+    metrics:
+    - name: sc_courses
+      type: gauge
+      help: 'The number of courses'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "courses"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: coursegroups
+    metrics:
+    - name: sc_coursegroups
+      type: gauge
+      help: 'The number of coursegroups'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "coursegroups"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_lessons
+      type: gauge
+      help: 'The number of lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_text_lessons
+      type: gauge
+      help: 'The number of text lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "contents.component" : "text" }}, 
+        { "$project" : { "contents" : 1 }}, 
+        { "$unwind" : { "path" : "$contents" }}, 
+        { "$match" : { "contents.component" : "text" }}, 
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_task_lessons
+      type: gauge
+      help: 'The number of task lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+          { "$match" : { "contents.component" : "internal" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "internal" }}, 
+          { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_learning_store_lessons
+      type: gauge
+      help: 'The number of resource lessons (Lern-Store)'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+          { "$match" : { "contents.component" : "resources" }}, 
+          { "$project" : { "contents" : 1 }}, 
+          { "$unwind" : { "path" : "$contents" }}, 
+          { "$match" : { "contents.component" : "resources" }}, 
+          { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_nexboard_lessons
+      type: gauge
+      help: 'The number of nexboard lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "contents.component" : "neXboard" }}, 
+        { "$project" : { "contents" : 1 }}, 
+        { "$unwind" : { "path" : "$contents" }}, 
+        { "$match" : { "contents.component" : "neXboard" }}, 
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_etherpad_lessons
+      type: gauge
+      help: 'The number of etherpad lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "contents.component" : "Etherpad" }}, 
+        { "$project" : { "contents" : 1 }}, 
+        { "$unwind" : { "path" : "$contents" }}, 
+        { "$match" : { "contents.component" : "Etherpad" }}, 
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
+    - name: sc_geogebra_lessons
+      type: gauge
+      help: 'The number of geoGebra lessons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "lessons"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "contents.component" : "geoGebra" }}, 
+        { "$project" : { "contents" : 1 }}, 
+        { "$unwind" : { "path" : "$contents" }}, 
+        { "$match" : { "contents.component" : "geoGebra" }}, 
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: homeworks
+    metrics:
+    - name: sc_homeworks
+      type: gauge
+      help: 'The number of homeworks'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "homeworks"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: homeworks
+    metrics:
+    - name: sc_private_homeworks
+      type: gauge
+      help: 'The number of private homeworks'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "homeworks"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "private" : true }},
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: homeworks
+    metrics:
+    - name: sc_teamsubmission_homeworks
+      type: gauge
+      help: 'The number of homeworks submitted by a team'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "homeworks"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "teamSubmissions" : true }},
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: homeworks
+    metrics:
+    - name: sc_course_homeworks
+      type: gauge
+      help: 'The number of homeworks as part of a course'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "homeworks"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "lessonId" : { "$not" : { "$type" : 7 } }, "courseId" : { "$type" : 7 } }},
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: homeworks
+    metrics:
+    - name: sc_coursegroup_homeworks
+      type: gauge
+      help: 'The number of homeworks as part of a coursegroup'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "homeworks"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "lessonId" : { "$type" : 7 }, "courseId" : { "$type" : 7 } }},
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: filerecords
+    metrics:
+    - name: sc_task_attached_files
+      type: gauge
+      help: 'The number of files that are attached to a task'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "filerecords"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "parentType" : "tasks" }}, 
+        { "$project" : { "_id" : 1, "parent" : 1 }}, 
+        { "$group" : { "_id" : "$parent" }}, 
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: submissions
+    metrics:
+    - name: sc_submissions
+      type: gauge
+      help: 'The number of submissions'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "submissions"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: teams
+    metrics:
+    - name: sc_teams
+      type: gauge
+      help: 'The number of teams'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "teams"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: videoconferences
+    metrics:
+    - name: sc_videoconferences
+      type: gauge
+      help: 'The number of videoconferences'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "videoconferences"}]
+    mode: pull
+    pipeline: |
+      [
+        {"$count":"count"}
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_old_filestorage_files
+      type: gauge
+      help: 'The number of files in the old file storage'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "files"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_old_filestorage_user_files
+      type: gauge
+      help: 'The number of files in the old file storage that belong to a user'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "files"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : {"refOwnerModel": "user"} },
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_old_filestorage_course_files
+      type: gauge
+      help: 'The number of files in the old file storage that belong to a course'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "files"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : {"refOwnerModel": "course"} },
+        { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_old_filestorage_team_files
+      type: gauge
+      help: 'The number of files in the old file storage that belong to a team'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "files"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : {"refOwnerModel": "teams"} },
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: filerecords
+    metrics:
+    - name: sc_new_filestorage_files
+      type: gauge
+      help: 'The number of files in the new file storage'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "filerecords"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: news
+    metrics:
+    - name: sc_news
+      type: gauge
+      help: 'The number of news entries'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "news"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: boardnodes
+    metrics:
+    - name: sc_boardnodes_drawing_element
+      type: gauge
+      help: 'The number of boardnodes of type drawing-element'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "boardnodes"}]
+    mode: pull
+    pipeline: |
+      [
+        { "$match" : { "type" : "drawing-element" }},
+        { "$count" : "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: deletionrequests
+    metrics:
+    - name: sc_deletion_requests_pending_status
+      type: gauge
+      help: 'The number deletionrequests in pending status'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "deletionrequests"}]
+    mode: pull
+    pipeline: |
+      [       
+        { "$match" : {"status": "pending"} },       
+        { "$count": "count" }
+      ]
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: deletionrequests
+    metrics:
+    - name: sc_deletion_requests_success_status
+      type: gauge
+      help: 'The number deletionrequests in success status'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "deletionrequests"}]
+    mode: pull
+    pipeline: |
+      [       
+        { "$match" : {"status": "success"} },       
+        { "$count": "count" }
+      ] 
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: deletionrequests
+    metrics:
+    - name: sc_deletion_requests_registered_status
+      type: gauge
+      help: 'The number deletionrequests in registered status'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "deletionrequests"}]
+    mode: pull
+    pipeline: |
+      [       
+        { "$match" : {"status": "registered"} },       
+        { "$count": "count" }
+      ] 
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: deletionrequests
+    metrics:
+    - name: sc_deletion_requests_all
+      type: gauge
+      help: 'The number of all deletionrequests'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "deletionrequests"}]
+    mode: pull
+    pipeline: |
+      [       
+        { "$count": "count" }
+      ] 
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: deletionrequests
+    metrics:
+    - name: sc_pending_deletion_requests_older_than_15m
+      type: gauge
+      help: 'deletionrequests being stuck in pending over 15 min'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels: [{"mongodb_collection": "deletionrequests"}]
+    mode: pull
+    pipeline: |
+      [       
+        { 
+          "$match": {
+            "status": "pending",
+            "$expr": {
+              "$lt": [
+                "$updatedAt", 
+                 { "$subtract": ["$$NOW", 900000] }
+              ]
+            }
+          }
+        },
+        {"$count" : "count"}
+      ]
