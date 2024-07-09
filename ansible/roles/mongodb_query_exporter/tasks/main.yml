@@ -30,7 +30,7 @@
         serviceAccount:
           create: false
         config: |-
-          "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
+          "{{ lookup('template', 'values.yml.j2') }}"
         resources:
           limits:
             cpu: "{{ MONGO_QUERY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
