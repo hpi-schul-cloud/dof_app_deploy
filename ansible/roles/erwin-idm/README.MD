@@ -33,7 +33,7 @@ Following configuration variables are used for internal and external (instance s
 | ------------------------------- | --------------------------------------------------- |
 | IDENTITY_MANAGEMENT\_\_URI      | The internal base URI of Keycloak                   |
 | IDENTITY_MANAGEMENT\_\_TENANT   | The realm (tenant) name for the instance            |
-| IDENTITY_MANAGEMENT\_\_CLIENTID | The default OpenID Connect client for the instance) |
+| IDENTITY_MANAGEMENT\_\_CLIENTID | The default OpenID Connect client for the instance  |
 
 ## Secrets
 
