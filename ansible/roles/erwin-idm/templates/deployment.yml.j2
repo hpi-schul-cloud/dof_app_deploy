@@ -77,21 +77,21 @@ spec:
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_MANAGEMENT_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /health/live
-            port: {{ ERWINIDM_MANAGEMENT_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 15
         startupProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_MANAGEMENT_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 30
           periodSeconds: 10

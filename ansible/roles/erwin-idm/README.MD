@@ -19,7 +19,6 @@ Following configuration group or host variables are used for internal purpose:
 | ERWINIDM_IMAGE_NAME      | The URL to the ErWIn-IDM docker image                     |
 | ERWINIDM_IMAGE_TAG       | The ErWin-IDM docker image tag to use                     |
 | ERWINIDM_PORT            | Internally user HTTP port for ErWin-IDM                   |
-| ERWINIDM_MANAGEMENT_PORT | Internally user HTTP port for ErWIn-IDM Health Endpoints  |
 | ERWINIDM_PREFIX          | The ErWin-IDM base url prefix                             |
 | ERWINIDM_REPLICAS        | Deployment maximum amount of replica Pods                 |
 | ERWINIDM_CPU_LIMITS      | Deployment CPU upper bound                                |
