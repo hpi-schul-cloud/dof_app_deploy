@@ -288,7 +288,7 @@ configuration_all:
     client: true
     nuxtclient: false
   LOGIN_BLOCK_TIME:
-    value: "15"
+    value: "5"
     server: true
     client: true
     nuxtclient: false
