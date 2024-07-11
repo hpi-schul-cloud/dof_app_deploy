@@ -14,25 +14,26 @@ All stateful data of this role is subject to the persistance provider, i.e. the 
 
 Following configuration group or host variables are used for internal purpose:
 
-| Variable                 | Description                                               |
-| ------------------------ | -----------------------------------------                 |
-| ERWINIDM_IMAGE_NAME      | The URL to the ErWIn-IDM docker image                     |
-| ERWINIDM_IMAGE_TAG       | The ErWin-IDM docker image tag to use                     |
-| ERWINIDM_PORT            | Internally user HTTP port for ErWin-IDM                   |
-| ERWINIDM_PREFIX          | The ErWin-IDM base url prefix                             |
-| ERWINIDM_REPLICAS        | Deployment maximum amount of replica Pods                 |
-| ERWINIDM_CPU_LIMITS      | Deployment CPU upper bound                                |
-| ERWINIDM_CPU_REQUESTS    | Deployment CPU lower bound                                |
-| ERWINIDM_MEMORY_LIMITS   | Deployment memory upper bound                             |
-| ERWINIDM_MEMORY_REQUESTS | Deployment memory lower bound                             |
+| Variable                 | Description                               |
+| ------------------------ | ----------------------------------------- |
+| ERWINIDM_IMAGE_NAME      | The URL to the ErWIn-IDM docker image     |
+| ERWINIDM_IMAGE_TAG       | The ErWin-IDM docker image tag to use     |
+| ERWINIDM_PORT            | Internally user HTTP port for ErWin-IDM   |
+| ERWINIDM_PREFIX          | The ErWin-IDM base url prefix             |
+| ERWINIDM_REPLICAS        | Deployment maximum amount of replica Pods |
+| ERWINIDM_CPU_LIMITS      | Deployment CPU upper bound                |
+| ERWINIDM_CPU_REQUESTS    | Deployment CPU lower bound                |
+| ERWINIDM_MEMORY_LIMITS   | Deployment memory upper bound             |
+| ERWINIDM_MEMORY_REQUESTS | Deployment memory lower bound             |
 
 Following configuration variables are used for internal and external (instance specific) purpose:
 
-| Variable                        | Description                                         |
-| ------------------------------- | --------------------------------------------------- |
-| IDENTITY_MANAGEMENT\_\_URI      | The internal base URI of Keycloak                   |
-| IDENTITY_MANAGEMENT\_\_TENANT   | The realm (tenant) name for the instance            |
-| IDENTITY_MANAGEMENT\_\_CLIENTID | The default OpenID Connect client for the instance  |
+| Variable                            | Description                                         |
+| ----------------------------------- | --------------------------------------------------- |
+| IDENTITY_MANAGEMENT\_\_INTERNAL_URI | The internal base URI of Keycloak                   |
+| IDENTITY_MANAGEMENT\_\_EXTERNAL_URI | The external base URI of Keycloak                   |
+| IDENTITY_MANAGEMENT\_\_TENANT       | The realm (tenant) name for the instance            |
+| IDENTITY_MANAGEMENT\_\_CLIENTID     | The default OpenID Connect client for the instance  |
 
 ## Secrets
 
