@@ -50,6 +50,9 @@ spec:
         - containerPort: {{ ERWINIDM_PORT }}
           name: erwinidm
           protocol: TCP
+        - containerPort: 8090
+          name: erwinidm-management
+          protocol: TCP
         envFrom:
         - secretRef:
             name: erwinidm-secret
