@@ -11,6 +11,10 @@ spec:
       targetPort: {{ ERWINIDM_PORT }}
       protocol: TCP
       name: erwinidm
+    - port: 8090
+      targetPort: 8090
+      protocol: TCP
+      name: erwinidm-mgmt
   selector:
     app: erwinidm
   clusterIP: None
