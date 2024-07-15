@@ -12,14 +12,6 @@ metadata:
 
 spec:
   ingressClassName: {{ INGRESS_CLASS }}
-{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
-  tls:
-  - hosts:
-      - {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}
-{% if CLUSTER_ISSUER is defined %}
-    secretName: {{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}-tls
-{% endif %}
-{% endif %}
   rules:
   - host: {{ DOMAIN }}
     http:
