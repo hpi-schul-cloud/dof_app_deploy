@@ -3,7 +3,7 @@
 
 ROCKET_CHAT_URI: "http://rocketchat-svc:5000"
 CALENDAR_URI: "http://calendar-svc:3000"
-NEST_LOG_LEVEL: "info"
+NEST_LOG_LEVEL: "debug"
 
 # Identity Management
 FEATURE_IDENTITY_MANAGEMENT_ENABLED: "true"
