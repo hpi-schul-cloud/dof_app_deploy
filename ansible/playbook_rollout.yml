@@ -49,3 +49,4 @@
     - role: post_deployment
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
+    - role: common_cartridge

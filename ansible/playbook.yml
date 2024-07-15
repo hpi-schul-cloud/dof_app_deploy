@@ -45,3 +45,4 @@
     - ingress
     - post_deployment
     - moin-schule-sync
+    - common_cartridge
