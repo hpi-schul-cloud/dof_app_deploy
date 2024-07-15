@@ -50,3 +50,4 @@
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
     - role: common_cartridge
+      when: WITH_COMMON_CARTRIDGE is defined and WITH_COMMON_CARTRIDGE|bool
