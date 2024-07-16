@@ -231,8 +231,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  IDENTITY_MANAGEMENT__URI:
-    value: "{{ IDENTITY_MANAGEMENT__URI }}"
+  IDENTITY_MANAGEMENT__INTERNAL_URI:
+    value: "{{ IDENTITY_MANAGEMENT__INTERNAL_URI }}"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__EXTERNAL_URI:
+    value: "{{ IDENTITY_MANAGEMENT__EXTERNAL_URI }}"
     server: true
     client: false
     nuxtclient: false
@@ -288,7 +293,7 @@ configuration_all:
     client: true
     nuxtclient: false
   LOGIN_BLOCK_TIME:
-    value: "15"
+    value: "5"
     server: true
     client: true
     nuxtclient: false
