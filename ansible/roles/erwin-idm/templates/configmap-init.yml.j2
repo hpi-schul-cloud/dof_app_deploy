@@ -11,6 +11,7 @@ data:
     set -e
 
     IDM_URL_BASE=erwinidm-svc:{{ ERWINIDM_PORT }}
+    IDM_URL_BASE_MANAGEMENT=erwinidm-svc:8090
     IDM_URL=$IDM_URL_BASE/admin/realms
     IDM_CLIENT=$IDENTITY_MANAGEMENT__ADMIN_CLIENTID
     IDM_ADMIN=$KEYCLOAK_ADMIN
@@ -26,7 +27,7 @@ data:
     IDM_CLIENT_SECRET=$IDENTITY_MANAGEMENT__DBC_CLIENTID_SECRET
 
     # Wait for IDM to be ready or fail
-    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE/health/ready" || exit 1
+    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE_MANAGEMENT/health/ready" || exit 1
     echo "KEYCLOAK_INIT: Connection OK"
 
     # Request authorization
