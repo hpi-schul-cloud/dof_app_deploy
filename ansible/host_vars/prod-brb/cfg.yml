@@ -8,7 +8,7 @@ FWU_CONTENT__S3_BUCKET: sc-prod-fwu-txl-bucket
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.brandenburg.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.brandenburg.cloud
 
-FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "true"
 
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
