@@ -67,7 +67,7 @@ data:
 
     # Create realm admin user
     echo "KEYCLOAK_INIT: Create realm admin user"
-    RES_ADMINCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}')
+    RES_ADMINCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "firstName": "Erwin", "lastName": "Admin", "email": "erwin.admin@mail.tld",  "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}')
     if [[ $RES_ADMINCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: realm admin exists"
     fi
