@@ -8,3 +8,4 @@ VERSION_AGGREGATOR_REPO_NAME: version-aggregator
 DOF_APP_DEPLOY_REPO_NAME: dof-app-deploy
 H5P_STATICFILES_SERVER_REPO_NAME: h5p-staticfiles-server
 TLDRAW_CLIENT_REPO_NAME: tldraw-client
+TLDRAW_SERVER_REPO_NAME: tldraw-server
