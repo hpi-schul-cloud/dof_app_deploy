@@ -58,6 +58,13 @@ data:
       echo "KEYCLOAK_INIT: realm exists"
     fi
 
+    # Update user profile to enable unmanaged attributes
+    echo "KEYCLOAK_INIT: Updating user profile to enable custom attributes"
+    RES_UPDATE_USER_PROFILE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL/$IDM_REALM_NAME/users/profile" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"unmanagedAttributePolicy": "ADMIN_EDIT"}')
+    if [[ $RES_UPDATE_USER_PROFILE -ne 200 ]] ; then
+      echo "KEYCLOAK_INIT: user profile unmanaged attributes enabled"
+    fi
+
     # Create client
     echo "KEYCLOAK_INIT: Create client"
     RES_CLIENTCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}')
