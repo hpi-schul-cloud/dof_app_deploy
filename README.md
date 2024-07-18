@@ -70,7 +70,7 @@ To convert a branch name to a Kubernetes namespace by stripping paths, convertin
 Some examples:
 ```commandline
 refs/heads/FEATURE_NAME.1 => feature-name-1
-depandabot/npm/cedric/jose-5.8.3 => jose-5-8-3
+depandabot/npm/jose-5.8.3 => jose-5-8-3
 refs/tags/v2.0.1-beta => v2-0-1-beta
 feature/ABC_XYZ.2021 => abc-xyz-2021
 HUHU-666 => huhu-666
