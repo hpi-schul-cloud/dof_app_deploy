@@ -30,5 +30,4 @@ deployments_for_scaled_objects:
   - tldraw-client-deployment
   - mailcatcher-deployment
   - maildrop-deployment
-  - board-collaboration-deployment
   - common-cartridge-deployment
