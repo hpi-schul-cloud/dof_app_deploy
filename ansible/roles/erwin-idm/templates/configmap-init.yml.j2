@@ -60,57 +60,57 @@ data:
 
     # Update user profile to enable unmanaged attributes
     read -d '\n' USER_PROFILE_CONFIG << UserProfileConfigEnd
-{
-  "attributes": [
     {
-      "name": "username",
-      "displayName": "${username}",
-      "validations": {
-        "length": { "min": 3, "max": 255 },
-        "username-prohibited-characters": {},
-        "up-username-not-idn-homograph": {}
-      },
-      "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
-      "multivalued": false
-    },
-    {
-      "name": "email",
-      "displayName": "${email}",
-      "validations": { "email": {}, "length": { "max": 255 } },
-      "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
-      "multivalued": false
-    },
-    {
-      "name": "firstName",
-      "displayName": "${firstName}",
-      "validations": {
-        "length": { "max": 255 },
-        "person-name-prohibited-characters": {}
-      },
-      "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
-      "multivalued": false
-    },
-    {
-      "name": "lastName",
-      "displayName": "${lastName}",
-      "validations": {
-        "length": { "max": 255 },
-        "person-name-prohibited-characters": {}
-      },
-      "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
-      "multivalued": false
+      "attributes": [
+        {
+          "name": "username",
+          "displayName": "${username}",
+          "validations": {
+            "length": { "min": 3, "max": 255 },
+            "username-prohibited-characters": {},
+            "up-username-not-idn-homograph": {}
+          },
+          "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
+          "multivalued": false
+        },
+        {
+          "name": "email",
+          "displayName": "${email}",
+          "validations": { "email": {}, "length": { "max": 255 } },
+          "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
+          "multivalued": false
+        },
+        {
+          "name": "firstName",
+          "displayName": "${firstName}",
+          "validations": {
+            "length": { "max": 255 },
+            "person-name-prohibited-characters": {}
+          },
+          "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
+          "multivalued": false
+        },
+        {
+          "name": "lastName",
+          "displayName": "${lastName}",
+          "validations": {
+            "length": { "max": 255 },
+            "person-name-prohibited-characters": {}
+          },
+          "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] },
+          "multivalued": false
+        }
+      ],
+      "groups": [
+        {
+          "name": "user-metadata",
+          "displayHeader": "User metadata",
+          "displayDescription": "Attributes, which refer to user metadata"
+        }
+      ],
+      "unmanagedAttributePolicy": "ADMIN_EDIT"
     }
-  ],
-  "groups": [
-    {
-      "name": "user-metadata",
-      "displayHeader": "User metadata",
-      "displayDescription": "Attributes, which refer to user metadata"
-    }
-  ],
-  "unmanagedAttributePolicy": "ADMIN_EDIT"
-}
-UserProfileConfigEnd
+    UserProfileConfigEnd
 
     echo "KEYCLOAK_INIT: Updating user profile to enable custom attributes"
     RES_UPDATE_USER_PROFILE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/users/profile -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw "$USER_PROFILE_CONFIG")
