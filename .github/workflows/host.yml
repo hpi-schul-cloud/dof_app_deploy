@@ -117,8 +117,8 @@ jobs:
           ref: ${{ env.TLDRAW_CLIENT_VERSION }}
       - uses: actions/checkout@v4
         with:
-          repository: hpi-schul-cloud/tldraw-client
-          path: repo/tldraw-client
+          repository: hpi-schul-cloud/tldraw-server
+          path: repo/tldraw-server
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_SERVER_VERSION }}
       - working-directory: ${{github.workspace }}
