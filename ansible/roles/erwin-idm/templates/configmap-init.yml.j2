@@ -60,7 +60,7 @@ data:
 
     # Update user profile to enable unmanaged attributes
     echo "KEYCLOAK_INIT: Updating user profile to enable custom attributes"
-    RES_UPDATE_USER_PROFILE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL/$IDM_REALM_NAME/users/profile" -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"unmanagedAttributePolicy": "ADMIN_EDIT"}')
+    RES_UPDATE_USER_PROFILE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/users/profile -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"unmanagedAttributePolicy": "ADMIN_EDIT"}')
     if [[ $RES_UPDATE_USER_PROFILE -ne 200 ]] ; then
       echo "KEYCLOAK_INIT: user profile unmanaged attributes enabled"
     fi
