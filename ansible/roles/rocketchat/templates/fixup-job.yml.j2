@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
-    infra.tools: true
+    infra.tools: "true"
   name: fixup-rocketchat-job
 spec:
   schedule: "{{ ROCKETCHAT_FIXUP_CRONJOB|default("*/5 * * * *", true) }}"
@@ -70,7 +70,7 @@ spec:
                     - key: infra.tools
                       operator: In
                       values:
-                      - true
+                      - "true"
                   topologyKey: "kubernetes.io/hostname"
                   namespaceSelector: {}
 {% endif %}
@@ -82,4 +82,4 @@ spec:
             app.kubernetes.io/component: chat
             app.kubernetes.io/managed-by: ansible
             git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
-            infra.tools: true
+            infra.tools: "true"
