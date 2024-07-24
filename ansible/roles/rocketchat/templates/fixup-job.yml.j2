@@ -12,7 +12,7 @@ metadata:
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
   name: fixup-rocketchat-job
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "{{ ROCKETCHAT_FIXUP_CRONJOB|default("*/5 * * * *", true) }}"
   jobTemplate:
     spec:
       activeDeadlineSeconds: 300
