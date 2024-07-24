@@ -15,6 +15,7 @@ metadata:
       more_set_headers "X-Forwarded-For $proxy_add_x_forwarded_for";
       more_set_headers "X-Forwarded-Proto $scheme";
       more_set_headers "X-Forwarded-Host $host/admin";
+      more_set_headers "X-Forwarded-Port: 443";
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
