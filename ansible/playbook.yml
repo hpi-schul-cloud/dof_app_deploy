@@ -42,7 +42,7 @@
     - rocketchat
     - mongodb_query_exporter
     - tldraw-client-core
+    - common-cartridge
     - ingress
     - post_deployment
     - moin-schule-sync
-    - common-cartridge

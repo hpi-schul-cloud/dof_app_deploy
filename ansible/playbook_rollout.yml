@@ -45,9 +45,8 @@
     - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
+    - role: common-cartridge
     - role: ingress
     - role: post_deployment
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
-    - role: common-cartridge
-      when: WITH_COMMON_CARTRIDGE is defined and WITH_COMMON_CARTRIDGE|bool
