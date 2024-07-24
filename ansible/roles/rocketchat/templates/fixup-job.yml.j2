@@ -10,6 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+    infra.tools: true
   name: fixup-rocketchat-job
 spec:
   schedule: "{{ ROCKETCHAT_FIXUP_CRONJOB|default("*/5 * * * *", true) }}"
@@ -52,7 +53,7 @@ spec:
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
+              - weight: 20
                 podAffinityTerm:
                   labelSelector:
                     matchExpressions:
@@ -60,6 +61,16 @@ spec:
                       operator: In
                       values:
                       - schulcloud-verbund
+                  topologyKey: "kubernetes.io/hostname"
+                  namespaceSelector: {}
+              - weight: 10
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                    - key: infra.tools
+                      operator: In
+                      values:
+                      - true
                   topologyKey: "kubernetes.io/hostname"
                   namespaceSelector: {}
 {% endif %}
@@ -71,3 +82,4 @@ spec:
             app.kubernetes.io/component: chat
             app.kubernetes.io/managed-by: ansible
             git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+            infra.tools: true
