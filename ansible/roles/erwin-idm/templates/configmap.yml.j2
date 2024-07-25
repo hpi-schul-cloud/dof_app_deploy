@@ -7,7 +7,7 @@ metadata:
     app: erwinidm
 data:
   # See https://www.keycloak.org/server/all-config?f=config
-  KC_HOSTNAME: "{{ ERWINIDM_PREFIX }}{{ DOMAIN }}"
+  KC_HOSTNAME: "https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}/"
   KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "false"
   KC_HTTP_ENABLED: "true"
   KC_HTTP_PORT: "{{ ERWINIDM_PORT }}"
