@@ -13,7 +13,7 @@ metadata:
     infra.tools: "true"
   name: fixup-rocketchat-job
 spec:
-  schedule: "{{ ROCKETCHAT_FIXUP_CRONJOB|default("*/5 * * * *", true) }}"
+  schedule: "{{ ROCKETCHAT_FIXUP_CRONJOB_SCHEDULE|default("*/5 * * * *", true) }}"
   jobTemplate:
     spec:
       activeDeadlineSeconds: 300
