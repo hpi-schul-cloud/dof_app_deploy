@@ -54,7 +54,7 @@ FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED: "true"
 FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION: "true"
 FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED: "true"
 FEATURE_MEDIA_SHELF_ENABLED: "true"
-FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "false"
+FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
@@ -124,7 +124,7 @@ WITH_UNSYNCED_ENTITIES_DELETION: true
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
-PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/lizenz-info"
+PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
 
 # Ingress
 group_ingress:
