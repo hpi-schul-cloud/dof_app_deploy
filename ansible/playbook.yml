@@ -43,6 +43,7 @@
     - mongodb_query_exporter
     - tldraw-client-core
     - tldraw-server
+    - tldraw-valkey
     - ingress
     - post_deployment
     - moin-schule-sync
