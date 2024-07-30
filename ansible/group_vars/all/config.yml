@@ -504,7 +504,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_BOARD_LAYOUT_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -1030,7 +1030,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL:
+  PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
     server: true
     client: false
     nuxtclient: false
@@ -1039,8 +1039,3 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
-  FEATURE_NEW_LAYOUT_ENABLED:
-    value: "true"
-    server: true
-    client: true
-    nuxtclient: false
