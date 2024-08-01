@@ -1,0 +1,19 @@
+---
+  - name: Create ServiceAccount for Secret Store
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      template: serviceaccount.yml.j2
+      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
+
+  - name: Create RoleBinding for Secret Store
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      template: rolebinding.yml.j2
+      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
+
+  - name: Create Secret Store
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      template: secretstore.yml.j2
+      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
+

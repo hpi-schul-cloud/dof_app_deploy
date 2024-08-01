@@ -8,6 +8,7 @@
     - pre_deployment
     - keda
     - namespace-activator-scaled-objects
+    - external-secrets
     - dof_mongo
     - dof_postgresql
     - dof_postgresql_management
