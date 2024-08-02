@@ -10,6 +10,7 @@
     - namespace-activator-scaled-objects
     - external-secrets
     - dof_mongo
+    - dof_mongo_management
     - dof_postgresql
     - dof_postgresql_management
     - dof_rabbitmq

@@ -1,0 +1,2 @@
+MONGO_MANAGEMENT_PREFIX: ""
+MONGO_MANAGEMENT_JOB_IMAGE: "quay.io/schulcloudverbund/infra-tools:4.1"

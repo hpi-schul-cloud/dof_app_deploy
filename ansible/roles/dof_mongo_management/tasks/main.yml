@@ -1,0 +1,29 @@
+- name: Add or Update MongoDB Admin Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: onepassword-mongo-admin.yml.j2
+  when: WITH_BRANCH_MONGO_DB_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+
+- name: Add or Update MongoDB Common Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: onepassword-mongo-cluster.yml.j2
+  when: WITH_BRANCH_MONGO_DB_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+
+- name: Create ConfigMap with Script for database deletion
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap-database-deletion.yml.j2
+    apply: yes
+  when: WITH_BRANCH_MONGO_DB_MANAGEMENT
+
+- name: Create suspended Job for database deletion
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: job-database-deletion.yml.j2
+    apply: yes
+  when: WITH_BRANCH_MONGO_DB_MANAGEMENT
