@@ -14,9 +14,8 @@
       state: absent
     when: not EXTERNAL_SECRETS_OPERATOR
 
-  - name: Create/Delete Secret Store
+  - name: Create Secret Store
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secretstore.yml.j2
-      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
-
+    when: EXTERNAL_SECRETS_OPERATOR
