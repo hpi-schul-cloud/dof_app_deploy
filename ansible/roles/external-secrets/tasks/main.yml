@@ -1,17 +1,20 @@
 ---
-  - name: Create ServiceAccount for Secret Store
+  - name: Create Secret with Token for SecretStore
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
-      template: serviceaccount.yml.j2
-      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
+      template: secret-token.yml.j2
+    when: EXTERNAL_SECRETS_OPERATOR
 
-  - name: Create RoleBinding for Secret Store
+  - name: Delete Secret with Token for SecretStore
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
-      template: rolebinding.yml.j2
-      state: "{{ 'present' if EXTERNAL_SECRETS_OPERATOR else 'absent'}}"
+      namespace: "{{ NAMESPACE }}"
+      kind: Secret
+      name: external-secrets-secretstore-token
+      state: absent
+    when: not EXTERNAL_SECRETS_OPERATOR
 
-  - name: Create Secret Store
+  - name: Create/Delete Secret Store
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secretstore.yml.j2
