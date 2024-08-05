@@ -796,7 +796,7 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEXT:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: true
     client: true
@@ -804,7 +804,7 @@ configuration_all:
   DASHBOARD_ANNOUNCEMENT_TEXT:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   DASHBOARD_ANNOUNCEMENT_ROLES:
     value: "teacher"
     server: false
