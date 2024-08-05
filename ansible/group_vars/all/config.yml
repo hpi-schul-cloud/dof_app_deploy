@@ -801,11 +801,10 @@ configuration_all:
     server: true
     client: true
     nuxtclient: true
-  DASHBOARD_ANNOUNCEMENT_ENABLED:
-    value: "true"
-    server: false
+  DASHBOARD_ANNOUNCEMENT_TEXT:
+    server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
     value: "teacher"
     server: false
