@@ -40,4 +40,3 @@ H5P_LIBRARIES:
   - H5P.Summary
   - H5P.Timeline
   - H5P.TrueFalse
-  - H5P.InteractiveVideo
