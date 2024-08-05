@@ -72,6 +72,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
+    value: "dbildungscloud@dataport.de"
     server: true
     client: true
     nuxtclient: false
