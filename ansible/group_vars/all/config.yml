@@ -796,14 +796,13 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEXT:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: true
     client: true
     nuxtclient: true
-  DASHBOARD_ANNOUNCEMENT_ENABLED:
-    value: "true"
-    server: false
+  DASHBOARD_ANNOUNCEMENT_TEXT:
+    server: true
     client: true
     nuxtclient: false
   DASHBOARD_ANNOUNCEMENT_ROLES:
