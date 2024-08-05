@@ -1038,3 +1038,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
+  TRAINING_URL:
+    server: true
+    client: true
+    nuxtclient: false
