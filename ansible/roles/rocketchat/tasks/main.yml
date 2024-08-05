@@ -23,7 +23,7 @@
       namespace: "{{ NAMESPACE }}"
       template: external-secret.yml.j2
       state: absent
-    when: not WITH_BRANCH_MONGO_DB_MANAGEMENT
+    when: EXTERNAL_SECRETS_OPERATOR and not WITH_BRANCH_MONGO_DB_MANAGEMENT
 
   - name: Secret by 1Password
     kubernetes.core.k8s:
@@ -37,7 +37,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: external-secret.yml.j2
-    when: WITH_BRANCH_MONGO_DB_MANAGEMENT
+    when: EXTERNAL_SECRETS_OPERATOR and WITH_BRANCH_MONGO_DB_MANAGEMENT
       
   - name: Deployment
     kubernetes.core.k8s:
