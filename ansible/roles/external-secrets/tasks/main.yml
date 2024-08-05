@@ -1,7 +1,14 @@
 ---
+  - name: Get Token for SecretStore
+    kubernetes.core.k8s_info:
+      kubeconfig: ~/.kube/config
+      kind: Secret
+      name: "{{ EXTERNAL_SECRETS_TOKEN_SECRET }}"
+      namespace: "{{ EXTERNAL_SECRETS_NAMESPACE }}"
+    register: secretstore_token
+    when: EXTERNAL_SECRETS_OPERATOR
+
   - name: Create Secret with Token for SecretStore
-    vars:
-      secretstore_token: "{{ query('kubernetes.core.k8s', kind='Secret', namespace=EXTERNAL_SECRETS_NAMESPACE, resource_name=EXTERNAL_SECRETS_TOKEN_SECRET, kubeconfig=kubeconfig)[0].data.token }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secret-token.yml.j2
