@@ -6,7 +6,6 @@ SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeDbc
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
-TRAINING_URL: "https://lernen.dbildungscloud.de"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in

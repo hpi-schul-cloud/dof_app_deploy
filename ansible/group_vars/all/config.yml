@@ -1039,6 +1039,7 @@ configuration_all:
     client: false
     nuxtclient: true
   TRAINING_URL:
+    value: "https://lernen.dbildungscloud.de"
     server: true
     client: true
     nuxtclient: false
