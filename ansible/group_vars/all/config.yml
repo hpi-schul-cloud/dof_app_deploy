@@ -1044,3 +1044,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_AI_TUTOR_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
