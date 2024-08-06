@@ -72,6 +72,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
+    value: "dbildungscloud@dataport.de"
     server: true
     client: true
     nuxtclient: false
@@ -1038,6 +1039,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
+  TRAINING_URL:
+    value: "https://lernen.dbildungscloud.de"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_AI_TUTOR_ENABLED:
     value: "false"
     server: true
