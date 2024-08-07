@@ -5,9 +5,10 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: clammit
-data: |
-  [application]
-  listen          = :8438
-  application-url = http://api-h5p-svc:{{ PORT_H5P_EDITOR }}/
-  clamd-url       = tcp://clamav-svc:3310/
-  debug           = true
+data: 
+  config: |
+    [application]
+    listen          = :8438
+    application-url = http://api-h5p-svc:{{ PORT_H5P_EDITOR }}/
+    clamd-url       = tcp://clamav-svc:3310/
+    debug           = true
