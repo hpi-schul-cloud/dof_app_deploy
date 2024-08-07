@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clammit-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clammit
+data: |
+  [ application ]
+  listen          = :8438
+  application-url = http://api-h5p-svc:{{ PORT_H5P_EDITOR }}/
+  clamd-url       = tcp://clamav-svc:3310/
+  debug           = true

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clammit-deployment
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clammit
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ CLAMMIT_IMAGE_TAG }}"
+    app.kubernetes.io/name: clammit
+    app.kubernetes.io/component: antivirus
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clammit
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: clammit
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ CLAMMIT_IMAGE_TAG }}"
+        app.kubernetes.io/name: clammit
+        app.kubernetes.io/component: antivirus
+        app.kubernetes.io/managed-by: ansible
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+    spec:
+      containers:
+      - name: clammit
+        image: {{ CLAMMIT_IMAGE_NAME }}:{{ CLAMMIT_IMAGE_TAG }}
+        ports:
+        - containerPort: 3310
+        resources:
+          limits:
+            cpu: {{ CLAMMIT_CPU_MAX|default("500m", true) }}
+            memory: {{ CLAMMIT_MEMORY_MAX|default("3Gi", true) }}
+          requests:
+            cpu: {{ CLAMMIT_CPU_MIN|default("100m", true) }}
+            memory: {{ CLAMMIT_MEMORY_MIN|default("1Gi", true) }}
+        volumeMounts:
+          - name: config
+            mountPath: /home/clam/clammit.cfg
+            subPath: config
+      volumes:
+        - name: config
+        configMap:
+          name: clammit-configmap
