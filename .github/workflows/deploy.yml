@@ -51,6 +51,7 @@ jobs:
          - schulcloud-client
          - nuxt-client
          - superhero-dashboard
+         - shd-client
          - schulcloud-calendar
          - antivirus_check_service
          - version-aggregator

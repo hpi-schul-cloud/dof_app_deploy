@@ -87,6 +87,12 @@ jobs:
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
       - uses: actions/checkout@v4
         with:
+          repository: hpi-schul-cloud/shd-client
+          path: repo/shd-client
+          token: ${{ secrets.token }}
+          ref: ${{ env.SHD_CLIENT_VERSION }}
+      - uses: actions/checkout@v4
+        with:
           repository: hpi-schul-cloud/h5p-staticfiles-server
           path: repo/h5p-staticfiles-server
           token: ${{ secrets.token }}
