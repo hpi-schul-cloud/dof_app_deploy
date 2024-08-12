@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: mongo-deletion-job
+  name: mongo-cleanup-cronjob
   namespace: {{ NAMESPACE }}
   labels:
     app: mongo-management
@@ -17,6 +17,7 @@ spec:
       labels:
         app: mongo
     spec:
+      serviceAccountName: namespace-management
       volumes:
         - name: config-script
           configMap:

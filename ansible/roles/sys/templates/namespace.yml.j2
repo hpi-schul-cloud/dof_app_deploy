@@ -2,3 +2,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ NAMESPACE }}
+  labels:
+{% if WITH_BRANCH_MONGO_DB_MANAGEMENT|bool %}
+    mongodb_prefix: {{ MONGO_MANAGEMENT_PREFIX }}
+{% endif %}
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+    postgres_prefix: {{ POSTGRES_MANAGEMENT_PREFIX }}
+{% endif %}

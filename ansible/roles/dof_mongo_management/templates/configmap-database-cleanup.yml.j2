@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-cleanup-configmap
+  labels:
+    app: mongo-management
+data:
+  config_script.sh: |
+    #!/bin/bash
+    set -e
+
+    excluded_dbs=({{ MONGO_MANAGEMENT_KEEP_DBS | join(" ") }})
+    namespace_mongodb_prefixes=($(kubectl get namespace -o jsonpath='{.items[*].metadata.labels.mongodb_prefix}'))
+    existing_databases=($(mongosh $MONGO_URL --quiet --eval "db.adminCommand('listDatabases').databases.map(db => db.name).join(' ')"))
+    
+    for db in ${existing_databases[@]}; do
+      delete=true
+      for exclude in ${excluded_dbs[@]}; do
+        if [[ $db == $exclude ]]; then delete=false; fi
+      done
+      for prefix in ${namespace_mongodb_prefixes[@]}; do
+        if [[ $db == $prefix* ]]; then delete=false; fi
+      done
+      if [[ $delete == true ]]; then
+        echo "Delete $db"
+      else
+        echo "Keep $db"
+      fi
+    done
