@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: mongo-cleanup-cronjob
-  namespace: {{ NAMESPACE }}
   labels:
     app: mongo-management
     app.kubernetes.io/part-of: schulcloud-verbund
