@@ -2,6 +2,7 @@ MONGO_MANAGEMENT_PREFIX: ""
 # Todo: Switch to Quay after image is published there
 MONGO_MANAGEMENT_JOB_IMAGE: "ghcr.io/hpi-schul-cloud/cron-tools:OPS-6706-latest"
 MONGO_MANAGEMENT_JOB_NAMESPACE: sc-common
+MONGO_MANAGEMENT_JOB_SCHEDULE: "* * * * *"
 MONGO_MANAGEMENT_KEEP_DBS:
   - admin
   - local

@@ -1,5 +1,5 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
   name: mongo-cleanup-cronjob
   labels:
@@ -11,42 +11,41 @@ metadata:
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
-  template:
-    metadata:
-      labels:
-        app: mongo
+  schedule: "{{ MONGO_MANAGEMENT_JOB_SCHEDULE }}"
+  jobTemplate:
     spec:
-      serviceAccountName: namespace-management
-      volumes:
-        - name: config-script
-          configMap:
-            name: mongo-configmap-deletion
-            # 711 in decimal is 457
-            defaultMode: 457
-      containers:
-        - name:  mongo-config
-          image: {{ MONGO_MANAGEMENT_JOB_IMAGE }}
-          command:
-            - /bin/bash
-            - -c
-          args:
-            - /scripts/config_script.sh
-          resources:
-            limits:
-              cpu: 1000m
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 200Mi
-          volumeMounts:
+      template:
+        spec:
+          serviceAccountName: namespace-management
+          volumes:
             - name: config-script
-              mountPath: /scripts/
-          env:
-            - name: MONGO_URL
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-cluster-admin-secret
-                  key: credentials-url
-      restartPolicy: Never
-  suspend: true
-  ttlSecondsAfterFinished: 0
+              configMap:
+                name: mongo-cleanup-configmap
+                # 711 in decimal is 457
+                defaultMode: 457
+          containers:
+            - name:  mongo-config
+              image: {{ MONGO_MANAGEMENT_JOB_IMAGE }}
+              command:
+                - /bin/bash
+                - -c
+              args:
+                - /scripts/config_script.sh
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+                requests:
+                  cpu: 100m
+                  memory: 200Mi
+              volumeMounts:
+                - name: config-script
+                  mountPath: /scripts/
+              env:
+                - name: MONGO_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: mongo-cluster-admin-secret
+                      key: credentials-url
+          restartPolicy: Never
+      ttlSecondsAfterFinished: 120
