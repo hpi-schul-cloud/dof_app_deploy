@@ -2,6 +2,7 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.dbildungscloud.dev/apps/files/?dir
 NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.nbc.dbildungscloud.dev"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.nbc.dbildungscloud.dev"
+FEATURE_AI_TUTOR_ENABLED: "true"
 
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"
