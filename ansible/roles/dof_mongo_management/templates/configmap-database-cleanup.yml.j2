@@ -23,7 +23,7 @@ data:
       done
       if [[ $delete == true ]]; then
         echo "Delete $db"
-        mongosh $MONGO_URL --quiet --eval "use $db; db.dropDatabase()"
+        mongosh $MONGO_URL --quiet --eval "db.getSiblingDB(\"$db\").dropDatabase();"
       else
         echo "Keep $db"
       fi
