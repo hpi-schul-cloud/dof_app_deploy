@@ -52,6 +52,7 @@
     namespace: "{{ NAMESPACE }}"
     template: configmap.yml.j2
     apply: yes
+    force: true
   when: WITH_ERWINIDM
 
 - name: remove Configmap

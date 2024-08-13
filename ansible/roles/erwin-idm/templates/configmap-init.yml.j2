@@ -11,6 +11,7 @@ data:
     set -e
 
     IDM_URL_BASE=erwinidm-svc:{{ ERWINIDM_PORT }}
+    IDM_URL_BASE_MANAGEMENT=erwinidm-svc:8090
     IDM_URL=$IDM_URL_BASE/admin/realms
     IDM_CLIENT=$IDENTITY_MANAGEMENT__ADMIN_CLIENTID
     IDM_ADMIN=$KEYCLOAK_ADMIN
@@ -26,7 +27,7 @@ data:
     IDM_CLIENT_SECRET=$IDENTITY_MANAGEMENT__DBC_CLIENTID_SECRET
 
     # Wait for IDM to be ready or fail
-    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE/health/ready" || exit 1
+    curl --retry 5000 --retry-connrefused --retry-delay 10 "$IDM_URL_BASE_MANAGEMENT/health/ready" || exit 1
     echo "KEYCLOAK_INIT: Connection OK"
 
     # Request authorization
@@ -57,6 +58,13 @@ data:
       echo "KEYCLOAK_INIT: realm exists"
     fi
 
+    # Update user profile to enable unmanaged attributes
+    echo "KEYCLOAK_INIT: Updating user profile to enable custom attributes"
+    RES_UPDATE_USER_PROFILE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT "$IDM_URL"/"$IDM_REALM_NAME"/users/profile -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{ "attributes": [ { "name": "username", "displayName": "${username}", "validations": { "length": { "min": 3, "max": 255 }, "up-username-not-idn-homograph": {} }, "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] }, "multivalued": false }, { "name": "email", "displayName": "${email}", "validations": { "email": {}, "length": { "max": 255 } }, "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] }, "multivalued": false }, { "name": "firstName", "displayName": "${firstName}", "validations": { "length": { "max": 255 }, "person-name-prohibited-characters": {} }, "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] }, "multivalued": false }, { "name": "lastName", "displayName": "${lastName}", "validations": { "length": { "max": 255 }, "person-name-prohibited-characters": {} }, "permissions": { "view": ["admin", "user"], "edit": ["admin", "user"] }, "multivalued": false } ], "groups": [ { "name": "user-metadata", "displayHeader": "User metadata", "displayDescription": "Attributes, which refer to user metadata" } ], "unmanagedAttributePolicy": "ADMIN_EDIT" }')
+    if [[ $RES_UPDATE_USER_PROFILE -ne 200 ]] ; then
+      echo "KEYCLOAK_INIT: user profile unmanaged attributes enabled"
+    fi
+
     # Create client
     echo "KEYCLOAK_INIT: Create client"
     RES_CLIENTCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/clients -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"clientId":"'"$IDM_CLIENT_NAME"'","rootUrl":"","baseUrl":"'"$IDM_CLIENT_URL_BASE"'","enabled":true,"clientAuthenticatorType":"client-secret","secret":"'"$IDM_CLIENT_SECRET"'","redirectUris":["'"$IDM_CLIENT_URL_BASE"'/*"],"standardFlowEnabled":true,"implicitFlowEnabled":false,"directAccessGrantsEnabled":true,"publicClient":false,"protocol":"openid-connect"}')
@@ -66,7 +74,7 @@ data:
 
     # Create realm admin user
     echo "KEYCLOAK_INIT: Create realm admin user"
-    RES_ADMINCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}')
+    RES_ADMINCREATE=$(curl -s -o /dev/null -w "%{http_code}" "$IDM_URL"/"$IDM_REALM_NAME"/users -H "Content-Type: application/json" -H "Authorization: bearer $TOKEN" --data-raw '{"username":"'"$IDM_REALM_ADMIN"'", "firstName": "Erwin", "lastName": "Admin", "email": "erwin.admin@mail.tld",  "enabled":"true","credentials":[{"type":"password","value":"'"$IDM_REALM_ADMIN_PWD"'","temporary":false}]}')
     if [[ $RES_ADMINCREATE -ne 201 ]] ; then
       echo "KEYCLOAK_INIT: realm admin exists"
     fi
