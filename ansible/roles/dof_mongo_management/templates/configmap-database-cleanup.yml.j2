@@ -19,10 +19,11 @@ data:
         if [[ $db == $exclude ]]; then delete=false; fi
       done
       for prefix in ${namespace_mongodb_prefixes[@]}; do
-        if [[ $db == $prefix* ]]; then delete=false; fi
+        if [[ $db == $prefix__* ]]; then delete=false; fi
       done
       if [[ $delete == true ]]; then
         echo "Delete $db"
+        mongosh $MONGO_URL --quiet --eval "use $db; db.dropDatabase()"
       else
         echo "Keep $db"
       fi
