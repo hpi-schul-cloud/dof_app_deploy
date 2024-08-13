@@ -5,8 +5,11 @@ SC_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
 SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
+DASHBOARD_ANNOUNCEMENT_TEXT: dashboard.text.announcementBrb
+DASHBOARD_ANNOUNCEMENT_ROLES: teacher,administrator
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeBrb
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+TRAINING_URL: "https://ecampus.lisum.de/home"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
