@@ -19,7 +19,7 @@ data:
         if [[ $db == $exclude ]]; then delete=false; fi
       done
       for prefix in ${namespace_mongodb_prefixes[@]}; do
-        if [[ $db == $prefix__* ]]; then delete=false; fi
+        if [[ $db == ${prefix}__* ]]; then delete=false; fi
       done
       if [[ $delete == true ]]; then
         echo "Delete $db"
