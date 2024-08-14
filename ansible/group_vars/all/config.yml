@@ -1049,7 +1049,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_SPACES_ENABLED:
+  FEATURE_ROOMS_ENABLED:
     value: "false"
     server: true
     client: true
