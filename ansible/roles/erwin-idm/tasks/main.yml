@@ -120,7 +120,7 @@
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
-    template: onepassword.yml.j2
+    template: admin-onepassword.yml.j2
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
 - name: remove Admin Ingress Secret
@@ -133,22 +133,22 @@
     state: absent
   when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
 
-# - name: Admin Ingress
-#   kubernetes.core.k8s:
-#     kubeconfig: ~/.kube/config
-#     namespace: "{{ NAMESPACE }}"
-#     template: admin-ingress.yml.j2
-#   when: WITH_ERWINIDM
+- name: Admin Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: admin-ingress.yml.j2
+  when: WITH_ERWINIDM
 
-# - name: remove Admin Ingress
-#   kubernetes.core.k8s:
-#     kubeconfig: ~/.kube/config
-#     namespace: "{{ NAMESPACE }}"
-#     api_version: networking.k8s.io/v1
-#     kind: Ingress
-#     name: "{{ NAMESPACE }}-erwinidm-admin-ingress"
-#     state: absent
-#   when: not WITH_ERWINIDM
+- name: remove Admin Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: networking.k8s.io/v1
+    kind: Ingress
+    name: "{{ NAMESPACE }}-erwinidm-admin-ingress"
+    state: absent
+  when: not WITH_ERWINIDM
 
 - name: Service Monitor
   kubernetes.core.k8s:
