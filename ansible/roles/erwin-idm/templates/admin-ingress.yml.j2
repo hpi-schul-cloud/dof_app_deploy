@@ -1,0 +1,39 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ NAMESPACE }}-erwinidm-admin-ingress
+  namespace: {{ NAMESPACE }}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "{{ NAMESPACE }}/{{ ERWINIDM_ADMIN_TLS_AUTH_SECRET }}"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
+
+spec:
+  ingressClassName: {{ ERWINIDM_ADMIN_INGRESS_CLASS }}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
+  tls:
+  - hosts:
+      - {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+    secretName: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
+{% endif %}
+  rules:
+  - host: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: erwinidm-svc
+            port:
+              number: {{ ERWINIDM_PORT }}
