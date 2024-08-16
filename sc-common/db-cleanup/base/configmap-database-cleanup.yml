@@ -8,7 +8,7 @@ metadata:
 data:
   config_script.sh: |
     #!/bin/bash
-    set -euo pipeline
+    set -euo pipefail
 
     # Get all databases, the DB prefixes of the current namespaces and DBs that should be excluded
     existing_databases=($(mongosh $MONGO_URL --quiet --eval "db.adminCommand('listDatabases').databases.map(db => db.name).join(' ')"))
