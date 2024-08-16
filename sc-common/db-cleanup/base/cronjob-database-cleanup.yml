@@ -2,16 +2,11 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: mongo-cleanup-cronjob
+  namespace: sc-common
   labels:
-    app: mongo-management
-    app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/name: mongo-management
-    app.kubernetes.io/component: database
-    app.kubernetes.io/managed-by: ansible
-    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
-    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+    app: mongo-db-cleanup
 spec:
-  schedule: "{{ MONGO_MANAGEMENT_JOB_SCHEDULE }}"
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:
@@ -25,7 +20,7 @@ spec:
                 defaultMode: 457
           containers:
             - name:  mongo-config
-              image: {{ MONGO_MANAGEMENT_JOB_IMAGE }}
+              image: "ghcr.io/hpi-schul-cloud/cron-tools:OPS-6706-latest"
               command:
                 - /bin/bash
                 - -c

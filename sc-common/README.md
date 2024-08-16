@@ -17,3 +17,10 @@ to deploy the namespace activator for each dev-cluster kustomize is used
 ```commandline
 kubectl --kubeconfig <config> apply -k namespace-activator/overlays/<tennant>
 ```
+
+## DB cleanup cronjob
+This CronJob deletes MongoDB databases when the namespace doesn't exist anymore.
+To deploy it for each dev-cluster kustomize is used:
+```commandline
+kubectl --kubeconfig <config> apply -k db-cleanup/overlays/<tennant>
+```

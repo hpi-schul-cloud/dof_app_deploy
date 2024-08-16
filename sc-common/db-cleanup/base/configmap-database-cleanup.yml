@@ -2,17 +2,20 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongo-cleanup-configmap
+  namespace: sc-common
   labels:
-    app: mongo-management
+    app: mongo-db-cleanup
 data:
   config_script.sh: |
     #!/bin/bash
-    set -e
+    set -euo pipeline
 
-    excluded_dbs=({{ MONGO_MANAGEMENT_KEEP_DBS | join(" ") }})
-    namespace_mongodb_prefixes=($(kubectl get namespace -o jsonpath='{.items[*].metadata.labels.mongodb_prefix}'))
+    # Get all databases, the DB prefixes of the current namespaces and DBs that should be excluded
     existing_databases=($(mongosh $MONGO_URL --quiet --eval "db.adminCommand('listDatabases').databases.map(db => db.name).join(' ')"))
+    namespace_mongodb_prefixes=($(kubectl get namespace -o jsonpath='{.items[*].metadata.labels.mongodb_prefix}'))
+    excluded_dbs=(admin local config)
     
+    # Drop all DBs that are not excluded and don't have a matching prefix/namespace
     for db in ${existing_databases[@]}; do
       delete=true
       for exclude in ${excluded_dbs[@]}; do

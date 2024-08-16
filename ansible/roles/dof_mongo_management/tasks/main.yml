@@ -4,26 +4,3 @@
     namespace: "{{ NAMESPACE }}"
     template: onepassword-mongo-readwrite.yml.j2
   when: WITH_BRANCH_MONGO_DB_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
-
-- name: Add or Update MongoDB Admin Secret by 1Password
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config 
-    namespace: "{{ MONGO_MANAGEMENT_JOB_NAMESPACE }}"
-    template: onepassword-mongo-admin.yml.j2
-  when: WITH_BRANCH_MONGO_DB_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
-
-- name: Create ConfigMap with Script for MongoDB Cleanup Cronjob
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config
-    namespace: "{{ MONGO_MANAGEMENT_JOB_NAMESPACE }}"
-    template: configmap-database-cleanup.yml.j2
-    apply: yes
-  when: WITH_BRANCH_MONGO_DB_MANAGEMENT
-
-- name: Create Cronjob for database deletion
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config
-    namespace: "{{ MONGO_MANAGEMENT_JOB_NAMESPACE }}"
-    template: cronjob-database-cleanup.yml.j2
-    apply: yes
-  when: WITH_BRANCH_MONGO_DB_MANAGEMENT
