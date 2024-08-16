@@ -116,6 +116,23 @@
     state: absent
   when: not WITH_ERWINIDM
 
+- name: Admin Ingress Certificate
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: admin-certificate.yml.j2
+  when: WITH_ERWINIDM and ERWINIDM_ADMIN_CREATE_CERTIFICATE
+
+- name: remove Admin Ingress Certificate
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    api_version: cert-manager.io/v1
+    kind: Certificate
+    name: "{{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}"
+    state: absent
+  when: not WITH_ERWINIDM
+
 - name: Admin Ingress Secret
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config

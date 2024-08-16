@@ -1,0 +1,13 @@
+#jinja2: trim_blocks: "True", lstrip_blocks: "True"
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+  namespace: {{ NAMESPACE }}
+spec:
+  dnsNames:
+    - {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+  secretName: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: sc-cert-manager-clusterissuer-letsencrypt-otcdns

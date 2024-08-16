@@ -12,19 +12,16 @@ metadata:
     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     nginx.ingress.kubernetes.io/auth-tls-secret: "{{ NAMESPACE }}/{{ ERWINIDM_ADMIN_TLS_AUTH_SECRET }}"
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
-{% if CLUSTER_ISSUER is defined %}
+{% if CLUSTER_ISSUER is defined and not ERWINIDM_ADMIN_CREATE_CERTIFICATE %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
-
 spec:
   ingressClassName: {{ ERWINIDM_ADMIN_INGRESS_CLASS }}
-{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
   tls:
   - hosts:
       - {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
-{% if CLUSTER_ISSUER is defined %}
+{% if CLUSTER_ISSUER is defined or ERWINIDM_ADMIN_CREATE_CERTIFICATE %}
     secretName: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}-tls
-{% endif %}
 {% endif %}
   rules:
   - host: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
