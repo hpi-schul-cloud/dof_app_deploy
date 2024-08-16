@@ -12,6 +12,7 @@
       mode: 0700
     tags:
       - kubeconfig
+      - always
       
   - name: push kubeconfig
     copy:
@@ -21,6 +22,7 @@
     when: kubeconfig_yml is defined
     tags:
       - kubeconfig
+      - always
     
   - name: push kubeconfig
     copy:
@@ -30,6 +32,7 @@
     when: kubeconfig_yml is undefined
     tags:
       - kubeconfig
+      - always
     
   - name: Namespace
     kubernetes.core.k8s:
@@ -38,4 +41,5 @@
       template: namespace.yml.j2
     tags:
       - namespace
+      - always
 
