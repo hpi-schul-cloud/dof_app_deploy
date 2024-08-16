@@ -4,6 +4,8 @@
     namespace: "{{ NAMESPACE }}"
     template: onepassword-pg-cluster.yml.j2
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
 - name: Create ConfigMap with Script for database deletion
   kubernetes.core.k8s:
@@ -12,6 +14,8 @@
     template: configmap-database-deletion.yml.j2
     apply: yes
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+    tags:
+      - configmap
 
 - name: Create suspended Job for database deletion
   kubernetes.core.k8s:
@@ -20,3 +24,5 @@
     template: job-database-deletion.yml.j2
     apply: yes
   when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+    tags:
+      - job

@@ -6,6 +6,8 @@
       name: "pg-hydra-secret"
     register: db_secret_present
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+    tags:
+      - secret
 
   - name: Create Secret for the database (if not existing)
     kubernetes.core.k8s:
@@ -13,6 +15,8 @@
       namespace: "{{ NAMESPACE }}"
       template: secret-database.yml.j2
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT and db_secret_present.resources|length == 0
+    tags:
+      - secret
 
   - name: Create ConfigMap with database configuration script
     kubernetes.core.k8s:
@@ -21,6 +25,8 @@
       template: configmap-database-init.yml.j2
       apply: yes
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+    tags:
+      - configmap
 
   - name: Create/execute database configuration script
     kubernetes.core.k8s:
@@ -28,18 +34,24 @@
       namespace: "{{ NAMESPACE }}"
       template: job-database-init.yml.j2
     when: WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+    tags:
+      - job
 
   - name: Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
+    tags:
+      - service
       
   - name: Ingress
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
+    tags:
+      - ingress
       
   - name: Configmap
     kubernetes.core.k8s:
@@ -47,6 +59,8 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
+    tags:
+      - configmap
       
   - name: Secret by 1Password
     kubernetes.core.k8s:
@@ -54,6 +68,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
  
   - name:  remove old Job
     kubernetes.core.k8s:
@@ -61,6 +77,8 @@
       namespace: "{{ NAMESPACE }}"
       template: job.yml.j2
       state: absent
+    tags:
+      - job
 
   - name: hyrdra db init job config map
     kubernetes.core.k8s:
@@ -68,16 +86,22 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap_file_init_db.yml.j2
       apply: yes
+    tags:
+      - configmap
 
   - name: Job
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: job.yml.j2
+    tags:
+      - job
       
   - name: Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+    tags:
+      - deployment
       

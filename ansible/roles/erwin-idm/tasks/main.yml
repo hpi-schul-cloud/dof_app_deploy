@@ -6,6 +6,8 @@
     name: "pg-erwinidm-secret"
   register: db_secret_present
   when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+  tags:
+    - secret
 
 - name: Create Secret for the database (if not existing)
   kubernetes.core.k8s:
@@ -13,6 +15,8 @@
     namespace: "{{ NAMESPACE }}"
     template: secret-database.yml.j2
   when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT and db_secret_present.resources|length == 0
+  tags:
+    - secret
 
 - name: Create ConfigMap with database configuration script
   kubernetes.core.k8s:
@@ -21,6 +25,8 @@
     template: configmap-database-init.yml.j2
     apply: yes
   when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+  tags:
+    - configmap
 
 - name: Create/execute database configuration script
   kubernetes.core.k8s:
@@ -28,6 +34,8 @@
     namespace: "{{ NAMESPACE }}"
     template: job-database-init.yml.j2
   when: WITH_ERWINIDM and WITH_BRANCH_POSTGRES_DB_MANAGEMENT
+  tags:
+    - configmap
 
 - name: Service
   kubernetes.core.k8s:
@@ -35,6 +43,8 @@
     namespace: "{{ NAMESPACE }}"
     template: svc.yml.j2
   when: WITH_ERWINIDM
+  tags:
+    - service
 
 - name: remove Service
   kubernetes.core.k8s:
@@ -45,6 +55,8 @@
     name: erwinidm-svc
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - service
 
 - name: Add or Update Configmap
   kubernetes.core.k8s:
@@ -54,6 +66,8 @@
     apply: yes
     force: true
   when: WITH_ERWINIDM
+  tags:
+    - configmap
 
 - name: remove Configmap
   kubernetes.core.k8s:
@@ -64,6 +78,8 @@
     name: erwinidm-configmap
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - configmap
 
 - name: Secret by 1Password
   kubernetes.core.k8s:
@@ -71,6 +87,8 @@
     namespace: "{{ NAMESPACE }}"
     template: onepassword.yml.j2
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: remove Secret by 1Password
   kubernetes.core.k8s:
@@ -81,6 +99,8 @@
     name: erwinidm-secret
     state: absent
   when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: Deployment
   kubernetes.core.k8s:
@@ -88,6 +108,8 @@
     namespace: "{{ NAMESPACE }}"
     template: deployment.yml.j2
   when: WITH_ERWINIDM
+  tags:
+    - deployment
 
 - name: remove Deployment
   kubernetes.core.k8s:
@@ -98,6 +120,8 @@
     name: erwinidm-deployment
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - deployment
 
 - name: Ingress
   kubernetes.core.k8s:
@@ -105,6 +129,8 @@
     namespace: "{{ NAMESPACE }}"
     template: ingress.yml.j2
   when: WITH_ERWINIDM
+  tags:
+    - ingress
 
 - name: remove Ingress
   kubernetes.core.k8s:
@@ -115,6 +141,8 @@
     name: "{{ NAMESPACE }}-erwinidm-ingress"
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - ingress
 
 - name: Service Monitor
   kubernetes.core.k8s:
@@ -122,6 +150,8 @@
     namespace: "{{ NAMESPACE }}"
     template: templates/erwinidm-svc-monitor.yml.j2
   when: WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR)
+  tags:
+    - prometheus
 
 - name: remove Service Monitor
   kubernetes.core.k8s:
@@ -132,6 +162,8 @@
     name: monitoring-prometheus-sc-erwinidm-svc
     state: absent
   when: not WITH_ERWINIDM and (ERWINIDM_SERVICE_MONITOR is defined and ERWINIDM_SERVICE_MONITOR)
+  tags:
+    - prometheus
 
 - name: Add or Update init scripts Configmap
   kubernetes.core.k8s:
@@ -140,6 +172,8 @@
     template: configmap-init.yml.j2
     apply: yes
   when: WITH_ERWINIDM
+  tags:
+    - configmap
 
 - name: remove init scripts Configmap
   kubernetes.core.k8s:
@@ -150,6 +184,8 @@
     name: erwinidm-init-file
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - configmap
 
 - name: Test if Init Job exit
   kubernetes.core.k8s_info:
@@ -159,6 +195,8 @@
     kind: Job
     name: erwinidm-init-job
   register: erwinidm_init_job_present
+  tags:
+    - job
 
 - name: Init Job
   kubernetes.core.k8s:
@@ -168,6 +206,8 @@
   when: 
   - WITH_ERWINIDM
   - erwinidm_init_job_present.resources|length == 0
+  tags:
+    - job
 
 - name: Remove Init Job
   kubernetes.core.k8s:
@@ -178,3 +218,5 @@
     kind: Job
     name: erwinidm-init-job
   when: not WITH_ERWINIDM
+  tags:
+    - job
