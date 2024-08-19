@@ -4,6 +4,8 @@
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
     when: WITH_MONGO_DATABASES
+    tags:
+      - service
 
   - name: remove Service
     kubernetes.core.k8s:
@@ -14,6 +16,8 @@
       kind: Service
       name: mongo-svc
     when: not WITH_MONGO_DATABASES
+    tags:
+      - service
 
   - name: Add or Update ServiceMonitor
     kubernetes.core.k8s:
@@ -21,6 +25,8 @@
       namespace: "{{ NAMESPACE }}"
       template: svc-monitor.yml.j2
     when: WITH_MONGO_DATABASES
+    tags:
+      - prometheus
 
   - name: remove ServiceMonitor
     kubernetes.core.k8s:
@@ -31,6 +37,8 @@
       kind: ServiceMonitor
       name: mongo-svc-monitor
     when: not WITH_MONGO_DATABASES
+    tags:
+      - prometheus
    
   - name: Add or Update Secret by 1Password
     kubernetes.core.k8s:
@@ -38,6 +46,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: WITH_MONGO_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: remove Secret by 1Password
     kubernetes.core.k8s:
@@ -48,6 +58,8 @@
       kind: OnePasswordItem
       name: mongo-secret
     when: not WITH_MONGO_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: Add or Update Persistent Volumes Claim
     kubernetes.core.k8s:
@@ -55,6 +67,8 @@
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
     when: WITH_MONGO_DATABASES
+    tags:
+      - pvc
 
   - name: remove Persistent Volumes Claim
     kubernetes.core.k8s:
@@ -65,6 +79,8 @@
       kind: PersistentVolumeClaim
       name: mongo-pvc
     when: not WITH_MONGO_DATABASES
+    tags:
+      - pvc
 
   - name: Add or Update Deployment
     kubernetes.core.k8s:
@@ -73,6 +89,8 @@
       template: deployment.yml.j2
       apply: yes
     when: WITH_MONGO_DATABASES
+    tags:
+      - deployment
 
   - name: remove Deployment
     kubernetes.core.k8s:
@@ -83,3 +101,5 @@
       kind: Deployment
       name: mongo-deployment
     when: not WITH_MONGO_DATABASES
+    tags:
+      - deployment
