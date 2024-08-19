@@ -20,7 +20,7 @@ spec:
                 defaultMode: 457
           containers:
             - name:  mongo-config
-              image: "ghcr.io/hpi-schul-cloud/cron-tools:OPS-6706-latest"
+              image: quay.io/schulcloudverbund/cron-tools:1.0
               command:
                 - /bin/bash
                 - -c
