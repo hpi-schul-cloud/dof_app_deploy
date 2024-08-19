@@ -22,7 +22,7 @@ permissions:
 jobs:
   create-artifact:
     runs-on: ubuntu-latest
-    name: deploy ${{ inputs.tenant }}
+    name: Ansible artifact ${{ inputs.tenant }}
     steps:
       - uses: actions/download-artifact@v4
       - run: ls -R
@@ -39,7 +39,9 @@ jobs:
   deploy-matrix:
     runs-on: ubuntu-latest
     name: deploy ${{ inputs.tenant }}
+    continue-on-error: true
     strategy:
+      fail-fast: false
       matrix:
         action:
           - tags: configmap
