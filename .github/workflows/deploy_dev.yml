@@ -39,7 +39,6 @@ jobs:
   deploy-matrix:
     runs-on: ubuntu-latest
     name: deploy ${{ inputs.tenant }}
-    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
