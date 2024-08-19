@@ -8,3 +8,5 @@
     name: deployment-metrics-marker-job
     delete_options:
       propagationPolicy: Foreground
+  tags:
+    - marker-post
