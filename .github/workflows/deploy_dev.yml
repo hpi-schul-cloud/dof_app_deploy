@@ -20,9 +20,9 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  create-artifact:
     runs-on: ubuntu-latest
-    name: deploy ${{ inputs.tenant }}
+    name: Ansible artifact ${{ inputs.tenant }}
     steps:
       - uses: actions/download-artifact@v4
       - run: ls -R
@@ -34,6 +34,32 @@ jobs:
           name: debug-${{ inputs.tenant }}-ansible
           path: ${{github.workspace }}/${{ inputs.tenant }}-ansible.tar
           overwrite: true
+
+
+  deploy-matrix:
+    runs-on: ubuntu-latest
+    name: deploy ${{ inputs.tenant }}
+    strategy:
+      fail-fast: false
+      matrix:
+        action:
+          - tags: configmap
+            op: tags
+          - tags: service
+            op: tags
+          - tags: 1password
+            op: tags
+          - tags: deployment
+            op: tags
+          - tags: ingress
+            op: tags
+          - tags: "ingress,configmap,service,1password,deployment"
+            op: skip-tags
+    steps:
+      - uses: actions/download-artifact@v4
+      - run: ls -R
+      - run: mv */*.tar ./
+      - run: find -name "*.tar" -exec tar -xf {} \;
       - shell: bash
         run: |
           python3 -m pip install kubernetes 'urllib3>=1.26.16'
@@ -49,20 +75,12 @@ jobs:
         run: |
           mkdir files
           echo "${{ secrets.KUBECONFIG }}" > files/config
-      # It's necessary for the ansible k8s module to define proxy options as environment vars 
-      # (doesn't use the proxy defined in kubeconfig)
-      # https://github.com/kubernetes-client/python/issues/1862
-      # https://docs.ansible.com/ansible/latest/collections/kubernetes/core/k8s_module.html#parameter-proxy
-      # Format in kubeconfig is <protocoll>://<user>:<password>@<domain>:<port>
-      # Set K8S_AUTH_PROXY=<protocoll>://<domain>:<port>
-      # Set K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=<user>:<password>
-      # If proxy-url is not defined in the kubeconfig no variables are set
       - name: Set proxy environment variable if included in the kubeconfig
         working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+      - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3' --${{ matrix.action.op }} ${{ matrix.action.tags }}
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
