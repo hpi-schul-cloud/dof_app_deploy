@@ -40,6 +40,7 @@
     - role: h5p-proxy
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
+    - role: shd-client-core
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
