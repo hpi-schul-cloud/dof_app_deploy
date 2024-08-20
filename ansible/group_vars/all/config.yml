@@ -72,6 +72,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
+    value: "dbildungscloud@dataport.de"
     server: true
     client: true
     nuxtclient: false
@@ -260,7 +261,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_URI:
-    value: "http://hydra-svc:4445"
+    value: "http://hydra-svc:4445/admin"
     server: true
     client: false
     nuxtclient: false
@@ -504,7 +505,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_BOARD_LAYOUT_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
     nuxtclient: false
@@ -796,14 +797,13 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEXT:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: true
     client: true
     nuxtclient: true
-  DASHBOARD_ANNOUNCEMENT_ENABLED:
-    value: "true"
-    server: false
+  DASHBOARD_ANNOUNCEMENT_TEXT:
+    server: true
     client: true
     nuxtclient: false
   DASHBOARD_ANNOUNCEMENT_ROLES:
@@ -1030,7 +1030,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL:
+  PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
     server: true
     client: false
     nuxtclient: false
@@ -1039,8 +1039,13 @@ configuration_all:
     server: true
     client: false
     nuxtclient: true
-  FEATURE_NEW_LAYOUT_ENABLED:
-    value: "true"
+  TRAINING_URL:
+    value: "https://lernen.dbildungscloud.de"
     server: true
     client: true
+    nuxtclient: false
+  FEATURE_AI_TUTOR_ENABLED:
+    value: "false"
+    server: true
+    client: false
     nuxtclient: false
