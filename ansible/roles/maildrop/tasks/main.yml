@@ -3,10 +3,14 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+    tags:
+      - deployment
 
   - name: maildropsecret
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
+    tags:
+      - 1password
 

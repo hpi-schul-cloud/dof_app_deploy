@@ -3,6 +3,8 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
+    tags:
+      - service
       
   - name: Configmap
     kubernetes.core.k8s:
@@ -10,6 +12,8 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
+    tags:
+      - configmap
 
   - name: Remove External Secret
     kubernetes.core.k8s:
@@ -25,6 +29,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: External Secret (namespace specific)
     kubernetes.core.k8s:
@@ -38,4 +44,6 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+    tags:
+      - deployment
       
