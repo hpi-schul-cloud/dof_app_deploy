@@ -21,3 +21,6 @@ SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/proto
 
 PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL: "https://api-dienste.moin.schule/v1/lizenz-info"
 FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "false"
+
+#New course administration
+FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED: "false"
