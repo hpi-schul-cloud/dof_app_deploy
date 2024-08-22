@@ -25,6 +25,7 @@ deployments_for_scaled_objects:
   - oidcmock-deployment
   - rocketchat-deployment
   - shd-deployment
+  - shd-client-deployment
   - version-aggregator-deployment
 #  - tldraw-deployment
 #  - tldraw-worker-deployment

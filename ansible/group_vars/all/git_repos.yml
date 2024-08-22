@@ -2,6 +2,7 @@ SCHULCLOUD_SERVER_REPO_NAME: schulcloud-server
 SCHULCLOUD_CLIENT_REPO_NAME: schulcloud-client
 NUXT_CLIENT_REPO_NAME: nuxt-client
 SUPERHERO_DASHBOARD_REPO_NAME: superhero-dashboard
+SHD_CLIENT_REPO_NAME: shd-client
 SCHULCLOUD_CALENDAR_REPO_NAME: schulcloud-calendar
 ANTIVIRUS_CHECK_SERVICE_REPO_NAME: antivirus-check-service
 VERSION_AGGREGATOR_REPO_NAME: version-aggregator
