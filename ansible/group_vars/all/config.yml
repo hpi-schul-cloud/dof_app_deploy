@@ -1049,3 +1049,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_ROOMS_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
