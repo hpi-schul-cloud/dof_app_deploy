@@ -1,1 +1,1 @@
-mongodb_query_exporter_mongodb_sc_db_name: "{{ MONGO_MANAGEMENT_PREFIX if WITH_BRANCH_MONGO_DB_MANAGEMENT else '' }}scapp"
+mongodb_query_exporter_mongodb_sc_db_name: "{{ MONGO_MANAGEMENT_PREFIX }}scapp"
