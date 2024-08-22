@@ -5,6 +5,8 @@
       template: external-secret.yml.j2
       state: absent
     when: EXTERNAL_SECRETS_OPERATOR and not WITH_BRANCH_MONGO_DB_MANAGEMENT
+    tags:
+      - 1password
 
   - name: Secret for mongodb-query-exporter
     kubernetes.core.k8s:
@@ -21,6 +23,8 @@
       namespace: "{{ NAMESPACE }}"
       template: external-secret.yml.j2
     when: EXTERNAL_SECRETS_OPERATOR and WITH_BRANCH_MONGO_DB_MANAGEMENT
+    tags:
+      - 1password
 
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
