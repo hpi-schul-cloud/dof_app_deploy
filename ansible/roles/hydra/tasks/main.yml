@@ -44,7 +44,7 @@
       template: svc.yml.j2
     tags:
       - service
-      
+
   - name: Ingress
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
@@ -52,7 +52,7 @@
       template: ingress.yml.j2
     tags:
       - ingress
-      
+
   - name: Configmap
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
@@ -61,7 +61,7 @@
       apply: yes
     tags:
       - configmap
-      
+
   - name: Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
@@ -70,7 +70,7 @@
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
     tags:
       - 1password
- 
+
   - name:  remove old Job
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
@@ -96,7 +96,7 @@
       template: job.yml.j2
     tags:
       - job
-      
+
   - name: Deployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
@@ -104,4 +104,11 @@
       template: deployment.yml.j2
     tags:
       - deployment
-      
+
+  - name: Pod Monitor
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: pod-monitor.yml.j2
+    tags:
+      - prometheus
