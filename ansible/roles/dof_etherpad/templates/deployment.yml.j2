@@ -71,7 +71,7 @@ spec:
         secret:
           secretName: etherpad-secret
           items:
-          - key: ETHERPAD_API_KEY
+          - key: ETHERPAD__API_KEY
             path: APIKEY.txt
 {% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:

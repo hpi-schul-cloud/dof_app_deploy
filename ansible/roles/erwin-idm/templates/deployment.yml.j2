@@ -50,6 +50,9 @@ spec:
         - containerPort: {{ ERWINIDM_PORT }}
           name: erwinidm
           protocol: TCP
+        - containerPort: 8090
+          name: erwinidm-mgmt
+          protocol: TCP
         envFrom:
         - secretRef:
             name: erwinidm-secret
@@ -77,21 +80,21 @@ spec:
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /health/live
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 15
         startupProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 30
           periodSeconds: 10

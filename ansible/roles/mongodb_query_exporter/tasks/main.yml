@@ -4,6 +4,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
@@ -15,6 +17,30 @@
       create_namespace: yes
       kubeconfig: ~/.kube/config
       update_repo_cache: no
-      values: 
-        "{{ mongodb_query_exporter_values }}"
+      values:
+        image:
+          tag: "{{ mongodb_query_exporter_image_version }}"
+        mongodb:
+        - "{{ mongodb_query_exporter_mongodb_uri }}"
+        existingSecret:
+          name: "{{ mongodb_query_exporter_secret_name }}"
+        service:
+          enabled: true
+        serviceMonitor:
+          enabled: true
+          interval: "{{ mongodb_query_exporter_sampling_time }}"
+        serviceAccount:
+          create: false
+        config: |-
+          {{ lookup('template', 'values.yml.j2') }}
+        resources:
+          limits:
+            cpu: "{{ MONGO_QUERY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
+            memory: "{{ MONGO_QUERY_EXPORTER_MEMORY_LIMITS|default('50Mi', true) }}"
+          requests:
+            cpu: "{{ MONGO_QUERY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
+            memory: "{{ MONGO_QUERY_EXPORTER_MEMORY_REQUESTS|default('30Mi', true) }}" 
+    tags:
+      - helm
+
 

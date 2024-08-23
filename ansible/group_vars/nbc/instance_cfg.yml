@@ -6,8 +6,8 @@ SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
-GLOBAL_ANNOUNCEMENT_ROLES: administrator
-DASHBOARD_ANNOUNCEMENT_ENABLED: "false"
+GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -21,7 +21,7 @@ SC_FEDERALSTATE: niedersachsen
 ROCKETCHAT_SERVICE_ENABLED: "true"
 FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED: "true"
 FEATURE_ENTERTHECLOUD: "false"
-FEATURE_EXTENSIONS_ENABLED: "true"
+FEATURE_EXTENSIONS_ENABLED: "false"
 FEATURE_MINT_PAGES_ENABLED: "false"
 FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_NUXT_SCHOOL_ADMIN_BETA: "true"
@@ -54,6 +54,7 @@ FEATURE_USER_MIGRATION_ENABLED: "true"
 FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED: "true"
 FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION: "true"
 FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED: "true"
+FEATURE_MEDIA_SHELF_ENABLED: "true"
 FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
@@ -124,7 +125,7 @@ WITH_UNSYNCED_ENTITIES_DELETION: true
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
-PROVISIONING_SCHULCONNEX_LIZENZ_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/lizenz-info"
+PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
 
 # Ingress
 group_ingress:
