@@ -40,7 +40,11 @@ spec:
         args: ["serve", "all"]
         ports:
         - containerPort: 4444
+          name: http
+          protocol: TCP
         - containerPort: 4445
+          name: http-admin
+          protocol: TCP
         livenessProbe:
           httpGet:
             path: /health/alive

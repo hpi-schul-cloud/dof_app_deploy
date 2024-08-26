@@ -6,3 +6,5 @@ DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
 SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"
+
+WITH_MAILCATCHER: true
