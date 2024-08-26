@@ -118,7 +118,7 @@ jobs:
     steps:
       - run: |
           mkdir files
-          echo "${{ secrets[kubeconfig] }}" > files/config
+          echo "${{ secrets[matrix.kubeconfig] }}" > files/config
       - name: delete custom resources, databases and namespaces
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
