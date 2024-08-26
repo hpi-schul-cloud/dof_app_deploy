@@ -129,7 +129,7 @@
     namespace: "{{ NAMESPACE }}"
     api_version: cert-manager.io/v1
     kind: Certificate
-    name: "{{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}"
+    name: "{{ ERWINIDM_ADMIN_HOSTNAME }}"
     state: absent
   when: not WITH_ERWINIDM
 

@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+  name: {{ ERWINIDM_ADMIN_HOSTNAME }}
   namespace: {{ NAMESPACE }}
 spec:
   dnsNames:
-    - {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
-  secretName: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}-tls
+    - {{ ERWINIDM_ADMIN_HOSTNAME }}
+  secretName: {{ ERWINIDM_ADMIN_HOSTNAME }}-tls
   issuerRef:
     kind: ClusterIssuer
     name: sc-cert-manager-clusterissuer-letsencrypt-otcdns

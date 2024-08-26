@@ -19,12 +19,12 @@ spec:
   ingressClassName: {{ ERWINIDM_ADMIN_INGRESS_CLASS }}
   tls:
   - hosts:
-      - {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+      - {{ ERWINIDM_ADMIN_HOSTNAME }}
 {% if CLUSTER_ISSUER is defined or ERWINIDM_ADMIN_CREATE_CERTIFICATE %}
-    secretName: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}-tls
+    secretName: {{ ERWINIDM_ADMIN_HOSTNAME }}-tls
 {% endif %}
   rules:
-  - host: {{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}
+  - host: {{ ERWINIDM_ADMIN_HOSTNAME }}
     http:
       paths:
       - path: /
