@@ -121,6 +121,12 @@ jobs:
           path: repo/tldraw-client
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_CLIENT_VERSION }}
+      - uses: actions/checkout@v4
+        with:
+          repository: hpi-schul-cloud/tldraw-server
+          path: repo/tldraw-server
+          token: ${{ secrets.token }}
+          ref: ${{ env.TLDRAW_SERVER_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
