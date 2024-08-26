@@ -52,6 +52,7 @@ jobs:
          - dof_app_deploy
          - h5p-staticfiles-server
          - tldraw-client
+         - tldraw-server
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV

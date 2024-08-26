@@ -27,7 +27,8 @@ deployments_for_scaled_objects:
   - shd-deployment
   - shd-client-deployment
   - version-aggregator-deployment
-  - tldraw-deployment
+#  - tldraw-deployment
+#  - tldraw-worker-deployment
   - tldraw-client-deployment
   - mailcatcher-deployment
   - maildrop-deployment
