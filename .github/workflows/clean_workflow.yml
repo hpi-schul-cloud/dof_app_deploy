@@ -108,6 +108,10 @@ jobs:
 
   delete_namespaces:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kubeconfig: [DEV_KUBE_CONFIG_BRB, DEV_KUBE_CONFIG_NBC, DEV_KUBE_CONFIG_THR, DEV_KUBE_CONFIG_DBC]
+      fail-fast: false
     if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
     needs:
       - examine_branch_existence
@@ -115,23 +119,16 @@ jobs:
     steps:
       - run: |
           mkdir files
-          echo "${{ secrets.DEV_KUBE_CONFIG_BRB }}" > files/config_brb
-          echo "${{ secrets.DEV_KUBE_CONFIG_NBC }}" > files/config_nbc
-          echo "${{ secrets.DEV_KUBE_CONFIG_THR }}" > files/config_thr
-          echo "${{ secrets.DEV_KUBE_CONFIG_DBC }}" > files/config_dbc
+          echo "${{ secrets[matrix.kubeconfig] }}" > files/config
       - name: delete custom resources, databases and namespaces
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          for CLUSTER in brb nbc thr dbc
-          do
-            echo "Cleanup for $CLUSTER"
-            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
-            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
-            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
-            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
-            kubectl --kubeconfig=files/config_$CLUSTER delete --ignore-not-found=true ns $branch_identifier
-          done
+          kubectl --kubeconfig=files/config --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases "
+          kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
+          kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+          kubectl --kubeconfig=files/config --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases "
+          kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
+          kubectl --kubeconfig=files/config delete --ignore-not-found=true ns $branch_identifier
       - name: remove kubeconfig
         run: |
-          rm -rf  files/config_.*
+          rm -rf  files/config
