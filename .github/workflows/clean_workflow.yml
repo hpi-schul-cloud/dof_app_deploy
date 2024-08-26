@@ -122,13 +122,12 @@ jobs:
       - name: delete custom resources, databases and namespaces
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
-          echo "Cleanup for $CLUSTER"
-          kubectl --kubeconfig=files/config --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
+          kubectl --kubeconfig=files/config --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases "
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
-          kubectl --kubeconfig=files/config --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
+          kubectl --kubeconfig=files/config --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases "
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config delete --ignore-not-found=true ns $branch_identifier
       - name: remove kubeconfig
         run: |
-          rm -rf  files/config_.*
+          rm -rf  files/config
