@@ -6,8 +6,6 @@ ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
 
-FEATURE_CTL_TOOLS_COPY_ENABLED: "false"
-
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
 
 # Migration wizard
@@ -20,3 +18,5 @@ BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 # SCHULCONNEX / SANIS / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.moin.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/protocol/openid-connect/token"
+
+PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/policies-info"

@@ -11,5 +11,3 @@ BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildu
 
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
-
-FEATURE_CTL_TOOLS_COPY_ENABLED: "false"

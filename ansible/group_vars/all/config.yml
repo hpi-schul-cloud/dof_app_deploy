@@ -1,3 +1,15 @@
+# this config is only relevant for
+# - schulcloud-client
+# - nuxt-client
+# - all services that use api-configmap including those that shouldn't
+#
+# if you have a general config to add which is used here as well as for example in shd or another "microservice" use instance_config_all.yml,
+# and you might, if necessary, declare it here as well, like so:
+#   ROCKET_CHAT_URI:
+#    value: "{{ROCKET_CHAT_URI}}"
+#    server: true
+#    client: false
+#    nuxtclient: false
 configuration_all:
   #  ITAM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
@@ -60,6 +72,7 @@ configuration_all:
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
+    value: "dbildungscloud@dataport.de"
     server: true
     client: true
     nuxtclient: false
@@ -187,7 +200,7 @@ configuration_all:
     nuxtclient: false
   FILES_STORAGE__MAX_FILE_SIZE:
     # in Byte
-    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus 2,5GB = 2684354560B.
+    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus, 2,5GB = 2684354560B.
     value: "2684354560"
     server: true
     client: true
@@ -205,22 +218,27 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "true"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "true"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
-    value: "false"
+    value: "{{ FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
-  IDENTITY_MANAGEMENT__URI:
-    value: "http://erwinidm-svc:8089"
+  IDENTITY_MANAGEMENT__INTERNAL_URI:
+    value: "{{ IDENTITY_MANAGEMENT__INTERNAL_URI }}"
+    server: true
+    client: false
+    nuxtclient: false
+  IDENTITY_MANAGEMENT__EXTERNAL_URI:
+    value: "{{ IDENTITY_MANAGEMENT__EXTERNAL_URI }}"
     server: true
     client: false
     nuxtclient: false
@@ -243,7 +261,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_URI:
-    value: "http://hydra-svc:4445"
+    value: "http://hydra-svc:4445/admin"
     server: true
     client: false
     nuxtclient: false
@@ -276,7 +294,7 @@ configuration_all:
     client: true
     nuxtclient: false
   LOGIN_BLOCK_TIME:
-    value: "15"
+    value: "5"
     server: true
     client: true
     nuxtclient: false
@@ -291,7 +309,7 @@ configuration_all:
     nuxtclient: false
   # rocketchat
   ROCKET_CHAT_URI:
-    value: "http://rocketchat-svc:5000"
+    value: "{{ROCKET_CHAT_URI}}"
     server: true
     client: false
     nuxtclient: false
@@ -337,30 +355,10 @@ configuration_all:
     client: true
     nuxtclient: false
   # Etherpad
-  ETHERPAD_URI:
+  ETHERPAD__URI:
     value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
     server: true
     client: false
-    nuxtclient: false
-  ETHERPAD_API_PATH:
-    value: "/api/1.2.14"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_COOKIE__EXPIRES_SECONDS:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_ETHERPAD_COOKIE_RELEASE_THRESHOLD:
-    value: "7200"
-    server: true
-    client: false
-    nuxtclient: false
-  ETHERPAD_BASE_URL:
-    value: "https://{{ DOMAIN }}/etherpad/p/"
-    server: false
-    client: true
     nuxtclient: false
   ETHERPAD__PAD_PATH:
     value: "/etherpad/p"
@@ -371,6 +369,11 @@ configuration_all:
     value: "https://{{ DOMAIN }}/etherpad/p"
     server: true
     client: true
+    nuxtclient: false
+  ETHERPAD__OLD_PAD_URI:
+    value: "https://etherpad.{{ DOMAIN }}/p"
+    server: true
+    client: false
     nuxtclient: false
   ETHERPAD__NEW_DOMAIN:
     value: "{{ DOMAIN }}"
@@ -501,6 +504,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_BOARD_LAYOUT_ENABLED:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_COLUMN_BOARD_ENABLED:
     value: "true"
     server: true
@@ -513,6 +521,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_COLUMN_BOARD_LINK_ELEMENT_ENABLED:
     value: "true"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -617,7 +630,7 @@ configuration_all:
     client: true
     nuxtclient: false
   CALENDAR_URI:
-    value: "http://calendar-svc:3000"
+    value: "{{ CALENDAR_URI }}"
     server: true
     client: false
     nuxtclient: false
@@ -784,14 +797,13 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_TEXT:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: true
     client: true
     nuxtclient: true
-  DASHBOARD_ANNOUNCEMENT_ENABLED:
-    value: "true"
-    server: false
+  DASHBOARD_ANNOUNCEMENT_TEXT:
+    server: true
     client: true
     nuxtclient: false
   DASHBOARD_ANNOUNCEMENT_ROLES:
@@ -908,12 +920,12 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_CTL_CONTEXT_CONFIGURATION_ENABLED:
+  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
     value: "false"
     server: true
     client: false
     nuxtclient: false
-  FEATURE_SANIS_GROUP_PROVISIONING_ENABLED:
+  FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED:
     value: "false"
     server: true
     client: false
@@ -927,11 +939,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  FEATURE_COMPUTE_TOOL_STATUS_WITHOUT_VERSIONS_ENABLED:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED:
     value: "false"
@@ -955,11 +962,6 @@ configuration_all:
   BLOCKLIST_OF_EMAIL_DOMAINS:
     server: true
     client: false
-    nuxtclient: false
-  FEATURE_NEST_SYSTEMS_API_ENABLED:
-    value: "true"
-    server: true
-    client: true
     nuxtclient: false
   FEATURE_TLDRAW_ENABLED:
     value: "true"
@@ -989,6 +991,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED:
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_SHOW_MIGRATION_WIZARD:
     value: "false"
     server: true
@@ -999,6 +1005,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  # overwritten from default true, to ensure existing services won't crash harder than usual
   EXIT_ON_ERROR:
     value: "false"
     server: true
@@ -1007,4 +1014,43 @@ configuration_all:
   HEALTH_CHECKS_EXCLUDE_MONGODB:
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_MEDIA_SHELF_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_MIGRATION_WIZARD_WITH_USER_LOGIN_MIGRATION:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  BOARD_COLLABORATION_URI:
+    value: "wss://{{ DOMAIN }}"
+    server: true
+    client: false
+    nuxtclient: true
+  TRAINING_URL:
+    value: "https://lernen.dbildungscloud.de"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_AI_TUTOR_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_ROOMS_ENABLED:
+    value: "false"
+    server: true
+    client: true
     nuxtclient: false

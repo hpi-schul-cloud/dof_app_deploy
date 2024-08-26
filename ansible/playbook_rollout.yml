@@ -13,6 +13,8 @@
     - role: dof_postgresql
     - role: dof_rabbitmq
     - role: dof_redis
+    - role: dof_mailcatcher
+      when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
     - role: libreoffice
     - role: maildrop
     - role: storage
@@ -29,6 +31,7 @@
       when: WITH_LDAP is defined and WITH_LDAP|bool
     - role: schulcloud-server-tspsync
     - role: schulcloud-server-h5p
+    - role: schulcloud-server-migration-system
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
@@ -37,6 +40,7 @@
     - role: h5p-proxy
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
+    - role: shd-client-core
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
@@ -44,6 +48,10 @@
     - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
+    - role: tldraw-server
+    - role: tldraw-valkey
+    - role: common-cartridge
     - role: ingress
     - role: post_deployment
-
+    - role: moin-schule-sync
+      when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool

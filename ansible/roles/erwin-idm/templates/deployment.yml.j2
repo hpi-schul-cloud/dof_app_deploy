@@ -50,11 +50,25 @@ spec:
         - containerPort: {{ ERWINIDM_PORT }}
           name: erwinidm
           protocol: TCP
+        - containerPort: 8090
+          name: erwinidm-mgmt
+          protocol: TCP
         envFrom:
-        - configMapRef:
-            name: erwinidm-configmap
         - secretRef:
             name: erwinidm-secret
+        - configMapRef:
+            name: erwinidm-configmap
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+        - secretRef:
+            name: pg-erwinidm-secret
+        env:
+        - name: KC_DB_PASSWORD
+          value: "$(DB_USER_PASSWORD)"
+        - name: KC_DB_USERNAME
+          value: "$(DB_USER)"
+        - name: KC_DB_URL
+          value: "$(DB_BASE_URL)/$(DB_NAME)"
+{% endif %}
         resources:
         # find reasonable limits
           limits:
@@ -66,21 +80,21 @@ spec:
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 5
         livenessProbe:
           httpGet:
             path: /health/live
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 3
           periodSeconds: 15
         startupProbe:
           httpGet:
             path: /health/ready
-            port: {{ ERWINIDM_PORT }}
+            port: 8090
           timeoutSeconds: 4
           failureThreshold: 30
           periodSeconds: 10

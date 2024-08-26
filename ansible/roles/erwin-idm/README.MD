@@ -28,11 +28,12 @@ Following configuration group or host variables are used for internal purpose:
 
 Following configuration variables are used for internal and external (instance specific) purpose:
 
-| Variable                        | Description                                         |
-| ------------------------------- | --------------------------------------------------- |
-| IDENTITY_MANAGEMENT\_\_URI      | The internal base URI of Keycloak                   |
-| IDENTITY_MANAGEMENT\_\_TENANT   | The realm (tenant) name for the instance            |
-| IDENTITY_MANAGEMENT\_\_CLIENTID | The default OpenID Connect client for the instance) |
+| Variable                            | Description                                         |
+| ----------------------------------- | --------------------------------------------------- |
+| IDENTITY_MANAGEMENT\_\_INTERNAL_URI | The internal base URI of Keycloak                   |
+| IDENTITY_MANAGEMENT\_\_EXTERNAL_URI | The external base URI of Keycloak                   |
+| IDENTITY_MANAGEMENT\_\_TENANT       | The realm (tenant) name for the instance            |
+| IDENTITY_MANAGEMENT\_\_CLIENTID     | The default OpenID Connect client for the instance  |
 
 ## Secrets
 
