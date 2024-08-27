@@ -4,6 +4,8 @@
     namespace: "{{ NAMESPACE }}"
     template: svc.yml.j2
   when: WITH_OIDCMOCK
+  tags:
+    - service
 
 - name: remove Service
   kubernetes.core.k8s:
@@ -14,6 +16,8 @@
     name: oidcmock-svc
     state: absent
   when: not WITH_OIDCMOCK
+  tags:
+    - service
 
 - name: Add or Update Configmap
   kubernetes.core.k8s:
@@ -22,6 +26,8 @@
     template: configmap.yml.j2
     apply: yes
   when: WITH_OIDCMOCK
+  tags:
+    - configmap
 
 - name: remove Configmap
   kubernetes.core.k8s:
@@ -32,6 +38,8 @@
     name: oidcmock-configmap
     state: absent
   when: not WITH_OIDCMOCK
+  tags:
+    - configmap
 
 - name: Secret by 1Password
   kubernetes.core.k8s:
@@ -39,6 +47,8 @@
     namespace: "{{ NAMESPACE }}"
     template: onepassword.yml.j2
   when: WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: remove Secret by 1Password
   kubernetes.core.k8s:
@@ -49,6 +59,8 @@
     name: oidcmock-secret
     state: absent
   when: not WITH_OIDCMOCK and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: Deployment
   kubernetes.core.k8s:
@@ -56,6 +68,8 @@
     namespace: "{{ NAMESPACE }}"
     template: deployment.yml.j2
   when: WITH_OIDCMOCK
+  tags:
+    - deployment
 
 - name: remove Deployment
   kubernetes.core.k8s:
@@ -66,6 +80,8 @@
     name: oidcmock-deployment
     state: absent
   when: not WITH_OIDCMOCK
+  tags:
+    - deployment
 
 - name: Ingress
   kubernetes.core.k8s:
@@ -73,6 +89,8 @@
     namespace: "{{ NAMESPACE }}"
     template: ingress.yml.j2
   when: WITH_OIDCMOCK
+  tags:
+    - ingress
 
 - name: remove Ingress
   kubernetes.core.k8s:
@@ -83,4 +101,6 @@
     name: "{{ NAMESPACE }}-oidcmock-ingress"
     state: absent
   when: not WITH_OIDCMOCK
+  tags:
+    - ingress
 

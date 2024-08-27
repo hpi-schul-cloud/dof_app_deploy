@@ -1,0 +1,3 @@
+HYDRA_DNS_PREFIX: oauth.
+HYDRA_IMAGE_NAME: docker.io/oryd/hydra
+HYDRA_IMAGE_TAG: v2.2.0-amd64

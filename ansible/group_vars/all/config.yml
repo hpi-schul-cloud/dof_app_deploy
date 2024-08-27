@@ -261,7 +261,7 @@ configuration_all:
     client: false
     nuxtclient: false
   HYDRA_URI:
-    value: "http://hydra-svc:4445"
+    value: "http://hydra-svc:4445/admin"
     server: true
     client: false
     nuxtclient: false
@@ -865,12 +865,10 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
-    value: "false"
     server: true
     client: true
     nuxtclient: false
   FEATURE_LTI_TOOLS_TAB_ENABLED:
-    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -1048,4 +1046,9 @@ configuration_all:
     value: "false"
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_ROOMS_ENABLED:
+    value: "false"
+    server: true
+    client: true
     nuxtclient: false
