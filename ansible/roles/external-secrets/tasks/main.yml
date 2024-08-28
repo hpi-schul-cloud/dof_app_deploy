@@ -1,5 +1,5 @@
 ---
-  - name: Get Token for SecretStore
+  - name: Get ServiceAccount Token for SecretStore
     kubernetes.core.k8s_info:
       kubeconfig: ~/.kube/config
       kind: Secret
@@ -10,7 +10,9 @@
     tags:
       - 1password
 
-  - name: Create Secret with Token for SecretStore
+  - name: Save the Token for SecretStore in a secret in this namespace
+    var:
+      token: secretstore_token.resources[0].data.token
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secret-token.yml.j2

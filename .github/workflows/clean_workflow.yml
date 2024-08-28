@@ -127,6 +127,8 @@ jobs:
             kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
             kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
             kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true ExternalSecret
+            kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true SecretStore
             kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases ($CLUSTER)"
             kubectl --kubeconfig=files/config_$CLUSTER --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
             kubectl --kubeconfig=files/config_$CLUSTER delete --ignore-not-found=true ns $branch_identifier
