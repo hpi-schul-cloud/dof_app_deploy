@@ -3,7 +3,9 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-    when: WITH_DATABASES
+    when: WITH_MONGO_DATABASES
+    tags:
+      - service
 
   - name: remove Service
     kubernetes.core.k8s:
@@ -13,14 +15,18 @@
       api_version: v1
       kind: Service
       name: mongo-svc
-    when: not WITH_DATABASES 
+    when: not WITH_MONGO_DATABASES
+    tags:
+      - service
 
   - name: Add or Update ServiceMonitor
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: svc-monitor.yml.j2
-    when: WITH_DATABASES
+    when: WITH_MONGO_DATABASES
+    tags:
+      - prometheus
 
   - name: remove ServiceMonitor
     kubernetes.core.k8s:
@@ -30,14 +36,18 @@
       api_version: monitoring.coreos.com/v1
       kind: ServiceMonitor
       name: mongo-svc-monitor
-    when: not WITH_DATABASES 
+    when: not WITH_MONGO_DATABASES
+    tags:
+      - prometheus
    
   - name: Add or Update Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
-    when: WITH_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    when: WITH_MONGO_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: remove Secret by 1Password
     kubernetes.core.k8s:
@@ -47,14 +57,18 @@
       api_version: onepassword.com/v1
       kind: OnePasswordItem
       name: mongo-secret
-    when: not WITH_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    when: not WITH_MONGO_DATABASES and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: Add or Update Persistent Volumes Claim
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
-    when: WITH_DATABASES
+    when: WITH_MONGO_DATABASES
+    tags:
+      - pvc
 
   - name: remove Persistent Volumes Claim
     kubernetes.core.k8s:
@@ -64,7 +78,9 @@
       api_version: v1
       kind: PersistentVolumeClaim
       name: mongo-pvc
-    when: not WITH_DATABASES
+    when: not WITH_MONGO_DATABASES
+    tags:
+      - pvc
 
   - name: Add or Update Deployment
     kubernetes.core.k8s:
@@ -72,7 +88,9 @@
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
       apply: yes
-    when: WITH_DATABASES
+    when: WITH_MONGO_DATABASES
+    tags:
+      - deployment
 
   - name: remove Deployment
     kubernetes.core.k8s:
@@ -82,4 +100,6 @@
       api_version: apps/v1
       kind: Deployment
       name: mongo-deployment
-    when: not WITH_DATABASES
+    when: not WITH_MONGO_DATABASES
+    tags:
+      - deployment

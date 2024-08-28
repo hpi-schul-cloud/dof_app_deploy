@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pg-deletion-job
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: postgres-management
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/name: postgres-management
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      volumes:
+        - name: config-script
+          configMap:
+            name: pg-configmap-deletion
+            # 711 in decimal is 457
+            defaultMode: 457
+      containers:
+        - name:  psql-config
+          image: {{ POSTGRES_MANAGEMENT_JOB_IMAGE }}
+          command:
+            - /bin/bash
+            - -c
+          args:
+            - /scripts/config_script.sh
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: config-script
+              mountPath: /scripts/
+          env:
+            - name: PGHOST
+              value: {{ POSTGRES_MANAGEMENT_HOST }}
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-cluster-secret
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-cluster-secret
+                  key: password
+      restartPolicy: Never
+  suspend: true
+  ttlSecondsAfterFinished: 0

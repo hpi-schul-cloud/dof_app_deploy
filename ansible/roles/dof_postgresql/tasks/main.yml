@@ -3,7 +3,9 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-    when: WITH_DATABASES
+    when: WITH_POSTGRES_DATABASES
+    tags:
+      - service
 
   - name: remove Service
     kubernetes.core.k8s:
@@ -13,14 +15,18 @@
       kind: Service
       name: postgres-svc
       state: absent
-    when: not WITH_DATABASES
+    when: not WITH_POSTGRES_DATABASES
+    tags:
+      - service
 
   - name: Add or Update Persistent Volumes Claim  
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: pvc.yml.j2
-    when: WITH_DATABASES
+    when: WITH_POSTGRES_DATABASES
+    tags:
+      - pvc
 
   - name: remove Persistent Volumes Claim  
     kubernetes.core.k8s:
@@ -30,7 +36,9 @@
       kind: PersistentVolumeClaim
       name: postgres-pvc
       state: absent
-    when: not WITH_DATABASES
+    when: not WITH_POSTGRES_DATABASES
+    tags:
+      - pvc
 
   - name: Add or Update Configmap
     kubernetes.core.k8s:
@@ -38,7 +46,9 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
-    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
+    when: WITH_POSTGRES_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
+    tags:
+      - configmap
       
   - name: remove Configmap
     kubernetes.core.k8s:
@@ -48,7 +58,9 @@
       kind: ConfigMap
       name: postgres-configmap
       state: absent
-    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
+    when: not WITH_POSTGRES_DATABASES and (ONEPASSWORD_OPERATOR is undefined or ( ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR) )
+    tags:
+      - configmap
     
   - name: Add or Update init scripts Configmap
     kubernetes.core.k8s:
@@ -56,7 +68,9 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap-init.yml.j2
       apply: yes
-    when: WITH_DATABASES
+    when: WITH_POSTGRES_DATABASES
+    tags:
+      - configmap
 
   - name: remove init scripts Configmap
     kubernetes.core.k8s:
@@ -66,14 +80,18 @@
       kind: ConfigMap
       name: postgres-configmap-init
       state: absent
-    when: not WITH_DATABASES
+    when: not WITH_POSTGRES_DATABASES
+    tags:
+      - configmap
 
   - name: Add or Update Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
-    when: WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+    when: WITH_POSTGRES_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+    tags:
+      - 1password
 
   - name: remove Secret by 1Password
     kubernetes.core.k8s:
@@ -83,7 +101,9 @@
       kind: OnePasswordItem
       name: postgres-secret
       state: absent
-    when: not WITH_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+    when: not WITH_POSTGRES_DATABASES and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+    tags:
+      - 1password
 
   - name: Add or Update Deployment
     kubernetes.core.k8s:
@@ -91,7 +111,9 @@
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
       apply: yes
-    when: WITH_DATABASES
+    when: WITH_POSTGRES_DATABASES
+    tags:
+      - deployment
 
   - name: remove Deployment
     kubernetes.core.k8s:
@@ -101,4 +123,6 @@
       kind: Deployment
       name: postgres-deployment
       state: absent
-    when: not WITH_DATABASES
+    when: not WITH_POSTGRES_DATABASES
+    tags:
+      - deployment
