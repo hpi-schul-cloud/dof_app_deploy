@@ -7,12 +7,16 @@
       namespace: "{{ EXTERNAL_SECRETS_NAMESPACE }}"
     register: secretstore_token
     when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
 
   - name: Create Secret with Token for SecretStore
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secret-token.yml.j2
     when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
 
   - name: Delete Secret with Token for SecretStore
     kubernetes.core.k8s:
@@ -22,9 +26,13 @@
       name: external-secrets-secretstore-token
       state: absent
     when: not EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
 
   - name: Create Secret Store
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secretstore.yml.j2
     when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
