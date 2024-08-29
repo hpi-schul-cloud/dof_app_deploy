@@ -12,7 +12,7 @@
 
   - name: Save the Token for SecretStore in a secret in this namespace
     vars:
-      token: secretstore_token.resources[0].data.token
+      token: "{{ secretstore_token.resources[0].data.token }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       template: secret-token.yml.j2
