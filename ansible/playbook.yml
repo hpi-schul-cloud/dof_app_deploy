@@ -45,6 +45,8 @@
     - rocketchat
     - mongodb_query_exporter
     - tldraw-client-core
+    - tldraw-server
+    - tldraw-valkey
     - common-cartridge
     - ingress
     - post_deployment
