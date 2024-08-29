@@ -11,7 +11,7 @@
       - 1password
 
   - name: Save the Token for SecretStore in a secret in this namespace
-    var:
+    vars:
       token: secretstore_token.resources[0].data.token
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
