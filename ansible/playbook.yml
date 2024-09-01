@@ -33,6 +33,7 @@
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
+    - shd-client-core
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
@@ -43,6 +44,8 @@
     - rocketchat
     - mongodb_query_exporter
     - tldraw-client-core
+    - tldraw-server
+    - tldraw-valkey
     - common-cartridge
     - ingress
     - post_deployment
