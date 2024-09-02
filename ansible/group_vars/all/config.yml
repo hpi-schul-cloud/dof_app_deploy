@@ -29,18 +29,12 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  # deprecated?
-  API_URL:
-    value: "https://{{ DOMAIN }}/api"
-    server: false
-    client: false
-    nuxtclient: true
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
     server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
   LEGACY_CLIENT_URL:
     value: "http://client-svc:3100"
     server: false
@@ -1019,7 +1013,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_MEDIA_SHELF_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
