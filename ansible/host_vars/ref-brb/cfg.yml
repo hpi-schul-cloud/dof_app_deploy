@@ -13,3 +13,4 @@ NEXTCLOUD_BASE_URL: https://nextcloud.staging.brandenburg.dbildungscloud.org/
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.brandenburg.dbildungscloud.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.brandenburg.dbildungscloud.org"
+HYDRA_ISSUER_URL_SUFFIX: "/"
