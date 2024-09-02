@@ -12,3 +12,5 @@ NEXTCLOUD_BASE_URL: https://nextcloud.brandenburg.cloud
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
 HYDRA_ISSUER_URL_SUFFIX: "/"
+
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
