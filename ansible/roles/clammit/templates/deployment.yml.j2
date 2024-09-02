@@ -42,7 +42,7 @@ spec:
             memory: {{ CLAMMIT_MEMORY_MAX|default("3Gi", true) }}
           requests:
             cpu: {{ CLAMMIT_CPU_MIN|default("100m", true) }}
-            memory: {{ CLAMMIT_MEMORY_MIN|default("1Gi", true) }}
+            memory: {{ CLAMMIT_MEMORY_MIN|default("128Mi", true) }}
         volumeMounts:
           - name: config
             mountPath: /home/clam/clammit.cfg

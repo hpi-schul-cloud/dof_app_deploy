@@ -3,6 +3,9 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
+      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+    tags:
+      - service
 
   - name: Configmap
     kubernetes.core.k8s:
@@ -10,13 +13,16 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
+      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+    tags:
+      - configmap
 
   - name: Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
-    when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool and WITH_CLAMMIT
     tags:
       - 1password
 
@@ -25,3 +31,6 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
+      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+    tags:
+      - deployment
