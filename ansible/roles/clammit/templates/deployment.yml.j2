@@ -33,6 +33,9 @@ spec:
         image: {{ CLAMMIT_IMAGE_NAME }}:{{ CLAMMIT_IMAGE_TAG }}
         ports:
         - containerPort: 3310
+        envFrom:
+        - secretRef:
+            name: clammit-secret
         resources:
           limits:
             cpu: {{ CLAMMIT_CPU_MAX|default("500m", true) }}
