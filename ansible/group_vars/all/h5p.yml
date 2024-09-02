@@ -1,5 +1,44 @@
 PORT_H5P_EDITOR: 4448
-H5P_LIBRARIES: ['H5P.Accordion','H5P.MultiChoice']
+H5P_LIBRARIES:
+  - H5P.Accordion
+  - H5P.AdventCalendar
+  - H5P.Agamotto
+  - H5P.ArithmeticQuiz
+  - H5P.Chart
+  - H5P.Collage
+  - H5P.Cornell
+  - H5P.Crossword
+  - H5P.Dialogcards
+  - H5P.DocumentationTool
+  - H5P.DragQuestion
+  - H5P.DragText
+  - H5P.Essay
+  - H5P.Blanks
+  - H5P.ImageMultipleHotspotQuestion
+  - H5P.ImageHotspotQuestion
+  - H5P.FindTheWords
+  - H5P.Flashcards
+  - H5P.GuessTheAnswer
+  - H5P.MultiMediaChoice
+  - H5P.ImageHotspots
+  - H5P.ImageJuxtaposition
+  - H5P.ImagePair
+  - H5P.ImageSequencing
+  - H5P.ImageSlider
+  - H5P.InfoWall
+  - H5P.InteractiveBook
+  - H5P.InteractiveVideo
+  - H5P.KewArCode
+  - H5P.MarkTheWords
+  - H5P.MultiChoice
+  - H5P.PersonalityQuiz
+  - H5P.QuestionSet
+  - H5P.SingleChoiceSet
+  - H5P.SortParagraphs
+  - H5P.StructureStrip
+  - H5P.Summary
+  - H5P.Timeline
+  - H5P.TrueFalse
 H5P_PROXY_IMAGE_NAME: docker.io/nginx
 H5P_PROXY_IMAGE_TAG: 1.27-alpine
 H5P_PROXY_PORT: 80
