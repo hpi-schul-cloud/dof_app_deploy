@@ -12,3 +12,6 @@ HYDRA_ISSUER_URL_SUFFIX: "/"
 
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "62dab6401c473a01956a0d7d"
+
+#New course administration
+FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED: "false"

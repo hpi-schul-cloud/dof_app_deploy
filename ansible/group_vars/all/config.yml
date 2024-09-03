@@ -340,7 +340,7 @@ configuration_all:
   # CALENDAR
   CALENDAR_SERVICE_ENABLED:
     value: "true"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   CALENDAR_DASHBOARD_ENABLED:
@@ -923,6 +923,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
     value: "false"
     server: true
     client: true
