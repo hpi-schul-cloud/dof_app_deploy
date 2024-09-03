@@ -8,7 +8,7 @@ metadata:
 data:
   SERVE_PUBLIC_CORS_ENABLED: "true"
   SERVE_PUBLIC_CORS_ALLOWED_METHODS: "POST,GET,PUT,DELETE"
-  URLS_SELF_ISSUER: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}"
+  URLS_SELF_ISSUER: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}{{HYDRA_ISSUER_URL_SUFFIX}}"
   URLS_CONSENT: "https://{{ DOMAIN }}/oauth2/consent"
   URLS_LOGIN: https://{{ DOMAIN }}/oauth2/login
   URLS_LOGOUT: https://{{ DOMAIN }}/oauth2/logout/redirect
