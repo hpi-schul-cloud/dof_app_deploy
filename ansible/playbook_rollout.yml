@@ -38,6 +38,7 @@
     - role: h5p-library-management
       when: WITH_H5P_LIBRARY_MANAGEMENT is defined and WITH_H5P_LIBRARY_MANAGEMENT|bool
     - role: h5p-proxy
+    - role: clammit
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
     - role: shd-client-core

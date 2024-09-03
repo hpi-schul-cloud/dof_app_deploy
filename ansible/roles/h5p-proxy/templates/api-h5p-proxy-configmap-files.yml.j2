@@ -45,9 +45,15 @@ data:
         proxy_pass http://h5p-staticfiles-server-svc:{{ H5P_PORT }}/h5pstatics/;
       }
 
+{% if if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool %}
       location /api/v3/h5p-editor/ajax {
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
+        # Make upload of bigger files possible
+        client_max_body_size {{ H5P_PROXY_MAX_BODY_SIZE }};
+        proxy_connect_timeout {{ H5P_PROXY_CONNECT_TIMEOUT }};
+        proxy_read_timeout {{ H5P_PROXY_READ_TIMEOUT }};
+        proxy_send_timeout {{ H5P_PROXY_SEND_TIMEOUT }};
         proxy_ssl_server_name on;
         proxy_intercept_errors off;
         proxy_cookie_domain h5p.org '{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}';
@@ -59,6 +65,7 @@ data:
         sub_filter 'h5p.org' '{{ H5P_PROXY_PREFIX }}{{ DOMAIN }}';
         proxy_pass http://clammit-svc:8438;
       }
+{% endif %}
 
       location / {
         proxy_hide_header 'Access-Control-Allow-Origin';

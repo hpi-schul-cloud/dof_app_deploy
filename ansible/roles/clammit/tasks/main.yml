@@ -3,7 +3,7 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
-      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+      state: "{{ 'present' if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool else 'absent'}}"
     tags:
       - service
 
@@ -13,7 +13,7 @@
       namespace: "{{ NAMESPACE }}"
       template: configmap.yml.j2
       apply: yes
-      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+      state: "{{ 'present' if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool else 'absent'}}"
     tags:
       - configmap
 
@@ -31,6 +31,6 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: deployment.yml.j2
-      state: "{{ 'present' if WITH_CLAMMIT else 'absent'}}"
+      state: "{{ 'present' if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool else 'absent'}}"
     tags:
       - deployment

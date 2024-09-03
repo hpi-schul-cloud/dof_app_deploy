@@ -23,7 +23,6 @@
     - dof_etherpad_nginx
     - dof_etherpad
     - clamav
-    - clammit
     - schulcloud-server-core
     - schulcloud-server-init
     - schulcloud-server-ldapsync
@@ -38,6 +37,7 @@
     - schulcloud-calendar-init
     - h5p-library-management
     - h5p-proxy
+    - clammit
     - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator

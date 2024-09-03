@@ -27,7 +27,6 @@ H5P_LIBRARIES:
   - H5P.ImageSlider
   - H5P.InfoWall
   - H5P.InteractiveBook
-  - H5P.InteractiveVideo
   - H5P.KewArCode
   - H5P.MarkTheWords
   - H5P.MultiChoice
