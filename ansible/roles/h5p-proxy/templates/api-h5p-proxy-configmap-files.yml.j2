@@ -45,7 +45,7 @@ data:
         proxy_pass http://h5p-staticfiles-server-svc:{{ H5P_PORT }}/h5pstatics/;
       }
 
-{% if if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool %}
+{% if WITH_CLAMMIT is defined and WITH_CLAMMIT|bool %}
       location /api/v3/h5p-editor/ajax {
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
