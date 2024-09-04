@@ -29,18 +29,12 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  # deprecated?
-  API_URL:
-    value: "https://{{ DOMAIN }}/api"
-    server: false
-    client: false
-    nuxtclient: true
   PUBLIC_BACKEND_URL:
     config_name: API_URL
     value: "https://{{ DOMAIN }}/api"
     server: true
     client: true
-    nuxtclient: false
+    nuxtclient: true
   LEGACY_CLIENT_URL:
     value: "http://client-svc:3100"
     server: false
@@ -346,7 +340,7 @@ configuration_all:
   # CALENDAR
   CALENDAR_SERVICE_ENABLED:
     value: "true"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   CALENDAR_DASHBOARD_ENABLED:
@@ -865,12 +859,10 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_CTL_TOOLS_TAB_ENABLED:
-    value: "false"
     server: true
     client: true
     nuxtclient: false
   FEATURE_LTI_TOOLS_TAB_ENABLED:
-    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -931,6 +923,11 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
     value: "false"
     server: true
     client: true
@@ -1016,7 +1013,7 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_MEDIA_SHELF_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
