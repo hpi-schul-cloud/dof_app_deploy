@@ -409,6 +409,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_TSP_SYNC_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
   # Column Board
   COLUMN_BOARD_HELP_LINK:
     value: https://{{ DOMAIN }}/help/confluence/270827606
