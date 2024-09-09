@@ -14,9 +14,13 @@ FEATURE_USER_MIGRATION_SYSTEM_ID: "646df8f63bcc1a27c52af131"
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
+HYDRA_ISSUER_URL_SUFFIX: "/"
 
 # SCHULCONNEX / SANIS / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.moin.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/policies-info"
+
+#New course administration
+FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED: "false"

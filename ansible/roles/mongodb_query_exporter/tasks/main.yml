@@ -4,6 +4,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: Install mongodb-query-exporter
     kubernetes.core.helm:
@@ -38,5 +40,7 @@
           requests:
             cpu: "{{ MONGO_QUERY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
             memory: "{{ MONGO_QUERY_EXPORTER_MEMORY_REQUESTS|default('30Mi', true) }}" 
+    tags:
+      - helm
 
 

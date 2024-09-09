@@ -3,18 +3,24 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-configmapfile.yml.j2
+    tags:
+      - configmap
 
   - name: Default Backend 404 Ddeployment
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-deployment.yml.j2
+    tags:
+      - deployment
 
   - name: Default Backend 404 Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: default-backend-404-svc.yml.j2
+    tags:
+      - service
 
   - name: Ingress
     kubernetes.core.k8s:
@@ -22,3 +28,5 @@
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
       apply: yes
+    tags:
+      - ingress

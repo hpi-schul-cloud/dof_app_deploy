@@ -4,6 +4,8 @@
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-configmap-files.yml.j2
       state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+    tags:
+      - configmap
 
   - name: H5P Proxy Deployment
     kubernetes.core.k8s:
@@ -11,6 +13,8 @@
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-deployment.yml.j2
       state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+    tags:
+      - deployment
     
   - name: H5P Proxy Service
     kubernetes.core.k8s:
@@ -18,6 +22,8 @@
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-svc.yml.j2
       state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+    tags:
+      - service
 
   - name: H5P Proxy Ingress
     kubernetes.core.k8s:
@@ -26,4 +32,6 @@
       template: api-h5p-proxy-ingress.yml.j2
       apply: yes
       state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+    tags:
+      - ingress
     

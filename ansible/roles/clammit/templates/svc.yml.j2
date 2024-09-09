@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clammit-svc
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: clammit
+spec:
+  ports:
+  - protocol: TCP
+    port: 8438
+    targetPort: 8438
+  selector:
+    app: clammit

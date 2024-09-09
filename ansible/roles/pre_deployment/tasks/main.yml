@@ -6,6 +6,8 @@
     state: absent
     delete_options:
       propagationPolicy: Foreground
+  tags:
+    - marker-pre
 
 - name: Create deployment marker job
   kubernetes.core.k8s:
@@ -13,3 +15,5 @@
     namespace: "{{ NAMESPACE }}"
     template: job.yml.j2
     state: present
+  tags:
+    - marker-pre

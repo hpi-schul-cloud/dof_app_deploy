@@ -5,6 +5,8 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: sc-common-mongodb-trigger-auth.yml.j2
+    tags:
+      - keda
 
   - name: apply scaled objects
     kubernetes.core.k8s:
@@ -13,6 +15,8 @@
       template: scaled-object.yml.j2
       apply: true
     loop: "{{ deployments_for_scaled_objects }}"
+    tags:
+      - keda
 
 
 

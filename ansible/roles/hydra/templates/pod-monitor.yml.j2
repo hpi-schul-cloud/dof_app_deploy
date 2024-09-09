@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: hydra-pod-monitor
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: hydra
+spec:
+  selector:
+    matchLabels:
+      app: hydra
+  podMetricsEndpoints:
+  - port: http-admin
+    path: /admin/metrics/prometheus

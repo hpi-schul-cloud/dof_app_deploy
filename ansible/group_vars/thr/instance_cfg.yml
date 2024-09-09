@@ -4,7 +4,7 @@ SC_TITLE: Thüringer Schulcloud
 SC_PRODUCTNAME: Thüringer Schulcloud
 SC_NAV_TITLE: Thüringer Schulcloud
 SC_CONTACT_EMAIL: schulcloud-support@thillm.de
-GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeThr
+GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://www.schulportal-thueringen.de/tio"
 

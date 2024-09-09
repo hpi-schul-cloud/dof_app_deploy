@@ -32,16 +32,20 @@
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
+    - shd-client-core
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
     - h5p-proxy
+    - clammit
     - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator
     - rocketchat
     - mongodb_query_exporter
     - tldraw-client-core
+    - tldraw-server
+    - tldraw-valkey
     - common-cartridge
     - ingress
     - post_deployment

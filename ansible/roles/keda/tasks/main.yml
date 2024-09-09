@@ -5,9 +5,14 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: keda-secret.yml.j2
+    tags:
+      - 1password
+      - keda
 
   - name: trigger auth
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: rabbitmq-trigger-auth.yml.j2
+    tags:
+      - keda

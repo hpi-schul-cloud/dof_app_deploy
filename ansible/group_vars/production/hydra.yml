@@ -1,3 +1,0 @@
-HYDRA_DNS_PREFIX: oauth.
-HYDRA_IMAGE_NAME: oryd/hydra
-HYDRA_IMAGE_TAG: v1.11.10-amd64

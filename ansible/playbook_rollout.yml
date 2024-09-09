@@ -38,8 +38,10 @@
     - role: h5p-library-management
       when: WITH_H5P_LIBRARY_MANAGEMENT is defined and WITH_H5P_LIBRARY_MANAGEMENT|bool
     - role: h5p-proxy
+    - role: clammit
     - role: h5p-staticfiles-server-core
     - role: superhero-dashboard
+    - role: shd-client-core
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
@@ -47,6 +49,8 @@
     - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
+    - role: tldraw-server
+    - role: tldraw-valkey
     - role: common-cartridge
     - role: ingress
     - role: post_deployment

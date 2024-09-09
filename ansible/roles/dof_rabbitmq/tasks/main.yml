@@ -4,6 +4,8 @@
       namespace: "{{ NAMESPACE }}"
       template: onepassword.yaml.j2
     when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+    tags:
+      - 1password
 
   - name: RabbitMQ secret
     kubernetes.core.k8s:
@@ -12,6 +14,8 @@
       template: secret.yaml.j2
       apply: yes
     when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
+    tags:
+      - secret
 
 
   - name: RabbitMQ Cluster
@@ -19,6 +23,8 @@
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: rabbitmq.yaml.j2
+    tags:
+      - deployment
 
   - name: Service Monitor
     kubernetes.core.k8s:
@@ -26,3 +32,5 @@
       namespace: "{{ NAMESPACE }}"
       template: templates/rabbitmq-svc-monitor.yml.j2
     when: RABBITMQ_SERVICE_MONITOR is undefined or RABBITMQ_SERVICE_MONITOR is defined and not RABBITMQ_SERVICE_MONITOR
+    tags:
+      - prometheus
