@@ -150,6 +150,8 @@
     namespace: "{{ NAMESPACE }}"
     template: admin-certificate.yml.j2
   when: WITH_ERWINIDM and ERWINIDM_ADMIN_CREATE_CERTIFICATE
+  tags:
+    - 1password
 
 - name: remove Admin Ingress Certificate
   kubernetes.core.k8s:
@@ -160,6 +162,8 @@
     name: "{{ ERWINIDM_ADMIN_HOSTNAME }}"
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - 1password
 
 - name: Admin Ingress Secret
   kubernetes.core.k8s:
@@ -167,6 +171,8 @@
     namespace: "{{ NAMESPACE }}"
     template: admin-onepassword.yml.j2
   when: WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: remove Admin Ingress Secret
   kubernetes.core.k8s:
@@ -177,6 +183,8 @@
     name: "{{ ERWINIDM_ADMIN_TLS_AUTH_SECRET }}"
     state: absent
   when: not WITH_ERWINIDM and (ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool)
+  tags:
+    - 1password
 
 - name: Admin Ingress
   kubernetes.core.k8s:
@@ -184,6 +192,8 @@
     namespace: "{{ NAMESPACE }}"
     template: admin-ingress.yml.j2
   when: WITH_ERWINIDM
+  tags:
+    - ingress
 
 - name: remove Admin Ingress
   kubernetes.core.k8s:
@@ -194,6 +204,8 @@
     name: "{{ NAMESPACE }}-erwinidm-admin-ingress"
     state: absent
   when: not WITH_ERWINIDM
+  tags:
+    - ingress
 
 - name: Service Monitor
   kubernetes.core.k8s:
