@@ -1057,22 +1057,18 @@ configuration_all:
     client: true
     nuxtclient: false
   EDU_SHARING__APP_ID:
-    value: schul-cloud
     server: true
     client: false
     nuxtclient: false
   EDU_SHARING__API_URL:
-    value: https://repo.test.mediathek.dev.dbildungsplattform.de/edu-sharing
     server: true
     client: false
     nuxtclient: true
   EDU_SHARING_CONNECT_SRC_URLS:
-    value: "https://repo.test.mediathek.dev.dbildungsplattform.de"
     server: false
     client: false
     nuxtclient: true
   EDU_SHARING_IMG_SRC_URLS:
-    value: "https://repo.test.mediathek.dev.dbildungsplattform.de"
     server: false
     client: false
     nuxtclient: true
