@@ -51,11 +51,14 @@ spec:
         runAsNonRoot: true
       containers:
       - name: ns-activator
-        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:2.3
+        image: ghcr.io/hpi-schul-cloud/devcluster-namespace-activator:2.4
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           name: http
+          protocol: TCP
+        - containerPort: 9999
+          name: metrics
           protocol: TCP
         envFrom:
         - configMapRef:
@@ -88,6 +91,21 @@ spec:
   selector:
     app: ns-activator
 
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: pod-ns-monitor
+  namespace: sc-common
+  labels:
+    app: ns-activator
+spec:
+  selector:
+    matchLabels:
+      app: ns-activator
+  podMetricsEndpoints:
+  - port: metrics
+    path: /q/metrics
 
 ---
 apiVersion: networking.k8s.io/v1
