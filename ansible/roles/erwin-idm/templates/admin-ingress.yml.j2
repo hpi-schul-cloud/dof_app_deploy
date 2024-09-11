@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ NAMESPACE }}-erwinidm-admin-ingress
+  name: erwinidm-admin-ingress
   namespace: {{ NAMESPACE }}
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
