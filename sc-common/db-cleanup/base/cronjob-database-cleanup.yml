@@ -44,3 +44,4 @@ spec:
                       key: credentials-url
           restartPolicy: Never
       ttlSecondsAfterFinished: 120
+      backoffLimit: 2
