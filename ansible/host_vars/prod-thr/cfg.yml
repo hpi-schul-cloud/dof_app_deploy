@@ -14,3 +14,5 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud.schulcloud-thueringen.de/apps/files/?d
 NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
 
 BLOCKLIST_OF_EMAIL_DOMAINS: "schul-cloud.org"
+
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
