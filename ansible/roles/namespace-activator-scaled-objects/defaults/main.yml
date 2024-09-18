@@ -31,6 +31,7 @@ deployments_for_scaled_objects:
   - name: maildrop-deployment
   - name: board-collaboration-deployment
   - name: common-cartridge-deployment
+  - name: clammit-deployment
   # those 2 will be re-added when new tldraw stuff is enabled by default
   #  - tldraw-deployment
   #  - tldraw-worker-deployment
