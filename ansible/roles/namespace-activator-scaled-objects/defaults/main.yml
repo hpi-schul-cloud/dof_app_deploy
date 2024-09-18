@@ -27,10 +27,12 @@ deployments_for_scaled_objects:
   - shd-deployment
   - shd-client-deployment
   - version-aggregator-deployment
-#  - tldraw-deployment
-#  - tldraw-worker-deployment
-  - tldraw-client-deployment
   - mailcatcher-deployment
   - maildrop-deployment
   - board-collaboration-deployment
   - common-cartridge-deployment
+  # those 2 will be re-added when new tldraw stuff is enabled by default
+  #  - tldraw-deployment
+  #  - tldraw-worker-deployment
+  - tldraw-client-deployment
+  - valkey-node
