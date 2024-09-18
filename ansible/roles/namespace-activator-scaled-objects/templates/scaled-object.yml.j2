@@ -1,11 +1,12 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: {{item}}-scaled-obj
+  name: {{item.name}}-scaled-obj
   namespace: {{ NAMESPACE }}
 spec:
   scaleTargetRef:
-    name: {{item}}
+    kind: {{ item.kind | default('Deployment') }}
+    name: {{ item.name }}
   idleReplicaCount: 0
   minReplicaCount: 1
   maxReplicaCount: 1

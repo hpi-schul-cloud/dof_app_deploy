@@ -1,38 +1,39 @@
 deployments_for_scaled_objects:
-  - api-deployment
-  - admin-api-deployment
-  - client-deployment
-  - amqp-files-deployment
-  - api-h5p-proxy-deployment
-  - api-h5p-deployment
-  - h5p-staticfiles-server-deployment
-  - antivirus-webserver-deployment
-  - antivirus-scanfile-deployment
-  - api-files-deployment
-  - api-migration-systems-deployment
-  - preview-generator-deployment
-  - api-fwu-deployment
-  - calendar-deployment
-  - clamav-deployment
-  - default-backend-404-deployment
-  - erwinidm-deployment
-  - etherpad-deployment
-  - etherpad-nginx-deployment
-  - hydra-deployment
-  - libreoffice-deployment
-  - management-deployment
-  - nuxtclient-deployment
-  - oidcmock-deployment
-  - rocketchat-deployment
-  - shd-deployment
-  - shd-client-deployment
-  - version-aggregator-deployment
-  - mailcatcher-deployment
-  - maildrop-deployment
-  - board-collaboration-deployment
-  - common-cartridge-deployment
+  - name: api-deployment
+  - name: admin-api-deployment
+  - name: client-deployment
+  - name: amqp-files-deployment
+  - name: api-h5p-proxy-deployment
+  - name: api-h5p-deployment
+  - name: h5p-staticfiles-server-deployment
+  - name: antivirus-webserver-deployment
+  - name: antivirus-scanfile-deployment
+  - name: api-files-deployment
+  - name: api-migration-systems-deployment
+  - name: preview-generator-deployment
+  - name: api-fwu-deployment
+  - name: calendar-deployment
+  - name: clamav-deployment
+  - name: default-backend-404-deployment
+  - name: erwinidm-deployment
+  - name: etherpad-deployment
+  - name: etherpad-nginx-deployment
+  - name: hydra-deployment
+  - name: libreoffice-deployment
+  - name: management-deployment
+  - name: nuxtclient-deployment
+  - name: oidcmock-deployment
+  - name: rocketchat-deployment
+  - name: shd-deployment
+  - name: shd-client-deployment
+  - name: version-aggregator-deployment
+  - name: mailcatcher-deployment
+  - name: maildrop-deployment
+  - name: board-collaboration-deployment
+  - name: common-cartridge-deployment
   # those 2 will be re-added when new tldraw stuff is enabled by default
   #  - tldraw-deployment
   #  - tldraw-worker-deployment
-  - tldraw-client-deployment
-  - valkey-node
+  - name: tldraw-client-deployment
+  - name: valkey-node
+    kind: StatefulSet
