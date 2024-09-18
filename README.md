@@ -55,6 +55,8 @@ namespace _lifecycle_:
 - you may also get more than 2 days, but don't make that your default action, think about the trees 🌳
 
 ### extend activation time by adding a label to your pr:
+⚠️ **Important: The auto-extend-activation-time label should only be used when absolutely necessary, such as when you need to activate the namespace for e2e tests.** Avoid using it as a precautionary measure to prevent unnecessary rollouts and resource consumption.
+
 This method is effective for each unique PR. If you have multiple PRs from the same branch across various repositories, you only need to apply this setting once.
 1. Navigate to the PR you wish to automatically extend its namespace's activation time.
 2. Apply the `auto-extend-activation-time` label to the PR. This action will also initiate a new rollout.
