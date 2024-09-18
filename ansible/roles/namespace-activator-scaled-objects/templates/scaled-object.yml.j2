@@ -8,8 +8,8 @@ spec:
     kind: {{ item.kind | default('Deployment') }}
     name: {{ item.name }}
   idleReplicaCount: 0
-  minReplicaCount: 1
-  maxReplicaCount: 1
+  minReplicaCount: {{ item.replicaCount | default(1) }}
+  maxReplicaCount: {{ item.replicaCount | default(1) }}
   pollingInterval: 30
   cooldownPeriod: 60
   triggers:

@@ -38,3 +38,4 @@ deployments_for_scaled_objects:
   - name: tldraw-client-deployment
   - name: valkey-node
     kind: StatefulSet
+    replicaCount: {{TLDRAW_VALKEY_REPLICAS}}
