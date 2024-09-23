@@ -125,6 +125,10 @@ default_ingress:
     path: /tools/context
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  edu-sharing:
+    path: /vendor/edu-sharing
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   media_shelf:
     path: /media-shelf
     serviceName: nuxtclient-svc

@@ -19,3 +19,8 @@ FEATURE_LTI_TOOLS_ENABLED: "false"
 FEATURE_LTI_TOOLS_TAB_ENABLED: "false"
 FEATURE_CTL_TOOLS_TAB_ENABLED: "true"
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "true"
+
+EDU_SHARING__APP_ID: "schul-cloud"
+EDU_SHARING__API_URL: "https://repo.test.mediathek.dev.dbildungsplattform.de/edu-sharing"
+EDU_SHARING_CONNECT_SRC_URLS: "https://repo.test.mediathek.dev.dbildungsplattform.de"
+EDU_SHARING_IMG_SRC_URLS: "https://repo.test.mediathek.dev.dbildungsplattform.de"
