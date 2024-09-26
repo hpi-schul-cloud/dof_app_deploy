@@ -76,3 +76,4 @@ FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
 WITH_TSP: true
+WITH_TSP_SYNC: "{{ FEATURE_TSP_SYNC_ENABLED }}"
