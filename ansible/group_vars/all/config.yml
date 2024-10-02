@@ -1056,3 +1056,9 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
+    value: "5"
+    server: true
+    client: false
+    nuxtclient: false
+
