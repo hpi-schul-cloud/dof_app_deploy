@@ -340,7 +340,7 @@ configuration_all:
   # CALENDAR
   CALENDAR_SERVICE_ENABLED:
     value: "true"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   CALENDAR_DASHBOARD_ENABLED:
@@ -406,6 +406,11 @@ configuration_all:
     nuxtclient: false
   TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
     value: "150"
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TSP_SYNC_ENABLED:
+    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -927,6 +932,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   FEATURE_GROUPS_IN_COURSE_ENABLED:
     value: "false"
     server: true
@@ -1046,3 +1056,9 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
+    value: "5"
+    server: true
+    client: false
+    nuxtclient: false
+

@@ -1,0 +1,40 @@
+---
+  - name: Get ServiceAccount Token for SecretStore
+    kubernetes.core.k8s_info:
+      kubeconfig: ~/.kube/config
+      kind: Secret
+      name: "{{ EXTERNAL_SECRETS_TOKEN_SECRET }}"
+      namespace: "{{ EXTERNAL_SECRETS_NAMESPACE }}"
+    register: secretstore_token
+    when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
+
+  - name: Save the Token for SecretStore in a secret in this namespace
+    vars:
+      token: "{{ secretstore_token.resources[0].data.token }}"
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      template: secret-token.yml.j2
+    when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
+
+  - name: Delete Secret with Token for SecretStore
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      kind: Secret
+      name: external-secrets-secretstore-token
+      state: absent
+    when: not EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
+
+  - name: Create Secret Store
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      template: secretstore.yml.j2
+    when: EXTERNAL_SECRETS_OPERATOR
+    tags:
+      - 1password
