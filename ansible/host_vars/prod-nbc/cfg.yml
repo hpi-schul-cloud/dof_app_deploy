@@ -24,3 +24,5 @@ PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/
 
 #New course administration
 FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED: "false"
+
+FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "false"
