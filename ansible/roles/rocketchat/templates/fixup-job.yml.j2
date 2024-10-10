@@ -3,9 +3,9 @@ kind: CronJob
 metadata:
   namespace: {{ NAMESPACE }}
   labels:
-    app: rocketchat
+    app: rocketchat-fixup
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/name: rocketchat-cleanup
+    app.kubernetes.io/name: rocketchat-fixup
     app.kubernetes.io/component: chat
     app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
@@ -76,9 +76,9 @@ spec:
 {% endif %}
         metadata:
           labels:
-            app: rocketchat
+            app: rocketchat-fixup
             app.kubernetes.io/part-of: schulcloud-verbund
-            app.kubernetes.io/name: rocketchat-cleanup
+            app.kubernetes.io/name: rocketchat-fixup
             app.kubernetes.io/component: chat
             app.kubernetes.io/managed-by: ansible
             git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
