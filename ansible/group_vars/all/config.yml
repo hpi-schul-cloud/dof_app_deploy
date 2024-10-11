@@ -409,6 +409,11 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_SYNC_SCHOOL_DAYS_TO_FETCH:
+    value: "1"
+    server: true
+    client: false
+    nuxtclient: false
   TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
     value: "150"
     server: true
