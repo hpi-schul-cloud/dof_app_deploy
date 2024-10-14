@@ -21,7 +21,7 @@
       - always
 
   - name: Install kubernetes python package with version specifiers
-    ansible.builtin.apt::
+    ansible.builtin.apt:
       name: python3-kubernetes
     tags:
       - always
