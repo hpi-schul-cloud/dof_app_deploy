@@ -63,8 +63,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      #- name: Install python3-kubernetes
-      #  run: sudo apt-get install -y python3-kubernetes
+      - name: Install python3-kubernetes
+        run: sudo apt-get install -y python3-kubernetes
+      - name: Install python3-urllib3
+        run: sudo apt-get install -y python3-urllib3
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |

@@ -13,18 +13,6 @@
     tags:
       - kubeconfig
       - always
-
-  - name: Install urllib3 python package with version specifiers
-    ansible.builtin.apt:
-      name: python3-urllib3
-    tags:
-      - always
-
-  - name: Install kubernetes python package with version specifiers
-    ansible.builtin.apt:
-      name: python3-kubernetes
-    tags:
-      - always
       
   - name: push kubeconfig
     copy:
