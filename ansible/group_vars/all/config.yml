@@ -933,7 +933,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -1056,3 +1056,9 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
+    value: "5"
+    server: true
+    client: false
+    nuxtclient: false
+
