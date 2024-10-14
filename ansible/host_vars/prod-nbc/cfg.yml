@@ -22,7 +22,4 @@ SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/proto
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/policies-info"
 
-#New course administration
-FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED: "false"
-
 FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "false"
