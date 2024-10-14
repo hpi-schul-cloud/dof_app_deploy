@@ -60,10 +60,11 @@ jobs:
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - shell: bash
-        run: |
-          python3 -m pip install kubernetes 'urllib3>=1.26.16'
-
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip' # caching pip dependencies
+      - run: pip install kubernetes 'urllib3>=1.26.16'
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
