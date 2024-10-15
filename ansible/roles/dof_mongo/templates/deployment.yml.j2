@@ -88,3 +88,18 @@ spec:
       - name: mongodb-data-pv
         persistentVolumeClaim:
           claimName: mongo-pvc
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: NotIn
+                  values:
+                  - mongo
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+{% endif %}
