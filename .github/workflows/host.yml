@@ -38,7 +38,7 @@ permissions:
 
 jobs:
   set_versions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
     concurrency:
       group: ${{ inputs.host_name }}
