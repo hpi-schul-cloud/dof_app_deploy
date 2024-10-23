@@ -414,7 +414,17 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_SYNC_DATA_LIMIT:
+    value: "150"
+    server: true
+    client: false
+    nuxtclient: false
   TSP_SYNC_SCHOOL_DAYS_TO_FETCH:
+    value: "1"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_DATA_DAYS_TO_FETCH:
     value: "1"
     server: true
     client: false
