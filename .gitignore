@@ -16,5 +16,6 @@ configuration/
 .repository/
 .attach_pid*
 sessions
+.vscode/*
 
 __pycache__
