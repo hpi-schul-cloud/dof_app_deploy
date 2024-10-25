@@ -399,6 +399,14 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_API_CLIENT_BASE_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_CLIENT_TOKEN_LIFETIME_MS:
+    server: true
+    client: false
+    nuxtclient: false
   TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
     value: "10"
     server: true
