@@ -1082,4 +1082,9 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_PREFERRED_CTL_TOOLS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
 
