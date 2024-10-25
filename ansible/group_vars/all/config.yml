@@ -822,6 +822,7 @@ configuration_all:
     client: true
     nuxtclient: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
+    value: "dashboard.text.announcement"
     server: true
     client: true
     nuxtclient: false
