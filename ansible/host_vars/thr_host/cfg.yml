@@ -1,12 +1,10 @@
 NOT_AUTHENTICATED_REDIRECT_URL: "https://{BRANCH_NAME}.thr.dbildungscloud.dev/login?strategy=tsp"
 TSP_API_BASE_URL: https://test.schulportal-thueringen.de
 ROOT_URL_REDIRECT: https://test.schulportal-thueringen.de/thueringer_schulcloud
-FEATURE_TSP_SYNC_ENABLED: "true"
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-thr.dbildungscloud.dev/apps/files/?dir=/
 NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev/
 
+FEATURE_TSP_SYNC_ENABLED: "true"
 TSP_API_CLIENT_BASE_URL: https://test2.schulportal-thueringen.de/tip-ms/api
 TSP_SYNC_SCHOOL_DAYS_TO_FETCH: "3650"
-
-NEST_LOG_LEVEL: "debug"
