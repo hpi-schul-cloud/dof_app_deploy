@@ -872,3 +872,52 @@ aggregations:
         },
         {"$count" : "count"}
       ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_users_without_accounts
+      type: gauge
+      help: 'Users which have no accounts grouped by reasons'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: [reason]
+      constLabels: {}
+    mode: pull
+    pipeline: |
+      [
+        {
+            "$lookup": {
+                "from": "accounts",
+                "localField": "_id",
+                "foreignField": "userId",
+                "as": "accountInfo"
+            }
+        },
+        {
+            "$match": {
+                "accountInfo": { "$size": 0 }
+            }
+        },
+        {
+            "$project": {
+                "reason": {
+                    "$switch": {
+                        "branches": [
+                            { "case": { "$eq": ["$firstName", "DELETED"] }, "then": "tombstone" },
+                            { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
+                        ],
+                        "default": "unknown"
+                    }
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": "$reason",
+                "count": { "$sum": 1 }
+            }
+        }
+]
