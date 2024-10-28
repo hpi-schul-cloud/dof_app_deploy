@@ -888,36 +888,38 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        {
-            "$lookup": {
-                "from": "accounts",
-                "localField": "_id",
-                "foreignField": "userId",
-                "as": "accountInfo"
-            }
-        },
-        {
-            "$match": {
-                "accountInfo": { "$size": 0 }
-            }
-        },
-        {
-            "$project": {
-                "reason": {
-                    "$switch": {
-                        "branches": [
-                            { "case": { "$eq": ["$firstName", "DELETED"] }, "then": "tombstone" },
-                            { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
-                        ],
-                        "default": "unknown"
-                    }
-                }
-            }
-        },
-        {
-            "$group": {
-                "_id": "$reason",
-                "count": { "$sum": 1 }
-            }
-        }
+          {
+              "$lookup": {
+                  "from": "accounts",
+                  "localField": "_id",
+                  "foreignField": "userId",
+                  "as": "accountInfo"
+              }
+          },
+          {
+              "$match": {
+                  "accountInfo": { "$size": 0 }
+              }
+          },
+          {
+              "$group": {
+                  "_id": {
+                      "$switch": {
+                          "branches": [
+                              { "case": { "$eq": ["$firstName", "DELETED"] }, "then": "tombstone" },
+                              { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
+                          ],
+                          "default": "unknown"
+                      }
+                  },
+                  "total": { "$sum": 1 }
+              }
+          },
+          {
+              "$project": {
+                  "total": 1,
+                  "reason": "$_id",
+                  "_id": 0
+              }
+          }
       ]
