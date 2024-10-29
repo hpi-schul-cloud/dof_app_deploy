@@ -886,6 +886,9 @@ aggregations:
       labels: [reason]
       constLabels: {}
     mode: pull
+    # due to the nature of the query, we can not use push mode since accounts and users change all the time,
+    # and we need that costly "reverse lookup" to get the unknown metric
+    cache: 1h
     pipeline: |
       [
           {
