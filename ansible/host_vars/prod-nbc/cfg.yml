@@ -21,3 +21,5 @@ SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.moin.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/policies-info"
+
+FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "false"
