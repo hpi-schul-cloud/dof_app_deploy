@@ -926,3 +926,44 @@ aggregations:
               }
           }
       ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_files_security_check_last_seven_days
+      type: gauge
+      help: 'Legacy files scan results in the last 7 days'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: [status]
+      constLabels: {}
+    mode: pull
+    pipeline: |
+      [
+        { "$match": { "isDirectory": false, "securityCheck": { "$exists": true } } },
+        {
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$createdAt",
+                { "$subtract": ["$$NOW", 604800000] }
+              ]
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": "$securityCheck.status",
+            "total": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "status": "$_id",
+            "total": "$total"
+          }
+        }
+      ]
