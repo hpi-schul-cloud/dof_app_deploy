@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongo-cluster-init-job
+  namespace: mongo-cluster
+  labels:
+    app: mongo-cluster-init
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: 6.0.16
+    app.kubernetes.io/name: mongo-cluster-init
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: devops
+spec:
+  template:
+    spec:
+      containers:
+      - name: mongo-cluster-init
+        image: quay.io/schulcloudverbund/infra-tools:latest
+        envFrom:
+        - secretRef:
+            name: mongo-cluster-init-secret
+        env:
+        - name: K8S_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        volumeMounts:
+        - name: script
+          mountPath: /update.sh
+          subPath: update.sh
+        command: ['/bin/sh','-c']
+        args: ['cp /update.sh /update.run.sh && chmod +x /update.run.sh &&./update.run.sh']
+        resources:
+          limits:
+            cpu: "3000m"
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "150Mi"
+      volumes:
+      - name: script
+        configMap:
+          name: mongo-cluster-init-file
+          items:
+          - key: update.sh
+            path: update.sh
+      restartPolicy: Never
+  backoffLimit: 4

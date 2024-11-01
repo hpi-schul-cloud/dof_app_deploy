@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-cluster-init-file
+  namespace: mongo-cluster
+  labels:
+    app: mongo-cluster-init
+data:
+  update.sh: |
+    #! /bin/bash
+    until mongosh $MONGODB_URI --eval "print(\"waited for connection\")"
+      do
+        sleep 1
+      done
+    mongosh $MONGODB_URI --eval 'rs.initiate({"_id" : "scapp", "members" : [{"_id" : 0, "host" : "mongo-cluster-0.mongo-cluster-svc.mongo-cluster.svc.cluster.local:27017"}]})'
+    until mongosh $MONGODB_1_URI --eval "print(\"waited for connection\")"
+      do
+        sleep 1
+      done
+    mongosh $MONGODB_URI --eval 'rs.add("mongo-cluster-1.mongo-cluster-svc.mongo-cluster.svc.cluster.local:27017")'
+    until mongosh $MONGODB_2_URI --eval "print(\"waited for connection\")"
+      do
+        sleep 1
+      done
+    mongosh $MONGODB_URI --eval 'rs.add("mongo-cluster-2.mongo-cluster-svc.mongo-cluster.svc.cluster.local:27017")'
+    sleep 30
+    if [[ $(mongosh --quiet --eval "db.isMaster().setName") != scapp ]]
+    then
+        echo "replicaset config failed :("
+    else
+        echo "gg, hacky mongo replicaset"
+    fi

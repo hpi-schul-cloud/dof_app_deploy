@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo-cluster
+  namespace: mongo-cluster
+  labels:
+    app: mongo-cluster
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: 6.0.16
+    app.kubernetes.io/name: mongo-cluster
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: devops
+spec:
+  serviceName: "mongo-cluster-svc"
+  selector:
+    matchLabels:
+      app: mongo-cluster
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo-cluster
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: 6.0.16
+        app.kubernetes.io/name: mongo-cluster
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: devops
+    spec:
+      containers:
+      - name: mongo
+        image: mongo:6.0.16
+        imagePullPolicy: IfNotPresent
+        args: ["--replSet", "scapp", "--oplogSize", "10", "--bind_ip_all" ]
+        ports:
+        - containerPort: 27017
+          name: mongo
+          protocol: TCP
+        volumeMounts:
+        - name: mongo-cluster
+          mountPath: /data/db
+        resources:
+          limits:
+            cpu: 8000m
+            memory: 8Gi
+          requests:
+            cpu: 2000m
+            memory: 8Gi
+      - name: mongo-exporter
+        image: percona/mongodb_exporter:0.42
+        imagePullPolicy: IfNotPresent
+        args: ["--compatible-mode", "--collect-all" ]
+        envFrom:
+        - secretRef:
+            name: mongo-cluster-secret
+        ports:
+        - containerPort: 9216
+          name: mongo-exporter
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 1Gi
+          requests:
+            cpu: 100m
+            memory: 1Gi
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: NotIn
+                  values:
+                  - mongo-cluster
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+  volumeClaimTemplates:
+  - metadata:
+      name: mongo-cluster
+      labels:
+        app: mongo-cluster
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/name: mongo-cluster
+        app.kubernetes.io/component: database
+        app.kubernetes.io/managed-by: devops
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: ionos-enterprise-ssd
+      resources:
+        requests:
+          storage: 200Gi
