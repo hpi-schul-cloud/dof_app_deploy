@@ -872,3 +872,98 @@ aggregations:
         },
         {"$count" : "count"}
       ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: users
+    metrics:
+    - name: sc_users_without_accounts
+      type: gauge
+      help: 'Users which have no accounts grouped by reasons'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: [reason]
+      constLabels: {}
+    mode: pull
+    # due to the nature of the query, we can not use push mode since accounts and users change all the time,
+    # and we need that costly "reverse lookup" to get the unknown metric
+    cache: 1h
+    pipeline: |
+      [
+          {
+              "$lookup": {
+                  "from": "accounts",
+                  "localField": "_id",
+                  "foreignField": "userId",
+                  "as": "accountInfo"
+              }
+          },
+          {
+              "$match": {
+                  "accountInfo": { "$size": 0 }
+              }
+          },
+          {
+              "$group": {
+                  "_id": {
+                      "$switch": {
+                          "branches": [
+                              { "case": { "$eq": ["$firstName", "DELETED"] }, "then": "tombstone" },
+                              { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
+                          ],
+                          "default": "unknown"
+                      }
+                  },
+                  "total": { "$sum": 1 }
+              }
+          },
+          {
+              "$project": {
+                  "total": 1,
+                  "reason": "$_id",
+                  "_id": 0
+              }
+          }
+      ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: files
+    metrics:
+    - name: sc_files_security_check_last_seven_days
+      type: gauge
+      help: 'Legacy files scan results in the last 7 days'
+      value: total
+      overrideEmpty: true
+      emptyValue: 0
+      labels: [status]
+      constLabels: {}
+    mode: pull
+    pipeline: |
+      [
+        { "$match": { "isDirectory": false, "securityCheck": { "$exists": true } } },
+        {
+          "$match": {
+            "$expr": {
+              "$gte": [
+                "$createdAt",
+                { "$subtract": ["$$NOW", 604800000] }
+              ]
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": "$securityCheck.status",
+            "total": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "_id": 0,
+            "status": "$_id",
+            "total": "$total"
+          }
+        }
+      ]
