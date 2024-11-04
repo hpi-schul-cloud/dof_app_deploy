@@ -909,7 +909,7 @@ aggregations:
                   "_id": {
                       "$switch": {
                           "branches": [
-                              { "case": { "$eq": ["$firstName", "DELETED"] }, "then": "tombstone" },
+                              { "case": { "$or": [{ "$eq": ["$firstName", "DELETED"] }, { "$eq": ["$firstName", "Gelöschter"] }] }, "then": "tombstone" },
                               { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
                           ],
                           "default": "unknown"
