@@ -40,8 +40,7 @@ aggregations:
       constLabels:
         mongodb_collection: accounts
         longterm: 'true'
-    mode: 
-    cache: 1m
+    mode: pull
     pipeline: |
       [
         {"$count":"count"}
@@ -367,7 +366,6 @@ aggregations:
         mongodb_collection: users
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {"$count":"count"}
@@ -386,7 +384,6 @@ aggregations:
         mongodb_collection: users
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {
@@ -412,7 +409,6 @@ aggregations:
         mongodb_collection: users
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {
@@ -438,7 +434,6 @@ aggregations:
         mongodb_collection: users
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {
@@ -497,7 +492,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "coursegroups"}]
+      constLabels:
+        mongodb_collection: coursegroups
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -514,7 +511,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -530,7 +529,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -550,7 +551,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -570,7 +573,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -590,7 +595,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -610,7 +617,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -630,7 +639,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "lessons"}]
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -651,7 +662,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "homeworks"}]
+      constLabels:
+        mongodb_collection: homeworks
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -667,7 +680,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "homeworks"}]
+      constLabels:
+        mongodb_collection: homeworks
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -684,7 +699,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "homeworks"}]
+      constLabels:
+        mongodb_collection: homeworks
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -701,7 +718,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "homeworks"}]
+      constLabels:
+        mongodb_collection: homeworks
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -718,7 +737,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "homeworks"}]
+      constLabels:
+        mongodb_collection: homeworks
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -735,7 +756,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "filerecords"}]
+      constLabels:
+        mongodb_collection: filerecords
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -755,7 +778,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "submissions"}]
+      constLabels:
+        mongodb_collection: submissions
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -772,7 +797,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "teams"}]
+      constLabels:
+        mongodb_collection: teams
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -789,7 +816,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "videoconferences"}]
+      constLabels:
+        mongodb_collection: videoconferences
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -806,7 +835,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "files"}]
+      constLabels:
+        mongodb_collection: files
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -822,7 +853,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "files"}]
+      constLabels:
+        mongodb_collection: files
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -839,7 +872,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "files"}]
+      constLabels:
+        mongodb_collection: files
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -856,7 +891,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "files"}]
+      constLabels:
+        mongodb_collection: files
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -874,7 +911,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "filerecords"}]
+      constLabels:
+        mongodb_collection: filerecords
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -891,7 +930,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "news"}]
+      constLabels:
+        mongodb_collection: news
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -908,7 +949,9 @@ aggregations:
       overrideEmpty: true
       emptyValue: 0
       labels: []
-      constLabels: [{"mongodb_collection": "boardnodes"}]
+      constLabels:
+        mongodb_collection: boardnodes
+        longterm: 'true'
     mode: pull
     pipeline: |
       [
@@ -998,6 +1041,9 @@ aggregations:
       emptyValue: 0
       labels: []
       constLabels: [{"mongodb_collection": "deletionrequests"}]
+      constLabels:
+        mongodb_collection: accounts
+        longterm: 'true'
     mode: pull
     pipeline: |
       [       
