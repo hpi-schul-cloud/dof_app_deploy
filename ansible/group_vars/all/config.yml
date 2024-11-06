@@ -1090,4 +1090,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  JWT_PUBLIC_KEY:
+    server: true
+    client: false
+    nuxtclient: false  
 
