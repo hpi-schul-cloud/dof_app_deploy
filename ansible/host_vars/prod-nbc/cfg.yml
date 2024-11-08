@@ -23,3 +23,4 @@ SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/proto
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/policies-info"
 
 FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "false"
+FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "false"
