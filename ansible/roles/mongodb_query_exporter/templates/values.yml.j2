@@ -1153,3 +1153,34 @@ aggregations:
           }
         }
       ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_count_by_type
+      type: gauge
+      help: 'Groups count by type'
+      value: groupCount
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+          "$group": {
+              "_id": "$type",
+              "groupCount": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "type": "$_id",
+            "groupCount": 1
+          }
+        }
+      ]
