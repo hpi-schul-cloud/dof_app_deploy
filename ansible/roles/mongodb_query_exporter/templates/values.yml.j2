@@ -1214,6 +1214,68 @@ aggregations:
                 "group_size": {
                     "$switch": {
                         "branches": [
+                            { "case": { "$eq": ["$group_size", 1] }, "then": "1" },
+                            { "case": { "$lte": ["$group_size", 50] }, "then": "0-50" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 50] }, { "$lte": ["$group_size", 100] }] }, "then": "51-100" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 100] }, { "$lte": ["$group_size", 150] }] }, "then": "101-150" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 150] }, { "$lte": ["$group_size", 200] }] }, "then": "151-200" }
+                        ],
+                        "default": "200plus"
+                    }
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": { "type": "$type", "group_size": "$group_size" },
+                "count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "type": "$_id.type",
+                "group_size": "$_id.group_size",
+                "count": { "$toDouble": "$count" }
+            }
+        },
+        {
+            "$sort": { "type": 1, "group_size": 1 }
+        }
+      ]
+      
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_users_size_distribution
+      type: gauge
+      help: 'Distribution of user counts in groups by size range and group type'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+        - group_size
+        - count
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+            "$project": {
+                "type": 1,
+                "group_size": { "$size": "$users" }
+            }
+        },
+        {
+            "$project": {
+                "type": 1,
+                "group_size": {
+                    "$switch": {
+                        "branches": [
+                            { "case": { "$eq": ["$group_size", 1] }, "then": "1" },
                             { "case": { "$lte": ["$group_size", 50] }, "then": "0-50" },
                             { "case": { "$and": [{ "$gt": ["$group_size", 50] }, { "$lte": ["$group_size", 100] }] }, "then": "51-100" },
                             { "case": { "$and": [{ "$gt": ["$group_size", 100] }, { "$lte": ["$group_size", 150] }] }, "then": "101-150" },
