@@ -21,7 +21,6 @@ aggregations:
         mongodb_collection: schools
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {"$count":"count"}
