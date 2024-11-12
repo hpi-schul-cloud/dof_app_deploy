@@ -38,7 +38,7 @@ permissions:
 
 jobs:
   set_versions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: inputs.execute_group == inputs.host_name || inputs.execute_group == inputs.host_group || inputs.execute_group == inputs.host_stage || inputs.execute_group == 'all'
     concurrency:
       group: ${{ inputs.host_name }}
@@ -149,9 +149,11 @@ jobs:
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
-      - shell: bash
-        run: |
-          python3 -m pip install kubernetes 'urllib3>=1.26.16'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install python3-kubernetes
+        run: sudo apt-get install -y python3-kubernetes
           
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}

@@ -399,8 +399,32 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_API_CLIENT_BASE_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_API_CLIENT_TOKEN_LIFETIME_MS:
+    server: true
+    client: false
+    nuxtclient: false
   TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
     value: "10"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_SCHOOL_LIMIT:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_DATA_LIMIT:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_SCHOOL_DAYS_TO_FETCH:
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_DATA_DAYS_TO_FETCH:
     server: true
     client: false
     nuxtclient: false
@@ -410,7 +434,6 @@ configuration_all:
     client: false
     nuxtclient: false
   FEATURE_TSP_SYNC_ENABLED:
-    value: "false"
     server: true
     client: false
     nuxtclient: false
@@ -802,6 +825,7 @@ configuration_all:
     client: true
     nuxtclient: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
+    value: "dashboard.text.announcement"
     server: true
     client: true
     nuxtclient: false
@@ -933,7 +957,7 @@ configuration_all:
     client: true
     nuxtclient: false
   FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
     nuxtclient: false
@@ -1060,5 +1084,19 @@ configuration_all:
     value: "5"
     server: true
     client: false
+    nuxtclient: false
+  FEATURE_PREFERRED_CTL_TOOLS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
+  JWT_PUBLIC_KEY:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
+    value: "false"
+    server: true
+    client: true
     nuxtclient: false
 
