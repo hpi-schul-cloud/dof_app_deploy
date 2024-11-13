@@ -1274,8 +1274,9 @@ aggregations:
                 "group_size": {
                     "$switch": {
                         "branches": [
+                            { "case": { "$eq": ["$group_size", 1] }, "then": "0" },
                             { "case": { "$eq": ["$group_size", 1] }, "then": "1" },
-                            { "case": { "$lte": ["$group_size", 50] }, "then": "0-50" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 1] }, { "$lte": ["$group_size", 50] }] }, "then": "2-50" },
                             { "case": { "$and": [{ "$gt": ["$group_size", 50] }, { "$lte": ["$group_size", 100] }] }, "then": "51-100" },
                             { "case": { "$and": [{ "$gt": ["$group_size", 100] }, { "$lte": ["$group_size", 150] }] }, "then": "101-150" },
                             { "case": { "$and": [{ "$gt": ["$group_size", 150] }, { "$lte": ["$group_size", 200] }] }, "then": "151-200" }
