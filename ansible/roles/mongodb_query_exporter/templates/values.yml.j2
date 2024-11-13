@@ -21,7 +21,6 @@ aggregations:
         mongodb_collection: schools
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {"$count":"count"}
@@ -60,7 +59,6 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 1m
     pipeline: |
       [
         { 
@@ -94,7 +92,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -128,7 +126,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -162,7 +160,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -196,7 +194,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -230,7 +228,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -264,7 +262,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -298,7 +296,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -332,7 +330,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
