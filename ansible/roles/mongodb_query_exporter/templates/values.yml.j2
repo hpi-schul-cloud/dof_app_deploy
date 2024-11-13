@@ -1189,7 +1189,7 @@ aggregations:
     metrics:
     - name: sc_groups_size_distribution_by_type
       type: gauge
-      help: 'Group user size distribution by type'
+      help: 'Distribution of user counts in groups by size and group type'
       value: count
       overrideEmpty: true
       emptyValue: 0
@@ -1250,7 +1250,7 @@ aggregations:
     metrics:
     - name: sc_groups_users_size_distribution
       type: gauge
-      help: 'Distribution of user counts in groups by size range and group type, or in how many groups is a single user'
+      help: 'Distribution of user counts in groups by size and group type'
       value: count
       overrideEmpty: true
       emptyValue: 0
@@ -1262,45 +1262,45 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        {
-            "$project": {
-                "type": 1,
-                "group_size": { "$size": "$users" }
-            }
-        },
-        {
-            "$project": {
-                "type": 1,
-                "group_size": {
-                    "$switch": {
-                        "branches": [
-                            { "case": { "$eq": ["$group_size", 1] }, "then": "0" },
-                            { "case": { "$eq": ["$group_size", 1] }, "then": "1" },
-                            { "case": { "$and": [{ "$gt": ["$group_size", 1] }, { "$lte": ["$group_size", 50] }] }, "then": "2-50" },
-                            { "case": { "$and": [{ "$gt": ["$group_size", 50] }, { "$lte": ["$group_size", 100] }] }, "then": "51-100" },
-                            { "case": { "$and": [{ "$gt": ["$group_size", 100] }, { "$lte": ["$group_size", 150] }] }, "then": "101-150" },
-                            { "case": { "$and": [{ "$gt": ["$group_size", 150] }, { "$lte": ["$group_size", 200] }] }, "then": "151-200" }
-                        ],
-                        "default": "200plus"
-                    }
-                }
-            }
-        },
-        {
-            "$group": {
-                "_id": { "type": "$type", "group_size": "$group_size" },
-                "count": { "$sum": 1 }
-            }
-        },
-        {
-            "$project": {
-                "_id": 0,
-                "type": "$_id.type",
-                "group_size": "$_id.group_size",
-                "count": { "$toDouble": "$count" }
-            }
-        },
-        {
-            "$sort": { "type": 1, "group_size": 1 }
-        }
+          { "$unwind": "$users" },
+          { 
+              "$group": {
+                  "_id": { "user": "$users", "type": "$type" },
+                  "group_count": { "$sum": 1 }
+              }
+          },
+          { 
+              "$project": {
+                  "type": "$_id.type",
+                  "bucket": {
+                      "$switch": {
+                          "branches": [
+                              { "case": { "$eq": ["$group_count", 0] }, "then": "0" },
+                              { "case": { "$eq": ["$group_count", 1] }, "then": "1" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 2] }, { "$lte": ["$group_count", 50] }] }, "then": "2-50" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 51] }, { "$lte": ["$group_count", 100] }] }, "then": "51-100" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 101] }, { "$lte": ["$group_count", 150] }] }, "then": "101-150" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 151] }, { "$lte": ["$group_count", 200] }] }, "then": "151-200" },
+                              { "case": { "$gt": ["$group_count", 200] }, "then": "200plus" }
+                          ],
+                          "default": "other"
+                      }
+                  }
+              }
+          },
+          { 
+              "$group": {
+                  "_id": { "type": "$type", "bucket": "$bucket" },
+                  "user_count": { "$sum": 1 }
+              }
+          },
+          {
+              "$project": {
+                  "type": "$_id.type",
+                  "bucket": "$_id.bucket",
+                  "user_count": "$user_count",
+                  "_id": 0
+              }
+          },
+          { "$sort": { "type": 1, "bucket": 1 } }
       ]
