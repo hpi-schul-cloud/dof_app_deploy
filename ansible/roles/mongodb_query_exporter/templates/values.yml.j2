@@ -1304,3 +1304,72 @@ aggregations:
           },
           { "$sort": { "type": 1, "bucket": 1 } }
       ]
+      
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_organization_group_count_distribution
+      type: gauge
+      help: 'Distribution of groups per organization'
+      value: group_count_bucket
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+        - group_count_bucket
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+            "$group": {
+                "_id": { "organization": "$organization", "type": "$type" },
+                "group_count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "organization": "$_id.organization",
+                "type": "$_id.type",
+                "group_count": 1,
+                "_id": 0
+            }
+        },
+        {
+            "$project": {
+                "organization": 1,
+                "type": 1,
+                "group_count_bucket": {
+                    "$switch": {
+                        "branches": [
+                            { "case": { "$eq": ["$group_count", 1] }, "then": "1" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 1] }, { "$lte": ["$group_count", 50] }] }, "then": "2-50" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 50] }, { "$lte": ["$group_count", 100] }] }, "then": "51-100" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 100] }, { "$lte": ["$group_count", 150] }] }, "then": "101-150" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 150] }, { "$lte": ["$group_count", 200] }] }, "then": "151-200" }
+                        ],
+                        "default": "200+"
+                    }
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": { "group_count_bucket": "$group_count_bucket", "type": "$type" },
+                "count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "group_count_bucket": "$_id.group_count_bucket",
+                "type": "$_id.type",
+                "count": { "$toDouble": "$count" }
+            }
+        },
+        {
+            "$sort": { "type": 1, "group_count_bucket": 1 }
+        }
+      ]
