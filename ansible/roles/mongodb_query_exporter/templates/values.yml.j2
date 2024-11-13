@@ -1251,12 +1251,12 @@ aggregations:
     - name: sc_groups_users_size_distribution
       type: gauge
       help: 'Distribution of user counts in groups by size and group type'
-      value: count
+      value: user_count
       overrideEmpty: true
       emptyValue: 0
       labels:
         - type
-        - group_size
+        - bucket
       constLabels:
         longterm: 'true'
     mode: pull
