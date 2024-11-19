@@ -412,6 +412,14 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  TSP_SYNC_MIGRATION_LIMIT:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TSP_MIGRATION_ENABLED:
+    server: true
+    client: false
+    nuxtclient: false
   TSP_SYNC_SCHOOL_LIMIT:
     server: true
     client: false
