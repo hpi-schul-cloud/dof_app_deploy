@@ -1,2 +1,4 @@
 ---
 WITH_CLAMMIT: false
+CLAMMIT_IMAGE_NAME: ghcr.io/dbildungsplattform/clammit
+CLAMMIT_IMAGE_TAG: 0.9.1
