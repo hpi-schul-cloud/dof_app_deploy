@@ -48,7 +48,14 @@ spec:
       - name: mongo-exporter
         image: percona/mongodb_exporter:0.42
         imagePullPolicy: IfNotPresent
-        args: ["--compatible-mode", "--collect-all" ]
+        args:  
+          - "--collector.diagnosticdata"
+          - "--collector.replicasetstatus"
+          - "--collector.topmetrics"
+          - "--collector.currentopmetrics"
+          - "--collector.dbstats"
+          - "--collector.indexstats"
+          - "--collector.collstats"
         envFrom:
         - secretRef:
             name: mongo-cluster-secret
