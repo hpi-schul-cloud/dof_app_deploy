@@ -1107,4 +1107,8 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-
+  OAUTH2_LOGIN_REQUEST_TIMEOUT_MS:
+    value: "8000"
+    server: true
+    client: true
+    nuxtclient: false

@@ -8,6 +8,7 @@ SC_CONTACT_EMAIL: nbc-support@netz-21.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
+OAUTH2_LOGIN_REQUEST_TIMEOUT_MS: "20000"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
