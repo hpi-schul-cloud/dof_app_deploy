@@ -1,3 +1,4 @@
+# do not extend unless you have a new repo, they are ONLY used for meta-data inside deployments and similar
 SCHULCLOUD_SERVER_REPO_NAME: schulcloud-server
 SCHULCLOUD_CLIENT_REPO_NAME: schulcloud-client
 NUXT_CLIENT_REPO_NAME: nuxt-client
