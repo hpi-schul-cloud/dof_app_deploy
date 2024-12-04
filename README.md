@@ -20,6 +20,7 @@ _Note: Consult with DevOps for any uncertainties._
 ### Creating a New Secret
 
 1. **Create in 1Password**: Add a new item in the development vaults (sc-dev-*).
+
 2. **Prepare Manifest**:
    ```yaml
    apiVersion: "onepassword.com/v1"
