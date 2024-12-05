@@ -71,6 +71,7 @@ This method is effective for each unique PR. If you have multiple PRs from the s
 To convert a branch name to a Kubernetes namespace by stripping paths, converting to lowercase, and replacing underscores and dots with hyphens. It ensures the namespace is compliant with Kubernetes naming conventions.
 
 Some examples:
+
 ```commandline
 refs/heads/FEATURE_NAME.1 => feature-name-1
 depandabot/npm/jose-5.8.3 => jose-5-8-3
