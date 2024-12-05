@@ -1103,4 +1103,10 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  # remove WITH_TLDRAW2 with BC-7906
+  WITH_TLDRAW2:
+    value: "true"
+    server: true
+    client: true
+    nuxtclient: false
 
