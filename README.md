@@ -66,7 +66,6 @@ This method is effective for each unique PR. If you have multiple PRs from the s
   1. Gain access to the MongoDB located within the `sc-common` namespace.
   2. Navigate to the `keda` database and access the `namespaces` collection. Once there, it will be clear which modifications are necessary.
 
-
 ## how does a branch name get converted into a namespace
 To convert a branch name to a Kubernetes namespace by stripping paths, converting to lowercase, and replacing underscores and dots with hyphens. It ensures the namespace is compliant with Kubernetes naming conventions.
 
