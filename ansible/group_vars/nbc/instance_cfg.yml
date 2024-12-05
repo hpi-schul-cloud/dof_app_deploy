@@ -5,7 +5,7 @@ SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: nbc-support@netz-21.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
 
@@ -121,6 +121,9 @@ SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schu
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
+
+# Media License (VIDIS)
+WITH_MEDIA_LICENSES: true
 
 # Ingress
 group_ingress:
