@@ -57,4 +57,3 @@
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
     - role: media-licenses
-      when: WITH_MEDIA_LICENSES is defined and WITH_MEDIA_LICENSES|bool
