@@ -1,0 +1,4 @@
+---
+MAILCATCHER_IMAGE_NAME: docker.io/sj26/mailcatcher
+# alpha releases also come in latest!
+MAILCATCHER_IMAGE_TAG: v0.10.0
