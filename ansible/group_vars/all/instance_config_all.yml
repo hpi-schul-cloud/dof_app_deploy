@@ -1,13 +1,13 @@
 # this is the place for all "newer" services that are not based on the api-configmap but which need default values to overwrite them from the values that are supplied from the app
 # with other words this is a place for default values across all envs and stages that NEED to be overwritten from app defaults
-
+API_HOST_URI: "http://api-svc:3030"
 ROCKET_CHAT_URI: "http://rocketchat-svc:5000"
 CALENDAR_URI: "http://calendar-svc:3000"
 NEST_LOG_LEVEL: "info"
 
 # Identity Management
 FEATURE_IDENTITY_MANAGEMENT_ENABLED: "true"
-FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "true"
+FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
 FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "false"
 IDENTITY_MANAGEMENT__INTERNAL_URI: "http://erwinidm-svc:8089"
 IDENTITY_MANAGEMENT__EXTERNAL_URI: "https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}"
@@ -24,13 +24,13 @@ FEATURE_MEDIA_SHELF_ENABLED: "true"
 # TSP Sync
 FEATURE_TSP_SYNC_ENABLED: "false"
 TSP_SYNC_SCHOOL_LIMIT: "10"
-TSP_SYNC_DATA_LIMIT: "150"
+TSP_SYNC_DATA_LIMIT: "50"
 TSP_SYNC_SCHOOL_DAYS_TO_FETCH: "1"
 TSP_SYNC_DATA_DAYS_TO_FETCH: "1"
 TSP_API_CLIENT_BASE_URL: ""
 TSP_API_CLIENT_TOKEN_LIFETIME_MS: "30000"
 FEATURE_TSP_MIGRATION_ENABLED: "false"
-TSP_SYNC_MIGRATION_LIMIT: "100"
+TSP_SYNC_MIGRATION_LIMIT: "50"
 
 ERWINIDM_PORT: 8089
 ERWINIDM_PREFIX: idm.
@@ -41,3 +41,5 @@ ERWINIDM_ADMIN_INGRESS_CLASS: management
 ERWINIDM_ADMIN_CREATE_CERTIFICATE: true
 ERWINIDM_ADMIN_TLS_AUTH_SECRET: erwinidm-tls-auth
 
+TLDRAW_LOG_LEVEL: "info"
+FEATURE_TLDRAW_ENABLED: "true"
