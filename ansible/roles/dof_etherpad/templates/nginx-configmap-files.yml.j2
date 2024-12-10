@@ -47,6 +47,10 @@ data:
         proxy_buffering off;
       }
 
+      location /etherpad/stats {
+        return 404;
+      }
+
       location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
