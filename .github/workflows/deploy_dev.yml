@@ -62,7 +62,7 @@ jobs:
       - run: find -name "*.tar" -exec tar -xf {} \;
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
       - name: Install python3-kubernetes
         run: sudo apt-get install -y python3-kubernetes
       - name: 1Password

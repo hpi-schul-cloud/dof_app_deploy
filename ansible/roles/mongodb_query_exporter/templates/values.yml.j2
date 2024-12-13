@@ -21,7 +21,6 @@ aggregations:
         mongodb_collection: schools
         longterm: 'true'
     mode: pull
-    cache: 5m
     pipeline: |
       [
         {"$count":"count"}
@@ -60,7 +59,6 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 1m
     pipeline: |
       [
         { 
@@ -94,7 +92,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -128,7 +126,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -162,7 +160,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -196,7 +194,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -230,7 +228,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -264,7 +262,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -298,7 +296,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -332,7 +330,7 @@ aggregations:
         mongodb_collection: accounts
         longterm: 'true'
     mode: pull
-    cache: 5m
+    cache: 1h
     pipeline: |
       [
         { 
@@ -1058,62 +1056,6 @@ aggregations:
         {"$count" : "count"}
       ]
 
-
-  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
-    collection: users
-    metrics:
-    - name: sc_users_without_accounts
-      type: gauge
-      help: 'Users which have no accounts grouped by reasons'
-      value: total
-      overrideEmpty: true
-      emptyValue: 0
-      labels: [reason]
-      constLabels:
-        longterm: 'true'
-    mode: pull
-    # due to the nature of the query, we can not use push mode since accounts and users change all the time,
-    # and we need that costly "reverse lookup" to get the unknown metric
-    cache: 1h
-    pipeline: |
-      [
-          {
-              "$lookup": {
-                  "from": "accounts",
-                  "localField": "_id",
-                  "foreignField": "userId",
-                  "as": "accountInfo"
-              }
-          },
-          {
-              "$match": {
-                  "accountInfo": { "$size": 0 }
-              }
-          },
-          {
-              "$group": {
-                  "_id": {
-                      "$switch": {
-                          "branches": [
-                              { "case": { "$or": [{ "$eq": ["$firstName", "DELETED"] }, { "$eq": ["$firstName", "Gelöschter"] }] }, "then": "tombstone" },
-                              { "case": { "$and": [{ "$ifNull": ["$importHash", false] }, { "$ne": ["$importHash", ""] }] }, "then": "not-fully-registered" }
-                          ],
-                          "default": "unknown"
-                      }
-                  },
-                  "total": { "$sum": 1 }
-              }
-          },
-          {
-              "$project": {
-                  "total": 1,
-                  "reason": "$_id",
-                  "_id": 0
-              }
-          }
-      ]
-
-
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: files
     metrics:
@@ -1151,5 +1093,227 @@ aggregations:
             "status": "$_id",
             "total": "$total"
           }
+        }
+      ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_count_by_type
+      type: gauge
+      help: 'Groups count by type'
+      value: groupCount
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+          "$group": {
+              "_id": "$type",
+              "groupCount": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "type": "$_id",
+            "groupCount": 1
+          }
+        }
+      ]
+
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_size_distribution_by_type
+      type: gauge
+      help: 'Distribution of user counts in groups by size and group type'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+        - group_size
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+            "$project": {
+                "type": 1,
+                "group_size": { "$size": "$users" }
+            }
+        },
+        {
+            "$project": {
+                "type": 1,
+                "group_size": {
+                    "$switch": {
+                        "branches": [
+                            { "case": { "$eq": ["$group_size", 1] }, "then": "0" },
+                            { "case": { "$eq": ["$group_size", 1] }, "then": "1" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 1] }, { "$lte": ["$group_size", 50] }] }, "then": "2-50" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 50] }, { "$lte": ["$group_size", 100] }] }, "then": "51-100" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 100] }, { "$lte": ["$group_size", 150] }] }, "then": "101-150" },
+                            { "case": { "$and": [{ "$gt": ["$group_size", 150] }, { "$lte": ["$group_size", 200] }] }, "then": "151-200" }
+                        ],
+                        "default": "200plus"
+                    }
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": { "type": "$type", "group_size": "$group_size" },
+                "count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "type": "$_id.type",
+                "group_size": "$_id.group_size",
+                "count": { "$toDouble": "$count" }
+            }
+        },
+        {
+            "$sort": { "type": 1, "group_size": 1 }
+        }
+      ]
+      
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_users_size_distribution
+      type: gauge
+      help: 'Distribution of user counts in groups by size and group type'
+      value: user_count
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+        - bucket
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+          { "$unwind": "$users" },
+          { 
+              "$group": {
+                  "_id": { "user": "$users", "type": "$type" },
+                  "group_count": { "$sum": 1 }
+              }
+          },
+          { 
+              "$project": {
+                  "type": "$_id.type",
+                  "bucket": {
+                      "$switch": {
+                          "branches": [
+                              { "case": { "$eq": ["$group_count", 0] }, "then": "0" },
+                              { "case": { "$eq": ["$group_count", 1] }, "then": "1" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 2] }, { "$lte": ["$group_count", 50] }] }, "then": "2-50" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 51] }, { "$lte": ["$group_count", 100] }] }, "then": "51-100" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 101] }, { "$lte": ["$group_count", 150] }] }, "then": "101-150" },
+                              { "case": { "$and": [{ "$gte": ["$group_count", 151] }, { "$lte": ["$group_count", 200] }] }, "then": "151-200" },
+                              { "case": { "$gt": ["$group_count", 200] }, "then": "200plus" }
+                          ],
+                          "default": "other"
+                      }
+                  }
+              }
+          },
+          { 
+              "$group": {
+                  "_id": { "type": "$type", "bucket": "$bucket" },
+                  "user_count": { "$sum": 1 }
+              }
+          },
+          {
+              "$project": {
+                  "type": "$_id.type",
+                  "bucket": "$_id.bucket",
+                  "user_count": "$user_count",
+                  "_id": 0
+              }
+          },
+          { "$sort": { "type": 1, "bucket": 1 } }
+      ]
+      
+
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: groups
+    metrics:
+    - name: sc_groups_organization_group_count_distribution
+      type: gauge
+      help: 'Distribution of groups per organization'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels:
+        - type
+        - group_count_bucket
+      constLabels:
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+        {
+            "$group": {
+                "_id": { "organization": "$organization", "type": "$type" },
+                "group_count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "organization": "$_id.organization",
+                "type": "$_id.type",
+                "group_count": 1,
+                "_id": 0
+            }
+        },
+        {
+            "$project": {
+                "organization": 1,
+                "type": 1,
+                "group_count_bucket": {
+                    "$switch": {
+                        "branches": [
+                            { "case": { "$eq": ["$group_count", 1] }, "then": "1" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 1] }, { "$lte": ["$group_count", 50] }] }, "then": "2-50" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 50] }, { "$lte": ["$group_count", 100] }] }, "then": "51-100" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 100] }, { "$lte": ["$group_count", 150] }] }, "then": "101-150" },
+                            { "case": { "$and": [{ "$gt": ["$group_count", 150] }, { "$lte": ["$group_count", 200] }] }, "then": "151-200" }
+                        ],
+                        "default": "200+"
+                    }
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": { "group_count_bucket": "$group_count_bucket", "type": "$type" },
+                "count": { "$sum": 1 }
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "group_count_bucket": "$_id.group_count_bucket",
+                "type": "$_id.type",
+                "count": { "$toDouble": "$count" }
+            }
+        },
+        {
+            "$sort": { "type": 1, "group_count_bucket": 1 }
         }
       ]

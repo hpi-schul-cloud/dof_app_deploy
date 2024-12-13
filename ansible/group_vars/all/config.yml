@@ -212,17 +212,14 @@ configuration_all:
     nuxtclient: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    value: "{{ FEATURE_IDENTITY_MANAGEMENT_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    value: "{{ FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
   FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
-    value: "{{ FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED }}"
     server: true
     client: false
     nuxtclient: false
@@ -409,6 +406,14 @@ configuration_all:
     nuxtclient: false
   TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
     value: "10"
+    server: true
+    client: false
+    nuxtclient: false
+  TSP_SYNC_MIGRATION_LIMIT:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_TSP_MIGRATION_ENABLED:
     server: true
     client: false
     nuxtclient: false
@@ -825,7 +830,6 @@ configuration_all:
     client: true
     nuxtclient: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
-    value: "dashboard.text.announcement"
     server: true
     client: true
     nuxtclient: false
@@ -994,11 +998,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  TLDRAW_URI:
-    value: "http://tldraw-server-svc:3349"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_CTL_TOOLS_COPY_ENABLED:
     value: "false"
     server: true
@@ -1014,6 +1013,21 @@ configuration_all:
     client: false
     nuxtclient: false
   SCHULCONNEX_CLIENT__TOKEN_ENDPOINT:
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__PERSON_INFO_TIMEOUT_IN_MS:
+    value: "3000"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__PERSONEN_INFO_TIMEOUT_IN_MS:
+    value: "120000"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__POLICIES_INFO_TIMEOUT_IN_MS:
+    value: "4000"
     server: true
     client: false
     nuxtclient: false
@@ -1057,6 +1071,11 @@ configuration_all:
     client: false
     nuxtclient: false
   PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  PROVISIONING_SCHULCONNEX_GROUP_USERS_LIMIT:
+    value: "1000"
     server: true
     client: false
     nuxtclient: false
