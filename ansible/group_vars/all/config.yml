@@ -998,11 +998,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  TLDRAW_URI:
-    value: "http://tldraw-server-svc:3349"
-    server: true
-    client: false
-    nuxtclient: false
   FEATURE_CTL_TOOLS_COPY_ENABLED:
     value: "false"
     server: true

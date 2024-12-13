@@ -22,7 +22,6 @@
     - hydra
     - erwin-idm
     - oidcmock
-    - dof_etherpad_nginx
     - dof_etherpad
     - clamav
     - schulcloud-server-core
