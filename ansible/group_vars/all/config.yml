@@ -1022,6 +1022,21 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SCHULCONNEX_CLIENT__PERSON_INFO_TIMEOUT_IN_MS:
+    value: "3000"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__PERSONEN_INFO_TIMEOUT_IN_MS:
+    value: "120000"
+    server: true
+    client: false
+    nuxtclient: false
+  SCHULCONNEX_CLIENT__POLICIES_INFO_TIMEOUT_IN_MS:
+    value: "4000"
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED:
     server: true
     client: true
@@ -1062,6 +1077,11 @@ configuration_all:
     client: false
     nuxtclient: false
   PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  PROVISIONING_SCHULCONNEX_GROUP_USERS_LIMIT:
+    value: "1000"
     server: true
     client: false
     nuxtclient: false
