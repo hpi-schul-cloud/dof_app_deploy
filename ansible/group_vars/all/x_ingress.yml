@@ -7,6 +7,10 @@ default_ingress:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
     path: "/favicon.png"
+  bbb_presentation_pdf:
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+    path: "/bbb-presentation.pdf"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
