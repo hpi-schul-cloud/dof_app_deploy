@@ -115,4 +115,4 @@ group_ingress:
     servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
 
 # BigBlueButton
-VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/brb/bbb/presentation.pdf
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
