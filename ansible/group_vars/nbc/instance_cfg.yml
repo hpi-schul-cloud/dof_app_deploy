@@ -122,6 +122,10 @@ SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schu
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
 
+# VIDIS
+VIDIS_API_CLIENT_BASE_URL: "https://service-stage.vidis.schule/o/vidis-rest"
+VIDIS_SYNC_REGION: "test-region"
+
 # Ingress
 group_ingress:
   api_v1_roster:
