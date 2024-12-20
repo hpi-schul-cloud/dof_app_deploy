@@ -1080,7 +1080,7 @@ configuration_all:
     client: false
     nuxtclient: false
   PROVISIONING_SCHULCONNEX_GROUP_USERS_LIMIT:
-    value: "1000"
+    value: "500"
     server: true
     client: false
     nuxtclient: false
