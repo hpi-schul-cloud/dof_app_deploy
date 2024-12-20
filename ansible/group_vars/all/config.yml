@@ -1119,10 +1119,12 @@ configuration_all:
     client: true
     nuxtclient: false
   VIDIS_API_CLIENT_BASE_URL:
+    value: ""
     server: true
     client: false
     nuxtclient: false
   VIDIS_SYNC_REGION:
+    value: "test-region"
     server: true
     client: false
     nuxtclient: false
