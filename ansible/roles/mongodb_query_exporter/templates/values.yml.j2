@@ -927,14 +927,25 @@ aggregations:
       value: count
       overrideEmpty: true
       emptyValue: 0
-      labels: []
+      labels:
+        - type
       constLabels:
         mongodb_collection: news
         longterm: 'true'
-    mode: pull
     pipeline: |
       [
-        { "$count" : "count" }
+        {
+          "$group": {
+              "_id": "$targetModel",
+              "groupCount": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "type": "$_id",
+            "groupCount": 1
+          }
+        }
       ]
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
