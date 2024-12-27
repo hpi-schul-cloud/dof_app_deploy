@@ -37,9 +37,9 @@
 
   - name: Enable all RabbitMQ feature flags in all pods
     kubernetes.core.k8s_exec:
-      namespace: "{{ namespace }}"  # Adjust namespace variable if needed
+      namespace: "{{ NAMESPACE }}"
       pod: "{{ item }}"
-      container: rabbitmq  # Replace with your container name if not 'rabbitmq'
+      container: rabbitmq
       command:
         - bash
         - -c
