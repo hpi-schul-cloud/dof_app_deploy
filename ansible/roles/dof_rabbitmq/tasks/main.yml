@@ -35,20 +35,30 @@
     tags:
       - prometheus
 
-  - name: Enable all RabbitMQ feature flags in all pods
+
+  - name: Get RabbitMQ pods in the namespace
+    kubernetes.core.k8s_info:
+      api_version: v1
+      kind: Pod
+      namespace: "{{ NAMESPACE }}"
+      label_selectors:
+        - app.kubernetes.io/component=rabbitmq
+    register: rabbitmq_pods
+  
+  - name: Enable RabbitMQ feature flags in all pods
     kubernetes.core.k8s_exec:
       namespace: "{{ NAMESPACE }}"
-      pod: "{{ item }}"
+      pod: "{{ item.metadata.name }}"
       container: rabbitmq
-      command:
-        - bash
-        - -c
-        - |
-          rabbitmqctl enable_feature_flag_all
-    loop: "{{ query('kubernetes.core.k8s_info', {'api_version': 'v1', 'kind': 'Pod', 'namespace': namespace, 'label_selectors': ['app.kubernetes.io/name=rabbitmq']}).resources | map(attribute='metadata.name') | list }}"
+      command: "rabbitmqctl enable_feature_flag"
+    with_items: "{{ rabbitmq_pods.resources }}"
     register: exec_results
 
-  - name: Display results of feature flag enablement
+  - name: Debug the output of k8s_exec results
     debug:
-      msg: "Pod: {{ item.item }} - {{ item.stdout }}"
+      msg: |
+        Pod: {{ item.item.metadata.name }}
+        Standard Output: {{ item.stdout }}
+        Standard Error: {{ item.stderr }}
+        Return Code: {{ item.rc }}
     with_items: "{{ exec_results.results }}"
