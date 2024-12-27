@@ -44,13 +44,13 @@
       label_selectors:
         - app.kubernetes.io/component=rabbitmq
     register: rabbitmq_pods
-  
+
   - name: Enable RabbitMQ feature flags in all pods
     kubernetes.core.k8s_exec:
       namespace: "{{ NAMESPACE }}"
       pod: "{{ item.metadata.name }}"
       container: rabbitmq
-      command: "rabbitmqctl enable_feature_flag"
+      command: "rabbitmqctl list_feature_flags"
     with_items: "{{ rabbitmq_pods.resources }}"
     register: exec_results
 
