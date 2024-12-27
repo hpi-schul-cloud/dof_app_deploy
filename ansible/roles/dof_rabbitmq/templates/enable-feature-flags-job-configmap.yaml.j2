@@ -36,7 +36,9 @@ data:
     enable_feature_flag() {
       local flag_name=$1
       local node=$2
-      curl -sf -u "$RABBITMQ_MGMT_USERNAME:$RABBITMQ_MGMT_PASSWORD" -X PUT "http://$node:$RABBITMQ_PORT/api/feature-flags/$flag_name" | jq . || {
+      curl -sf -u "$RABBITMQ_MGMT_USERNAME:$RABBITMQ_MGMT_PASSWORD" -X PUT \
+        -H "Content-Type: application/json" \
+        "http://$node:$RABBITMQ_PORT/api/feature-flags/$flag_name/enable" || {
         echo "ERROR: Failed to enable feature flag $flag_name on node $node." >&2
         exit 1
       }
