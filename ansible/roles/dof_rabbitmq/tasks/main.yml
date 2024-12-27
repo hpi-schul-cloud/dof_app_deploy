@@ -36,29 +36,29 @@
       - prometheus
 
 
-  - name: Get RabbitMQ pods in the namespace
-    kubernetes.core.k8s_info:
-      api_version: v1
-      kind: Pod
+  - name: Enable Feature Flags ConfigMap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      label_selectors:
-        - app.kubernetes.io/component=rabbitmq
-    register: rabbitmq_pods
+      template: enable-feature-flags-job-configmap.yaml.j2
+    tags:
+      - configmap
 
-  - name: Enable RabbitMQ feature flags in all pods
-    kubernetes.core.k8s_exec:
+  - name: Delete existing feature flags job if it exists
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      pod: "{{ item.metadata.name }}"
-      container: rabbitmq
-      command: "rabbitmqctl list_feature_flags"
-    with_items: "{{ rabbitmq_pods.resources }}"
-    register: exec_results
+      api_version: batch/v1
+      kind: Job
+      name: enable-feature-flags-job
+      state: absent
+    tags:
+      - job
 
-  - name: Debug the output of k8s_exec results
-    debug:
-      msg: |
-        Pod: {{ item.item.metadata.name }}
-        Standard Output: {{ item.stdout }}
-        Standard Error: {{ item.stderr }}
-        Return Code: {{ item.rc }}
-    with_items: "{{ exec_results.results }}"
+  - name: Create the Enable Feature Flags Job
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: enable-feature-flags-job.yaml.j2
+    tags:
+      - job
