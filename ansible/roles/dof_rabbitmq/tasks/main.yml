@@ -34,3 +34,21 @@
     when: RABBITMQ_SERVICE_MONITOR is undefined or RABBITMQ_SERVICE_MONITOR is defined and not RABBITMQ_SERVICE_MONITOR
     tags:
       - prometheus
+
+  - name: Enable all RabbitMQ feature flags in all pods
+    kubernetes.core.k8s_exec:
+      namespace: "{{ namespace }}"  # Adjust namespace variable if needed
+      pod: "{{ item }}"
+      container: rabbitmq  # Replace with your container name if not 'rabbitmq'
+      command:
+        - bash
+        - -c
+        - |
+          rabbitmqctl enable_feature_flag_all
+    loop: "{{ query('kubernetes.core.k8s_info', {'api_version': 'v1', 'kind': 'Pod', 'namespace': namespace, 'label_selectors': ['app.kubernetes.io/name=rabbitmq']}).resources | map(attribute='metadata.name') | list }}"
+    register: exec_results
+
+  - name: Display results of feature flag enablement
+    debug:
+      msg: "Pod: {{ item.item }} - {{ item.stdout }}"
+    with_items: "{{ exec_results.results }}"
