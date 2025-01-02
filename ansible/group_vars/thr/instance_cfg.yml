@@ -9,7 +9,7 @@ GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://www.schulportal-thueringen.de/tio"
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
-STUDENT_TEAM_CREATION: disabled
+STUDENT_TEAM_CREATION: "opt-in"
 CORS: "true"
 SECURITY_HEADERS: "true"
 
