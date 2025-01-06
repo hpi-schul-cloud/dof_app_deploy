@@ -1131,3 +1131,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
