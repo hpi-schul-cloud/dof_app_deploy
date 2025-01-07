@@ -82,6 +82,7 @@ spec:
           httpGet:
             path: /health
             port: 9001
+          initialDelaySeconds: 60
           periodSeconds: 10
           failureThreshold: 3
       volumes:
