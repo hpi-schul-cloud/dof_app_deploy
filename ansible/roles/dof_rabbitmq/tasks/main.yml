@@ -34,3 +34,31 @@
     when: RABBITMQ_SERVICE_MONITOR is undefined or RABBITMQ_SERVICE_MONITOR is defined and not RABBITMQ_SERVICE_MONITOR
     tags:
       - prometheus
+
+
+  - name: Enable Feature Flags ConfigMap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: enable-feature-flags-job-configmap.yaml.j2
+    tags:
+      - configmap
+
+  - name: Delete existing feature flags job if it exists
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      api_version: batch/v1
+      kind: Job
+      name: enable-feature-flags-job
+      state: absent
+    tags:
+      - job
+
+  - name: Create the Enable Feature Flags Job
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: enable-feature-flags-job.yaml.j2
+    tags:
+      - job
