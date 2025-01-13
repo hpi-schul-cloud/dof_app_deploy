@@ -1123,3 +1123,16 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  VIDIS_API_CLIENT_BASE_URL:
+    server: true
+    client: false
+    nuxtclient: false
+  VIDIS_SYNC_REGION:
+    server: true
+    client: false
+    nuxtclient: false
+  FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+    nuxtclient: false
