@@ -6,7 +6,7 @@ KUBECONFIG_OPTION=""
 NAMESPACE=""
 COMPONENT_NAME="rabbitmq"
 CONTAINER_NAME="rabbitmq"
-COMMAND="cat /etc/issue"
+COMMAND="rabbitmqctl enable_feature_flag all"
 
 while [[ $# -gt 0 ]]; do
     case $1 in
