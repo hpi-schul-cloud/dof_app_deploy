@@ -4,7 +4,7 @@ SC_SHORTNAME: nbc
 SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
-SC_CONTACT_EMAIL: nbc-support@netz-21.de
+SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
 GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
