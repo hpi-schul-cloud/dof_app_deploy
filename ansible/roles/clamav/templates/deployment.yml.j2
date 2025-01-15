@@ -44,6 +44,12 @@ spec:
         envFrom:
         - configMapRef:
             name: clamav-configmap
+        startupProbe:
+          exec:
+            command:
+            - clamdcheck.sh
+          failureThreshold: 30
+          periodSeconds: 10
         resources:
           limits:
             cpu: {{ CLAMAV_CPU_MAX|default("500m", true) }}
