@@ -3,7 +3,6 @@ DOMAIN: staging.audit.dbildungscloud.org
 
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 FEATURE_H5P_EDITOR_ENABLED: "true"
-FEATURE_ROOMS_ENABLED: "true"
 
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
