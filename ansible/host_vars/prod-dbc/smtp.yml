@@ -1,4 +1,5 @@
 SUPPORT_WISH_EMAIL_ADDRESS: ticketsystem@dbildungscloud.de
 # SUPPORT_EMAIL
 SUPPORT_PROBLEM_EMAIL_ADDRESS: "ticketsystem@dbildungscloud.de"
+SC_CONTACT_EMAIL: "ticketsystem@dbildungscloud.de"
 SMTP_SENDER: noreply@dbildungscloud.de
