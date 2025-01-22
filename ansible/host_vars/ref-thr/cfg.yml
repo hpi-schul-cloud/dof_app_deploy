@@ -1,5 +1,6 @@
 NAMESPACE: thueringen
 DOMAIN: test.schulcloud-thueringen.de
+SC_CONTACT_EMAIL: schulcloud-support@thillm.de
 
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
 NOT_AUTHENTICATED_REDIRECT_URL: "https://test.schulportal-thueringen.de/"

@@ -1,5 +1,6 @@
 NAMESPACE: brandenburg
 DOMAIN: brandenburg.cloud
+SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 
 ALERT_STATUS_URL: https://status.brandenburg.cloud
 

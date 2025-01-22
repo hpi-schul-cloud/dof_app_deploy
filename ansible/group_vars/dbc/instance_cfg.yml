@@ -4,7 +4,7 @@ SC_SHORTNAME: dbc
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
-SC_CONTACT_EMAIL: "ticketsystem@dbildungscloud.de"
+SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 

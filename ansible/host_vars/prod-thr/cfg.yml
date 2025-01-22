@@ -1,5 +1,6 @@
 NAMESPACE: thueringen
 DOMAIN: schulcloud-thueringen.de
+SC_CONTACT_EMAIL: schulcloud-support@thillm.de
 
 AWS_ENDPOINT_URL: https://s3.hidrive.strato.com
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
