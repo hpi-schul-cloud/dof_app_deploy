@@ -62,7 +62,7 @@ configuration_all:
     nuxtclient: false
   SC_CONTACT_EMAIL:
     value: "support@dbildungscloud.de"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
