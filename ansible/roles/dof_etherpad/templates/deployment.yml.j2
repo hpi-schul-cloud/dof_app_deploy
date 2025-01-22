@@ -76,15 +76,25 @@ spec:
           httpGet:
             path: /health
             port: 9001
-          initialDelaySeconds: 60
-          periodSeconds: 10
+          initialDelaySeconds: 0
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 3
         livenessProbe:
           httpGet:
             path: /health
             port: 9001
-          initialDelaySeconds: 60
+          initialDelaySeconds: 0
+          timeoutSeconds: 2
           periodSeconds: 10
           failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          timeoutSeconds: 2
+          failureThreshold:  60
+          periodSeconds: 5
       volumes:
       - name: apikey
         secret:

@@ -52,3 +52,4 @@
     - post_deployment
     - moin-schule-sync
     - media-licenses
+    - media-metadata-sync
