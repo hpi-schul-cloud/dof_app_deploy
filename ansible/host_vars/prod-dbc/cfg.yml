@@ -1,6 +1,5 @@
 NAMESPACE: hpibosscloud
 DOMAIN: dbildungscloud.de
-SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 ROCKETCHAT_DNS_PREFIX: scchat.
 
 ALERT_STATUS_URL: "https://status.dbildungscloud.de"

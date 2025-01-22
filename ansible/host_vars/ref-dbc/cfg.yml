@@ -1,6 +1,5 @@
 NAMESPACE: hpibosscloud
 DOMAIN: staging.dbildungscloud.org
-SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.de/

@@ -1,6 +1,5 @@
 NAMESPACE: niedersachsen
 DOMAIN: niedersachsen.cloud
-SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
 
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 

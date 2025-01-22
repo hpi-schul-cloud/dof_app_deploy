@@ -1,6 +1,5 @@
 NAMESPACE: brandenburg
 DOMAIN: staging.brandenburg.dbildungscloud.org
-SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 
 FEATURE_SKIP_FIRST_LOGIN_ENABLED: "true"
 
