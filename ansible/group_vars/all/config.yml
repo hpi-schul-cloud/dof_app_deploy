@@ -1080,7 +1080,7 @@ configuration_all:
     client: false
     nuxtclient: false
   PROVISIONING_SCHULCONNEX_GROUP_USERS_LIMIT:
-    value: "500"
+    value: "400"
     server: true
     client: false
     nuxtclient: false
@@ -1101,6 +1101,11 @@ configuration_all:
     nuxtclient: false
   FEATURE_ROOMS_ENABLED:
     value: "true"
+    server: true
+    client: true
+    nuxtclient: false
+  FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
+    value: "false"
     server: true
     client: true
     nuxtclient: false
