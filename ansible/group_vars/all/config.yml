@@ -1104,6 +1104,11 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
+  FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
+    value: "false"
+    server: true
+    client: true
+    nuxtclient: false
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
     value: "5"
     server: true
