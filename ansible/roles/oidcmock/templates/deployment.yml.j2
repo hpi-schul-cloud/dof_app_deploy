@@ -51,9 +51,9 @@ spec:
           mountPath: /tmp
         - name: config-directory
           mountPath: /cfg
-      securityContext:
-        runAsNonRoot: false
-        readOnlyRootFilesystem: false
+        securityContext:
+          runAsNonRoot: false
+          readOnlyRootFilesystem: false
       containers:
       - name: oidcmock
         image: {{ OIDCMOCK_IMAGE_NAME }}:{{ OIDCMOCK_IMAGE_TAG }}

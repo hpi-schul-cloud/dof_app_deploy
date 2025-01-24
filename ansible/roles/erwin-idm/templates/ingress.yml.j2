@@ -49,7 +49,7 @@ spec:
             port:
               number: {{ ERWINIDM_PORT }}
       - path: /robots.txt
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: erwinidm-svc
