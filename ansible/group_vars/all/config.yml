@@ -1141,3 +1141,8 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  NGINX_LOG_FORMAT:
+    value: "json"
+    server: false
+    client: false
+    nuxtclient: true
