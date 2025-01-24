@@ -6,4 +6,5 @@ NEXTCLOUD_REDIRECT_URL: https://nextcloud-thr.dbildungscloud.dev/apps/files/?dir
 NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev/
 
 FEATURE_TSP_SYNC_ENABLED: "true"
-TSP_API_CLIENT_BASE_URL: https://test2.schulportal-thueringen.de/tip-ms/api
+FEATURE_TSP_MIGRATION_ENABLED: "true"
+TSP_API_CLIENT_BASE_URL: https://test.schulportal-thueringen.de/tip-ms/api

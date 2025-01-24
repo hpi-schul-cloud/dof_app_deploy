@@ -23,7 +23,6 @@
       when: KEDA_ENABLED is defined and KEDA_ENABLED|bool
     - role: hydra
     - role: erwin-idm
-    - role: dof_etherpad_nginx
     - role: dof_etherpad
     - role: clamav
     - role: schulcloud-server-core
@@ -56,3 +55,5 @@
     - role: post_deployment
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
+    - role: media-licenses
+    - role: media-metadata-sync

@@ -22,7 +22,6 @@
     - hydra
     - erwin-idm
     - oidcmock
-    - dof_etherpad_nginx
     - dof_etherpad
     - clamav
     - schulcloud-server-core
@@ -52,3 +51,5 @@
     - ingress
     - post_deployment
     - moin-schule-sync
+    - media-licenses
+    - media-metadata-sync

@@ -4,8 +4,8 @@ SC_SHORTNAME: nbc
 SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
-SC_CONTACT_EMAIL: nbc-support@netz-21.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
+GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
 
@@ -51,6 +51,7 @@ FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED: "true"
 FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "true"
 FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "true"
 FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "true"
+FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
@@ -94,7 +95,7 @@ ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 # produktive Instanz
 PROD_INSTANCE: true
 # accessibility
-ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
+ACCESSIBILITY_REPORT_EMAIL: ticketsystem@niedersachsen.support
 
 # Identity Management
 IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
@@ -121,6 +122,10 @@ SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schu
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
+
+# VIDIS
+VIDIS_API_CLIENT_BASE_URL: "https://service-stage.vidis.schule/o/vidis-rest"
+VIDIS_SYNC_REGION: "test-region"
 
 # Ingress
 group_ingress:

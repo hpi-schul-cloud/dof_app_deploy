@@ -41,4 +41,29 @@
       template: deployment.yml.j2
     tags:
       - deployment
-      
+
+  - name: nginx service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: nginx-svc.yml.j2
+    tags:
+      - service
+
+  - name: nginx configmap files
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: nginx-configmap-files.yml.j2
+      apply: yes
+    tags:
+      - configmap
+
+  - name: nginx deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: nginx-deployment.yml.j2
+    tags:
+      - deployment
+

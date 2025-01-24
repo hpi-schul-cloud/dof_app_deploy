@@ -7,6 +7,10 @@ default_ingress:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
     path: "/favicon.png"
+  bbb_presentation_pdf:
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+    path: "/bbb-presentation.pdf"
   runtime:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
@@ -133,10 +137,6 @@ default_ingress:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
-  api_v1_alert:
-    path: /api/v1/alert
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_accounts_jwt-timer:
     path: /api/v1/accounts/jwtTimer
     serviceName: api-svc
@@ -203,10 +203,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   etherpad:
     path: /etherpad
-    serviceName: etherpad-nginx-svc
-    servicePort: 80
-  etherpad_socket.io:
-    path: /etherpad/socket.io
     serviceName: etherpad-nginx-svc
     servicePort: 80
   version_aggregator:
