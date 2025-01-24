@@ -243,70 +243,70 @@ spec:
             port:
               number: 5000
       - path: /api/v1/method.callAnon/license:isEnterprise
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/license:isEnterprise
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/license:getModules
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/license:getModules
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.callAnon/public-settings:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/public-settings:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/apps:is-enabled
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/rooms:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/subscriptions:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
             port:
               number: 5000
       - path: /api/v1/method.call/permissions:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
@@ -341,7 +341,7 @@ spec:
             port:
               number: 5000
       - path: /api/v1/method.callAnon/apps:is-enabled
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
@@ -369,7 +369,7 @@ spec:
             port:
               number: 5000
       - path: /api/v1/method.callAnon/rooms:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
@@ -383,7 +383,7 @@ spec:
             port:
               number: 5000
       - path: /api/v1/method.callAnon/permissions:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
@@ -397,7 +397,7 @@ spec:
             port:
               number: 5000
       - path: /api/v1/method.callAnon/subscriptions:get
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: rocketchat-svc
