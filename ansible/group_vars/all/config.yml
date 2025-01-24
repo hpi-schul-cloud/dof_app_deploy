@@ -1146,3 +1146,8 @@ configuration_all:
     server: false
     client: false
     nuxtclient: true
+  JSON_LOG_FORMAT:
+    value: "true"
+    server: true
+    client: false
+    nuxtclient: false
