@@ -62,7 +62,7 @@ configuration_all:
     nuxtclient: false
   SC_CONTACT_EMAIL:
     value: "support@dbildungscloud.de"
-    server: false
+    server: true
     client: true
     nuxtclient: false
   ACCESSIBILITY_REPORT_EMAIL:
@@ -75,18 +75,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  CORS_ENABLED:
-    config_name: CORS
-    value: "true"
-    server: false
-    client: false
-    nuxtclient: true
-  SECURITY_HEADERS_ENABLED:
-    config_name: SECURITY_HEADERS
-    value: "true"
-    server: false
-    client: false
-    nuxtclient: true
   H5P_FRAME_SRC_URLS:
     value: ""
     server: false
@@ -833,7 +821,7 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: true
     client: true
-    nuxtclient: true
+    nuxtclient: false
   DASHBOARD_ANNOUNCEMENT_TEXT:
     server: true
     client: true
@@ -1088,7 +1076,7 @@ configuration_all:
     value: "wss://{{ DOMAIN }}"
     server: true
     client: false
-    nuxtclient: true
+    nuxtclient: false
   TRAINING_URL:
     value: "https://lernen.dbildungscloud.de"
     server: true
