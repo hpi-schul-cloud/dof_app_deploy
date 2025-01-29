@@ -4,9 +4,9 @@ metadata:
   name: deployment-metrics-marker-job
 spec:
   template:
-    os:
-      name: linux
     spec:
+      os:
+        name: linux
       containers:
       - name: deployment-metrics-marker
         image: quay.io/schulcloudverbund/infra-tools:latest

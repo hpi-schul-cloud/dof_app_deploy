@@ -18,9 +18,9 @@ spec:
     spec:
       activeDeadlineSeconds: 300
       template:
-        os:
-          name: linux
         spec:
+          os:
+            name: linux
           containers:
           - name: fixup-rocketchat-job
             image: quay.io/schulcloudverbund/infra-tools:latest
