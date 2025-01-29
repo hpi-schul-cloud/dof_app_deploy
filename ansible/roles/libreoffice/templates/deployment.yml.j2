@@ -41,6 +41,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: libreoffice
         image: {{ LIBREOFFICE_IMAGE_NAME }}:{{ LIBREOFFICE_IMAGE_TAG }}

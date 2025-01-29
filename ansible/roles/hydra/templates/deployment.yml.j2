@@ -39,6 +39,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: hydra
         image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}

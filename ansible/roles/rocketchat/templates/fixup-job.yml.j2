@@ -18,6 +18,8 @@ spec:
     spec:
       activeDeadlineSeconds: 300
       template:
+        os:
+          name: linux
         spec:
           containers:
           - name: fixup-rocketchat-job

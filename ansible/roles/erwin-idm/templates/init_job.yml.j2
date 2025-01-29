@@ -10,6 +10,8 @@ spec:
       labels:
         app: erwinidm-init
     spec:
+      os:
+        name: linux
       containers:
       - name: erwinidm-init
         image: quay.io/schulcloudverbund/infra-tools:latest

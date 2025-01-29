@@ -4,6 +4,8 @@ metadata:
   name: deployment-metrics-marker-job
 spec:
   template:
+    os:
+      name: linux
     spec:
       containers:
       - name: deployment-metrics-marker
