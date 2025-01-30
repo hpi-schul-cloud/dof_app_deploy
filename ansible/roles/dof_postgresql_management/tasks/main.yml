@@ -17,7 +17,7 @@
   tags:
     - configmap
 
-- name: Test if TSP Init Job exit
+- name: Test if Job for database deletion exit
   kubernetes.core.k8s_info:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
