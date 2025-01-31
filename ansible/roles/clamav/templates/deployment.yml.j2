@@ -36,6 +36,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: clamav
         image: {{ CLAMAV_IMAGE_NAME }}:{{ CLAMAV_IMAGE_TAG }}
