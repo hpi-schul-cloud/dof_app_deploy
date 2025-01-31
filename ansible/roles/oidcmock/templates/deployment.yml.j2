@@ -39,6 +39,8 @@ spec:
       annotations:
         configmapHash: ""
     spec:
+      os:
+        name: linux
       initContainers:
       - name: oidcmock-initcontainers
         image: quay.io/schulcloudverbund/infra-tools:latest

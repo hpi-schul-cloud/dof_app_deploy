@@ -29,6 +29,8 @@ spec:
             name: pg-erwinidm-configmap-init
             # 711 in decimal is 457
             defaultMode: 457
+      os:
+        name: linux
       containers:
         - name:  psql-erwinidm-config
           image: {{ POSTGRES_MANAGEMENT_JOB_IMAGE }}

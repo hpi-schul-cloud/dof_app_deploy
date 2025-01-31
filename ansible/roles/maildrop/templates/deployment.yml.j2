@@ -37,6 +37,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: maildrop
         image: {{ MAILDROP_IMAGE_NAME }}:{{ MAILDROP_IMAGE_TAG }}
