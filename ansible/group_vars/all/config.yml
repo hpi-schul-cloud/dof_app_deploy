@@ -619,16 +619,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_NEXBOARD_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_NEXBOARD_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
     value: "false"
     server: false
