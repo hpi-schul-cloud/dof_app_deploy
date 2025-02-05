@@ -39,6 +39,8 @@ spec:
         runAsGroup: 99999
         fsGroup: 99999
         runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: rocketchat
         image: {{ ROCKETCHAT_IMAGE_NAME }}:{{ ROCKETCHAT_IMAGE_TAG }}

@@ -49,6 +49,8 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
         runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: erwinidm
         image: {{ ERWINIDM_IMAGE_NAME }}:{{ ERWINIDM_IMAGE_TAG }}

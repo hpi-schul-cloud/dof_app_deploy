@@ -40,6 +40,8 @@ spec:
       securityContext:
         #readOnlyRootFilesystem: true
         #runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: redis
         image: {{ REDIS_IMAGE_NAME }}:{{ REDIS_IMAGE_TAG }}

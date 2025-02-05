@@ -49,6 +49,8 @@ spec:
         runAsGroup: 5001
         fsGroup: 5001
         runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: etherpad
         image: {{ ETHERPAD_IMAGE_NAME }}:{{ ETHERPAD_IMAGE_TAG }}
