@@ -209,3 +209,7 @@ default_ingress:
     path: /version
     serviceName: version-aggregator-svc
     servicePort: 8080
+  admin_api:
+    path: /admin/api/v1
+    serviceName: api-admin-svc
+    servicePort: 403
