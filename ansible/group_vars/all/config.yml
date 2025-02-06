@@ -869,14 +869,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_CTL_TOOLS_TAB_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_LTI_TOOLS_TAB_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_PROMETHEUS_METRICS_ENABLED:
     value: "true"
     server: true
@@ -900,11 +892,6 @@ configuration_all:
     nuxtclient: false
   ROOT_URL_REDIRECT:
     value: ""
-    server: false
-    client: true
-    nuxtclient: false
-  FEATURE_LEGACY_HYDRA_ENABLED:
-    value: "false"
     server: false
     client: true
     nuxtclient: false
