@@ -212,4 +212,4 @@ default_ingress:
   admin_api:
     path: /admin/api/v1
     serviceName: api-admin-svc
-    servicePort: 403
+    servicePort: 4030
