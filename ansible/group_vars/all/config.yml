@@ -619,16 +619,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_NEXBOARD_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_NEXBOARD_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
     value: "false"
     server: false
@@ -659,11 +649,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  ES_API_V7:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   ES_DOMAIN:
     value: "https://repository.edusharing.dbildungscloud.de"
