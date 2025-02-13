@@ -23,6 +23,8 @@ spec:
             name: pg-configmap-deletion
             # 711 in decimal is 457
             defaultMode: 457
+      os:
+        name: linux
       containers:
         - name:  psql-config
           image: {{ POSTGRES_MANAGEMENT_JOB_IMAGE }}

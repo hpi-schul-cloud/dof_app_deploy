@@ -619,16 +619,6 @@ configuration_all:
     server: false
     client: true
     nuxtclient: false
-  FEATURE_NEXBOARD_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_NEXBOARD_COPY_ENABLED:
-    value: "false"
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_SCHOOL_POLICY_ENABLED:
     value: "false"
     server: false
@@ -659,11 +649,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  ES_API_V7:
-    value: "true"
-    server: true
-    client: false
     nuxtclient: false
   ES_DOMAIN:
     value: "https://repository.edusharing.dbildungscloud.de"
@@ -884,14 +869,6 @@ configuration_all:
     server: true
     client: true
     nuxtclient: false
-  FEATURE_CTL_TOOLS_TAB_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
-  FEATURE_LTI_TOOLS_TAB_ENABLED:
-    server: true
-    client: true
-    nuxtclient: false
   FEATURE_PROMETHEUS_METRICS_ENABLED:
     value: "true"
     server: true
@@ -915,11 +892,6 @@ configuration_all:
     nuxtclient: false
   ROOT_URL_REDIRECT:
     value: ""
-    server: false
-    client: true
-    nuxtclient: false
-  FEATURE_LEGACY_HYDRA_ENABLED:
-    value: "false"
     server: false
     client: true
     nuxtclient: false
@@ -1115,14 +1087,6 @@ configuration_all:
     value: "false"
     server: true
     client: true
-    nuxtclient: false
-  VIDIS_API_CLIENT_BASE_URL:
-    server: true
-    client: false
-    nuxtclient: false
-  VIDIS_SYNC_REGION:
-    server: true
-    client: false
     nuxtclient: false
   FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED:
     value: "false"

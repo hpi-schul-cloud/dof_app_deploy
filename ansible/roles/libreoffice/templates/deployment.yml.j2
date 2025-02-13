@@ -41,6 +41,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: libreoffice
         image: {{ LIBREOFFICE_IMAGE_NAME }}:{{ LIBREOFFICE_IMAGE_TAG }}
@@ -64,7 +66,7 @@ spec:
           requests:
             cpu: "{{ LIBREOFFICE_CPU_MIN|default("100m", true) }}"
             memory: "{{ LIBREOFFICE_MEM_MIN|default("128Mi", true) }}"
-        securityPolicy:
+        securityContext:
           capabilities:
             add:
               - MKNOD
