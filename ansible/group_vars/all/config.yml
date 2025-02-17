@@ -1083,6 +1083,10 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SBOM_SUMMARY_URL:
+    server: true
+    client: false
+    nuxtclient: false
   FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
     value: "false"
     server: true
