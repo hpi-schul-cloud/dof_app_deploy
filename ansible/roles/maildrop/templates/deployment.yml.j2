@@ -64,6 +64,9 @@ spec:
             value: "retry-mail-drop-v2"
           - name: MAILDROP_RETRY_QUEUE
             value: "retry-mail-drop-v2"
+          # json logging
+          - name: LOGGING_STRUCTURED_FORMAT_CONSOLE
+            value: ecs
         resources:
           limits:
             cpu: {{ MAILDROP_CPU_LIMITS|default("1000m", true) }}
