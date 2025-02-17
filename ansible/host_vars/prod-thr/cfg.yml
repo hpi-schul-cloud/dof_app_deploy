@@ -3,7 +3,7 @@ DOMAIN: schulcloud-thueringen.de
 
 AWS_ENDPOINT_URL: https://s3.hidrive.strato.com
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
-NOT_AUTHENTICATED_REDIRECT_URL: "https://{{ DOMAIN }}/login?strategy=tsp"
+NOT_AUTHENTICATED_REDIRECT_URL: "https://www.schulportal-thueringen.de/"
 TSP_API_BASE_URL: https://www.schulportal-thueringen.de
 TSP_API_BASE_NO_WWW_URL: https://schulportal-thueringen.de
 
