@@ -36,6 +36,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: postgres
         image: {{ POSTGRES_IMAGE_NAME }}:{{ POSTGRES_IMAGE_TAG }}

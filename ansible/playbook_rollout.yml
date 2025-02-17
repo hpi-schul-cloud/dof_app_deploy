@@ -31,11 +31,11 @@
     - role: schulcloud-server-tspsync
     - role: schulcloud-server-h5p
     - role: schulcloud-server-migration-system
+    - role: schulcloud-server-provisioning
     - role: schulcloud-server-init
     - role: schulcloud-client-core
     - role: nuxt-client-core
     - role: h5p-library-management
-      when: WITH_H5P_LIBRARY_MANAGEMENT is defined and WITH_H5P_LIBRARY_MANAGEMENT|bool
     - role: h5p-proxy
     - role: clammit
     - role: h5p-staticfiles-server-core

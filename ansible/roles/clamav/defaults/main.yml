@@ -1,2 +1,2 @@
 CLAMAV_IMAGE_NAME: docker.io/clamav/clamav
-CLAMAV_IMAGE_TAG: 1.4.1
+CLAMAV_IMAGE_TAG: 1.4.2

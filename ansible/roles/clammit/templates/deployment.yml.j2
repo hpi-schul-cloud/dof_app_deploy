@@ -34,6 +34,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: clammit
         image: {{ CLAMMIT_IMAGE_NAME }}:{{ CLAMMIT_IMAGE_TAG }}

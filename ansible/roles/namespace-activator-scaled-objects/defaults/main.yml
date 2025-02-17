@@ -32,6 +32,9 @@ deployments_for_scaled_objects:
   - name: board-collaboration-deployment
   - name: common-cartridge-deployment
   - name: clammit-deployment
+  - name: schulconnex-group-provisioning-deployment
+  - name: schulconnex-group-removal-deployment
+  - name: schulconnex-license-provisioning-deployment
   - name: tldraw-server-deployment
   - name: tldraw-worker-deployment
   - name: tldraw-client-deployment
