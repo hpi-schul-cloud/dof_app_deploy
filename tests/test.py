@@ -14,8 +14,7 @@ class TestEverything(unittest.TestCase):
             useless_declarations = []
             for entry in config_all['configuration_all']:
                 res = not config_all['configuration_all'][entry]['server'] \
-                      and not config_all['configuration_all'][entry]['client'] \
-                      and not config_all['configuration_all'][entry]['nuxtclient']
+                      and not config_all['configuration_all'][entry]['client']
                 if res:
                     useless_declarations.append(entry)
 
