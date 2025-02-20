@@ -34,7 +34,6 @@
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
-    - shd-client-core
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
