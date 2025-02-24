@@ -25,7 +25,6 @@ deployments_for_scaled_objects:
   - name: oidcmock-deployment
   - name: rocketchat-deployment
   - name: shd-deployment
-  - name: shd-client-deployment
   - name: version-aggregator-deployment
   - name: mailcatcher-deployment
   - name: maildrop-deployment
