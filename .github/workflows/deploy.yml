@@ -51,7 +51,6 @@ jobs:
          - schulcloud-client
          - nuxt-client
          - superhero-dashboard
-         - shd-client
          - schulcloud-calendar
          - antivirus_check_service
          - version-aggregator
@@ -128,9 +127,24 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # gh pr view will exit with 1 when there is no pr for a given branch
-          pr_labels=$(gh pr view ${{ inputs.branch }} --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
-          echo "pr_labels: $pr_labels"
-          has_activation_label=$(echo $pr_labels | jq '.labels[] | select(.name == "auto-extend-activation-time") | length > 0')
+          pr_data=$(gh pr view "${{ inputs.branch }}" --repo "${{ github.repository }}" --json labels,state 2>/dev/null || echo "error")
+          
+          has_activation_label="false"
+          
+          if [[ "$pr_data" != "error" ]]; then
+            pr_state=$(echo "$pr_data" | jq -r '.state')
+          
+            if [[ "$pr_state" == "OPEN" ]]; then
+              pr_labels=$(echo "$pr_data" | jq -c '.labels')
+              echo "pr_labels: $pr_labels"
+          
+              has_activation_label=$(echo "$pr_labels" | jq '[.[] | select(.name == "auto-extend-activation-time")] | length > 0')
+            else
+              echo "PR is not open"
+            fi
+          else
+            echo "no pr found"
+          fi
 
           if [ "$has_activation_label" == "true" ]; then
               echo "has pr, has label, extend activation time"
