@@ -845,6 +845,9 @@ configuration_all:
   JWT_PUBLIC_KEY:
     server: true
     client: false
+  SBOM_SUMMARY_URL:
+    server: true
+    client: false
   FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
     value: "false"
     server: true
