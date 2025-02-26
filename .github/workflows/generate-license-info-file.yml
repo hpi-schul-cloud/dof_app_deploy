@@ -75,5 +75,5 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Call Funny Action
-        run:
+        run: |
           echo "matrix.instance: ${{ matrix.instance }}"
