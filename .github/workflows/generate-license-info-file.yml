@@ -61,7 +61,6 @@ jobs:
           instances_json=$(echo "$instances_json" | jq -c .)
           echo $instances_json
           echo "instances=$instances_json" >> $GITHUB_ENV
-          echo "::set-output name=instances::$instances_json"
 
 
   call-next-action:
