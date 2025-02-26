@@ -9,7 +9,7 @@ jobs:
   process-versions:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      instances: ${{ steps.generate.outputs.instances }}
 
     steps:
       - name: Checkout Repository
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        instance: ${{ fromJson(needs.process-versions.outputs.matrix) }}
+        instance: ${{ fromJson(needs.process-versions.outputs.instances) }}
 
     steps:
       - name: Checkout Repository
