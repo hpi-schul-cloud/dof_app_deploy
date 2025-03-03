@@ -206,10 +206,6 @@ configuration_all:
     value: "5"
     server: true
     client: true
-  DISABLED_BRUTE_FORCE_CHECK:
-    value: "false"
-    server: true
-    client: false
   STORAGE_SIGNED_URL_EXPIRE:
     server: true
     client: false
