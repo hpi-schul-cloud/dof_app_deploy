@@ -62,6 +62,7 @@ jobs:
           echo $instances_json
           echo "instances=$instances_json" >> $GITHUB_ENV
           test_instances='[{"instance" : "one"}, {"instance" : "two"}]'
+          test_instances='{"instances" : ["one", "two"]}'
           echo "instances=$test_instances" >> $GITHUB_ENV
       - name: test output
         id: test
