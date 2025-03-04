@@ -70,8 +70,7 @@ jobs:
     needs: process-versions
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        instance: ${{ fromJson(needs.process-versions.outputs.instances) }}
+      matrix: ${{ fromJson(needs.process-versions.outputs.instances) }}
 
     steps:
       - name: Checkout Repository
