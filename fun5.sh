@@ -1,23 +1,3 @@
-
-on:
-  push:
-    tags:
-      - "*"
-  workflow_dispatch:
-
-jobs:
-  process-versions:
-    runs-on: ubuntu-latest
-    outputs:
-      instances: ${{ steps.generate.outputs.instances }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Generate Version Inputs
-        id: generate
-        run: |
           set -euo pipefail
 
           # Extract repo mappings from git_repos.yml
@@ -56,27 +36,4 @@ jobs:
               
               instances_json=$(echo "$instances_json" | jq --arg instance "$instance" --arg repos "$repos_list" '. + [{"instance": $instance, "repos": $repos}]')
           done
-          
           echo $instances_json
-          instances_json=$(echo "$instances_json" | jq -c .)
-          echo $instances_json
-          echo "instances=$instances_json" >> $GITHUB_ENV
-      - name: test output
-        id: test
-        run: |
-          echo ${{ needs.process-versions.outputs.instances }}
-
-  call-next-action:
-    needs: process-versions
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        instance: ${{ fromJson(needs.process-versions.outputs.instances) }}
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Call Funny Action
-        run: |
-          echo "matrix.instance: ${{ matrix.instance }}"
