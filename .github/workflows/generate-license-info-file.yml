@@ -61,10 +61,10 @@ jobs:
           instances_json=$(echo "$instances_json" | jq -c .)
           echo $instances_json
           echo "instances=$instances_json" >> $GITHUB_ENV
-          test_instances='[{"instance" : "one"}, {"instance" : "two"}]'
-          test_instances='{"instances" : ["one", "two"]}'
-          test_instances='["one", "two"]'
-          echo "instances=$test_instances" >> $GITHUB_OUTPUT
+#          test_instances='[{"instance" : "one"}, {"instance" : "two"}]'
+#          test_instances='{"instances" : ["one", "two"]}'
+#          test_instances='["one", "two"]'
+#          echo "instances=$test_instances" >> $GITHUB_OUTPUT
 
   test-output:
     needs: process-versions
