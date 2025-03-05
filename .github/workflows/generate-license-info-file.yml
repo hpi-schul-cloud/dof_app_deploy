@@ -38,7 +38,7 @@ jobs:
           
           for file in "${VERSION_FILES[@]}"; do
               instance=$(basename "$(dirname "$file")")
-              repos_list="[]"
+              repos_list=""
           
               while IFS=: read -r key value; do
                   key_trimmed=$(echo "$key" | xargs)
@@ -47,17 +47,17 @@ jobs:
                   repo_key=${key_trimmed%_IMAGE_TAG}_REPO_NAME
                   if [[ -n "${REPO_MAPPING[$repo_key]}" ]]; then
                       repo_name="hpi-schul-cloud/${REPO_MAPPING[$repo_key]}:$value_trimmed"
-                      repos_list=$(echo "$repos_list" | jq --arg repo "$repo_name" '. + [$repo]')
+                      repos_list+="$repo_name;"
                   fi
               done < "$file"
           
-              instances_list=$(echo "$instances_list" | jq --arg instance "$instance" --argjson repos "$repos_list" '. + [{"name": $instance, "repos": $repos}]')
+              # Remove trailing semicolon
+              repos_list=${repos_list%;}
+          
+              instances_list=$(echo "$instances_list" | jq --arg instance "$instance" --arg repos "$repos_list" '. + [{"name": $instance, "repos": $repos}]')
           done
           
           instances_json=$(echo "{}" | jq --argjson instances "$instances_list" '.instances = $instances')
-
-          echo $instances_json
-          instances_json=$(echo "$instances_json" | jq -c .)
           echo $instances_json
           echo "instances=$instances_json" >> $GITHUB_OUTPUT
 
@@ -85,5 +85,3 @@ jobs:
           echo 'matrix.instances: ${{ matrix.instances }}'
           echo 'matrix.instances.name: ${{ matrix.instances.name }}'
           echo 'matrix.instances.repos: ${{ matrix.instances.repos }}'
-          echo 'matrix.name: ${{ matrix.name }}'
-          echo 'matrix.repos: ${{ matrix.repos }}'
