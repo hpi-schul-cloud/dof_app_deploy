@@ -68,7 +68,7 @@ jobs:
       - name: test output
         id: test
         run: |
-          echo ${{ needs.process-versions.outputs.instances }}
+          echo "fancyValue: ${{ steps.generate.outputs.instances }}"
 
   call-next-action:
     needs: process-versions
