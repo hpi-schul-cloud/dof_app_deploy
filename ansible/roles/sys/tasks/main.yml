@@ -43,3 +43,22 @@
       - namespace
       - always
 
+  - name: add default deny all networkPolicy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: deny-all-networkpolicy.yml.j2
+    tags:
+      - networkPolicy
+      - always
+
+
+  - name: add default networkPolicy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: networkpolicy.yml.j2
+    tags:
+      - networkPolicy
+      - always
+
