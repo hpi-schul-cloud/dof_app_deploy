@@ -65,10 +65,15 @@ jobs:
           test_instances='{"instances" : ["one", "two"]}'
           test_instances='["one", "two"]'
           echo "instances=$test_instances" >> $GITHUB_ENV
-      - name: test output
-        id: test
+
+  test-output:
+    needs: process-versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: test
         run: |
-          echo "fancyValue: ${{ steps.generate.outputs.instances }}"
+          echo "fancyValue: ${{ (needs.process-versions.outputs.instances) }}"
 
   call-next-action:
     needs: process-versions
