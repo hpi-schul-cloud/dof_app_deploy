@@ -89,10 +89,10 @@ jobs:
         id: summarize-sboms
         uses: hpi-schul-cloud/sbom-summarizer@5e510fb493af49d7c6c9fcb5ae8afaaed0c956ca
         with:
-          filename: ${{ matrix.instances.name }}-license-summary.json
+          filename: dependencies.sbom.json
           repos: ${{ matrix.instances.repos }}
 
-      - name: work with jsonl
+      - name: work with json
         run: | 
           echo '${{ steps.summarize-sboms.outputs.json }}'
           echo '${{ steps.summarize-sboms.outputs.json }}' >> ${{ matrix.instances.name }}-license-summary.json
