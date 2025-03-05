@@ -93,4 +93,6 @@ jobs:
           repos: ${{ matrix.instances.repos }}
 
       - name: work with jsonl
-        run: echo '${{ toJson(steps.summarize-sboms.outputs.json) }}'
+        run: | 
+          echo '${{ steps.summarize-sboms.outputs.json }}'
+          echo '${{ steps.summarize-sboms.outputs.json }}' >> ${{ matrix.instances.name }}-license-summary.json
