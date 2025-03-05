@@ -82,5 +82,6 @@ jobs:
 
       - name: Call Funny Action
         run: |
+          echo 'matrix.instances: ${{ matrix.instances }}'
           echo 'matrix.name: ${{ matrix.name }}'
           echo 'matrix.repos: ${{ matrix.repos }}'
