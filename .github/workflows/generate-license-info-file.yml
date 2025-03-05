@@ -72,7 +72,7 @@ jobs:
     steps:
       - name: test
         run: |
-          echo "fancyValue: ${{ (needs.process-versions.outputs.instances) }}"
+          echo 'fancyValue: ${{ (needs.process-versions.outputs.instances) }}'
 
   call-next-action:
     needs: process-versions
