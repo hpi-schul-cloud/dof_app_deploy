@@ -59,6 +59,7 @@ jobs:
           
           instances_json=$(echo "{}" | jq --argjson instances "$instances_list" '.instances = $instances')
           echo $instances_json
+          instances_json=$(echo "$instances_json" | jq -c .)
           echo "instances=$instances_json" >> $GITHUB_OUTPUT
 
   test-output:
