@@ -24,6 +24,7 @@ jobs:
           GIT_REPOS_FILE="ansible/group_vars/all/git_repos.yml"
           declare -A REPO_MAPPING
           while IFS=: read -r key value; do
+              # Trim whitespaces from key and value
               key_trimmed=$(echo "$key" | xargs)
               value_trimmed=$(echo "$value" | xargs)
               if [[ "$key_trimmed" != "DOF_APP_DEPLOY_REPO_NAME" ]]; then
@@ -37,6 +38,7 @@ jobs:
           instances_list="[]"
           
           for file in "${VERSION_FILES[@]}"; do
+              # Extract instance name from directory name
               instance=$(basename "$(dirname "$file")")
               repos_list=""
           
@@ -44,8 +46,10 @@ jobs:
                   key_trimmed=$(echo "$key" | xargs)
                   value_trimmed=$(echo "$value" | xargs)
           
+                  # Convert IMAGE_TAG variable name to REPO_NAME
                   repo_key=${key_trimmed%_IMAGE_TAG}_REPO_NAME
                   if [[ -n "${REPO_MAPPING[$repo_key]}" ]]; then
+                      # Construct repo:version format and create repolist separated by semicolon
                       repo_name="hpi-schul-cloud/${REPO_MAPPING[$repo_key]}:$value_trimmed"
                       repos_list+="$repo_name;"
                   fi
@@ -53,23 +57,17 @@ jobs:
           
               # Remove trailing semicolon
               repos_list=${repos_list%;}
-          
+              
+              # Append instance details as JSON object
               instances_list=$(echo "$instances_list" | jq --arg instance "$instance" --arg repos "$repos_list" '. + [{"name": $instance, "repos": $repos}]')
           done
           
+          # Wrap the instances list in a JSON object, thats how github likes it
           instances_json=$(echo "{}" | jq --argjson instances "$instances_list" '.instances = $instances')
           echo $instances_json
+          # github only likes one line json when it comes to GITHUB_OUTPUT? - ok.. 
           instances_json=$(echo "$instances_json" | jq -c .)
           echo "instances=$instances_json" >> $GITHUB_OUTPUT
-
-  test-output:
-    needs: process-versions
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: test
-        run: |
-          echo 'fancyValue: ${{ (needs.process-versions.outputs.instances) }}'
 
   call-next-action:
     needs: process-versions
@@ -86,3 +84,13 @@ jobs:
           echo 'matrix.instances: ${{ matrix.instances }}'
           echo 'matrix.instances.name: ${{ matrix.instances.name }}'
           echo 'matrix.instances.repos: ${{ matrix.instances.repos }}'
+
+      - name: summarize sboms
+        id: summarize-sboms
+        uses: hpi-schul-cloud/sbom-summarizer@5e510fb493af49d7c6c9fcb5ae8afaaed0c956ca
+        with:
+          filename: ${{ matrix.instances.name }}-license-summary.json
+          repos: ${{ matrix.instances.repos }}
+
+      - name: work with json
+        run: echo '${{ toJson(steps.summarize-sboms.outputs.json) }}'
