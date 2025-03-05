@@ -65,7 +65,7 @@ jobs:
           # Wrap the instances list in a JSON object, thats how github likes it
           instances_json=$(echo "{}" | jq --argjson instances "$instances_list" '.instances = $instances')
           echo $instances_json
-          # github only likes one line json when it comes to GITHUB_OUTPUT? - ok.. 
+          # github only likes one line json when it comes to GITHUB_OUTPUT? - ok..
           instances_json=$(echo "$instances_json" | jq -c .)
           echo "instances=$instances_json" >> $GITHUB_OUTPUT
 
@@ -92,5 +92,5 @@ jobs:
           filename: ${{ matrix.instances.name }}-license-summary.json
           repos: ${{ matrix.instances.repos }}
 
-      - name: work with json
+      - name: work with jsonl
         run: echo '${{ toJson(steps.summarize-sboms.outputs.json) }}'
