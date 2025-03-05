@@ -64,7 +64,7 @@ jobs:
           test_instances='[{"instance" : "one"}, {"instance" : "two"}]'
           test_instances='{"instances" : ["one", "two"]}'
           test_instances='["one", "two"]'
-          echo "instances=$test_instances" >> $GITHUB_ENV
+          echo "instances=$test_instances" >> $GITHUB_OUTPUT
 
   test-output:
     needs: process-versions
