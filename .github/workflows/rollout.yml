@@ -21,23 +21,6 @@ jobs:
       - run: echo "Target(s) ${{ github.event.inputs.instance_group }}"
       - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
       
-  ref-audit:
-    if: ${{ !failure() }}
-    needs:
-      - approve_prod_stage_2
-    uses: ./.github/workflows/host.yml
-    with:
-      cfg_version: ${{ github.event.inputs.config_tag_name }}
-      host_name: ref-audit
-      host_group: dbc
-      host_stage: reference
-      execute_group: ${{ github.event.inputs.instance_group }}
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
-      KUBECONFIG: ${{ secrets.KUBECONFIG }}
-      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
-      
   ref-brb:
     needs:
       - approve_ref
