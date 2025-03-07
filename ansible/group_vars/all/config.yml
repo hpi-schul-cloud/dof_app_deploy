@@ -811,6 +811,7 @@ configuration_all:
     server: true
     client: false
   PROVISIONING_SCHULCONNEX_GROUP_USERS_LIMIT:
+    value: "999999999"
     server: true
     client: false
   BOARD_COLLABORATION_URI:
