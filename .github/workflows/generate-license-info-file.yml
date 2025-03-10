@@ -94,5 +94,10 @@ jobs:
 
       - name: work with json
         run: | 
-          echo '${{ steps.summarize-sboms.outputs.json }}'
-          echo '${{ steps.summarize-sboms.outputs.json }}' >> ${{ matrix.instances.name }}-license-summary.json
+          echo '${{ steps.summarize-sboms.outputs.json }}' > ${{ matrix.instances.name }}-license-summary.json
+
+      - name: Upload JSON as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.instances.name }}-license-summary.json
+          path: ${{ matrix.instances.name }}-license-summary.json
