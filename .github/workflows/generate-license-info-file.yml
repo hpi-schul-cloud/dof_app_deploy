@@ -93,8 +93,11 @@ jobs:
           repos: ${{ matrix.instances.repos }}
 
       - name: work with json
+        shell: bash
         run: | 
-          echo '${{ steps.summarize-sboms.outputs.json }}' > ${{ matrix.instances.name }}-license-summary.json
+              cat <<EOF > ${{ matrix.instances.name }}-license-summary.json
+              ${{ steps.summarize-sboms.outputs.json }}
+              EOF
 
       - name: Upload JSON as artifact
         uses: actions/upload-artifact@v4
