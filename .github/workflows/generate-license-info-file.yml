@@ -2,7 +2,7 @@
 on:
   push:
     tags:
-      - "*"
+      - '[0-9]*'
   workflow_dispatch:
 
 jobs:
@@ -104,3 +104,12 @@ jobs:
         with:
           name: ${{ matrix.instances.name }}-license-summary.json
           path: ${{ matrix.instances.name }}-license-summary.json
+
+
+      - name: Setup Rclone
+        uses: AnimMouse/setup-rclone@v1
+        with:
+          rclone_config: ${{ secrets.SVS_PUBLIC_ARTIFACTS_RCLONE_CONFIG }}
+
+      - run: |
+              rclone copy ${{ matrix.instances.name }}-license-summary.json svs-public-artifacts:/svs-public-artifacts/${{ github.ref_name }}/${{ matrix.instances.name }}-license-summary.json
