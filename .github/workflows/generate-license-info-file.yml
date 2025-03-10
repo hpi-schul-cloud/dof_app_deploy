@@ -95,7 +95,7 @@ jobs:
       - name: work with json
         shell: bash
         run: | 
-              printf "%s" '${{ secrets.LARGE_JSON }}' > ${{ matrix.instances.name }}-license-summary.json
+              printf "%s" '${{ steps.summarize-sboms.outputs.json }}' > ${{ matrix.instances.name }}-license-summary.json
 
       - name: Upload JSON as artifact
         uses: actions/upload-artifact@v4
