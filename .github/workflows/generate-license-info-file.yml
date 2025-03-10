@@ -95,9 +95,10 @@ jobs:
       - name: work with json
         shell: bash
         run: | 
-              cat <<EOF > ${{ matrix.instances.name }}-license-summary.json
-              ${{ steps.summarize-sboms.outputs.json }}
-              EOF
+              #cat <<EOF > ${{ matrix.instances.name }}-license-summary.json
+              #${{ steps.summarize-sboms.outputs.json }}
+              #EOF
+              echo '${{ steps.summarize-sboms.outputs.json }}' | jq -c . > ${{ matrix.instances.name }}-license-summary.json
 
       - name: Upload JSON as artifact
         uses: actions/upload-artifact@v4
