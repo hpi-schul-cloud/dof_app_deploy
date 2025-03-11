@@ -106,4 +106,4 @@ jobs:
           rclone_config: ${{ secrets.SVS_PUBLIC_ARTIFACTS_RCLONE_CONFIG }}
 
       - run: |
-              rclone copyto ${GITHUB_WORKSPACE}/${{ matrix.instances.name }}-license-summary.json svs-public-artifacts:/svs-public-artifacts/${{ github.ref_name }}/${{ matrix.instances.name }}-license-summary.json
+              rclone copyto ${{ github.workspace }}/${{ matrix.instances.name }}-license-summary.json svs-public-artifacts:/svs-public-artifacts/${{ github.ref_name }}/${{ matrix.instances.name }}-license-summary.json
