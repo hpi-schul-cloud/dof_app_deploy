@@ -87,15 +87,12 @@ jobs:
 
       - name: summarize sboms
         id: summarize-sboms
-        uses: hpi-schul-cloud/sbom-summarizer@54283bdea5819ffbf6bd943c773a2de5e18ec74f
+        uses: hpi-schul-cloud/sbom-summarizer@e0a989cf7ccaa58ecda8cd24f5f3565e6d0e091b
         with:
           filename: dependencies.sbom.json
           repos: ${{ matrix.instances.repos }}
+          output-filename: ${{ matrix.instances.name }}-license-summary.json
 
-      - name: work with json
-        shell: bash
-        run: | 
-              tee ${{ matrix.instances.name }}-license-summary.json <<< '${{ steps.summarize-sboms.outputs.json }}'
       - name: Upload JSON as artifact
         uses: actions/upload-artifact@v4
         with:
