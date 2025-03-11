@@ -846,7 +846,7 @@ configuration_all:
     server: true
     client: false
   LICENSE_SUMMARY_URL:
-    value: "{{ LICENSE_SUMMARY_BASE_URL }}/{{ DOF_APP_DEPLOY_BRANCH_NAME }}/{{ inventory_hostname }}-license-summary.json"
+    value: "{{ LICENSE_SUMMARY_BASE_URL }}/{{ DOF_APP_DEPLOY_LATEST_TAG }}/{{ inventory_hostname }}-license-summary.json"
     server: true
     client: false
   FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
