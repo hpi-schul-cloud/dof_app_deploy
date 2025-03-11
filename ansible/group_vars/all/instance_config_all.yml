@@ -45,4 +45,4 @@ ERWINIDM_ADMIN_TLS_AUTH_SECRET: erwinidm-tls-auth
 TLDRAW_LOG_LEVEL: "info"
 FEATURE_TLDRAW_ENABLED: "true"
 
-LICENSE_SUMMARY_BASE_URL: "https://s3-eu-central-2.ionoscloud.com/svs-public-artifacts"
+LICENSE_SUMMARY_BASE_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com"
