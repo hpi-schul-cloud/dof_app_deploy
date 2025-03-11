@@ -62,7 +62,7 @@ jobs:
               instances_list=$(echo "$instances_list" | jq --arg instance "$instance" --arg repos "$repos_list" '. + [{"name": $instance, "repos": $repos}]')
           done
           
-          # Wrap the instances list in a JSON object, thats how github likes it
+          # Wrap the instances list in a JSON object, that's how github likes it
           instances_json=$(echo "{}" | jq --argjson instances "$instances_list" '.instances = $instances')
           echo $instances_json
           # github only likes one line json when it comes to GITHUB_OUTPUT? - ok..
@@ -78,12 +78,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Call Funny Action
-        run: |
-          echo 'matrix.instances: ${{ matrix.instances }}'
-          echo 'matrix.instances.name: ${{ matrix.instances.name }}'
-          echo 'matrix.instances.repos: ${{ matrix.instances.repos }}'
 
       - name: summarize sboms
         id: summarize-sboms
