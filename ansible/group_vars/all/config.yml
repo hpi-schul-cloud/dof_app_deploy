@@ -206,10 +206,6 @@ configuration_all:
     value: "5"
     server: true
     client: true
-  DISABLED_BRUTE_FORCE_CHECK:
-    value: "false"
-    server: true
-    client: false
   STORAGE_SIGNED_URL_EXPIRE:
     server: true
     client: false
@@ -285,21 +281,10 @@ configuration_all:
     server: true
     client: true
   # TSP
-  FEATURE_TSP_ENABLED:
-    value: "false"
-    server: true
-    client: false
-  TSP_API_BASE_URL:
-    server: true
-    client: false
   TSP_API_CLIENT_BASE_URL:
     server: true
     client: false
   TSP_API_CLIENT_TOKEN_LIFETIME_MS:
-    server: true
-    client: false
-  TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
-    value: "10"
     server: true
     client: false
   TSP_SYNC_MIGRATION_LIMIT:
@@ -318,10 +303,6 @@ configuration_all:
     server: true
     client: false
   TSP_SYNC_DATA_DAYS_TO_FETCH:
-    server: true
-    client: false
-  TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
-    value: "150"
     server: true
     client: false
   FEATURE_TSP_SYNC_ENABLED:
