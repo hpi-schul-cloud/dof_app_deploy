@@ -4,3 +4,4 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.brb.dbildungscloud.dev"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brb.dbildungscloud.dev"
 ANNOTATIONS: true
 RELOADER: true
+LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/0.0.1/prod-brb-license-summary.json"
