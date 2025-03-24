@@ -136,3 +136,6 @@ group_ingress:
   api_v1_registration:
     serviceName: default-backend-404-svc
     servicePort: 8080
+
+FEATURE_SCHOOL_POLICY_ENABLED_NEW: "true"
+FEATURE_SCHOOL_TERMS_OF_USE_ENABLED: "true"
