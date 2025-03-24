@@ -826,7 +826,8 @@ configuration_all:
   JWT_PUBLIC_KEY:
     server: true
     client: false
-  SBOM_SUMMARY_URL:
+  LICENSE_SUMMARY_URL:
+    value: "{{ LICENSE_SUMMARY_BASE_URL }}/{{ DOF_APP_DEPLOY_LATEST_TAG }}/{{ inventory_hostname }}-license-summary.json"
     server: true
     client: false
   FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
