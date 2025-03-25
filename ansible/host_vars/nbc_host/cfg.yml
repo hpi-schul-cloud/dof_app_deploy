@@ -3,7 +3,6 @@ NEXTCLOUD_BASE_URL: https://nextcloud-nbc.dbildungscloud.dev/
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.nbc.dbildungscloud.dev"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.nbc.dbildungscloud.dev"
 FEATURE_AI_TUTOR_ENABLED: "true"
-LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/0.0.1/prod-brb-license-summary.json"
 
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "0000d186816abba584714c93"
