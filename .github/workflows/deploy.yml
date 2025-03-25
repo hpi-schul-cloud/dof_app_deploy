@@ -67,7 +67,6 @@ jobs:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
           path: ${{ matrix.repos }}
-          fetch-depth: 0
       - working-directory: ${{github.workspace }}/${{ matrix.repos }}
         shell: bash
         run: |
