@@ -812,7 +812,7 @@ configuration_all:
     server: true
     client: true
   FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
