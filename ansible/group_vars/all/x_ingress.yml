@@ -99,10 +99,6 @@ default_ingress:
     path: /rooms-overview
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  rooms-list:
-    path: /rooms-list
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms:
     path: /rooms
     serviceName: nuxtclient-svc
