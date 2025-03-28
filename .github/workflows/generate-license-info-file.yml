@@ -81,7 +81,7 @@ jobs:
 
       - name: summarize sboms
         id: summarize-sboms
-        uses: hpi-schul-cloud/sbom-summarizer@e0a989cf7ccaa58ecda8cd24f5f3565e6d0e091b
+        uses: hpi-schul-cloud/sbom-summarizer@69b293be3ee031f89f18904a92f7926d861c5051
         with:
           filename: dependencies.sbom.json
           repos: ${{ matrix.instances.repos }}
