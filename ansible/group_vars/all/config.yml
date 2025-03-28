@@ -844,3 +844,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  COURSE_SYNCHRONIZATION_HISTORY_EXPIRES_IN_SECONDS:
+    server: true
+    client: false
