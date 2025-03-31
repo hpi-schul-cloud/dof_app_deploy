@@ -73,7 +73,7 @@ jobs:
         run: |
           git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
-          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+          latest_tag=$(git tag -l "*.*.*" | tail -n 1)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
