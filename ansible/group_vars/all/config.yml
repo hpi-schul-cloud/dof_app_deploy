@@ -844,6 +844,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  COURSE_SYNCHRONIZATION_HISTORY_EXPIRES_IN_SECONDS:
+  SCHULCONNEX_COURSE_SYNC_HISTORY_EXPIRATION_SECONDS:
+    value: "864000" # 10 days
     server: true
     client: false
