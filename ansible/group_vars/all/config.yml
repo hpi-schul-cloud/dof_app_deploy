@@ -387,6 +387,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_COLUMN_BOARD_FILE_FOLDER_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
     value: "false"
     server: true
