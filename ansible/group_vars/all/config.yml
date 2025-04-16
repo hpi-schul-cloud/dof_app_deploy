@@ -287,12 +287,6 @@ configuration_all:
   TSP_API_CLIENT_TOKEN_LIFETIME_MS:
     server: true
     client: false
-  TSP_SYNC_MIGRATION_LIMIT:
-    server: true
-    client: false
-  FEATURE_TSP_MIGRATION_ENABLED:
-    server: true
-    client: false
   TSP_SYNC_SCHOOL_LIMIT:
     server: true
     client: false
