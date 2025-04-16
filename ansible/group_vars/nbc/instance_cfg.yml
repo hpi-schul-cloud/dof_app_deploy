@@ -137,9 +137,6 @@ group_ingress:
     serviceName: default-backend-404-svc
     servicePort: 8080
 
-FEATURE_SCHOOL_POLICY_ENABLED_NEW: "true"
-FEATURE_SCHOOL_TERMS_OF_USE_ENABLED: "true"
-
 # BiLo media metadata sync cronjob
 WITH_MEDIA_METADATA_SYNC: true
 
