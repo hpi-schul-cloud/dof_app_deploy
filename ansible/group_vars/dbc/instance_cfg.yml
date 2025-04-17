@@ -7,6 +7,7 @@ SC_NAV_TITLE: dBildungscloud
 SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+ROOM_MEMBER_INFO_URL: "https://dbildungscloud.de/help/confluence/381583517"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
