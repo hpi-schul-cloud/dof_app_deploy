@@ -813,7 +813,7 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  FEATURE_ROOMS_DUPLICATE_ROOMS_ENABLED:
+  FEATURE_ROOMS_DUPLICATE_ENABLED:
     value: "false"
     server: true
     client: true
