@@ -287,12 +287,6 @@ configuration_all:
   TSP_API_CLIENT_TOKEN_LIFETIME_MS:
     server: true
     client: false
-  TSP_SYNC_MIGRATION_LIMIT:
-    server: true
-    client: false
-  FEATURE_TSP_MIGRATION_ENABLED:
-    server: true
-    client: false
   TSP_SYNC_SCHOOL_LIMIT:
     server: true
     client: false
@@ -385,6 +379,10 @@ configuration_all:
     client: false
   FEATURE_COLUMN_BOARD_ENABLED:
     value: "true"
+    server: true
+    client: false
+  FEATURE_COLUMN_BOARD_FILE_FOLDER_ENABLED:
+    value: "false"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
@@ -803,6 +801,10 @@ configuration_all:
     value: "https://lernen.dbildungscloud.de"
     server: true
     client: true
+  ROOM_MEMBER_INFO_URL:
+    value: ""
+    server: true
+    client: false
   FEATURE_AI_TUTOR_ENABLED:
     value: "false"
     server: true
