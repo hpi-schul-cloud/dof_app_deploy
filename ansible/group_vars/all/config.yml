@@ -817,7 +817,7 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  FEATURE_ROOMS_DUPLICATE_ENABLED:
+  FEATURE_ROOMS_DUPLICATION_ENABLED:
     value: "false"
     server: true
     client: false
