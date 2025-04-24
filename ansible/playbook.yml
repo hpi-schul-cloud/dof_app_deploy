@@ -32,6 +32,7 @@
     - schulcloud-server-migration-system
     - schulcloud-server-provisioning
     - schulcloud-client-core
+    - schulcloud-server-valkey
     - nuxt-client-core
     - superhero-dashboard
     - schulcloud-calendar-core
