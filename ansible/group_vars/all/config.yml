@@ -397,6 +397,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_COLUMN_BOARD_H5P_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
     value: "false"
     server: true
@@ -462,11 +466,11 @@ configuration_all:
     server: false
     client: true
   FEATURE_SCHOOL_POLICY_ENABLED_NEW:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   BODYPRASER_JSON_LIMIT:
@@ -820,6 +824,10 @@ configuration_all:
   FEATURE_ROOMS_DUPLICATION_ENABLED:
     value: "false"
     server: true
+    client: false  
+  FEATURE_ROOM_MEMBERS_TABS_ENABLED:
+    value: "false"
+    server: true
     client: false
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
     value: "5"
@@ -849,3 +857,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SCHULCONNEX_COURSE_SYNC_HISTORY_EXPIRATION_SECONDS:
+    value: "2592000" # 30 days
+    server: true
+    client: false
