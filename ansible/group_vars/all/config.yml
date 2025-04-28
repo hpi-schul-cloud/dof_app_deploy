@@ -857,3 +857,15 @@ configuration_all:
     value: "2592000" # 30 days
     server: true
     client: false
+  REDIS_CLUSTER_ENABLED:
+    value: "{{ REDIS_CLUSTER_ENABLED }}"
+    server: true
+    client: true
+  REDIS_SENTINEL_SERVICE_NAME: 
+    value: "{{ REDIS_SENTINEL_SERVICE_NAME }}"
+    server: true
+    client: true
+  REDIS_SENTINEL_NAME: 
+    value: "{{ REDIS_SENTINEL_NAME }}"
+    server: true
+    client: true
