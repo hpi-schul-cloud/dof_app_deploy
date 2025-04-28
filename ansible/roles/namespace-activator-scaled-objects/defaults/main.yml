@@ -40,6 +40,6 @@ deployments_for_scaled_objects:
   - name: tldraw-valkey-node
     kind: StatefulSet
     replicaCount: "{{TLDRAW_VALKEY_REPLICAS}}"
-  - name: schulcloud-server-valkey-node
+  - name: session-valkey-node
     kind: StatefulSet
-    replicaCount: "{{SCHULCLOUD_SERVER_VALKEY_REPLICAS}}"
+    replicaCount: "{{SESSION_VALKEY_REPLICAS}}"

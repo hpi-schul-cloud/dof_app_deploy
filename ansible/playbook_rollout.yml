@@ -34,7 +34,7 @@
     - role: schulcloud-server-provisioning
     - role: schulcloud-server-init
     - role: schulcloud-client-core
-    - role: schulcloud-server-valkey
+    - role: session-valkey
     - role: nuxt-client-core
     - role: h5p-library-management
     - role: h5p-proxy
