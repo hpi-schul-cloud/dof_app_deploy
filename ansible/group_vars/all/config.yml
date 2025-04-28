@@ -817,10 +817,18 @@ configuration_all:
     value: "true"
     server: true
     client: true
+  FEATURE_ROOM_INVITATION_LINKS_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
     value: "true"
     server: true
     client: true
+  FEATURE_ROOMS_DUPLICATION_ENABLED:
+    value: "false"
+    server: true
+    client: false  
   FEATURE_ROOM_MEMBERS_TABS_ENABLED:
     value: "false"
     server: true
