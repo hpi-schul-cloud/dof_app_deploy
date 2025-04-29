@@ -55,16 +55,16 @@
         enabled: true
         podMonitor:
           enabled: true
-        serviceMonitor:
-          enabled: true
         extraArgs:
           check-key-groups: '(jwt):.+'
-        metricRelabelings:
-            - sourceLabels: [ __name__ ]
-              regex: redis_key_group_count
-              action: replace
-              targetLabel: longterm
-              replacement: "true"   
+        serviceMonitor:
+          enabled: true
+          additionalMetricRelabelings:
+              - sourceLabels: [ __name__ ]
+                regex: redis_key_group_count
+                action: replace
+                targetLabel: longterm
+                replacement: "true"   
       # OPS-6762 still up to debate if we will enable this
       networkPolicy:
         enabled: false
