@@ -14,7 +14,6 @@
     - dof_postgresql
     - dof_postgresql_management
     - dof_rabbitmq
-    - dof_redis
     - dof_mailcatcher
     - libreoffice
     - maildrop

@@ -12,7 +12,6 @@
     - role: dof_mongo
     - role: dof_postgresql
     - role: dof_rabbitmq
-    - role: dof_redis
     - role: dof_mailcatcher
       when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
     - role: libreoffice
