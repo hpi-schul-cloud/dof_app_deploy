@@ -57,6 +57,14 @@
           enabled: true
         serviceMonitor:
           enabled: true
+          additionalMetricRelabelings:
+              - sourceLabels: [ __name__ ]
+                regex: redis_key_group_count
+                action: replace
+                targetLabel: longterm
+                replacement: "true"
+          extraArgs:
+            check-key-groups: "(jwt):.+"      
       # OPS-6762 still up to debate if we will enable this
       networkPolicy:
         enabled: false
