@@ -56,7 +56,7 @@
         podMonitor:
           enabled: true
         extraArgs:
-          check-key-groups: "(jwt):.+"   
+          check-key-groups: (jwt):.+
         serviceMonitor:
           enabled: true
           additionalMetricRelabelings:
