@@ -45,7 +45,7 @@
             memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
       auth:
         existingSecret: session-valkey-password
-        existingSecretPasswordKey: REDIS_SENTINEL_PASSWORD
+        existingSecretPasswordKey: SESSION_VALKEY_SENTINEL_PASSWORD
         usePasswordFiles: false
       sentinel:
         enabled: true
