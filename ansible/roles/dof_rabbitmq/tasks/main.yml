@@ -34,3 +34,4 @@
     when: RABBITMQ_SERVICE_MONITOR is undefined or RABBITMQ_SERVICE_MONITOR is defined and not RABBITMQ_SERVICE_MONITOR
     tags:
       - prometheus
+

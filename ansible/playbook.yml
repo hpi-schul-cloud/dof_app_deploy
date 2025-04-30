@@ -30,10 +30,10 @@
     - schulcloud-server-tspsync
     - schulcloud-server-h5p
     - schulcloud-server-migration-system
+    - schulcloud-server-provisioning
     - schulcloud-client-core
     - nuxt-client-core
     - superhero-dashboard
-    - shd-client-core
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
@@ -51,3 +51,6 @@
     - ingress
     - post_deployment
     - moin-schule-sync
+    - media-licenses
+    - media-metadata-sync
+    - vidis-media-metadata-sync

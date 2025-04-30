@@ -49,6 +49,8 @@ spec:
         runAsGroup: 5001
         fsGroup: 5001
         runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: etherpad
         image: {{ ETHERPAD_IMAGE_NAME }}:{{ ETHERPAD_IMAGE_TAG }}
@@ -67,11 +69,34 @@ spec:
           name: apikey
         resources:
           limits:
-            cpu: {{ ETHERPA_CPU_LIMITS|default("1000m", true) }}
-            memory: {{ ETHERPA_MEMORY_LIMITS|default("1Gi", true) }}
+            cpu: {{ ETHERPAD_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ ETHERPAD_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: {{ ETHERPA_CPU_REQUESTS|default("100m", true) }}
-            memory: {{ ETHERPA_MEMORY_REQUESTS|default("128Mi", true) }}
+            cpu: {{ ETHERPAD_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ ETHERPAD_MEMORY_REQUESTS|default("128Mi", true) }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          initialDelaySeconds: 0
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          initialDelaySeconds: 0
+          timeoutSeconds: 2
+          periodSeconds: 10
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 9001
+          timeoutSeconds: 2
+          failureThreshold:  60
+          periodSeconds: 5
       volumes:
       - name: apikey
         secret:

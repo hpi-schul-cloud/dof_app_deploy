@@ -3,8 +3,7 @@ DOMAIN: schulcloud-thueringen.de
 
 AWS_ENDPOINT_URL: https://s3.hidrive.strato.com
 ALERT_STATUS_URL: https://status.schulcloud-thueringen.de/
-NOT_AUTHENTICATED_REDIRECT_URL: https://www.schulportal-thueringen.de/cas/login?service=https://schulcloud-thueringen.de/tsp-login
-TSP_API_BASE_URL: https://www.schulportal-thueringen.de
+NOT_AUTHENTICATED_REDIRECT_URL: "https://www.schulportal-thueringen.de/"
 TSP_API_BASE_NO_WWW_URL: https://schulportal-thueringen.de
 
 ROOT_URL_REDIRECT: https://schulportal-thueringen.de/thueringer_schulcloud
@@ -16,3 +15,6 @@ NEXTCLOUD_BASE_URL: https://nextcloud.schulcloud-thueringen.de
 BLOCKLIST_OF_EMAIL_DOMAINS: "schul-cloud.org"
 
 JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\nMIICCgKCAgEAsAJYGUDM4mApwx+ApjzjK03qTHwUEUNLe4xNj1B0I+K36oJx3jAS\njN8TZqDoIAvIuK6eXIZP3AcxmbphFUmzS8z/9i5tBdf1UXsf1alqaQSmaEEKalXL\npZSH2m53NmVs4mu5uVCKGhlnkOd0/jIuEfuO3Q00YtFlaYglIMqagU1fD+zXgqdI\nwGWWxcIju1960aGo7CqMFTrE+STMowBNH5T/OUn+NWhs94gJWzFM356EehS5LKjI\nkRpXmPI7Utj4x1vMXtDm1VJZ9U0CvUzeTOnAjitjyV8xJV+Muubs6QM1OIBWfPoY\n13364ZkfSsBpRH+uOImNv1mj+/AqFuEyucc52XLI6D4tfZKvEQR/qXUiJTPdgZE0\n8sAkwiEE5Y34h/MJq5/N1AuW5OUMVKqpv4tkXkGL3KHG5A3dwAFV/5inTVr1xdG1\nVx0vdne6Jv4/AejLdey+FoBd90RSYYZgecBvbbM4eq4pTqQMZvAwC/DsDDismibn\nufxYQ0GsZ0qFG//VVMHjHIW26yOuoga52o4El84VJTzdxTv2rDkgM4BvpRtqm+w/\n7jOyvgoHha6HS9nRFcfbV6g7EYjaGk96V5MicIeVzFYV8Yrrb9iBnhiT1gQex+JR\nazwKtqtPFgExtFVx364sVA2bXqgm9pM/TFgQ9Qe+h4GuO+5y+HqbuyUCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n'
+
+FEATURE_TSP_SYNC_ENABLED: "true"
+TSP_API_CLIENT_BASE_URL: https://www.schulportal-thueringen.de/tip-ms/api

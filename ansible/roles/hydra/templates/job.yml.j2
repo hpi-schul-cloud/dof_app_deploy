@@ -11,6 +11,8 @@ spec:
       labels:
         app: hydra-migrate-db-job
     spec:
+      os:
+        name: linux
       containers:
       - name: hydra-migrate
         image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}
@@ -48,4 +50,5 @@ spec:
           - key: update.sh
             path: update.sh
       restartPolicy: Never
+  ttlSecondsAfterFinished: 180
   backoffLimit: 3

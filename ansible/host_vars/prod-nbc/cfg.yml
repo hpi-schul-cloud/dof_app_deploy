@@ -14,7 +14,7 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 HYDRA_ISSUER_URL_SUFFIX: "/"
 
-# SCHULCONNEX / SANIS / moin.schule Client
+# SCHULCONNEX / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.moin.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.moin.schule/realms/moins/protocol/openid-connect/token"
 
@@ -22,3 +22,4 @@ PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.moin.schule/v1/
 
 JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\nMIICCgKCAgEAx3s+uLFUG4TSEvXvPu8Kb9UqX5VKIlBjFggoprxbtDShykL+O+lY\nZNG2XJoZ1OCwsGify617OOr/+3XmPChXbDTiuAZAZv945zhZ6ebtkAkKvAzf1jU+\n0ZoidcrpjebCn5oZyZqLJm1uNRxlFkKKJSactc7DTT99NB/AP7CPBum6k5QG+XcB\nsn9KMzPB4jx2PFoMwDU7vOUbHqPrj+0n3lW8/xMcgwVqoWFE11C8oDSSZNcByATf\n8AfX4lfREmtj0HAD6KSXEiT+OM53KWhq7Sz8icE+eiq8oLka2T6kI7gP1N2+9ycq\nh+CtS30ABvQi1Z6meCOjPk8HOFFa3Vj5o2pnrx6cXng4EQL59Y4NzhOclkxOUrUm\nAzWT51g1EdfjTh4PYNCQNJdbfcHL8/H3y8Khg6YCE/6qU7lFyt2aLOriy0d7fTCP\nCA0eQPE71PtYmncW/vk9SCHfQG3Xri3si3MkRQyshYwKBEBIc0Is5owsByAyqxwU\n0NIv1bo7aSHSTt5Q5WYu9wku7YPRpfYprJs5GjlZUMRD++CHSdQz83pi331EsAyd\nPEccVP7tT3+cHlyF/5+qV5QIZ1da4c+ODydbsyYwpjQh9SReAQtZDkW6l/OcT3cp\n9zXc7mK1dgHMlgkHMR1D8qCCOj0CmFNdjlCQSbV0hXOeowBY8EGPBkkCAwEAAQ==\n-----END RSA PUBLIC KEY-----\n'
 FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "false"
+FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED: "false"

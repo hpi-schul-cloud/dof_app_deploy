@@ -46,6 +46,8 @@ spec:
         #runAsGroup: 1000
         #fsGroup: 1000
         #runAsNonRoot: true
+      os:
+        name: linux
       containers:
       - name: etherpad-nginx
         image: {{ ETHERPAD_NGINX_IMAGE_NAME }}:{{ ETHERPAD_NGINX_IMAGE_TAG }}
@@ -58,11 +60,11 @@ spec:
           name: defaultconf
         resources:
           limits:
-            cpu: {{ ETHERPA_NGINX_CPU_LIMITS|default("1000m", true) }}
-            memory: {{ ETHERPA_NGINX_MEMORY_LIMITS|default("1Gi", true) }}
+            cpu: {{ ETHERPAD_NGINX_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ ETHERPAD_NGINX_MEMORY_LIMITS|default("1Gi", true) }}
           requests:
-            cpu: {{ ETHERPA_NGINX_CPU_REQUESTS|default("100m", true) }}
-            memory: {{ ETHERPA_NGINX_MEMORY_REQUESTS|default("128Mi", true) }}
+            cpu: {{ ETHERPAD_NGINX_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ ETHERPAD_NGINX_MEMORY_REQUESTS|default("128Mi", true) }}
         livenessProbe:
           httpGet:
             path: /

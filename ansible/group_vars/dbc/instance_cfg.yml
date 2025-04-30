@@ -4,8 +4,10 @@ SC_SHORTNAME: dbc
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
 SC_NAV_TITLE: dBildungscloud
+SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+ROOM_MEMBER_INFO_URL: "https://dbildungscloud.de/help/confluence/381583517"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -76,4 +78,4 @@ COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 group_ingress:
 
 # BigBlueButton
-VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/default/bbb/presentation.pdf
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf

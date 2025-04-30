@@ -36,6 +36,8 @@ spec:
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
+      os:
+        name: linux
       containers:
       - name: clamav
         image: {{ CLAMAV_IMAGE_NAME }}:{{ CLAMAV_IMAGE_TAG }}
@@ -44,6 +46,12 @@ spec:
         envFrom:
         - configMapRef:
             name: clamav-configmap
+        startupProbe:
+          exec:
+            command:
+            - clamdcheck.sh
+          failureThreshold: 30
+          periodSeconds: 10
         resources:
           limits:
             cpu: {{ CLAMAV_CPU_MAX|default("500m", true) }}

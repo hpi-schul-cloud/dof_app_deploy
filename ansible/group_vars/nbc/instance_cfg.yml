@@ -4,10 +4,11 @@ SC_SHORTNAME: nbc
 SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
-SC_CONTACT_EMAIL: nbc-support@netz-21.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
+GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
+ROOM_MEMBER_INFO_URL: "https://niedersachsen.cloud/help/confluence/381583517"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
@@ -35,8 +36,8 @@ FEATURE_TSP_AUTO_CONSENT_ENABLED: "false"
 FEATURE_LOG_REQUEST: "false"
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 FEATURE_LOGIN_LINK_ENABLED: "true"
-FEATURE_SCHOOL_SANIS_USER_MIGRATION_ENABLED: "true"
-FEATURE_SANIS_GROUP_PROVISIONING_ENABLED: "true"
+FEATURE_USER_LOGIN_MIGRATION_ENABLED: "true"
+FEATURE_SCHULCONNEX_GROUP_PROVISIONING_ENABLED: "true"
 FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED: "true"
 FEATURE_SHOW_OUTDATED_USERS: "true"
 FEATURE_ENABLE_LDAP_SYNC_DURING_MIGRATION: "true"
@@ -51,6 +52,8 @@ FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED: "true"
 FEATURE_SCHULCONNEX_MEDIA_LICENSE_ENABLED: "true"
 FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "true"
 FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "true"
+FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED: "true"
+FEATURE_MEDIA_METADATA_SYNC_ENABLED: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
@@ -94,7 +97,7 @@ ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 # produktive Instanz
 PROD_INSTANCE: true
 # accessibility
-ACCESSIBILITY_REPORT_EMAIL: nbc-support@netz-21.de
+ACCESSIBILITY_REPORT_EMAIL: ticketsystem@niedersachsen.support
 
 # Identity Management
 IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
@@ -116,11 +119,12 @@ BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 WITH_MOIN_SCHULE: true
 WITH_UNSYNCED_ENTITIES_DELETION: true
 
-# SCHULCONNEX / SANIS / moin.schule Client
+# SCHULCONNEX / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
+WITH_SCHULCONNEX_PROVISIONING: true
 
 # Ingress
 group_ingress:
@@ -133,3 +137,6 @@ group_ingress:
   api_v1_registration:
     serviceName: default-backend-404-svc
     servicePort: 8080
+
+# BiLo media metadata sync cronjob
+WITH_MEDIA_METADATA_SYNC: true

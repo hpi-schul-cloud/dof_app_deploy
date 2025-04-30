@@ -61,6 +61,7 @@ jobs:
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
           sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
           echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
+          echo "DOF_APP_DEPLOY_LATEST_TAG: ${{ inputs.cfg_version }}" >> branch_name.yml
       - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/schulcloud-server
@@ -85,12 +86,6 @@ jobs:
           path: repo/superhero-dashboard
           token: ${{ secrets.token }}
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
-      - uses: actions/checkout@v4
-        with:
-          repository: hpi-schul-cloud/shd-client
-          path: repo/shd-client
-          token: ${{ secrets.token }}
-          ref: ${{ env.SHD_CLIENT_VERSION }}
       - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/h5p-staticfiles-server

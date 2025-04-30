@@ -7,9 +7,10 @@ SC_CONTACT_EMAIL: schulcloud-support@thillm.de
 GLOBAL_ANNOUNCEMENT_TEXT: ''
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://www.schulportal-thueringen.de/tio"
+ROOM_MEMBER_INFO_URL: "https://schulcloud-thueringen.de/help/confluence/381583517"
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
-STUDENT_TEAM_CREATION: disabled
+STUDENT_TEAM_CREATION: "opt-in"
 CORS: "true"
 SECURITY_HEADERS: "true"
 
@@ -47,15 +48,11 @@ CONTENT_URI: https://content.schulcloud-thueringen.de
 SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
 JWT_TIMEOUT_SECONDS: 7200
 JWT_SHOW_TIMEOUT_WARNING_SECONDS: 3600
-DISABLED_BRUTE_FORCE_CHECK: "true"
 
 # PORTS
 PORT_SERVER: 3030
 PORT_FILE_SERVICE: 4444
 PORT_METRICS_SERVER: 9090
-
-# TSP (Thüringer Schulportal)
-FEATURE_TSP_ENABLED: "true"
 
 # Identity Management
 IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
@@ -67,12 +64,10 @@ ACCESSIBILITY_REPORT_EMAIL: institut@thillm.de
 ES_MERLIN_AUTH_URL: http://merlin.nibis.de/auth.php
 
 # BigBlueButton
-VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://s3.hidrive.strato.com/cloud-instances/thr/bbb/presentation.pdf
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
 
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
-FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
+FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
-
-WITH_TSP: true

@@ -45,7 +45,6 @@ jobs:
          - schulcloud-client
          - nuxt-client
          - superhero-dashboard
-         - shd-client
          - schulcloud-calendar
          - antivirus_check_service
          - version-aggregator
@@ -74,7 +73,7 @@ jobs:
             echo "branch_exists=false" >> $GITHUB_ENV
           fi
       ## Write for matrix outputs workaround https://github.com/orgs/community/discussions/17245
-      - uses: cloudposse/github-action-matrix-outputs-write@0.5.0
+      - uses: cloudposse/github-action-matrix-outputs-write@v1
         id: out
         with:
           matrix-step-name: ${{ github.job }}
@@ -90,7 +89,7 @@ jobs:
       are_all_branches_deleted: ${{ steps.are_all_branches_deleted.outputs.are_all_branches_deleted }}
     steps:
       ## read for matrix outputs workaround https://github.com/orgs/community/discussions/17245
-      - uses: cloudposse/github-action-matrix-outputs-read@0.1.2
+      - uses: cloudposse/github-action-matrix-outputs-read@v1
         id: read
         with:
           matrix-step-name: gather_branch_exists

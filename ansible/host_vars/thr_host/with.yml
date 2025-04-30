@@ -1,2 +1,1 @@
-WITH_TSP_SYNC: "true"
-WITH_TSP: "false"
+WITH_TSP_SYNC: true
