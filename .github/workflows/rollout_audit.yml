@@ -1,0 +1,35 @@
+name: Rollout to Audit
+run-name: Rollout of ${{ inputs.config_tag_name }} to ref-audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_tag_name:
+        description: 'Tag from the dof_app_deploy'
+        required: true
+
+jobs:
+  approve_ref:
+    environment: approve_ref
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Version ${{ github.event.inputs.config_tag_name }}"
+      - run: echo "Target(s) ref-audit"
+      - run: echo "Workflow is triggered by ${{ github.ref_type }} ${{ github.ref_name }}"
+      
+  ref-audit:
+    if: ${{ !failure() }}
+    needs:
+      - approve_ref
+    uses: ./.github/workflows/host.yml
+    with:
+      cfg_version: ${{ github.event.inputs.config_tag_name }}
+      host_name: ref-audit
+      host_group: dbc
+      host_stage: reference
+      execute_group: ref-audit
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      ONEPASSWORD_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}
+      KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      RC_WEBHOOK:  ${{ secrets.RC_WEBHOOK }}
