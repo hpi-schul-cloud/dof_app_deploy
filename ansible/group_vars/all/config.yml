@@ -865,15 +865,15 @@ configuration_all:
     value: "2592000" # 30 days
     server: true
     client: false
-  SESSION_VALKEY_CLUSTER_ENABLED:
-    value: "{{ SESSION_VALKEY_CLUSTER_ENABLED }}"
+  SESSION_VALKEY__CLUSTER_ENABLED:
+    value: "{{ SESSION_VALKEY__CLUSTER_ENABLED }}"
     server: true
     client: true
-  SESSION_VALKEY_SENTINEL_SERVICE_NAME: 
-    value: "{{ SESSION_VALKEY_SENTINEL_SERVICE_NAME }}"
+  SESSION_VALKEY__SENTINEL_SERVICE_NAME: 
+    value: "{{ SESSION_VALKEY__SENTINEL_SERVICE_NAME }}"
     server: true
     client: true
-  SESSION_VALKEY_SENTINEL_NAME: 
-    value: "{{ SESSION_VALKEY_SENTINEL_NAME }}"
+  SESSION_VALKEY__SENTINEL_NAME: 
+    value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true
