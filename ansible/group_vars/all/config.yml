@@ -865,8 +865,8 @@ configuration_all:
     value: "2592000" # 30 days
     server: true
     client: false
-  SESSION_VALKEY__CLUSTER_ENABLED:
-    value: "{{ SESSION_VALKEY__CLUSTER_ENABLED }}"
+  SESSION_VALKEY__MODE:
+    value: "{{ SESSION_VALKEY__MODE }}"
     server: true
     client: true
   SESSION_VALKEY__SENTINEL_SERVICE_NAME: 
