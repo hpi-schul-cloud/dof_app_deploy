@@ -39,7 +39,7 @@ metrics:
     check-key-groups: '\(jwt\):.+'
   serviceMonitor:
     enabled: true
-    additionalMetricRelabelings:
+    metricRelabelings:
         - sourceLabels: [ __name__ ]
           regex: redis_key_group_count
           action: replace
