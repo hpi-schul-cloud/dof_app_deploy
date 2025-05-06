@@ -46,3 +46,7 @@ FEATURE_TLDRAW_ENABLED: "true"
 
 LICENSE_SUMMARY_BASE_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com"
 LICENSE_SUMMARY_URL: "{{ LICENSE_SUMMARY_BASE_URL }}/{{ DOF_APP_DEPLOY_LATEST_TAG }}/{{ inventory_hostname }}-license-summary.json"
+
+SESSION_VALKEY__MODE: "cluster"
+SESSION_VALKEY__SENTINEL_SERVICE_NAME: "session-valkey-headless.{{ NAMESPACE }}.svc.cluster.local"
+SESSION_VALKEY__SENTINEL_NAME: "myprimary"
