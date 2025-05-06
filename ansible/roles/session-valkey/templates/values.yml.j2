@@ -1,7 +1,7 @@
 global:
   defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
 replica:
-  replicaCount: {{ SESSION_VALKEY_REPLICAS }}
+  replicaCount: "{{ SESSION_VALKEY_REPLICAS }}"
   pdb:
     create: false
   resources:
@@ -25,7 +25,7 @@ primary:
       memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
 auth:
   existingSecret: session-valkey-password
-  existingSecretPasswordKey: SESSION_VALKEY_SENTINEL_PASSWORD
+  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
   usePasswordFiles: false
 sentinel:
   enabled: true
