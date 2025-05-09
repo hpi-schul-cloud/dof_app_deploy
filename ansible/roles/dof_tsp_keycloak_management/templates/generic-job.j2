@@ -27,10 +27,9 @@ spec:
         - name:  tsp-keycloak-redirect-mgmt
           image: quay.io/schulcloudverbund/infra-tools:latest
           command:
-            - /bin/bash
-            - -c
-          args:
+            - python
             - /scripts/manage_keycloak_redirect.py
+          args:
             - --{{ manage_keycloak_redirect_arg }}
             - https://{{ DOMAIN }}/*
           resources:
