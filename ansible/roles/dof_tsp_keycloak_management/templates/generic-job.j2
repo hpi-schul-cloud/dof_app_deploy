@@ -45,7 +45,7 @@ spec:
               mountPath: /scripts/
           envFrom:
             - secretRef:
-              name: tsp-keycloak-redirect
+                name: tsp-keycloak-redirect
       restartPolicy: Never
       suspend: {{ suspend | default(false) }}
   ttlSecondsAfterFinished: 0
