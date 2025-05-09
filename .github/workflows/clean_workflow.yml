@@ -123,11 +123,14 @@ jobs:
         run: |
           branch_identifier='${{ needs.create_branch_identifier.outputs.id_branch }}'
           kubectl --kubeconfig=files/config --namespace $branch_identifier patch job/pg-deletion-job -p '{"spec":{"suspend":false}}' || echo "::warning::Couldn't clean up the postgres databases "
+          # this job is optional, so do not fail if it doesn't exist
+          kubectl --kubeconfig=files/config --namespace $branch_identifier patch job/tsp-keycloak-remove-redirect-job -p '{"spec":{"suspend":false}}' 2>/dev/null || true
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true ScaledObject
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true TriggerAuthentication
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true ExternalSecret
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true SecretStore
           kubectl --kubeconfig=files/config --namespace $branch_identifier wait --for=delete pod/pg-deletion-job --timeout=180s || echo "::warning::Couldn't clean up the postgres databases "
+          kubectl --kubeconfig=files/config --namespace $branch_identifier wait --for=delete pod/tsp-keycloak-remove-redirect-job --timeout=180s 2>/dev/null || echo "::notice:: tsp-keycloak-remove-redirect-job pod did not complete or was never created"
           kubectl --kubeconfig=files/config --namespace $branch_identifier delete --ignore-not-found=true --all=true OnePasswordItem
           kubectl --kubeconfig=files/config delete --ignore-not-found=true ns $branch_identifier
       - name: remove kubeconfig

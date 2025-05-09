@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tsp-kc-redirect-script-configmap
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: tsp-keycloak-mgmt
+data:
+  manage_keycloak_redirect.py: |
+    {{ lookup('file', 'files/manage_keycloak_redirect.py') | indent(4) }}
