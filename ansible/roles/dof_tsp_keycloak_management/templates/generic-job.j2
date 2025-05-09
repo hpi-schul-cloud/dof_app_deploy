@@ -45,5 +45,5 @@ spec:
             - secretRef:
                 name: tsp-keycloak-redirect
       restartPolicy: Never
-      suspend: {{ suspend | default(false) }}
+  suspend: {{ suspend | default(false) }}
   ttlSecondsAfterFinished: 0
