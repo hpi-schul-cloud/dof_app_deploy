@@ -1,0 +1,44 @@
+- name: Add or Update Postgres Cluster Secret by 1Password
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config 
+    namespace: "{{ NAMESPACE }}"
+    template: onepassword.j2
+  when: WITH_BRANCH_TSP_REDIRECT_MANAGEMENT and ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+  tags:
+    - 1password
+
+- name: Create ConfigMap with Script for database deletion
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: configmap.j2
+    apply: yes
+  when: WITH_BRANCH_TSP_REDIRECT_MANAGEMENT
+  tags:
+    - configmap
+
+- name: Create Job for adding tsp redirection
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: generic-job.j2
+    apply: yes
+  vars:
+    manage_keycloak_redirect_arg: add
+    suspend: false
+  when: WITH_BRANCH_TSP_REDIRECT_MANAGEMENT
+  tags:
+    - job
+
+- name: Create suspended Job for cleaning up tsp redirection
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: generic-job.j2
+    apply: yes
+  vars:
+    manage_keycloak_redirect_arg: remove
+    suspend: true
+  when: WITH_BRANCH_TSP_REDIRECT_MANAGEMENT
+  tags:
+    - job
