@@ -8,12 +8,12 @@ USERNAME = os.environ["KEYCLOAK_USER"]
 PASSWORD = os.environ["KEYCLOAK_PASSWORD"]
 CLIENT_ID = os.environ["TARGET_CLIENT_ID"]
 
-if len(sys.argv) != 3 or sys.argv[1] not in {"--add", "--remove"}:
-    print("Usage: python manage_redirect.py [--add|--remove] <redirect_uri>", file=sys.stderr)
+if len(sys.argv) < 2 or sys.argv[1] not in {"--add", "--remove", "--list"}:
+    print("Usage: python manage_redirect.py [--add|--remove <redirect_uri>|--list]", file=sys.stderr)
     sys.exit(1)
 
 action = sys.argv[1]
-REDIRECT_URI = sys.argv[2]
+REDIRECT_URI = sys.argv[2] if len(sys.argv) == 3 else None
 
 # Helper functions
 def post_form(url, data):
@@ -88,5 +88,9 @@ elif action == "--remove":
             print("Redirect URI removed.")
         else:
             print(f"Failed to remove, status {status}")
+elif action == "--list":
+    print("Redirect URIs:")
+    for uri in redirects:
+        print(f"- {uri}")
 
 revoke_token(BASE, AUTH_REALM, token)
