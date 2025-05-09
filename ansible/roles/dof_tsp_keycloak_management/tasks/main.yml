@@ -1,4 +1,4 @@
-- name: Add or Update Postgres Cluster Secret by 1Password
+- name: Add or Update tsp-keycloak secret by 1Password
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config 
     namespace: "{{ NAMESPACE }}"
@@ -7,7 +7,7 @@
   tags:
     - 1password
 
-- name: Create ConfigMap with Script for database deletion
+- name: Create ConfigMap with Script to manage redirect urls
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
