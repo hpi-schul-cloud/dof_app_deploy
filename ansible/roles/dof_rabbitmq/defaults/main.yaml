@@ -1,3 +1,3 @@
 RABBITMQ_IMAGE_NAME: docker.io/rabbitmq
-RABBITMQ_IMAGE_TAG: 4.0.5-management-alpine
+RABBITMQ_IMAGE_TAG: 4.1.0-management-alpine
 RABBITMQ_PER_OBJECT_METRICS: "true"
