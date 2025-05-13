@@ -437,6 +437,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_LESSON_H5P_ENABLED:
+    value: "false"
+    server: false
+    client: true
   FEATURE_TASK_SHARE:
     value: "true"
     server: true
@@ -498,10 +502,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_H5P_EDITOR_ENABLED:
-    value: "false"
-    server: true
-    client: true
   H5P_EDITOR__S3_REGION:
     value: "s3-eu-central-2"
     server: true
