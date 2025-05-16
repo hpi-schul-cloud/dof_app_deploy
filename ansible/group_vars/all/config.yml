@@ -806,7 +806,7 @@ configuration_all:
     server: true
     client: true
   ROOM_MEMBER_INFO_URL:
-    value: ""
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=154188006"
     server: true
     client: false
   FEATURE_AI_TUTOR_ENABLED:
