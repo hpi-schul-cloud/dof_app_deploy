@@ -1,0 +1,58 @@
+name: Merge release branch into main
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_branch:
+        description: 'Name of the release branch to merge (must start with release/)'
+        required: true
+
+jobs:
+  merge-release-to-main:
+    name: Merge release branch into main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate team membership
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ORG="hpi-schul-cloud"
+          USER="${{ github.actor }}"
+          STATE=$(gh api \
+            orgs/$ORG/teams/deployment-approval/memberships/$USER \
+            --jq .state || echo "none")
+          if [[ "$STATE" != "active" ]]; then
+            echo "User $USER is not in the 'deployment-approval' team."
+            exit 1
+          fi
+
+      - name: Validate branch name
+        run: |
+          if [[ "${{ github.event.inputs.release_branch }}" != release/* ]]; then
+            echo "Invalid branch name: must start with 'release/'"
+            exit 1
+          fi
+
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch release branch
+        run: |
+          git fetch origin ${{ github.event.inputs.release_branch }}
+
+      - name: Merge release into main with ours strategy
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          # in case of an conflict let main win
+          git merge -X ours origin/${{ github.event.inputs.release_branch }} --no-ff -m "Merge release branch ${{ github.event.inputs.release_branch }} into main"
+
+      - name: Push merge to main with PAT
+        env:
+          TOKEN: ${{ secrets.MERGE_RELEASE_BRANCH_PAT }}
+        run: |
+          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:main
