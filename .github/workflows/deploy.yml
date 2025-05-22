@@ -58,7 +58,7 @@ jobs:
          - h5p-staticfiles-server
          - tldraw-client
          - tldraw-server
-         - filestorage-server
+         - file-storage
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
