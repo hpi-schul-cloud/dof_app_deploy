@@ -825,10 +825,14 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  FEATURE_ROOMS_DUPLICATION_ENABLED:
+  FEATURE_ROOM_COPY_ENABLED:
+    value: "true"
+    server: true
+    client: false
+  FEATURE_ROOM_ADD_STUDENTS_ENABLED:
     value: "false"
     server: true
-    client: false  
+    client: false
   FEATURE_ROOM_MEMBERS_TABS_ENABLED:
     value: "false"
     server: true
@@ -869,11 +873,11 @@ configuration_all:
     value: "{{ SESSION_VALKEY__MODE }}"
     server: true
     client: true
-  SESSION_VALKEY__SENTINEL_SERVICE_NAME: 
+  SESSION_VALKEY__SENTINEL_SERVICE_NAME:
     value: "{{ SESSION_VALKEY__SENTINEL_SERVICE_NAME }}"
     server: true
     client: true
-  SESSION_VALKEY__SENTINEL_NAME: 
+  SESSION_VALKEY__SENTINEL_NAME:
     value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true

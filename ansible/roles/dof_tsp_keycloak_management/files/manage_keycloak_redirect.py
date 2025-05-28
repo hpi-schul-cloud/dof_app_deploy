@@ -65,24 +65,40 @@ client_id = clients[0]["id"]
 
 client = get_json(f"{BASE}/admin/realms/{TARGET_REALM}/clients/{client_id}", token)
 redirects = client.get("redirectUris", [])
+# we need to preserve that field, as when it is absent, client will lose the service account role mappings,
+# essentially a necessary workaround until keycloak is updated
+# https://github.com/keycloak/keycloak/discussions/16810#discussioncomment-8878792
+service_account_enabled = client.get("serviceAccountsEnabled", False)
 
 if action == "--add":
+    if not REDIRECT_URI:
+        print("Missing redirect URI for --add", file=sys.stderr)
+        sys.exit(1)
     if REDIRECT_URI in redirects:
         print("Redirect URI already present.")
     else:
         redirects.append(REDIRECT_URI)
-        update_payload = {"redirectUris": redirects}
+        update_payload = {
+            "redirectUris": redirects,
+            "serviceAccountsEnabled": service_account_enabled
+        }
         status = put_json(f"{BASE}/admin/realms/{TARGET_REALM}/clients/{client_id}", token, update_payload)
         if status == 204:
             print("Redirect URI added.")
         else:
             print(f"Failed to add, status {status}")
 elif action == "--remove":
+    if not REDIRECT_URI:
+        print("Missing redirect URI for --remove", file=sys.stderr)
+        sys.exit(1)
     if REDIRECT_URI not in redirects:
         print("Redirect URI not found.")
     else:
         redirects.remove(REDIRECT_URI)
-        update_payload = {"redirectUris": redirects}
+        update_payload = {
+            "redirectUris": redirects,
+            "serviceAccountsEnabled": service_account_enabled
+        }
         status = put_json(f"{BASE}/admin/realms/{TARGET_REALM}/clients/{client_id}", token, update_payload)
         if status == 204:
             print("Redirect URI removed.")
