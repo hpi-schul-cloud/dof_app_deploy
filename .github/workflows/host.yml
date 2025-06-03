@@ -61,6 +61,7 @@ jobs:
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
           sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
           echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
+          echo "DOF_APP_DEPLOY_LATEST_TAG: ${{ inputs.cfg_version }}" >> branch_name.yml
       - uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/schulcloud-server
@@ -121,6 +122,12 @@ jobs:
           path: repo/tldraw-server
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_SERVER_VERSION }}
+      - uses: actions/checkout@v4
+        with:
+          repository: hpi-schul-cloud/file-storage
+          path: repo/file-storage
+          token: ${{ secrets.token }}
+          ref: ${{ env.FILE_STORAGE_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible

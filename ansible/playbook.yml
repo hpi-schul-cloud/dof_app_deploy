@@ -13,8 +13,8 @@
     - dof_mongo_management
     - dof_postgresql
     - dof_postgresql_management
+    - dof_tsp_keycloak_management
     - dof_rabbitmq
-    - dof_redis
     - dof_mailcatcher
     - libreoffice
     - maildrop
@@ -32,6 +32,7 @@
     - schulcloud-server-migration-system
     - schulcloud-server-provisioning
     - schulcloud-client-core
+    - session-valkey
     - nuxt-client-core
     - superhero-dashboard
     - schulcloud-calendar-core
@@ -53,3 +54,5 @@
     - moin-schule-sync
     - media-licenses
     - media-metadata-sync
+    - vidis-media-metadata-sync
+    - file-storage

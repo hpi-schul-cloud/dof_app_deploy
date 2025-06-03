@@ -1,0 +1,54 @@
+global:
+  defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
+replica:
+  replicaCount: {{ SESSION_VALKEY_REPLICAS }}
+  pdb:
+    create: false
+  resources:
+    limits:
+      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
+      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
+    requests:
+      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
+      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
+primary:
+  pdb:
+    create: false
+  readinessProbe:
+    timeoutSeconds: 5
+  resources:
+    limits:
+      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
+      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
+    requests:
+      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
+      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
+auth:
+  existingSecret: session-valkey-password
+  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
+  usePasswordFiles: false
+sentinel:
+  enabled: true
+  readinessProbe:
+    timeoutSeconds: 5
+metrics:
+  enabled: true
+  podMonitor:
+    enabled: true
+  extraArgs:
+    check-key-groups: '\(jwt\):.+'
+  serviceMonitor:
+    enabled: true
+    metricRelabelings:
+        - sourceLabels: [ __name__ ]
+          regex: redis_key_group_count
+          action: replace
+          targetLabel: longterm
+          replacement: "true"   
+# OPS-6762 still up to debate if we will enable this
+networkPolicy:
+  enabled: false
+serviceAccount:
+  create: false
+# https://github.com/bitnami/charts/issues/9689
+useHostnames: false

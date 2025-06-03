@@ -58,6 +58,7 @@ jobs:
          - h5p-staticfiles-server
          - tldraw-client
          - tldraw-server
+         - file-storage
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
@@ -73,6 +74,7 @@ jobs:
         run: |
           git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
+          latest_tag=$(git tag -l "*.*.*" | tail -n 1)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
@@ -82,6 +84,7 @@ jobs:
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_BRANCH_NAME: ${branch_varname}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_LATEST_TAG: ${latest_tag}" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible

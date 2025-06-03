@@ -1,10 +1,8 @@
 NOT_AUTHENTICATED_REDIRECT_URL: "https://{{ DOMAIN }}/login?strategy=tsp"
-TSP_API_BASE_URL: https://test.schulportal-thueringen.de
 ROOT_URL_REDIRECT: https://test.schulportal-thueringen.de/thueringer_schulcloud
 
 NEXTCLOUD_REDIRECT_URL: https://nextcloud-thr.dbildungscloud.dev/apps/files/?dir=/
-NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev/
+NEXTCLOUD_BASE_URL: https://nextcloud-thr.dbildungscloud.dev
 
 FEATURE_TSP_SYNC_ENABLED: "true"
-FEATURE_TSP_MIGRATION_ENABLED: "true"
 TSP_API_CLIENT_BASE_URL: https://test.schulportal-thueringen.de/tip-ms/api

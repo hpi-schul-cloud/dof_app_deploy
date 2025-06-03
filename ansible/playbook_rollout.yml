@@ -12,7 +12,6 @@
     - role: dof_mongo
     - role: dof_postgresql
     - role: dof_rabbitmq
-    - role: dof_redis
     - role: dof_mailcatcher
       when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
     - role: libreoffice
@@ -34,6 +33,7 @@
     - role: schulcloud-server-provisioning
     - role: schulcloud-server-init
     - role: schulcloud-client-core
+    - role: session-valkey
     - role: nuxt-client-core
     - role: h5p-library-management
     - role: h5p-proxy
@@ -56,3 +56,5 @@
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
     - role: media-licenses
     - role: media-metadata-sync
+    - role: vidis-media-metadata-sync
+    - role: file-storage

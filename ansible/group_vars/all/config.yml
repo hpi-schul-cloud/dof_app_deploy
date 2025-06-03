@@ -118,7 +118,7 @@ configuration_all:
     server: true
     client: false
   FILES_STORAGE__SERVICE_BASE_URL:
-    value: "http://api-files-svc:4444"
+    value: "http://file-storage-svc:4444"
     server: true
     client: true
   FILES_STORAGE__S3_REGION:
@@ -206,10 +206,6 @@ configuration_all:
     value: "5"
     server: true
     client: true
-  DISABLED_BRUTE_FORCE_CHECK:
-    value: "false"
-    server: true
-    client: false
   STORAGE_SIGNED_URL_EXPIRE:
     server: true
     client: false
@@ -285,27 +281,10 @@ configuration_all:
     server: true
     client: true
   # TSP
-  FEATURE_TSP_ENABLED:
-    value: "false"
-    server: true
-    client: false
-  TSP_API_BASE_URL:
-    server: true
-    client: false
   TSP_API_CLIENT_BASE_URL:
     server: true
     client: false
   TSP_API_CLIENT_TOKEN_LIFETIME_MS:
-    server: true
-    client: false
-  TSP_SCHOOL_SYNCER__SCHOOL_LIMIT:
-    value: "10"
-    server: true
-    client: false
-  TSP_SYNC_MIGRATION_LIMIT:
-    server: true
-    client: false
-  FEATURE_TSP_MIGRATION_ENABLED:
     server: true
     client: false
   TSP_SYNC_SCHOOL_LIMIT:
@@ -318,10 +297,6 @@ configuration_all:
     server: true
     client: false
   TSP_SYNC_DATA_DAYS_TO_FETCH:
-    server: true
-    client: false
-  TSP_SCHOOL_SYNCER__STUDENTS_TEACHERS_CLASSES_LIMIT:
-    value: "150"
     server: true
     client: false
   FEATURE_TSP_SYNC_ENABLED:
@@ -406,6 +381,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_COLUMN_BOARD_FILE_FOLDER_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
     value: "false"
     server: true
@@ -416,6 +395,10 @@ configuration_all:
     client: false
   FEATURE_COLUMN_BOARD_VIDEOCONFERENCE_ENABLED:
     value: "true"
+    server: true
+    client: false
+  FEATURE_COLUMN_BOARD_H5P_ENABLED:
+    value: "false"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
@@ -454,6 +437,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_LESSON_H5P_ENABLED:
+    value: "false"
+    server: false
+    client: true
   FEATURE_TASK_SHARE:
     value: "true"
     server: true
@@ -483,11 +470,11 @@ configuration_all:
     server: false
     client: true
   FEATURE_SCHOOL_POLICY_ENABLED_NEW:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_SCHOOL_TERMS_OF_USE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   BODYPRASER_JSON_LIMIT:
@@ -515,10 +502,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_H5P_EDITOR_ENABLED:
-    value: "false"
-    server: true
-    client: true
   H5P_EDITOR__S3_REGION:
     value: "s3-eu-central-2"
     server: true
@@ -822,6 +805,10 @@ configuration_all:
     value: "https://lernen.dbildungscloud.de"
     server: true
     client: true
+  ROOM_MEMBER_INFO_URL:
+    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=154188006"
+    server: true
+    client: false
   FEATURE_AI_TUTOR_ENABLED:
     value: "false"
     server: true
@@ -830,10 +817,22 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
+  FEATURE_ROOM_INVITATION_LINKS_ENABLED:
     value: "false"
     server: true
-    client: true
+    client: false
+  FEATURE_ROOM_COPY_ENABLED:
+    value: "true"
+    server: true
+    client: false
+  FEATURE_ROOM_ADD_STUDENTS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+  FEATURE_ROOM_MEMBERS_TABS_ENABLED:
+    value: "false"
+    server: true
+    client: false
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
     value: "5"
     server: true
@@ -845,7 +844,7 @@ configuration_all:
   JWT_PUBLIC_KEY:
     server: true
     client: false
-  SBOM_SUMMARY_URL:
+  LICENSE_SUMMARY_URL:
     server: true
     client: false
   FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED:
@@ -862,3 +861,19 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
+  SCHULCONNEX_COURSE_SYNC_HISTORY_EXPIRATION_SECONDS:
+    value: "2592000" # 30 days
+    server: true
+    client: false
+  SESSION_VALKEY__MODE:
+    value: "{{ SESSION_VALKEY__MODE }}"
+    server: true
+    client: true
+  SESSION_VALKEY__SENTINEL_SERVICE_NAME:
+    value: "{{ SESSION_VALKEY__SENTINEL_SERVICE_NAME }}"
+    server: true
+    client: true
+  SESSION_VALKEY__SENTINEL_NAME:
+    value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
+    server: true
+    client: true
