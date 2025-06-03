@@ -57,3 +57,4 @@
     - role: media-licenses
     - role: media-metadata-sync
     - role: vidis-media-metadata-sync
+    - role: file-storage
