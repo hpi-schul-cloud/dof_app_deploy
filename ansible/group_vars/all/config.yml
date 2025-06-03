@@ -118,7 +118,7 @@ configuration_all:
     server: true
     client: false
   FILES_STORAGE__SERVICE_BASE_URL:
-    value: "http://api-files-svc:4444"
+    value: "http://file-storage-svc:4444"
     server: true
     client: true
   FILES_STORAGE__S3_REGION:
@@ -821,10 +821,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_ROOMS_CHANGE_PERMISSIONS_ENABLED:
-    value: "true"
-    server: true
-    client: true
   FEATURE_ROOM_COPY_ENABLED:
     value: "true"
     server: true
