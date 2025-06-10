@@ -172,7 +172,7 @@ jobs:
           NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
           NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
-          curl -v -XPOST --no-buffer --http1.1 -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
+          curl -v -XPOST --http1.1 -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
 
 
   deploy_dbc_dev:
