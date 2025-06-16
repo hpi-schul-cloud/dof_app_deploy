@@ -825,6 +825,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_ROOM_SHARE:
+    value: "true"
+    server: true
+    client: false
   FEATURE_ROOM_ADD_STUDENTS_ENABLED:
     value: "false"
     server: true
