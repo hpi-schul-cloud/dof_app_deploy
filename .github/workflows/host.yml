@@ -122,6 +122,12 @@ jobs:
           path: repo/tldraw-server
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_SERVER_VERSION }}
+      - uses: actions/checkout@v4
+        with:
+          repository: hpi-schul-cloud/file-storage
+          path: repo/file-storage
+          token: ${{ secrets.token }}
+          ref: ${{ env.FILE_STORAGE_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible

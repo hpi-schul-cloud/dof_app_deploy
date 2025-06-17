@@ -4,7 +4,7 @@ SC_TITLE: Thüringer Schulcloud
 SC_PRODUCTNAME: Thüringer Schulcloud
 SC_NAV_TITLE: Thüringer Schulcloud
 SC_CONTACT_EMAIL: schulcloud-support@thillm.de
-GLOBAL_ANNOUNCEMENT_TEXT: ''
+GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeThr
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://www.schulportal-thueringen.de/tio"
 ROOM_MEMBER_INFO_URL: "https://schulcloud-thueringen.de/help/confluence/381583517"
@@ -71,3 +71,5 @@ COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
 FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "false"
 NEXTCLOUD_SCOPES: "openid offline profile email groups"
+
+WITH_BRANCH_TSP_REDIRECT_MANAGEMENT: true

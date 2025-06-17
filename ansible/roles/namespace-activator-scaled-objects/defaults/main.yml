@@ -40,3 +40,6 @@ deployments_for_scaled_objects:
   - name: tldraw-valkey-node
     kind: StatefulSet
     replicaCount: "{{TLDRAW_VALKEY_REPLICAS}}"
+  - name: session-valkey-node
+    kind: StatefulSet
+    replicaCount: "{{SESSION_VALKEY_REPLICAS}}"
