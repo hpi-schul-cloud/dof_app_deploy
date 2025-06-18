@@ -877,3 +877,8 @@ configuration_all:
     value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true
+  RELEASE_NOTES_REPO_URL:
+    value: "{{  RELEASE_NOTES_REPO_URL }}"
+    server: true
+    client: false
+
