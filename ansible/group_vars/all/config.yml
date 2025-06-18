@@ -398,7 +398,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_COLUMN_BOARD_H5P_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
