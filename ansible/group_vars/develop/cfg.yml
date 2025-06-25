@@ -43,7 +43,7 @@ SERVER_LDAP_SYNC_FULL_CRONJOB: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
 SERVER_TSP_SYNC_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} {{ 4 | random(seed=NAMESPACE) |int + 19 }} * * *"
 ROCKETCHAT_FIXUP_CRONJOB_SCHEDULE: "{{ 5 | random(seed=NAMESPACE) }}/5 * * * *"
 SERVER_VIDIS_SYNC_CRONJOB_SCHEDULE: "{{ 20 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 4 }} * * *"
-SERVER_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: "{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 2 }} * * *"
+SERVER_BILO_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: "{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 2 }} * * *"
 SERVER_VIDIS_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: "{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 3 }} * * *"
 
 # JWT_PUBLIC_KEY must be single quoted. When using double quotes newlines are replaced by spaces.
