@@ -382,7 +382,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_COLUMN_BOARD_FILE_FOLDER_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED:
@@ -398,7 +398,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_COLUMN_BOARD_H5P_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_SOCKET_ENABLED:
@@ -825,6 +825,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_ROOM_SHARE:
+    value: "true"
+    server: true
+    client: false
   FEATURE_ROOM_ADD_STUDENTS_ENABLED:
     value: "false"
     server: true
@@ -877,3 +881,7 @@ configuration_all:
     value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true
+  FEATURE_HIDE_OLD_ADMIN_PAGE_LINK:
+    value: "false"
+    server: true
+    client: false

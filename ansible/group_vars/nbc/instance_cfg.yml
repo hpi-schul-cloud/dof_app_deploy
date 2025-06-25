@@ -5,8 +5,8 @@ SC_TITLE: Niedersächsische Bildungscloud
 SC_PRODUCTNAME: Niedersächsische Bildungscloud
 SC_NAV_TITLE: Niedersächsische Bildungscloud
 SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
-GLOBAL_ANNOUNCEMENT_TEXT: ""
-GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
+GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeNbc
+GLOBAL_ANNOUNCEMENT_ROLES: administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
 ROOM_MEMBER_INFO_URL: "https://niedersachsen.cloud/help/confluence/381583517"
 
@@ -54,6 +54,7 @@ FEATURE_PREFERRED_CTL_TOOLS_ENABLED: "true"
 FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "true"
 FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED: "true"
 FEATURE_MEDIA_METADATA_SYNC_ENABLED: "true"
+FEATURE_HIDE_OLD_ADMIN_PAGE_LINK: "true"
 
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
