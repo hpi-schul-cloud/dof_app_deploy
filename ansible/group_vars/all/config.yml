@@ -860,7 +860,7 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_MEDIA_METADATA_SYNC_ENABLED:
+  FEATURE_BILO_MEDIA_METADATA_SYNC_ENABLED:
     value: "false"
     server: true
     client: false

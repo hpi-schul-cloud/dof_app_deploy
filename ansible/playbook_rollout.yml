@@ -55,6 +55,6 @@
     - role: moin-schule-sync
       when: WITH_MOIN_SCHULE is defined and WITH_MOIN_SCHULE|bool
     - role: media-licenses
-    - role: media-metadata-sync
+    - role: bilo-media-metadata-sync
     - role: vidis-media-metadata-sync
     - role: file-storage
