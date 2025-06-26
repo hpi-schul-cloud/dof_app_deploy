@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'sc-common/**'
+      - '.github/workflows/deploy-sc-common.yml'
     branches:
       - main
       - skaffhold
@@ -41,4 +42,6 @@ jobs:
           KUBECONFIG: ~/.kube/config
           SKAFFOLD_LABEL: skaffold.dev/run-id=ci
         run: |
-          skaffold run --profile dev-${{ matrix.cluster | lower }}
+          PROFILE_NAME=$(echo "${{ matrix.cluster }}" | tr '[:upper:]' '[:lower:]')
+          echo "Using Skaffold profile: $PROFILE_NAME"
+          skaffold render --profile $PROFILE_NAME
