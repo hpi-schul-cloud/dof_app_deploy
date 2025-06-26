@@ -1,0 +1,43 @@
+name: Deploy sc-common
+
+on:
+  push:
+    paths:
+      - 'sc-common/**'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cluster:
+          - DBC
+          - NBC
+          - BRB
+          - THR
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets[format('DEV_KUBE_CONFIG_{0}', matrix.cluster)] }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Set up Skaffold
+        uses: hiberbee/github-action-skaffold@1.27
+        with:
+          skaffold-version: '2.16.1'
+
+      - name: Deploy with Skaffold
+        env:
+          KUBECONFIG: ~/.kube/config
+          SKAFFOLD_LABEL: skaffold.dev/run-id=ci
+        run: |
+          skaffold run --profile dev-${{ matrix.cluster | lower }}
