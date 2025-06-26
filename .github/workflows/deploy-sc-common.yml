@@ -32,11 +32,6 @@ jobs:
           echo "${{ secrets[format('DEV_KUBE_CONFIG_{0}', matrix.cluster)] }}" > ~/.kube/config
           chmod 600 ~/.kube/config
 
-      - name: Set up Skaffold
-        uses: hiberbee/github-action-skaffold@1.27.0
-        with:
-          skaffold-version: '2.16.1'
-
       - name: Determine Skaffold profile
         id: profile
         run: |
@@ -48,7 +43,7 @@ jobs:
         uses: hiberbee/github-action-skaffold@1.27.0
         with:
           skaffold-version: '2.16.1'
-          working-directory: sc-common
+          filename: sc-common/skaffold.yaml
           profile: ${{ steps.profile.outputs.profile }}
         env:
           KUBECONFIG: ~/.kube/config
