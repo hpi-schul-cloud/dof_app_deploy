@@ -33,7 +33,7 @@ jobs:
           chmod 600 ~/.kube/config
 
       - name: Set up Skaffold
-        uses: hiberbee/github-action-skaffold@1.27
+        uses: hiberbee/github-action-skaffold@1.27.0
         with:
           skaffold-version: '2.16.1'
 
