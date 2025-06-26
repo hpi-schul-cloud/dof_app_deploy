@@ -48,7 +48,7 @@ jobs:
       - name: Run Skaffold
         run: |
           cd sc-common
-          skaffold render --profile ${{ steps.profile.outputs.profile }}
+          skaffold run --profile ${{ steps.profile.outputs.profile }}
         env:
           KUBECONFIG: /home/runner/.kube/config
           SKAFFOLD_LABEL: skaffold.dev/run-id=ci
