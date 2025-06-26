@@ -48,8 +48,7 @@ jobs:
         uses: hiberbee/github-action-skaffold@1.27.0
         with:
           skaffold-version: '2.16.1'
-          filename: sc-common/skaffhold.yaml
-          command: render
+          working-directory: sc-common
           profile: ${{ steps.profile.outputs.profile }}
         env:
           KUBECONFIG: ~/.kube/config
