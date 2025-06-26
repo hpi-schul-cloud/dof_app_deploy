@@ -46,6 +46,6 @@ jobs:
           working-directory: sc-common
           profile: ${{ steps.profile.outputs.profile }}
           command: run
+          kubeconfig: ~/.kube/config
         env:
-          KUBECONFIG: ~/.kube/config
           SKAFFOLD_LABEL: skaffold.dev/run-id=ci
