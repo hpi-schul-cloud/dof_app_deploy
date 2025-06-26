@@ -6,6 +6,7 @@ on:
       - 'sc-common/**'
     branches:
       - main
+      - skaffhold
   workflow_dispatch:
 
 jobs:
