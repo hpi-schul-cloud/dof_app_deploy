@@ -37,11 +37,20 @@ jobs:
         with:
           skaffold-version: '2.16.1'
 
-      - name: Deploy with Skaffold
-        env:
-          KUBECONFIG: ~/.kube/config
-          SKAFFOLD_LABEL: skaffold.dev/run-id=ci
+      - name: Determine Skaffold profile
+        id: profile
         run: |
           PROFILE_NAME=$(echo "${{ matrix.cluster }}" | tr '[:upper:]' '[:lower:]')
           echo "Using Skaffold profile: $PROFILE_NAME"
-          skaffold render --profile $PROFILE_NAME
+          echo "profile=$PROFILE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Run Skaffold
+        uses: hiberbee/github-action-skaffold@1.27.0
+        with:
+          skaffold-version: '2.16.1'
+          filename: sc-common/skaffhold.yaml
+          command: render
+          profile: ${{ steps.profile.outputs.profile }}
+        env:
+          KUBECONFIG: ~/.kube/config
+          SKAFFOLD_LABEL: skaffold.dev/run-id=ci
