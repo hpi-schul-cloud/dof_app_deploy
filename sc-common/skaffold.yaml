@@ -1,0 +1,13 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: sc-common
+manifests:
+  rawYaml:
+    - sc-common.yml
+    - sc-openldap-deployment.yml
+    - sc-openldap-single-deployment.yml
+    - sc-openldap-single-svc.yml
+    - sc-openldap-svc.yml
+deploy:
+  kubectl: {}
