@@ -1,5 +1,5 @@
 # A place for resources for all other namespaces: sc-common
-
+use skaffhold
 all those are one time operations
 
 ## ldap
