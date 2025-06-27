@@ -860,11 +860,6 @@ configuration_all:
     server: true
     client: false
     nuxtclient: false
-  FEATURE_BILO_MEDIA_METADATA_SYNC_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
   SCHULCONNEX_COURSE_SYNC_HISTORY_EXPIRATION_SECONDS:
     value: "2592000" # 30 days
     server: true
