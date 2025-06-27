@@ -1,0 +1,53 @@
+name: Deploy sc-common
+
+on:
+  push:
+    paths:
+      - 'sc-common/**'
+      - '.github/workflows/deploy-sc-common.yml'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cluster:
+          - DBC
+          - NBC
+          - BRB
+          - THR
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets[format('DEV_KUBE_CONFIG_{0}', matrix.cluster)] }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Determine Skaffold profile
+        id: profile
+        run: |
+          PROFILE_NAME=$(echo "${{ matrix.cluster }}" | tr '[:upper:]' '[:lower:]')
+          echo "Using Skaffold profile: $PROFILE_NAME"
+          echo "profile=$PROFILE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Install Skaffold
+        uses: hiberbee/github-action-skaffold@1.27.0
+        with:
+          skaffold-version: '2.16.1'
+          working-directory: sc-common
+
+      - name: Run Skaffold
+        run: |
+          cd sc-common
+          skaffold run --profile ${{ steps.profile.outputs.profile }}
+        env:
+          KUBECONFIG: /home/runner/.kube/config
+          SKAFFOLD_LABEL: skaffold.dev/run-id=ci
