@@ -7,7 +7,6 @@ SC_CONTACT_EMAIL: schulcloud-support@thillm.de
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeThr
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://www.schulportal-thueringen.de/tio"
-ROOM_MEMBER_INFO_URL: "https://schulcloud-thueringen.de/help/confluence/381583517"
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
 STUDENT_TEAM_CREATION: "opt-in"
