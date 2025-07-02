@@ -116,15 +116,11 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.cloud"
 
-WITH_MOIN_SCHULE: true
-WITH_UNSYNCED_ENTITIES_DELETION: true
-
 # SCHULCONNEX / moin.schule Client
 SCHULCONNEX_CLIENT__API_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1"
 SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schule/realms/SANIS/protocol/openid-connect/token"
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info"
-WITH_SCHULCONNEX_PROVISIONING: true
 
 # Ingress
 group_ingress:
@@ -138,5 +134,3 @@ group_ingress:
     serviceName: default-backend-404-svc
     servicePort: 8080
 
-# BiLo media metadata sync cronjob
-WITH_BILO_MEDIA_METADATA_SYNC: true
