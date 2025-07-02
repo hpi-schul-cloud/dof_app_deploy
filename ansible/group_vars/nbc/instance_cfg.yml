@@ -8,7 +8,6 @@ SC_CONTACT_EMAIL: ticketsystem@niedersachsen.support
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeNbc
 GLOBAL_ANNOUNCEMENT_ROLES: administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
-ROOM_MEMBER_INFO_URL: "https://niedersachsen.cloud/help/confluence/381583517"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in

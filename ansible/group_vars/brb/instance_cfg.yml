@@ -8,7 +8,6 @@ SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.schoolYearChangeBrb
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://ecampus.lisum.de/home"
-ROOM_MEMBER_INFO_URL: "https://brandenburg.cloud/help/confluence/381583517"
 
 SHOW_VERSION: 1
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
