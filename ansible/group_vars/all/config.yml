@@ -818,7 +818,7 @@ configuration_all:
   FEATURE_ROOM_ADD_STUDENTS_ENABLED:
     value: "false"
     server: true
-    client: false
+    client: true
   FEATURE_ROOM_MEMBERS_TABS_ENABLED:
     value: "false"
     server: true
@@ -842,11 +842,6 @@ configuration_all:
     server: true
     client: true
   FEATURE_VIDIS_MEDIA_ACTIVATIONS_ENABLED:
-    value: "false"
-    server: true
-    client: false
-    nuxtclient: false
-  FEATURE_BILO_MEDIA_METADATA_SYNC_ENABLED:
     value: "false"
     server: true
     client: false
