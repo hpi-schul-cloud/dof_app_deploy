@@ -1,0 +1,15 @@
+replicaCount: {{ COLLABORA_OFFICE_REPLICAS }}
+autoscaling:
+  enabled: false
+resources:
+  limits:
+    cpu: "{{ COLLABORA_OFFICE_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_LIMITS|default('4Gi', true) }}"
+  requests:
+    cpu: "{{ COLLABORA_OFFICE_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('1Gi', true) }}"
+
+ingress:
+  enabled: false
+
+
