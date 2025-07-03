@@ -78,15 +78,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
       - name: Install python3-kubernetes
         run: sudo apt-get install -y python3-kubernetes
+
+      - name: Cache Ansible Galaxy collections
+        uses: actions/cache@v4
+        with:
+          path: ~/.ansible/collections
+          key: ansible-collections-${{ hashFiles('ansible/collections/requirements.yml') }}
+      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/group_vars
         run: |
           echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> develop/dof_deploy.yml
           echo "TLS_ENABLED: \"true\"" >> develop/dof_deploy.yml
-      - run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
