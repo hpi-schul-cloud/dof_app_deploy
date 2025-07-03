@@ -11,8 +11,6 @@ H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildung
 BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 
-FEATURE_COLUMN_BOARD_SUBMISSIONS_ENABLED: "true"
-
 FEATURE_ROOM_ADD_STUDENTS_ENABLED: "true"
 FEATURE_ROOM_MEMBERS_TABS_ENABLED: "true"
 
