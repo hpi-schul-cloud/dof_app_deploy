@@ -80,6 +80,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install python3-kubernetes
+        # this is a very sensitive area, we want to pin the commit here
         uses: awalsh128/cache-apt-pkgs-action@5902b33ae29014e6ca012c5d8025d4346556bd40
         with:
           packages: python3-kubernetes
