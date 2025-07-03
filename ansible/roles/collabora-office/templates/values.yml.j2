@@ -20,18 +20,5 @@ prometheus:
 
 ingress:
   enabled: false
-#  className: {{ INGRESS_CLASS }}
-#  hosts:
-#    - host: {{ COLLABORA_OFFICE_PREFIX }}{{ DOMAIN }}
-#      paths:
-#        - path: /
-#          pathType: ImplementationSpecific
-#{ % if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) % }
-#  tls:
-#    - hosts:
-#        - { { COLLABORA_OFFICE_PREFIX } }{ { DOMAIN } }
-#{ % if CLUSTER_ISSUER is defined % }
-#  secretName: { { COLLABORA_OFFICE_PREFIX } }{ { DOMAIN } }-tls
-#{% endif %}
-#{% endif %}
+
 

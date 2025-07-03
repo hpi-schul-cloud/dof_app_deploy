@@ -1,7 +1,7 @@
 - name: Install collabora office
   kubernetes.core.helm:
     chart_ref: collabora/collabora-online
-    #chart_version: '{{ SESSION_VALKEY_CHART_VERSION }}'
+    #chart_version: '{{ COLLABORA_OFFICE_CHART_VERSION }}'
     release_name: collabora-online
     release_namespace: '{{ NAMESPACE }}'
     release_state: present
