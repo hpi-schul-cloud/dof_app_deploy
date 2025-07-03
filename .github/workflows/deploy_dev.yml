@@ -38,22 +38,37 @@ jobs:
 
   deploy-matrix:
     runs-on: ubuntu-24.04
-    name: deploy ${{ inputs.tenant }}
+    # The `label` field is duplicated to support clean job names.
+    # GitHub does not support conditional expressions (like `||`) in `name:`,
+    # so all matrix entries must define the field explicitly.
+    name: deploy ${{ inputs.tenant }} • ${{ matrix.action.label }}
     strategy:
       fail-fast: false
       matrix:
         action:
           - tags: configmap
+            label: configmap
             op: tags
           - tags: service
+            label: service
             op: tags
           - tags: 1password
+            label: 1password
             op: tags
           - tags: deployment
+            label: deployment
             op: tags
           - tags: ingress
+            label: ingress
             op: tags
-          - tags: "ingress,configmap,service,1password,deployment"
+          - tags: keda
+            label: keda
+            op: tags
+          - tags: helm
+            label: helm
+            op: tags
+          - tags: "ingress,configmap,service,1password,deployment,keda,helm"
+            label: other-tags
             op: skip-tags
     steps:
       - uses: actions/download-artifact@v4
