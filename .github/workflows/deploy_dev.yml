@@ -41,7 +41,7 @@ jobs:
     # The `label` field is duplicated to support clean job names.
     # GitHub does not support conditional expressions (like `||`) in `name:`,
     # so all matrix entries must define the field explicitly.
-    name: deploy ${{ inputs.tenant }} • ${{ matrix.action.label }}
+    name: ${{ inputs.tenant }} • ${{ matrix.action.label }}
     strategy:
       fail-fast: false
       matrix:
