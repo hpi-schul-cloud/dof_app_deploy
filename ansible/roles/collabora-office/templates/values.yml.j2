@@ -1,0 +1,37 @@
+replicaCount: {{ COLLABORA_OFFICE_REPLICAS }}
+autoscaling:
+  enabled: false
+resources:
+  limits:
+    cpu: "{{ COLLABORA_OFFICE_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_LIMITS|default('4Gi', true) }}"
+  requests:
+    cpu: "{{ COLLABORA_OFFICE_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('1Gi', true) }}"
+
+podDisruptionBudget:
+  enabled: true
+
+prometheus:
+  servicemonitor:
+    enabled: true
+  rules:
+    enabled: true
+
+ingress:
+  enabled: false
+#  className: {{ INGRESS_CLASS }}
+#  hosts:
+#    - host: {{ COLLABORA_OFFICE_PREFIX }}{{ DOMAIN }}
+#      paths:
+#        - path: /
+#          pathType: ImplementationSpecific
+#{ % if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) % }
+#  tls:
+#    - hosts:
+#        - { { COLLABORA_OFFICE_PREFIX } }{ { DOMAIN } }
+#{ % if CLUSTER_ISSUER is defined % }
+#  secretName: { { COLLABORA_OFFICE_PREFIX } }{ { DOMAIN } }-tls
+#{% endif %}
+#{% endif %}
+
