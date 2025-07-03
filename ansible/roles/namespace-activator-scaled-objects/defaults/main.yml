@@ -8,7 +8,7 @@ deployments_for_scaled_objects:
   - name: h5p-staticfiles-server-deployment
   - name: antivirus-webserver-deployment
   - name: antivirus-scanfile-deployment
-  - name: api-files-deployment
+  - name: file-storage-deployment-deployment
   - name: api-migration-systems-deployment
   - name: preview-generator-deployment
   - name: api-fwu-deployment
