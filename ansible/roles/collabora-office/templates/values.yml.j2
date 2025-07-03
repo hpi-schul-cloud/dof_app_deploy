@@ -9,15 +9,6 @@ resources:
     cpu: "{{ COLLABORA_OFFICE_CPU_REQUESTS|default('100m', true) }}"
     memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('1Gi', true) }}"
 
-podDisruptionBudget:
-  enabled: true
-
-prometheus:
-  servicemonitor:
-    enabled: true
-  rules:
-    enabled: true
-
 ingress:
   enabled: false
 
