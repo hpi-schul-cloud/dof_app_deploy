@@ -792,7 +792,7 @@ configuration_all:
     server: true
     client: true
   ROOM_MEMBER_INFO_URL:
-    value: "https://docs.dbildungscloud.de/pages/viewpage.action?pageId=154188006"
+    value: "https://{{ DOMAIN }}/help/confluence/381583517"
     server: true
     client: false
   FEATURE_AI_TUTOR_ENABLED:
