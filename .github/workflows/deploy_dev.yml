@@ -79,14 +79,17 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install python3-kubernetes
-        run: sudo apt-get install -y python3-kubernetes
+      - uses: awalsh128/cache-apt-pkgs-action@5902b33ae29014e6ca012c5d8025d4346556bd40
+        with:
+          packages: python3-kubernetes
+          version: 1.0
 
       - name: Cache Ansible Galaxy collections
         uses: actions/cache@v4
         with:
           path: ~/.ansible/collections
           key: ansible-collections-${{ hashFiles('ansible/collections/requirements.yml') }}
+
       - run: ansible-galaxy install -r ansible/collections/requirements.yml
 
       - name: 1Password
