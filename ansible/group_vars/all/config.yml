@@ -121,24 +121,10 @@ configuration_all:
     value: "http://file-storage-svc:4444"
     server: true
     client: true
-  FILES_STORAGE__S3_REGION:
-    value: "eu-central-2"
-    server: true
-    client: false
   FILES_STORAGE__INCOMING_REQUEST_TIMEOUT:
     value: "600000"
     server: true
     client: true
-  FILES_STORAGE__MAX_FILE_SIZE:
-    # in Byte
-    # We use the Windows convention here that file sizes are measured in KB (1KB = 1024B, instead of 1kB = 1000B). Thus, 2,5GB = 2684354560B.
-    value: "2684354560"
-    server: true
-    client: true
-  FILES_STORAGE__USE_STREAM_TO_ANTIVIRUS:
-    value: "true"
-    server: true
-    client: false
   # WOPI
   WOPI_MAX_FILE_SIZE:
     value: "104857600"
