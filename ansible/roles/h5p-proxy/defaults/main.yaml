@@ -8,8 +8,6 @@ H5P_LIBRARIES:
   - H5P.Collage
   - H5P.Cornell
   - H5P.Crossword
-  - H5P.Column
-  - H5P.CoursePresentation
   - H5P.Dialogcards
   - H5P.DocumentationTool
   - H5P.DragQuestion
@@ -29,7 +27,6 @@ H5P_LIBRARIES:
   - H5P.ImageSlider
   - H5P.InfoWall
   - H5P.InteractiveBook
-  - H5P.InteractiveVideo
   - H5P.KewArCode
   - H5P.MarkTheWords
   - H5P.MultiChoice
