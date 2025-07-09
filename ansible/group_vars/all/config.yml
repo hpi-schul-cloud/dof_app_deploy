@@ -720,7 +720,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_CTL_TOOLS_COPY_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   CTL_TOOLS_RELOAD_TIME_MS:
@@ -828,7 +828,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_PREFERRED_CTL_TOOLS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   JWT_PUBLIC_KEY:
