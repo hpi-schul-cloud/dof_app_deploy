@@ -12,3 +12,21 @@
     values: "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
   tags:
     - helm
+
+- name: Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: ingress.yml.j2
+    apply: yes
+  tags:
+    - ingress
+
+- name: collabora admin secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: onepassword.yml.j2
+  when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+  tags:
+    - 1password

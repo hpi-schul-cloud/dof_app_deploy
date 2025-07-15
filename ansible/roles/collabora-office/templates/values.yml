@@ -1,0 +1,25 @@
+replicaCount: 1
+autoscaling:
+  enabled: false
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 1Gi
+
+ingress:
+   enabled: false
+
+collabora:
+  existingSecret:
+    enabled: true
+    secretName: "collabora-admin-password"
+    usernameKey: "username"
+    passwordKey: "password"
+
+  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true
+  aliasgroups:
+#    - host: 'https://{{ DOMAIN }}'
+    - host: 'https://bc-9870.dbc.dbildungscloud.dev:443'

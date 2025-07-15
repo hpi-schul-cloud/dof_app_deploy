@@ -12,4 +12,13 @@ resources:
 ingress:
   enabled: false
 
+collabora:
+  existingSecret:
+    enabled: true
+    secretName: "collabora-admin-password"
+    usernameKey: "username"
+    passwordKey: "password"
 
+  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true
+  aliasgroups:
+    - host: 'https://{{ DOMAIN }}:443'
