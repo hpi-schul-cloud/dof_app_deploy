@@ -9,14 +9,13 @@
 #    server: true
 #    client: false
 configuration_all:
-  #  ITAM_NAME:
+  #  ITEM_NAME:
   #    var_name: OPTIONAL_EVN_ITEM_NAME
   #    config_name: OPTIONAL for the host and group vars
   #    value: "true" OPTIONAL
   #    server: true
   #    client: true
   HOST:
-    config_name: CFG_HOST
     value: "https://{{ DOMAIN }}"
     server: true
     client: true
@@ -158,10 +157,6 @@ configuration_all:
     value: "https://idp-{{ DOMAIN }}"
     server: true
     client: false
-  IGNORE_DISCOVERABILITY:
-    value: "true"
-    server: true
-    client: false
   HYDRA_URI:
     value: "http://hydra-svc:4445/admin"
     server: true
@@ -211,10 +206,6 @@ configuration_all:
   ROCKET_CHAT_DEPRECATION_DATE:
     server: false
     client: true
-  # anything else
-  CONTENT_URI:
-    server: true
-    client: false
   # Antivirus
   ENABLE_FILE_SECURITY_CHECK:
     value: "true"
