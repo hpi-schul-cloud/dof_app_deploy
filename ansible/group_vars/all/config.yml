@@ -237,16 +237,8 @@ configuration_all:
     value: "https://{{ DOMAIN }}/etherpad/p"
     server: true
     client: true
-  ETHERPAD__OLD_PAD_URI:
-    value: "https://etherpad.{{ DOMAIN }}/p"
-    server: true
-    client: false
-  ETHERPAD__NEW_DOMAIN:
+  ETHERPAD__DOMAIN:
     value: "{{ DOMAIN }}"
-    server: false
-    client: true
-  ETHERPAD__OLD_DOMAIN:
-    value: "etherpad.{{ DOMAIN }}"
     server: false
     client: true
   JWT_TIMEOUT_SECONDS:
