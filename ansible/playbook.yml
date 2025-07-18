@@ -53,6 +53,6 @@
     - post_deployment
     - moin-schule-sync
     - media-licenses
-    - media-metadata-sync
+    - bilo-media-metadata-sync
     - vidis-media-metadata-sync
     - file-storage
