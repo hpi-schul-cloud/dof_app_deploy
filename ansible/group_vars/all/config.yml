@@ -843,5 +843,5 @@ configuration_all:
     client: false
   COOKIE__JWT_HTTP_ONLY:
     value: "true"
-    server: true
+    server: false
     client: true
