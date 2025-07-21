@@ -67,6 +67,10 @@ data:
       }
 {% endif %}
 
+      location = / {
+        return 404;
+      }
+
       location / {
         proxy_hide_header 'Access-Control-Allow-Origin';
         add_header 'Access-Control-Allow-Origin' $http_origin;
