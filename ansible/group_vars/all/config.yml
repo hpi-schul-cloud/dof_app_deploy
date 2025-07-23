@@ -845,3 +845,7 @@ configuration_all:
     value: "true"
     server: false
     client: true
+  INCLUDE_MAIL_IN_USER_FULL_TEXT_INDEX:
+    value: "true"
+    server: true
+    client: false
