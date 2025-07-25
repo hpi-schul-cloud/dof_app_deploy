@@ -1,0 +1,43 @@
+storage:
+  className: "nfs-client"
+
+haMode:
+  enabled: true
+  replicas: 3
+
+
+resources:
+  limits:
+    cpu: "1000m"
+    memory: "4Gi"
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+
+sentinelResources:
+  limits:
+    cpu: "1000m"
+    memory: "4Gi"
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+
+auth:
+  existingSecret: session-valkey-password
+  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
+  usePasswordFiles: false
+
+metrics:
+  enabled: true
+  podMonitor:
+    enabled: true
+  extraArgs:
+    check-key-groups: '\(jwt\):.+'
+  serviceMonitor:
+    enabled: true
+    metricRelabelings:
+        - sourceLabels: [ __name__ ]
+          regex: redis_key_group_count
+          action: replace
+          targetLabel: longterm
+          replacement: "true"

@@ -47,7 +47,7 @@ metrics:
   image:
     registry: quay.io
     repository: oliver006/redis_exporter
-    tag: 1.74.0
+    tag: "{{ SESSION_VALKEY_REDIS_EXPORTER_IMAGE_VERSION }}"
   podMonitor:
     enabled: true
   extraArgs:
