@@ -1,5 +1,12 @@
 global:
   defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
+  security:
+    allowInsecureImages: true
+
+image:
+  registry: docker.io
+  repository: valkey/valkey
+  tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
 replica:
   replicaCount: {{ SESSION_VALKEY_REPLICAS }}
   pdb:
@@ -31,8 +38,16 @@ sentinel:
   enabled: true
   readinessProbe:
     timeoutSeconds: 5
+  image:
+    registry: docker.io
+    repository: valkey/valkey
+    tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
 metrics:
   enabled: true
+  image:
+    registry: quay.io
+    repository: oliver006/redis_exporter
+    tag: 1.74.0
   podMonitor:
     enabled: true
   extraArgs:
