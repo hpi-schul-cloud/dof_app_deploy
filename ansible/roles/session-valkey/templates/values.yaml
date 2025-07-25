@@ -4,6 +4,7 @@ storage:
 haMode:
   enabled: true
   replicas: 3
+  masterGroupName: myprimary
 
 
 resources:
@@ -22,10 +23,8 @@ sentinelResources:
     cpu: "100m"
     memory: "1Gi"
 
-auth:
-  existingSecret: session-valkey-password
-  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
-  usePasswordFiles: false
+extraSecretValkeyConfigs: "session-valkey-auth"
+extraSecretSentinelConfigs: "sentinel-session-valkey-auth"
 
 metrics:
   enabled: true
