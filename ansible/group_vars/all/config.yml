@@ -798,6 +798,10 @@ configuration_all:
     value: "false"
     server: true
     client: true
+  FEATURE_ADMINISTRATE_ROOMS_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_ROOM_MEMBERS_TABS_ENABLED:
     value: "false"
     server: true
@@ -845,3 +849,7 @@ configuration_all:
     value: "false"
     server: true
     client: false
+  COOKIE__JWT_HTTP_ONLY:
+    value: "true"
+    server: false
+    client: true
