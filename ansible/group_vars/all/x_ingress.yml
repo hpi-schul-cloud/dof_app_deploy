@@ -83,6 +83,10 @@ default_ingress:
     path: /administration/teachers
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_rooms:
+    path: /administration/rooms/manage
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_groups_classes:
     path: /administration/groups/classes
     serviceName: nuxtclient-svc
