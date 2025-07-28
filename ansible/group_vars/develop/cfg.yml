@@ -1,17 +1,17 @@
-FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED: 'true'
+FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED: "true"
 
-FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED: 'true'
+FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED: "true"
 
-FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: 'true'
+FEATURE_ALLOW_INSECURE_LDAP_URL_ENABLED: "true"
 
-ES_DOMAIN: 'https://repository.sc-dev-edusharing.dbildungscloud.dev'
+ES_DOMAIN: "https://repository.sc-dev-edusharing.dbildungscloud.dev"
 
-H5P_FRAME_SRC_URLS: 'https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/'
+H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildungscloud.dev/ https://rendering.services.sc-dev-edusharing.dbildungscloud.dev/"
 
-BETTERMARKS_APPS_URL: 'https://apps-ci00.bettermarks.com'
-BETTERMARKS_SCHOOL_URL: 'https://acc.bettermarks.com'
+BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
+BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 
-KEDA_NAMESPACE_ACTIVATOR_ENABLED: 'true'
+KEDA_NAMESPACE_ACTIVATOR_ENABLED: "true"
 
 TLDRAW_CLIENT_REPLICAS: 1
 
@@ -19,28 +19,28 @@ TLDRAW_SERVER_REPLICAS: 1
 
 ADMIN_API_SERVER_REPLICAS: 1
 
-SC_DEFAULT_STORAGE_CLASS_NAME: 'nfs-client'
+SC_DEFAULT_STORAGE_CLASS_NAME: "nfs-client"
 
 BOARD_COLLABORATION_SERVER_REPLICAS: 1
 
 COMMON_CARTRIDGE_REPLICAS: 1
 
-SERVER_H5P_LIBRARY_MANAGEMENT_CRONJOB: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-MOIN_SCHULE_USERS_DELETION_QUEUEING_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-MOIN_SCHULE_USERS_SYNC_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-SERVER_FILE_DELETION_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-SERVER_DATA_DELETION_TRIGGER_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-TLDRAW_FILE_DELETION_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-SERVER_LDAP_SYNC_FULL_CRONJOB: '{{ 60 | random(seed=NAMESPACE) }} * * * *'
-SERVER_TSP_SYNC_CRONJOB_SCHEDULE: '{{ 60 | random(seed=NAMESPACE) }} {{ 4 | random(seed=NAMESPACE) |int + 19 }} * * *'
-ROCKETCHAT_FIXUP_CRONJOB_SCHEDULE: '{{ 5 | random(seed=NAMESPACE) }}/5 * * * *'
-SERVER_VIDIS_SYNC_CRONJOB_SCHEDULE: '{{ 20 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 4 }} * * *'
-SERVER_BILO_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: '{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 2 }} * * *'
-SERVER_VIDIS_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: '{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 3 }} * * *'
+SERVER_H5P_LIBRARY_MANAGEMENT_CRONJOB: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+MOIN_SCHULE_USERS_DELETION_QUEUEING_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+MOIN_SCHULE_USERS_SYNC_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+SERVER_FILE_DELETION_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+SERVER_DATA_DELETION_TRIGGER_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+TLDRAW_FILE_DELETION_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+SERVER_LDAP_SYNC_FULL_CRONJOB: "{{ 60 | random(seed=NAMESPACE) }} * * * *"
+SERVER_TSP_SYNC_CRONJOB_SCHEDULE: "{{ 60 | random(seed=NAMESPACE) }} {{ 4 | random(seed=NAMESPACE) |int + 19 }} * * *"
+ROCKETCHAT_FIXUP_CRONJOB_SCHEDULE: "{{ 5 | random(seed=NAMESPACE) }}/5 * * * *"
+SERVER_VIDIS_SYNC_CRONJOB_SCHEDULE: "{{ 20 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 4 }} * * *"
+SERVER_BILO_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: "{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 2 }} * * *"
+SERVER_VIDIS_MEDIA_METADATA_SYNC_CRONJOB_SCHEDULE: "{{ 30 | random(seed=NAMESPACE) }} {{ 2 | random(seed=NAMESPACE) |int + 3 }} * * *"
 
 # JWT_PUBLIC_KEY must be single quoted. When using double quotes newlines are replaced by spaces.
 JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\\nMIICCgKCAgEAqYX8ofa9B+nL+IIPxHJSWgq/ZRYV95uwWkSsGAKG7pkRGhi9VrRr\\nUxsVz8LWV2ZEL5+kgaPBmZgGixNk3Kmta86I3h6c0YS/GtD24D8rTdGnmH4LnwSv\\n1VTfM5Wjo628cM7GD8SMSOr0iwMH/pEoDOISvfc4YPodO8KgUOFxEk/Py7fCIqNd\\n2k60hFpodUt6aqP0gR2vt5Cd4qpRsxxQxJFmb3g57LOt3TOu6I2qD5FaMWEeyMdY\\nPxm2DJex9FAxL5PtvDgMNa3u7L5tFysBy/axxpZtuPDYBzU5UeSG0izNEr1q/ZJr\\nAqzcVaIvqXKM64iZS1CoP3QlCL/wcZUqPB25VHji7PV2Ddb23oyi7kNQ70c2hp8a\\n3m8LRz9vVyNVby+yIdgMUaCboT/K8MocA9hNyb53zLMjDi+1QXx/CrU4BQQiPVvE\\n+7wuywO9VGVX7Xfvm3aIWN3r6qPOb6IOhaoFXlXUaENEmyTxaRCsWzJTHL8Fao+x\\nq+dwaarp32XfFLLj4LwMKosB5pSFXMXH8mhQiKTgU1BnVrcxvkNWbO84OLX4gHDq\\nkODyueBDmkaUwEOuPZnPLZMi/EFHeJIf3xeqcexZ8MiIvu6GSSx+6ZSF2orRsZ6T\\nvpD/2o9N4cgF8+U3ng37nM9ohaSSuG+ZnUFlQwEP7FJ7mHl/JS63VEUCAwEAAQ==\\n-----END RSA PUBLIC KEY-----\\n'
 # since this file is only created when tagging, we do not have a real one available for dev, instead we use the latest one from prod-dbc
-LICENSE_SUMMARY_URL: 'https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/{{ DOF_APP_DEPLOY_LATEST_TAG }}/prod-dbc-license-summary.json'
+LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/{{ DOF_APP_DEPLOY_LATEST_TAG }}/prod-dbc-license-summary.json"
 
-FEATURE_ADMINISTRATE_ROOMS_ENABLED: 'true'
+FEATURE_ADMINISTRATE_ROOMS_ENABLED: "true"
