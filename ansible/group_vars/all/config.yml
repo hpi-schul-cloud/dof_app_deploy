@@ -779,7 +779,7 @@ configuration_all:
     server: true
     client: true
   FEATURE_ROOM_INVITATION_LINKS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_ROOM_COPY_ENABLED:
@@ -791,11 +791,15 @@ configuration_all:
     server: true
     client: false
   FEATURE_ROOM_ADD_STUDENTS_ENABLED:
+    value: "true"
+    server: true
+    client: true
+  FEATURE_ADMINISTRATE_ROOMS_ENABLED:
     value: "false"
     server: true
     client: true
   FEATURE_ROOM_MEMBERS_TABS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
