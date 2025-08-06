@@ -1,69 +1,48 @@
-global:
-  defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
-  security:
-    allowInsecureImages: true
+storage:
+  className: "nfs-client"
+
+haMode:
+  enabled: true
+  replicas: 3
+  masterGroupName: myprimary
 
 image:
-  registry: docker.io
-  repository: valkey/valkey
-  tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
-replica:
-  replicaCount: {{ SESSION_VALKEY_REPLICAS }}
-  pdb:
-    create: false
-  resources:
-    limits:
-      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
-    requests:
-      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
-primary:
-  pdb:
-    create: false
-  readinessProbe:
-    timeoutSeconds: 5
-  resources:
-    limits:
-      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
-    requests:
-      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
-auth:
-  existingSecret: session-valkey-password
-  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
-  usePasswordFiles: false
-sentinel:
-  enabled: true
-  readinessProbe:
-    timeoutSeconds: 5
-  image:
-    registry: docker.io
-    repository: valkey/valkey
-    tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
+  registry: "docker.io"
+  repository: "valkey/valkey"
+  tag: "8.1.3"
+
+resources:
+  limits:
+    cpu: "1000m"
+    memory: "4Gi"
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+
+sentinelResources:
+  limits:
+    cpu: "1000m"
+    memory: "4Gi"
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+
+extraSecretValkeyConfigs: "session-valkey-config"
+extraSecretSentinelConfigs: "session-valkey-sentinel-config"
+
 metrics:
   enabled: true
-  image:
-    registry: quay.io
-    repository: oliver006/redis_exporter
-    tag: "{{ SESSION_VALKEY_REDIS_EXPORTER_IMAGE_VERSION }}"
-  podMonitor:
-    enabled: true
-  extraArgs:
-    check-key-groups: '\(jwt\):.+'
+  exporter:
+    args:
+      - --check-key-groups=(jwt):.+
+    extraExporterEnvSecrets:
+      - "session-valkey-exporter"
   serviceMonitor:
-    enabled: true
-    metricRelabelings:
-        - sourceLabels: [ __name__ ]
-          regex: redis_key_group_count
-          action: replace
-          targetLabel: longterm
-          replacement: "true"   
-# OPS-6762 still up to debate if we will enable this
-networkPolicy:
-  enabled: false
-serviceAccount:
-  create: false
-# https://github.com/bitnami/charts/issues/9689
-useHostnames: false
+    interval: 30s
+    extraEndpointParameters:
+      metricRelabelings:
+          - sourceLabels: [ __name__ ]
+            regex: redis_key_group_count
+            action: replace
+            targetLabel: longterm
+            replacement: "true"

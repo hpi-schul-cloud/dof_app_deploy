@@ -7,11 +7,39 @@
   tags:
     - 1password
 
+- name: External Secret session-vakey-config
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: es-session-valkey-config.yml.j2
+  when: EXTERNAL_SECRETS_OPERATOR
+  tags:
+    - 1password
+
+- name: External Secret session-vakey-sentinel-config
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: es-session-valkey-sentinel-config.yml.j2
+  when: EXTERNAL_SECRETS_OPERATOR
+  tags:
+    - 1password
+
+- name: External Secret session-vakey-exporter
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: es-session-valkey-exporter.yml.j2
+  when: EXTERNAL_SECRETS_OPERATOR
+  tags:
+    - 1password
+
 - name: Install valkey sentinel
   kubernetes.core.helm:
-    chart_ref: oci://docker.io/bitnamicharts/valkey
+    chart_repo_url: "https://groundhog2k.github.io/helm-charts/"
+    chart_ref: valkey
     chart_version: '{{ SESSION_VALKEY_CHART_VERSION }}'
-    release_name: session-valkey
+    release_name: session
     release_namespace: '{{ NAMESPACE }}'
     release_state: present
     create_namespace: yes
