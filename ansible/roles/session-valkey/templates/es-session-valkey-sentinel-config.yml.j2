@@ -17,6 +17,7 @@ spec:
       data:
         sentinel-auth.conf: |
           sentinel auth-pass myprimary "{% raw %}{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}{% endraw %}"
+          requirepass "{% raw %}{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}{% endraw %}"
   dataFrom:
     - extract:
         key: session-valkey-password
