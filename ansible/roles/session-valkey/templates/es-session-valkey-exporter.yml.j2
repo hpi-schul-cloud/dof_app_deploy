@@ -15,7 +15,7 @@ spec:
     template:
       engineVersion: v2
       data:
-        REDIS_PASSWORD: "{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}"
+        REDIS_PASSWORD: "{{ {{ .SESSION_VALKEY__SENTINEL_PASSWORD }} }}"
   dataFrom:
     - extract:
         key: session-valkey-password

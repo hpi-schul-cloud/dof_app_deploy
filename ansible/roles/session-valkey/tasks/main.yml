@@ -7,7 +7,7 @@
   tags:
     - 1password
 
-- name: External Secret session-vakey-config
+- name: External Secret session-valkey-config
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
@@ -16,7 +16,7 @@
   tags:
     - 1password
 
-- name: External Secret session-vakey-sentinel-config
+- name: External Secret session-valkey-sentinel-config
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
@@ -25,7 +25,7 @@
   tags:
     - 1password
 
-- name: External Secret session-vakey-exporter
+- name: External Secret session-valkey-exporter
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"

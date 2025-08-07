@@ -16,7 +16,7 @@ spec:
       engineVersion: v2
       data:
         sentinel-auth.conf: |
-          sentinel auth-pass myprimary "{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}"
+          sentinel auth-pass myprimary "{{ {{ .SESSION_VALKEY__SENTINEL_PASSWORD }} }}"
   dataFrom:
     - extract:
         key: session-valkey-password

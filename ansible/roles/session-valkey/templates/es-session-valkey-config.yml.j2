@@ -16,8 +16,8 @@ spec:
       engineVersion: v2
       data:
         valkey-auth.conf: |
-          requirepass "{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}"
-          masterauth "{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}"
+          requirepass "{{ {{ .SESSION_VALKEY__SENTINEL_PASSWORD }} }}"
+          masterauth "{{ {{ .SESSION_VALKEY__SENTINEL_PASSWORD }} }}"
   dataFrom:
     - extract:
         key: session-valkey-password
