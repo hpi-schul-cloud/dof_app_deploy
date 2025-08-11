@@ -38,7 +38,11 @@ H5P_LIBRARIES:
   - H5P.Summary
   - H5P.Timeline
   - H5P.TrueFalse
-
+  - H5P.Column
+  - H5P.CoursePresentation
+  - H5P.InteractiveVideo
+  - H5P.IFrameEmbed
+  - H5P.MemoryGame
 
 H5P_PROXY_IMAGE_NAME: docker.io/nginx
 H5P_PROXY_IMAGE_TAG: 1.29-alpine
