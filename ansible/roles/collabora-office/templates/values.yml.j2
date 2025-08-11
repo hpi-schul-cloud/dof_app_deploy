@@ -13,7 +13,7 @@ ingress:
   enabled: false
 
 collabora:
-  server_name: '{{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}'
+  server_name: '{{ COLLABORA_OFFICE_DOMAIN }}'
   existingSecret:
     enabled: true
     secretName: "collabora-admin-password"
