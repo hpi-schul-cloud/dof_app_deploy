@@ -44,3 +44,4 @@ JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\\nMIICCgKCAgEAqYX8ofa9B+nL+IIPxH
 LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/{{ DOF_APP_DEPLOY_LATEST_TAG }}/prod-dbc-license-summary.json"
 
 FEATURE_ADMINISTRATE_ROOMS_ENABLED: "true"
+FEATURE_COLUMN_BOARD_COLLABORA_ENABLED: "true"
