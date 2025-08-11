@@ -24,11 +24,11 @@ collabora:
     - host: 'https://{{ DOMAIN }}:443'
 
 prometheus:
-   servicemonitor:
-      enabled: true
-      labels:
-        release: "kube-prometheus-stack"
-   rules:
-      enabled: true
-      additionalLabels:
-        release: "kube-prometheus-stack"
+  rules:
+    enabled: false
+  servicemonitor:
+    enabled: true
+    labels:
+      release: "kube-prometheus-stack"
+    additionalLabels:
+      release: "kube-prometheus-stack"
