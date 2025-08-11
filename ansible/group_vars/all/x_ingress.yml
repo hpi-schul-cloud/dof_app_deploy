@@ -59,8 +59,8 @@ default_ingress:
     path: /_nuxt
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration:
-    path: /administration
+  administraation:
+    path: /administraation
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_ldap:
