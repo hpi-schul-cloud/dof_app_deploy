@@ -20,7 +20,7 @@ collabora:
     usernameKey: "username"
     passwordKey: "password"
 
-  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true --o:net.content_security_policy="frame-ancestors https://{{ DOMAIN }}:443;"
+  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true
   aliasgroups:
     - host: 'https://{{ DOMAIN }}:443'
 
