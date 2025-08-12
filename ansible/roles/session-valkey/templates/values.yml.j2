@@ -1,31 +1,31 @@
 storage:
-  className: "nfs-client"
+  className: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
 
 haMode:
   enabled: true
-  replicas: 3
+  replicas: {{ SESSION_VALKEY_REPLICAS }}
   masterGroupName: myprimary
 
 image:
   registry: "docker.io"
   repository: "valkey/valkey"
-  tag: "8.1.3"
+  tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
 
 resources:
   limits:
-    cpu: "1000m"
-    memory: "4Gi"
+    cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
   requests:
-    cpu: "100m"
-    memory: "1Gi"
+    cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
 
 sentinelResources:
   limits:
-    cpu: "1000m"
-    memory: "4Gi"
+    cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
   requests:
-    cpu: "100m"
-    memory: "1Gi"
+    cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
 
 extraSecretValkeyConfigs: "session-valkey-config"
 extraSecretSentinelConfigs: "session-valkey-sentinel-config"
@@ -33,6 +33,17 @@ extraSecretSentinelConfigs: "session-valkey-sentinel-config"
 metrics:
   enabled: true
   exporter:
+    image:
+      registry: "docker.io"
+      repository: "oliver006/redis_exporter"
+      tag: "{{ SESSION_VALKEY_REDIS_EXPORTER_IMAGE_VERSION }}"
+    resources:
+        limits:
+            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_LIMITS|default('1Gi', true) }}"
+        requests:
+            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_REQUESTS|default('1Gi', true) }}"
     args:
       - --check-key-groups=(jwt):.+
     extraExporterEnvSecrets:
