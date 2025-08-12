@@ -11,7 +11,7 @@
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
-    template: es-session-valkey-config.yml.j2
+    template: es-valkey-config.yml.j2
   when: EXTERNAL_SECRETS_OPERATOR
   tags:
     - 1password
@@ -20,7 +20,7 @@
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
-    template: es-session-valkey-sentinel-config.yml.j2
+    template: es-valkey-sentinel-config.yml.j2
   when: EXTERNAL_SECRETS_OPERATOR
   tags:
     - 1password
@@ -29,7 +29,7 @@
   kubernetes.core.k8s:
     kubeconfig: ~/.kube/config
     namespace: "{{ NAMESPACE }}"
-    template: es-session-valkey-exporter.yml.j2
+    template: es-valkey-exporter.yml.j2
   when: EXTERNAL_SECRETS_OPERATOR
   tags:
     - 1password
