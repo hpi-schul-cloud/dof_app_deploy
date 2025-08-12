@@ -11,9 +11,6 @@ H5P_FRAME_SRC_URLS: "https://rendering.edu-2.services.sc-dev-edusharing.dbildung
 BETTERMARKS_APPS_URL: "https://apps-ci00.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 
-FEATURE_ROOM_ADD_STUDENTS_ENABLED: "true"
-FEATURE_ROOM_MEMBERS_TABS_ENABLED: "true"
-
 KEDA_NAMESPACE_ACTIVATOR_ENABLED: "true"
 
 TLDRAW_CLIENT_REPLICAS: 1
@@ -46,4 +43,4 @@ JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\\nMIICCgKCAgEAqYX8ofa9B+nL+IIPxH
 # since this file is only created when tagging, we do not have a real one available for dev, instead we use the latest one from prod-dbc
 LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/{{ DOF_APP_DEPLOY_LATEST_TAG }}/prod-dbc-license-summary.json"
 
-FEATURE_ROOM_INVITATION_LINKS_ENABLED: "true"
+FEATURE_ADMINISTRATE_ROOMS_ENABLED: "true"
