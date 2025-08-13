@@ -21,11 +21,11 @@ resources:
 
 sentinelResources:
   limits:
-    cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
-    memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
+    cpu: "{{ SESSION_VALKEY_SENTINEL_CPU_LIMITS|default('150m', true) }}"
+    memory: "{{ SESSION_VALKEY_SENTINEL_MEMORY_LIMITS|default('192Mi', true) }}"
   requests:
-    cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
-    memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
+    cpu: "{{ SESSION_VALKEY_SENTINEL_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ SESSION_VALKEY_SENTINEL_MEMORY_REQUESTS|default('128Mi', true) }}"
 
 extraSecretValkeyConfigs: "session-valkey-config"
 extraSecretSentinelConfigs: "session-valkey-sentinel-config"
@@ -39,11 +39,11 @@ metrics:
       tag: "{{ SESSION_VALKEY_REDIS_EXPORTER_IMAGE_VERSION }}"
     resources:
         limits:
-            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_LIMITS|default('1000m', true) }}"
-            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_LIMITS|default('1Gi', true) }}"
+            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_LIMITS|default('150m', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_LIMITS|default('192Mi', true) }}"
         requests:
             cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
-            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_REQUESTS|default('1Gi', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_REQUESTS|default('128Mi', true) }}"
     args:
       - --check-key-groups=(jwt):.+
     extraExporterEnvSecrets:
