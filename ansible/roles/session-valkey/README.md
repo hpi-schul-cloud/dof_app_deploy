@@ -1,0 +1,3 @@
+session-valkey-password(1pwd) -> session-valkey-password(secret) -> session-valkey-auth(externalsecret) -> session-valkey-auth(secret)
+                                                             -> session-valkey-auth(externalsecret) -> session-valkey-sentinel-config(secret)
+                                                             -> session-valkey-auth(externalsecret) -> session-valkey-exporter-config(secret)
