@@ -10,6 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/use-regex: "true"
 {% if CLUSTER_ISSUER is defined %}
     cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
 {% endif %}
@@ -35,8 +36,8 @@ spec:
             name: collabora-online
             port:
               number: 9980
-      - path: /browser/dist/welcome
-        pathType: Prefix
+      - path: ^/browser/[0-9a-f]+/welcome/.*$
+        pathType: ImplementationSpecific
         backend:
           service:
             name: default-backend-404-svc
