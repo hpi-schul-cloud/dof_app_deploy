@@ -7,7 +7,7 @@ resources:
     memory: "{{ COLLABORA_OFFICE_MEMORY_LIMITS|default('2Gi', true) }}"
   requests:
     cpu: "{{ COLLABORA_OFFICE_CPU_REQUESTS|default('100m', true) }}"
-    memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('1Gi', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('128Mi', true) }}"
 
 ingress:
   enabled: false
