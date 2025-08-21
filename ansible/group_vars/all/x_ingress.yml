@@ -111,6 +111,10 @@ default_ingress:
     path: /folder
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  collabora:
+    path: /collabora
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   h5p-player:
     path: /h5p/player
     serviceName: nuxtclient-svc
