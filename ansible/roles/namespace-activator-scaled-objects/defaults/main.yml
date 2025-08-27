@@ -16,6 +16,7 @@ deployments_for_scaled_objects:
   - name: clamav-deployment
   - name: default-backend-404-deployment
   - name: erwinidm-deployment
+    with: "{{ WITH_ERWINIDM }}"
   - name: etherpad-deployment
   - name: etherpad-nginx-deployment
   - name: hydra-deployment
