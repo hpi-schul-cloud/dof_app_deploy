@@ -754,10 +754,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_ROOMS_ENABLED:
-    value: "true"
-    server: true
-    client: true
   FEATURE_ROOM_COPY_ENABLED:
     value: "true"
     server: true
