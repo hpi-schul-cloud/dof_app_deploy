@@ -20,7 +20,7 @@ collabora:
     usernameKey: "username"
     passwordKey: "password"
 
-  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true --o:per_document.bgsave_timeout_secs=600
+  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true --o:per_document.bgsave_timeout_secs=600 --o:net.connection_timeout_secs=600
   aliasgroups:
     - host: 'https://{{ DOMAIN }}:443'
 
