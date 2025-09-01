@@ -6,6 +6,7 @@
   roles:
     - sys
     - pre_deployment
+    - collabora-office
     - keda
     - namespace-activator-scaled-objects
     - external-secrets
