@@ -1,0 +1,24 @@
+client:
+  # Max time that the traffic-manager will keep a client connection alive when it doesn't receive
+  # any calls to Remain.
+  connectionTTL: 1h
+
+  dns:
+    # Tell client's DNS resolver to never send names with these suffixes to the cluster side resolver
+    excludeSuffixes: [".com", ".io", ".net", ".org", ".ru", ".de", ".dev"]
+  routing:
+    neverProxySubnets:
+      - 85.215.128.0/17
+    alsoProxySubnets:
+      # dev-??? postgres
+      - 10.0.2.101/32
+      # dev-brb postgres
+      - 10.0.4.96/28
+      # dev-nbc mongodb
+      - 10.0.34.96/28
+      # dev-dbc mongodb
+      - 10.0.10.96/28
+      # dev-brb mongodb
+      - 10.0.18.96/28
+      # dev-thr mongodb
+      - 10.0.8.96/28

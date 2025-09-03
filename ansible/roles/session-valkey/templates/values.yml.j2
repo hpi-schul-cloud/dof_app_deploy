@@ -1,5 +1,9 @@
 global:
   defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
+  security:
+    allowInsecureImages: true
+image:
+  repository: "bitnamilegacy/valkey"
 replica:
   replicaCount: {{ SESSION_VALKEY_REPLICAS }}
   pdb:
@@ -29,9 +33,13 @@ auth:
   usePasswordFiles: false
 sentinel:
   enabled: true
+  image:
+    repository: "bitnamilegacy/valkey-sentinel"
   readinessProbe:
     timeoutSeconds: 5
 metrics:
+  image:
+      repository: "bitnamilegacy/redis-exporter"
   enabled: true
   podMonitor:
     enabled: true

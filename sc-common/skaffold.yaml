@@ -1,0 +1,48 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: sc-common
+manifests:
+  rawYaml:
+    - sc-common.yml
+    - sc-openldap-deployment.yml
+    - sc-openldap-single-deployment.yml
+    - sc-openldap-single-svc.yml
+    - sc-openldap-svc.yml
+deploy:
+  kubectl: {}
+  helm:
+    releases:
+      - name: traffic-manager
+        namespace: ambassador
+        remoteChart: oci://ghcr.io/telepresenceio/telepresence-oss
+        version: 2.23.1
+        createNamespace: true
+        valuesFiles:
+          - telepresence-traffic-manager/values.yaml
+profiles:
+  - name: dbc
+    manifests:
+      kustomize:
+        paths:
+          - namespace-activator/overlays/dbc
+
+  - name: brb
+    manifests:
+      kustomize:
+        paths:
+          - namespace-activator/overlays/brb
+
+  - name: nbc
+    manifests:
+      kustomize:
+        paths:
+          - namespace-activator/overlays/nbc
+
+  - name: thr
+    manifests:
+      kustomize:
+        paths:
+          - namespace-activator/overlays/thr
+
+
