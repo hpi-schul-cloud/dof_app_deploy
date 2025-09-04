@@ -532,7 +532,7 @@ configuration_all:
     client: false
   FEATURE_OAUTH_LOGIN_ENABLED:
     value: "false"
-    server: false
+    server: true
     client: true
   FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
     value: "true"
