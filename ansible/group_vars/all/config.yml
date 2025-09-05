@@ -754,6 +754,10 @@ configuration_all:
     value: "false"
     server: true
     client: false
+  FEATURE_BOARD_READERS_CAN_EDIT_TOGGLE:
+    value: "false"
+    server: true
+    client: true
   FEATURE_ROOM_COPY_ENABLED:
     value: "true"
     server: true
