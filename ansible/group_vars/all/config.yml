@@ -534,6 +534,10 @@ configuration_all:
     value: "false"
     server: true
     client: true
+  FEATURE_JWT_EXTENDED_TIMEOUT_ENABLED:
+    value: "false"
+    server: true
+    client: true
   FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
     value: "true"
     server: false
@@ -811,7 +815,7 @@ configuration_all:
     client: true
   COOKIE__JWT_HTTP_ONLY:
     value: "true"
-    server: false
+    server: true
     client: true
   INCLUDE_MAIL_IN_USER_FULL_TEXT_INDEX:
     value: "true"
