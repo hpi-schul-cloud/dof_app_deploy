@@ -1,3 +1,6 @@
+NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_NAME: docker.io/nginx
+NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG: 1.29-alpine
+
 deployments_for_scaled_objects:
   - name: api-deployment
   - name: admin-api-deployment

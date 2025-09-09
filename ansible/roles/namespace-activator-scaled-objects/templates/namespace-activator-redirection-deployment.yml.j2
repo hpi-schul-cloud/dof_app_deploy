@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namespace-activator-redirection
+  namespace: {{ NAMESPACE }}
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: nginx
+        image: {{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_NAME }}:{{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG }}
+        ports:
+        - containerPort: 3100
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: client-nginx-redirect
+          items:
+          - key: default.conf
+            path: default.conf
+
