@@ -29,12 +29,4 @@
     tags:
       - keda
 
-#  - name: namespace activator redirection scaled object
-#    kubernetes.core.k8s:
-#      kubeconfig: ~/.kube/config
-#      namespace: "{{ NAMESPACE }}"
-#      template: namespace-activator-redirection-scaled-object.yml.j2
-#    tags:
-#      - keda
-
 
