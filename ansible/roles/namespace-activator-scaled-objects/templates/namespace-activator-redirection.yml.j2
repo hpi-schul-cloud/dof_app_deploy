@@ -59,7 +59,8 @@ spec:
   idleReplicaCount: 0
   minReplicaCount: 1
   maxReplicaCount: 1
-  pollingInterval: 30
+  # this needs to be fairly low otherwise it is more likely that the client-deployment and this dummy deployment exist at the same time
+  pollingInterval: 5
   cooldownPeriod: 60
   triggers:
   - type: mongodb
