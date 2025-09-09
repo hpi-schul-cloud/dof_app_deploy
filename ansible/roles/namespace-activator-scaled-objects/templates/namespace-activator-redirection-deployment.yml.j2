@@ -22,6 +22,14 @@ spec:
         - name: nginx-conf
           mountPath: /etc/nginx/conf.d
           readOnly: true
+        resources:
+          limits:
+            cpu: {{ NAMESPACE_ACTIVATOR_REDIRECTION_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ NAMESPACE_ACTIVATOR_REDIRECTION_MEMORY_LIMITS|default("100Mi", true) }}
+          requests:
+            cpu: {{ NAMESPACE_ACTIVATOR_REDIRECTION_CPU_LIMITS|default("100m", true) }}
+            memory: {{ NAMESPACE_ACTIVATOR_REDIRECTION_MEMORY_LIMITS|default("50Mi", true) }}
+
       volumes:
       - name: nginx-conf
         configMap:
