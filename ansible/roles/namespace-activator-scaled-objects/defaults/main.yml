@@ -5,13 +5,13 @@ deployments_for_scaled_objects:
   - name: api-deployment
   - name: admin-api-deployment
   - name: client-deployment
-  - name: amqp-files-deployment
+  - name: amqp-file-storage-deployment
   - name: api-h5p-proxy-deployment
   - name: api-h5p-deployment
   - name: h5p-staticfiles-server-deployment
   - name: antivirus-webserver-deployment
   - name: antivirus-scanfile-deployment
-  - name: file-storage-deployment-deployment
+  - name: file-storage-deployment
   - name: api-migration-systems-deployment
   - name: preview-generator-deployment
   - name: api-fwu-deployment
@@ -41,6 +41,7 @@ deployments_for_scaled_objects:
   - name: tldraw-server-deployment
   - name: tldraw-worker-deployment
   - name: tldraw-client-deployment
+  - name: collabora-online
   - name: tldraw-valkey-node
     kind: StatefulSet
     replicaCount: "{{TLDRAW_VALKEY_REPLICAS}}"
