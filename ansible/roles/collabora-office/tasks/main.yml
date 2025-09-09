@@ -1,0 +1,32 @@
+- name: Install collabora office
+  kubernetes.core.helm:
+    chart_ref: collabora-online
+    chart_repo_url: https://collaboraonline.github.io/online/
+    chart_version: '{{ COLLABORA_OFFICE_CHART_VERSION }}'
+    release_name: collabora-online
+    release_namespace: '{{ NAMESPACE }}'
+    release_state: present
+    create_namespace: yes
+    kubeconfig: ~/.kube/config
+    update_repo_cache: no
+    values: "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
+  tags:
+    - helm
+
+- name: Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: ingress.yml.j2
+    apply: yes
+  tags:
+    - ingress
+
+- name: collabora admin secret
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: '{{ NAMESPACE }}'
+    template: onepassword.yml.j2
+  when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
+  tags:
+    - 1password
