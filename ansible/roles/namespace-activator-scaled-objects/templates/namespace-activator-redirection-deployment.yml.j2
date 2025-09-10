@@ -77,7 +77,7 @@ spec:
                 - key: app.kubernetes.io/name
                   operator: In
                   values:
-                  - client
+                  - namespace-activator-redirection
               topologyKey: {{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}
 {% endif %}
           - weight: 20
