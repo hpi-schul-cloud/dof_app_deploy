@@ -21,6 +21,13 @@ spec:
     metadata:
       labels:
         app: client
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG }}"
+        app.kubernetes.io/name: namespace-activator-redirection
+        app.kubernetes.io/component: namespace-activator
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       containers:
       - name: nginx
