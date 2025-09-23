@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Ansible artifact ${{ inputs.tenant }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
@@ -71,11 +71,11 @@ jobs:
             label: other-tags
             op: skip-tags
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
