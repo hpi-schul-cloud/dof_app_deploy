@@ -14,6 +14,8 @@
     - role: dof_rabbitmq
     - role: dof_mailcatcher
       when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
+    - role: collabora-office
+      when: WITH_COLLABORA_OFFICE is defined and WITH_COLLABORA_OFFICE|bool
     - role: libreoffice
     - role: maildrop
     - role: storage
