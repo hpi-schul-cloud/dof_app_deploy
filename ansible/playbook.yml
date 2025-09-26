@@ -6,7 +6,6 @@
   roles:
     - sys
     - pre_deployment
-    - collabora-office
     - keda
     - namespace-activator-scaled-objects
     - external-secrets
@@ -17,6 +16,7 @@
     - dof_tsp_keycloak_management
     - dof_rabbitmq
     - dof_mailcatcher
+    - collabora-office
     - libreoffice
     - maildrop
     - storage
