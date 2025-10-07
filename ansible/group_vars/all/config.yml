@@ -767,7 +767,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_ADMINISTRATE_ROOMS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
   FEATURE_COLUMN_BOARD_COLLABORA_ENABLED:
