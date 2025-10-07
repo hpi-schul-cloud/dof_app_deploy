@@ -1,0 +1,26 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: namespace-activator-redirection
+  namespace: {{ NAMESPACE }}
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: namespace-activator-redirection
+  idleReplicaCount: 0
+  minReplicaCount: 1
+  maxReplicaCount: 1
+  # this needs to be fairly low otherwise it is more likely that the client-deployment and this dummy deployment exist at the same time
+  pollingInterval: 5
+  cooldownPeriod: 60
+  triggers:
+  - type: mongodb
+    metadata:
+      port: "27017"
+      dbName: "keda"
+      collection: "namespaces"
+      # scale only if namespace is not main AND not active
+      query: '{"$and":[{"name":"{{ NAMESPACE }}"},{"$expr":{"$ne":["{{ NAMESPACE }}","main"]}},{"$expr":{"$not":{"$gt":["$activatedUntil","$$NOW"]}}}]}'
+      queryValue: "1"
+    authenticationRef:
+      name: sc-common-mongodb-trigger-auth
