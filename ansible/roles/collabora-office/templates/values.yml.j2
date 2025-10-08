@@ -33,3 +33,14 @@ prometheus:
       release: "kube-prometheus-stack"
     additionalLabels:
       release: "kube-prometheus-stack"
+
+#other labels are managed by helm
+deployment:
+  labels:
+    app: collabora-office
+    git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
+
+#other labels are managed by helm
+podLabels:
+  app: collabora-office
+  git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
