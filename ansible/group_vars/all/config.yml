@@ -766,6 +766,18 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_ROOM_ADD_EXTERNAL_PERSONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+  FEATURE_ROOM_REGISTER_EXTERNAL_PERSONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+  FEATURE_ROOM_LINK_INVITATION_EXTERNAL_PERSONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_ADMINISTRATE_ROOMS_ENABLED:
     value: "true"
     server: true
