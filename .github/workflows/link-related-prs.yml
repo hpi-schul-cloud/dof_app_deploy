@@ -1,0 +1,79 @@
+name: Link Related PRs
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+      pr_url:
+        required: true
+        type: string
+
+jobs:
+  link-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Link related PRs
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const branch = process.env.BRANCH;
+            const currentPRUrl = process.env.PR_URL;
+            const repos = [
+              'dof_app_deploy',
+              'schulcloud-server',
+              'schulcloud-client',
+              'nuxt-client',
+              'superhero-dashboard',
+              'schulcloud-calendar',
+              'antivirus_check_service',
+              'version-aggregator',
+              'dof_app_deploy',
+              'h5p-staticfiles-server',
+              'tldraw-client',
+              'tldraw-server',
+              'file-storage',
+            ];
+            for (const repo of repos) {
+              if (repo === context.repo.repo) continue;
+              const prs = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo,
+                state: 'open',
+                head: `${branch}`,
+              });
+              for (const pr of prs.data) {
+                const prBody = pr.body || '';
+                const startMarker = '<!-- related-prs-and-tickets-start -->';
+                const endMarker = '<!-- related-prs-and-tickets-end -->';
+                const linkLine = `- ${currentPRUrl}`;
+                const sectionRegex = new RegExp(
+                  `${startMarker}([\\s\\S]*?)${endMarker}`
+                );
+                let newBody = prBody;
+                const match = prBody.match(sectionRegex);
+                if (match) {
+                  let links = match[1].trim().split('\n').filter(Boolean);
+                  if (!links.includes(linkLine)) {
+                    links.push(linkLine);
+                    const newSection = `${startMarker}\n${links.join('\n')}\n${endMarker}`;
+                    newBody = prBody.replace(sectionRegex, newSection);
+                  }
+                } else {
+                  // Markers not found, append section
+                  newBody = `${prBody}\n${startMarker}\n${linkLine}\n${endMarker}\n`;
+                }
+                if (newBody !== prBody) {
+                  await github.rest.pulls.update({
+                    owner: context.repo.owner,
+                    repo,
+                    pull_number: pr.number,
+                    body: newBody,
+                  });
+                }
+              }
+            }
+        env:
+          BRANCH: ${{ inputs.branch }}
+          PR_URL: ${{ inputs.pr_url }}
