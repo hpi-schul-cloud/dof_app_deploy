@@ -44,6 +44,8 @@ jobs:
 
   create_artifacts_repos:
     runs-on: ubuntu-latest
+    needs:
+      - create_branch_identifier
     strategy:
       matrix:
         repos:
@@ -63,7 +65,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -79,7 +81,8 @@ jobs:
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
           reponame=$(echo ${filename} | tr _ - )
-          branch_varname=$(echo ${{ inputs.branch }} | tr -d [:cntrl:]  | tr / \. | tr [:blank:] _ )
+          # use the short name here, otherwise you can end up in situations where you got really long branch names for metadata which can't be used in k8s (limit of 63 chars)
+          branch_varname=${{ needs.create_branch_identifier.outputs.id_branch }}
           for i in ${{ env.tenants }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml

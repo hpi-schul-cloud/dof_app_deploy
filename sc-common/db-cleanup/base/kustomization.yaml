@@ -3,5 +3,8 @@ kind: Kustomization
 
 resources:
   - onepassword-mongo-admin.yml
-  - configmap-database-cleanup.yml
-  - cronjob-database-cleanup.yml
+  - configmap-mongodb-cleanup.yml
+  - cronjob-mongodb-cleanup.yml
+  - configmap-postgres-cleanup.yml
+  - cronjob-postgres-cleanup.yml
+  - onepassword-postgres-admin.yml

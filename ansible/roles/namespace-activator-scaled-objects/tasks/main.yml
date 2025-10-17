@@ -21,5 +21,26 @@
     tags:
       - keda
 
+  - name: client nginx redirect configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: client-nginx-redirect-configmap.yml.j2
+    tags:
+      - keda
 
+  - name: namespace activator redirection deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: namespace-activator-redirection-deployment.yml.j2
+    tags:
+      - keda
 
+  - name: namespace activator redirection scaledobject
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: namespace-activator-redirection-scaledobject.yml.j2
+    tags:
+      - keda
