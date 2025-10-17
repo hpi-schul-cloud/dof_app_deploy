@@ -33,6 +33,8 @@ deployments_for_scaled_objects:
   - name: mailcatcher-deployment
   - name: maildrop-deployment
   - name: board-collaboration-deployment
+    kind: Deployment
+    replicaCount: "{{BOARD_COLLABORATION_SERVER_REPLICAS}}"
   - name: common-cartridge-deployment
   - name: clammit-deployment
   - name: schulconnex-group-provisioning-deployment

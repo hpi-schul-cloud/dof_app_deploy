@@ -367,6 +367,10 @@ configuration_all:
     value: "false"
     server: true
     client: false
+  FEATURE_COLUMN_BOARD_SOCKET_ADAPTER:
+    value: "mongodb"
+    server: true
+    client: false
   FEATURE_CONTACT_FORM_ATTACHMENTS_ENABLED:
     value: "true"
     server: false
