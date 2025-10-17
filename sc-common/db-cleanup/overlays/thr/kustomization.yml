@@ -12,3 +12,10 @@ patches:
       - op: replace
         path: /spec/itemPath
         value: vaults/sc-dev-thr/items/mongo-cluster-schulcloud-dbadmin
+  - target:
+      kind: OnePasswordItem
+      name: pg-cluster-secret
+    patch: |-
+      - op: replace
+        path: /spec/itemPath
+        value: vaults/sc-dev-thr/items/pg-cluster-schulcloud

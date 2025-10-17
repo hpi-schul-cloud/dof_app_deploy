@@ -61,5 +61,14 @@ jobs:
     needs:
       - deploy
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - run: echo "deploy was successful"
+      - name: Check deploy result
+        run: |
+          # this degeneracy is necessary because github decides on day to day basis if job is treated as successful or not when it is being skipped, 
+          # so we enforce failures here when they should
+          if [[ "${{ needs.deploy.result }}" != "success" ]]; then
+            echo "Deploy failed"
+            exit 1
+          fi
+          echo "deploy was successful"
