@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: etherpad-ingress
+  namespace: {{ NAMESPACE }}
+  annotations:
+    nginx.ingress.kubernetes.io/client-header-buffer-size: 100k
+    nginx.ingress.kubernetes.io/http2-max-header-size: 96k
+    nginx.ingress.kubernetes.io/large-client-header-buffers: 4 100k
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 96k
+    nginx.org/websocket-services: "etherpad-svc"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: ETHERPAD_AFFINITY
+    nginx.ingress.kubernetes.io/session-cookie-secure: "true"
+    nginx.ingress.kubernetes.io/session-cookie-domain: {{ DOMAIN }}
+    nginx.ingress.kubernetes.io/session-cookie-samesite: strict
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "3600"
+    nginx.ingress.kubernetes.io/session-cookie-change-on-failure: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
+
+spec:
+  ingressClassName: {{ INGRESS_CLASS }}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
+  tls:
+  - hosts:
+      - {{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+    secretName: {{ DOMAIN }}-tls
+{% endif %}
+{% endif %}
+  rules:
+  - host: {{ DOMAIN }}
+    http:
+      paths:
+      - path: /etherpad(/|$)(.*)
+        backend:
+          service:
+            name: etherpad-svc
+            port:
+              number: {{ PORT_ETHERPAD }}
+        pathType: Prefix

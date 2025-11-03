@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/name: etherpad-svc
 spec:
   type: ClusterIP
+  clusterIP: None
   ports:
   - port: {{ PORT_ETHERPAD }}
     targetPort: 9001

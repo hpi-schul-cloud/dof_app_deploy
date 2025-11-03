@@ -217,10 +217,6 @@ default_ingress:
     path: /api/v1/roles/user
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  etherpad:
-    path: /etherpad
-    serviceName: etherpad-nginx-svc
-    servicePort: 80
   version_aggregator:
     path: /version
     serviceName: version-aggregator-svc
