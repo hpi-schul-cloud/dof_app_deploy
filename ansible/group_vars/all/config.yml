@@ -644,6 +644,10 @@ configuration_all:
     value: "false"
     server: true
     client: false
+  FEATURE_SCHULCONNEX_EXTERNAL_PERSONS:
+    value: "false"
+    server: true
+    client: false
   FEATURE_OTHER_GROUPUSERS_PROVISIONING_ENABLED:
     value: "false"
     server: true
