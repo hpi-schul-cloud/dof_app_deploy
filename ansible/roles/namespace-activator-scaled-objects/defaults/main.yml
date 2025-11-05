@@ -8,6 +8,7 @@ deployments_for_scaled_objects:
   - name: amqp-file-storage-deployment
   - name: api-h5p-proxy-deployment
   - name: api-h5p-deployment
+  - name: api-h5p-consumer
   - name: h5p-staticfiles-server-deployment
   - name: antivirus-webserver-deployment
   - name: antivirus-scanfile-deployment
