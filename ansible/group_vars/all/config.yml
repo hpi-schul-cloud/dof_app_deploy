@@ -20,7 +20,7 @@ configuration_all:
     server: true
     client: true
   API_HOST:
-    value: "http://api-svc:3030/api"
+    value: "{{ APi_HOST }}"
     server: true
     client: true
   PUBLIC_BACKEND_URL:
