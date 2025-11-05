@@ -56,6 +56,7 @@ COLLABORA_OFFICE_DOMAIN: "{{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}"
 COLLABORA_OFFICE_URL: "https://{{ COLLABORA_OFFICE_DOMAIN }}"
 
 API_HOST: "http://api-svc:3030/api"
-# this is not a good place, belongs to the s3 secret, not because it's a secret but it's easier to maintain
+
+# this is not a good place, belongs to the s3 secret, not because it's a secret, but it's easier to maintain there
 H5P_EDITOR__S3_ENDPOINT: "https://s3-eu-central-2.ionoscloud.com"
 H5P_EDITOR__S3_REGION: "s3-eu-central-2"
