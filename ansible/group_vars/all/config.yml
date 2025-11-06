@@ -20,7 +20,6 @@ configuration_all:
     server: true
     client: true
   API_HOST:
-    value: "{{ APi_HOST }}"
     server: true
     client: true
   PUBLIC_BACKEND_URL:
