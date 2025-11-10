@@ -951,21 +951,31 @@ aggregations:
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: boardnodes
     metrics:
-    - name: sc_boardnodes_drawing_element
+    - name: sc_boardnodes_count_by_type
       type: gauge
-      help: 'The number of boardnodes of type drawing-element'
-      value: count
+      help: 'Boardnodes count by type'
+      value: boardNodeCount
       overrideEmpty: true
       emptyValue: 0
-      labels: []
+      labels:
+        - type
       constLabels:
-        mongodb_collection: boardnodes
         longterm: 'true'
     mode: pull
     pipeline: |
       [
-        { "$match" : { "type" : "drawing-element" }},
-        { "$count" : "count" }
+        {
+          "$group": {
+              "_id": "$type",
+              "boardNodeCount": { "$sum": 1 }
+          }
+        },
+        {
+          "$project": {
+            "type": "$_id",
+            "boardNodeCount": 1
+          }
+        }
       ]
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}

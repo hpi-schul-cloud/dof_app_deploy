@@ -20,7 +20,6 @@ configuration_all:
     server: true
     client: true
   API_HOST:
-    value: "http://api-svc:3030/api"
     server: true
     client: true
   PUBLIC_BACKEND_URL:
@@ -456,22 +455,6 @@ configuration_all:
     value: "true"
     server: true
     client: false
-  H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-2"
-    server: true
-    client: false
-  H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-2.ionoscloud.com"
-    server: true
-    client: false
-  H5P_EDITOR__S3_BUCKET_LIBRARIES:
-    value: ""
-    server: true
-    client: false
-  H5P_EDITOR__S3_BUCKET_CONTENT:
-    value: ""
-    server: true
-    client: false
   FEATURE_FWU_CONTENT_ENABLED:
     value: "false"
     server: true
@@ -779,7 +762,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_ADMINISTRATE_ROOMS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
   FEATURE_COLUMN_BOARD_COLLABORA_ENABLED:
