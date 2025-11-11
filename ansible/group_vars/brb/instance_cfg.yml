@@ -44,10 +44,6 @@ CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS: 18
 
 # Lernstore FWU Content
 FEATURE_FWU_CONTENT_ENABLED: "true"
-FWU_CONTENT__S3_REGION: "eu-central-2"
-FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
-FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
-FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
 
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Identity Management
