@@ -452,10 +452,6 @@ configuration_all:
     value: ""
     server: true
     client: false
-  FEATURE_ES_MERLIN_ENABLED:
-    value: "true"
-    server: true
-    client: false
   H5P_EDITOR__S3_REGION:
     value: "s3-eu-central-2"
     server: true
@@ -489,10 +485,6 @@ configuration_all:
     server: true
     client: false
   FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS:
-    server: true
-    client: false
-  ES_MERLIN_AUTH_URL:
-    value: "http://merlin.nibis.de/auth.php"
     server: true
     client: false
   FEATURE_ES_COLLECTIONS_ENABLED:
