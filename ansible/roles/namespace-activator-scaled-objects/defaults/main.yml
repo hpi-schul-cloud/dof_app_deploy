@@ -16,6 +16,7 @@ deployments_for_scaled_objects:
   - name: api-migration-systems-deployment
   - name: preview-generator-deployment
   - name: api-fwu-deployment
+    with: '{{ WITH_FWU }}'
   - name: calendar-deployment
   - name: clamav-deployment
   - name: default-backend-404-deployment

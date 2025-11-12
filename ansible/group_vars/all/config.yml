@@ -455,25 +455,6 @@ configuration_all:
     value: "true"
     server: true
     client: false
-  FEATURE_FWU_CONTENT_ENABLED:
-    value: "false"
-    server: true
-    client: false
-  FWU_CONTENT__S3_REGION:
-    value: ""
-    server: true
-    client: false
-  FWU_CONTENT__S3_ENDPOINT:
-    value: "http://localhost:4568"
-    server: true
-    client: false
-  FWU_CONTENT__S3_BUCKET:
-    value: ""
-    server: true
-    client: false
-  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS:
-    server: true
-    client: false
   ES_MERLIN_AUTH_URL:
     value: "http://merlin.nibis.de/auth.php"
     server: true
