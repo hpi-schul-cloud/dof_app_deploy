@@ -41,6 +41,7 @@
     - role: h5p-proxy
     - role: clammit
     - role: h5p-staticfiles-server-core
+    - role: fwu
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
