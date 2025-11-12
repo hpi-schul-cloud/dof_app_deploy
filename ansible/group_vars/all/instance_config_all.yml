@@ -60,3 +60,8 @@ API_HOST: "http://api-svc:3030/api"
 # this is not a good place, belongs to the s3 secret, not because it's a secret, but it's easier to maintain there
 H5P_EDITOR__S3_ENDPOINT: "https://s3-eu-central-2.ionoscloud.com"
 H5P_EDITOR__S3_REGION: "s3-eu-central-2"
+
+FWU_CONTENT__S3_REGION: "eu-central-2"
+FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
+FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
+FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
