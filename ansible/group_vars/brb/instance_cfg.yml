@@ -35,21 +35,15 @@ MIGRATION_WIZARD_DOCUMENTATION_LINK: "https://docs.dbildungscloud.de/pages/viewp
 
 # LDAP
 SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
-WITH_LDAP: true
 # PORTS
 PORT_SERVER: 3030
 PORT_FILE_SERVICE: 4444
-PORT_FWU_LEARNING_CONTENTS: 4446
 PORT_METRICS_SERVER: 9090
 SKIP_CONDITIONS_CONSENT: "student employee"
 CONSENT_WITHOUT_PARENTS_MIN_AGE_YEARS: 18
 
 # Lernstore FWU Content
 FEATURE_FWU_CONTENT_ENABLED: "true"
-FWU_CONTENT__S3_REGION: "eu-central-2"
-FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
-FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
-FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
 
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # Identity Management
@@ -79,10 +73,6 @@ group_ingress:
   api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v3_fwu:
-    path: /api/v3/fwu
-    serviceName: api-fwu-svc
-    servicePort: "{{ PORT_FWU_LEARNING_CONTENTS }}"
 
 # BigBlueButton
 VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
