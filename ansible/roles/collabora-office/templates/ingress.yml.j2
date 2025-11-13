@@ -1,0 +1,66 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: collabora
+  namespace: {{ NAMESPACE }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$arg_WOPISrc"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
+
+spec:
+  ingressClassName: {{ INGRESS_CLASS }}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
+  tls:
+  - hosts:
+      - {{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}
+{% if CLUSTER_ISSUER is defined %}
+    secretName: {{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}-tls
+{% endif %}
+{% endif %}
+  rules:
+  - host: {{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: collabora-online
+            port:
+              number: 9980
+      - path: /browser/[0-9a-f]+/welcome/.*$
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+      - path: /cool/getMetrics
+        pathType: Prefix
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+      - path: /cool/adminws/
+        pathType: Prefix
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+      - path: /browser/dist/admin/
+        pathType: Prefix
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+

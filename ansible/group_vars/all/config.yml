@@ -20,7 +20,6 @@ configuration_all:
     server: true
     client: true
   API_HOST:
-    value: "http://api-svc:3030/api"
     server: true
     client: true
   PUBLIC_BACKEND_URL:
@@ -284,7 +283,7 @@ configuration_all:
   TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE:
     value: "false"
     server: true
-    client: true
+    client: false
   TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT:
     value: "true"
     server: true
@@ -427,10 +426,6 @@ configuration_all:
     value: "false"
     server: false
     client: true
-  FEATURE_SCHOOL_POLICY_ENABLED:
-    value: "false"
-    server: false
-    client: true
   FEATURE_SCHOOL_POLICY_ENABLED_NEW:
     value: "true"
     server: true
@@ -458,41 +453,6 @@ configuration_all:
     client: false
   FEATURE_ES_MERLIN_ENABLED:
     value: "true"
-    server: true
-    client: false
-  H5P_EDITOR__S3_REGION:
-    value: "s3-eu-central-2"
-    server: true
-    client: false
-  H5P_EDITOR__S3_ENDPOINT:
-    value: "https://s3-eu-central-2.ionoscloud.com"
-    server: true
-    client: false
-  H5P_EDITOR__S3_BUCKET_LIBRARIES:
-    value: ""
-    server: true
-    client: false
-  H5P_EDITOR__S3_BUCKET_CONTENT:
-    value: ""
-    server: true
-    client: false
-  FEATURE_FWU_CONTENT_ENABLED:
-    value: "false"
-    server: true
-    client: false
-  FWU_CONTENT__S3_REGION:
-    value: ""
-    server: true
-    client: false
-  FWU_CONTENT__S3_ENDPOINT:
-    value: "http://localhost:4568"
-    server: true
-    client: false
-  FWU_CONTENT__S3_BUCKET:
-    value: ""
-    server: true
-    client: false
-  FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS:
     server: true
     client: false
   ES_MERLIN_AUTH_URL:
@@ -525,10 +485,6 @@ configuration_all:
   FEATURE_EXTENSIONS_ENABLED:
     value: "false"
     server: true
-    client: true
-  FEATURE_NUXT_SCHOOL_ADMIN_BETA:
-    value: "true"
-    server: false
     client: true
   FEATURE_USER_LOGIN_MIGRATION_ENABLED:
     value: "false"
@@ -581,7 +537,7 @@ configuration_all:
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
-    client: true
+    client: false
   FEATURE_USER_MIGRATION_SYSTEM_ID:
     value: ""
     server: true
@@ -614,10 +570,6 @@ configuration_all:
     server: false
     client: true
   GHOST_BASE_URL:
-    server: true
-    client: true
-  FEATURE_NEW_SCHOOL_ADMINISTRATION_PAGE_AS_DEFAULT_ENABLED:
-    value: "false"
     server: true
     client: true
   FEATURE_PROMETHEUS_METRICS_ENABLED:
@@ -660,14 +612,6 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_SHOW_NEW_CLASS_VIEW_ENABLED:
-    value: "false"
-    server: true
-    client: true
-  FEATURE_SHOW_NEW_ROOMS_VIEW_ENABLED:
-    value: "true"
-    server: true
-    client: true
   FEATURE_GROUPS_IN_COURSE_ENABLED:
     value: "false"
     server: true
@@ -774,14 +718,10 @@ configuration_all:
     value: "false"
     server: true
     client: false
-  FEATURE_ROOMS_ENABLED:
-    value: "true"
+  FEATURE_BOARD_READERS_CAN_EDIT_TOGGLE:
+    value: "false"
     server: true
     client: true
-  FEATURE_ROOM_INVITATION_LINKS_ENABLED:
-    value: "true"
-    server: true
-    client: false
   FEATURE_ROOM_COPY_ENABLED:
     value: "true"
     server: true
@@ -790,18 +730,26 @@ configuration_all:
     value: "true"
     server: true
     client: false
-  FEATURE_ROOM_ADD_STUDENTS_ENABLED:
-    value: "true"
-    server: true
-    client: true
-  FEATURE_ADMINISTRATE_ROOMS_ENABLED:
+  FEATURE_ROOM_ADD_EXTERNAL_PERSONS_ENABLED:
     value: "false"
     server: true
-    client: true
-  FEATURE_ROOM_MEMBERS_TABS_ENABLED:
-    value: "true"
+    client: false
+  FEATURE_ROOM_REGISTER_EXTERNAL_PERSONS_ENABLED:
+    value: "false"
     server: true
     client: false
+  FEATURE_ROOM_LINK_INVITATION_EXTERNAL_PERSONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
+  FEATURE_ADMINISTRATE_ROOMS_ENABLED:
+    value: "true"
+    server: true
+    client: true
+  FEATURE_COLUMN_BOARD_COLLABORA_ENABLED:
+    value: "true"
+    server: true
+    client: true
   CTL_TOOLS__PREFERRED_TOOLS_LIMIT:
     value: "5"
     server: true
@@ -841,10 +789,6 @@ configuration_all:
     value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true
-  FEATURE_HIDE_OLD_ADMIN_PAGE_LINK:
-    value: "false"
-    server: true
-    client: false
   COOKIE__JWT_HTTP_ONLY:
     value: "true"
     server: false

@@ -16,6 +16,7 @@
     - dof_tsp_keycloak_management
     - dof_rabbitmq
     - dof_mailcatcher
+    - collabora-office
     - libreoffice
     - maildrop
     - storage
@@ -38,6 +39,7 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
+    - fwu
     - h5p-proxy
     - clammit
     - h5p-staticfiles-server-core

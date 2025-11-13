@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: etherpad-svc-monitor
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: etherpad
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etherpad-svc
+  endpoints:
+  - path: /stats/prometheus
+    port: etherpad

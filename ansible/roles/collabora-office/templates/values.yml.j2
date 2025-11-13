@@ -1,0 +1,46 @@
+replicaCount: {{ COLLABORA_OFFICE_REPLICAS }}
+autoscaling:
+  enabled: false
+resources:
+  limits:
+    cpu: "{{ COLLABORA_OFFICE_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_LIMITS|default('2Gi', true) }}"
+  requests:
+    cpu: "{{ COLLABORA_OFFICE_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ COLLABORA_OFFICE_MEMORY_REQUESTS|default('128Mi', true) }}"
+
+ingress:
+  enabled: false
+
+collabora:
+  server_name: '{{ COLLABORA_OFFICE_DOMAIN }}'
+  existingSecret:
+    enabled: true
+    secretName: "collabora-admin-password"
+    usernameKey: "username"
+    passwordKey: "password"
+
+  extra_params: --o:ssl.enable=false --o:num_prespawn_children=4 --o:ssl.termination=true --o:per_document.bgsave_timeout_secs=600 --o:net.connection_timeout_secs=600
+  aliasgroups:
+    - host: 'https://{{ DOMAIN }}:443'
+
+prometheus:
+  rules:
+    enabled: false
+  servicemonitor:
+    enabled: true
+    labels:
+      release: "kube-prometheus-stack"
+    additionalLabels:
+      release: "kube-prometheus-stack"
+
+#other labels are managed by helm
+deployment:
+  labels:
+    app: collabora-office
+    git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"
+
+#other labels are managed by helm
+podLabels:
+  app: collabora-office
+  git.repo: "{{ DOF_APP_DEPLOY_REPO_NAME }}"

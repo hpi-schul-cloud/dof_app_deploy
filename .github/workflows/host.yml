@@ -46,7 +46,7 @@ jobs:
     environment: ${{ inputs.host_name }}
     steps:
       - run: mkdir repo
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/dof_app_deploy
           path: repo/dof_app_deploy
@@ -62,67 +62,67 @@ jobs:
           sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
           echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
           echo "DOF_APP_DEPLOY_LATEST_TAG: ${{ inputs.cfg_version }}" >> branch_name.yml
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/schulcloud-server
           path: repo/schulcloud-server
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_SERVER_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/schulcloud-client
           path: repo/schulcloud-client
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/nuxt-client
           path: repo/nuxt-client
           token: ${{ secrets.token }}
           ref: ${{ env.NUXT_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/superhero-dashboard
           path: repo/superhero-dashboard
           token: ${{ secrets.token }}
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/h5p-staticfiles-server
           path: repo/h5p-staticfiles-server
           token: ${{ secrets.token }}
           ref: ${{ env.H5P_STATICFILES_SERVER_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/schulcloud-calendar
           path: repo/schulcloud-calendar
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CALENDAR_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/antivirus_check_service
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/version-aggregator
           path: repo/version-aggregator
           token: ${{ secrets.token }}
           ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/tldraw-client
           path: repo/tldraw-client
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/tldraw-server
           path: repo/tldraw-server
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_SERVER_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: hpi-schul-cloud/file-storage
           path: repo/file-storage
@@ -150,7 +150,7 @@ jobs:
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -191,7 +191,7 @@ jobs:
         run: |
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
-      - run: ansible-playbook ./playbook_rollout.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+      - run: ansible-playbook ./playbook_rollout.yml --connection local --inventory hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |

@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Ansible artifact ${{ inputs.tenant }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
@@ -71,11 +71,11 @@ jobs:
             label: other-tags
             op: skip-tags
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
 
@@ -109,7 +109,7 @@ jobs:
         run: |
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
-      - run: ansible-playbook ./playbook.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3' --${{ matrix.action.op }} ${{ matrix.action.tags }}
+      - run: ansible-playbook ./playbook.yml --connection local --inventory hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3' --${{ matrix.action.op }} ${{ matrix.action.tags }}
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |

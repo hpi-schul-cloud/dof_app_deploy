@@ -6,7 +6,7 @@ CALENDAR_URI: "http://calendar-svc:3000"
 NEST_LOG_LEVEL: "info"
 
 # Identity Management
-FEATURE_IDENTITY_MANAGEMENT_ENABLED: "true"
+FEATURE_IDENTITY_MANAGEMENT_ENABLED: "false"
 FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
 FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "false"
 IDENTITY_MANAGEMENT__INTERNAL_URI: "http://erwinidm-svc:8089"
@@ -50,3 +50,18 @@ LICENSE_SUMMARY_URL: "{{ LICENSE_SUMMARY_BASE_URL }}/{{ DOF_APP_DEPLOY_LATEST_TA
 SESSION_VALKEY__MODE: "cluster"
 SESSION_VALKEY__SENTINEL_SERVICE_NAME: "session-valkey-headless.{{ NAMESPACE }}.svc.cluster.local"
 SESSION_VALKEY__SENTINEL_NAME: "myprimary"
+
+COLLABORA_OFFICE_DOMAIN_PREFIX: "cool."
+COLLABORA_OFFICE_DOMAIN: "{{ COLLABORA_OFFICE_DOMAIN_PREFIX }}{{ DOMAIN }}"
+COLLABORA_OFFICE_URL: "https://{{ COLLABORA_OFFICE_DOMAIN }}"
+
+API_HOST: "http://api-svc:3030/api"
+
+# this is not a good place, belongs to the s3 secret, not because it's a secret, but it's easier to maintain there
+H5P_EDITOR__S3_ENDPOINT: "https://s3-eu-central-2.ionoscloud.com"
+H5P_EDITOR__S3_REGION: "s3-eu-central-2"
+
+FWU_CONTENT__S3_REGION: "eu-central-2"
+FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
+FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
+FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000

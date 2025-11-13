@@ -15,6 +15,8 @@
     - role: dof_rabbitmq
     - role: dof_mailcatcher
       when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
+    - role: collabora-office
+      when: WITH_COLLABORA_OFFICE is defined and WITH_COLLABORA_OFFICE|bool
     - role: libreoffice
     - role: maildrop
     - role: storage
@@ -40,6 +42,7 @@
     - role: h5p-proxy
     - role: clammit
     - role: h5p-staticfiles-server-core
+    - role: fwu
     - role: superhero-dashboard
     - role: schulcloud-calendar-core
     - role: schulcloud-calendar-init
