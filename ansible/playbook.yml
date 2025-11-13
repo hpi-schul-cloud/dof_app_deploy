@@ -39,6 +39,7 @@
     - schulcloud-calendar-core
     - schulcloud-calendar-init
     - h5p-library-management
+    - fwu
     - h5p-proxy
     - clammit
     - h5p-staticfiles-server-core

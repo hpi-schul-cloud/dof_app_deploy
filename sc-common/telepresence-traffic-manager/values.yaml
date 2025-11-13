@@ -1,8 +1,4 @@
 client:
-  # Max time that the traffic-manager will keep a client connection alive when it doesn't receive
-  # any calls to Remain.
-  connectionTTL: 1h
-
   dns:
     # Tell client's DNS resolver to never send names with these suffixes to the cluster side resolver
     excludeSuffixes: [".com", ".io", ".net", ".org", ".ru", ".de", ".dev"]
