@@ -1,62 +1,59 @@
-global:
-  defaultStorageClass: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
-  security:
-    allowInsecureImages: true
+storage:
+  className: "{{ SC_DEFAULT_STORAGE_CLASS_NAME }}"
+
+haMode:
+  enabled: true
+  replicas: {{ SESSION_VALKEY_REPLICAS }}
+  masterGroupName: myprimary
+
 image:
-  repository: "bitnamilegacy/valkey"
-replica:
-  replicaCount: {{ SESSION_VALKEY_REPLICAS }}
-  pdb:
-    create: false
-  resources:
-    limits:
-      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
-    requests:
-      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
-primary:
-  pdb:
-    create: false
-  readinessProbe:
-    timeoutSeconds: 5
-  resources:
-    limits:
-      cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
-    requests:
-      cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
-      memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
-auth:
-  existingSecret: session-valkey-password
-  existingSecretPasswordKey: SESSION_VALKEY__SENTINEL_PASSWORD
-  usePasswordFiles: false
-sentinel:
-  enabled: true
-  image:
-    repository: "bitnamilegacy/valkey-sentinel"
-  readinessProbe:
-    timeoutSeconds: 5
+  registry: "docker.io"
+  repository: "valkey/valkey"
+  tag: "{{ SESSION_VALKEY_IMAGE_VERSION }}"
+
+resources:
+  limits:
+    cpu: "{{ SESSION_VALKEY_CPU_LIMITS|default('1000m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_LIMITS|default('4Gi', true) }}"
+  requests:
+    cpu: "{{ SESSION_VALKEY_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ SESSION_VALKEY_MEMORY_REQUESTS|default('1Gi', true) }}"
+
+sentinelResources:
+  limits:
+    cpu: "{{ SESSION_VALKEY_SENTINEL_CPU_LIMITS|default('150m', true) }}"
+    memory: "{{ SESSION_VALKEY_SENTINEL_MEMORY_LIMITS|default('192Mi', true) }}"
+  requests:
+    cpu: "{{ SESSION_VALKEY_SENTINEL_CPU_REQUESTS|default('100m', true) }}"
+    memory: "{{ SESSION_VALKEY_SENTINEL_MEMORY_REQUESTS|default('128Mi', true) }}"
+
+extraSecretValkeyConfigs: "session-valkey-config"
+extraSecretSentinelConfigs: "session-valkey-sentinel-config"
+
 metrics:
-  image:
-      repository: "bitnamilegacy/redis-exporter"
   enabled: true
-  podMonitor:
-    enabled: true
-  extraArgs:
-    check-key-groups: '\(jwt\):.+'
+  exporter:
+    image:
+      registry: "docker.io"
+      repository: "oliver006/redis_exporter"
+      tag: "{{ SESSION_VALKEY_REDIS_EXPORTER_IMAGE_VERSION }}"
+    resources:
+        limits:
+            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_LIMITS|default('150m', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_LIMITS|default('192Mi', true) }}"
+        requests:
+            cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
+            memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_REQUESTS|default('128Mi', true) }}"
+    args:
+      - --check-key-groups=(jwt):.+
+    extraExporterEnvSecrets:
+      - "session-valkey-exporter"
   serviceMonitor:
-    enabled: true
-    metricRelabelings:
-        - sourceLabels: [ __name__ ]
-          regex: redis_key_group_count
-          action: replace
-          targetLabel: longterm
-          replacement: "true"   
-# OPS-6762 still up to debate if we will enable this
-networkPolicy:
-  enabled: false
-serviceAccount:
-  create: false
-# https://github.com/bitnami/charts/issues/9689
-useHostnames: false
+    interval: 30s
+    extraEndpointParameters:
+      metricRelabelings:
+          - sourceLabels: [ __name__ ]
+            regex: redis_key_group_count
+            action: replace
+            targetLabel: longterm
+            replacement: "true"
