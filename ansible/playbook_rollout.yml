@@ -9,6 +9,7 @@
   roles:
     - role: sys
     - role: pre_deployment
+    - role: external-secrets
     - role: dof_mongo
     - role: dof_postgresql
     - role: dof_rabbitmq
