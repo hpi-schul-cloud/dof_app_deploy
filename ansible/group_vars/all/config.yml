@@ -739,6 +739,10 @@ configuration_all:
     value: "true"
     server: true
     client: true
+  FEATURE_EXTERNAL_PERSON_REGISTRATION_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COLUMN_BOARD_COLLABORA_ENABLED:
     value: "true"
     server: true
