@@ -65,3 +65,5 @@ FWU_CONTENT__S3_REGION: "eu-central-2"
 FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
 FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
 FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
+
+FILES_STORAGE__SERVICE_BASE_URL: "http://file-storage-svc:4444"
