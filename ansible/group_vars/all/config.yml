@@ -707,7 +707,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_BOARD_READERS_CAN_EDIT_TOGGLE:
-    value: "false"
+    value: "true"
     server: true
     client: true
   FEATURE_ROOM_COPY_ENABLED:
