@@ -47,6 +47,10 @@ configuration_all:
     value: "support@dbildungscloud.de"
     server: true
     client: true
+  SC_CONTACT_EMAIL_SUBJECT:
+    value: "Bildungscloud Anfrage"
+    server: true
+    client: true
   ACCESSIBILITY_REPORT_EMAIL:
     value: "dbildungscloud@dataport.de"
     server: true
