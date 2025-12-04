@@ -46,9 +46,9 @@ deployments_for_scaled_objects:
   - name: tldraw-worker-deployment
   - name: tldraw-client-deployment
   - name: collabora-online
-  - name: tldraw-valkey-node
+  - name: tldraw-valkey
     kind: StatefulSet
     replicaCount: "{{TLDRAW_VALKEY_REPLICAS}}"
-  - name: session-valkey-node
+  - name: session-valkey
     kind: StatefulSet
     replicaCount: "{{SESSION_VALKEY_REPLICAS}}"
