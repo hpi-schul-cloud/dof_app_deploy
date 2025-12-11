@@ -4,10 +4,9 @@
     shell: ls -la
   - name: bash 3
     shell: ls -la ~/
-  ## helpers, small scripts for maintenance
   - name: create dir .kube
     file:
-      path: "{{ ansible_env.HOME }}/.kube/"
+      path: "~/.kube/"
       state: directory
       mode: 0700
     tags:
@@ -16,20 +15,9 @@
       
   - name: push kubeconfig
     copy:
-      src: "{{ kubeconfig_yml }}"
-      dest: "{{ ansible_env.HOME }}/.kube/config"
-      mode: 0600
-    when: kubeconfig_yml is defined
-    tags:
-      - kubeconfig
-      - always
-    
-  - name: push kubeconfig
-    copy:
       src: config
-      dest: "{{ ansible_env.HOME }}/.kube/config"
+      dest: "~/.kube/config"
       mode: 0600
-    when: kubeconfig_yml is undefined
     tags:
       - kubeconfig
       - always
