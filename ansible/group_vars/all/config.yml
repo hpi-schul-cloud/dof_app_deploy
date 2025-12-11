@@ -47,6 +47,10 @@ configuration_all:
     value: "support@dbildungscloud.de"
     server: true
     client: true
+  SC_CONTACT_EMAIL_SUBJECT:
+    value: "Bildungscloud Anfrage"
+    server: true
+    client: true
   ACCESSIBILITY_REPORT_EMAIL:
     value: "dbildungscloud@dataport.de"
     server: true
@@ -113,12 +117,11 @@ configuration_all:
     server: true
     client: false
   FILES_STORAGE__SERVICE_BASE_URL:
-    value: "http://file-storage-svc:4444"
     server: true
     client: true
-  FILES_STORAGE__INCOMING_REQUEST_TIMEOUT:
+  FILES_STORAGE__REQUEST_TIMEOUT:
     value: "600000"
-    server: true
+    server: false
     client: true
   # WOPI
   WOPI_MAX_FILE_SIZE:
@@ -388,10 +391,6 @@ configuration_all:
     client: false
   FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED:
     value: "false"
-    server: true
-    client: false
-  FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE:
-    value: "2000000000"
     server: true
     client: false
   FEATURE_LESSON_SHARE:
