@@ -520,7 +520,7 @@ configuration_all:
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
-    value: "dashboard.text.surveyAnnouncement"
+#    value: "dashboard.text.surveyAnnouncement"
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
