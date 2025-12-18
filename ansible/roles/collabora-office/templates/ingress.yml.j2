@@ -49,6 +49,13 @@ spec:
             name: default-backend-404-svc
             port:
               number: 8080
+      - path: /cool/checkFileInfo
+        pathType: Prefix
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
       - path: /cool/adminws/
         pathType: Prefix
         backend:
