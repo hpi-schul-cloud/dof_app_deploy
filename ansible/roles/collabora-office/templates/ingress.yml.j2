@@ -70,7 +70,7 @@ spec:
             name: default-backend-404-svc
             port:
               number: 8080
-      - path: /browser/[0-9a-f]+/admin/.*$
+      - path: /browser/[0-9a-z]+/admin/.*$
         pathType: ImplementationSpecific
         backend:
           service:
