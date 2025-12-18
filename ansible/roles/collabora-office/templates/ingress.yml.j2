@@ -56,11 +56,31 @@ spec:
             name: default-backend-404-svc
             port:
               number: 8080
-      - path: /browser/dist/admin/
+      - path: /cool/admin/.*$
         pathType: Prefix
         backend:
           service:
             name: default-backend-404-svc
             port:
               number: 8080
-
+      - path: /browser/[0-9a-f]+/admin/.*$
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+      - path: /hosting/discovery
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
+      - path: /hosting/capabilities
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: default-backend-404-svc
+            port:
+              number: 8080
