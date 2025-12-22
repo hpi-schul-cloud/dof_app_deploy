@@ -519,7 +519,7 @@ configuration_all:
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
-    value: "dashboard.text.surveyAnnouncement"
+#    value: "dashboard.text.surveyAnnouncement"
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
@@ -790,6 +790,10 @@ configuration_all:
     server: false
     client: true
   INCLUDE_MAIL_IN_USER_FULL_TEXT_INDEX:
+    value: "true"
+    server: true
+    client: false
+  FORCE_SEND_EMAIL:
     value: "true"
     server: true
     client: false
