@@ -25,7 +25,6 @@ deployments_for_scaled_objects:
   - name: etherpad-deployment
   - name: etherpad-nginx-deployment
   - name: hydra-deployment
-  - name: libreoffice-deployment
   - name: management-deployment
   - name: nuxtclient-deployment
   - name: oidcmock-deployment
