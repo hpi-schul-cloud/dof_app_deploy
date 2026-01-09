@@ -1,0 +1,46 @@
+---
+# Role to clean up LibreOffice resources that are no longer needed
+# This runs as part of normal deployment to ensure clean state
+
+- name: Remove LibreOffice Deployment
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    name: libreoffice-deployment
+    api_version: apps/v1
+    kind: Deployment
+    state: absent
+  ignore_errors: true
+
+- name: Remove LibreOffice Service
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    name: libreoffice-svc
+    api_version: v1
+    kind: Service
+    state: absent
+  ignore_errors: true
+
+- name: Remove LibreOffice Ingress
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    name: "{{ NAMESPACE }}-libreoffice-ingress"
+    api_version: networking.k8s.io/v1
+    kind: Ingress
+    state: absent
+  ignore_errors: true
+
+- name: Remove LibreOffice ConfigMaps
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    name: "{{ item }}"
+    api_version: v1
+    kind: ConfigMap
+    state: absent
+  loop:
+    - libreoffice-configmap
+    - libreoffice-configmap-files
+  ignore_errors: true
