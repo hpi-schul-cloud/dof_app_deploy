@@ -388,10 +388,6 @@ configuration_all:
     value: "true"
     server: true
     client: false
-  FEATURE_LESSON_H5P_ENABLED:
-    value: "false"
-    server: false
-    client: true
   FEATURE_TASK_SHARE:
     value: "true"
     server: true
@@ -510,7 +506,7 @@ configuration_all:
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_TEXT:
-#    value: "dashboard.text.surveyAnnouncement"
+    #    value: "dashboard.text.surveyAnnouncement"
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
