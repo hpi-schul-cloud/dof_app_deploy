@@ -18,7 +18,6 @@
     - role: collabora-office
       when: WITH_COLLABORA_OFFICE is defined and WITH_COLLABORA_OFFICE|bool
     - role: libreoffice
-      when: WITH_LIBRE_OFFICE is defined and WITH_LIBRE_OFFICE|bool
     - role: maildrop
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
