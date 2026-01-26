@@ -67,10 +67,6 @@ configuration_all:
     value: "https://s3.hidrive.strato.com/cloud-instances/"
     server: true
     client: true
-  LIBRE_OFFICE_CLIENT_URL:
-    value: "https://{{ LIBREOFFICE_PREFIX }}{{ DOMAIN }}"
-    server: false
-    client: true
   NO_COLOR:
     value: "true"
     server: true
@@ -123,11 +119,6 @@ configuration_all:
     value: "600000"
     server: false
     client: true
-  # WOPI
-  WOPI_MAX_FILE_SIZE:
-    value: "104857600"
-    server: true
-    client: false
   # Identity Management
   FEATURE_IDENTITY_MANAGEMENT_ENABLED:
     server: true
@@ -519,7 +510,7 @@ configuration_all:
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
-    value: "teacher"
+    value: "student,teacher"
     server: false
     client: true
   FEATURE_USER_MIGRATION_ENABLED:
@@ -791,5 +782,9 @@ configuration_all:
     client: false
   FORCE_SEND_EMAIL:
     value: "true"
+    server: true
+    client: false
+  FEATURE_FWU_CONTENT_ENABLED:
+    value: "false"
     server: true
     client: false
