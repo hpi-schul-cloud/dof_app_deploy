@@ -714,15 +714,15 @@ configuration_all:
     server: true
     client: false
   FEATURE_ROOM_ADD_EXTERNAL_PERSONS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_ROOM_REGISTER_EXTERNAL_PERSONS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_ROOM_LINK_INVITATION_EXTERNAL_PERSONS_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_ADMINISTRATE_ROOMS_ENABLED:
@@ -730,7 +730,7 @@ configuration_all:
     server: true
     client: true
   FEATURE_EXTERNAL_PERSON_REGISTRATION_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_COLUMN_BOARD_COLLABORA_ENABLED:
