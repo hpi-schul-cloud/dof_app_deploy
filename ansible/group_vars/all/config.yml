@@ -510,7 +510,7 @@ configuration_all:
     server: false
     client: true
   DASHBOARD_ANNOUNCEMENT_ROLES:
-    value: "teacher"
+    value: "student,teacher"
     server: false
     client: true
   FEATURE_USER_MIGRATION_ENABLED:
