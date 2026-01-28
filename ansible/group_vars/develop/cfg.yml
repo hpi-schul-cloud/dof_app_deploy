@@ -46,10 +46,6 @@ JWT_PUBLIC_KEY: '-----BEGIN RSA PUBLIC KEY-----\\nMIICCgKCAgEAqYX8ofa9B+nL+IIPxH
 # since this file is only created when tagging, we do not have a real one available for dev, instead we use the latest one from prod-dbc
 LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.com/{{ DOF_APP_DEPLOY_LATEST_TAG }}/prod-dbc-license-summary.json"
 
-FEATURE_ROOM_ADD_EXTERNAL_PERSONS_ENABLED: "true"
-FEATURE_ROOM_REGISTER_EXTERNAL_PERSONS_ENABLED: "true"
-FEATURE_ROOM_LINK_INVITATION_EXTERNAL_PERSONS_ENABLED: "true"
-FEATURE_EXTERNAL_PERSON_REGISTRATION_ENABLED: "true"
 
 # probably a better way would be to completely separate db credentials from other secrets
 EXTERNAL_SECRETS_POSTFIX: "-source"
