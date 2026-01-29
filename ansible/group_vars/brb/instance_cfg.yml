@@ -4,7 +4,7 @@ SC_SHORTNAME: brb
 SC_TITLE: Schul-Cloud Brandenburg
 SC_PRODUCTNAME: Schul-Cloud Brandenburg
 SC_NAV_TITLE: Schul-Cloud Brandenburg
-SC_CONTACT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
+SC_CONTACT_EMAIL: support.scbb@meinlibra.de
 GLOBAL_ANNOUNCEMENT_TEXT: ""
 GLOBAL_ANNOUNCEMENT_ROLES: teacher,administrator
 TRAINING_URL: "https://ecampus.lisum.de/home"
