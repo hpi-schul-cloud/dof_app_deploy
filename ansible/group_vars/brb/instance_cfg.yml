@@ -51,7 +51,7 @@ IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 FEATURE_USER_MIGRATION_ENABLED: "false"
 FEATURE_USER_MIGRATION_SYSTEM_ID: ""
 # accessibility
-ACCESSIBILITY_REPORT_EMAIL: schul-cloud@bildungsserver.berlin-brandenburg.de
+ACCESSIBILITY_REPORT_EMAIL: support.scbb@meinlibra.de
 
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
