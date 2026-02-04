@@ -426,7 +426,7 @@ configuration_all:
     client: false
   # Lernstore
   FEATURE_LERNSTORE_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
   ES_DOMAIN:
