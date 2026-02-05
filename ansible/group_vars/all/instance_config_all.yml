@@ -74,3 +74,5 @@ HYDRA_URI: "http://hydra-svc:4445/admin"
 ROOM_MEMBER_INFO_URL: "https://{{ DOMAIN }}/help/confluence/381583517"
 
 PUBLIC_BACKEND_URL: "https://{{ DOMAIN }}/api"
+
+HOST: "https://{{ DOMAIN }}"
