@@ -424,11 +424,6 @@ configuration_all:
     value: "{{ CALENDAR_URI }}"
     server: true
     client: false
-  # Lernstore
-  FEATURE_LERNSTORE_ENABLED:
-    value: "true"
-    server: true
-    client: true
   ES_DOMAIN:
     value: "https://repository.edusharing.dbildungscloud.de"
     server: true
