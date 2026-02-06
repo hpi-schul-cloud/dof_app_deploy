@@ -1,5 +1,4 @@
 FEATURE_S3_BUCKET_CORS: "true"
-ES_DOMAIN: "https://repository.edusharing.dbildungscloud.de"
 H5P_FRAME_SRC_URLS: "https://rendering.services.edusharing.dbildungscloud.de/"
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.com"
