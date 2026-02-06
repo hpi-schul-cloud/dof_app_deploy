@@ -424,14 +424,6 @@ configuration_all:
     value: "{{ CALENDAR_URI }}"
     server: true
     client: false
-  ES_DOMAIN:
-    value: "https://repository.edusharing.dbildungscloud.de"
-    server: true
-    client: false
-  ES_USER:
-    value: ""
-    server: true
-    client: false
   FEATURE_ES_COLLECTIONS_ENABLED:
     value: "true"
     server: true
