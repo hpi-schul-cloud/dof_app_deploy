@@ -181,10 +181,6 @@ default_ingress:
     path: /serverversion
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_wopi:
-    path: /api/v1/wopi
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_courses:
     path: /api/v1/courses
     serviceName: api-svc
