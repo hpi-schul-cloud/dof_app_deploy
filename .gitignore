@@ -11,8 +11,6 @@ configuration/
 .DS_Store
 .directory
 *.swp
-# LibreOffice locks
-.~lock.*#
 .repository/
 .attach_pid*
 sessions
