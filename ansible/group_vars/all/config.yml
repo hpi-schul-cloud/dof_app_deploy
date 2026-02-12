@@ -424,14 +424,6 @@ configuration_all:
     value: "{{ CALENDAR_URI }}"
     server: true
     client: false
-  FEATURE_ES_COLLECTIONS_ENABLED:
-    value: "true"
-    server: true
-    client: false
-  FEATURE_ES_SEARCHABLE_ENABLED:
-    value: "true"
-    server: true
-    client: false
   FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED:
     value: "true"
     server: false
