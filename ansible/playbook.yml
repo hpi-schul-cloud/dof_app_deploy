@@ -17,7 +17,6 @@
     - dof_rabbitmq
     - dof_mailcatcher
     - collabora-office
-    - libreoffice
     - maildrop
     - storage
     - hydra
