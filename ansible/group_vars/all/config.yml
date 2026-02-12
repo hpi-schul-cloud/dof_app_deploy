@@ -404,10 +404,6 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  FEATURE_EXTENSION_PORTFOLIO_ENABLED:
-    value: "false"
-    server: false
-    client: true
   FEATURE_MINT_PAGES_ENABLED:
     value: "false"
     server: false
