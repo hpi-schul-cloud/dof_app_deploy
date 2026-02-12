@@ -540,10 +540,6 @@ configuration_all:
     value: ""
     server: false
     client: true
-  NEXTCLOUD_BASE_URL:
-    value: ""
-    server: true
-    client: false
   OAUTH2_LOGOUT_URI:
     value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
     server: false
