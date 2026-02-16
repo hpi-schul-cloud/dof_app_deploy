@@ -564,6 +564,28 @@ aggregations:
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: lessons
     metrics:
+    - name: sc_learning_store_lessons
+      type: gauge
+      help: 'The number of resource lessons (Lern-Store)'
+      value: count
+      overrideEmpty: true
+      emptyValue: 0
+      labels: []
+      constLabels:
+        mongodb_collection: lessons
+        longterm: 'true'
+    mode: pull
+    pipeline: |
+      [
+          { "$match" : { "contents.component" : "resources" }},
+          { "$project" : { "contents" : 1 }},
+          { "$unwind" : { "path" : "$contents" }},
+          { "$match" : { "contents.component" : "resources" }},
+          { "$count" : "count" }
+      ]
+  - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
+    collection: lessons
+    metrics:
     - name: sc_nexboard_lessons
       type: gauge
       help: 'The number of nexboard lessons'
