@@ -157,10 +157,6 @@ default_ingress:
     path: /api/v1/accounts/jwtTimer
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_edu-sharing:
-    path: /api/v1/edu-sharing
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
   api_roster:
