@@ -222,10 +222,6 @@ configuration_all:
     value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
     server: true
     client: false
-  ETHERPAD__PAD_PATH:
-    value: "/etherpad/p"
-    server: false
-    client: true
   ETHERPAD__PAD_URI:
     value: "https://{{ DOMAIN }}/etherpad/p"
     server: true
