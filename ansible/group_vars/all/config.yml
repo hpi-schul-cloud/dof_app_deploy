@@ -747,10 +747,6 @@ configuration_all:
     value: "{{ SESSION_VALKEY__SENTINEL_NAME }}"
     server: true
     client: true
-  COOKIE__JWT_HTTP_ONLY:
-    value: "true"
-    server: false
-    client: true
   INCLUDE_MAIL_IN_USER_FULL_TEXT_INDEX:
     value: "true"
     server: true
