@@ -396,10 +396,6 @@ configuration_all:
     value: "false"
     server: false
     client: true
-  FEATURE_ENTERTHECLOUD:
-    value: "false"
-    server: false
-    client: true
   FEATURE_ETHERPAD_ENABLED:
     value: "true"
     server: true
