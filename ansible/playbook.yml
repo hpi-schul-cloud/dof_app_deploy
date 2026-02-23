@@ -9,9 +9,7 @@
     - keda
     - namespace-activator-scaled-objects
     - external-secrets
-    - dof_mongo
     - dof_mongo_management
-    - dof_postgresql
     - dof_postgresql_management
     - dof_tsp_keycloak_management
     - dof_rabbitmq
@@ -20,8 +18,6 @@
     - maildrop
     - storage
     - hydra
-    - erwin-idm
-    - oidcmock
     - dof_etherpad
     - clamav
     - schulcloud-server-core

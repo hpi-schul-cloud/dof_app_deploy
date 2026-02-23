@@ -143,10 +143,6 @@ configuration_all:
   IDENTITY_MANAGEMENT__CLIENTID:
     server: true
     client: false
-  OIDCMOCK__BASE_URL:
-    value: "https://idp-{{ DOMAIN }}"
-    server: true
-    client: false
   HYDRA_URI:
     value: "http://hydra-svc:4445/admin"
     server: true
