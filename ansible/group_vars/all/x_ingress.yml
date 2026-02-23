@@ -149,16 +149,16 @@ default_ingress:
     path: /registration-external-members
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  security:
+    path: /system/security
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
   api_v1_accounts_jwt-timer:
     path: /api/v1/accounts/jwtTimer
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_edu-sharing:
-    path: /api/v1/edu-sharing
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
