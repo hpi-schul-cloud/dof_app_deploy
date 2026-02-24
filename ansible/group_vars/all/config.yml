@@ -396,17 +396,9 @@ configuration_all:
     value: "false"
     server: false
     client: true
-  FEATURE_ENTERTHECLOUD:
-    value: "false"
-    server: false
-    client: true
   FEATURE_ETHERPAD_ENABLED:
     value: "true"
     server: true
-    client: true
-  FEATURE_EXTENSION_PORTFOLIO_ENABLED:
-    value: "false"
-    server: false
     client: true
   FEATURE_MINT_PAGES_ENABLED:
     value: "false"
@@ -439,10 +431,6 @@ configuration_all:
   ADMIN_TABLES_DISPLAY_CONSENT_COLUMN:
     server: true
     client: false
-  FEATURE_EXTENSIONS_ENABLED:
-    value: "false"
-    server: true
-    client: true
   FEATURE_USER_LOGIN_MIGRATION_ENABLED:
     value: "false"
     server: true
