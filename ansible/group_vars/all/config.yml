@@ -178,23 +178,6 @@ configuration_all:
     value: "600"
     server: true
     client: false
-  # rocketchat
-  ROCKET_CHAT_URI:
-    value: "{{ROCKET_CHAT_URI}}"
-    server: true
-    client: false
-  ROCKET_CHAT_URI_CLIENT:
-    var_name: ROCKET_CHAT_URI
-    value: "https://{{ ROCKETCHAT_DNS_PREFIX }}{{ DOMAIN }}"
-    server: false
-    client: true
-  ROCKETCHAT_SERVICE_ENABLED:
-    value: "true"
-    server: true
-    client: true
-  ROCKET_CHAT_DEPRECATION_DATE:
-    server: false
-    client: true
   # Antivirus
   ENABLE_FILE_SECURITY_CHECK:
     value: "true"
