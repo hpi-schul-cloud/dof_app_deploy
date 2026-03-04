@@ -3,6 +3,8 @@ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG: 1.29-alpine
 
 deployments_for_scaled_objects:
   - name: api-deployment
+    # since this one relies on the session store to be up, it will just continuously fail when the namespace is disabled
+  - name: api-worker-deployment
   - name: admin-api-deployment
   - name: client-deployment
   - name: amqp-file-storage-deployment
