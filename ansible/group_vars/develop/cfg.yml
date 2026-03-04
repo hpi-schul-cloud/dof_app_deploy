@@ -47,3 +47,8 @@ LICENSE_SUMMARY_URL: "https://svs-public-artifacts.s3-eu-central-2.ionoscloud.co
 
 # probably a better way would be to completely separate db credentials from other secrets
 EXTERNAL_SECRETS_POSTFIX: "-source"
+
+# ONLY FOR TESTING PURPOSES, DO NOT USE IN PRODUCTION
+
+JWT_TIMEOUT_SECONDS: 30
+JWT_SHOW_TIMEOUT_WARNING_SECONDS: 20
