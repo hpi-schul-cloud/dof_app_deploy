@@ -125,10 +125,6 @@ default_ingress:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
     with: WITH_H5P_EDITOR
-  cfiles:
-    path: /cfiles
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   migration:
     path: /migration
     serviceName: nuxtclient-svc
