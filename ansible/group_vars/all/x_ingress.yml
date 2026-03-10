@@ -175,18 +175,6 @@ default_ingress:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_lessons:
-    path: /api/v1/lessons
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_ldap:
-    path: /api/v1/ldap
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_registration:
-    path: /api/v1/registration
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
     # still used in user creation!
   api_v1_users:
     path: /api/v1/users

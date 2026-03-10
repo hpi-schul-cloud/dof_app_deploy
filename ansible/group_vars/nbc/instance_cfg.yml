@@ -88,8 +88,5 @@ group_ingress:
   api_v1_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_registration:
-    serviceName: default-backend-404-svc
-    servicePort: 8080
 
 #DASHBOARD_ANNOUNCEMENT_ROLES: "teacher,administrator"
