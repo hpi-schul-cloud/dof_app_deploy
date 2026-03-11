@@ -58,3 +58,5 @@
     - role: bilo-media-metadata-sync
     - role: vidis-media-metadata-sync
     - role: file-storage
+    - role: legacy-file-archive
+      when: WITH_LEGACY_FILE_ARCHIVE is defined and WITH_LEGACY_FILE_ARCHIVE|bool
