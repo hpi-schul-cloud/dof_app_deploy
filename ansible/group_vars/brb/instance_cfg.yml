@@ -68,9 +68,6 @@ group_ingress:
   api_v1_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_roster:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
 
 # BigBlueButton
 VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
