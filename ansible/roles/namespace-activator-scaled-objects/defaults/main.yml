@@ -15,6 +15,7 @@ deployments_for_scaled_objects:
   - name: antivirus-webserver-deployment
   - name: antivirus-scanfile-deployment
   - name: file-storage-deployment
+  - name: legacy-file-archive-deployment
   - name: api-migration-systems-deployment
   - name: preview-generator-deployment
   - name: api-fwu-deployment
