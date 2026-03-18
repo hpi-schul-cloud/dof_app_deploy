@@ -44,7 +44,6 @@
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
     - role: version-aggregator
-    - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
     - role: tldraw-server
