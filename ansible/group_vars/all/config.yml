@@ -192,10 +192,6 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  CALENDAR_DASHBOARD_ENABLED:
-    value: "false"
-    server: false
-    client: true
   # Etherpad
   ETHERPAD__URI:
     value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
