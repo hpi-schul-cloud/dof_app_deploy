@@ -439,14 +439,6 @@ configuration_all:
   GLOBAL_ANNOUNCEMENT_ROLES:
     server: false
     client: true
-  DASHBOARD_ANNOUNCEMENT_TEXT:
-    #    value: "dashboard.text.surveyAnnouncement"
-    server: false
-    client: true
-  DASHBOARD_ANNOUNCEMENT_ROLES:
-    value: "student,teacher"
-    server: false
-    client: true
   FEATURE_USER_MIGRATION_ENABLED:
     value: "false"
     server: true
