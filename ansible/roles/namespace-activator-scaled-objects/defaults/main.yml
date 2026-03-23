@@ -28,7 +28,6 @@ deployments_for_scaled_objects:
   - name: hydra-deployment
   - name: management-deployment
   - name: nuxtclient-deployment
-  - name: rocketchat-deployment
   - name: shd-deployment
   - name: version-aggregator-deployment
   - name: mailcatcher-deployment
