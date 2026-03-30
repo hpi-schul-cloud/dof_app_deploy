@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Ansible artifact ${{ inputs.tenant }}
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
       - run: tar -cf ${{ inputs.tenant }}-ansible.tar ansible
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: debug-${{ inputs.tenant }}-ansible
           path: ${{github.workspace }}/${{ inputs.tenant }}-ansible.tar
@@ -71,23 +71,23 @@ jobs:
             label: other-tags
             op: skip-tags
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
       - run: ls -R
       - run: mv */*.tar ./
       - run: find -name "*.tar" -exec tar -xf {} \;
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.13'
 
       - name: Install python3-kubernetes
         # this is a very sensitive area, we want to pin the commit here
-        uses: awalsh128/cache-apt-pkgs-action@5902b33ae29014e6ca012c5d8025d4346556bd40
+        uses: awalsh128/cache-apt-pkgs-action@acb598e5ddbc6f68a970c5da0688d2f3a9f04d05 # v1.6.0
         with:
           packages: python3-kubernetes
           version: 1.0
 
       - name: Cache Ansible Galaxy collections
-        uses: actions/cache@v4
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: ~/.ansible/collections
           key: ansible-collections-${{ hashFiles('ansible/collections/requirements.yml') }}
