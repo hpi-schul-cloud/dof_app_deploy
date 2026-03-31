@@ -65,7 +65,7 @@ jobs:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -92,7 +92,7 @@ jobs:
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
@@ -114,7 +114,7 @@ jobs:
           echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
           echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tenants }}.tar ansible
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ matrix.tenants }}
           path: ${{github.workspace }}/${{ matrix.tenants }}.tar
