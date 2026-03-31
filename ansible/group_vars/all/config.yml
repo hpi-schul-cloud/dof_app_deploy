@@ -192,10 +192,6 @@ configuration_all:
     value: "true"
     server: true
     client: true
-  CALENDAR_DASHBOARD_ENABLED:
-    value: "false"
-    server: false
-    client: true
   # Etherpad
   ETHERPAD__URI:
     value: "http://etherpad-nginx-svc/etherpad/api/1.2.14"
@@ -387,14 +383,6 @@ configuration_all:
     value: "{{ CALENDAR_URI }}"
     server: true
     client: false
-  FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED:
-    value: "true"
-    server: false
-    client: true
-  FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED:
-    value: "false"
-    server: false
-    client: true
   FEATURE_CONSENT_NECESSARY:
     value: "true"
     server: true
@@ -441,14 +429,6 @@ configuration_all:
     server: false
     client: true
   GLOBAL_ANNOUNCEMENT_ROLES:
-    server: false
-    client: true
-  DASHBOARD_ANNOUNCEMENT_TEXT:
-    #    value: "dashboard.text.surveyAnnouncement"
-    server: false
-    client: true
-  DASHBOARD_ANNOUNCEMENT_ROLES:
-    value: "student,teacher"
     server: false
     client: true
   FEATURE_USER_MIGRATION_ENABLED:
