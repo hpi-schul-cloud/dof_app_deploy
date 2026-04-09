@@ -17,6 +17,7 @@ deployments_for_scaled_objects:
   - name: file-storage-deployment
   - name: legacy-file-archive-deployment
   - name: api-migration-systems-deployment
+    with: "{{ WITH_MIGRATION_SYSTEMS }}"
   - name: preview-generator-deployment
   - name: api-fwu-deployment
     with: "{{ WITH_FWU }}"
@@ -38,8 +39,11 @@ deployments_for_scaled_objects:
   - name: common-cartridge-deployment
   - name: clammit-deployment
   - name: schulconnex-group-provisioning-deployment
+    with: "{{ WITH_SCHULCONNEX_PROVISIONING }}"
   - name: schulconnex-group-removal-deployment
+    with: "{{ WITH_SCHULCONNEX_PROVISIONING }}"
   - name: schulconnex-license-provisioning-deployment
+    with: "{{ WITH_SCHULCONNEX_PROVISIONING }}"
   - name: tldraw-server-deployment
   - name: tldraw-worker-deployment
   - name: tldraw-client-deployment
