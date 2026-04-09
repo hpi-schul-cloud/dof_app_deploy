@@ -1,13 +1,5 @@
 ---
 
-  - name: trigger auth
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      template: sc-common-mongodb-trigger-auth.yml.j2
-    tags:
-      - keda
-
   - name: apply scaled objects
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config

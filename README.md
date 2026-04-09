@@ -45,14 +45,14 @@ _deactivation_: deployments in a certain namespace are scaled down to 0
 
 
 namespace _lifecycle_:
-1. during a rollout the namespace activator is triggered to activate the namespace for 2 days
-2. after 2 days the namespace gets automatically deactivated
-3. you might re-activate it again, by visiting `https://activate.[dbc,nbc,brb].dbildungscloud.dev/namespace` for 2 more days
+1. during a rollout the namespace activator is triggered to activate the namespace for 12 hours (configured in `sc-common/namespace-activator/base/app.yml`)
+2. after 12 hours the namespace gets automatically deactivated
+3. you might re-activate it again, by visiting `https://activate.[dbc,nbc,brb,thr].dbildungscloud.dev/namespace` for 12 more hours
 
 
-- new pushes to a branch won't re-new the 2 days on purpose
-- visiting the activator before the time has run up, you may hit activate to get 2 more days
-- you may also get more than 2 days, but don't make that your default action, think about the trees 🌳
+- new pushes to a branch won't re-new the 12 hours on purpose
+- visiting the activator before the time has run up, you may hit activate to get 12 more hours
+- you may also get more than 12 hours, but don't make that your default action, think about the trees 🌳
 
 ### extend activation time by adding a label to your pr:
 ⚠️ **Important: The auto-extend-activation-time label should only be used when absolutely necessary, such as when you need to activate the namespace for e2e tests.** Avoid using it as a precautionary measure to prevent unnecessary rollouts and resource consumption.
@@ -63,8 +63,7 @@ This method is effective for each unique PR. If you have multiple PRs from the s
 3. Following this, the activation time for the namespace will be automatically extended with every new push to the branch associated with this PR.
 
 ### extend activation time by modifying the database:
-  1. Gain access to the MongoDB located within the `sc-common` namespace.
-  2. Navigate to the `keda` database and access the `namespaces` collection. Once there, it will be clear which modifications are necessary.
+Modify the entry in the `keda` database, `namespaces` collection.
 
 ## how does a branch name get converted into a namespace
 To convert a branch name to a Kubernetes namespace by stripping paths, converting to lowercase, and replacing underscores and dots with hyphens. It ensures the namespace is compliant with Kubernetes naming conventions.
