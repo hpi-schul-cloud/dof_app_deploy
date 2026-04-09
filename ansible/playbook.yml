@@ -7,7 +7,8 @@
     - sys
     - pre_deployment
     - keda
-    - namespace-activator-scaled-objects
+    - role: namespace-activator-scaled-objects
+      when: NAMESPACE != "main"
     - external-secrets
     - dof_mongo_management
     - dof_postgresql_management
