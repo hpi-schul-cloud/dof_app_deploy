@@ -5,6 +5,7 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app: etherpad
+    app.kubernetes.io/name: etherpad-svc
 spec:
   type: ClusterIP
   ports:

@@ -44,6 +44,8 @@ jobs:
 
   create_artifacts_repos:
     runs-on: ubuntu-latest
+    needs:
+      - create_branch_identifier
     strategy:
       matrix:
         repos:
@@ -51,7 +53,6 @@ jobs:
          - schulcloud-client
          - nuxt-client
          - superhero-dashboard
-         - shd-client
          - schulcloud-calendar
          - antivirus_check_service
          - version-aggregator
@@ -59,11 +60,12 @@ jobs:
          - h5p-staticfiles-server
          - tldraw-client
          - tldraw-server
+         - file-storage
     steps:
       - run: |
           echo "git_ref_name=${{ inputs.branch }}" >> $GITHUB_ENV
           echo git_ref_name ${{ inputs.branch }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/${{ matrix.repos }}
           token: ${{ secrets.token }}
@@ -74,20 +76,23 @@ jobs:
         run: |
           git checkout ${{ env.git_ref_name }} || true
           commit_id=$(git rev-parse HEAD)
+          latest_tag=$(git tag -l "*.*.*" | tail -n 1)
           mkdir -pv ansible/group_vars/all
           ansible_varname=$(echo ${{ matrix.repos }} | tr [a-z] [A-Z] | tr - _ | tr \. _ | tr [:blank:] _ )
           filename=$(echo ${ansible_varname} | tr [A-Z] [a-z] )
           reponame=$(echo ${filename} | tr _ - )
-          branch_varname=$(echo ${{ inputs.branch }} | tr -d [:cntrl:]  | tr / \. | tr [:blank:] _ )
+          # use the short name here, otherwise you can end up in situations where you got really long branch names for metadata which can't be used in k8s (limit of 63 chars)
+          branch_varname=${{ needs.create_branch_identifier.outputs.id_branch }}
           for i in ${{ env.tenants }}; do
             mkdir -pv ansible/host_vars/${i}_host
             echo "${ansible_varname}_IMAGE_TAG: $commit_id" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_BRANCH_NAME: ${branch_varname}" >> ansible/host_vars/${i}_host/$filename.yml
+            echo "${ansible_varname}_LATEST_TAG: ${latest_tag}" >> ansible/host_vars/${i}_host/$filename.yml
             echo "${ansible_varname}_REPO_NAME: ${reponame}" >> ansible/host_vars/${i}_host/$filename.yml
           done
       - run: tar -cf ${{ matrix.repos }}.tar ansible
         working-directory: ${{github.workspace }}/${{ matrix.repos }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ matrix.repos }}
           path: ${{github.workspace }}/${{ matrix.repos }}/${{ matrix.repos }}.tar
@@ -109,7 +114,7 @@ jobs:
           echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
           echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
       - run: tar -cf ${{ matrix.tenants }}.tar ansible
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ matrix.tenants }}
           path: ${{github.workspace }}/${{ matrix.tenants }}.tar
@@ -128,9 +133,24 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # gh pr view will exit with 1 when there is no pr for a given branch
-          pr_labels=$(gh pr view ${{ inputs.branch }} --repo ${{ github.repository }} --json labels 2>/dev/null) && echo "$pr_labels" || echo "no pr found"
-          echo "pr_labels: $pr_labels"
-          has_activation_label=$(echo $pr_labels | jq '.labels[] | select(.name == "auto-extend-activation-time") | length > 0')
+          pr_data=$(gh pr view "${{ inputs.branch }}" --repo "${{ github.repository }}" --json labels,state 2>/dev/null || echo "error")
+          
+          has_activation_label="false"
+          
+          if [[ "$pr_data" != "error" ]]; then
+            pr_state=$(echo "$pr_data" | jq -r '.state')
+          
+            if [[ "$pr_state" == "OPEN" ]]; then
+              pr_labels=$(echo "$pr_data" | jq -c '.labels')
+              echo "pr_labels: $pr_labels"
+          
+              has_activation_label=$(echo "$pr_labels" | jq '[.[] | select(.name == "auto-extend-activation-time")] | length > 0')
+            else
+              echo "PR is not open"
+            fi
+          else
+            echo "no pr found"
+          fi
 
           if [ "$has_activation_label" == "true" ]; then
               echo "has pr, has label, extend activation time"

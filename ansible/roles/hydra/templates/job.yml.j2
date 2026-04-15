@@ -15,7 +15,7 @@ spec:
         name: linux
       containers:
       - name: hydra-migrate
-        image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_IMAGE_TAG }}
+        image: {{ HYDRA_IMAGE_NAME }}:{{ HYDRA_MIGRATE_IMAGE_TAG }}
         imagePullPolicy: Always
         envFrom:
         - secretRef:
@@ -50,4 +50,5 @@ spec:
           - key: update.sh
             path: update.sh
       restartPolicy: Never
+  ttlSecondsAfterFinished: 180
   backoffLimit: 3

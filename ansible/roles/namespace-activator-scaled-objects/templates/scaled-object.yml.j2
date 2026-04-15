@@ -13,13 +13,8 @@ spec:
   pollingInterval: 30
   cooldownPeriod: 60
   triggers:
-  - type: mongodb
-    metadata:
-      port: "27017"
-      dbName: "keda"
-      collection: "namespaces"
-      # basically ignored main when namespace=main
-      query: '{"$or" : [{"name" : "{{ NAMESPACE }}", "$expr" : {"$gt" : ["$activatedUntil" , "$$NOW"]}}, {"$expr" : {"$eq" : ["{{ NAMESPACE }}", "main"]}}]}'
-      queryValue: "1"
-    authenticationRef:
-      name: sc-common-mongodb-trigger-auth
+    - type: metrics-api
+      metadata:
+        url: "https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace/{{ NAMESPACE }}/active"
+        valueLocation: "active"
+        targetValue: "1"

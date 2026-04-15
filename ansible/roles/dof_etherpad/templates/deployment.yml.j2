@@ -38,9 +38,6 @@ spec:
         app.kubernetes.io/component: etherpad
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
-      annotations:
-        prometheus.io/scrape: 'true'
-        prometheus.io/port: '8080'
     spec:
       securityContext:
         #readOnlyRootFilesystem: true

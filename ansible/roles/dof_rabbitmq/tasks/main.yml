@@ -7,17 +7,6 @@
     tags:
       - 1password
 
-  - name: RabbitMQ secret
-    kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config
-      namespace: "{{ NAMESPACE }}"
-      template: secret.yaml.j2
-      apply: yes
-    when: ONEPASSWORD_OPERATOR is undefined or ONEPASSWORD_OPERATOR is defined and not ONEPASSWORD_OPERATOR
-    tags:
-      - secret
-
-
   - name: RabbitMQ Cluster
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 

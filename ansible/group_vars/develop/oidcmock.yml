@@ -1,4 +1,0 @@
-OIDCMOCK_IMAGE_NAME: ghcr.io/soluto/oidc-server-mock
-OIDCMOCK_IMAGE_TAG: 0.6.0
-OIDCMOCK_PORT: 4011
-OIDCMOCK_PREFIX: idp-

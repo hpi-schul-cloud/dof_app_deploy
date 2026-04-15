@@ -1,0 +1,57 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-cleanup-cronjob
+  namespace: sc-common
+  labels:
+    app: postgres-db-cleanup
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: namespace-management
+          volumes:
+            - name: config-script
+              configMap:
+                name: postgres-cleanup-configmap
+                # 711 in decimal is 457
+                defaultMode: 457
+          containers:
+            - name:  postgres-config
+              image: quay.io/schulcloudverbund/cron-tools:1.0
+              command:
+                - /bin/bash
+                - -c
+              args:
+                - /scripts/config_script.sh
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+                requests:
+                  cpu: 100m
+                  memory: 200Mi
+              volumeMounts:
+                - name: config-script
+                  mountPath: /scripts/
+              env:
+                - name: PGHOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: pg-cluster-secret
+                      key: host
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: pg-cluster-secret
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: pg-cluster-secret
+                      key: password
+          restartPolicy: Never
+      ttlSecondsAfterFinished: 120
+      backoffLimit: 2

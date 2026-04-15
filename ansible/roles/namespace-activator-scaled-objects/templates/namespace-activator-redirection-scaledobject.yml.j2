@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: namespace-activator-redirection
+  namespace: {{ NAMESPACE }}
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: namespace-activator-redirection
+  idleReplicaCount: 0
+  minReplicaCount: 1
+  maxReplicaCount: 1
+  # this needs to be fairly low otherwise it is more likely that the client-deployment and this dummy deployment exist at the same time
+  pollingInterval: 5
+  cooldownPeriod: 60
+  triggers:
+    - type: metrics-api
+      metadata:
+        url: "https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace/{{ NAMESPACE }}/active"
+        valueLocation: "inactive"
+        targetValue: "1"

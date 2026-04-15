@@ -46,7 +46,7 @@ jobs:
     environment: ${{ inputs.host_name }}
     steps:
       - run: mkdir repo
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/dof_app_deploy
           path: repo/dof_app_deploy
@@ -61,72 +61,73 @@ jobs:
           sed -e "s/IMAGE_TAG: /VERSION=/g" version.yml >> $GITHUB_ENV
           sed -e "s/IMAGE_TAG: /BRANCH_NAME: /g" version.yml >> branch_name.yml
           echo "DOF_APP_DEPLOY_BRANCH_NAME: ${{ inputs.cfg_version }}" >> branch_name.yml
-      - uses: actions/checkout@v4
+          echo "DOF_APP_DEPLOY_LATEST_TAG: ${{ inputs.cfg_version }}" >> branch_name.yml
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/schulcloud-server
           path: repo/schulcloud-server
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_SERVER_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/schulcloud-client
           path: repo/schulcloud-client
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/nuxt-client
           path: repo/nuxt-client
           token: ${{ secrets.token }}
           ref: ${{ env.NUXT_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/superhero-dashboard
           path: repo/superhero-dashboard
           token: ${{ secrets.token }}
           ref: ${{ env.SUPERHERO_DASHBOARD_VERSION }}
-      - uses: actions/checkout@v4
-        with:
-          repository: hpi-schul-cloud/shd-client
-          path: repo/shd-client
-          token: ${{ secrets.token }}
-          ref: ${{ env.SHD_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/h5p-staticfiles-server
           path: repo/h5p-staticfiles-server
           token: ${{ secrets.token }}
           ref: ${{ env.H5P_STATICFILES_SERVER_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/schulcloud-calendar
           path: repo/schulcloud-calendar
           token: ${{ secrets.token }}
           ref: ${{ env.SCHULCLOUD_CALENDAR_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/antivirus_check_service
           path: repo/antivirus_check_service
           token: ${{ secrets.token }}
           ref: ${{ env.ANTIVIRUS_CHECK_SERVICE_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/version-aggregator
           path: repo/version-aggregator
           token: ${{ secrets.token }}
           ref: ${{ env.VERSION_AGGREGATOR_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/tldraw-client
           path: repo/tldraw-client
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_CLIENT_VERSION }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/tldraw-server
           path: repo/tldraw-server
           token: ${{ secrets.token }}
           ref: ${{ env.TLDRAW_SERVER_VERSION }}
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: hpi-schul-cloud/file-storage
+          path: repo/file-storage
+          token: ${{ secrets.token }}
+          ref: ${{ env.FILE_STORAGE_VERSION }}
       - working-directory: ${{github.workspace }}
         run: |
           mkdir ansible
@@ -145,23 +146,34 @@ jobs:
           cp dof_app_deploy/ansible/collections/requirements.yml ../ansible/collections/requirements.yml
           cd ..
       - run: tar -cf ${{ inputs.host_name }}.tar ansible
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: ${{ inputs.host_name }}
           path: ${{github.workspace }}/${{ inputs.host_name }}.tar
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.13'
+
       - name: Install python3-kubernetes
-        run: sudo apt-get install -y python3-kubernetes
-          
+        # this is a very sensitive area, we want to pin the commit here
+        uses: awalsh128/cache-apt-pkgs-action@acb598e5ddbc6f68a970c5da0688d2f3a9f04d05 # v1.6.0
+        with:
+          packages: python3-kubernetes
+          version: 1.0
+
+      - name: Cache Ansible Galaxy collections
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ~/.ansible/collections
+          key: ansible-collections-${{ hashFiles('ansible/collections/requirements.yml') }}
+
+      - run: ansible-galaxy install -r ansible/collections/requirements.yml
+
       - name: 1Password
         working-directory: ${{github.workspace }}/ansible/host_vars/${{ inputs.host_name }}
         run: |
           echo "VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
           echo "ONEPASSWORD_OPERATOR_VAULT: ${{ secrets.ONEPASSWORD_VAULT }}" >> dof_deploy.yml
-      - working-directory: ${{github.workspace }}
-        run: ansible-galaxy install -r ansible/collections/requirements.yml
       - working-directory: ${{github.workspace }}/ansible/roles/sys
         run: |
           mkdir files
@@ -179,14 +191,14 @@ jobs:
         run: |
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+(.*//).*@(.*)+K8S_AUTH_PROXY=\1\2+p' >> $GITHUB_ENV
           yq ".clusters[0].cluster.proxy-url" config | sed -nr 's+.*//(.*)@.*+K8S_AUTH_PROXY_HEADERS_PROXY_BASIC_AUTH=\1+p' >> $GITHUB_ENV
-      - run: ansible-playbook ./playbook_rollout.yml --inventory-file hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
+      - run: ansible-playbook ./playbook_rollout.yml --connection local --inventory hosts --limit "${{ inputs.host_name }}" -e 'ansible_python_interpreter=/usr/bin/python3'
         working-directory: ${{github.workspace }}/ansible
       - working-directory: ${{github.workspace }}/ansible/roles/sys/files
         run: |
           rm -rf  /config
 
       - name: Send Notification to Rocket Chat
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@2966f5f2e0313a94f965a51c08700cfecf0b6572 # 1.1.1
         if: always() && contains(inputs.host_name, 'ref') || contains(inputs.host_name, 'prod')
         with:
           type: ${{ job.status }}

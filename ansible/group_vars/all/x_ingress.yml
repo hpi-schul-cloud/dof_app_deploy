@@ -15,10 +15,6 @@ default_ingress:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  activation:
-    path: /activation
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   metrics:
     path: /metrics
     serviceName: default-backend-404-svc
@@ -71,16 +67,16 @@ default_ingress:
     path: /administration/school-settings
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration/datasources:
-    path: /administration/datasources
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_students:
     path: /administration/students
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_teachers:
     path: /administration/teachers
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  administration_rooms:
+    path: /administration/rooms/manage
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_groups_classes:
@@ -99,12 +95,20 @@ default_ingress:
     path: /rooms-overview
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  rooms-list:
-    path: /rooms-list
+  dashboard:
+    path: /dashboard
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms:
     path: /rooms
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  folder:
+    path: /folder
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  collabora:
+    path: /collabora
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   h5p-player:
@@ -117,10 +121,6 @@ default_ingress:
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
     with: WITH_H5P_EDITOR
-  cfiles:
-    path: /cfiles
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   migration:
     path: /migration
     serviceName: nuxtclient-svc
@@ -133,6 +133,18 @@ default_ingress:
     path: /media-shelf
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
+  licenses:
+    path: /licenses
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  registration-external-members:
+    path: /registration-external-members
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  security:
+    path: /system/security
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
   api:
     path: /api
     serviceName: default-backend-404-svc
@@ -141,18 +153,8 @@ default_ingress:
     path: /api/v1/accounts/jwtTimer
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_edu-sharing:
-    path: /api/v1/edu-sharing
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_edu-sharing-merlin:
-    path: /api/v1/edu-sharing-merlinToken
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
-  api_roster:
-    path: /api/roster
   api_v1_consentVersions:
     path: /api/v1/consentVersions
     serviceName: api-svc
@@ -165,40 +167,18 @@ default_ingress:
     path: /serverversion
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_wopi:
-    path: /api/v1/wopi
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
   api_v1_courses:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_lessons:
-    path: /api/v1/lessons
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_authentication:
-    path: /api/v1/authentication
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_ldap:
-    path: /api/v1/ldap
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_registration:
-    path: /api/v1/registration
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
+    # still used in user creation!
   api_v1_users:
     path: /api/v1/users
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+    # still used in user deletion!
   api_v1_classes:
     path: /api/v1/classes
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_roles_user:
-    path: /api/v1/roles/user
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   etherpad:

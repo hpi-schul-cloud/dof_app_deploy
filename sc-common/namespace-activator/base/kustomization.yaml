@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
   - app.yml
-  - mongo.yml

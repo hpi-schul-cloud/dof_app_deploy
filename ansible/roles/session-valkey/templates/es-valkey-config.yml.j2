@@ -1,0 +1,23 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: session-valkey-config
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: session-valkey
+spec:
+  refreshInterval: {{ EXTERNAL_SECRETS_REFRESH_INTERVAL }}
+  secretStoreRef:
+    kind: SecretStore
+    name: {{ EXTERNAL_SECRETS_K8S_STORE }}
+  target:
+    name: session-valkey-config
+    template:
+      engineVersion: v2
+      data:
+        valkey-auth.conf: |
+          requirepass "{% raw %}{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}{% endraw %}"
+          masterauth "{% raw %}{{ .SESSION_VALKEY__SENTINEL_PASSWORD }}{% endraw %}"
+  dataFrom:
+    - extract:
+        key: session-valkey-password

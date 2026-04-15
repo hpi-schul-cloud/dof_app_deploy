@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namespace-activator-redirection
+  namespace: {{ NAMESPACE }}
+  labels:
+    app: client
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/version: "{{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG }}"
+    app.kubernetes.io/name: namespace-activator-redirection
+    app.kubernetes.io/component: namespace-activator
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+    git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/version: "{{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG }}"
+        app.kubernetes.io/name: namespace-activator-redirection
+        app.kubernetes.io/component: namespace-activator
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+    spec:
+      containers:
+      - name: nginx
+        image: {{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_NAME }}:{{ NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG }}
+        ports:
+        - containerPort: 3100
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+        resources:
+          limits:
+            cpu: {{ NAMESPACE_ACTIVATOR_REDIRECTION_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ NAMESPACE_ACTIVATOR_REDIRECTION_MEMORY_LIMITS|default("100Mi", true) }}
+          requests:
+            cpu: {{ NAMESPACE_ACTIVATOR_REDIRECTION_CPU_LIMITS|default("100m", true) }}
+            memory: {{ NAMESPACE_ACTIVATOR_REDIRECTION_MEMORY_LIMITS|default("50Mi", true) }}
+
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: client-nginx-redirect
+          items:
+          - key: default.conf
+            path: default.conf
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 9
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+{% if ANIT_AFFINITY_NODEPOOL_ENABLE is defined and ANIT_AFFINITY_NODEPOOL_ENABLE|bool %}
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - namespace-activator-redirection
+              topologyKey: {{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}
+{% endif %}
+          - weight: 20
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                  - namespace-activator-redirection
+              topologyKey: "topology.kubernetes.io/zone"
+{% endif %}
