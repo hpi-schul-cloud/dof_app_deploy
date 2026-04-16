@@ -1,18 +1,8 @@
 # this is the place for all "newer" services that are not based on the api-configmap but which need default values to overwrite them from the values that are supplied from the app
 # with other words this is a place for default values across all envs and stages that NEED to be overwritten from app defaults
 API_HOST_URI: "http://api-svc:3030"
-ROCKET_CHAT_URI: "http://rocketchat-svc:5000"
 CALENDAR_URI: "http://calendar-svc:3000"
 NEST_LOG_LEVEL: "info"
-
-# Identity Management
-FEATURE_IDENTITY_MANAGEMENT_ENABLED: "false"
-FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED: "false"
-FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED: "false"
-IDENTITY_MANAGEMENT__INTERNAL_URI: "http://erwinidm-svc:8089"
-IDENTITY_MANAGEMENT__EXTERNAL_URI: "https://{{ ERWINIDM_PREFIX }}{{ DOMAIN }}"
-IDENTITY_MANAGEMENT__TENANT: ""
-IDENTITY_MANAGEMENT__CLIENTID: ""
 
 # CTL
 FEATURE_COLUMN_BOARD_EXTERNAL_TOOLS_ENABLED: "true"
@@ -30,16 +20,6 @@ TSP_SYNC_SCHOOL_DAYS_TO_FETCH: "30"
 TSP_SYNC_DATA_DAYS_TO_FETCH: "30"
 TSP_API_CLIENT_BASE_URL: ""
 TSP_API_CLIENT_TOKEN_LIFETIME_MS: "30000"
-
-# Erwin idm
-ERWINIDM_PORT: 8089
-ERWINIDM_PREFIX: idm.
-ERWINIDM_SERVICE_MONITOR: true
-ERWINIDM_ADMIN_HOSTNAME: "{{ ERWINIDM_ADMIN_PREFIX }}{{ DOMAIN }}"
-ERWINIDM_ADMIN_PREFIX: idm-admin.
-ERWINIDM_ADMIN_INGRESS_CLASS: management
-ERWINIDM_ADMIN_CREATE_CERTIFICATE: true
-ERWINIDM_ADMIN_TLS_AUTH_SECRET: erwinidm-tls-auth
 
 TLDRAW_LOG_LEVEL: "info"
 FEATURE_TLDRAW_ENABLED: "true"
@@ -65,5 +45,14 @@ FWU_CONTENT__S3_REGION: "eu-central-2"
 FWU_CONTENT__S3_ENDPOINT: https://s3-eu-central-2.ionoscloud.com
 FWU_CONTENT__S3_BUCKET: sc-dev-fwu-txl-bucket
 FWU_CONTENT__INCOMING_REQUEST_TIMEOUT_MS: 600000
+FEATURE_FWU_CONTENT_ENABLED: "false"
 
 FILES_STORAGE__SERVICE_BASE_URL: "http://file-storage-svc:4444"
+
+HYDRA_URI: "http://hydra-svc:4445/admin"
+
+ROOM_MEMBER_INFO_URL: "https://{{ DOMAIN }}/help/confluence/381583517"
+
+PUBLIC_BACKEND_URL: "https://{{ DOMAIN }}/api"
+
+HOST: "https://{{ DOMAIN }}"

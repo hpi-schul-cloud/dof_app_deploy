@@ -10,21 +10,17 @@
     - role: sys
     - role: pre_deployment
     - role: external-secrets
-    - role: dof_mongo
-    - role: dof_postgresql
     - role: dof_rabbitmq
     - role: dof_mailcatcher
       when: WITH_MAILCATCHER is defined and WITH_MAILCATCHER|bool
     - role: collabora-office
       when: WITH_COLLABORA_OFFICE is defined and WITH_COLLABORA_OFFICE|bool
-    - role: libreoffice
     - role: maildrop
     - role: storage
       when: WITH_STORAGE is defined and WITH_STORAGE|bool
     - role: keda
       when: KEDA_ENABLED is defined and KEDA_ENABLED|bool
     - role: hydra
-    - role: erwin-idm
     - role: dof_etherpad
     - role: clamav
     - role: schulcloud-server-core
@@ -48,7 +44,6 @@
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
     - role: version-aggregator
-    - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
     - role: tldraw-server
@@ -62,3 +57,5 @@
     - role: bilo-media-metadata-sync
     - role: vidis-media-metadata-sync
     - role: file-storage
+    - role: legacy-file-archive
+      when: WITH_LEGACY_FILE_ARCHIVE is defined and WITH_LEGACY_FILE_ARCHIVE|bool

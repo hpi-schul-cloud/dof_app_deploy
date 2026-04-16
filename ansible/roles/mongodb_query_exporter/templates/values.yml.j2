@@ -6,7 +6,7 @@ global:
   queryTimeout: "15s"
   maxConnection: 3
   defaultCache: 0
-aggregations: 
+aggregations:
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: schools
     metrics:
@@ -61,7 +61,7 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -95,7 +95,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -129,7 +129,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -163,7 +163,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -197,7 +197,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -231,7 +231,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -265,7 +265,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -299,7 +299,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -333,7 +333,7 @@ aggregations:
     cache: 1h
     pipeline: |
       [
-        { 
+        {
           "$match": {
             "$expr": {
               "$gte": [
@@ -389,8 +389,8 @@ aggregations:
             "roles": { "$in": [{"$oid": "0000d186816abba584714c96"}] }
           }
         },
-        { 
-        "$count": "count" 
+        {
+        "$count": "count"
         }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -414,8 +414,8 @@ aggregations:
             "roles": { "$in": [{"$oid": "0000d186816abba584714c98"}] }
           }
         },
-        { 
-        "$count": "count" 
+        {
+        "$count": "count"
         }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -439,8 +439,8 @@ aggregations:
             "roles": { "$in": [{"$oid": "0000d186816abba584714c99"}] }
           }
         },
-        { 
-        "$count": "count" 
+        {
+        "$count": "count"
         }
       ]
 
@@ -533,10 +533,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { "$match" : { "contents.component" : "text" }}, 
-        { "$project" : { "contents" : 1 }}, 
-        { "$unwind" : { "path" : "$contents" }}, 
-        { "$match" : { "contents.component" : "text" }}, 
+        { "$match" : { "contents.component" : "text" }},
+        { "$project" : { "contents" : 1 }},
+        { "$unwind" : { "path" : "$contents" }},
+        { "$match" : { "contents.component" : "text" }},
         { "$count" : "count" }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -555,10 +555,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-          { "$match" : { "contents.component" : "internal" }}, 
-          { "$project" : { "contents" : 1 }}, 
-          { "$unwind" : { "path" : "$contents" }}, 
-          { "$match" : { "contents.component" : "internal" }}, 
+          { "$match" : { "contents.component" : "internal" }},
+          { "$project" : { "contents" : 1 }},
+          { "$unwind" : { "path" : "$contents" }},
+          { "$match" : { "contents.component" : "internal" }},
           { "$count" : "count" }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -577,10 +577,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-          { "$match" : { "contents.component" : "resources" }}, 
-          { "$project" : { "contents" : 1 }}, 
-          { "$unwind" : { "path" : "$contents" }}, 
-          { "$match" : { "contents.component" : "resources" }}, 
+          { "$match" : { "contents.component" : "resources" }},
+          { "$project" : { "contents" : 1 }},
+          { "$unwind" : { "path" : "$contents" }},
+          { "$match" : { "contents.component" : "resources" }},
           { "$count" : "count" }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -599,10 +599,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { "$match" : { "contents.component" : "neXboard" }}, 
-        { "$project" : { "contents" : 1 }}, 
-        { "$unwind" : { "path" : "$contents" }}, 
-        { "$match" : { "contents.component" : "neXboard" }}, 
+        { "$match" : { "contents.component" : "neXboard" }},
+        { "$project" : { "contents" : 1 }},
+        { "$unwind" : { "path" : "$contents" }},
+        { "$match" : { "contents.component" : "neXboard" }},
         { "$count" : "count" }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -621,10 +621,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { "$match" : { "contents.component" : "Etherpad" }}, 
-        { "$project" : { "contents" : 1 }}, 
-        { "$unwind" : { "path" : "$contents" }}, 
-        { "$match" : { "contents.component" : "Etherpad" }}, 
+        { "$match" : { "contents.component" : "Etherpad" }},
+        { "$project" : { "contents" : 1 }},
+        { "$unwind" : { "path" : "$contents" }},
+        { "$match" : { "contents.component" : "Etherpad" }},
         { "$count" : "count" }
       ]
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
@@ -643,10 +643,10 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { "$match" : { "contents.component" : "geoGebra" }}, 
-        { "$project" : { "contents" : 1 }}, 
-        { "$unwind" : { "path" : "$contents" }}, 
-        { "$match" : { "contents.component" : "geoGebra" }}, 
+        { "$match" : { "contents.component" : "geoGebra" }},
+        { "$project" : { "contents" : 1 }},
+        { "$unwind" : { "path" : "$contents" }},
+        { "$match" : { "contents.component" : "geoGebra" }},
         { "$count" : "count" }
       ]
 
@@ -760,9 +760,9 @@ aggregations:
     mode: pull
     pipeline: |
       [
-        { "$match" : { "parentType" : "tasks" }}, 
-        { "$project" : { "_id" : 1, "parent" : 1 }}, 
-        { "$group" : { "_id" : "$parent" }}, 
+        { "$match" : { "parentType" : "tasks" }},
+        { "$project" : { "_id" : 1, "parent" : 1 }},
+        { "$group" : { "_id" : "$parent" }},
         { "$count" : "count" }
       ]
 
@@ -991,8 +991,8 @@ aggregations:
       constLabels: [{"mongodb_collection": "deletionrequests"}]
     mode: pull
     pipeline: |
-      [       
-        { "$match" : {"status": "pending"} },       
+      [
+        { "$match" : {"status": "pending"} },
         { "$count": "count" }
       ]
 
@@ -1009,10 +1009,10 @@ aggregations:
       constLabels: [{"mongodb_collection": "deletionrequests"}]
     mode: pull
     pipeline: |
-      [       
-        { "$match" : {"status": "success"} },       
+      [
+        { "$match" : {"status": "success"} },
         { "$count": "count" }
-      ] 
+      ]
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: deletionrequests
@@ -1027,10 +1027,10 @@ aggregations:
       constLabels: [{"mongodb_collection": "deletionrequests"}]
     mode: pull
     pipeline: |
-      [       
-        { "$match" : {"status": "registered"} },       
+      [
+        { "$match" : {"status": "registered"} },
         { "$count": "count" }
-      ] 
+      ]
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: deletionrequests
@@ -1045,9 +1045,9 @@ aggregations:
       constLabels: [{"mongodb_collection": "deletionrequests"}]
     mode: pull
     pipeline: |
-      [       
+      [
         { "$count": "count" }
-      ] 
+      ]
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: deletionrequests
@@ -1062,13 +1062,13 @@ aggregations:
       constLabels: [{"mongodb_collection": "deletionrequests"}]
     mode: pull
     pipeline: |
-      [       
-        { 
+      [
+        {
           "$match": {
             "status": "pending",
             "$expr": {
               "$lt": [
-                "$updatedAt", 
+                "$updatedAt",
                  { "$subtract": ["$$NOW", 900000] }
               ]
             }
@@ -1208,7 +1208,7 @@ aggregations:
             "$sort": { "type": 1, "group_size": 1 }
         }
       ]
-      
+
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: groups
@@ -1228,13 +1228,13 @@ aggregations:
     pipeline: |
       [
           { "$unwind": "$users" },
-          { 
+          {
               "$group": {
                   "_id": { "user": "$users", "type": "$type" },
                   "group_count": { "$sum": 1 }
               }
           },
-          { 
+          {
               "$project": {
                   "type": "$_id.type",
                   "bucket": {
@@ -1253,7 +1253,7 @@ aggregations:
                   }
               }
           },
-          { 
+          {
               "$group": {
                   "_id": { "type": "$type", "bucket": "$bucket" },
                   "user_count": { "$sum": 1 }
@@ -1269,7 +1269,7 @@ aggregations:
           },
           { "$sort": { "type": 1, "bucket": 1 } }
       ]
-      
+
 
   - database: {{ mongodb_query_exporter_mongodb_sc_db_name }}
     collection: groups
