@@ -17,8 +17,6 @@ SC_FEDERALSTATE:
 FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
 FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "true"
 FEATURE_OAUTH_LOGIN_ENABLED: "false"
-FEATURE_DASHBOARD_DEFAULT_PICTURE_ENABLED: "false"
-FEATURE_DASHBOARD_NEWS_ON_TOP_ENABLED: "true"
 TEACHER_STUDENT_VISIBILITY__IS_ENABLED_BY_DEFAULT: "false"
 TEACHER_STUDENT_VISIBILITY__IS_CONFIGURABLE: "true"
 TEACHER_STUDENT_VISIBILITY__IS_VISIBLE: "true"
@@ -66,9 +64,6 @@ BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
 # Ingress
 group_ingress:
   api_v1_roster:
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_roster:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
 

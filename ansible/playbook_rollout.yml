@@ -44,7 +44,6 @@
     - role: schulcloud-calendar-init
     - role: antivirus_check_service
     - role: version-aggregator
-    - role: rocketchat
     - role: mongodb_query_exporter
     - role: tldraw-client-core
     - role: tldraw-server
@@ -58,3 +57,5 @@
     - role: bilo-media-metadata-sync
     - role: vidis-media-metadata-sync
     - role: file-storage
+    - role: legacy-file-archive
+      when: WITH_LEGACY_FILE_ARCHIVE is defined and WITH_LEGACY_FILE_ARCHIVE|bool

@@ -16,6 +16,14 @@ data:
       #The Access logs can log the API Key from Etherpad at some points.
       access_log off;
 
+      location ^~ /etherpad/admin {
+        return 404;
+      }
+
+      location ^~ /etherpad/stats {
+        return 404;
+      }
+
       # Etherpad-Fu
       location /etherpad {
         rewrite                /etherpad/(.*) /$1 break;
@@ -47,13 +55,6 @@ data:
         proxy_buffering off;
       }
 
-      location /etherpad/stats {
-        return 404;
-      }
-    
-      location /etherpad/admin {
-        return 404;
-      }
 
       location / {
         root   /usr/share/nginx/html;

@@ -15,10 +15,6 @@ default_ingress:
     path: /runtime.config.json
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  activation:
-    path: /activation
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   metrics:
     path: /metrics
     serviceName: default-backend-404-svc
@@ -71,10 +67,6 @@ default_ingress:
     path: /administration/school-settings
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-  administration/datasources:
-    path: /administration/datasources
-    serviceName: nuxtclient-svc
-    servicePort: "{{ NUXTCLIENT_PORT }}"
   administration_students:
     path: /administration/students
     serviceName: nuxtclient-svc
@@ -101,6 +93,10 @@ default_ingress:
     servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms-overview:
     path: /rooms-overview
+    serviceName: nuxtclient-svc
+    servicePort: "{{ NUXTCLIENT_PORT }}"
+  dashboard:
+    path: /dashboard
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
   rooms:
@@ -159,8 +155,6 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   api_v1_roster:
     path: /api/v1/roster
-  api_roster:
-    path: /api/roster
   api_v1_consentVersions:
     path: /api/v1/consentVersions
     serviceName: api-svc
@@ -177,32 +171,14 @@ default_ingress:
     path: /api/v1/courses
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
-  api_v1_lessons:
-    path: /api/v1/lessons
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_authentication:
-    path: /api/v1/authentication
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_ldap:
-    path: /api/v1/ldap
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_registration:
-    path: /api/v1/registration
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
+    # still used in user creation!
   api_v1_users:
     path: /api/v1/users
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+    # still used in user deletion!
   api_v1_classes:
     path: /api/v1/classes
-    serviceName: api-svc
-    servicePort: "{{ PORT_SERVER }}"
-  api_v1_roles_user:
-    path: /api/v1/roles/user
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
   etherpad:

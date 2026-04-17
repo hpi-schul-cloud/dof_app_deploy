@@ -7,7 +7,8 @@
     - sys
     - pre_deployment
     - keda
-    - namespace-activator-scaled-objects
+    - role: namespace-activator-scaled-objects
+      when: NAMESPACE != "main"
     - external-secrets
     - dof_mongo_management
     - dof_postgresql_management
@@ -40,7 +41,6 @@
     - h5p-staticfiles-server-core
     - antivirus_check_service
     - version-aggregator
-    - rocketchat
     - mongodb_query_exporter
     - tldraw-client-core
     - tldraw-server
@@ -53,3 +53,4 @@
     - bilo-media-metadata-sync
     - vidis-media-metadata-sync
     - file-storage
+    - legacy-file-archive
