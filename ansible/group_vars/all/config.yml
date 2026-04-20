@@ -418,6 +418,10 @@ configuration_all:
     value: "true"
     server: true
     client: true
+  FEATURE_TEAM_CREATE_ROOM_ENABLED:
+    value: "false"
+    server: true
+    client: true
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     value: "3600"
     server: true
