@@ -3,7 +3,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-configmap-files.yml.j2
-      state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+      state: "{{ 'present' if WITH_H5P_SERVER else 'absent'}}"
     tags:
       - configmap
 
@@ -12,7 +12,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-deployment.yml.j2
-      state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+      state: "{{ 'present' if WITH_H5P_SERVER else 'absent'}}"
     tags:
       - deployment
     
@@ -21,7 +21,7 @@
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-svc.yml.j2
-      state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+      state: "{{ 'present' if WITH_H5P_SERVER else 'absent'}}"
     tags:
       - service
 
@@ -31,7 +31,7 @@
       namespace: "{{ NAMESPACE }}"
       template: api-h5p-proxy-ingress.yml.j2
       apply: yes
-      state: "{{ 'present' if WITH_H5P_EDITOR else 'absent'}}"
+      state: "{{ 'present' if WITH_H5P_SERVER else 'absent'}}"
     tags:
       - ingress
     
