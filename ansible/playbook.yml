@@ -37,6 +37,7 @@
     - h5p-library-management
     - fwu
     - h5p-proxy
+    - h5p-server
     - clammit
     - h5p-staticfiles-server-core
     - antivirus_check_service

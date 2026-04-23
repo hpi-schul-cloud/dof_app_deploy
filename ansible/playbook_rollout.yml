@@ -36,6 +36,7 @@
     - role: nuxt-client-core
     - role: h5p-library-management
     - role: h5p-proxy
+    - role: h5p-server
     - role: clammit
     - role: h5p-staticfiles-server-core
     - role: fwu
