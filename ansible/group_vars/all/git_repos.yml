@@ -11,3 +11,4 @@ H5P_STATICFILES_SERVER_REPO_NAME: h5p-staticfiles-server
 TLDRAW_CLIENT_REPO_NAME: tldraw-client
 TLDRAW_SERVER_REPO_NAME: tldraw-server
 FILE_STORAGE_REPO_NAME: file-storage
+H5P_SERVER_REPO_NAME: h5p-server
