@@ -4,12 +4,8 @@ metadata:
   name: {{ NAMESPACE }}-api-h5p-proxy-ingress
   namespace: {{ NAMESPACE }}
   annotations:
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ INGRESS_MAX_BODY_SIZE|default("2560") }}m"
-    # necessary to stream requests directly through, otherwise file-service is informed too late and user will not be notified that an upload is in progress
-    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     # The following properties added with BC-3606.
     # The header size of the request is too big. For e.g. state and the permanent growing jwt.
     # Nginx throws away the Location header, resulting in the 502 Bad Gateway.
