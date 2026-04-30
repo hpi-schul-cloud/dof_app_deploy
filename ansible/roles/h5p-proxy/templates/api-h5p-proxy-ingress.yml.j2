@@ -6,6 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "{{ TLS_ENABLED|default("false") }}"
     nginx.ingress.kubernetes.io/proxy-body-size: "{{ INGRESS_MAX_BODY_SIZE|default("2560") }}m"
+    # BC-11625 - increase timeouts to prevent 504 Gateway Timeout for large file uploads
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "{{ H5P_PROXY_CONNECT_TIMEOUT }}"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "{{ H5P_PROXY_READ_TIMEOUT }}"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "{{ H5P_PROXY_SEND_TIMEOUT }}"
