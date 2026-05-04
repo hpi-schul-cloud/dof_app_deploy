@@ -352,10 +352,9 @@ configuration_all:
     server: true
     client: false
   FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_MAX_FILE_SIZE_IN_BYTES:
-    value: "1073741824"
+    value: "1048576"
     server: true
     client: false
-    nuxtclient: true
   FEATURE_LESSON_SHARE:
     value: "true"
     server: true
