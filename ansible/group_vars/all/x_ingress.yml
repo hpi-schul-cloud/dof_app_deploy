@@ -115,12 +115,12 @@ default_ingress:
     path: /h5p/player
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    with: WITH_H5P_EDITOR
+    with: WITH_H5P_SERVER
   h5p-editor:
     path: /h5p/editor
     serviceName: nuxtclient-svc
     servicePort: "{{ NUXTCLIENT_PORT }}"
-    with: WITH_H5P_EDITOR
+    with: WITH_H5P_SERVER
   migration:
     path: /migration
     serviceName: nuxtclient-svc
