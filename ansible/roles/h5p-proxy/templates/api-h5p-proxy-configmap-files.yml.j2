@@ -13,6 +13,9 @@ data:
       location /api/v3/h5p-editor {
         # Make upload of bigger files possible
         client_max_body_size {{ H5P_PROXY_MAX_BODY_SIZE }};
+        # BC-11625 - disable buffering to prevent 504 Gateway Timeout for large file uploads
+        proxy_buffering off;
+        proxy_request_buffering off;
         proxy_connect_timeout {{ H5P_PROXY_CONNECT_TIMEOUT }};
         proxy_read_timeout {{ H5P_PROXY_READ_TIMEOUT }};
         proxy_send_timeout {{ H5P_PROXY_SEND_TIMEOUT }};
@@ -51,6 +54,9 @@ data:
         add_header 'Access-Control-Allow-Origin' $http_origin;
         # Make upload of bigger files possible
         client_max_body_size {{ H5P_PROXY_MAX_BODY_SIZE }};
+        # BC-11625 - disable buffering to prevent 504 Gateway Timeout for large file uploads
+        proxy_buffering off;
+        proxy_request_buffering off;
         proxy_connect_timeout {{ H5P_PROXY_CONNECT_TIMEOUT }};
         proxy_read_timeout {{ H5P_PROXY_READ_TIMEOUT }};
         proxy_send_timeout {{ H5P_PROXY_SEND_TIMEOUT }};
