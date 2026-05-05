@@ -49,7 +49,6 @@ jobs:
          - antivirus_check_service
          - version-aggregator
          - dof_app_deploy
-         - h5p-staticfiles-server
          - tldraw-client
          - tldraw-server
          - file-storage
