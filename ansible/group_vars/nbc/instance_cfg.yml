@@ -87,5 +87,5 @@ group_ingress:
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
 
-JWT_TIMEOUT_SECONDS: 3600
+JWT_TIMEOUT_SECONDS: 4000
 JWT_SHOW_TIMEOUT_WARNING_SECONDS: 1800
