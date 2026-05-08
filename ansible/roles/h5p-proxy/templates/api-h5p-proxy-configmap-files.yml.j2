@@ -44,6 +44,9 @@ data:
         add_header 'Access-Control-Allow-Origin' $http_origin;
         proxy_ssl_server_name on;
         proxy_intercept_errors off;
+        # Use HTTP/1.1 to support chunked transfer encoding for streamed archives
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
         proxy_pass http://api-h5p-svc:{{ PORT_H5P_EDITOR }};
       }
     
