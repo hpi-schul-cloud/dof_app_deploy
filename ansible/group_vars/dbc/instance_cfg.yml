@@ -41,6 +41,9 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
 IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
 
+# accessibility
+ACCESSIBILITY_REPORT_EMAIL: ticketsystem@dbildungscloud.de 
+
 # Ghost blog
 GHOST_BASE_URL: https://blog.dbildungscloud.de
 
