@@ -53,17 +53,37 @@ spec:
         - containerPort: 4445
           name: http-admin
           protocol: TCP
+      - name: nginx-admin-proxy
+        image: {{ HYDRA_NGINX_IMAGE_NAME }}:{{ HYDRA_NGINX_IMAGE_TAG }}
+        ports:
+        - containerPort: 8445
+          name: http-admin-auth
+          protocol: TCP
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+          readOnly: true
+        - name: basic-auth-secret
+          mountPath: /etc/nginx/secrets
+          readOnly: true
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
         livenessProbe:
           httpGet:
             path: /health/alive
-            port: 4445
+            port: 8445
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: 4445
+            port: 8445
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 5
@@ -86,6 +106,16 @@ spec:
           requests:
             cpu: "{{ HYDRA_CPU_MIN|default("100m", true) }}"
             memory: "{{ HYDRA_MEM_MIN|default("128Mi", true) }}"
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: hydra-admin-nginx-config
+      - name: basic-auth-secret
+        secret:
+          secretName: hydra-secret
+          items:
+          - key: BASIC_AUTH
+            path: .htpasswd
 {% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
