@@ -53,6 +53,39 @@ spec:
         - containerPort: 4445
           name: http-admin
           protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health/alive
+            port: 4445
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 4445
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 5
+        envFrom:
+        - secretRef:
+            name: hydra-secret
+        - configMapRef:
+            name: hydra-configmap
+{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
+        - secretRef:
+            name: pg-hydra-secret
+        env:
+        - name: DSN
+          value: "postgres://$(DB_USER):$(DB_USER_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(DB_NAME)"
+{% endif %}
+        resources:
+          limits:
+            cpu: "{{ HYDRA_CPU_MAX|default("1000m", true) }}"
+            memory: "{{ HYDRA_MEM_MAX|default("1Gi", true) }}"
+          requests:
+            cpu: "{{ HYDRA_CPU_MIN|default("100m", true) }}"
+            memory: "{{ HYDRA_MEM_MIN|default("128Mi", true) }}"
       - name: nginx-admin-proxy
         image: {{ HYDRA_NGINX_IMAGE_NAME }}:{{ HYDRA_NGINX_IMAGE_TAG }}
         ports:
@@ -87,25 +120,6 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 5
-        envFrom:
-        - secretRef:
-            name: hydra-secret
-        - configMapRef:
-            name: hydra-configmap
-{% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
-        - secretRef:
-            name: pg-hydra-secret
-        env:
-        - name: DSN
-          value: "postgres://$(DB_USER):$(DB_USER_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(DB_NAME)"
-{% endif %}
-        resources:
-          limits:
-            cpu: "{{ HYDRA_CPU_MAX|default("1000m", true) }}"
-            memory: "{{ HYDRA_MEM_MAX|default("1Gi", true) }}"
-          requests:
-            cpu: "{{ HYDRA_CPU_MIN|default("100m", true) }}"
-            memory: "{{ HYDRA_MEM_MIN|default("128Mi", true) }}"
       volumes:
       - name: nginx-config
         configMap:
