@@ -56,14 +56,14 @@ spec:
         livenessProbe:
           httpGet:
             path: /health/alive
-            port: 4445
+            port: 8445
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /health/ready
-            port: 4445
+            port: 8445
           initialDelaySeconds: 30
           periodSeconds: 10
           failureThreshold: 5
