@@ -128,7 +128,7 @@ spec:
         secret:
           secretName: hydra-secret
           items:
-          - key: BASIC_AUTH
+          - key: ADMIN_BASIC_AUTH
             path: .htpasswd
 {% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
