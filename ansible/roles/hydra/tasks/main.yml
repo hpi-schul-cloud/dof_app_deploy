@@ -62,6 +62,15 @@
     tags:
       - configmap
 
+  - name: Nginx Admin Proxy Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: nginx-admin-configmap.yml.j2
+      apply: yes
+    tags:
+      - configmap
+
   - name: Secret by 1Password
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 

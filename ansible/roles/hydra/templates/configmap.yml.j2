@@ -18,6 +18,8 @@ data:
   SQA_OPT_OUT: "true"
   LOG_LEVEL: "info"
   LOG_FORMAT: "json"
+  # Force admin interface to listen on localhost to ensure all traffic goes through the Nginx basic auth sidecar
+  SERVE_ADMIN_HOST: 127.0.0.1
 {% if WITH_BRANCH_POSTGRES_DB_MANAGEMENT|bool %}
   POSTGRES_HOST: "{{ POSTGRES_MANAGEMENT_HOST }}"
   POSTGRES_PORT: "{{ POSTGRES_MANAGEMENT_PORT }}"
