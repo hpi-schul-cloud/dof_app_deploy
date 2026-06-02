@@ -25,7 +25,6 @@
     - schulcloud-server-init
     - schulcloud-server-ldapsync
     - schulcloud-server-tspsync
-    - schulcloud-server-h5p
     - schulcloud-server-migration-system
     - schulcloud-server-provisioning
     - schulcloud-client-core
