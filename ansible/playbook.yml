@@ -53,3 +53,4 @@
     - vidis-media-metadata-sync
     - file-storage
     - legacy-file-archive
+    - notification-server

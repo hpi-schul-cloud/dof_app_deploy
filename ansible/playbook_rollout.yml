@@ -58,3 +58,4 @@
     - role: file-storage
     - role: legacy-file-archive
       when: WITH_LEGACY_FILE_ARCHIVE is defined and WITH_LEGACY_FILE_ARCHIVE|bool
+    - role: notification-server
