@@ -25,7 +25,6 @@
     - schulcloud-server-init
     - schulcloud-server-ldapsync
     - schulcloud-server-tspsync
-    - schulcloud-server-h5p
     - schulcloud-server-migration-system
     - schulcloud-server-provisioning
     - schulcloud-client-core
@@ -34,7 +33,6 @@
     - superhero-dashboard
     - schulcloud-calendar-core
     - schulcloud-calendar-init
-    - h5p-library-management
     - fwu
     - h5p-proxy
     - h5p-server
