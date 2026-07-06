@@ -16,8 +16,10 @@ deploy:
       - name: traffic-manager
         namespace: ambassador
         remoteChart: oci://ghcr.io/telepresenceio/telepresence-oss
-        version: 2.27.4
+        version: 2.28.0
         createNamespace: true
+        setValues:
+          image.registry: ghcr.io/telepresenceio
         valuesFiles:
           - telepresence-traffic-manager/values.yaml
 profiles:
