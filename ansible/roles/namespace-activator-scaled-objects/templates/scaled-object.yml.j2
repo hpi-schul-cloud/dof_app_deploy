@@ -15,6 +15,6 @@ spec:
   triggers:
     - type: metrics-api
       metadata:
-        url: "https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace/{{ NAMESPACE }}/active"
+        url: "http://ns-activator-svc.sc-common.svc.cluster.local:8080/namespace/{{ NAMESPACE }}/active"
         valueLocation: "active"
         targetValue: "1"

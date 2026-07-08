@@ -38,6 +38,7 @@ deployments_for_scaled_objects:
     replicaCount: "{{BOARD_COLLABORATION_SERVER_REPLICAS}}"
   - name: common-cartridge-deployment
   - name: clammit-deployment
+  - name: notification-server-deployment
   - name: schulconnex-group-provisioning-deployment
     with: "{{ WITH_SCHULCONNEX_PROVISIONING }}"
   - name: schulconnex-group-removal-deployment
