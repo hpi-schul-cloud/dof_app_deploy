@@ -1,3 +1,10 @@
+image:
+  registry: ghcr.io/telepresenceio
+  name: tel2
+  pullPolicy: IfNotPresent
+agentInjector:
+  certificate:
+    regenerate: true
 client:
   dns:
     # Tell client's DNS resolver to never send names with these suffixes to the cluster side resolver
