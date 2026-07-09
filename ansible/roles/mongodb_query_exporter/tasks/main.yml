@@ -1,3 +1,12 @@
+  - name: NetworkPolicy for mongodb-query-exporter (allow Prometheus only)
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: networkpolicy.yml.j2
+      state: present
+    tags:
+      - networkpolicy
+
   - name: External Secret (namespace specific)
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
