@@ -38,15 +38,14 @@
       template: deny-all-networkpolicy.yml.j2
     tags:
       - networkPolicy
-      - always
 
-
-  - name: add default networkPolicy
+  - name: remove legacy namespace-wide default allow networkPolicy
     kubernetes.core.k8s:
-      kubeconfig: ~/.kube/config 
+      kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: networkpolicy.yml.j2
+      state: absent
+      api_version: networking.k8s.io/v1
+      kind: NetworkPolicy
+      name: default-allow
     tags:
       - networkPolicy
-      - always
-

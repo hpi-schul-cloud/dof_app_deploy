@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hydra-default-allow
+  namespace: {{ NAMESPACE }}
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - hydra
+          - hydra-postgres-init
+          - hydra-migrate-db-job
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchExpressions:
+              - key: kubernetes.io/metadata.name
+                operator: In
+                values:
+                  - monitoring
+                  - ingress-controller
+                  - scaling
+                  - "{{ NAMESPACE }}"

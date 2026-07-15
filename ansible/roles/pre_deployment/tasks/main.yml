@@ -17,3 +17,11 @@
     state: present
   tags:
     - marker-pre
+
+- name: Add pre-deployment default allow network policy
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: default-allow-networkpolicy.yml.j2
+  tags:
+    - networkPolicy

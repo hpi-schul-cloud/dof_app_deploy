@@ -39,3 +39,11 @@
   - pg_deletion_job_present.resources|length == 0
   tags:
     - job
+
+- name: Add dof_postgresql_management default allow network policy
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: default-allow-networkpolicy.yml.j2
+  tags:
+    - networkPolicy

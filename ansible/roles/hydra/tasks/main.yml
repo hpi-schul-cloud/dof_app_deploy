@@ -121,3 +121,11 @@
       template: pod-monitor.yml.j2
     tags:
       - prometheus
+
+  - name: Add hydra default allow network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: default-allow-networkpolicy.yml.j2
+    tags:
+      - networkPolicy
