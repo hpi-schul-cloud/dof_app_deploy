@@ -42,11 +42,3 @@
   when: WITH_BRANCH_TSP_REDIRECT_MANAGEMENT
   tags:
     - job
-
-- name: Add dof_tsp_keycloak_management default allow network policy
-  kubernetes.core.k8s:
-    kubeconfig: ~/.kube/config
-    namespace: "{{ NAMESPACE }}"
-    template: default-allow-networkpolicy.yml.j2
-  tags:
-    - networkPolicy
