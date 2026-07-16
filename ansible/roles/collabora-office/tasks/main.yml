@@ -30,3 +30,11 @@
   when: ONEPASSWORD_OPERATOR is defined and ONEPASSWORD_OPERATOR|bool
   tags:
     - 1password
+
+- name: Add collabora-office default allow network policy
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: default-allow-networkpolicy.yml.j2
+  tags:
+    - networkPolicy

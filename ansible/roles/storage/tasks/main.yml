@@ -38,4 +38,11 @@
       template: ingress.yml.j2
     tags:
       - ingress
-      
+
+  - name: Add storage default allow network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: default-allow-networkpolicy.yml.j2
+    tags:
+      - networkPolicy
