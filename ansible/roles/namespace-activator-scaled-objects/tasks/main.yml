@@ -36,3 +36,11 @@
       template: namespace-activator-redirection-scaledobject.yml.j2
     tags:
       - keda
+
+  - name: namespace activator redirection network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: default-allow-networkpolicy.yml.j2
+    tags:
+      - networkPolicy
