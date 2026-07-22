@@ -48,3 +48,11 @@
     values: "{{ lookup('template', 'values.yml.j2') | from_yaml }}"
   tags:
     - helm
+
+- name: Add session-valkey default allow network policy
+  kubernetes.core.k8s:
+    kubeconfig: ~/.kube/config
+    namespace: "{{ NAMESPACE }}"
+    template: default-allow-networkpolicy.yml.j2
+  tags:
+    - networkPolicy

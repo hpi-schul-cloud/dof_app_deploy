@@ -53,4 +53,10 @@
     tags:
       - helm
 
-
+  - name: Allow Prometheus to scrape mongodb-query-exporter
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: networkpolicy.yml.j2
+    tags:
+      - networkPolicy
