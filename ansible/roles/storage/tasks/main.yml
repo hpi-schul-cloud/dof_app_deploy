@@ -36,6 +36,7 @@
     kubernetes.core.k8s:
       namespace: "{{ NAMESPACE }}"
       template: ingress.yml.j2
+      apply: yes
     tags:
       - ingress
 
