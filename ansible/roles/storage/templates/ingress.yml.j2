@@ -5,7 +5,6 @@ metadata:
   namespace: {{ NAMESPACE }}
   annotations:
     
-    nginx.ingress.kubernetes.io/proxy-body-size: 2560m
     nginx.ingress.kubernetes.io/client_max_body_size: 2560m
     nginx.ingress.kubernetes.io/proxy-request-buffering: "on"
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -35,4 +34,3 @@ spec:
             name: storage-svc
             port:
               number: 9000
-
