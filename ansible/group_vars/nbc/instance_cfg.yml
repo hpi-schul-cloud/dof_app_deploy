@@ -84,6 +84,9 @@ SCHULCONNEX_CLIENT__TOKEN_ENDPOINT: "https://auth.stage.niedersachsen-login.schu
 
 PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL: "https://api-dienste.stage.niedersachsen-login.schule/v1/policies-info?api=1.5"
 
+# OAUTH
+OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
+
 # Ingress
 group_ingress:
   api_v1_roster:

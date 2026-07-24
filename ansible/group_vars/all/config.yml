@@ -467,7 +467,7 @@ configuration_all:
     server: false
     client: true
   OAUTH2_LOGOUT_URI:
-    value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
+    value: ""
     server: false
     client: true
   GHOST_BASE_URL:

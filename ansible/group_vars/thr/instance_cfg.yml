@@ -59,3 +59,6 @@ NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
 WITH_BRANCH_TSP_REDIRECT_MANAGEMENT: true
 INCLUDE_MAIL_IN_USER_FULL_TEXT_INDEX: "false"
+
+# OAUTH
+OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
