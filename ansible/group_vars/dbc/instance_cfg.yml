@@ -51,6 +51,10 @@ GHOST_BASE_URL: https://blog.dbildungscloud.de
 # Column Board
 COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 
+# OAUTH
+# just trying something...
+OAUTH2_LOGOUT_URI: ""
+
 # Ingress
 group_ingress:
 
