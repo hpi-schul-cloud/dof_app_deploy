@@ -53,7 +53,7 @@ COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 
 # OAUTH
 # just trying something...
-OAUTH2_LOGOUT_URI: ""
+OAUTH2_LOGOUT_URI: "https://main.dbc.dbildungscloud.dev/"
 
 # Ingress
 group_ingress:

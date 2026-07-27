@@ -65,8 +65,7 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.cloud"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.cloud"
 
 # OAUTH
-# just trying something...
-OAUTH2_LOGOUT_URI: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
+# just trying to leave it empty
 
 # Ingress
 group_ingress:
