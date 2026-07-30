@@ -1,6 +1,6 @@
-NEXTCLOUD_REDIRECT_URL: https://nextcloud-brb.dbildungscloud.dev/apps/files/?dir=/
-NEXTCLOUD_BASE_URL: https://nextcloud-brb.dbildungscloud.dev
-BETTERMARKS_APPS_URL: "https://apps.bettermarks.brb.dbildungscloud.dev"
-BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brb.dbildungscloud.dev"
+NEXTCLOUD_REDIRECT_URL: https://nextcloud-brb.schulcloud-verbund.org/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud-brb.schulcloud-verbund.org
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.schulcloud-verbund.org"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.schulcloud-verbund.org"
 ANNOTATIONS: true
 RELOADER: true

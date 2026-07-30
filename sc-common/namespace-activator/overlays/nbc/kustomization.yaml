@@ -11,10 +11,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: activate.nbc.dbildungscloud.dev
+        value: activate.niedersachsen.schulcloud-verbund.org
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: activate.nbc.dbildungscloud.dev
+        value: activate.niedersachsen.schulcloud-verbund.org
 
   - target:
       kind: ConfigMap
@@ -22,10 +22,10 @@ patches:
     patch: |-
       - op: replace
         path: /data/EXTERNALHOSTNAME
-        value: activate.nbc.dbildungscloud.dev
+        value: activate.niedersachsen.schulcloud-verbund.org
       - op: replace
         path: /data/BASEDOMAIN
-        value: .nbc.dbildungscloud.dev
+        value: .niedersachsen.schulcloud-verbund.org
   - target:
       kind: OnePasswordItem
       name: ns-activator-secret
