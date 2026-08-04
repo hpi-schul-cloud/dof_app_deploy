@@ -65,6 +65,25 @@ This method is effective for each unique PR. If you have multiple PRs from the s
 ### extend activation time by modifying the database:
 Modify the entry in the `keda` database, `namespaces` collection.
 
+## network policies
+
+network traffic is isolated with a namespace-wide default-deny ingress policy. the former namespace-wide default-allow policy is removed during deployment. additional policies select the pods for which they grant traffic.
+
+network policies are additive. if multiple policies select the same pod, the allowed traffic from all of them is combined. an additional policy therefore extends the allowed traffic and does not override existing policies.
+
+there are currently two kinds of workload policies:
+
+- restrictive policies describe the known callers, destinations, protocols and ports of a workload. these are the intended long-term form of network policies.
+- generic policies preserve the broad access that existed before network policies were introduced, but select only the pods belonging to a particular workload. these are transitional compatibility policies and should be narrowed as the workload dependencies become known.
+
+### telepresence
+
+telepresence is available only on the dev stage and requires communication with the traffic manager in the `ambassador` namespace. one policy selects all pods in the application namespace and allows ingress from the `ambassador` namespace.
+
+workloads without an egress policy already have unrestricted egress and need no additional rule. workloads with restrictive egress policies are maintained in `telepresence_egress_workloads`. an additional policy is generated for each entry to allow egress to the `ambassador` namespace on TCP port `8081`.
+
+selecting all pods for ingress is intentional because every workload may be intercepted with telepresence. egress must not select all pods because doing so would make every pod egress-isolated. when a workload gains a restrictive egress policy, it must also be added to `telepresence_egress_workloads`. on a cluster without an `ambassador` namespace, the namespace selectors match nothing and grant no traffic.
+
 ## how does a branch name get converted into a namespace
 To convert a branch name to a Kubernetes namespace by stripping paths, converting to lowercase, and replacing underscores and dots with hyphens. It ensures the namespace is compliant with Kubernetes naming conventions.
 

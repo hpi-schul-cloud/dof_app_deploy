@@ -1,0 +1,20 @@
+---
+
+  - name: Add Telepresence ingress network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: telepresence-networkpolicy.yml.j2
+    tags:
+      - networkPolicy
+
+  - name: Add Telepresence egress network policies
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: telepresence-egress-networkpolicy.yml.j2
+    loop: "{{ telepresence_egress_workloads }}"
+    loop_control:
+      label: "{{ item }}"
+    tags:
+      - networkPolicy
