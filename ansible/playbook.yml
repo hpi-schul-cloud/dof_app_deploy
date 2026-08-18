@@ -5,6 +5,7 @@
   connection: local
   roles:
     - sys
+    - telepresence-helper
     - pre_deployment
     - keda
     - role: namespace-activator-scaled-objects

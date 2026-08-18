@@ -9,7 +9,7 @@ data:
       listen 3100;
       server_name _;
       location / {
-        return 302 "https://activate.{{ SC_SHORTNAME }}.dbildungscloud.dev/namespace?namespace={{ NAMESPACE }}&redirected-from-503=true";
+        return 302 "https://activate.{{ BASE_DOMAIN }}/namespace?namespace={{ NAMESPACE }}&redirected-from-503=true";
       }
     }
 

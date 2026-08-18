@@ -1,0 +1,3 @@
+telepresence_egress_workloads:
+  - file-storage
+  - version-aggregator

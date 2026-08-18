@@ -103,21 +103,30 @@ jobs:
       - create_branch_identifier
     strategy:
       matrix:
-        tenants: [ brb, dbc, nbc, thr ]
+        tenants: 
+          - name: brb
+            domain: brandenburg.schulcloud-verbund.org
+          - name: dbc
+            domain: dbc.dbildungscloud.dev
+          - name: nbc
+            domain: niedersachsen.schulcloud-verbund.org
+          - name: thr
+            domain: thueringen.schulcloud-verbund.org
     steps:
       - shell: bash
         run: |
-          mkdir -pv ansible/host_vars/${{ matrix.tenants }}_host
+          mkdir -pv ansible/host_vars/${{ matrix.tenants.name }}_host
       - shell: bash
-        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tenants }}_host
+        working-directory: ${{github.workspace }}/ansible/host_vars/${{ matrix.tenants.name }}_host
         run: |
           echo "NAMESPACE: ${{ needs.create_branch_identifier.outputs.id_branch }}" > cfg_host.yml
-          echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants }}.dbildungscloud.dev" >> cfg_host.yml
-      - run: tar -cf ${{ matrix.tenants }}.tar ansible
+          echo "DOMAIN: ${{ needs.create_branch_identifier.outputs.id_branch }}.${{ matrix.tenants.domain }}" >> cfg_host.yml
+          echo "BASE_DOMAIN: ${{ matrix.tenants.domain }}" >> cfg_host.yml
+      - run: tar -cf ${{ matrix.tenants.name }}.tar ansible
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
-          name: ${{ matrix.tenants }}
-          path: ${{github.workspace }}/${{ matrix.tenants }}.tar
+          name: ${{ matrix.tenants.name }}
+          path: ${{github.workspace }}/${{ matrix.tenants.name }}.tar
 
   gather-namespace-activation-facts:
     runs-on: ubuntu-latest
@@ -167,7 +176,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tenants: ["dbc", "brb", "nbc", "thr"]
+        tenants: 
+          - name: brb
+            domain: brandenburg.schulcloud-verbund.org
+          - name: dbc
+            domain: dbc.dbildungscloud.dev
+          - name: nbc
+            domain: niedersachsen.schulcloud-verbund.org
+          - name: thr
+            domain: thueringen.schulcloud-verbund.org
     runs-on: ubuntu-24.04
     steps:
       - name: call namespace activator
@@ -175,7 +192,7 @@ jobs:
           NS_ACTIVATOR_FUNCTION: ${{ needs.gather-namespace-activation-facts.outputs.activator-function }}
           NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
-          curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants }}.dbildungscloud.dev/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
+          curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants.domain }}/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
 
 
   deploy_dbc_dev:
