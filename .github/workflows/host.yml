@@ -156,13 +156,13 @@ jobs:
 
       - name: Install python3-kubernetes
         # this is a very sensitive area, we want to pin the commit here
-        uses: awalsh128/cache-apt-pkgs-action@acb598e5ddbc6f68a970c5da0688d2f3a9f04d05 # v1.6.0
+        uses: awalsh128/cache-apt-pkgs-action@553a35bb8ebd9fcabcb1c9451aa4c98e1b4ca8a9 # v1.6.3
         with:
           packages: python3-kubernetes
           version: 1.0
 
       - name: Cache Ansible Galaxy collections
-        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.ansible/collections
           key: ansible-collections-${{ hashFiles('ansible/collections/requirements.yml') }}
