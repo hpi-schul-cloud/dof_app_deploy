@@ -38,10 +38,6 @@ PORT_METRICS_SERVER: 9090
 ROUTE_ROSTER: false
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
-# Identity Management
-IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
-IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
-
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@dbildungscloud.de 
 

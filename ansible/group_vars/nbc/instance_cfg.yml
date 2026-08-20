@@ -61,10 +61,6 @@ SKIP_CONDITIONS_CONSENT: "student employee"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@niedersachsen.support
 
-# Identity Management
-IDENTITY_MANAGEMENT__TENANT: "{{ SC_THEME }}"
-IDENTITY_MANAGEMENT__CLIENTID: "{{ SC_THEME }}"
-
 # Ghost blog
 GHOST_BASE_URL: https://blog.niedersachsen.cloud
 
