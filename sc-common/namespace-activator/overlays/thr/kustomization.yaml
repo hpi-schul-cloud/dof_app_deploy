@@ -11,10 +11,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: activate.thr.dbildungscloud.dev
+        value: activate.thueringen.schulcloud-verbund.org
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: activate.thr.dbildungscloud.dev
+        value: activate.thueringen.schulcloud-verbund.org
 
   - target:
       kind: ConfigMap
@@ -22,10 +22,10 @@ patches:
     patch: |-
       - op: replace
         path: /data/EXTERNALHOSTNAME
-        value: activate.thr.dbildungscloud.dev
+        value: activate.thueringen.schulcloud-verbund.org
       - op: replace
         path: /data/BASEDOMAIN
-        value: .thr.dbildungscloud.dev
+        value: .thueringen.schulcloud-verbund.org
   - target:
       kind: OnePasswordItem
       name: ns-activator-secret

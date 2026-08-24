@@ -119,30 +119,6 @@ configuration_all:
     value: "600000"
     server: false
     client: true
-  # Identity Management
-  FEATURE_IDENTITY_MANAGEMENT_ENABLED:
-    server: true
-    client: false
-  FEATURE_IDENTITY_MANAGEMENT_STORE_ENABLED:
-    server: true
-    client: false
-  FEATURE_IDENTITY_MANAGEMENT_LOGIN_ENABLED:
-    server: true
-    client: false
-  IDENTITY_MANAGEMENT__INTERNAL_URI:
-    value: "{{ IDENTITY_MANAGEMENT__INTERNAL_URI }}"
-    server: true
-    client: false
-  IDENTITY_MANAGEMENT__EXTERNAL_URI:
-    value: "{{ IDENTITY_MANAGEMENT__EXTERNAL_URI }}"
-    server: true
-    client: false
-  IDENTITY_MANAGEMENT__TENANT:
-    server: true
-    client: false
-  IDENTITY_MANAGEMENT__CLIENTID:
-    server: true
-    client: false
   HYDRA_URI:
     value: "http://hydra-svc:4445/admin"
     server: true

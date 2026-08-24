@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: telepresence-{{ item }}-egress
+  namespace: {{ NAMESPACE }}
+spec:
+  # Workloads already governed by an egress policy need an explicit exception
+  # for the Telepresence traffic-manager connection.
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: {{ item }}
+  policyTypes:
+    - Egress
+  egress:
+    # Telepresence traffic-agent connects to traffic-manager over gRPC.
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ambassador
+      ports:
+        - port: 8081
+          protocol: TCP
