@@ -179,8 +179,8 @@ default_ingress:
     servicePort: "{{ PORT_SERVER }}"
   etherpad:
     path: /etherpad
-    serviceName: etherpad-nginx-svc
-    servicePort: 80
+    serviceName: default-backend-404-svc
+    servicePort: 8080
   version_aggregator:
     path: /version
     serviceName: version-aggregator-svc
