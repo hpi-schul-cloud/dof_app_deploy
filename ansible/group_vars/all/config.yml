@@ -311,6 +311,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_COLUMN_BOARD_COLLABORATIVE_TEXT_EDITOR_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COLUMN_BOARD_SHARE:
     value: "true"
     server: true
@@ -344,7 +348,7 @@ configuration_all:
     server: false
     client: true
   FEATURE_ETHERPAD_ENABLED:
-    value: "true"
+    value: "false"
     server: true
     client: true
   FEATURE_MINT_PAGES_ENABLED:
