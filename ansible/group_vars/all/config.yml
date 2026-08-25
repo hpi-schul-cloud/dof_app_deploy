@@ -344,11 +344,11 @@ configuration_all:
     server: true
     client: false
   FEATURE_COURSE_IMPORT:
-    value: "true"
+    value: "false"
     server: false
     client: true
   FEATURE_ETHERPAD_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: true
   FEATURE_MINT_PAGES_ENABLED:
