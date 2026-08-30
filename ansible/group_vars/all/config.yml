@@ -112,6 +112,20 @@ configuration_all:
     value: "eu-central-1"
     server: true
     client: false
+  FEATURE_LEGACY_FILES_SHARED_BUCKET_ENABLED:
+    value: "false"
+    server: true
+    client: false
+  LEGACY_FILES_SHARED_BUCKET:
+    server: true
+    client: false
+  LEGACY_FILES_SHARED_STORAGE_PROVIDER_ID:
+    server: true
+    client: false
+  LEGACY_FILES_SHARED_BUCKET_PREFIX:
+    value: "legacy-files"
+    server: true
+    client: false
   FILES_STORAGE__SERVICE_BASE_URL:
     server: true
     client: true

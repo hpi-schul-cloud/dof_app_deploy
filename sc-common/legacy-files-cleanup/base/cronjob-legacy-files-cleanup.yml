@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: legacy-files-cleanup-cronjob
+  namespace: sc-common
+  labels:
+    app: legacy-files-cleanup
+spec:
+  schedule: "17 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: namespace-management
+          volumes:
+            - name: config-script
+              configMap:
+                name: legacy-files-cleanup-configmap
+                defaultMode: 493
+          containers:
+            - name: legacy-files-cleanup
+              image: quay.io/schulcloudverbund/platform-tooling-job-tools:0.2
+              command:
+                - /bin/sh
+                - -c
+              args:
+                - /scripts/config_script.sh
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 1Gi
+                requests:
+                  cpu: 100m
+                  memory: 200Mi
+              volumeMounts:
+                - name: config-script
+                  mountPath: /scripts/
+              envFrom:
+                - configMapRef:
+                    name: legacy-files-cleanup-configmap
+                - secretRef:
+                    name: legacy-files-cleanup-s3-secret
+          restartPolicy: Never
+      ttlSecondsAfterFinished: 120
+      backoffLimit: 2
