@@ -607,6 +607,10 @@ configuration_all:
     value: "true"
     server: true
     client: true
+  FEATURE_NOTIFICATIONS_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_ROOM_COPY_ENABLED:
     value: "true"
     server: true
