@@ -355,6 +355,10 @@ configuration_all:
     value: "false"
     server: false
     client: true
+  FEATURE_SCHOOL_DATA_READONLY_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_SCHOOL_POLICY_ENABLED_NEW:
     value: "true"
     server: true
