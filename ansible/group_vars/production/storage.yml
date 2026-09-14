@@ -1,2 +1,2 @@
-STORAGE_IMAGE_NAME: docker.io/minio/minio:RELEASE.2022-10-24T18-35-07Z
+STORAGE_IMAGE_NAME: docker.io/chrislusf/seaweedfs:4.47
 STORAGE_PREFIX: storage.

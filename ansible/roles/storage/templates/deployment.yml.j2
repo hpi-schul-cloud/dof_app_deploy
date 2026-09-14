@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: storage-deployment
+  name: storage-seaweedfs-deployment
   namespace: {{ NAMESPACE }}
 {% if ANNOTATIONS is defined and ANNOTATIONS|bool %}
   annotations:
@@ -13,13 +13,13 @@ metadata:
   labels:
     app: storage
     app.kubernetes.io/part-of: schulcloud-verbund
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: seaweedfs
     app.kubernetes.io/component: storage
     app.kubernetes.io/managed-by: ansible
     git.branch: {{ DOF_APP_DEPLOY_BRANCH_NAME }}
     git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
 spec:
-  replicas: {{ STORAGE_REPLICAS|default(1, true) }}
+  replicas: 1
   strategy:
     type: Recreate
   revisionHistoryLimit: 4
@@ -32,7 +32,7 @@ spec:
       labels:
         app: storage
         app.kubernetes.io/part-of: schulcloud-verbund
-        app.kubernetes.io/name: minio
+        app.kubernetes.io/name: seaweedfs
         app.kubernetes.io/component: storage
         app.kubernetes.io/managed-by: ansible
         git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
@@ -50,14 +50,27 @@ spec:
       - name: storage
         image: {{ STORAGE_IMAGE_NAME }}
         imagePullPolicy: Always
-        args: ["server", "--console-address", ":9001", "/data"]
+        command: ["/bin/sh", "-ec"]
+        args:
+        - |
+          export AWS_ACCESS_KEY_ID="${MINIO_ROOT_USER:-${MINIO_ACCESS_KEY:-}}"
+          export AWS_SECRET_ACCESS_KEY="${MINIO_ROOT_PASSWORD:-${MINIO_SECRET_KEY:-}}"
+          : "${AWS_ACCESS_KEY_ID:?storage-secret must contain MINIO_ROOT_USER or MINIO_ACCESS_KEY}"
+          : "${AWS_SECRET_ACCESS_KEY:?storage-secret must contain MINIO_ROOT_PASSWORD or MINIO_SECRET_KEY}"
+          exec weed mini -dir=/data -s3.port=9000
         ports:
         - containerPort: 9000
           name: storage
           protocol: TCP
-        - containerPort: 9001
-          name: storage-console
-          protocol: TCP
+        startupProbe:
+          tcpSocket:
+            port: storage
+          periodSeconds: 5
+          failureThreshold: 60
+        readinessProbe:
+          tcpSocket:
+            port: storage
+          periodSeconds: 10
         envFrom:
         - secretRef:
             name: storage-secret
@@ -75,4 +88,4 @@ spec:
       volumes:
       - name: storage-pv
         persistentVolumeClaim:
-          claimName: storage-pvc
+          claimName: storage-seaweedfs-pvc

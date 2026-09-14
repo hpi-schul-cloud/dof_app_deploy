@@ -1,8 +1,25 @@
+  - name: Remove old MinIO deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      api_version: apps/v1
+      kind: Deployment
+      name: storage-deployment
+      state: absent
+      wait: yes
+      delete_options:
+        propagationPolicy: Foreground
+    tags:
+      - deployment
+
   - name: Service
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config 
       namespace: "{{ NAMESPACE }}"
       template: svc.yml.j2
+      # Replace the ports list so the former MinIO console port is removed.
+      merge_type:
+        - merge
     tags:
       - service
       
