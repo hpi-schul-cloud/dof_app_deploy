@@ -40,7 +40,7 @@ spec:
         name: linux
       containers:
       - name: maildrop
-        image: {{ MAILDROP_IMAGE_NAME }}:{{ MAILDROP_IMAGE_TAG }}
+        image: {{ MAILDROP_IMAGE_NAME }}:{{ MAILDROP_IMAGE_TAG }}@{{ MAILDROP_IMAGE_TAG_HASH }}
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
