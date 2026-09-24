@@ -12,6 +12,9 @@ on:
         required: true
         default: all
 
+permissions:
+  contents: read
+
 jobs:
   approve_ref:
     environment: approve_ref

@@ -8,6 +8,10 @@ on:
       branch_name:
         description: 'SC Branch or tag'     
         required: true
+
+permissions:
+  contents: read
+
 jobs:
   branch_name:
     runs-on: ubuntu-latest
@@ -40,4 +44,3 @@ jobs:
       DEV_KUBE_CONFIG_NBC: ${{ secrets.DEV_KUBE_CONFIG_NBC }}
       DEV_KUBE_CONFIG_THR: ${{ secrets.DEV_KUBE_CONFIG_THR }}
       DEV_KUBE_CONFIG_DBC: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
-
