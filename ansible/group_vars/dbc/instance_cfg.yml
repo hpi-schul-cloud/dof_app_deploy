@@ -42,9 +42,6 @@ ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@dbildungscloud.de 
 
-# Ghost blog
-GHOST_BASE_URL: https://blog.dbildungscloud.de
-
 # Column Board
 COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
 
