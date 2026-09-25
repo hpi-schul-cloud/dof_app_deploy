@@ -1,2 +1,2 @@
-STORAGE_IMAGE_NAME: quay.io/minio/minio:RELEASE.2022-10-24T18-35-07Z
+STORAGE_IMAGE_NAME: ghcr.io/loki-afro/minio-image-archive:release-2022-10-24
 STORAGE_PREFIX: storage-
