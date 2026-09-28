@@ -61,9 +61,6 @@ SKIP_CONDITIONS_CONSENT: "student employee"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@niedersachsen.support
 
-# Ghost blog
-GHOST_BASE_URL: https://blog.niedersachsen.cloud
-
 # Nextcloud
 COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
 NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
