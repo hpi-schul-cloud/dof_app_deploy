@@ -10,6 +10,9 @@ on:
         description: 'Branch or tag'
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   branch_name:
     runs-on: ubuntu-latest

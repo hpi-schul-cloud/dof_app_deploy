@@ -5,6 +5,9 @@ on:
       - '[0-9]*'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   process-versions:
     runs-on: ubuntu-latest
