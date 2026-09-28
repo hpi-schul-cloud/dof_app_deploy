@@ -454,9 +454,6 @@ configuration_all:
     value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
     server: false
     client: true
-  GHOST_BASE_URL:
-    server: true
-    client: true
   FEATURE_PROMETHEUS_METRICS_ENABLED:
     value: "true"
     server: true
