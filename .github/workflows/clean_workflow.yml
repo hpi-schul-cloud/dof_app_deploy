@@ -7,14 +7,6 @@ on:
       branch:
         required: true
         type: string
-      user_name:
-         required: false
-         default: hpi-schul-clud-bot
-         type: string
-      user_email:
-         required: false
-         default: bot@hpi-schul-cloud.de
-         type: string
     secrets:
       token:
         required: true
