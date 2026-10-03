@@ -28,23 +28,26 @@ profiles:
       kustomize:
         paths:
           - namespace-activator/overlays/dbc
+          - legacy-files-cleanup/overlays/dbc
 
   - name: brb
     manifests:
       kustomize:
         paths:
           - namespace-activator/overlays/brb
+          - legacy-files-cleanup/overlays/brb
 
   - name: nbc
     manifests:
       kustomize:
         paths:
           - namespace-activator/overlays/nbc
+          - legacy-files-cleanup/overlays/nbc
 
   - name: thr
     manifests:
       kustomize:
         paths:
           - namespace-activator/overlays/thr
-
+          - legacy-files-cleanup/overlays/thr
 
