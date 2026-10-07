@@ -616,6 +616,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_ROOM_ARCHIVE_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_ROOM_SHARE:
     value: "true"
     server: true
