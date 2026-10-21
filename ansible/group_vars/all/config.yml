@@ -406,6 +406,10 @@ configuration_all:
     value: "false"
     server: true
     client: true
+  FEATURE_ROOM_SEARCH_ENABLED:
+    value: "false"
+    server: true
+    client: false
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     value: "3600"
     server: true
