@@ -1,5 +1,5 @@
 NAMESPACE: audit
-DOMAIN: staging.audit.dbildungscloud.org
+DOMAIN: staging.audit.schulcloud-verbund.org
 
 FEATURE_OAUTH_LOGIN_ENABLED: "true"
 
