@@ -343,6 +343,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_TASKS_V3_ENABLED:
+    value: "true"
+    server: true
+    client: true
   FEATURE_COURSE_IMPORT:
     value: "false"
     server: false
