@@ -577,6 +577,10 @@ configuration_all:
     value: "false"
     server: true
     client: false
+  FEATURE_SCHULCONNEX_GROUP_SCHOOL_MEDIA_LICENSE_ENABLED:
+    value: "false"
+    server: true
+    client: false
   PROVISIONING_SCHULCONNEX_POLICIES_INFO_URL:
     server: true
     client: false

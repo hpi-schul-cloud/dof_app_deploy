@@ -4,3 +4,4 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.com"
 BETTERMARKS_SCHOOL_URL: "https://acc.bettermarks.com"
 
 SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"
+ANTIVIRUS_DOWNLOAD_ALLOWED_ORIGINS: "http://file-storage-svc:4444,https://s3.hidrive.strato.com"
