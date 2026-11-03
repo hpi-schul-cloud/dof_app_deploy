@@ -62,11 +62,6 @@ SKIP_CONDITIONS_CONSENT: "student employee"
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@niedersachsen.support
 
-# Nextcloud
-COLLABORATIVE_STORAGE_PROVIDER: Nextcloud
-NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME: SchulcloudNextcloud
-FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED: "true"
-NEXTCLOUD_SCOPES: "openid offline profile email groups"
 
 # Bettermarks urls
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.cloud"

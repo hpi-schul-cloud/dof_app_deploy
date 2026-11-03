@@ -3,9 +3,6 @@ DOMAIN: niedersachsen.cloud
 
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
-NEXTCLOUD_REDIRECT_URL: https://nextcloud.niedersachsen.cloud/apps/files/?dir=/
-NEXTCLOUD_BASE_URL: https://nextcloud.niedersachsen.cloud
-
 # Migration wizard
 FEATURE_USER_MIGRATION_SYSTEM_ID: "646df8f63bcc1a27c52af131"
 

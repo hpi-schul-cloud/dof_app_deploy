@@ -431,25 +431,6 @@ configuration_all:
     value: ""
     server: true
     client: false
-  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
-    value: "false"
-    server: false
-    client: true
-  NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
-    value: ""
-    server: true
-    client: false
-  NEXTCLOUD_SCOPES:
-    value: ""
-    server: true
-    client: false
-  COLLABORATIVE_STORAGE_PROVIDER:
-    server: true
-    client: false
-  NEXTCLOUD_REDIRECT_URL:
-    value: ""
-    server: false
-    client: true
   OAUTH2_LOGOUT_URI:
     value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
     server: false
