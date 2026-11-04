@@ -10,7 +10,6 @@ GLOBAL_ANNOUNCEMENT_ROLES: administrator
 TRAINING_URL: "https://openelec.moodle-nds.de/course/index.php?categoryid=53"
 
 TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
-STUDENT_TEAM_CREATION: disabled
 ## CLIENT | NUXT
 SC_FEDERALSTATE: niedersachsen
 # FEATURE TOGGLE

@@ -100,9 +100,6 @@ configuration_all:
   TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
     server: true
     client: true
-  STUDENT_TEAM_CREATION:
-    server: true
-    client: true
   # Storage
   AWS_ENDPOINT_URL:
     value: "https://storage-{{ DOMAIN }}"
@@ -390,22 +387,10 @@ configuration_all:
     value: "false"
     server: false
     client: true
-  FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
-    value: "true"
-    server: false
-    client: true
   FEATURE_LOGIN_LINK_ENABLED:
     value: "false"
     server: true
     client: false
-  FEATURE_TEAMS_ENABLED:
-    value: "true"
-    server: true
-    client: true
-  FEATURE_TEAM_CREATE_ROOM_ENABLED:
-    value: "false"
-    server: true
-    client: true
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     value: "3600"
     server: true
