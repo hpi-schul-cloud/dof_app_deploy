@@ -16,11 +16,7 @@ data:
       #The Access logs can log the API Key from Etherpad at some points.
       access_log off;
 
-      location ^~ /etherpad/admin {
-        return 404;
-      }
-
-      location ^~ /etherpad/stats {
+      location ~* ^/etherpad/(admin|stats)(/|$) {
         return 404;
       }
 
