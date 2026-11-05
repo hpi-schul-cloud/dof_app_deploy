@@ -100,9 +100,6 @@ configuration_all:
   TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
     server: true
     client: true
-  STUDENT_TEAM_CREATION:
-    server: true
-    client: true
   # Storage
   AWS_ENDPOINT_URL:
     value: "https://storage-{{ DOMAIN }}"
@@ -390,22 +387,10 @@ configuration_all:
     value: "false"
     server: false
     client: true
-  FEATURE_TEAMS_INVITE_EXTERNAL_ENABLED:
-    value: "true"
-    server: false
-    client: true
   FEATURE_LOGIN_LINK_ENABLED:
     value: "false"
     server: true
     client: false
-  FEATURE_TEAMS_ENABLED:
-    value: "true"
-    server: true
-    client: true
-  FEATURE_TEAM_CREATE_ROOM_ENABLED:
-    value: "false"
-    server: true
-    client: true
   JWT_SHOW_TIMEOUT_WARNING_SECONDS:
     value: "3600"
     server: true
@@ -431,25 +416,6 @@ configuration_all:
     value: ""
     server: true
     client: false
-  FEATURE_NEXTCLOUD_TEAM_FILES_ENABLED:
-    value: "false"
-    server: false
-    client: true
-  NEXTCLOUD_SOCIALLOGIN_OIDC_INTERNAL_NAME:
-    value: ""
-    server: true
-    client: false
-  NEXTCLOUD_SCOPES:
-    value: ""
-    server: true
-    client: false
-  COLLABORATIVE_STORAGE_PROVIDER:
-    server: true
-    client: false
-  NEXTCLOUD_REDIRECT_URL:
-    value: ""
-    server: false
-    client: true
   OAUTH2_LOGOUT_URI:
     value: "https://{{ HYDRA_DNS_PREFIX }}{{ DOMAIN }}/oauth2/sessions/logout"
     server: false
