@@ -7,13 +7,11 @@ spec:
   policyTypes:
   - Ingress
   podSelector:
-    {
-      matchExpressions:
-        [
-          { key: acme.cert-manager.io/http-domain, operator: Exists, values: null },
-          { key: acme.cert-manager.io/http-token, operator: Exists, values: null }
-        ]
-    }
+    matchExpressions:
+      - key: acme.cert-manager.io/http-domain
+        operator: Exists
+      - key: acme.cert-manager.io/http-token
+        operator: Exists
   ingress:
     - from:
       - namespaceSelector:
