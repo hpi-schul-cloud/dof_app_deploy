@@ -38,3 +38,12 @@
       template: default-allow-networkpolicy.yml.j2
     tags:
       - networkPolicy
+
+  - name: Add allow certmanager acme network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: certmanager-acme-networkpolicy.yml.j2
+    when: CLUSTER_ISSUER is defined
+    tags:
+      - networkPolicy
