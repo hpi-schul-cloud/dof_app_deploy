@@ -1,2 +1,3 @@
 WITH_LDAP: true
 WITH_FWU: true
+WITH_BETTERMAKRS_PROXY: true
