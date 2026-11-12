@@ -5,6 +5,8 @@ DOMAIN: "{{ inventory_hostname }}.dbildungscloud.dev"
 DISPLAY_REQUEST_LEVEL: -1
 ALERT_STATUS_URL: https://status.dbildungscloud.dev/
 
+ANTIVIRUS_DOWNLOAD_ALLOWED_ORIGINS: "{{ FILES_STORAGE__SERVICE_BASE_URL }},https://{{STORAGE_PREFIX}}{{ DOMAIN }}"
+
 SC_DEFAULT_STORAGE_CLASS_NAME: "ionos-enterprise-hdd"
 
 WITH_MAILCATCHER: true
