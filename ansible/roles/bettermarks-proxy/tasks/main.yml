@@ -1,3 +1,48 @@
+  - name: Bettermarks Proxy Configmap
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: {{ item+'.conf.j2'}}
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx-server-block'}}"
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - configmap
+
+  - name: Bettermarks Proxy Deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: deployment.yml.j2
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - deployment
+    
+  - name: Bettermarks Proxy Service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: service.yml.j2
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - service
+
+  - name: Bettermarks Proxy Ingress
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: ingress.yml.j2
+      apply: yes
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - ingress
+
   - name: Add bettermarks proxy default allow network policy
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
