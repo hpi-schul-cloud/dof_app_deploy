@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: legacy-files-cleanup-configmap
+  namespace: sc-common
+  labels:
+    app: legacy-files-cleanup
+data:
+  LEGACY_FILES_SHARED_BUCKET_ROOT_PREFIX: "legacy-files"
+  AWS_REGION: "eu-central-1"
+  config_script.sh: |
+    #!/bin/sh
+    set -eu
+
+    BASE_PREFIX="${LEGACY_FILES_SHARED_BUCKET_ROOT_PREFIX%/}"
+    REMOTE="legacy:${LEGACY_FILES_SHARED_BUCKET}"
+
+    export RCLONE_CONFIG_LEGACY_TYPE="s3"
+    export RCLONE_CONFIG_LEGACY_PROVIDER="Other"
+    export RCLONE_CONFIG_LEGACY_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+    export RCLONE_CONFIG_LEGACY_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+    export RCLONE_CONFIG_LEGACY_ENDPOINT="${AWS_ENDPOINT_URL}"
+    export RCLONE_CONFIG_LEGACY_REGION="${AWS_REGION}"
+
+    TMP_DIR="$(mktemp -d)"
+    trap 'rm -rf "${TMP_DIR}"' EXIT
+
+    echo "Fetching namespaces from Kubernetes"
+    if ! kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' > "${TMP_DIR}/namespaces.unsorted.txt"; then
+      echo "Failed to fetch namespaces via kubectl" >&2
+      exit 1
+    fi
+    sort "${TMP_DIR}/namespaces.unsorted.txt" > "${TMP_DIR}/namespaces.txt"
+    NAMESPACE_COUNT="$(wc -l < "${TMP_DIR}/namespaces.txt" | tr -d ' ')"
+    echo "Fetched ${NAMESPACE_COUNT} namespaces"
+
+    echo "Listing legacy file prefixes in s3 under ${BASE_PREFIX}"
+    if ! rclone lsf "${REMOTE}/${BASE_PREFIX}" --dirs-only > "${TMP_DIR}/prefixes.raw.txt"; then
+      echo "Failed to list legacy file prefixes via rclone" >&2
+      exit 1
+    fi
+    sed 's:/$::' "${TMP_DIR}/prefixes.raw.txt" | sort > "${TMP_DIR}/prefixes.txt"
+    PREFIX_COUNT="$(wc -l < "${TMP_DIR}/prefixes.txt" | tr -d ' ')"
+    echo "Found ${PREFIX_COUNT} namespace prefixes in s3"
+
+    DELETED_COUNT=0
+
+    while IFS= read -r namespace_prefix; do
+      [ -n "${namespace_prefix}" ] || continue
+
+      if grep -Fxq "${namespace_prefix}" "${TMP_DIR}/namespaces.txt"; then
+        echo "Keep ${BASE_PREFIX}/${namespace_prefix}"
+        continue
+      fi
+
+      echo "Delete ${BASE_PREFIX}/${namespace_prefix}"
+      rclone purge "${REMOTE}/${BASE_PREFIX}/${namespace_prefix}"
+      DELETED_COUNT=$((DELETED_COUNT + 1))
+    done < "${TMP_DIR}/prefixes.txt"
+
+    if [ "${DELETED_COUNT}" -eq 0 ]; then
+      echo "Cleanup finished: nothing to delete"
+    else
+      echo "Cleanup finished: deleted ${DELETED_COUNT} stale namespace prefixes"
+    fi
