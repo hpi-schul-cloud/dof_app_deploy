@@ -31,3 +31,6 @@ bettermarks_proxy_subdomains:
   desk: desk
 
 bettermarks_domain: bettermarks.com
+
+bettermarks_proxy_csp_enabled: true
+bettermarks_proxy_csp_enforced: true
