@@ -34,7 +34,8 @@ data:
         proxy_set_header Accept-Encoding "";
         # Search for ORIGIN and replace with HOST
         sub_filter {{ bettermarks_subdomain }}.{{ bettermarks_domain }} {{ proxy_subdomain }}.{{ bettermarks_proxy_maindomain }};
-        sub_filter .{{ bettermarks_domain }} .{{ bettermarks_proxy_maindomain }};    sub_filter_types text/html;
+        sub_filter .{{ bettermarks_domain }} .{{ bettermarks_proxy_maindomain }};    
+        sub_filter_types text/html;
         sub_filter_once off;
       }
 }
