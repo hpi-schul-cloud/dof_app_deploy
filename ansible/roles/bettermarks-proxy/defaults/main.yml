@@ -1,5 +1,3 @@
-NAMESPACE: "bettermarks"
-domain: 'schulcloud-verbund.org'
 bettermarks_proxy_enabled_instances:
   - apm
   - school

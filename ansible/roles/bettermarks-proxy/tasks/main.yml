@@ -2,7 +2,7 @@
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: {{ item+'.conf.j2'}}
+      template: "{{ item+'.conf.j2'}}"
       name: "{{ 'bettermarks-'+ item +'-proxy-nginx-server-block'}}"
       state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
     loop: "{{ bettermarks_proxy_enabled_instances }}"
