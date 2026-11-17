@@ -1,6 +1,4 @@
   - name: Bettermarks Proxy Configmap
-    check_mode: true
-    diff: true
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
@@ -12,8 +10,6 @@
       - configmap
 
   - name: Bettermarks Proxy Deployment
-    check_mode: true
-    diff: true
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
@@ -25,8 +21,6 @@
       - deployment
     
   - name: Bettermarks Proxy Service
-    check_mode: true
-    diff: true
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
@@ -38,8 +32,6 @@
       - service
 
   - name: Bettermarks Proxy Ingress
-    check_mode: true
-    diff: true
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
