@@ -1,4 +1,8 @@
   - name: Bettermarks Proxy Configmap
+    vars:
+     bettermarks_subdomain: "{{ bettermarks_subdomains[item] }}"
+     proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
+     
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"

@@ -1,3 +1,5 @@
+proxy_identification_header: "x-schulcloud-proxy"
+
 bettermarks_proxy_enabled_instances:
   - apm
   - school
@@ -8,3 +10,24 @@ bettermarks_proxy_enabled_instances:
   - video
   - desk
 
+bettermarks_subdomains:
+  apm: apm
+  school: school
+  apps: apps
+  events: events
+  csp-report: csp-report
+  helpdesk: helpdesk
+  video: video
+  desk: desk
+
+bettermarks_proxy_subdomains:
+  apm: apm
+  school: school
+  apps: apps
+  events: events
+  csp-report: csp-report
+  helpdesk: helpdesk
+  video: video
+  desk: desk
+
+bettermarks_domain: bettermarks.com
