@@ -4,10 +4,11 @@
      proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
      bettermarks_proxy_maindomain: "bettermarks.{{ DOMAIN }}"
      bettermarks_instancedomain: "{{ bettermarks_subdomain }}.bettermarks.{{ DOMAIN }}"
+     serverBlock: "{{ lookup('template', item+'.conf.j2', errors='ignore') }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
-      template: "{{ item+'.conf.j2'}}"
+      template: "{{ 'configmap.yml.j2'}}"
       name: "{{ 'bettermarks-'+ item +'-proxy-nginx-server-block'}}"
       state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
     loop: "{{ bettermarks_proxy_enabled_instances }}"

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bettermarks-{{ item }}-proxy-nginx-server-block
+  namespace: {{ NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+    app.kubernetes.io/name: nginx
+  annotations:
+data:
+  server-block.conf: |-
+  {{ serverBlock }}
