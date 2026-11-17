@@ -2,7 +2,8 @@
     vars:
      bettermarks_subdomain: "{{ bettermarks_subdomains[item] }}"
      proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
-     
+     bettermarks_proxy_maindomain: "bettermarks.{{ DOMAIN }}"
+     bettermarks_instancedomain: "{{ bettermarks_subdomain }}.bettermarks.{{ DOMAIN }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
@@ -36,6 +37,8 @@
       - service
 
   - name: Bettermarks Proxy Ingress
+    vars:
+     bettermarks_proxy_maindomain: "bettermarks.{{ DOMAIN }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
