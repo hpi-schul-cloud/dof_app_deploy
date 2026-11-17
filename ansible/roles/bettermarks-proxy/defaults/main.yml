@@ -34,3 +34,4 @@ bettermarks_domain: bettermarks.com
 
 bettermarks_proxy_csp_enabled: true
 bettermarks_proxy_csp_enforced: true
+bettermarks_proxy_image: "ghcr.io/dbildungsplattform/nginx:schedule-1.0.20261101"
