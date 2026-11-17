@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - {{ item }}.bettermarks.{{ NAMESPACE }}.{{ domain }}
-    secretName: {{ item }}.bettermarks.{{ NAMESPACE }}.{{ domain }}-tls
+    - {{ item }}.bettermarks.{{ NAMESPACE }}.{{ DOMAIN }}
+    secretName: {{ item }}.bettermarks.{{ NAMESPACE }}.{{ DOMAIN }}-tls
   rules:
-  - host: {{ item }}.bettermarks.{{ NAMESPACE }}.{{ domain }}
+  - host: {{ item }}.bettermarks.{{ NAMESPACE }}.{{ DOMAIN }}
     http:
       paths:
       - path: /
