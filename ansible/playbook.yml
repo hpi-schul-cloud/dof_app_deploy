@@ -4,56 +4,56 @@
     - develop
   connection: local
   roles:
-    # - sys
-    # - telepresence-helper
-    # - pre_deployment
-    # - keda
-    # - role: namespace-activator-scaled-objects
-    #   when: NAMESPACE != "main"
-    # - external-secrets
-    # - dof_mongo_management
-    # - dof_postgresql_management
-    # - dof_tsp_keycloak_management
-    # - dof_rabbitmq
-    # - dof_mailcatcher
-    # - collabora-office
-    # - maildrop
-    # - storage
-    # - hydra
-    # - dof_etherpad
-    # - clamav
-    # - schulcloud-server-core
-    # - schulcloud-server-init
-    # - schulcloud-server-ldapsync
-    # - schulcloud-server-tspsync
-    # - schulcloud-server-migration-system
-    # - schulcloud-server-provisioning
-    # - schulcloud-client-core
-    # - session-valkey
-    # - nuxt-client-core
-    # - superhero-dashboard
-    # - schulcloud-calendar-core
-    # - schulcloud-calendar-init
-    # - fwu
-    # - h5p-proxy
-    # - h5p-server
-    # - clammit
-    # - h5p-staticfiles-server-core
-    # - antivirus_check_service
-    # - version-aggregator
-    # - mongodb_query_exporter
-    # - tldraw-client-core
-    # - tldraw-server
-    # - tldraw-valkey
-    # - common-cartridge
-    # - ingress
-    # - post_deployment
-    # - moin-schule-sync
-    # - media-licenses
-    # - bilo-media-metadata-sync
-    # - vidis-media-metadata-sync
-    # - file-storage
-    # - legacy-file-archive
-    # - notification-server
+    - sys
+    - telepresence-helper
+    - pre_deployment
+    - keda
+    - role: namespace-activator-scaled-objects
+      when: NAMESPACE != "main"
+    - external-secrets
+    - dof_mongo_management
+    - dof_postgresql_management
+    - dof_tsp_keycloak_management
+    - dof_rabbitmq
+    - dof_mailcatcher
+    - collabora-office
+    - maildrop
+    - storage
+    - hydra
+    - dof_etherpad
+    - clamav
+    - schulcloud-server-core
+    - schulcloud-server-init
+    - schulcloud-server-ldapsync
+    - schulcloud-server-tspsync
+    - schulcloud-server-migration-system
+    - schulcloud-server-provisioning
+    - schulcloud-client-core
+    - session-valkey
+    - nuxt-client-core
+    - superhero-dashboard
+    - schulcloud-calendar-core
+    - schulcloud-calendar-init
+    - fwu
+    - h5p-proxy
+    - h5p-server
+    - clammit
+    - h5p-staticfiles-server-core
+    - antivirus_check_service
+    - version-aggregator
+    - mongodb_query_exporter
+    - tldraw-client-core
+    - tldraw-server
+    - tldraw-valkey
+    - common-cartridge
+    - ingress
+    - post_deployment
+    - moin-schule-sync
+    - media-licenses
+    - bilo-media-metadata-sync
+    - vidis-media-metadata-sync
+    - file-storage
+    - legacy-file-archive
+    - notification-server
     - role: bettermarks-proxy
 #      when: NAMESPACE == "bettermarksproxy"
