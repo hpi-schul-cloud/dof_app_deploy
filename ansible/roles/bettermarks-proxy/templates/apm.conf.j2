@@ -8,10 +8,10 @@ metadata:
     app.kubernetes.io/name: nginx
   annotations:
 data:
-  server-block.conf: |-
-    "server\{
+  server-block.conf: |
+    server{
       listen 8080;
-      location / \{
+      location / {
         # Configuration for eventsource
         proxy_buffering off;
         proxy_cache off;
@@ -29,5 +29,5 @@ data:
         sub_filter {{ bettermarks_subdomain }}.{{ bettermarks_domain }} {{ proxy_subdomain }}.{{ bettermarks_proxy_maindomain }};
         sub_filter .{{ bettermarks_domain }} .{{ bettermarks_proxy_maindomain }};
         sub_filter_once off;
-      \}
-    \}"
+      }
+    }
