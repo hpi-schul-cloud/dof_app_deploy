@@ -587,7 +587,7 @@ configuration_all:
     server: true
     client: false
   FEATURE_ROOM_ARCHIVE_ENABLED:
-    value: "false"
+    value: "true"
     server: true
     client: false
   FEATURE_ROOM_SHARE:

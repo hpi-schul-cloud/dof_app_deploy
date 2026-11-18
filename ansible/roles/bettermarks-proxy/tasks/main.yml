@@ -1,0 +1,8 @@
+  - name: Add bettermarks proxy default allow network policy
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: default-allow-networkpolicy.yml.j2
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    tags:
+      - networkPolicy
