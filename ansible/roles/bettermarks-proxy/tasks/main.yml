@@ -3,7 +3,7 @@
      bettermarks_subdomain: "{{ bettermarks_subdomains[item] }}"
      proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
      bettermarks_proxy_maindomain: "{{ DOMAIN }}"
-     bettermarks_instancedomain: "{{ bettermarks_subdomain }}.bettermarks.{{ DOMAIN }}"
+     bettermarks_instancedomain: "{{ bettermarks_subdomain }}.{{ DOMAIN }}"
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config
       namespace: "{{ NAMESPACE }}"
