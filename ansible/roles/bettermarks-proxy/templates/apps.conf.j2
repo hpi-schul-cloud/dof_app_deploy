@@ -24,7 +24,7 @@ data:
     {% if bettermarks_proxy_csp_enabled and bettermarks_proxy_csp_enforced %}
         add_header 'Content-Security-Policy' "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: *.{{ DOMAIN }} *.{{ bettermarks_instance_domain }} {{ bettermarks_instance_domain }}; report-uri https://{{ bettermarks_proxy_subdomains['csp-report'] }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}/csp" always;
     {% elif bettermarks_proxy_csp_enabled %}
-        add_header 'Content-Security-Policy-Report-Only' "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: *.{{ DOMAIN }} *.{{ bettermarks_instancedomain }} {{ bettermarks_instance_domain }}; report-uri https://{{ bettermarks_proxy_subdomains['csp-report'] }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}/csp/report-only" always;
+        add_header 'Content-Security-Policy-Report-Only' "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: *.{{ DOMAIN }} *.{{ bettermarks_instance_domain }} {{ bettermarks_instance_domain }}; report-uri https://{{ bettermarks_proxy_subdomains['csp-report'] }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}/csp/report-only" always;
     {% endif %}
         proxy_set_header {{ proxy_identification_header }} true;
         proxy_pass https://{{ bettermarks_target_domain }};

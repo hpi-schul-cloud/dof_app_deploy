@@ -71,7 +71,7 @@ data:
             # Turn off gzip so that we can perform regex replacement
             proxy_set_header Accept-Encoding "";
             # Search for ORIGIN and replace with HOST
-            sub_filter {{ bettermarks_target_domain }} {{ bettermarks_instancedomain }};
+            sub_filter {{ bettermarks_target_domain }} {{ bettermarks_instance_domain }};
             sub_filter .{{ bettermarks_domain }} .{{ DOMAIN }};
             sub_filter_once off;
             sub_filter_types application/json;
