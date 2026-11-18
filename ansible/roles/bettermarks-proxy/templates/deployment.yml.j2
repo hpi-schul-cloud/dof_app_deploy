@@ -36,7 +36,6 @@ spec:
           defaultMode: 420
       containers:
       - name: nginx
-        # image: {{ bettermarks_proxy_image }}
         image: {{ BETTERMARKS_PROXY_IMAGE_NAME }}:{{ BETTERMARKS_PROXY_IMAGE_TAG }}        
         ports:
         - name: http
