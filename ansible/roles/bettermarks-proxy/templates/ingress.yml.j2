@@ -7,13 +7,20 @@ metadata:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: nginx
   annotations:
-    cert-manager.io/cluster-issuer: sc-cert-manager-clusterissuer-letsencrypt
+{% if CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% endif %}
+
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ INGRESS_CLASS }}
+{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
   tls:
-  - hosts:
-    - {{ bettermarks_instance_domain }}
+  - hosts: 
+      - {{ bettermarks_instance_domain }}
+{% if CLUSTER_ISSUER is defined %}
     secretName: {{ bettermarks_instance_domain }}-tls
+{% endif %}
+{% endif %}
   rules:
   - host: {{ bettermarks_instance_domain }}
     http:
