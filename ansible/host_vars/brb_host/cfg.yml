@@ -11,3 +11,4 @@ BRANDENBURG_JWKS_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/prot
 BRANDENBURG_ISSUER: https://id-mbjs.brandenburg.de/realms/schullogin
 BRANDENBURG_END_SESSION_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/protocol/openid-connect/logout
 BRANDENBURG_PROVISIONING_URL: https://id-mbjs.brandenburg.de/schulconnect/v1/person-info
+FEATURE_EXTERNAL_SYSTEM_LOGOUT_ENABLED: "true"
