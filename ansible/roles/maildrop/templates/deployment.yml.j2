@@ -46,8 +46,6 @@ spec:
         - secretRef:
             name: maildrop-secret
         env:
-          - name: JAVA_TOOL_OPTIONS
-            value: "-XX:-UseBASE64Intrinsics"
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_TIMEOUT
             value: "10000"
           - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_CONNECTIONTIMEOUT
