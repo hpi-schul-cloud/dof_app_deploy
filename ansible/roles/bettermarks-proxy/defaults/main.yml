@@ -36,6 +36,7 @@ bettermarks_proxy_csp_enabled: true
 bettermarks_proxy_csp_enforced: true
 
 BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
-BETTERMARKS_PROXY_IMAGE_TAG: alpine3.24
+BETTERMARKS_PROXY_IMAGE_TAG: 1.31-alpine3.24
+BETTERMARKS_PROXY_IMAGE_SHA: sha256:60214a103e6f38e953ff957f34b1f2e97a9db801ab2df3821da955d0fe6cadd6
 
 BETTERMARKS_PROXY_SEPARATOR: "-"
