@@ -26,7 +26,7 @@ bettermarks_proxy_subdomains:
   school: school
   apps: apps
   events: events
-  csp-report: csp-report-pro00
+  csp-report: csp-report
   helpdesk: helpdesk
   video: video
   desk: desk
