@@ -1,1 +1,19 @@
 BETTERMARKS_PROXY_SEPARATOR: ".bettermarks."
+bettermarks_subdomains:
+  apm: apm-ci00
+  school: acc
+  apps: apps-ci00
+  events: events-ci00
+  csp-report: csp-report-ci00
+  helpdesk: helpdesk
+  video: video-ci00
+  desk: desk-ci00
+bettermarks_proxy_subdomains:
+  apm: apm
+  school: school
+  apps: apps
+  events: events
+  csp-report: csp-report
+  helpdesk: helpdesk
+  video: video
+  desk: desk

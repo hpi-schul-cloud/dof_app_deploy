@@ -15,17 +15,18 @@ bettermarks_subdomains:
   school: school
   apps: apps
   events: events
-  csp-report: csp-report
+  csp-report: csp-report-pro00
   helpdesk: helpdesk
   video: video
   desk: desk
 
+# Subdomains of our proxy (can be different)
 bettermarks_proxy_subdomains:
   apm: apm
   school: school
   apps: apps
   events: events
-  csp-report: csp-report
+  csp-report: csp-report-pro00
   helpdesk: helpdesk
   video: video
   desk: desk
