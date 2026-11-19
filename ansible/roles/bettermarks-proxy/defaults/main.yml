@@ -36,5 +36,5 @@ bettermarks_proxy_csp_enabled: true
 bettermarks_proxy_csp_enforced: true
 
 BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx
-BETTERMARKS_PROXY_IMAGE_TAG: 1.29-alpine
+BETTERMARKS_PROXY_IMAGE_TAG: 1.31-alpine
 BETTERMARKS_PROXY_SEPARATOR: "-"
