@@ -546,6 +546,27 @@ configuration_all:
     value: "4000"
     server: true
     client: false
+  BRANDENBURG_CLIENT_ID:
+    server: true
+    client: false
+  BRANDENBURG_AUTH_ENDPOINT:
+    server: true
+    client: false
+  BRANDENBURG_TOKEN_ENDPOINT:
+    server: true
+    client: false
+  BRANDENBURG_JWKS_ENDPOINT:
+    server: true
+    client: false
+  BRANDENBURG_ISSUER:
+    server: true
+    client: false
+  BRANDENBURG_END_SESSION_ENDPOINT:
+    server: true
+    client: false
+  BRANDENBURG_PROVISIONING_URL:
+    server: true
+    client: false
   FEATURE_SCHULCONNEX_COURSE_SYNC_ENABLED:
     server: true
     client: true

@@ -4,3 +4,10 @@ BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.schulcloud-verbund.o
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.schulcloud-verbund.org"
 ANNOTATIONS: true
 RELOADER: true
+BRANDENBURG_CLIENT_ID: schulcloud-oic
+BRANDENBURG_AUTH_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/protocol/openid-connect/auth
+BRANDENBURG_TOKEN_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/protocol/openid-connect/token
+BRANDENBURG_JWKS_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/protocol/openid-connect/certs
+BRANDENBURG_ISSUER: https://id-mbjs.brandenburg.de/realms/schullogin
+BRANDENBURG_END_SESSION_ENDPOINT: https://id-mbjs.brandenburg.de/realms/schullogin/protocol/openid-connect/logout
+BRANDENBURG_PROVISIONING_URL: https://id-mbjs.brandenburg.de/schulconnect/v1/person-info
