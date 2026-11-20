@@ -38,4 +38,4 @@ bettermarks_domain: bettermarks.com
 BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
 BETTERMARKS_PROXY_IMAGE_TAG: 1.31
 
-BETTERMARKS_PROXY_SEPARATOR: "-"
+BETTERMARKS_PROXY_SEPARATOR: "."
