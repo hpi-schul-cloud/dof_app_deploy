@@ -37,6 +37,8 @@ deployments_for_scaled_objects:
     kind: Deployment
     replicaCount: "{{BOARD_COLLABORATION_SERVER_REPLICAS}}"
   - name: common-cartridge-deployment
+  - name: board-import-api-deployment
+    with: "{{ WITH_BOARD_IMPORT }}"
   - name: clammit-deployment
   - name: notification-server-deployment
   - name: schulconnex-group-provisioning-deployment
