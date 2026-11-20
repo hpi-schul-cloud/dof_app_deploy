@@ -52,10 +52,11 @@ spec:
             cpu: {{ BETTERMARKS_PROXY_CPU_REQUESTS|default("100m", true) }}
             memory: {{ BETTERMARKS_PROXY_MEMORY_REQUESTS|default("100Mi", true) }}
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d/default.conf
-          name: nginx-server-block
-          subPath: server-block.conf
-
+#        - mountPath: /etc/nginx/conf.d/default.conf
+#          name: nginx-server-block
+#          subPath: server-block.conf
+        - name: nginx-server-block
+          mountPath: /opt/bitnami/nginx/conf/server_blocks
         livenessProbe:
           tcpSocket:
             port: http

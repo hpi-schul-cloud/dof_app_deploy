@@ -35,7 +35,9 @@ bettermarks_domain: bettermarks.com
 
 
 
-BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
-BETTERMARKS_PROXY_IMAGE_TAG: 1.31
+#BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
+#BETTERMARKS_PROXY_IMAGE_TAG: 1.31
+BETTERMARKS_PROXY_IMAGE_NAME: ghcr.io/dbildungsplattform/nginx
+BETTERMARKS_PROXY_IMAGE_TAG: schedule-1.0.20261101
 
 BETTERMARKS_PROXY_SEPARATOR: "."
