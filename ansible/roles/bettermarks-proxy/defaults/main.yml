@@ -33,8 +33,7 @@ bettermarks_proxy_subdomains:
 
 bettermarks_domain: bettermarks.com
 
-bettermarks_proxy_csp_enabled: true
-bettermarks_proxy_csp_enforced: true
+
 
 BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
 BETTERMARKS_PROXY_IMAGE_TAG: 1.31
