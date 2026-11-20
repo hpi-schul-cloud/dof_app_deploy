@@ -1,0 +1,43 @@
+proxy_identification_header: "x-schulcloud-proxy"
+
+bettermarks_proxy_enabled_instances:
+  - apm
+  - school
+  - apps
+  - events
+  - csp-report
+  - helpdesk
+  - video
+  - desk
+
+bettermarks_subdomains:
+  apm: apm
+  school: school
+  apps: apps
+  events: events
+  csp-report: csp-report-pro00
+  helpdesk: helpdesk
+  video: video
+  desk: desk
+
+# Subdomains of our proxy (can be different)
+bettermarks_proxy_subdomains:
+  apm: apm
+  school: school
+  apps: apps
+  events: events
+  csp-report: csp-report
+  helpdesk: helpdesk
+  video: video
+  desk: desk
+
+bettermarks_domain: bettermarks.com
+
+
+
+#BETTERMARKS_PROXY_IMAGE_NAME: docker.io/nginx/nginx-unprivileged
+#BETTERMARKS_PROXY_IMAGE_TAG: 1.31
+BETTERMARKS_PROXY_IMAGE_NAME: ghcr.io/dbildungsplattform/nginx
+BETTERMARKS_PROXY_IMAGE_TAG: schedule-1.0.20261101
+
+BETTERMARKS_PROXY_SEPARATOR: "."
