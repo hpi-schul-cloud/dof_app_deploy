@@ -1,5 +1,4 @@
-NEXTCLOUD_REDIRECT_URL: https://nextcloud-nbc.schulcloud-verbund.org/apps/files/?dir=/
-NEXTCLOUD_BASE_URL: https://nextcloud-nbc.schulcloud-verbund.org
+
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.schulcloud-verbund.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.schulcloud-verbund.org"
 FEATURE_AI_TUTOR_ENABLED: "true"
