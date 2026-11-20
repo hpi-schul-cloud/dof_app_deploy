@@ -177,6 +177,23 @@ default_ingress:
     path: /api/v1/classes
     serviceName: api-svc
     servicePort: "{{ PORT_SERVER }}"
+    # course groups in nuxt-client (SVSDEV-561)
+  api_v1_courseGroups:
+    path: /api/v1/courseGroups
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_lessons:
+    path: /api/v1/lessons
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_submissions:
+    path: /api/v1/submissions
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
+  api_v1_homework:
+    path: /api/v1/homework
+    serviceName: api-svc
+    servicePort: "{{ PORT_SERVER }}"
   etherpad:
     path: /etherpad
     serviceName: etherpad-nginx-svc
