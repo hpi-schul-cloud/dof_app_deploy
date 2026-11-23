@@ -2,10 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
-    app.kubernetes.io/name: nginx
+    app: bettermarks-proxy
     app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+    app.kubernetes.io/name: bettermarks-proxy
+    app.kubernetes.io/component: bettermarks-proxy
+    app.kubernetes.io/version: "{{ BETTERMARKS_PROXY_IMAGE_TAG  }}"
     app.kubernetes.io/managed-by: ansible
+    git.branch: {{ H5P_SERVER_BRANCH_NAME }}
+    git.repo: {{ H5P_SERVER_REPO_NAME }}
 {% if ANNOTATIONS is defined and ANNOTATIONS|bool %}
   annotations:
     meta.helm.sh/release-name: bettermarks-{{ item }}-proxy
