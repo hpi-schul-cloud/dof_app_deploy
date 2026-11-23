@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: bettermarks-{{ item }}-proxy-nginx-server-block
-  namespace: {{ NAMESPACE }}
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
   labels:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: bettermarks-proxy
@@ -22,12 +22,12 @@ data:
         proxy_pass https://{{ bettermarks_target_domain }};
         proxy_ssl_server_name on;
         proxy_intercept_errors off;
-        proxy_cookie_domain .{{ bettermarks_domain }} .{{ DOMAIN }};
+        proxy_cookie_domain .{{ bettermarks_domain }} .{{ BETTERMARKSPROXY_DOMAIN }};
         # Turn off gzip so that we can perform regex replacement
         proxy_set_header Accept-Encoding "";
         # Search for ORIGIN and replace with HOST
         sub_filter {{ bettermarks_target_domain }} {{ bettermarks_instance_domain }};
-        sub_filter .{{ bettermarks_domain }} .{{ DOMAIN }};
+        sub_filter .{{ bettermarks_domain }} .{{ BETTERMARKSPROXY_DOMAIN }};
         sub_filter_once off;
       }
     }

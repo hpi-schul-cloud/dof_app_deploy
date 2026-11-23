@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bettermarks-{{ item }}-proxy-nginx
-  namespace: {{ NAMESPACE }}
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
   labels:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: bettermarks-proxy

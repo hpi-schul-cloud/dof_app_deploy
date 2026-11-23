@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: bettermarks-{{ item }}-proxy
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
   labels:
     app: bettermarks-proxy
     app.kubernetes.io/part-of: schulcloud-verbund

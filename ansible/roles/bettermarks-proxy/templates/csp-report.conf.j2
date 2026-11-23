@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: bettermarks-{{ item }}-proxy-nginx-server-block
-  namespace: {{ NAMESPACE }}
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
   labels:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: bettermarks-proxy
@@ -21,7 +21,7 @@ data:
         # Hide original CSP Headers
         proxy_hide_header 'Content-Security-Policy';
         proxy_hide_header 'Content-Security-Policy-Report-Only';
-        add_header 'Content-Security-Policy' "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: *.{{ DOMAIN }} *.{{ bettermarks_instance_domain }} {{ bettermarks_instance_domain }}; report-uri https://{{ bettermarks_proxy_subdomains['csp-report'] }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}/csp" always;
+        add_header 'Content-Security-Policy' "default-src 'self' 'unsafe-eval' 'unsafe-inline' data: *.{{ DOMAIN }} *.{{ BETTERMARKSPROXY_DOMAIN }} *.{{ bettermarks_instance_domain }} {{ bettermarks_instance_domain }}; report-uri https://{{ bettermarks_proxy_subdomains['csp-report'] }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ BETTERMARKSPROXY_DOMAIN }}/csp" always;
         proxy_set_header {{ proxy_identification_header }} true;
         proxy_pass https://{{ bettermarks_target_domain }};
         proxy_ssl_server_name on;

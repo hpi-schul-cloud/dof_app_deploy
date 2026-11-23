@@ -1,3 +1,6 @@
+BETTERMARKS_PROXY_NAMESPACE: "{{ NAMESPACE }}"
+BETTERMARKSPROXY_DOMAIN : "betternarks.{{DOMAIN}}"
+
 proxy_identification_header: "x-schulcloud-proxy"
 
 bettermarks_proxy_enabled_instances:
