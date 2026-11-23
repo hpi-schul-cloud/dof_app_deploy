@@ -13,8 +13,6 @@ metadata:
     git.repo: {{ H5P_SERVER_REPO_NAME }}
 {% if ANNOTATIONS is defined and ANNOTATIONS|bool %}
   annotations:
-    meta.helm.sh/release-name: bettermarks-{{ item }}-proxy
-    meta.helm.sh/release-namespace: {{ NAMESPACE }}
 {% if RELOADER is defined and RELOADER|bool %}
     reloader.stakater.com/auto: "true"
 {% endif %}
