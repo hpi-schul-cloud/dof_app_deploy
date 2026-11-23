@@ -25,11 +25,15 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
-        app.kubernetes.io/name: nginx
-        app.kubernetes.io/version: "{{ BETTERMARKS_PROXY_IMAGE_TAG }}"
+        app: bettermarks-proxy
         app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+        app.kubernetes.io/name: bettermarks-proxy
+        app.kubernetes.io/component: bettermarks-proxy
+        app.kubernetes.io/version: "{{ BETTERMARKS_PROXY_IMAGE_TAG  }}"
         app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_REPO_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
     spec:
       volumes:
       - name: nginx-server-block
