@@ -19,8 +19,3 @@ spec:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: nginx
   type: ClusterIP
-  sessionAffinity: None
-  ipFamilies:
-  - IPv4
-  ipFamilyPolicy: SingleStack
-  internalTrafficPolicy: Cluster
