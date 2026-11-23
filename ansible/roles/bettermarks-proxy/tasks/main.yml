@@ -5,7 +5,7 @@
      # Prefix used for naming the bettermarks instance domain in the proxy configuration
      proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
      # Final DNS used to access proxy instance
-     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}"
+     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ BETTERMARKSPROXY_DOMAIN }}"
      # Target domain used for bettermarks instance
      bettermarks_target_domain: "{{ bettermarks_subdomain }}.{{ bettermarks_domain }}"
     kubernetes.core.k8s:
@@ -46,7 +46,7 @@
      # Prefix used for naming the bettermarks instance domain in the proxy configuration
      proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
      # Final DNS used to access proxy instance
-     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ DOMAIN }}"
+     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ BETTERMARKSPROXY_DOMAIN }}"
      # Target domain used for bettermarks instance
      bettermarks_target_domain: "{{ bettermarks_subdomain }}.{{ bettermarks_domain }}"
     kubernetes.core.k8s:
