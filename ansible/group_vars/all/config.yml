@@ -97,9 +97,6 @@ configuration_all:
     value: "noreply@DOMAIN"
     server: true
     client: false
-  TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION:
-    server: true
-    client: true
   # Storage
   AWS_ENDPOINT_URL:
     value: "https://storage-{{ DOMAIN }}"
