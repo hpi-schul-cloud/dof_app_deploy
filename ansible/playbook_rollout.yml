@@ -48,6 +48,7 @@
     - role: tldraw-server
     - role: tldraw-valkey
     - role: common-cartridge
+    - role: board-import
     - role: ingress
     - role: post_deployment
     - role: moin-schule-sync
