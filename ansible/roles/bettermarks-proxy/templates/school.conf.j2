@@ -5,7 +5,7 @@ metadata:
   namespace: {{ NAMESPACE }}
   labels:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
-    app.kubernetes.io/name: nginx
+    app.kubernetes.io/name: bettermarks-proxy
   annotations:
 data:
   server-block.conf: |
