@@ -81,14 +81,6 @@ spec:
         securityContext:
           runAsUser: 1001
           runAsNonRoot: true
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      dnsPolicy: ClusterFirst
-      automountServiceAccountToken: false
-      shareProcessNamespace: false
-      securityContext: {}
-      imagePullSecrets:
-      - name: docker-token
 {% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
       affinity:
         podAffinity:
