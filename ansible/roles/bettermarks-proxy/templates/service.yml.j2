@@ -6,9 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: bettermarks-proxy
-  annotations:
-status:
-  loadBalancer: {}
 spec:
   ports:
   - name: http
