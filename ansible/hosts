@@ -4,10 +4,7 @@ ref-brb
 prod-brb
 
 [dbc]
-dbc_host
-ref-dbc
 ref-audit
-prod-dbc
 dev-loadtest-01
 infra.dbildungscloud-01
 
@@ -23,7 +20,6 @@ prod-thr
 
 [develop]
 brb_host
-dbc_host
 nbc_host
 thr_host
 
@@ -44,7 +40,6 @@ ansible_group_priority=10
 
 [reference]
 ref-brb
-ref-dbc
 ref-nbc
 ref-audit
 ref-thr
@@ -53,7 +48,6 @@ ref-thr
 ansible_group_priority=10
 
 [production]
-prod-dbc
 prod-brb
 prod-nbc
 prod-thr

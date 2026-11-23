@@ -17,7 +17,7 @@ on:
       DEV_KUBE_CONFIG_THR:
         required: true
       DEV_KUBE_CONFIG_DBC:
-        required: true
+        required: false
 
 permissions:
   contents: read
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        kubeconfig: [DEV_KUBE_CONFIG_BRB, DEV_KUBE_CONFIG_NBC, DEV_KUBE_CONFIG_THR, DEV_KUBE_CONFIG_DBC]
+        kubeconfig: [DEV_KUBE_CONFIG_BRB, DEV_KUBE_CONFIG_NBC, DEV_KUBE_CONFIG_THR]
       fail-fast: false
     if: needs.examine_branch_existence.outputs.are_all_branches_deleted  == 'true'
     needs:
