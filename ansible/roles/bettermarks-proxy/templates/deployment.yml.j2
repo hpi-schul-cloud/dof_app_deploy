@@ -43,7 +43,7 @@ spec:
           name: bettermarks-{{ item }}-proxy-nginx-server-block
           defaultMode: 420
       containers:
-      - name: nginx
+      - name: bettermarks-{{ item }}-proxy
         image: {{ BETTERMARKS_PROXY_IMAGE_NAME }}:{{ BETTERMARKS_PROXY_IMAGE_TAG }}
         ports:
         - name: http

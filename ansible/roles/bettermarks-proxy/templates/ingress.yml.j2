@@ -7,17 +7,17 @@ metadata:
     app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
     app.kubernetes.io/name: bettermarks-proxy
   annotations:
-{% if CLUSTER_ISSUER is defined %}
-    cert-manager.io/cluster-issuer: {{ CLUSTER_ISSUER }}
+{% if BETTERMARKS_PROXY_CLUSTER_ISSUER is defined %}
+    cert-manager.io/cluster-issuer: {{ BETTERMARKS_PROXY_CLUSTER_ISSUER }}
 {% endif %}
 
 spec:
   ingressClassName: {{ INGRESS_CLASS }}
-{% if CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
+{% if BETTERMARKS_PROXY_CLUSTER_ISSUER is defined or (TLS_ENABLED is defined and TLS_ENABLED|bool) %}
   tls:
   - hosts: 
       - {{ bettermarks_instance_domain }}
-{% if CLUSTER_ISSUER is defined %}
+{% if BETTERMARKS_PROXY_CLUSTER_ISSUER is defined %}
     secretName: {{ bettermarks_instance_domain }}-tls
 {% endif %}
 {% endif %}
