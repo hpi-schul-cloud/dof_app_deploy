@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: bettermarks-{{ item }}-proxy
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
   labels:
     app: bettermarks-proxy
     app.kubernetes.io/part-of: schulcloud-verbund
@@ -41,7 +43,7 @@ spec:
           name: bettermarks-{{ item }}-proxy-nginx-server-block
           defaultMode: 420
       containers:
-      - name: nginx
+      - name: bettermarks-{{ item }}-proxy
         image: {{ BETTERMARKS_PROXY_IMAGE_NAME }}:{{ BETTERMARKS_PROXY_IMAGE_TAG }}
         ports:
         - name: http
