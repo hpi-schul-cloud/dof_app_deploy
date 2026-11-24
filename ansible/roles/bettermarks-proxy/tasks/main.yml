@@ -1,3 +1,74 @@
+  - name: Bettermarks Namespace
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: namespace.yml.j2
+    tags:
+      - namespace
+      - always
+
+  - name: Bettermarks Proxy Configmap
+    vars:
+     # Prefix used for targeting the bettermarks instance domain in the proxy configuration
+     bettermarks_subdomain: "{{ bettermarks_subdomains[item] }}"
+     # Prefix used for naming the bettermarks instance domain in the proxy configuration
+     proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
+     # Final DNS used to access proxy instance
+     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ BETTERMARKSPROXY_DOMAIN }}"
+     # Target domain used for bettermarks instance
+     bettermarks_target_domain: "{{ bettermarks_subdomain }}.{{ bettermarks_domain }}"
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      template: "{{ item +'.conf.j2'}}"
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - configmap
+
+  - name: Bettermarks Proxy Deployment
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: deployment.yml.j2
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - deployment
+    
+  - name: Bettermarks Proxy Service
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: service.yml.j2
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - service
+
+  - name: Bettermarks Proxy Ingress
+    vars:
+     # Prefix used for targeting the bettermarks instance domain in the proxy configuration
+     bettermarks_subdomain: "{{ bettermarks_subdomains[item] }}"
+     # Prefix used for naming the bettermarks instance domain in the proxy configuration
+     proxy_subdomain: "{{ bettermarks_proxy_subdomains[item] }}"
+     # Final DNS used to access proxy instance
+     bettermarks_instance_domain: "{{ proxy_subdomain }}{{ BETTERMARKS_PROXY_SEPARATOR }}{{ BETTERMARKSPROXY_DOMAIN }}"
+     # Target domain used for bettermarks instance
+     bettermarks_target_domain: "{{ bettermarks_subdomain }}.{{ bettermarks_domain }}"
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config
+      namespace: "{{ NAMESPACE }}"
+      name: "{{ 'bettermarks-'+ item +'-proxy-nginx'}}"
+      template: ingress.yml.j2
+      apply: yes
+      state: "{{ 'present' if WITH_BETTERMAKRS_PROXY|bool else 'absent'}}"
+    loop: "{{ bettermarks_proxy_enabled_instances }}"
+    tags:
+      - ingress
+
   - name: Add bettermarks proxy default allow network policy
     kubernetes.core.k8s:
       kubeconfig: ~/.kube/config

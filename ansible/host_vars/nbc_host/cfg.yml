@@ -1,6 +1,9 @@
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.niedersachsen.schulcloud-verbund.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.niedersachsen.schulcloud-verbund.org"
+BETTERMARKSPROXY_DOMAIN : "bettermarks.niedersachsen.schulcloud-verbund.org"
+BETTERMARKS_PROXY_NAMESPACE: "bettermarksproxy"
+BETTERMARKS_PROXY_CLUSTER_ISSUER: "sc-cert-manager-clusterissuer-letsencrypt"
 FEATURE_AI_TUTOR_ENABLED: "true"
 
 # Migration wizard

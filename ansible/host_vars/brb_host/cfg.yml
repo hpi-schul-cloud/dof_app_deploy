@@ -1,5 +1,9 @@
 
 BETTERMARKS_APPS_URL: "https://apps.bettermarks.brandenburg.schulcloud-verbund.org"
 BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.brandenburg.schulcloud-verbund.org"
+BETTERMARKSPROXY_DOMAIN : "bettermarks.brandenburg.schulcloud-verbund.org"
+BETTERMARKS_PROXY_NAMESPACE: "bettermarksproxy"
+BETTERMARKS_PROXY_CLUSTER_ISSUER: "sc-cert-manager-clusterissuer-letsencrypt"
 ANNOTATIONS: true
 RELOADER: true
+
