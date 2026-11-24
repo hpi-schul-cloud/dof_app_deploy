@@ -1,13 +1,13 @@
 NAMESPACE: niedersachsen
-DOMAIN: staging.niedersachsen.dbildungscloud.org
+DOMAIN: staging.niedersachsen.schulcloud-verbund.org
 
 ALERT_STATUS_URL: https://status.niedersachsen.cloud/
 
-NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org/apps/files/?dir=/
-NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.dbildungscloud.org
+NEXTCLOUD_REDIRECT_URL: https://nextcloud.staging.niedersachsen.schulcloud-verbund.org/apps/files/?dir=/
+NEXTCLOUD_BASE_URL: https://nextcloud.staging.niedersachsen.schulcloud-verbund.org
 
-BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.dbildungscloud.org"
-BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.dbildungscloud.org"
+BETTERMARKS_APPS_URL: "https://apps.bettermarks.staging.niedersachsen.schulcloud-verbund.org"
+BETTERMARKS_SCHOOL_URL: "https://school.bettermarks.staging.niedersachsen.schulcloud-verbund.org"
 HYDRA_ISSUER_URL_SUFFIX: "/"
 
 # Migration wizard
