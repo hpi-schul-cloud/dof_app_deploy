@@ -39,7 +39,7 @@ deployments_for_scaled_objects:
   - name: common-cartridge-deployment
   - name: board-import-api-deployment
     with: "{{ WITH_BOARD_IMPORT }}"
-    replicaCount: "{{ BOARD_IMPORT_API_REPLICAS }}"
+    replicaCount: "{{ BOARD_IMPORT_API_REPLICAS | default(1) }}"
   - name: board-import-worker-deployment
     with: "{{ WITH_BOARD_IMPORT }}"
     replicaCount: "{{ BOARD_IMPORT_WORKER_REPLICAS | default(1) }}"
