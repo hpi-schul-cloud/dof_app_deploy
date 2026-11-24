@@ -624,6 +624,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_ROOM_GROUPING_ENABLED:
+    value: "true"
+    server: true
+    client: false
   FEATURE_ROOM_SHARE:
     value: "true"
     server: true
