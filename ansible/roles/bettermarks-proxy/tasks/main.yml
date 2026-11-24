@@ -1,3 +1,12 @@
+  - name: Bettermarks Namespace
+    kubernetes.core.k8s:
+      kubeconfig: ~/.kube/config 
+      namespace: "{{ NAMESPACE }}"
+      template: namespace.yml.j2
+    tags:
+      - namespace
+      - always
+
   - name: Bettermarks Proxy Configmap
     vars:
      # Prefix used for targeting the bettermarks instance domain in the proxy configuration
