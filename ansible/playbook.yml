@@ -46,6 +46,7 @@
     - tldraw-server
     - tldraw-valkey
     - common-cartridge
+    - board-import
     - ingress
     - post_deployment
     - moin-schule-sync

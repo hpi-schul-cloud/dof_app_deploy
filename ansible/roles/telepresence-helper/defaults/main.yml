@@ -1,3 +1,4 @@
 telepresence_egress_workloads:
   - file-storage
+  - board-import-api
   - version-aggregator
