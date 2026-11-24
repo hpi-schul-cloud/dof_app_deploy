@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bettermarks-{{ item }}-proxy
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
+  labels:
+    app: bettermarks-proxy
+    app.kubernetes.io/part-of: schulcloud-verbund
+    app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+    app.kubernetes.io/name: bettermarks-proxy
+    app.kubernetes.io/component: bettermarks-proxy
+    app.kubernetes.io/version: "{{ BETTERMARKS_PROXY_IMAGE_TAG  }}"
+    app.kubernetes.io/managed-by: ansible
+    git.branch: {{ H5P_SERVER_BRANCH_NAME }}
+    git.repo: {{ H5P_SERVER_REPO_NAME }}
+{% if ANNOTATIONS is defined and ANNOTATIONS|bool %}
+  annotations:
+{% if RELOADER is defined and RELOADER|bool %}
+    reloader.stakater.com/auto: "true"
+{% endif %}
+{% endif %}    
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+  template:
+    metadata:
+      labels:
+        app: bettermarks-proxy
+        app.kubernetes.io/part-of: schulcloud-verbund
+        app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+        app.kubernetes.io/name: bettermarks-proxy
+        app.kubernetes.io/component: bettermarks-proxy
+        app.kubernetes.io/version: "{{ BETTERMARKS_PROXY_IMAGE_TAG  }}"
+        app.kubernetes.io/managed-by: ansible
+        git.branch: {{ DOF_APP_DEPLOY_REPO_NAME }}
+        git.repo: {{ DOF_APP_DEPLOY_REPO_NAME }}
+    spec:
+      volumes:
+      - name: nginx-server-block
+        configMap:
+          name: bettermarks-{{ item }}-proxy-nginx-server-block
+          defaultMode: 420
+      containers:
+      - name: bettermarks-{{ item }}-proxy
+        image: {{ BETTERMARKS_PROXY_IMAGE_NAME }}:{{ BETTERMARKS_PROXY_IMAGE_TAG }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        env:
+        - name: NGINX_HTTP_PORT_NUMBER
+          value: "8080"
+        resources:
+          limits:
+            cpu: {{ BETTERMARKS_PROXY_CPU_LIMITS|default("1000m", true) }}
+            memory: {{ BETTERMARKS_PROXY_MEMORY_LIMITS|default("1Gi", true) }}
+          requests:
+            cpu: {{ BETTERMARKS_PROXY_CPU_REQUESTS|default("100m", true) }}
+            memory: {{ BETTERMARKS_PROXY_MEMORY_REQUESTS|default("100Mi", true) }}
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d/default.conf
+          name: nginx-server-block
+          subPath: server-block.conf
+#        - name: nginx-server-block
+#          mountPath: /opt/bitnami/nginx/conf/server_blocks
+        livenessProbe:
+          tcpSocket:
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          tcpSocket:
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 1001
+          runAsNonRoot: true
+{% if AFFINITY_ENABLE is defined and AFFINITY_ENABLE|bool %}
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 9
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                  - schulcloud-verbund
+              topologyKey: "kubernetes.io/hostname"
+              namespaceSelector: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+{% if ANIT_AFFINITY_NODEPOOL_ENABLE is defined and ANIT_AFFINITY_NODEPOOL_ENABLE|bool %}
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+              topologyKey: {{ ANIT_AFFINITY_NODEPOOL_TOPOLOGY_KEY }}
+{% endif %}
+          - weight: 20
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+              topologyKey: "topology.kubernetes.io/zone"
+{% endif %}

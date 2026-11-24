@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bettermarks-{{ item }}-proxy-nginx-server-block
+  namespace: {{ BETTERMARKS_PROXY_NAMESPACE }}
+  labels:
+    app.kubernetes.io/instance: bettermarks-{{ item }}-proxy
+    app.kubernetes.io/name: bettermarks-proxy
+  annotations:
+data:
+  server-block.conf: |
+    server{
+      listen 8080;
+      location / {
+        # Configuration for eventsource
+        proxy_buffering off;
+        proxy_cache off;
+        gzip off;
+        proxy_hide_header 'Access-Control-Allow-Origin';
+        add_header 'Access-Control-Allow-Origin' $http_origin always;
+        proxy_set_header {{ proxy_identification_header }} true;
+        proxy_pass https://{{ bettermarks_target_domain }};
+        proxy_ssl_server_name on;
+        proxy_intercept_errors off;
+        proxy_cookie_domain .{{ bettermarks_domain }} .{{ BETTERMARKSPROXY_DOMAIN }};
+        # Turn off gzip so that we can perform regex replacement
+        proxy_set_header Accept-Encoding "";
+        # Search for ORIGIN and replace with HOST
+        sub_filter {{ bettermarks_target_domain }} {{ bettermarks_instance_domain }};
+        sub_filter .{{ bettermarks_domain }} .{{ BETTERMARKSPROXY_DOMAIN }};
+        sub_filter_once off;
+      }
+    }
