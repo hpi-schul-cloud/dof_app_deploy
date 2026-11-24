@@ -1,4 +1,4 @@
-BETTERMARKS_PROXY_SEPARATOR: ".bettermarks."
+BETTERMARKS_PROXY_SEPARATOR: "."
 bettermarks_subdomains:
   apm: apm-ci00
   school: acc
