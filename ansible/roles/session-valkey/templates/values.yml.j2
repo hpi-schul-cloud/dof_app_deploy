@@ -45,7 +45,8 @@ metrics:
             cpu: "{{ SESSION_VALKEY_EXPORTER_CPU_REQUESTS|default('100m', true) }}"
             memory: "{{ SESSION_VALKEY_EXPORTER_MEMORY_REQUESTS|default('128Mi', true) }}"
     args:
-      - --check-key-groups=(jwt):[^:]+:(import)_.+,(jwt):.+
+      # The import_ prefix must be the same as the token ID prefix of the board import worker in schulcloud-server.
+      - --check-key-groups=^(jwt):[^:]+:(import)_.+,^(jwt):.+
     extraExporterEnvSecrets:
       - "session-valkey-exporter"
   serviceMonitor:
