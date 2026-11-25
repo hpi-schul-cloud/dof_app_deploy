@@ -323,6 +323,10 @@ configuration_all:
     value: "true"
     server: true
     client: false
+  FEATURE_BOARD_IMPORT_ENABLED:
+    value: "false"
+    server: true
+    client: false
   FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED:
     value: "false"
     server: true
