@@ -1,6 +1,6 @@
 # SVSDEV-605: feature configuration for the Schutzwerk audit instance
 
-The audit instance uses BRB's effective feature configuration while remaining in its own Ansible group. The comparison below shows DBC's effective settings immediately before SVSDEV-370, DBC's settings after that change, and the BRB settings that the audit instance will use.
+The audit instance uses BRB's effective feature configuration while remaining in its own Ansible group. The comparison below shows DBC's effective settings immediately before SVSDEV-370, DBC's settings after that change, and the BRB settings. FWU is the exception: it remains disabled in audit until its required instance preparation is done.
 
 The pre-SVSDEV-370 column uses the parent revision of the SVSDEV-370 commit plus shared Ansible defaults. “Not configured” means no value was specified for that flag in the relevant inventory or shared configuration. The BRB column reflects `group_vars/brb/instance_cfg.yml`, `group_vars/brb/with.yml`, and shared defaults. The audit group only overrides values where it must differ from those shared defaults.
 
@@ -32,10 +32,10 @@ The pre-SVSDEV-370 column uses the parent revision of the SVSDEV-370 commit plus
 | `FEATURE_EXTERNAL_PERSON_REGISTRATION_ENABLED` | Enables the external-person registration flow. | `true` (shared default) | `false` | `true` (shared default) |
 | `FEATURE_OAUTH_LOGIN_ENABLED` | Offers OAuth-based single sign-on. | `false` (shared default) | `false` (shared default) | `false` (shared default) |
 | `FEATURE_CONSENT_NECESSARY` | Enables the necessary-consent setting. | `true` (shared default) | `true` (shared default) | `false` |
-| `FEATURE_FWU_CONTENT_ENABLED` | Enables FWU media-shelf content. | `false` (shared default) | `false` (shared default) | `true` |
+| `FEATURE_FWU_CONTENT_ENABLED` | Enables FWU media-shelf content. | `false` (shared default) | `false` (shared default) | `true` in BRB; disabled in audit pending preparation |
 | `WITH_LDAP` | Includes LDAP integration and sync services. | `true` | `false` | `true` |
 | `WITH_COMMON_CARTRIDGE` | Includes Common Cartridge import/export support. | `true` | `true` | `false` (shared default) |
 | `WITH_NOTIFICATION_SERVER` | Includes the notification server service. | `true` | `false` | `false` (shared default) |
-| `WITH_FWU` | Includes the FWU content service. | `false` (shared default) | `false` (shared default) | `true` |
+| `WITH_FWU` | Includes the FWU content service. | `false` (shared default) | `false` (shared default) | `true` in BRB; disabled in audit pending preparation |
 
-The audit configuration deliberately does not copy the pre-SVSDEV-370 DBC feature values. It keeps BRB's OAuth login disabled through the shared default, and only sets explicit overrides needed to reproduce BRB's effective settings.
+The audit configuration deliberately does not copy the pre-SVSDEV-370 DBC feature values. It follows BRB's effective settings except for FWU, which remains disabled until the audit instance is prepared for it. OAuth stays disabled through the shared default; the audit group does not repeat that setting.
