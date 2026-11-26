@@ -31,7 +31,7 @@ jobs:
     with:
       cfg_version: ${{ github.event.inputs.config_tag_name }}
       host_name: ref-audit
-      host_group: dbc
+      host_group: audit
       host_stage: reference
       execute_group: ${{ github.event.inputs.instance_group }}
     secrets:
