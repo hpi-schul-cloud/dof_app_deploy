@@ -1,5 +1,5 @@
 NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_NAME: docker.io/nginx
-NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG: 1.29-alpine
+NAMESPACE_ACTIVATOR_REDIRECTION_IMAGE_TAG: 1.31-alpine
 
 deployments_for_scaled_objects:
   - name: api-deployment
@@ -37,6 +37,12 @@ deployments_for_scaled_objects:
     kind: Deployment
     replicaCount: "{{BOARD_COLLABORATION_SERVER_REPLICAS}}"
   - name: common-cartridge-deployment
+  - name: board-import-api-deployment
+    with: "{{ WITH_BOARD_IMPORT }}"
+    replicaCount: "{{ BOARD_IMPORT_API_REPLICAS | default(1) }}"
+  - name: board-import-worker-deployment
+    with: "{{ WITH_BOARD_IMPORT }}"
+    replicaCount: "{{ BOARD_IMPORT_WORKER_REPLICAS | default(1) }}"
   - name: clammit-deployment
   - name: notification-server-deployment
   - name: schulconnex-group-provisioning-deployment

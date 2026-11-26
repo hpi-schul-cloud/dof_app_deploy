@@ -153,6 +153,9 @@ default_ingress:
     path: /api
     serviceName: default-backend-404-svc
     servicePort: 8080
+  # Do not add new /api/v1 routes to api-svc. This exposes legacy server code
+  # publicly and increases security risk; rewrite new or extended APIs in NestJS
+  # and expose them through the appropriate API version (for example, v3).
   api_v1_roster:
     path: /api/v1/roster
   api_v1_consentVersions:

@@ -18,7 +18,7 @@ on:
       DEV_VAULT_NBC:
         required: true
       DEV_VAULT_DBC:
-        required: true
+        required: false
       DEV_KUBE_CONFIG_BRB:
         required: true
       DEV_KUBE_CONFIG_NBC:
@@ -26,11 +26,11 @@ on:
       DEV_KUBE_CONFIG_THR:
         required: true
       DEV_KUBE_CONFIG_DBC:
-        required: true
+        required: false
 
 
 env:
-  tenants: "brb dbc nbc thr"
+  tenants: "brb nbc thr"
 
 permissions:
   contents: read
@@ -106,8 +106,6 @@ jobs:
         tenants: 
           - name: brb
             domain: brandenburg.schulcloud-verbund.org
-          - name: dbc
-            domain: dbc.dbildungscloud.dev
           - name: nbc
             domain: niedersachsen.schulcloud-verbund.org
           - name: thr
@@ -179,8 +177,6 @@ jobs:
         tenants: 
           - name: brb
             domain: brandenburg.schulcloud-verbund.org
-          - name: dbc
-            domain: dbc.dbildungscloud.dev
           - name: nbc
             domain: niedersachsen.schulcloud-verbund.org
           - name: thr
@@ -193,19 +189,6 @@ jobs:
           NAMESPACE_NAME: ${{ needs.create_branch_identifier.outputs.id_branch }}
         run: |
           curl -v -XPOST -H 'Content-Type: application/json' "https://activate.${{ matrix.tenants.domain }}/namespace/$NS_ACTIVATOR_FUNCTION" -d "{\"name\" : \"$NAMESPACE_NAME\", \"maxWaitTimeInSeconds\" : 900}"
-
-
-  deploy_dbc_dev:
-    needs:
-      - create_artifacts_repos
-      - create_artifacts_workspaces
-    uses: hpi-schul-cloud/dof_app_deploy/.github/workflows/deploy_dev.yml@main
-    with:
-      host_name: dbc_host
-      tenant: dbc
-    secrets:
-      ONEPASSWORD_VAULT: ${{ secrets.DEV_VAULT_DBC }}
-      KUBECONFIG: ${{ secrets.DEV_KUBE_CONFIG_DBC }}
 
   deploy_nbc_dev:
     needs:

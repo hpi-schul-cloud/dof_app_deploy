@@ -48,6 +48,7 @@
     - role: tldraw-server
     - role: tldraw-valkey
     - role: common-cartridge
+    - role: board-import
     - role: ingress
     - role: post_deployment
     - role: moin-schule-sync
@@ -59,3 +60,4 @@
     - role: legacy-file-archive
       when: WITH_LEGACY_FILE_ARCHIVE is defined and WITH_LEGACY_FILE_ARCHIVE|bool
     - role: notification-server
+    - role: bettermarks-proxy
