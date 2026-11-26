@@ -1,5 +1,6 @@
 DEPLOYMENT_ENV: "prod"
 SC_THEME: brb
+SC_NAV_TITLE: Prüfcloud
 SC_SHORTNAME: audit
 SC_TITLE: Prüfcloud
 SC_PRODUCTNAME: Prüfcloud
