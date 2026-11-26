@@ -3,9 +3,7 @@ SC_THEME: brb
 SC_SHORTNAME: audit
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
-SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
-GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.backupFeatures
-GLOBAL_ANNOUNCEMENT_ROLES: administrator
+SC_CONTACT_EMAIL: dont-talk-with-me@schulcloud-verbund.org
 
 # Feature flags: retain the DBC state from before SVSDEV-370.
 FEATURE_NOTIFICATIONS_ENABLED: "true"
@@ -26,7 +24,7 @@ PORT_FILE_SERVICE: 4444
 PORT_METRICS_SERVER: 9090
 
 # accessibility
-ACCESSIBILITY_REPORT_EMAIL: ticketsystem@dbildungscloud.de
+ACCESSIBILITY_REPORT_EMAIL: dont-talk-with-me@schulcloud-verbund.org
 
 # BigBlueButton
 VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
