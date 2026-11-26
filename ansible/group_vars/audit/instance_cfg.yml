@@ -3,16 +3,10 @@ SC_THEME: brb
 SC_SHORTNAME: audit
 SC_TITLE: dBildungscloud
 SC_PRODUCTNAME: dBildungscloud
-SC_NAV_TITLE: dBildungscloud
 SC_CONTACT_EMAIL: ticketsystem@dbildungscloud.de
 GLOBAL_ANNOUNCEMENT_TEXT: loggedin.text.backupFeatures
 GLOBAL_ANNOUNCEMENT_ROLES: administrator
 
-TEACHER_VISIBILITY_FOR_EXTERNAL_TEAM_INVITATION: opt-in
-STUDENT_TEAM_CREATION: opt-out
-
-## CLIENT | NUXT
-SC_FEDERALSTATE:
 # Feature flags: retain the DBC state from before SVSDEV-370.
 FEATURE_NOTIFICATIONS_ENABLED: "true"
 FEATURE_MINT_PAGES_ENABLED: "true"
@@ -24,31 +18,15 @@ FEATURE_COMMON_CARTRIDGE_COURSE_EXPORT_ENABLED: "true"
 FEATURE_COMMON_CARTRIDGE_COURSE_IMPORT_ENABLED: "true"
 FEATURE_TEAM_CREATE_ROOM_ENABLED: "true"
 
-# Audit login uses the regular username/password flow, without OAuth SSO.
-FEATURE_OAUTH_LOGIN_ENABLED: "false"
-
-# ADMIN TABLES
-ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
 # LDAP
 SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
-WITH_LDAP: true
 # PORTS
 PORT_SERVER: 3030
 PORT_FILE_SERVICE: 4444
 PORT_METRICS_SERVER: 9090
 
-# Route /roster for bettermarks
-ROUTE_ROSTER: false
-ALERT_STATUS_URL: https://status.dbildungscloud.dev/
-
 # accessibility
 ACCESSIBILITY_REPORT_EMAIL: ticketsystem@dbildungscloud.de
-
-# Column Board
-COLUMN_BOARD_FEEDBACK_LINK: https://easy-feedback.de/umfrage/1683495/cWgx4T
-
-# Ingress
-group_ingress:
 
 # BigBlueButton
 VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf

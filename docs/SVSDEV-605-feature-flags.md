@@ -35,4 +35,4 @@ The audit instance is configured in its own Ansible inventory group. Its explici
 | `WITH_COMMON_CARTRIDGE` | Includes Common Cartridge import/export support. | `true` | `true` | `true` |
 | `WITH_NOTIFICATION_SERVER` | Includes the notification server service. | `true` | `false` | `true` |
 
-The audit instance intentionally does not inherit the post-SVSDEV-370 DBC group settings. For flags absent before SVSDEV-370, this preserves application defaults rather than copying the explicit values added for DBC in that change.
+The audit instance intentionally does not inherit the post-SVSDEV-370 DBC group settings. For flags absent before SVSDEV-370, this preserves application defaults rather than copying the explicit values added for DBC in that change. OAuth is disabled by the shared default, so the audit group does not repeat that setting.
