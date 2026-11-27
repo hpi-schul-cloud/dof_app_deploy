@@ -57,4 +57,4 @@
     - legacy-file-archive
     - notification-server
     - role: bettermarks-proxy
-      when: NAMESPACE == "bettermarksproxy"
+      when: (NAMESPACE == "bettermarksproxy") or (NAMESPACE == "main")

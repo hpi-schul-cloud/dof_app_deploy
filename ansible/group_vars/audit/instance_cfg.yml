@@ -1,0 +1,26 @@
+DEPLOYMENT_ENV: "prod"
+SC_THEME: brb
+SC_NAV_TITLE: Prüfcloud
+SC_SHORTNAME: audit
+SC_TITLE: Prüfcloud
+SC_PRODUCTNAME: Prüfcloud
+SC_CONTACT_EMAIL: dont-talk-with-me@schulcloud-verbund.org
+
+# Only set audit overrides where BRB differs from shared defaults.
+FEATURE_MULTIPLE_S3_PROVIDERS_ENABLED: "true"
+FEATURE_VIDEOCONFERENCE_WAITING_ROOM_ENABLED: "true"
+FEATURE_SCHOOL_DATA_READONLY_ENABLED: "true"
+FEATURE_CONSENT_NECESSARY: "false"
+ADMIN_TABLES_DISPLAY_CONSENT_COLUMN: "true"
+
+# LDAP
+SERVER_LDAP_SYNC_FULL_CRONJOB: "0 */1 * * *"
+# PORTS
+PORT_SERVER: 3030
+PORT_METRICS_SERVER: 9090
+
+# accessibility
+ACCESSIBILITY_REPORT_EMAIL: dont-talk-with-me@schulcloud-verbund.org
+
+# BigBlueButton
+VIDEOCONFERENCE_DEFAULT_PRESENTATION: https://{{ DOMAIN }}/bbb-presentation.pdf
